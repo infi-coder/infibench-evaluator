@@ -1,0 +1,14 @@
+This error can occur when the SwiftUI preview is not associated with any target. Here's how you can fix it:
+
+1. Open your SwiftUI file.
+2. Click on the file name in the top center of Xcode.
+3. In the file inspector on the right, under "Target Membership", make sure your app's target is checked.
+
+If the target is already checked, try the following:
+
+1. Clean your build folder by going to `Product -> Clean Build Folder`.
+2. Close Xcode.
+3. Delete derived data. You can find the location of your derived data folder in `Xcode -> Preferences -> Locations`.
+4. Reopen Xcode and try again.
+
+If none of these work, it might be a bug in Xcode. You can report it to Apple via their Feedback Assistant.

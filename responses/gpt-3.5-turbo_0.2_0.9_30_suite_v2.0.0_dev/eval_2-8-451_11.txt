@@ -1,0 +1,23 @@
+Yes, you can use the `go mod download` command to download all the dependencies specified in your `go.mod` file without building your code. This can be useful in a Docker build context to take advantage of Docker's layer caching.
+
+Here's an example Dockerfile that uses `go mod download` to download dependencies in a separate layer:
+
+```
+FROM golang:1.11-alpine AS builder
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN go build -o myapp
+
+FROM alpine:latest
+COPY --from=builder /app/myapp /usr/local/bin/
+CMD ["myapp"]
+```
+
+In this example, the `go.mod` and `go.sum` files are copied to the container's working directory, and `go mod download` is run to download the dependencies. Then, the rest of the code is copied and built using `go build`. Finally, the built binary is copied to a new container based on `alpine:latest`.
+
+This way, if you make changes to your code but not your dependencies, Docker can reuse the layer with the downloaded dependencies, making the build faster.

@@ -1,0 +1,19 @@
+The alert you're seeing is likely due to the fact that the app you're trying to open is a developer or test version of an app, which requires your device to be in developer mode. However, iOS doesn't have a "Developer Mode" like Android does. Instead, you need to use Xcode on a Mac to access developer tools and features for iOS devices.
+
+Here are the steps to use Xcode to access developer features:
+
+1. Download and install Xcode from the Mac App Store. It's free to download.
+
+2. Open Xcode and go to the "Window" dropdown menu, then select "Devices and Simulators".
+
+3. Connect your iOS device to your Mac using a USB cable. Your device should appear in the left sidebar of the "Devices and Simulators" window.
+
+4. Click on your device in the sidebar, then check the "Show as run destination" box.
+
+5. You may need to trust your device. If prompted, follow the on-screen instructions to trust your device.
+
+6. Once your device is trusted, you can use Xcode's developer tools to install the developer or test app on your device.
+
+Remember, you need to have a valid Apple Developer account to use many of Xcode's features, including installing developer or test apps on a device. If you don't have an Apple Developer account, you can create one on the Apple Developer website.
+
+If you're still having trouble opening the app after following these steps, it's possible that the app was built with a provisioning profile that doesn't match the one on your device. In this case, you'll need to get a new build of the app from the developer that matches your device's provisioning profile.

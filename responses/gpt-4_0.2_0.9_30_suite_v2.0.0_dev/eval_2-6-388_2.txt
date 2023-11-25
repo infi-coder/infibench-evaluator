@@ -1,0 +1,35 @@
+The `[Keyless]` attribute is not part of the `System.ComponentModel.DataAnnotations` namespace. It's part of the `Microsoft.EntityFrameworkCore` namespace. 
+
+This attribute was introduced in Entity Framework Core 5.0. If you are using a version prior to 5.0, you won't have access to this attribute.
+
+To use the `[Keyless]` attribute, you need to:
+
+1. Update your Entity Framework Core to version 5.0 or later.
+2. Add the `Microsoft.EntityFrameworkCore` namespace to your file.
+
+Here's an example of how to use it:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+
+[Keyless]
+public class MyKeylessClass
+{
+    public string SomeProperty { get; set; }
+    // Other properties...
+}
+```
+
+Then in your `DbContext`:
+
+```csharp
+public DbSet<MyKeylessClass> KeylessModel { get; set; }
+```
+
+And you can use it as you mentioned:
+
+```csharp
+_context.KeylessModel.FromSqlRaw(...)
+```
+
+Remember that keyless entities are never tracked for changes in the DbContext and therefore cannot be inserted, updated or deleted on the database. They are useful for read-only scenarios such as executing a stored procedure that returns a result set.

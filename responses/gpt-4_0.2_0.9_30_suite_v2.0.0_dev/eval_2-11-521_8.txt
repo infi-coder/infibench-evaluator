@@ -1,0 +1,5 @@
+Yes, the comment is mostly correct. In object-oriented programming, a constructor is a special method that is automatically called when an object of a class is created. It is not a regular function that you can call whenever you want. Its main purpose is to initialize the newly created object.
+
+However, it's important to note that in some languages like JavaScript, you can call a constructor like a regular function, but it's not the common or intended use. In languages like Java or C++, trying to call a constructor like a regular function would result in a compile-time error. 
+
+So, while the comment is generally true, there might be some exceptions depending on the programming language in question.

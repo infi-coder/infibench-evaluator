@@ -1,0 +1,24 @@
+Here is a Python function that divides an even number into N parts, each part being a multiple of 2:
+
+```python
+def divideNumber(num, n):
+    # Calculate the base value and the remainder
+    base, rem = divmod(num, n)
+    # Ensure the base value is a multiple of 2
+    if base % 2 != 0:
+        base -= 1
+        rem += n
+    # Distribute the remainder by adding 2 to each group in succession
+    result = [base + 2 if i < rem // 2 else base for i in range(n)]
+    return result
+```
+
+This function first calculates the base value and the remainder of the division. If the base value is not a multiple of 2, it decreases the base value by 1 and increases the remainder by `n`. Then it distributes the remainder by adding 2 to each group in succession.
+
+Here is how you can use this function:
+
+```python
+print(divideNumber(100, 3))  # Output: [34, 34, 32]
+```
+
+This function ensures that the sum of the elements in the returned list is equal to `num` and each element in the list is a multiple of 2.

@@ -1,0 +1,27 @@
+Sure, here is the implementation of the function:
+
+```javascript
+function* iterLeafNodes(strhtml, format=[]) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strhtml, 'text/html');
+  const body = doc.body;
+
+  function* iterNodes(node, format=[]) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.textContent.trim() !== '') {
+        yield { text: node.textContent, format };
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      for (const child of node.childNodes) {
+        yield* iterNodes(child, [...format, node.tagName.toLowerCase()]);
+      }
+    }
+  }
+
+  for (const child of body.childNodes) {
+    yield* iterNodes(child);
+  }
+}
+```
+
+This function uses a generator to yield each leaf node (text node) in the HTML document. It uses recursion to traverse the DOM tree, and it keeps track of the current format by adding the tag name of each element node to the format array.

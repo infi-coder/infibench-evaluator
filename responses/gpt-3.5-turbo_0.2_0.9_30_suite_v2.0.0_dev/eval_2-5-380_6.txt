@@ -1,0 +1,13 @@
+There are a few things you can check to troubleshoot this issue:
+
+1. Make sure that the `@EnableSwagger2` annotation is present in your Spring Boot application. This annotation enables Swagger support in your application.
+
+2. Check if the `@ComponentScan` annotation is scanning the package where your Swagger configuration is located. By default, Spring Boot scans all the packages under the main application class. If your Swagger configuration is in a different package, you need to add it to the `@ComponentScan` annotation.
+
+3. Verify that the `springdoc.swagger-ui.path` property is not overridden in your application.properties file. By default, the path for the Swagger UI is `/swagger-ui.html`.
+
+4. Check if the `springdoc.swagger-ui.enabled` property is set to `true` in your application.properties file. This property enables or disables the Swagger UI.
+
+5. Make sure that the `springdoc.swagger-ui.version` property is set to the correct version of OpenAPI that you are using.
+
+If none of these solutions work, you can try to debug your application to see if there are any errors or exceptions being thrown.

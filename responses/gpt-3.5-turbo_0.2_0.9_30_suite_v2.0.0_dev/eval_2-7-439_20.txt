@@ -1,0 +1,40 @@
+The `ext-zip` package is not a regular package that can be installed via Composer. It is actually a PHP extension that needs to be installed on your server. 
+
+To install the `ext-zip` extension, you need to follow these steps:
+
+1. Find out which version of PHP you are using by running the following command in your terminal:
+```
+php -v
+```
+
+2. Once you know your PHP version, you can install the `ext-zip` extension using the appropriate command for your operating system and PHP version. Here are some examples:
+
+For Ubuntu and PHP 7.4:
+```
+sudo apt-get install php7.4-zip
+```
+
+For macOS and PHP 7.3:
+```
+brew install php@7.3
+brew install php@7.3-zip
+```
+
+For Windows and PHP 7.2:
+```
+Download the appropriate DLL file from https://windows.php.net/downloads/pecl/releases/zip/
+Add the DLL file to your PHP extensions directory (usually C:\php\ext)
+Add the following line to your php.ini file:
+extension=php_zip.dll
+```
+
+3. Once you have installed the `ext-zip` extension, restart your web server and try running your PHPStorm command again.
+
+If you are still having issues, you may need to check your PHP configuration to ensure that the `ext-zip` extension is enabled. You can do this by creating a PHP file with the following code:
+
+```
+<?php
+phpinfo();
+```
+
+Then, open the file in your web browser and search for "zip" to see if the extension is listed as enabled.

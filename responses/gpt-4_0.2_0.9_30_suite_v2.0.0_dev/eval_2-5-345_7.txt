@@ -1,0 +1,13 @@
+The error you're encountering is due to a compatibility issue between IntelliJ IDEA and the version of Maven that comes with Spring Boot 2.7.0. 
+
+The issue is that IntelliJ IDEA is trying to use a method in the `DefaultModelValidator` class that no longer exists in the version of Maven that comes with Spring Boot 2.7.0.
+
+Here are a few possible solutions:
+
+1. **Downgrade Spring Boot version**: You can downgrade your Spring Boot version to 2.6.x until IntelliJ IDEA supports the newer version of Maven.
+
+2. **Change Maven version in IntelliJ IDEA**: You can change the bundled Maven version in IntelliJ IDEA to match the one used by your project. To do this, go to `File -> Settings -> Build, Execution, Deployment -> Build Tools -> Maven`. Under `Maven home directory`, select the appropriate version.
+
+3. **Update IntelliJ IDEA**: JetBrains is aware of this issue and they are working on a fix. You can check for updates regularly and update your IntelliJ IDEA when the fix is released.
+
+Remember to always keep your tools up-to-date to avoid such issues.

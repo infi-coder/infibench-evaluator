@@ -1,0 +1,25 @@
+Yes, Go modules do support this. You can copy your `go.mod` and `go.sum` files over and download dependencies as a separate step. Here's an example Dockerfile:
+
+```Dockerfile
+FROM golang:1.11
+
+WORKDIR /app
+
+# Copy go mod and sum files 
+COPY go.mod go.sum ./
+
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed 
+RUN go mod download
+
+# Copy the source from the current directory to the Working Directory inside the docker container 
+COPY . .
+
+# Build the Go app
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+
+CMD ["./main"]
+```
+
+This Dockerfile will first copy `go.mod` and `go.sum` to the working directory in the Docker container, then run `go mod download` which will download all the dependencies specified in these files. This takes advantage of Docker's layer caching, so if your `go.mod` and `go.sum` files don't change, this layer will be cached and the download step will be skipped on subsequent builds.
+
+After downloading the dependencies, it copies the rest of your source code and builds the application.

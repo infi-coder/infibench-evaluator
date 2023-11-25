@@ -1,0 +1,9 @@
+You can use `grep` with a regular expression to match the `lang` attribute and extract its value. Here's an example command that should work for both cases:
+
+```
+curl -Ls yahoo.com | grep -oP 'lang="\K[^"]+' | head -1
+```
+
+This command uses the `-o` option to output only the matched text, and the `-P` option to enable Perl-compatible regular expressions. The regular expression `lang="\K[^"]+` matches the `lang` attribute followed by its value, and the `\K` sequence discards the matched `lang="` prefix. The `[^"]+` pattern matches one or more characters that are not double quotes, which should capture the language code.
+
+Note that this command assumes that the `lang` attribute appears on the first line of the HTML code. If it can appear on other lines, you may need to adjust the `head` command to extract the first occurrence of the `lang` attribute.

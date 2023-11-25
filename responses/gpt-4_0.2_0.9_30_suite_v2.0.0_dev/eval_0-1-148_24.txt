@@ -1,0 +1,30 @@
+Sure, you can use the `last:` variant provided by Tailwind CSS to target the last element in a list. Here's how you can modify your code:
+
+```html
+<ul>
+  <li
+    v-for="(item, index) in items"
+    :key="`item-${index}`"
+    class="border-solid border-b border-black last:border-b-0"
+  >
+    Item
+  </li>
+</ul>
+```
+
+In the above code, `last:border-b-0` will remove the bottom border from the last `<li>` element. 
+
+Please note that by default, variants like `last` are not enabled for all utilities. You might need to enable it in your Tailwind CSS configuration file (`tailwind.config.js`) under the `variants` section like so:
+
+```javascript
+module.exports = {
+  variants: {
+    extend: {
+      borderWidth: ['last'],
+    }
+  },
+  // ...
+}
+```
+
+This will enable the `last` variant for `borderWidth` utilities. After this, you should be able to use `last:border-b-0` as shown in the HTML code above.

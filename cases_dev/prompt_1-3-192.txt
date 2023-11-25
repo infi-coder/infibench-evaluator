@@ -1,0 +1,15 @@
+This is a question from Codewars: Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
+The input test cases are as follows:
+
+```python
+test.describe("Testing function to_camel_case")
+test.it("Basic tests")
+test.assert_equals(to_camel_case(''), '', "An empty string was provided but not returned")
+test.assert_equals(to_camel_case("the_stealth_warrior"), "theStealthWarrior", "to_camel_case('the_stealth_warrior') did not return correct value")
+test.assert_equals(to_camel_case("The-Stealth-Warrior"), "TheStealthWarrior", "to_camel_case('The-Stealth-Warrior') did not return correct value")
+test.assert_equals(to_camel_case("A-B-C"), "ABC", "to_camel_case('A-B-C') did not return correct value")
+```
+
+Please write a function `to_camel_case` in Python, which takes a string variable `text` as arguments and returns the camel case string.
+
+Function signature is: `to_camel_case(text)`

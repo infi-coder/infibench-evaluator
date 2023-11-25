@@ -1,0 +1,18 @@
+You can achieve this by using the `torch.cat` function. This function concatenates the given sequence of tensors in the given dimension. But before concatenating, you need to add an extra dimension to `d` to match the dimensions of `inps`. You can do this using `unsqueeze` function.
+
+Here is the function you asked for:
+
+```python
+import torch
+
+def addTensor(inps, d):
+    # Add an extra dimension to d
+    d = d.unsqueeze(2)
+    
+    # Concatenate inps and d along the 3rd dimension
+    result = torch.cat((inps, d), 2)
+    
+    return result
+```
+
+This function first adds an extra dimension to `d` using `unsqueeze(2)`, which makes its size [64, 161, 1]. Then it concatenates `inps` and `d` along the 3rd dimension (dimension index starts from 0), which results in a tensor of size [64, 161, 2].

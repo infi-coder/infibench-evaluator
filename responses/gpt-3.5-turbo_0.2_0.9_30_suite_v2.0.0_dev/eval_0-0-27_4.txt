@@ -1,0 +1,24 @@
+It seems like you are trying to fetch data from a remote GraphQL server using Apollo Client in React Native, but the loading state hangs at `true` and fails to fetch data.
+
+One possible reason for this issue could be that the GraphQL server you are trying to connect to is not accessible or not responding. You can try to use a different GraphQL server or check if the server you are using is up and running.
+
+Another possible reason could be that there is a network issue or a CORS (Cross-Origin Resource Sharing) issue. You can try to check if there are any network issues or try to enable CORS on the server-side.
+
+You can also try to add some error handling to your code to get more information about the error. For example, you can add a `console.log` statement inside the `error` block to see the error message.
+
+```javascript
+if (error) {
+    console.log(error);
+    return <Text>Error :(</Text>;
+}
+```
+
+Additionally, you can try to use the `fetchPolicy` option to control the caching behavior of the query. For example, you can set the `fetchPolicy` to `network-only` to always fetch data from the server and bypass the cache.
+
+```javascript
+const { loading, error, data } = useQuery(EXCHANGE_RATES, {
+    fetchPolicy: 'network-only',
+});
+```
+
+I hope this helps you to resolve the issue.

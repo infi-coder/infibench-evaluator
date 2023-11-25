@@ -1,0 +1,26 @@
+The error message indicates that `protoc` is unable to determine the Go import path for the generated code. To fix this, you need to specify the Go package name in the `.proto` file using the `option go_package` directive. 
+
+Here's an example of how to modify your `simple.proto` file to include the `go_package` option:
+
+```go
+syntax="proto3";
+
+option go_package = "github.com/your-username/your-repo/your-package-name";
+
+package main;
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+Replace `github.com/your-username/your-repo/your-package-name` with the actual import path for your Go package.
+
+After making this change, you can run the `protoc` command again:
+
+```bash
+protoc --go_out=. simple.proto
+```
+
+This should generate the Go code for your `Person` message in the current directory.

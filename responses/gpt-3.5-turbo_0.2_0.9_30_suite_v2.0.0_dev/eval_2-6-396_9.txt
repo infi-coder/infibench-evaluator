@@ -1,0 +1,16 @@
+The error message is caused by the line `user.HasIndex(x => x.Gender);` in your `OnModelCreating` method. You cannot create an index on a navigation property. Instead, you should create an index on the foreign key property `GenderId` like this:
+```c#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderId);
+    }
+}
+```
+This should solve the problem and allow you to create the migration successfully.

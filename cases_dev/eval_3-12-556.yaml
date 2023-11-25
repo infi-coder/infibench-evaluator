@@ -1,0 +1,46 @@
+# Corresponding to post https://stackoverflow.com/questions/63953363
+id: 3-12-556
+prompt_path: prompt_3-12-556.txt
+type: non-code debugging
+
+lang: dart
+
+grading:
+  max_score: 5.0
+  min_score: 0.0
+  blank_filling:
+    template: "If your compileSdkVersion and [blank] is [blank] (or above), then add the [blank] info to your [blank] file, directly under the manifest tag:
+```
+<manifest package=\"com.example\">
+    <queries>
+        <intent>
+            <action android:name=\"[blank]\" />
+        </intent>
+    </queries>
+    ...
+</manifest>
+```"
+    
+    blank_str: "[blank]"
+    targets: 
+        - content:
+            content: "targetSdkVersion"
+          to_lower: true
+        - "30"
+        - content:
+            or:
+              - content:
+                content: "queries"
+                to_lower: true
+              - content:
+                content: "<queries>"
+                to_lower: true
+        - content:
+            or:
+              - content:
+                content: "Android manifest"
+                to_lower: true
+              - content:
+                content: "AndroidManifest.xml"
+                to_lower: true
+        - "android.media.action.IMAGE_CAPTURE"

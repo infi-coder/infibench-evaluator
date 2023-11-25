@@ -1,0 +1,12 @@
+id: 2-5-345
+prompt_path: prompt_2-5-345.txt
+type: non-code debugging
+lang: java
+grading:
+  keywords:
+    - content: "Build tools"
+      to_lower: true
+    - content: "Build, Execution, Deployment"
+      to_lower: true
+    - content: "Maven home"
+      to_lower: true

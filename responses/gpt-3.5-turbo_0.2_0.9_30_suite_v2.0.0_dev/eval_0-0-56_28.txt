@@ -1,0 +1,26 @@
+It seems that the issue is related to the way you are running the container. When you run the container with the `docker-compose run` command, it creates a new container instance every time you run it. This means that the container's IP address changes every time, and you need to use the new IP address to access the container.
+
+To fix this issue, you can use the `docker-compose up` command instead of `docker-compose run`. This command will create a container and start it in the background. The container's IP address will remain the same, and you can access it using `localhost:8080` or `localhost:8081`.
+
+Here's how you can modify your `docker-compose.yml` file:
+
+```yaml
+version: '3.7'
+
+services:
+  app:
+    image: myapp
+    build: .
+    container_name: myapp
+    ports:
+      - "8080:8080"
+    command: npm run vite # or npm run dev
+```
+
+With this configuration, you can start the container with the following command:
+
+```bash
+docker-compose up
+```
+
+This should start the container and make it accessible at `localhost:8080`.

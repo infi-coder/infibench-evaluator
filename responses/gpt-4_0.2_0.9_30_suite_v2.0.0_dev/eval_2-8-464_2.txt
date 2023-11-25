@@ -1,0 +1,23 @@
+The error you're encountering is due to the fact that AWS Lambda expects a Linux binary, but you're providing a Windows binary. 
+
+When you run `go build main.go` on a Windows machine, it generates a Windows binary. AWS Lambda runs on a Linux-based environment, so it can't execute Windows binaries.
+
+To solve this issue, you need to cross-compile your Go code to create a Linux binary. You can do this by setting the `GOOS` and `GOARCH` environment variables before running the `go build` command.
+
+Here's how you can do it:
+
+```bash
+SET GOOS=linux
+SET GOARCH=amd64
+go build -o main main.go
+```
+
+This will create a Linux binary named `main`. You can then zip this file and upload it to AWS Lambda.
+
+```bash
+zip function.zip main
+```
+
+Remember to set the handler name as `main` when you upload the zip file to AWS Lambda.
+
+This should solve your issue. If you still encounter problems, please let me know.

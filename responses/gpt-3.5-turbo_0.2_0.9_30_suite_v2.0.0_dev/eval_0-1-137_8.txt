@@ -1,0 +1,13 @@
+The issue is with the format of the `$theme-colors` map. The values in the map should be in quotes. Here's the revised code:
+
+```scss
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": "#0d6efd",
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Make sure to replace `#0d6efd` with your desired color value.

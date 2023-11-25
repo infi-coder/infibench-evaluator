@@ -1,0 +1,15 @@
+The error you're seeing is due to a compatibility issue between the Maven version (3.8.5) that comes with Spring Boot 2.7 and the version of IntelliJ you're using. 
+
+This issue is known and has been reported in the IntelliJ IDEA bug tracker. The JetBrains team has already fixed this issue in the IntelliJ IDEA 2021.3.1 version. 
+
+Here are the steps to resolve this issue:
+
+1. Update your IntelliJ IDEA to the latest version (2021.3.1 or later). You can do this by going to `Help -> Check for Updates...` in the IntelliJ IDEA menu.
+
+2. If you can't update IntelliJ IDEA for some reason, you can downgrade the Maven version in your project to 3.8.4 or earlier. To do this, you need to modify the Maven wrapper properties in your project:
+
+    - Open the `mvnw` or `mvnw.cmd` file (depending on your OS) in your project root directory.
+    - Find the line that starts with `MAVEN_PROJECTBASEDIR`.
+    - Replace the Maven version in that line with `3.8.4` or earlier.
+
+After doing one of these steps, you should be able to import and work with your project in IntelliJ IDEA without any issues.

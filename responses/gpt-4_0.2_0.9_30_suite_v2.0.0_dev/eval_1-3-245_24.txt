@@ -1,0 +1,23 @@
+The error message `ModuleNotFoundError: No module named 'app'` indicates that Python cannot find the `app` module. This is likely because the `app` directory is not in a location where Python looks for modules.
+
+In your Dockerfile, you're copying the `app` directory into `/app` in the Docker image. However, this directory (`/app`) is not in Python's module search path by default.
+
+To fix this, you can set the `PYTHONPATH` environment variable in your Dockerfile to include the `/app` directory. Here's how you can modify your Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt /
+RUN pip install --requirement /requirements.txt
+
+COPY ./app /app
+
+# Set PYTHONPATH=/app so Python includes /app in its module search path
+ENV PYTHONPATH=/app
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+This should resolve the `ModuleNotFoundError` you're seeing.

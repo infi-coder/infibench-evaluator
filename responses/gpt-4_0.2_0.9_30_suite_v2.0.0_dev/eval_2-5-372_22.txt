@@ -1,0 +1,23 @@
+The error message you're seeing indicates that Hibernate Validator is unable to find a validator for the `@NotEmpty` and `@NotBlank` constraints. This is because these constraints are new in Hibernate Validator 6.0.0.Final and you're using Hibernate Validator 5.3.5.Final-redhat-2, which doesn't include these constraints.
+
+The `@NotEmpty` and `@NotBlank` constraints are part of the Bean Validation 2.0 specification, which is implemented by Hibernate Validator 6.0.0.Final and later. The Bean Validation 1.1 specification, which is implemented by Hibernate Validator 5.x, does not include these constraints.
+
+The version of Hibernate Validator that's being used at runtime is determined by your application server (JBoss). Even though you've included Hibernate Validator 6.0.11 in your Maven dependencies, JBoss is using its own bundled version of Hibernate Validator (5.3.5.Final-redhat-2) instead.
+
+To resolve this issue, you have a few options:
+
+1. Upgrade to a version of JBoss that includes Hibernate Validator 6.0.0.Final or later. This will allow you to use the `@NotEmpty` and `@NotBlank` constraints.
+
+2. If upgrading JBoss is not an option, you can use the `@NotNull` and `@Size(min=1)` constraints together as a workaround. This will ensure that the validated string is not null and not empty.
+
+3. Another option is to include the Hibernate Validator 6.0.11 jar in your application's deployment and configure JBoss to use this version of Hibernate Validator instead of its bundled version. This can be complex and may have other implications, so it should be done with caution.
+
+Here's an example of how to use the `@NotNull` and `@Size(min=1)` constraints together:
+
+```java
+@NotNull
+@Size(min=1)
+private String username;
+```
+
+This will ensure that `username` is not null and not an empty string.

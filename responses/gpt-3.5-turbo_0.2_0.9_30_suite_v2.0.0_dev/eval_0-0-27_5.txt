@@ -1,0 +1,34 @@
+The issue might be related to the network configuration of your app. The URI you are using in your `ApolloClient` configuration is a sandbox URI provided by Apollo, which might not work in your environment. 
+
+You can try changing the URI to a different GraphQL endpoint that you have access to. For example, you can use the following URI:
+
+```
+https://countries.trevorblades.com/
+```
+
+This is a public GraphQL API that provides information about countries. You can modify your `ApolloClient` configuration to use this URI:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'https://countries.trevorblades.com/',
+    cache: new InMemoryCache(),
+});
+```
+
+Then, modify your `EXCHANGE_RATES` query to use the `countries` field provided by this API:
+
+```javascript
+const EXCHANGE_RATES = gql`
+    query GetExchangeRates {
+        countries {
+            code
+            name
+            native
+            emoji
+            currency
+        }
+    }
+`;
+```
+
+This should allow you to fetch data successfully.

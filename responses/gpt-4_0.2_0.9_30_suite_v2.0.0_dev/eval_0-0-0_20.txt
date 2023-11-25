@@ -1,0 +1,19 @@
+Sure, here is a function that does exactly that:
+
+```javascript
+function keys_and_prices(raw_obj) {
+    var keys = [];
+    var prices = [];
+    for (var key in raw_obj) {
+        if (raw_obj.hasOwnProperty(key)) {
+            keys.push(key);
+            prices.push(raw_obj[key].price);
+        }
+    }
+    return [keys, prices];
+}
+```
+
+This function iterates over the properties of the input object. For each property, it checks if the property is actually a direct property of the object (and not inherited from the prototype chain). If it is, it adds the property name to the `keys` array and the price to the `prices` array. Finally, it returns an array containing the `keys` and `prices` arrays.
+
+Please note that the order of keys in JavaScript objects is not guaranteed. If you need the keys and prices in a specific order, you will need to sort the arrays after they are created.

@@ -1,0 +1,21 @@
+You can use the `tidyr` package in R to split the comma and colon separated column into respective columns. Here's the `mySplit` function that you can use:
+
+```r
+library(tidyr)
+
+mySplit <- function(df) {
+  df_split <- separate(df, col1, into = c("name", "Age", "City"), sep = ",|:")
+  return(df_split)
+}
+```
+
+Here, we are using the `separate` function from the `tidyr` package to split the `col1` column into three separate columns - `name`, `Age`, and `City`. The `into` argument specifies the names of the new columns, and the `sep` argument specifies the separator used to split the original column.
+
+You can call this function by passing your `df` dataframe as an argument:
+
+```r
+df <- data.frame(col1 = c("name:Michael,Age:31,City:NYC", "name:Tom,Age:25,City:NA"))
+mySplit(df)
+```
+
+This will return a new dataframe with three columns - `name`, `Age`, and `City`, with the values split accordingly.

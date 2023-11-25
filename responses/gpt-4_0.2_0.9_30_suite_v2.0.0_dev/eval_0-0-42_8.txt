@@ -1,0 +1,12 @@
+```javascript
+const MongoStore = require('connect-mongo');
+
+...
+
+app.use(session({
+    secret: 'story book',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+}))
+```

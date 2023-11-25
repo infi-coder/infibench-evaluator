@@ -1,0 +1,53 @@
+This issue might be due to a few reasons:
+
+1. **Incorrect or missing credentials:** Even though you mentioned that your GitHub credentials give you access to these repos, it's worth double-checking. Make sure you have the correct access rights to the private repository.
+
+2. **Proxy settings:** If you're using a proxy, it might be causing the issue. You can try disabling it or configuring it correctly.
+
+3. **Go version:** Ensure that you're using the same Go version on both computers. Different Go versions might handle dependencies differently.
+
+4. **Network issues:** There might be network issues preventing Go from accessing the repository.
+
+To debug this issue, you can try the following:
+
+- **Verbose logging:** Use the `-v` flag with `go get` or `go build` to get more detailed logs.
+
+    ```bash
+    go get -v github.ibm.com/kms/key-protect-client@v0.1.5
+    ```
+
+- **Check the GOPROXY environment variable:** The GOPROXY environment variable controls where Go fetches its modules from. You can print its value using:
+
+    ```bash
+    echo $GOPROXY
+    ```
+
+    If it's not set to `direct`, you can try setting it to `direct` and then try building your program again.
+
+    ```bash
+    export GOPROXY=direct
+    ```
+
+- **Check the GOSUMDB environment variable:** The GOSUMDB environment variable controls where Go checks for module checksums. If it's set to `off`, Go won't check for checksums, which might cause issues. You can print its value using:
+
+    ```bash
+    echo $GOSUMDB
+    ```
+
+    If it's set to `off`, you can try setting it to `sum.golang.org` and then try building your program again.
+
+    ```bash
+    export GOSUMDB=sum.golang.org
+    ```
+
+- **Check the GIT configuration:** Ensure that the git configuration is correctly set up to access private repositories. You can check your git configuration using:
+
+    ```bash
+    git config --list
+    ```
+
+    If you're using SSH to access your repositories, ensure that your SSH keys are correctly set up.
+
+- **Check the network:** Try accessing the repository URL directly from your browser or using `curl` to see if there are any network issues.
+
+If none of these steps help, please

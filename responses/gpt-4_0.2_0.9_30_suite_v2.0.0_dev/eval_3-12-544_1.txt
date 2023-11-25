@@ -1,0 +1,30 @@
+The error you're encountering is due to the fact that you're trying to access platform channels before `runApp()` is called. This is not allowed in Flutter because the binding with the host platform is not fully initialized until `runApp()` is called.
+
+To fix this, you should move your asynchronous code inside the `main()` function to the `initState()` method of your root widget or use `WidgetsFlutterBinding.ensureInitialized()` before calling the asynchronous code.
+
+Here's how you can do it:
+
+```dart
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  getApplicationDocumentsDirectory().then((appDocsDir) {
+    Hive.init(appDocsDir.path);
+    runApp(MyApp());
+  });
+}
+```
+
+In this code, `WidgetsFlutterBinding.ensureInitialized()` ensures that the widget binding is initialized. This must be called before any use of the Flutter framework. After that, you can safely use `getApplicationDocumentsDirectory()`.
+
+If you want to use `await` instead of `then()`, you can make `main()` an async function:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+
+This code does the same thing as the previous one, but it uses `await` to wait for `getApplicationDocumentsDirectory()` to complete. This makes the code easier to read and understand.

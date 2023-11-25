@@ -1,0 +1,20 @@
+The issue you're encountering is due to the Python interpreter not being able to find the `app` module. This is likely because the `app` directory is not in a location that Python checks for modules.
+
+In your Dockerfile, you're setting the working directory to `/app` and then copying the `app` directory into the working directory. This means the `app` directory ends up at `/app/app`, but Python is looking for modules in `/app`.
+
+To fix this issue, you should copy the contents of the `app` directory into the working directory, rather than the directory itself. Here's how you can revise your Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt /
+RUN pip install --requirement /requirements.txt
+
+COPY ./app/ ./
+
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+In this revised Dockerfile, the `COPY ./app/ ./` line copies the contents of the `app` directory (due to the trailing slash) into the working directory. The `CMD` line is also updated to `main:app` because `main.py` is now in the working directory, not in an `app` subdirectory.

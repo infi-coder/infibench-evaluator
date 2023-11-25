@@ -1,0 +1,28 @@
+You can fill in the blanks in your JavaScript code as follows:
+
+```javascript
+document.getElementById('check').onclick = function() {
+  let allAreFilled = true;
+  document.getElementById("myForm").querySelectorAll('input,textarea,select').forEach(function(i) {
+    if (!allAreFilled) return;
+    if (i.type === "radio") {
+      let radioValueCheck = false;
+      document.getElementById("myForm").querySelectorAll(`input[name=${i.name}]`).forEach(function(r) {
+        if (r.checked) radioValueCheck = true;
+      })
+      allAreFilled = radioValueCheck;
+      return;
+    }
+    if (!i.value) { allAreFilled = false;  return; }
+  })
+  if (!allAreFilled) {
+    alert('Fill all the fields');
+  }
+};
+```
+
+In this code:
+
+- `check` is the id of the button that when clicked, checks if all required fields are filled.
+- `querySelectorAll('input,textarea,select')` is used to select all input, textarea, and select elements within the form.
+- `querySelectorAll(`input[name=${i.name}]`)` is used to select all input elements with the same name as the current input element being iterated over. This is used for radio buttons, as only one radio button with the same name can be selected at a time.

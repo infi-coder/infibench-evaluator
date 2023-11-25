@@ -1,0 +1,26 @@
+The error message indicates that Pillow does not yet support Python 3.8 and does not yet provide prebuilt Windows binaries. It also mentions that zlib, a required dependency when compiling Pillow from source, could not be found.
+
+Here are a few things you can try:
+
+1. **Downgrade Python to a version supported by Pillow**: As of Pillow 6.0.0, Python 3.7 is the latest version supported. You can download Python 3.7 from the [official Python downloads page](https://www.python.org/downloads/).
+
+2. **Install a prebuilt Pillow package**: If you don't want to downgrade Python, you can try installing a prebuilt Pillow package using the following command:
+
+```bash
+pip install --upgrade Pillow
+```
+
+3. **Install zlib**: If you want to compile Pillow from source, you need to install zlib first. You can download zlib from the [official zlib website](http://www.zlib.net/). After downloading and extracting the zlib package, you can install it using the following commands:
+
+```bash
+cd zlib-1.2.11
+./configure
+make
+make install
+```
+
+After installing zlib, you should be able to compile and install Pillow from source.
+
+4. **Use a different Python environment**: If you're using a virtual environment, try installing Pillow outside of it, or in a different virtual environment. It's possible that there's an issue with your current environment.
+
+Remember to replace `zlib-1.2.11` with the actual version of zlib you downloaded.

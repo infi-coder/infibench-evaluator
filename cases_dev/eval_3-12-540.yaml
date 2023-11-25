@@ -1,0 +1,15 @@
+# Corresponding to post https://stackoverflow.com/questions/49388281
+id: 3-12-540
+
+prompt_path: prompt_3-12-540.txt
+type: knowledge question-answering
+
+lang: dart
+full_score: 1.0
+null_score: 0.0
+
+grading:
+  keywords:
+    - content: "VerticalDivider"
+      weight: 1.0
+      to_lower: false

@@ -1,0 +1,47 @@
+To import images in a React component with TypeScript and Parcel, you need to do the following:
+
+1. Create a `.d.ts` file with the same name as the image file, in the same directory as the image. For example, if your image is named `image.jpg`, create a file named `image.d.ts` in the same directory.
+
+2. Inside the `.d.ts` file, add the following code:
+
+```typescript
+declare module '*.jpg' {
+  const value: any;
+  export default value;
+}
+```
+
+This tells TypeScript that any file with the `.jpg` extension can be imported as a module, and that the default export of that module is of type `any`.
+
+3. In your component file, import the image like this:
+
+```typescript
+import * as React from 'react';
+import image from '../assets/image.jpg';
+
+const Box = props => {
+  // do things...
+}
+
+export default Box;
+```
+
+Note that we are using the `import image from '../assets/image.jpg'` syntax, not `import * as image from '../assets/image.jpg'`. This is because we are only importing the default export of the module.
+
+4. Make sure that your `tsconfig.json` file includes the directory where your `.d.ts` files are located. For example:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["types/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"]
+}
+```
+
+In this example, we have included the `types` directory, where our `.d.ts` files are located.
+
+If you are still getting the error `Cannot find module`, try renaming your `.d.ts` file to something other than `index.d.ts`. TypeScript is ignoring `index.d.ts` because it assumes that it is generated from `index.tsx`, which is more likely to be up to date. Name your `.d.ts` file something else, e.g., `declaration.d.ts`.

@@ -1,0 +1,17 @@
+The error message you're seeing is from rust-analyzer, which is a language server protocol implementation for Rust. It provides features like autocompletion, goto definition, and error checking in your editor.
+
+The error message "could not resolve macro `$crate::format_args`" suggests that rust-analyzer is having trouble resolving a macro, specifically `format_args`, which is used internally by Rust for formatting strings.
+
+However, if your code is compiling and running correctly with `cargo run`, `cargo test`, and `cargo check`, then this is likely a false positive from rust-analyzer, not an actual error in your code. Rust-analyzer, while very useful, is not perfect and can sometimes report errors that aren't actually there.
+
+Here are a few things you can try to resolve this:
+
+1. **Update rust-analyzer**: If you're using an older version of rust-analyzer, updating to the latest version might resolve the issue.
+
+2. **Restart your editor**: Sometimes, simply restarting your editor can resolve issues with rust-analyzer.
+
+3. **Check your rust-analyzer settings**: If you're using VS Code, you can check your settings by going to File > Preferences > Settings and searching for "rust-analyzer". Make sure the settings are correct.
+
+4. **Re-check the code**: Although it's unlikely, there might be a subtle issue in your code that's causing rust-analyzer to report an error. Double-check your code to make sure everything is correct.
+
+If none of these solutions work, you might want to consider reporting the issue to the rust-analyzer team. They might be able to provide more insight into what's causing the error.

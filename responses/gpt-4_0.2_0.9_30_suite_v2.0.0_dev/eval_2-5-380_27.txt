@@ -1,0 +1,15 @@
+The issue might be related to the URL you are trying to access. The Springdoc OpenAPI UI is not accessible via `localhost:8080/swagger-ui.html` as in the older Swagger 2.x. Instead, you should be able to access the Swagger UI at `localhost:8080/swagger-ui/index.html` or `localhost:8080/swagger-ui/` for Springdoc OpenAPI UI.
+
+If you still can't access the Swagger UI, please check the following:
+
+1. Make sure your application is running and accessible at `localhost:8080`.
+
+2. Check if you have any Spring Security configuration that might be blocking access to the Swagger UI.
+
+3. Ensure that the `springdoc-openapi-ui` dependency is correctly added to your `pom.xml` and the project is properly built after adding the dependency.
+
+4. If you have a custom servlet context path, you need to include that in your URL. For example, if you have `server.servlet.context-path=/api`, then the Swagger UI should be accessible at `localhost:8080/api/swagger-ui/index.html`.
+
+5. Check your application logs for any errors related to the Springdoc OpenAPI UI.
+
+6. If you are using Spring Boot version 2.4.0 or later, there is a known issue with the Springdoc OpenAPI UI not working correctly. You can try downgrading to Spring Boot version 2.3.7.RELEASE or upgrading the Springdoc OpenAPI UI to version 1.5.2 or later.

@@ -1,0 +1,1 @@
+Use `WillPopScope` instead of `Navigator.pop(context)` or `Navigator.of(context).pop()`.

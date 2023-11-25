@@ -1,0 +1,11 @@
+This error is caused by a bug in rust-analyzer, which is a language server for Rust that provides IDE-like features such as code completion, error highlighting, and refactoring tools. The error message is indicating that rust-analyzer is having trouble resolving the `format_args` macro, which is used internally by the `pad_str` function.
+
+Fortunately, this error should not affect the functionality of your code, and it is safe to ignore it. If you want to get rid of the error message, you can try updating your Rust toolchain to the latest version, or you can try disabling the `rust-analyzer` extension in your editor.
+
+In Visual Studio Code, you can disable the `rust-analyzer` extension by going to the Extensions panel, finding the `rust-analyzer` extension, and clicking on the "Disable" button. Alternatively, you can add the following line to your `settings.json` file to disable the extension:
+
+```json
+"rust-analyzer.enable": false
+``` 
+
+Keep in mind that disabling the `rust-analyzer` extension may affect the performance and functionality of your editor, so it's recommended to only do this as a temporary workaround until the issue is resolved.

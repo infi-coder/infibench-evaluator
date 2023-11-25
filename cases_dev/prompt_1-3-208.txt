@@ -1,0 +1,15 @@
+I am importing string and trying to check if text contains only "a-z", "A-Z", and "0-9".
+
+But I get only input and it doesn't print success when I enter letters and digits
+
+```python
+import string
+text=input("Enter: ")
+correct = string.ascii_letters + string.digits
+if text in correct:
+    print("Success")
+```
+
+Please write a function `checkString` in Python, which takes a string `text` as the argument and returns whether the string satisfies the above requirement in Boolean.
+
+Function signature is: `checkString(text)`

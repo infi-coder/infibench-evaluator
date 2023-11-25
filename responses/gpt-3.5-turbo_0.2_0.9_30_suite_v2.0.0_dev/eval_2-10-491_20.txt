@@ -1,0 +1,35 @@
+One way to express this more idiomatically is to use the `map_or_else` method on `Option`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map_or_else(|| Some(5), |val| if val < 5 { Some(5) } else { None });
+}
+```
+
+This code uses the `map_or_else` method to check if `foo` is `None`. If it is, it returns `Some(5)`. If it's not, it checks if the inner value is less than 5. If it is, it returns `Some(5)`. If it's not, it returns `None`. Finally, the result is assigned back to `foo`.
+
+Another way to express this is to use the `and_then` method on `Option`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.and_then(|val| if val < 5 { Some(5) } else { None });
+    if foo.is_none() {
+        foo = Some(5);
+    }
+}
+```
+
+This code uses the `and_then` method to check if `foo` is `None`. If it's not, it checks if the inner value is less than 5. If it is, it returns `Some(5)`. If it's not, it returns `None`. If the result is `None`, it assigns `Some(5)` back to `foo`.
+
+A third way to express this is to use the `unwrap_or_else` method on `Option`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = Some(foo.unwrap_or_else(|| 5)).filter(|&val| val < 5);
+}
+```
+
+This code uses the `unwrap_or_else` method to get the inner value of `foo` or return `5` if it's `None`. It then uses the `filter` method to check if the inner value is less than 5. If it is, it returns `Some(val)`. If it's not, it returns `None`. Finally, the result is assigned back to `foo`.

@@ -1,0 +1,34 @@
+This issue is happening because Laravel uses CSRF protection for all POST requests. When you log out from one tab, Laravel invalidates the session and the CSRF token associated with it. So, when you try to log out from the other tab, the CSRF token is no longer valid, hence the 419 error.
+
+To handle this, you can modify your logout method to handle GET requests instead of POST. This way, CSRF protection won't be applied and you won't get a 419 error.
+
+Here are the steps:
+
+1. Open `app/Http/Controllers/Auth/LoginController.php` and add a `logout` method:
+
+```php
+public function logout(Request $request)
+{
+    Auth::logout();
+    return redirect('/login');
+}
+```
+
+2. Open `routes/web.php` and add a route for logout:
+
+```php
+Route::get('/logout', 'Auth\LoginController@logout');
+```
+
+3. Finally, update your logout link to use GET method:
+
+```html
+<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+    Logout
+</a>
+
+<form id="logout-form" action="{{ url('/logout') }}" method="GET" style="display: none;">
+</form>
+```
+
+Now, even if you log out from one tab and then try to log out from another, you won't get a 419 error. Instead, you will be redirected to the login page.

@@ -1,0 +1,13 @@
+The issue you are facing could be due to the incompatibility of the Selenium WebDriver with the version of Internet Explorer installed on your machine. 
+
+Excel 2019 comes with Internet Explorer 11, which is not fully compatible with the latest version of Selenium WebDriver. To resolve this issue, you can try the following steps:
+
+1. Install the latest version of the Selenium WebDriver for Internet Explorer 11. You can download it from the official Selenium website.
+
+2. Make sure that the Internet Explorer browser zoom level is set to 100%. This can be done by going to the Settings menu in Internet Explorer and selecting "Zoom" from the drop-down menu.
+
+3. Try running the code in compatibility mode. To do this, open Internet Explorer, go to the Settings menu, select "Compatibility View settings", and add the website you are trying to access to the list of websites to be displayed in compatibility mode.
+
+4. If none of the above steps work, you can try using a different browser such as Chrome or Firefox with the Selenium WebDriver.
+
+I hope this helps!

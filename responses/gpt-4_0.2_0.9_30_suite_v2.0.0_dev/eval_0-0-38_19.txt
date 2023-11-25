@@ -1,0 +1,10 @@
+Sure, you can use async/await with toPromise() to wait for the Observable to complete. Here is the revised code:
+
+```javascript
+async getData() {
+  this.newIds = await this.repository.getById(Ids).toPromise();
+  console.log(this.newIds);
+}
+```
+
+Remember to call the `getData()` function to execute the code.

@@ -1,0 +1,11 @@
+Here are some steps you can try to solve the issue:
+
+1. Make sure that you have the latest version of the Python extension installed in VS Code. You can check for updates by going to the Extensions view (Ctrl+Shift+X) and searching for "Python".
+
+2. Check that the correct Python interpreter is selected in VS Code. You can do this by opening the Command Palette (Ctrl+Shift+P) and searching for "Python: Select Interpreter". Make sure that the interpreter for your "da38" environment is selected.
+
+3. Try launching Jupyter Notebook from the command line to see if it works outside of VS Code. Open a terminal and activate your "da38" environment (`conda activate da38`) and then type `jupyter notebook`. If Jupyter Notebook launches successfully, then the issue may be with VS Code.
+
+4. If Jupyter Notebook does not launch successfully from the command line, try reinstalling Jupyter Notebook in your "da38" environment (`conda install jupyter`). 
+
+5. If none of the above steps work, try resetting your VS Code settings to their defaults. You can do this by opening the Command Palette (Ctrl+Shift+P) and searching for "Preferences: Open User Settings". Then click on the "Open Settings (JSON)" button in the top right corner and delete all the contents of the file. Save the file and restart VS Code.

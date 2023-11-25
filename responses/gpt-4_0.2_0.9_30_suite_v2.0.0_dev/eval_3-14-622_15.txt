@@ -1,0 +1,19 @@
+To conform to `ShapeStyle`, you need to create a struct that conforms to `ShapeStyle` protocol and implement the `makeBody` function. Here is how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+
+struct RedShapeStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType) {}
+    func _makeView(view: _GraphValue<_ShapeView<Self, _ShapeStyle_ShapeType>>, inputs: _ViewInputs) -> _ViewOutputs {}
+}
+```
+
+However, `ShapeStyle` is a very low-level protocol and its methods are underscored, which means they are not intended to be used directly. It's usually better to use one of the provided types that conform to `ShapeStyle`, such as `Color`, `Gradient`, etc.
+
+In your case, if you want to create a custom `ShapeStyle`, you might want to create a custom `View` that returns a `Color` or `Gradient` instead.

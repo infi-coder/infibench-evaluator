@@ -1,0 +1,7 @@
+You can try using the `rename` command to remove the question mark and everything after it from the file names. Here's an example command:
+
+```
+find . -type f -name '*\?*' -exec rename 's/\?.*//' {} \;
+```
+
+This command will find all files with a question mark in their name, and then use the `rename` command to remove the question mark and everything after it.

@@ -1,0 +1,27 @@
+To add Jetpack Compose to an existing Android Studio project, you need to do the following:
+
+1. Update your Android Studio to the latest version.
+2. Add the following lines to your app's `build.gradle` file:
+
+```
+android {
+    ...
+    buildFeatures {
+        compose true
+    }
+    ...
+}
+
+dependencies {
+    ...
+    implementation "androidx.compose.ui:ui:1.0.0"
+    implementation "androidx.compose.material:material:1.0.0"
+    implementation "androidx.compose.ui:ui-tooling:1.0.0"
+    ...
+}
+```
+
+3. Sync your project with Gradle.
+4. Start using Jetpack Compose in your project.
+
+Note that Jetpack Compose is currently in stable release, so make sure to use the latest version of the dependencies.

@@ -1,0 +1,60 @@
+To listen to multiple ChangeNotifier classes in a single widget using Provider in Flutter, you can use the `MultiProvider` widget. 
+
+First, import the necessary packages:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+```
+
+Then, wrap your widget with the `MultiProvider` widget and pass in a list of the ChangeNotifier classes you want to listen to:
+
+```dart
+return MultiProvider(
+  providers: [
+    ChangeNotifierProvider<FirstNotifier>(create: (_) => FirstNotifier()),
+    ChangeNotifierProvider<SecondNotifier>(create: (_) => SecondNotifier()),
+    ChangeNotifierProvider<ThirdNotifier>(create: (_) => ThirdNotifier()),
+    ChangeNotifierProvider<FourthNotifier>(create: (_) => FourthNotifier()),
+  ],
+  child: MaterialApp(
+    home: MyHomePage(),
+  ),
+);
+```
+
+In this example, we are listening to four different ChangeNotifier classes: `FirstNotifier`, `SecondNotifier`, `ThirdNotifier`, and `FourthNotifier`.
+
+Then, in your widget, you can use the `Consumer` widget to listen to each of the ChangeNotifier classes:
+
+```dart
+return Scaffold(
+  body: Consumer<FirstNotifier>(
+    builder: (context, firstNotifier, child) {
+      // Use firstNotifier here
+      return Container();
+    },
+  ),
+  bottomNavigationBar: CurvedNavigationBar(
+    items: [
+      // ...
+    ],
+    onTap: (index) {
+      // Use index to determine which ChangeNotifier to update
+      if (index == 0) {
+        Provider.of<FirstNotifier>(context, listen: false).update();
+      } else if (index == 1) {
+        Provider.of<SecondNotifier>(context, listen: false).update();
+      } else if (index == 2) {
+        Provider.of<ThirdNotifier>(context, listen: false).update();
+      } else if (index == 3) {
+        Provider.of<FourthNotifier>(context, listen: false).update();
+      }
+    },
+  ),
+);
+```
+
+In this example, we are using the `Consumer` widget to listen to the `FirstNotifier` class. You can repeat this for each of the other ChangeNotifier classes.
+
+When the user taps on an item in the `CurvedNavigationBar`, you can use the `Provider.of` method to update the corresponding ChangeNotifier class.

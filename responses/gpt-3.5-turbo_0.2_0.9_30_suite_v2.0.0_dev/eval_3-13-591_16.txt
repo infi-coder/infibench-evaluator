@@ -1,0 +1,33 @@
+The reason why you are seeing the logs in that order is because the `onItemSelected` method is called asynchronously when the user selects an item from the spinner. This means that the `return` statement is executed before the `onItemSelected` method is called, and therefore the value of `itemSelected` is still an empty string.
+
+To fix this, you can use a callback function to return the selected item instead of returning it directly from the `setupListWithAdapter` function. Here's an example of how you can modify your code to use a callback:
+
+```
+fun Spinner.setupListWithAdapter(list: MutableList<String>, callback: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+            callback(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+    Log.e("categoryLog","2")
+}
+```
+
+In this modified code, the `setupListWithAdapter` function takes a callback function as a parameter. This callback function takes a `String` parameter, which is the selected item from the spinner. Inside the `onItemSelected` method, you call the callback function with the selected item as the argument. This way, the selected item is returned to the caller of the `setupListWithAdapter` function through the callback function.
+
+To use this modified function, you can pass a lambda expression as the callback parameter, like this:
+
+```
+spinner.setupListWithAdapter(list) { selectedItem ->
+    // Do something with the selected item here
+}
+```
+
+In this example, the `selectedItem` parameter in the lambda expression will contain the selected item from the spinner. You can replace the comment with the code that you want to execute with the selected item.

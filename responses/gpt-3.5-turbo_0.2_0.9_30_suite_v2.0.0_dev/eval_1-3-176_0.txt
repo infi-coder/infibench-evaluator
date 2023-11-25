@@ -1,0 +1,19 @@
+The error message indicates that the headers or library files for zlib are missing, which is a required dependency for Pillow. You can try installing zlib first and then install Pillow again. Here are the steps:
+
+1. Download the zlib source code from https://zlib.net/
+2. Extract the downloaded file and navigate to the extracted directory in the command prompt.
+3. Run the following commands to build and install zlib:
+
+   ```bash
+   ./configure
+   make
+   make install
+   ```
+
+4. After installing zlib, try installing Pillow again using pip:
+
+   ```bash
+   pip install pillow
+   ```
+
+This should resolve the issue and install Pillow successfully.

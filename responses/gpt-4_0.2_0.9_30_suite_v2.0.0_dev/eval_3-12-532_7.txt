@@ -1,0 +1,27 @@
+The error message you're seeing typically means that the response you're getting from your server is not valid JSON. 
+
+Here are a few steps you can take to debug this issue:
+
+1. **Print the response body**: Before trying to decode the response, print it to the console. This will allow you to see exactly what you're trying to decode.
+
+```dart
+print('Response body: ${response.body}');
+```
+
+2. **Check the server response**: Use a tool like Postman to manually send a request to your server and see what it returns. This can help you determine if the issue is with your server or your Flutter code.
+
+3. **Catch the error**: You can catch the `FormatException` to handle it gracefully in your code. This could involve showing an error message to the user or falling back to a default value.
+
+```dart
+try {
+  List data = json.decode(response.body);
+} catch (e) {
+  print('Error: $e');
+}
+```
+
+4. **Check the content type of the response**: Ensure that the server is returning the response with the content type `application/json`. If it's not, the `json.decode` method may not be able to correctly parse the response.
+
+5. **Check the JSON format**: Ensure that the JSON returned from the server is correctly formatted. You can use a JSON validator tool to check this.
+
+Remember, the `json.decode` method expects a string that contains a valid JSON object. If the server returns anything else (like a plain string, HTML, etc.), you'll get a `FormatException`.

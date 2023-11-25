@@ -1,0 +1,27 @@
+The error message you're seeing is because AWS Lambda is trying to execute a binary file named `main` in the `/var/task/` directory, but it can't find it. This is likely because you're building your Go application on a Windows machine, which produces a `.exe` file, not a Linux binary that AWS Lambda expects.
+
+AWS Lambda runs on a Linux-based environment, so the binary needs to be compatible with Linux. You can cross-compile your Go code for Linux by setting the `GOOS` and `GOARCH` environment variables when building your Go application.
+
+Here's how you can do it:
+
+```bash
+set GOOS=linux
+set GOARCH=amd64
+go build -o main main.go
+```
+
+This will create a `main` binary file. You can then zip this file and upload it to AWS Lambda.
+
+```bash
+zip function.zip main
+```
+
+Then, upload `function.zip` to your AWS Lambda function. Make sure the handler name is set to `main`.
+
+Also, remember to give execute permissions to your binary file before zipping it. You can do this with the following command:
+
+```bash
+chmod +x main
+```
+
+Please note that this command might not work directly in the Windows command prompt. You might need to use a Bash shell, like the one provided by Git Bash, WSL (Windows Subsystem for Linux), or Cygwin.

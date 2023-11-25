@@ -1,0 +1,42 @@
+You can use Python's multiprocessing module to run these two tasks concurrently. Here's how you can modify your code:
+
+```python
+import multiprocessing
+from dash import Dash
+import dash_bootstrap_components as dbc
+import db
+import hp
+import fd
+
+def run_dash():
+    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database=db.dataBase()
+    homepage=hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+    app.run_server(debug=True)
+
+def run_data_mining():
+    database=db.dataBase()
+    dataMiningScript= fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    # Create processes
+    p1 = multiprocessing.Process(target=run_dash)
+    p2 = multiprocessing.Process(target=run_data_mining)
+
+    # Start processes
+    p1.start()
+    p2.start()
+
+    # Join processes
+    p1.join()
+    p2.join()
+```
+
+In this code, we define two functions, `run_dash` and `run_data_mining`, each of which runs one of your tasks. We then create two processes, one for each function, and start them. The `join` method is used to wait for the processes to complete, but in your case, since both tasks are infinite loops, they will not complete.
+
+Please note that using multiprocessing like this will create two separate Python interpreter processes, each with its own global interpreter lock. Therefore, if you want to share data between these two processes, you will need to use one of the methods provided by the multiprocessing module, such as `Queue`, `Pipe`, or `Manager`.
+
+Also, be aware that the `multiprocessing` module might not work as expected when used in some environments that do not support `fork` or `spawn`, such as some IDEs and the Windows operating system. If you encounter issues, you might need to adjust your code or environment accordingly.

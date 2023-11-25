@@ -1,0 +1,21 @@
+Here is a Python function that uses the `pkg_resources` module to check if a package is up-to-date. This function will return `True` if the package is up-to-date, and `False` otherwise.
+
+```python
+import pkg_resources
+import subprocess
+
+def checkVersion(pkgName):
+    try:
+        # Get the installed version of the package
+        installed_version = pkg_resources.get_distribution(pkgName).version
+        # Get the latest version of the package
+        latest_version = str(subprocess.run([sys.executable, '-m', 'pip', 'show', pkgName, '|', 'grep', '-i', 'Version', '|', 'cut', '-d', ' ', '-f', '2'], capture_output=True, text=True).strip())
+        # Compare the installed version with the latest version
+        return installed_version == latest_version
+    except:
+        return False
+```
+
+This function works by first getting the installed version of the package using `pkg_resources.get_distribution(pkgName).version`. It then gets the latest version of the package by running a subprocess that executes the command `pip show pkgName | grep -i Version | cut -d ' ' -f 2`. This command uses `pip show` to get information about the package, `grep` to find the line that contains the version, and `cut` to extract the version number. Finally, it compares the installed version with the latest version and returns `True` if they are the same, and `False` otherwise.
+
+Please note that this function assumes that the package is already installed. If the package is not installed, `pkg_resources.get_distribution(pkgName).version` will raise a `DistributionNotFound` exception, and the function will return `False`.

@@ -1,0 +1,33 @@
+# Corresponding to post https://stackoverflow.com/questions/71126989
+id: 1-4-316
+# for case self identificaton
+
+prompt_path: prompt_1-4-316.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: r
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+
+  unit_test:
+
+    # lang: ...
+    # [optional] overwrite the root lang field and decide how to execute the code
+
+    tests:
+        - path: test/test_1-4-316.r
+          only_longest: true

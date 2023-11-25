@@ -1,0 +1,21 @@
+In R, you cannot have two columns with the same name in a data frame. When you use `cbind()` to combine two data frames, R will automatically rename the columns to make them unique. 
+
+In your case, the second column will be renamed to `a.1`. So, you can select the second column by its new name:
+
+```r
+second_col <- d3$a.1
+```
+
+If you want to keep the original names, you can convert the data frames to data.tables before combining them. Data.tables allow duplicate column names. However, you still cannot select a column by its name if there are duplicates. You have to select it by its position:
+
+```r
+library(data.table)
+
+d1 <- data.table(a=c(1,2,3))
+d2 <- data.table(a=c(3,4,5))
+d3 <- cbind(d1,d2)
+
+second_col <- d3[,2]
+```
+
+In this case, `d3[,2]` selects the second column of `d3`.

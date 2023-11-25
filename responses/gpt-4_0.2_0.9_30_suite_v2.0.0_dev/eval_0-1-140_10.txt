@@ -1,0 +1,16 @@
+Font Awesome 5 has made some changes to how it is used compared to Font Awesome 4. The `font-family` is no longer just "FontAwesome", but is now specific to the style of icon you are using. 
+
+Here is how you can modify your code to work with Font Awesome 5:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free"; /* Update this line */
+  font-weight: 900; /* Add this line */
+}
+```
+
+In the above code, `font-family` is set to "Font Awesome 5 Free" which is used for free solid style icons. The `font-weight` is set to `900` which is also required for solid style icons.
+
+If you are using a different style of icon (like regular or brands), you will need to adjust the `font-family` and `font-weight` accordingly. For example, for regular style icons, `font-family` would be "Font Awesome 5 Regular" and `font-weight` would be `400`. For brand icons, `font-family` would be "Font Awesome 5 Brands".

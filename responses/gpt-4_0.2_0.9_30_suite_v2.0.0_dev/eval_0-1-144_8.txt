@@ -1,0 +1,18 @@
+You can change the accordion arrow color by targeting the `::after` pseudo-element of the `.accordion-button` class. This pseudo-element is responsible for the arrow. Here's how you can do it:
+
+```css
+.accordion-button::after {
+    /* Auto width (default is 2em) */
+    width: auto;
+    /* Change the color here */
+    color: green;
+    /* Unicode character for "down arrow" (25B2) */
+    content: "\25B2";
+}
+.accordion-button.collapsed::after {
+    /* Unicode character for "right arrow" (25B6) */
+    content: "\25B6";
+}
+```
+
+This CSS code will change the color of the arrow to green. The `::after` pseudo-element is used to insert something after the content of each selected element(s). In this case, it's used to insert the arrow. The `content` property is used in conjunction with the `::before` and `::after` pseudo-elements, to insert generated content. The `"\25B2"` and `"\25B6"` are Unicode characters for "down arrow" and "right arrow" respectively.

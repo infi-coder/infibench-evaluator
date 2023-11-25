@@ -1,0 +1,1 @@
+I am trying to run Maven using the Maven wrapper rather than the Maven task. However, it's failing because it is using an older version of Java. The JavaInstaller task seems to require a remote source for the JDK, I would rather avoid doing that and use the one that works with Maven task, but I can't find it documented anywhere.

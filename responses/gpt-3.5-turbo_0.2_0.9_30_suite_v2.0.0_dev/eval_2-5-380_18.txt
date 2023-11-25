@@ -1,0 +1,26 @@
+In addition to adding the `springdoc-openapi-ui` dependency, you also need to configure it in your Spring Boot application.
+
+Here's an example configuration class that you can use:
+
+```java
+@Configuration
+public class OpenApiConfig {
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Your API Title")
+                        .version("1.0.0")
+                        .description("Your API Description")
+                        .termsOfService("http://swagger.io/terms/")
+                        .license(new License().name("Apache 2.0").url("http://springdoc.org")));
+    }
+}
+```
+
+Make sure to replace the values in the `Info` object with your own API information.
+
+Also, ensure that your application is running on port 8080, as that is the default port for Spring Boot applications. If you're running on a different port, you'll need to adjust the URL accordingly.
+
+Once you've added this configuration class, you should be able to access the Swagger UI at `http://localhost:8080/swagger-ui.html`.

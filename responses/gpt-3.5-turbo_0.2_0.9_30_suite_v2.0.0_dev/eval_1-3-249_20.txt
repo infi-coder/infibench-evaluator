@@ -1,0 +1,38 @@
+Sure, here's a possible implementation using the `random` and `string` modules in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the possible characters
+    chars = string.ascii_letters + string.digits
+    
+    # Generate a random string of length 11
+    random_string = ''.join(random.choice(chars) for i in range(11))
+    
+    # Insert the "NAA3U" substring at a random position
+    position = random.randint(0, 11)
+    random_string = random_string[:position] + "NAA3U" + random_string[position:]
+    
+    # Replace the first 3 letters that are not "NAA" with random digits
+    for i in range(3):
+        if random_string[i] not in ["N", "A"]:
+            random_string = random_string[:i] + random.choice(string.digits) + random_string[i+1:]
+    
+    # Return the final 16-character string
+    return random_string
+```
+
+Here's an example of how you can use this function:
+
+```python
+>>> generateRandomString()
+'NAA3Ua5bC6dE7fG8hI9'
+>>> generateRandomString()
+'1NAA3Ua2bC3dE4fG5hI6'
+>>> generateRandomString()
+'NAA3Ua5bC6dE7fG8hI9'
+```
+
+Note that the function may return the same string multiple times, as the random generation is not guaranteed to produce unique results.

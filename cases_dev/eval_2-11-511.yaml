@@ -1,0 +1,24 @@
+# Corresponding to post https://stackoverflow.com/questions/73757090
+id: 2-11-511
+
+prompt_path: prompt_2-11-511.txt
+type: code completion
+
+lang: c++/c
+
+grading:
+  
+  max_score: 2.0
+  min_score: 0.0
+
+  unit_test:
+    lang: c++
+    tests:
+      - path: test_2-11-511_0.cpp
+        #cleanup_path: test_7377_cleanup.py
+        weight: 1.0
+        prefix_path: test_2-11-511_0_prefix.cpp
+      - path: test_2-11-511_1.cpp
+        #cleanup_path: test_7377_cleanup.py
+        weight: 1.0
+        prefix_path: test_2-11-511_0_prefix.cpp

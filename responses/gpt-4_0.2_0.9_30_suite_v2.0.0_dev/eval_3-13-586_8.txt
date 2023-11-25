@@ -1,0 +1,20 @@
+The error message you're seeing is due to a change in Android 12 (API level 31) that requires you to specify whether a `PendingIntent` is mutable or immutable. 
+
+The AndroidX Media library version 1.4.0, which you're using, should handle this requirement. However, it seems like there's a bug in the library that causes the error you're seeing.
+
+The Android team is aware of this issue and it's tracked in the [Android issue tracker](https://issuetracker.google.com/issues/192358058). 
+
+As a workaround, you can try to downgrade the target SDK version to 30 until the issue is resolved in the library. 
+
+```groovy
+android {
+    compileSdkVersion 30
+    defaultConfig {
+        targetSdkVersion 30
+    }
+}
+```
+
+Remember to monitor the issue tracker and update your target SDK version once the issue is resolved. 
+
+Please note that downgrading the target SDK version is a temporary workaround and might not be suitable for all use cases. Always make sure to test your app thoroughly to ensure it behaves as expected.

@@ -1,0 +1,52 @@
+You can use nested `Consumer` widgets to listen to multiple `ChangeNotifier` providers. Here's an example of how you can do this:
+
+```dart
+Consumer<ChangeNotifier1>(
+  builder: (context, notifier1, _) => Consumer<ChangeNotifier2>(
+    builder: (context, notifier2, _) => Consumer<ChangeNotifier3>(
+      builder: (context, notifier3, _) => Consumer<ChangeNotifier4>(
+        builder: (context, notifier4, _) => CurvedNavigationBar(
+          // Use values from notifiers here
+          // For example:
+          index: notifier1.index,
+          items: <Widget>[
+            Icon(Icons.add, size: 30, color: notifier2.color),
+            Icon(Icons.list, size: 30, color: notifier3.color),
+            Icon(Icons.compare_arrows, size: 30, color: notifier4.color),
+          ],
+          onTap: (index) {
+            // Handle tap here
+            // For example:
+            notifier1.updateIndex(index);
+            notifier2.updateColor(Colors.red);
+            notifier3.updateColor(Colors.green);
+            notifier4.updateColor(Colors.blue);
+          },
+        ),
+      ),
+    ),
+  ),
+);
+```
+
+In this example, `ChangeNotifier1`, `ChangeNotifier2`, `ChangeNotifier3`, and `ChangeNotifier4` are your classes that extend `ChangeNotifier`. The `Consumer` widget listens to changes in these classes and rebuilds the `CurvedNavigationBar` widget whenever any of them change.
+
+Remember to provide these classes higher up in the widget tree using the `ChangeNotifierProvider` widget:
+
+```dart
+ChangeNotifierProvider<ChangeNotifier1>(
+  create: (_) => ChangeNotifier1(),
+  child: ChangeNotifierProvider<ChangeNotifier2>(
+    create: (_) => ChangeNotifier2(),
+    child: ChangeNotifierProvider<ChangeNotifier3>(
+      create: (_) => ChangeNotifier3(),
+      child: ChangeNotifierProvider<ChangeNotifier4>(
+        create: (_) => ChangeNotifier4(),
+        child: YourWidget(),
+      ),
+    ),
+  ),
+);
+```
+
+This way, the `ChangeNotifier` instances are available to all widgets in the subtree.

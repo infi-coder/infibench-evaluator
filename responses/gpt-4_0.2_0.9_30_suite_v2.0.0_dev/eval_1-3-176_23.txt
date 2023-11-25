@@ -1,0 +1,36 @@
+The error message indicates that the Pillow library is not yet compatible with Python 3.8, and it also mentions that it could not find the headers or library files for zlib, which is a required dependency when compiling Pillow from source.
+
+Here are a few possible solutions:
+
+1. **Downgrade Python**: As the error message suggests, Pillow does not yet support Python 3.8. You could downgrade to Python 3.7 or lower, and then try installing Pillow again.
+
+2. **Install zlib**: The error message also suggests that zlib, a required dependency, could not be found. You could try installing zlib and then try installing Pillow again. Here's how you can install zlib:
+
+    - Download zlib from the [zlib website](http://zlib.net/).
+    - Extract the downloaded file.
+    - Open CMD in the extracted folder and run the following commands:
+
+    ```bash
+    cd zlib
+    configure
+    make
+    make install
+    ```
+
+    - Try installing Pillow again.
+
+3. **Install a Precompiled Binary**: If you're still having trouble, you could try installing a precompiled binary. Here's how you can do this:
+
+    - Go to the [Unofficial Windows Binaries for Python Extension Packages](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pillow) page.
+    - Download the Pillow wheel file that matches your Python version and system architecture.
+    - Open CMD in the directory where you downloaded the wheel file and run the following command:
+
+    ```bash
+    pip install filename.whl
+    ```
+
+    Replace `filename.whl` with the name of the downloaded file.
+
+4. **Use a Different Library**: If you're still having trouble, you could consider using a different library. For example, OpenCV is a popular library for image processing that you might find useful.
+
+Remember to replace `pip` with `pip3` and `python` with `python3` if you're using Python 3.

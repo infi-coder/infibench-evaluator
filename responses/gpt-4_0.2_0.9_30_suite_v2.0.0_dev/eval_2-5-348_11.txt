@@ -1,0 +1,19 @@
+The error message you're seeing is due to a known issue with the way Java handles command line arguments on Windows. The problem is that Java is incorrectly escaping the quotes in the command line arguments.
+
+Here's a workaround that you can try:
+
+1. Open the `mvn.cmd` file in a text editor. This file is located at `C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\mvn.cmd`.
+
+2. Find the line that starts with `set MAVEN_CMD_LINE_ARGS=`. This line is setting the command line arguments for Maven.
+
+3. Replace the line with the following:
+
+    ```cmd
+    set "MAVEN_CMD_LINE_ARGS=%*"
+    ```
+
+    This change tells Windows to treat the entire string as a single argument, which should prevent the error you're seeing.
+
+4. Save the `mvn.cmd` file and try to build your project again.
+
+If you're still having trouble, it might be worth trying to run the command directly from the command line to see if you get the same error. This can help you determine whether the problem is with NetBeans or with the command itself.

@@ -1,0 +1,24 @@
+The issue you're facing is due to changes in Android 12 (API level 31) regarding PendingIntent mutability. From Android 12 onwards, you need to explicitly specify whether a PendingIntent is mutable or immutable when you create it.
+
+The error message suggests that the PendingIntent is being created in the `MediaSessionCompat` class, which is part of the AndroidX library. The AndroidX library should handle this issue, but it seems like it's not doing so in your case.
+
+Here are a few steps you can take to resolve this issue:
+
+1. **Update your AndroidX libraries**: Make sure all your AndroidX libraries are updated to the latest version. The issue might have been fixed in a newer version.
+
+2. **Use the latest version of the Media library**: You mentioned that you're using version 1.4.0 of the Media library. Make sure this is the latest version available.
+
+3. **Check your PendingIntent creation**: If you're creating PendingIntents in your own code, make sure you're specifying the mutability. Here's how you can do it:
+
+```kotlin
+val intent = Intent(this, YourReceiver::class.java)
+val pendingIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+} else {
+    PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+}
+```
+
+4. **Check your targetSdkVersion**: Make sure your `targetSdkVersion` in your `build.gradle` file is set to 31 or above.
+
+If none of these steps work, it might be a bug in the AndroidX library. In this case, you should report the issue to the Android issue tracker.

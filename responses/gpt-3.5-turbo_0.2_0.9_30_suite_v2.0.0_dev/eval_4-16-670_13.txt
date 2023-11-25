@@ -1,0 +1,14 @@
+Yes, you can convert your `id_rsa` OpenSSH private key to an RSA private key using the `ssh-keygen` command. Here are the steps:
+
+1. Open Terminal on your Mac.
+2. Run the following command to convert your `id_rsa` file to an RSA private key:
+
+   ```
+   ssh-keygen -p -m PEM -f ~/.ssh/id_rsa
+   ```
+
+   This command will prompt you to enter a new passphrase for the key (if you want to change it) and then convert the key to the PEM format with the RSA header.
+
+3. If you want to keep using the same public key (`id_rsa.pub`), you don't need to transfer it. The public key is derived from the private key and will still work with the new RSA private key.
+
+Note: It's always a good idea to backup your original `id_rsa` file before making any changes.

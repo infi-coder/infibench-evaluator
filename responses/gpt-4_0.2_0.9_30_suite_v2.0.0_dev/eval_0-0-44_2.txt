@@ -1,0 +1,65 @@
+In order to create an index in Mongoose, you need to ensure that the connection to MongoDB is established and the model is compiled with the schema. 
+
+Here is the correct way to do it:
+
+```javascript
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema()
+export class MySchemaClass extends Document {
+
+  @Prop()
+  _id: string;
+
+  @Prop({required: true, index: true})
+  type: string;
+
+  @Prop()
+  creationDate: string;
+
+  @Prop()
+  name: string;
+}
+
+export const MySchema = SchemaFactory.createForClass(MySchemaClass);
+```
+
+Then, in your module file, you should use the `forFeature` function to define the model:
+
+```javascript
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { MySchemaClass, MySchema } from './my-schema.model';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: MySchemaClass.name, schema: MySchema }])
+  ],
+})
+export class MyModule {}
+```
+
+This will ensure that the index is created when the model is compiled and the connection to MongoDB is established.
+
+If you want to create compound indexes, you can use the `@Schema` decorator's options:
+
+```javascript
+@Schema({
+  autoCreate: true,
+  autoIndex: true,
+})
+export class MySchemaClass extends Document {
+  // ...
+}
+```
+
+And then in your schema definition:
+
+```javascript
+export const MySchema = SchemaFactory.createForClass(MySchemaClass).index({ type: 1, name: 1 });
+```
+
+This will create a compound index on the `type` and `name` fields. 
+
+Remember that indexes are created in the background by MongoDB and it may take some time for them to be built if you have a lot of data. You can check if the index has been created using the `getIndexes` function in the MongoDB shell.

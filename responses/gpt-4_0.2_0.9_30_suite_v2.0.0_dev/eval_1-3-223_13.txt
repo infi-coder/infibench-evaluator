@@ -1,0 +1,30 @@
+You can use the `pkg_resources` module to get the installed version of a package, and the `packaging` module to compare version numbers. Here is a function that does this:
+
+```python
+import pkg_resources
+from packaging import version
+
+def checkVersion(pkgName):
+    try:
+        # Get the latest version
+        url = f"https://pypi.python.org/pypi/{pkgName}/json"
+        releases = requests.get(url).json()['releases']
+        latest_version = max(releases, key=version.parse)
+
+        # Get the installed version
+        installed_version = pkg_resources.get_distribution(pkgName).version
+
+        # Check if the installed version is up-to-date
+        return version.parse(installed_version) >= version.parse(latest_version)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return False
+```
+
+This function first fetches the latest version of the package from PyPI. It then gets the installed version of the package using `pkg_resources.get_distribution(pkgName).version`. Finally, it compares the two versions using `version.parse`. If the installed version is greater than or equal to the latest version, the function returns `True`; otherwise, it returns `False`.
+
+Please note that you need to install `requests` and `packaging` modules if they are not installed. You can install them using pip:
+
+```bash
+pip install requests packaging
+```

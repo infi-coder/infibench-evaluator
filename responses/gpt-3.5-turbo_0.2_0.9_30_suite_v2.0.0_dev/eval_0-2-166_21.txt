@@ -1,0 +1,15 @@
+TailwindCSS is a utility-first CSS framework and it doesn't provide a specific class for selecting direct children of an element. However, you can use the `space-x` or `space-y` classes to create spacing between the child elements of a container.
+
+For example, if you have a `div` with class `section` and you want to add spacing between its direct child `div` elements, you can use the `space-x` or `space-y` classes along with the `flex` and `flex-wrap` classes to create a flex container.
+
+Here's an example:
+
+```html
+<div class="section flex flex-wrap space-x-4">
+  <div class="child">Child 1</div>
+  <div class="child">Child 2</div>
+  <div class="child">Child 3</div>
+</div>
+```
+
+In this example, the `space-x-4` class adds horizontal spacing of 1rem between the child elements of the `div` with class `section`. You can adjust the spacing by changing the number in the class name. Similarly, you can use the `space-y` class to add vertical spacing between the child elements.

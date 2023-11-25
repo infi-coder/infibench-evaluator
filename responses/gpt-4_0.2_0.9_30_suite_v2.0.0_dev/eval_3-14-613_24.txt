@@ -1,0 +1,15 @@
+This issue can be caused by several reasons. Here are some potential solutions:
+
+1. **Clean the build folder**: Go to `Product` -> `Clean Build Folder` or use the shortcut `Shift + Command + K`.
+
+2. **Delete derived data**: Go to `Xcode` -> `Preferences` -> `Locations` -> `Derived Data`, then delete the derived data folder.
+
+3. **Check your scheme**: Make sure your scheme is set to the correct target. Go to `Product` -> `Scheme` -> `Edit Scheme` -> `Build` -> `Targets`, and make sure your target is checked.
+
+4. **Check your preview struct**: Make sure your preview struct is inside the same file as the `ContentView` and it's not inside any `#if DEBUG` or `#if TARGET_OS_MAC` conditions.
+
+5. **Restart Xcode**: Sometimes, simply restarting Xcode can solve the issue.
+
+6. **Update Xcode**: If you're not using the latest version of Xcode, consider updating it.
+
+If none of these solutions work, you might want to consider creating a new project and moving your files there.

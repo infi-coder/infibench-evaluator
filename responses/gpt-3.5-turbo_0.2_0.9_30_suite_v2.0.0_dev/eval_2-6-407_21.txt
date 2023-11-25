@@ -1,0 +1,27 @@
+The error message suggests that the response from the server is not in the expected JSON format. It looks like the response starts with a '<' character, which is not valid JSON.
+
+One possible reason for this error is that the server is returning an error page instead of the expected JSON response. You can check the network tab in your browser's developer tools to see the actual response from the server.
+
+To fix the issue, you can try the following steps:
+
+1. Make sure that the server is returning the expected JSON response. You can test the API using a tool like Postman or curl to verify that the response is in the correct format.
+
+2. Check the routing configuration in your Blazor app. Make sure that the URL for the API call is correct and matches the routing configuration in your server.
+
+3. Try using the HttpClient class instead of the Http.GetJsonAsync method. This will allow you to inspect the response and handle any errors more easily. Here's an example:
+
+```c#
+var httpClient = new HttpClient();
+var response = await httpClient.GetAsync("/api/Employee/Index");
+if (response.IsSuccessStatusCode)
+{
+    var empList = await response.Content.ReadFromJsonAsync<Employee[]>();
+    // do something with empList
+}
+else
+{
+    // handle error
+}
+```
+
+By using the HttpClient class, you can check the status code of the response and handle any errors more gracefully.

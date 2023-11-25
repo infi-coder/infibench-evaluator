@@ -1,0 +1,14 @@
+You can use `awk` to extract the language code. Here is an example:
+
+```bash
+curl -Ls yahoo.com | grep -o 'lang="[a-zA-Z-]*"' | head -1 | awk -F'"' '{print $2}'
+```
+
+This command will do the following:
+
+- `curl -Ls yahoo.com`: Fetch the content of the page.
+- `grep -o 'lang="[a-zA-Z-]*"'`: Extract the `lang` attribute. The `-o` option tells `grep` to only output the matches, not the entire line. The regular expression `'lang="[a-zA-Z-]*"'` matches the `lang` attribute and its value.
+- `head -1`: Get the first match.
+- `awk -F'"' '{print $2}'`: Use `awk` to split the string by the `"` delimiter and print the second field, which is the language code.
+
+This command should work for different formats of the `lang` attribute. For example, it will correctly extract `he-IL` from `<html dir="rtl" lang="he-IL">`.

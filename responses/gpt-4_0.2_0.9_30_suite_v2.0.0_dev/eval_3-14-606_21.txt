@@ -1,0 +1,13 @@
+It seems like there's a bit of confusion here. iOS doesn't have a "Developer Mode" that you can enable or disable like Android. The message you're seeing is likely related to the provisioning profile used to sign the app. 
+
+If you're trying to install an app that's been signed with a developer provisioning profile, you'll need to trust the developer on your device. Here's how you can do that:
+
+1. After installing the app, go to `Settings` > `General` > `Profiles` or `Profiles & Device Management`. You should see a profile under a header called "Developer App".
+
+2. Tap on the profile.
+
+3. Tap on `Trust "<Developer>"`.
+
+4. In the popup window, tap `Trust`.
+
+Now you should be able to run the app. If you're still having trouble, it's possible that the app was signed with a provisioning profile that doesn't include your device's UDID. In that case, you'll need to get a new build of the app that's been signed with a profile that includes your device.

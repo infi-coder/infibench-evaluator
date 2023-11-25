@@ -1,0 +1,24 @@
+The error message is indicating that starting from Android S (SDK version 31), you need to specify either `FLAG_IMMUTABLE` or `FLAG_MUTABLE` when creating a `PendingIntent`.
+
+The issue you're facing is due to the `MediaSessionCompat` class creating a `PendingIntent` without specifying either flag. This is a known issue and is being tracked [here](https://issuetracker.google.com/issues/191341581).
+
+As a workaround, you can create a `MediaButtonReceiver` and set it to `MediaSessionCompat`. Here is an example of how you can do it:
+
+```kotlin
+val mediaButtonIntent = Intent(Intent.ACTION_MEDIA_BUTTON)
+mediaButtonIntent.setClass(this, MediaButtonReceiver::class.java)
+val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    PendingIntent.getBroadcast(this, 0, mediaButtonIntent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+} else {
+    PendingIntent.getBroadcast(this, 0, mediaButtonIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+}
+
+mediaSession = MediaSessionCompat(this, TAG, pendingIntent, null).apply {
+    setCallback(mediaSessionCallback)
+    isActive = true
+}
+```
+
+In this code, we're creating a `PendingIntent` with the `FLAG_IMMUTABLE` flag for Android S and above, and without it for lower versions. Then, we're passing this `PendingIntent` to the `MediaSessionCompat` constructor.
+
+Please note that you need to replace `MediaButtonReceiver::class.java` with your own `BroadcastReceiver` that handles `Intent.ACTION_MEDIA_BUTTON`. If you don't have one, you can create a simple one that does nothing.

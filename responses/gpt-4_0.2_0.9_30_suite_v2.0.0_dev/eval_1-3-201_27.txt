@@ -1,0 +1,40 @@
+You can use Python's multiprocessing module to run these two tasks concurrently. Here's an example of how you can modify your code:
+
+```python
+import multiprocessing
+from dash import Dash
+import dash_bootstrap_components as dbc
+import db
+import hp
+import fd
+
+def run_dash():
+    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database=db.dataBase()
+    homepage=hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+    app.run_server(debug=True)
+
+def run_data_mining():
+    database=db.dataBase()
+    dataMiningScript= fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    # Create processes
+    p1 = multiprocessing.Process(target=run_dash)
+    p2 = multiprocessing.Process(target=run_data_mining)
+
+    # Start processes
+    p1.start()
+    p2.start()
+
+    # Join processes
+    p1.join()
+    p2.join()
+```
+
+In this code, `run_dash` and `run_data_mining` are two separate functions that are run in different processes. The `multiprocessing.Process` class is used to create a new process for each function. The `start` method starts the process, and the `join` method tells the main program to wait until these processes finish.
+
+Please note that you need to ensure that your `fd.financeData` function and Dash app are designed to handle concurrent operations correctly, especially when they are reading from and writing to the same database.

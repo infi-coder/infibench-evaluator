@@ -1,0 +1,14 @@
+How to write a list of list into excel using python 3?
+
+```python
+new_list = [["first", "second"], ["third", "fourth"]]
+with open("file_name.csv", 'w') as f:
+    fc = csv.writer(f, lineterminator='\n')
+fc.writerows(new_list)
+```
+
+I can write this list into csv file but How canI want to write in excel file?
+
+Please write a function `writeToExcel` in Python, which create an excel file named "data.xlsx" and write the above contents into the file.
+
+Function signature is: `writeExcel()`

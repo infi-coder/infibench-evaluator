@@ -1,0 +1,36 @@
+In Rust, the `Box<T>` type is a smart pointer that points to data on the heap. It is non-nullable, meaning it cannot be null. If you want to have an optional `Box<T>`, you should use the `Option<Box<T>>` type, which can be `None` (similar to null in other languages) or `Some(boxed_value)`.
+
+Here's how you can modify your `Node` and `Stack` structs to use `Option<Box<Node>>`:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+```
+
+To check if the `top` of the `Stack` is null, you can use the `is_none()` method:
+
+```rust
+if stack.top.is_none() {
+    println!("The stack is empty");
+} else {
+    println!("The stack is not empty");
+}
+```
+
+And to check if the `next` field of a `Node` is null:
+
+```rust
+if node.next.is_none() {
+    println!("This is the last node in the stack");
+} else {
+    println!("This node has a next node");
+}
+```
+
+Remember, in Rust, you don't have to manually deallocate memory. When the `Box<T>` goes out of scope, its destructor is called and the heap memory is freed. This prevents many common types of programming errors, such as null pointer dereferencing, double free, and many others.

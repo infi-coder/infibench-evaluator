@@ -1,0 +1,20 @@
+To conform to `ShapeStyle` protocol, you need to implement a `func _apply(to shape: inout _ShapeStyle_ShapeType)` method in your struct. However, `_ShapeStyle_ShapeType` is a private type, so you can't use it directly.
+
+A workaround is to create a struct that wraps a `Color` and conforms to `ShapeStyle`. Here's how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+
+struct RedShapeStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType) {
+        Color.red._apply(to: &shape)
+    }
+}
+```
+
+Please note that this is using private API, which is not recommended and may lead to issues. It's better to use `Color` directly or create a custom `View` that returns a `Color`.

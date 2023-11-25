@@ -1,0 +1,19 @@
+Assuming that the line you're trying to split is a string with values separated by spaces (or any other delimiter), you can use the `Split` function in VBA to split the string into an array and then assign the array elements to the cells. Here's how you can do it:
+
+```vba
+idx = InStr(textline, "Cabinet No.")
+If idx > 0 Then
+    Line Input #1, textline
+    Line Input #1, textline
+    Dim splitText As Variant
+    splitText = Split(textline, " ") 'Assuming space is the delimiter
+    ActiveSheet.Cells(nextrow, "G").Value = splitText(0)
+    ActiveSheet.Cells(nextrow, "H").Value = splitText(1)
+    ActiveSheet.Cells(nextrow, "I").Value = splitText(2)
+    ActiveSheet.Cells(nextrow, "J").Value = splitText(3)
+    ActiveSheet.Cells(nextrow, "K").Value = splitText(4)
+    nextrow = nextrow + 1 'now move to next row
+End If
+```
+
+This will split the line into 5 parts and put each part into a separate cell in the same row. Adjust the indices of `splitText` and the column letters as per your requirements.

@@ -1,0 +1,31 @@
+You can use Python's multiprocessing module to run these two tasks in parallel. Here's how you can modify your code:
+
+```python
+from multiprocessing import Process
+import dash
+import dash_bootstrap_components as dbc
+import db
+import hp
+import fd
+
+def run_dash():
+    app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database=db.dataBase()
+    homepage=hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+    app.run_server(debug=True)
+
+def run_data_mining():
+    database=db.dataBase()
+    dataMiningScript= fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    Process(target=run_dash).start()
+    Process(target=run_data_mining).start()
+```
+
+In this code, `run_dash` and `run_data_mining` are two separate functions that are run in parallel using the `multiprocessing.Process` class. Each `Process` runs in its own Python interpreter, so they can run independently of each other.
+
+Please note that if the `fd.financeData` function is a blocking function (i.e., it runs in an infinite loop), you might need to modify it to periodically check if it should stop and exit the loop. This is because when you stop the main Python process, the child processes it started (i.e., the `Process` instances) won't automatically stop. They'll keep running in the background until they finish their work or until you manually stop them.

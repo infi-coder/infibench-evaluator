@@ -1,0 +1,33 @@
+It seems that the issue is related to the way you are exposing the port in Docker. When you run the command `docker-compose run --publish 8080:8080 --rm app bash`, you are publishing the container's port 8080 to the host's port 8080. However, in your `vite.config.ts` file, you are setting the server port to 8080, which is the container's port.
+
+To fix this issue, you can change the `server.port` property in your `vite.config.ts` file to 8081, for example:
+
+```typescript
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+    resolve: { alias: { '@': '/src' } },
+    plugins: [vue()],
+    server: {
+        port: 8081 // change the port to 8081
+    }
+})
+```
+
+Then, update your `docker-compose.yml` file to publish the container's port 8081 to the host's port 8080:
+
+```yaml
+version: '3.7'
+
+services:
+  app:
+    image: myapp
+    build: .
+    container_name: myapp
+    ports:
+      - "8080:8081" # publish container's port 8081 to host's port 8080
+```
+
+Finally, run the command `docker-compose up` to start the container and access your app at `localhost:8080` on your host machine.

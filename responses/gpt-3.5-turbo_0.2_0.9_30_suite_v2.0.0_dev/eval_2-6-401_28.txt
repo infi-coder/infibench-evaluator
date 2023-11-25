@@ -1,0 +1,57 @@
+You can create a factory method that creates and returns a `ServiceBusSender` instance for a given queue name. Then, you can register this factory method as a singleton service in the dependency injection container. Finally, you can inject the `Func<string, ServiceBusSender>` delegate into your `CarReservationMessagingService` class and use it to create `ServiceBusSender` instances for different queue names.
+
+Here's an example implementation:
+
+1. Create a factory method that creates and returns a `ServiceBusSender` instance for a given queue name:
+```c#
+private ServiceBusSender CreateServiceBusSender(string queueName)
+{
+    var serviceBusConfiguration = _configuration.GetSection("ServiceBus").Get<ServiceBusConfiguration>();
+    var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+    return serviceBusClient.CreateSender(queueName);
+}
+```
+
+2. Register the factory method as a singleton service in the dependency injection container:
+```c#
+foreach (var queueName in new[] { "queue1", "queue2", "queue3" })
+{
+    _services.AddSingleton<Func<ServiceBusSender>>(serviceProvider =>
+    {
+        return () => serviceProvider.GetService<ServiceBusSender>(queueName);
+    });
+
+    _services.AddSingleton(serviceProvider =>
+    {
+        return CreateServiceBusSender(queueName);
+    });
+}
+```
+
+3. Inject the `Func<string, ServiceBusSender>` delegate into your `CarReservationMessagingService` class and use it to create `ServiceBusSender` instances for different queue names:
+```c#
+public class CarReservationMessagingService
+{
+    private readonly Func<string, ServiceBusSender> _serviceBusSenderFactory;
+
+    public CarReservationMessagingService(Func<string, ServiceBusSender> serviceBusSenderFactory)
+    {
+        _serviceBusSenderFactory = serviceBusSenderFactory ?? throw new ArgumentNullException(nameof(serviceBusSenderFactory));
+    }
+
+    public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation, string queueName)
+    {
+        var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+        {
+            Id = Guid.NewGuid().ToString(),
+            CarId = carReservation.CarId,
+            CustomerId = carReservation.CustomerId,
+            RentFrom = carReservation.RentFrom,
+            RentTo = carReservation.RentTo
+        };
+
+        var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+        ServiceBus

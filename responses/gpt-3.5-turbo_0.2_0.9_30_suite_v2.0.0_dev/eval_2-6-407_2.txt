@@ -1,0 +1,30 @@
+The error message suggests that the response from the server is not in the expected JSON format. It seems that the response starts with a '<' character, which is not valid JSON.
+
+One possible reason for this error is that the server is returning an error page instead of the expected JSON response. To verify this, you can try accessing the API endpoint directly in your browser and see if it returns the expected JSON response.
+
+If the API endpoint is returning the expected JSON response, then the issue might be with the way you are calling the API from your Blazor component. Here are some things you can try:
+
+1. Make sure that the URL you are using to call the API is correct. In your case, the URL should be "/api/Employee/Index", not "/api/Employee/api/Employee/Index".
+
+2. Try using the `HttpClient` class instead of the `Http` class. Here's an example:
+
+```c#
+@inject HttpClient httpClient
+
+...
+
+empList = await httpClient.GetFromJsonAsync<Employee[]>("/api/Employee/Index");
+```
+
+3. If you are using HTTPS, make sure that the server is configured to allow HTTPS calls. You can try using HTTP instead to see if that resolves the issue.
+
+4. Check the network tab in your browser's developer tools to see the response from the server. This can help you identify any issues with the response.
+
+5. If none of the above solutions work, you can try using a third-party library like `Newtonsoft.Json` to deserialize the response manually. Here's an example:
+
+```c#
+var response = await Http.GetStringAsync("/api/Employee/Index");
+empList = JsonConvert.DeserializeObject<Employee[]>(response);
+```
+
+Note that this solution requires you to add the `Newtonsoft.Json` package to your project.

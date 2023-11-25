@@ -1,0 +1,16 @@
+It seems like the issue is with the `uri` you are using in your `ApolloClient` configuration. The `uri` you are using is for a demo server provided by Apollo, which may not be working properly or may be experiencing high traffic.
+
+You should replace the `uri` with the endpoint of your own GraphQL server. If you don't have a GraphQL server, you can create one using services like Apollo Server, Hasura, or AWS AppSync.
+
+Once you have your own GraphQL server, replace the `uri` in your `ApolloClient` configuration with the endpoint of your server. For example:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'https://my-graphql-server.com/graphql',
+    cache: new InMemoryCache(),
+});
+```
+
+Make sure to replace `https://my-graphql-server.com/graphql` with the actual endpoint of your server.
+
+After making this change, your `useQuery` hook should be able to fetch data from your GraphQL server.

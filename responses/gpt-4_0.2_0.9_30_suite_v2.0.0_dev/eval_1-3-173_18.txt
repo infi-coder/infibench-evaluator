@@ -1,0 +1,27 @@
+Sure, you can use the `calendar` module in Python to check if a year is a leap year or not. Here is a function that does this:
+
+```python
+import calendar
+
+def DaysInYear(year):
+    if calendar.isleap(year):
+        return 366
+    else:
+        return 365
+```
+
+You can use this function by passing the year as an argument. For example, `DaysInYear(2020)` will return `366` and `DaysInYear(2019)` will return `365`.
+
+If you want to extract the year from a datetime in the format `YYYY-MM-DD`, you can use the `datetime` module in Python. Here is an example:
+
+```python
+from datetime import datetime
+
+date_string = "2020-03-30"
+date_object = datetime.strptime(date_string, "%Y-%m-%d")
+year = date_object.year
+
+print(DaysInYear(year))  # Outputs: 366
+```
+
+In this example, the `strptime` function is used to convert the date string into a datetime object. The year is then extracted from this object using the `year` attribute. The `DaysInYear` function is then called with this year as an argument.

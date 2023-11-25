@@ -1,0 +1,7 @@
+You can use `awk` to achieve this task more efficiently. Here's an example command:
+
+```
+awk -F= '/name/{name=$2} /value/{if(name){print name "=" $2; name=""}}' input.txt > output.txt
+```
+
+This command sets the field separator to `=` and then uses two patterns to match lines starting with `name` and `value`. When a line starting with `name` is found, it sets the `name` variable to the value after the `=`. When a line starting with `value` is found, it checks if `name` is set (meaning it found a previous line starting with `name`) and if so, it prints the `name` and `value` separated by `=`. This avoids the need for a loop and multiple calls to `grep` and `sed`, making it much faster.

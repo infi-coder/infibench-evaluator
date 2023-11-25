@@ -1,0 +1,18 @@
+It seems that the Dockerfile is not able to find the `app` module. You can try modifying the Dockerfile as follows:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY app app
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+Here, we are copying the `requirements.txt` file to the current working directory and installing the dependencies. Then, we are copying the entire `app` directory to the container's `/app` directory. This should ensure that the `app` module is found by the Dockerfile.
+
+Also, make sure that the `docker-compose.yml` file is in the same directory as the `Dockerfile`.

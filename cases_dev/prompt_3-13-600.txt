@@ -1,0 +1,3 @@
+Disable animation in viewpager2
+
+I have viewpager2 and adapter for him that extends FragmentStateAdapter. I want user to go to another page only by clicking on tablayout. I have disabled user input for this viewpager2. But when I click on tab, there is animation of fast swiping between pages. But I want just new fragment to show. Like with FragmentTransaction, but with viewpager2 and tablayout. Does anyone knows ho to do it?

@@ -1,0 +1,13 @@
+You can optimize your task by using `awk` which is much faster for text processing tasks. Here is an optimized version of your script:
+
+```bash
+awk -F'=' '/^name/ {name=$2} /^value/ {print name"="$2}' input.txt > output.txt
+```
+
+This script works as follows:
+
+- `-F'='` sets the field separator to `=`.
+- `/^name/ {name=$2}` saves the value of the `name` line in the `name` variable.
+- `/^value/ {print name"="$2}` prints the `name` and `value` when a `value` line is encountered.
+
+This script will be much faster than your original script because it processes the file line by line without loading the entire file into memory. It also avoids the use of `grep` and `sed` which are relatively slow operations.

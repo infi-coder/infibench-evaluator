@@ -1,0 +1,20 @@
+The error message is telling you that you cannot create an index on a navigation property. In Entity Framework, indexes can only be created on scalar properties, not on navigation properties.
+
+Here's how you can fix it:
+
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+            .HasOne(x => x.Gender)
+            .WithMany(x => x.Users)
+            .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderId); // Change this line
+    });
+}
+```
+
+In the above code, I've changed the `user.HasIndex(x => x.Gender);` line to `user.HasIndex(x => x.GenderId);`. Now, the index is being created on the `GenderId` property, which is a scalar property, not a navigation property. This should fix the error you're seeing.

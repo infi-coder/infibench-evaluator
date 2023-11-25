@@ -1,0 +1,15 @@
+You can use the `source` command to reload your `.bash_profile` without closing and reopening your terminal. Here's how:
+
+```bash
+source ~/.bash_profile
+```
+
+This command reads and executes the `.bash_profile` file in the current shell, updating any functions, aliases, and other settings you've defined there.
+
+If you're using a different shell (like zsh, which is the default in macOS Catalina and later), you'll need to source the appropriate configuration file. For zsh, this would be:
+
+```bash
+source ~/.zshrc
+```
+
+This will apply any changes you've made to your shell configuration without needing to restart your terminal.

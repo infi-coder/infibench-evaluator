@@ -1,0 +1,15 @@
+Here is a Python function that uses the `re` module to split the input string at dashes and underscores, then uses the `str.capitalize` method to capitalize the first letter of each word except the first one, and finally joins them together:
+
+```python
+import re
+
+def to_camel_case(text):
+    words = re.split('-|_', text)
+    return words[0] + ''.join(word.capitalize() for word in words[1:])
+```
+
+This function works by first splitting the input string into a list of words. The `re.split` function is used with a regular expression that matches either a dash or an underscore, effectively splitting the string at each occurrence of either character.
+
+The function then returns a new string that is constructed by joining together all the words in the list, with the first letter of each word except the first one capitalized. The `str.capitalize` method is used to capitalize the first letter of a string.
+
+The first word is added separately before the join operation to ensure that its first letter is not capitalized unless it was capitalized in the original string. This is done to satisfy the requirement that the first word within the output should be capitalized only if the original word was capitalized.

@@ -1,0 +1,17 @@
+If you want to use the same version of Java that is used by the Maven task, you can specify the `JAVA_HOME` environment variable to point to the same JDK that is used by the Maven task. 
+
+To find out which JDK is being used by the Maven task, you can run the following command in your terminal:
+
+```
+mvn -version
+```
+
+This will display the version of Maven and the JDK that is being used. 
+
+Once you know the path to the JDK, you can set the `JAVA_HOME` environment variable to that path. For example, if the JDK path is `/usr/lib/jvm/java-8-openjdk-amd64`, you can set the `JAVA_HOME` variable by running the following command:
+
+```
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+```
+
+After setting the `JAVA_HOME` variable, you can run the Maven wrapper command and it should use the same version of Java that is used by the Maven task.

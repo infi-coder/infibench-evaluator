@@ -1,0 +1,26 @@
+Your code seems correct and should work as expected. However, there are a few things you could check if you're experiencing issues:
+
+1. **Network Connection**: Ensure that your device/emulator has a proper internet connection. Apollo Client fetches data over the network, so a lack of connectivity could cause the query to hang.
+
+2. **Server Availability**: The server at 'https://48p1r2roz4.sse.codesandbox.io' should be up and running. If the server is down, the query will not be able to fetch any data.
+
+3. **Correct Query**: Make sure that the GraphQL query `EXCHANGE_RATES` is correct and the server supports it. If the server cannot resolve the query, it could cause the query to fail.
+
+4. **Apollo Client Version**: There might be compatibility issues with the version of Apollo Client you're using. Try downgrading to a lower version (e.g., "@apollo/client": "^3.3.7") and see if the problem persists.
+
+5. **React Native Debugger**: If you're using React Native Debugger, there might be an issue with the network inspect. Try disabling it and see if the problem persists.
+
+6. **React Native Version**: There might be compatibility issues with the version of React Native you're using. Try upgrading or downgrading to a different version and see if the problem persists.
+
+If none of these suggestions work, it would be helpful to see any error messages you're getting. You can catch and log any errors from the `useQuery` hook like this:
+
+```javascript
+const { loading, error, data } = useQuery(EXCHANGE_RATES);
+
+if (error) {
+    console.error('Error fetching exchange rates:', error);
+    return <Text>Error :(</Text>;
+}
+```
+
+This will give you more information about what's going wrong.

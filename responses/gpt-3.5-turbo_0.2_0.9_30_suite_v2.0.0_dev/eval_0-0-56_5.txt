@@ -1,0 +1,17 @@
+It seems like the issue is with the way you are running the Vite server inside the Docker container. When you run `npm run vite` inside the container, it starts the Vite server on the container's localhost, which is not accessible from outside the container.
+
+To fix this, you need to tell Vite to bind to `0.0.0.0` instead of `localhost`. This will make the server accessible from outside the container. You can do this by adding the `host` option to your Vite config:
+
+```typescript
+export default defineConfig({
+    // ...
+    server: {
+        port: 8080,
+        host: '0.0.0.0'
+    }
+})
+```
+
+With this configuration, Vite will bind to all available network interfaces, including the Docker container's network interface.
+
+Once you've made this change, you should be able to access the Vite server from your host machine using `localhost:8080`.

@@ -1,0 +1,30 @@
+Here is a Python function that generates a random string according to your requirements:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Generate 2 random digits
+    digits = ''.join(random.choice(string.digits) for _ in range(2))
+    
+    # Generate 9 random letters
+    letters = ''.join(random.choice(string.ascii_letters) for _ in range(9))
+    
+    # Combine the digits, letters and the sub-string "NAA3U"
+    code = digits + letters + "NAA3U"
+    
+    # Shuffle the characters in the code
+    code = ''.join(random.sample(code, len(code)))
+    
+    # Check if the code contains exactly 3 digits
+    if sum(c.isdigit() for c in code) == 3:
+        return code
+    else:
+        return generateRandomString()
+
+# Test the function
+print(generateRandomString())
+```
+
+This function generates 2 random digits and 9 random letters, then combines them with the sub-string "NAA3U" to form a 16-character code. It then shuffles the characters in the code to ensure randomness. If the shuffled code contains exactly 3 digits, it is returned; otherwise, the function is called recursively until a valid code is generated.

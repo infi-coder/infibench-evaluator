@@ -1,0 +1,11 @@
+The issue you are facing could be due to the incompatibility of the Selenium WebDriver with the version of Internet Explorer installed on your machine. 
+
+Excel 2019 comes with Internet Explorer 11, which is not fully compatible with the latest version of Selenium WebDriver. 
+
+To resolve this issue, you can try the following steps:
+
+1. Install the latest version of Selenium WebDriver from the official website.
+2. Use a different browser like Chrome or Firefox instead of Internet Explorer.
+3. Use an older version of Internet Explorer that is compatible with Selenium WebDriver.
+
+If none of the above solutions work, you can try using a different version of Excel or downgrade to an older version of Internet Explorer.

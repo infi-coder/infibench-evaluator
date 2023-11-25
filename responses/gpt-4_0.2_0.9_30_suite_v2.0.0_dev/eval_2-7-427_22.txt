@@ -1,0 +1,23 @@
+## CSRF Token Mismatch
+
+The CSRF token mismatch error is often caused by session configuration issues. Here are a few things you can check:
+
+1. **Domain Configuration**: Ensure that your domain is correctly configured in your `.env` file. The `APP_URL` should match the domain you're using. If you're using `www` in your domain, make sure it's included in the `APP_URL`.
+
+2. **Cookie Domain**: If your application is under a subdomain, you might need to set the `SESSION_DOMAIN` in your `.env` file to your root domain. For example, if your app is at `app.example.com`, you should set `SESSION_DOMAIN=.example.com`.
+
+3. **Secure Cookies**: If your `SESSION_SECURE_COOKIE` is set to `true`, but your application is not using HTTPS, it can cause issues. Either switch to HTTPS or set `SESSION_SECURE_COOKIE=false`.
+
+4. **Session Driver**: You mentioned that you've set the `SESSION_DRIVER` to `file`. Make sure that Laravel has the necessary permissions to write to the `storage/framework/sessions` directory.
+
+## Email Sending Issue
+
+The error message you're seeing is related to the SSL version being used to establish a connection with the SMTP server. Here are a few things you can try:
+
+1. **Change Encryption Method**: Try changing `MAIL_ENCRYPTION` from `ssl` to `tls` in your `.env` file. Some servers may not support SSL, or may require a specific version.
+
+2. **Change Port**: The port you're using (587) is typically used with `tls`. If you're using `ssl`, the port is usually 465. So if you stick with `ssl`, try changing `MAIL_PORT` to 465.
+
+3. **Check with the Email Provider**: There might be specific requirements or settings needed for the SMTP server that you're not aware of. Check with the email provider (in this case, whoever manages `mail.propnex.sg`) to see if there are any specific settings you need to use.
+
+Remember to clear your config cache (`php artisan config:cache`) after making changes to your `.env` file.

@@ -1,0 +1,23 @@
+If you are using a build system like Jenkins or Azure DevOps, they usually provide a way to specify the JDK version for your build. However, if you are running the Maven Wrapper on your local machine, you need to ensure that the correct version of Java is being used.
+
+The Maven Wrapper uses the version of Java that is currently active in your shell or command prompt. You can check which version is currently active by running `java -version` in your terminal.
+
+If the version that is displayed is not the one you want to use, you need to change your `JAVA_HOME` environment variable to point to the correct JDK installation directory.
+
+Here is how you can do it:
+
+1. Find the installation directory for the JDK version you want to use. This will depend on your operating system and how you installed Java.
+
+2. Set the `JAVA_HOME` environment variable to point to this directory. The way to do this will also depend on your operating system:
+
+    - On Windows, you can set environment variables in the System Properties. You can access this by right-clicking on Computer in the Start menu, choosing Properties, then Advanced system settings, then Environment Variables.
+
+    - On Linux or Mac, you can set environment variables in your shell profile file, which is usually `~/.bashrc`, `~/.bash_profile`, or `~/.zshrc`. You can add a line like `export JAVA_HOME="/path/to/jdk"`.
+
+3. Open a new terminal or command prompt window, or restart your existing one, so that the changes to the environment variables take effect.
+
+4. Run `java -version` again to confirm that the correct version is now active.
+
+5. Now when you run the Maven Wrapper, it should use the correct version of Java.
+
+If you want to specify the Java version directly in the Maven Wrapper, you can do so by modifying the `mvnw` or `mvnw.cmd` script. However, this is not recommended because it makes your build less portable. It's better to control the Java version through the `JAVA_HOME` environment variable.

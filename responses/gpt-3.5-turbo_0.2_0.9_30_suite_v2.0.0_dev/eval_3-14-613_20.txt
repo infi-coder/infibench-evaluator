@@ -1,0 +1,1 @@
+It seems like the preview code is not associated with any target in your Xcode project. Try adding the preview code to a target by selecting the code file and then selecting the target membership checkbox in the File Inspector. Also, make sure that the target is selected in the scheme you are running the preview in.

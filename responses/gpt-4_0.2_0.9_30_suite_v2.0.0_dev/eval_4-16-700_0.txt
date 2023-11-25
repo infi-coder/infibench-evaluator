@@ -1,0 +1,13 @@
+You can optimize your script by using `awk` which is a powerful text processing tool. Here's how you can do it:
+
+```bash
+awk -F'=' '/^name/{name=$2;next} /^value/{print name"="$2}' input.txt > output.txt
+```
+
+This `awk` command works as follows:
+
+- `-F'='` sets the field separator to `=`.
+- `/^name/` matches lines that start with `name`. For these lines, it sets the variable `name` to the second field (i.e., the part after the `=`), and then skips to the next line.
+- `/^value/` matches lines that start with `value`. For these lines, it prints the `name` variable followed by `=` and the second field (i.e., the part after the `=`).
+
+This command should be significantly faster than your original script because it processes the file line by line instead of loading the entire file into memory, and it doesn't use any external commands or subprocesses.

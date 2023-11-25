@@ -1,0 +1,10 @@
+I run the php artisan make:auth command and I will explain step by step what I do after that to understand the scenario,
+
+Login to a new session (example.com/home)
+opened a new tab and pasted the URL, ie example.com/home.
+Now 2 tabs are open with the same session.
+I clicked logout from one of the tabs and it works perfectly fine
+Then when I tried to logout from the other tab, it gave me an error saying "419 Page Expired" and it is going nowhere even after reloading.
+The thing is, these kinds of scenarios may arise, and I don't want to see this error message, just logout after clicking logout, even if the session is expired.
+
+Note: This issue is not because of not adding @csrf

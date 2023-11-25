@@ -1,0 +1,16 @@
+when Using start.spring.io projects generated with springboot 2.7 comes with MavenProject 3.8.5 which when imported in intellij causes an error that is quite difficult to debug or not self speaking by itself.
+
+The error:
+```
+java.lang.RuntimeException: org.codehaus.plexus.component.repository.exception.ComponentLookupException: com.google.inject.ProvisionException: Unable to provision, see the following errors:
+
+1) Error injecting constructor, java.lang.NoSuchMethodError: org.apache.maven.model.validation.DefaultModelValidator: method 'void <init>()' not found
+  at org.jetbrains.idea.maven.server.embedder.CustomModelValidator.<init>(Unknown Source)
+  while locating org.jetbrains.idea.maven.server.embedder.CustomModelValidator
+  at ClassRealm[maven.ext, parent: ClassRealm[plexus.core, parent: null]] (via modules: org.eclipse.sisu.wire.WireModule -> org.eclipse.sisu.plexus.PlexusBindingModule)
+  while locating org.apache.maven.model.validation.ModelValidator annotated with @com.google.inject.name.Named(value="ide")
+
+1 error
+      role: org.apache.maven.model.validation.ModelValidator
+  roleHint: ide
+```

@@ -1,0 +1,37 @@
+# Corresponding to post https://stackoverflow.com/questions/67890992
+id: 4-16-694
+# for case self identificaton
+
+prompt_path: prompt_4-16-694.txt
+# relative path to the prompt text
+
+type: code debugging
+# type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: bash
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+
+  #  similarity:
+  #    - metric: rougeLsum
+  #      references:
+  #        - path: answer_4-16-694_0.txt
+  max_score: 2.0
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+
+  min_score: 0.0
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+
+
+  keywords:
+    - content: sed
+    - content: 's/^<html.* lang="\([^"]*\).*/\1/p'

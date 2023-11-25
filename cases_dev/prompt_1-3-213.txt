@@ -1,0 +1,32 @@
+ExcelWriter ValueError: Excel does not support datetime with timezone when saving df to Excel
+
+I'm running on this issue for quite a while now.
+
+I set the writer as follows:
+
+```python
+writer = pd.ExcelWriter(arquivo+'.xlsx', engine = 'xlsxwriter', options = {'remove_timezone': True})
+df.to_excel(writer, header = True, index = True)
+```
+
+The problem is every time I run the code, it gets information from the database, which contains two columns datetime64[ns, UTC] object with time zone info. But when the code to save to Excel runs I receive:
+
+```bash
+ValueError: Excel does not support datetimes with timezones. Please ensure that datetimes are timezone unaware before writing to Excel.
+```
+
+I have already tried several things like `dt.tz_convert, `replace(tzinfo=None)` and other solutions I have found here and around.
+
+The code runs without problem in my personal computer, my colleague at work with the same machine specs can run the code. Only in my machine it doesn't. I already reinstalled python and all the packages, including formatting the machine and nothing, the error persists.
+
+xlrd v1.1.0
+
+xlsxwriter v1.0.4
+
+python 3.7.4
+
+pandas v0.25.1
+
+Please write a function `removeTimezone` in Python, which takes a DataFrame variable `df` as the argument and returns `df` with the column "time" removed timezones.
+
+Function signature is: `removeTimezone(df)`

@@ -1,0 +1,27 @@
+It seems there's a bit of confusion here. iOS doesn't have a "Developer Mode" that you can enable or disable like Android. The alert you're seeing is likely related to an enterprise app or a beta version of an app that's been provisioned for testing.
+
+If you're trying to install an app that's not from the App Store, you'll need to trust the developer on your iOS device. Here's how to do that:
+
+1. Go to `Settings > General > Profiles` or `Profiles & Device Management`. You then see a list of all the device management profiles installed on your device.
+
+2. Under the `ENTERPRISE APP` section, find the profile that corresponds to the developer of the app you're trying to install.
+
+3. Tap on the profile to trust the developer. You'll then see a prompt to confirm your choice. Once you trust this profile, you can manually install other apps from the same developer and open them immediately. This developer remains trusted until you use the `Delete App` button to remove all apps from the developer.
+
+4. Go back to the Home screen and open the app. The untrusted developer alert should no longer appear, and you should be able to use the app as intended.
+
+If you're trying to install a beta app from TestFlight, make sure you've installed TestFlight on your device and that you're signed in with the same Apple ID you used to accept your email invitation to test the app. If you're still having trouble, you might need to contact the developer for assistance.
+
+If you're a developer and you're trying to run your own app on your device, you'll need to use Xcode on a Mac. Here's how:
+
+1. Connect your iOS device to your Mac.
+
+2. Open Xcode and go to `Window > Devices and Simulators`.
+
+3. Select your device from the list and click the `+` button under `Installed Apps`.
+
+4. Navigate to your `.app` file and click `Open`. Your app should then install on your device.
+
+5. On your device, go to `Settings > General > Device Management`, tap your Developer Account under `Developer App`, and tap `Trust`.
+
+6. Go back to the Home screen and open your app. The untrusted developer alert should no longer appear, and you should be able to use your app as intended.

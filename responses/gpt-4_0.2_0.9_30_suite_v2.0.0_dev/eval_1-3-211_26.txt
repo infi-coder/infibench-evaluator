@@ -1,0 +1,25 @@
+Sure, you can achieve this using the `groupby` and `cumsum` functions in pandas. Here is the function you requested:
+
+```python
+def aggregation(df):
+    # Convert the 'value' column to integer type
+    df['value'] = df['value'].astype(int)
+
+    # Create a new column 'balance' where 'type' equals 'deposit', otherwise fill with 0
+    df['balance'] = df['value'].where(df['type'] == 'deposit', 0)
+
+    # Group by 'exchange' and calculate the cumulative sum of 'balance'
+    df['balance'] = df.groupby('exchange')['balance'].cumsum()
+
+    return df
+```
+
+This function first converts the 'value' column to integer type. Then it creates a new column 'balance' where it copies the values from the 'value' column if the 'type' is 'deposit', otherwise it fills with 0. After that, it groups the DataFrame by 'exchange' and calculates the cumulative sum of 'balance' within each group. Finally, it returns the modified DataFrame.
+
+You can call this function on your DataFrame like this:
+
+```python
+df = aggregation(df)
+```
+
+After calling this function, your DataFrame `df` will be modified as you wanted.

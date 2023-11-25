@@ -1,0 +1,22 @@
+AWS CLI version 2 introduced automatic paging of output to a terminal. This is why you're seeing the interactive pager. You can disable this feature by setting the `AWS_PAGER` environment variable to an empty string.
+
+You can do this in your bash script like so:
+
+```bash
+export AWS_PAGER=""
+for x in 1 2 3; do 
+  aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo; 
+done
+```
+
+This will disable the pager for the duration of the script. If you want to disable it permanently, you can add the `export AWS_PAGER=""` line to your `.bashrc` or `.bash_profile` file.
+
+Alternatively, if you want to pipe the return values into a separate file, you can do so by appending `> filename.txt` at the end of your AWS CLI command:
+
+```bash
+for x in 1 2 3; do 
+  aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo > filename.txt; 
+done
+```
+
+This will redirect the output of the command to `filename.txt`. If you want to append to the file instead of overwriting it each time, you can use `>>` instead of `>`.

@@ -1,0 +1,31 @@
+The issue you're facing is likely due to the incorrect path in your Dockerfile. You're copying your `app` directory into `/app` in your Docker image, but then you're trying to run `uvicorn` with `app.main:app` which is not the correct path.
+
+Here's how you can revise your Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --requirement requirements.txt
+
+COPY ./app .
+
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+In this revised Dockerfile, you're copying your `requirements.txt` into the `/app` directory in your Docker image, and then you're installing the Python dependencies from there. After that, you're copying your `app` directory into the `/app` directory in your Docker image. Finally, you're running `uvicorn` with `main:app`, which should be the correct path to your FastAPI application.
+
+Also, make sure your `docker-compose.yml` file is correct. Here's an example:
+
+```yaml
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+```
+
+In this `docker-compose.yml` file, you're defining a single service named `web` that builds from the current directory (where your Dockerfile is located) and maps port 8000 in the Docker container to port 8000 on your host machine.

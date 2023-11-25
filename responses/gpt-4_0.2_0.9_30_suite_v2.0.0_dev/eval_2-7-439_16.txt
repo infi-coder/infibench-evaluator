@@ -1,0 +1,43 @@
+The error message you're seeing is because `ext-zip` is a PHP extension, not a Composer package. The `composer require` command is used to add new packages to your project.
+
+The `ext-zip` extension is used to read, write and process zip archives in PHP. If PHPStorm is telling you that you need it, it's likely because your project or one of its dependencies requires it.
+
+To install `ext-zip`, you need to install it as a PHP extension. The process for this depends on your operating system.
+
+**For Ubuntu/Debian:**
+
+You can install it using the following command:
+
+```bash
+sudo apt-get install php-zip
+```
+
+**For CentOS/RHEL:**
+
+You can install it using the following command:
+
+```bash
+sudo yum install php-pecl-zip
+```
+
+**For Windows:**
+
+1. Locate your `php.ini` file (you can check where it is from `phpinfo();`).
+2. Open that file in a text editor.
+3. Search for the line `;extension=php_zip.dll`.
+4. Uncomment this line (remove the `;`).
+5. Save and close `php.ini`.
+6. Restart your web server.
+
+After you've installed the extension, you can add it to your `composer.json` file to ensure that it's available when your project is run. Here's how you can do that:
+
+1. Open your `composer.json` file in a text editor.
+2. Add the following line to the `require` section:
+
+```json
+"ext-zip": "*"
+```
+
+3. Save and close `composer.json`.
+
+Now, when you run `composer install`, Composer will check that the `ext-zip` extension is installed and loaded. If it's not, you'll get an error message.

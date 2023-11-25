@@ -1,0 +1,25 @@
+Tailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs. It doesn't directly provide a way to target child elements like you would in traditional CSS with the `>` selector.
+
+However, you can use Tailwind CSS with PostCSS (which is the default setup in most cases) and use the `@apply` directive in your CSS file to apply a set of styles to a specific selector.
+
+Here's an example:
+
+```css
+div.section > div {
+  @apply bg-red-500 text-white;
+}
+```
+
+In this example, direct children `div` elements of `div` with class `section` will have a red background and white text.
+
+Remember to rebuild your CSS after making changes in your CSS file. If you're using a build tool like webpack, it should be done automatically.
+
+Also, note that using `@apply` is not the "utility-first" way of doing things in Tailwind CSS. The utility-first way would be to add the classes directly to the HTML elements:
+
+```html
+<div class="section">
+  <div class="bg-red-500 text-white">...</div>
+</div>
+```
+
+But this will apply the styles to all `div` elements inside `.section`, not only the direct children. If you need to target only direct children, you might need to stick with traditional CSS or preprocessors like Sass, Less or PostCSS.

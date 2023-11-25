@@ -1,0 +1,38 @@
+In Rust, all fields of a struct must be initialized when the struct is created. However, `TcpStream` does not have a default value that you can use. 
+
+One common way to handle this situation is to use `Option<TcpStream>`. This allows you to set `conn` to `None` initially, and then set it to `Some(stream)` when you connect.
+
+Here is how you can modify your code:
+
+```rust
+use std::net::TcpStream;
+use std::io;
+
+pub struct FistClient {
+    addr: String,
+    conn: Option<TcpStream>,
+}
+
+impl FistClient {
+    pub fn new(ip: &str, port: &str) -> Self {
+        FistClient {
+            addr: String::from(ip) + ":" + &String::from(port),
+            conn: None,
+        }
+    }
+
+    pub fn connect(&mut self) -> io::Result<()> {
+        match TcpStream::connect(&self.addr) {
+            Ok(c) => {
+                self.conn = Some(c);
+                Ok(())
+            },
+            Err(e) => Err(e),
+        }
+    }
+}
+```
+
+In the `connect` method, I've changed the return type to `io::Result<()>` so that it returns an error instead of panicking when the connection fails. This allows the caller to handle the error. 
+
+To use the `conn` field, you will need to check if it is `Some` and then unwrap it. If it is `None`, you can decide what to do (for example, you might want to connect again).

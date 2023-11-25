@@ -1,0 +1,31 @@
+The reason why the log with value 2 is printed before the log with value 1 is because the `onItemSelectedListener` is triggered only when an item is selected in the spinner. Therefore, the code inside the `onItemSelectedListener` is executed after the function has already returned the initial value of `itemSelected`.
+
+To fix this, you can change the return type of the function to `Unit` and use a callback to return the selected item. Here's an example:
+
+```
+fun Spinner.setupListWithAdapter(list: MutableList<String>, onItemSelected: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            onItemSelected(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+}
+```
+
+In this updated function, the `onItemSelected` parameter is a callback function that takes a `String` parameter. Inside the `onItemSelectedListener`, the selected item is passed to the `onItemSelected` callback.
+
+To use this function, you can call it like this:
+
+```
+spinner.setupListWithAdapter(list) { selectedItem ->
+    // Do something with the selected item
+}
+```
+
+In the callback, you can perform any action that you want with the selected item.

@@ -1,0 +1,34 @@
+The error message you're seeing is indicating that the response from your API call is not valid JSON. The '<' character is typically the start of an HTML or XML document, not a JSON document.
+
+The issue might be related to the route of your API method. In your API controller, you have defined the route as `[Route("api/Employee/Index")]` but in your Blazor code, you're calling `"/api/Employee/Index"`. 
+
+The `[Route("[controller]")]` attribute on your controller means that the route will be the name of the controller by default. So, if your controller is named `EmployeeController`, the route to your method would be `"/Employee/api/Employee/Index"`.
+
+To fix this, you can change the route in your Blazor code to match the route defined in your controller. 
+
+However, a more standard approach would be to change the route in your controller to be more RESTful. Here's how you could do that:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+Then, in your Blazor code, you would call the API like this:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("api/Employee");
+```
+
+This way, the route to your method is simply `"/api/Employee"`, which is more in line with RESTful principles. 
+
+If you still encounter the same error after making these changes, it might be that your API method is returning an error page or some other HTML response instead of the expected JSON. You can use a tool like Postman to test your API method and see what it's actually returning.

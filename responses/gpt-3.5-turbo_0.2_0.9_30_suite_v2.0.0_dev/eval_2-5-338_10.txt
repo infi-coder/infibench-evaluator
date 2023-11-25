@@ -1,0 +1,25 @@
+The error message suggests that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `CommonsMultipartFile` class contains a `ByteArrayInputStream` object, which cannot be serialized by default.
+
+To solve this issue, you can configure the `RestTemplate` to use a different message converter that can handle multipart requests. One such converter is the `org.springframework.http.converter.FormHttpMessageConverter` class, which can handle multipart/form-data requests.
+
+To use this converter, you can modify your code as follows:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
+
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body= new LinkedMultiValueMap<>();
+body.add("circularAttachment", new FileSystemResource(souqBean.getCircularAttachment().getFile())); //MultipartFile
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+In this modified code, we first create a new instance of `RestTemplate` and add a `FormHttpMessageConverter` to its list of message converters. We then create a `FileSystemResource` object from the `MultipartFile` object, which can be used to upload the file to the microservice. Finally, we create a new `HttpEntity` object with the `MultiValueMap` object and the `HttpHeaders` object, and use it to make the POST request to the microservice.

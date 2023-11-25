@@ -1,0 +1,21 @@
+You can create a function `removeTimezone(df)` that will remove the timezone from all datetime columns in your DataFrame. Here is an example:
+
+```python
+def removeTimezone(df):
+    for col in df.columns:
+        if df[col].dtype.name == 'datetime64[ns, UTC]':
+            df[col] = df[col].dt.tz_convert(None)
+    return df
+```
+
+This function will go through each column in your DataFrame. If the column's data type is 'datetime64[ns, UTC]', it will convert the timezone to None, effectively removing the timezone.
+
+You can use this function before writing your DataFrame to Excel:
+
+```python
+df = removeTimezone(df)
+writer = pd.ExcelWriter(arquivo+'.xlsx', engine = 'xlsxwriter')
+df.to_excel(writer, header = True, index = True)
+```
+
+This should solve your problem. If the error persists, it might be due to some other issue not related to the timezone.

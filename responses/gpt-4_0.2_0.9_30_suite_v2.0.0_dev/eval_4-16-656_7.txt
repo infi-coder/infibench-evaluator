@@ -1,0 +1,15 @@
+The `Get-Service` cmdlet does not provide the service description. However, you can use the `Get-WmiObject` cmdlet to get the service description. Here is an example:
+
+```powershell
+Get-WmiObject -Class Win32_Service | Select-Object Name, DisplayName, Description | Out-GridView
+```
+
+This command will get all services and select the `Name`, `DisplayName`, and `Description` properties of each service. The output will be displayed in a grid view.
+
+If you want to get the description of a specific service, you can filter the services by `Name` or `DisplayName`. Here is an example:
+
+```powershell
+Get-WmiObject -Class Win32_Service | Where-Object { $_.Name -eq 'wuauserv' } | Select-Object Name, DisplayName, Description
+```
+
+This command will get the service with the name 'wuauserv' and select the `Name`, `DisplayName`, and `Description` properties of the service.

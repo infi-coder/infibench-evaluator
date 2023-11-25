@@ -1,0 +1,11 @@
+Sure! The code you provided is almost correct, but you need to use the `|` operator instead of `,` when defining the type `FruitsAndColors`. Here's the corrected code:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit]: number;
+} & {
+  [key in color]: boolean;
+}
+```
+
+This creates an intersection type that combines the two object types, one with numeric properties for each fruit and the other with boolean properties for each color.

@@ -1,0 +1,24 @@
+The error you're encountering could be due to a variety of reasons. Here are a few things you could try:
+
+1. **Check SeleniumBasic and Browser Driver Version:** Ensure that you have the latest version of SeleniumBasic installed. Also, check that the browser driver (e.g., ChromeDriver for Google Chrome) is compatible with the version of the browser you're using.
+
+2. **Check SeleniumBasic Reference:** In VBA, go to `Tools -> References` and make sure that Selenium Type Library is checked. If it's not, scroll through the list to find it and check it.
+
+3. **Check Internet Explorer Settings:** Since you're using Internet Explorer in your code, make sure that the version of IE installed on your machine is compatible with the version of SeleniumBasic you're using. Also, check the IE settings to ensure that it allows automation scripts to run.
+
+4. **Try Using a Different Browser:** If none of the above solutions work, try using a different browser. For example, you could use Chrome or Firefox instead of Internet Explorer. Here's how you can do it for Chrome:
+
+    ```vba
+    Dim driver As New ChromeDriver
+    Dim keyObj As Selenium.keys
+
+    Set keyObj = New Selenium.keys
+
+    driver.Start
+    driver.Window.Maximize
+    driver.Get "https://www.google.com/"
+    ```
+
+5. **Reinstall SeleniumBasic:** If all else fails, try uninstalling and then reinstalling SeleniumBasic. Sometimes, this can resolve any issues that might have arisen during the initial installation.
+
+Remember to update your browser drivers whenever you update your browser to ensure compatibility.

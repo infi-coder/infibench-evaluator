@@ -1,0 +1,50 @@
+To change the background color of the root element dynamically with React, you can use the `ThemeProvider` component provided by Material-UI. 
+
+Here's an example of how you can use it to switch between light and dark themes:
+
+```jsx
+import React, { useState } from 'react';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
+import { blue, pink } from '@material-ui/core/colors';
+
+function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const theme = createMuiTheme({
+    palette: {
+      type: darkMode ? 'dark' : 'light',
+      primary: {
+        main: blue[500],
+      },
+      secondary: {
+        main: pink[500],
+      },
+    },
+  });
+
+  const handleThemeChange = () => {
+    setDarkMode(!darkMode);
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div style={{ backgroundColor: theme.palette.background.default }}>
+        <h1>Hello World</h1>
+        <button onClick={handleThemeChange}>Toggle Theme</button>
+      </div>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
+
+In this example, we're using the `createMuiTheme` function to create a theme object with a `palette` property that specifies the primary and secondary colors, as well as the type of palette (either 'light' or 'dark') based on the `darkMode` state.
+
+We're also using the `CssBaseline` component to apply some basic global styles to the document, such as setting the font family and applying a default margin to the body.
+
+Finally, we're wrapping our app in the `ThemeProvider` component and passing in the `theme` object we created. We're also setting the background color of the root element to the `theme.palette.background.default` value, which will change dynamically based on the current theme.
+
+The `handleThemeChange` function simply toggles the `darkMode` state when the button is clicked, which will cause the theme to update and the background color to change.

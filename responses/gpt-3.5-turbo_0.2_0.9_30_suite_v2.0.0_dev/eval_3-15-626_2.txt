@@ -1,0 +1,22 @@
+You can use the `WorkbookConnection` object in VBA to automate Power Query. Here's an example code snippet:
+
+```
+Sub RefreshPowerQuery()
+    Dim conn As WorkbookConnection
+    Set conn = ThisWorkbook.Connections("Query - MyQueryName") ' Replace with your query name
+    conn.Refresh
+End Sub
+```
+
+You can also modify the query definition using VBA, like this:
+
+```
+Sub ModifyPowerQuery()
+    Dim conn As WorkbookConnection
+    Set conn = ThisWorkbook.Connections("Query - MyQueryName") ' Replace with your query name
+    conn.OLEDBConnection.CommandText = "SELECT * FROM MyTable WHERE MyColumn > 10" ' Replace with your SQL query
+    conn.Refresh
+End Sub
+```
+
+Note that you need to replace "Query - MyQueryName" with the actual name of your Power Query.

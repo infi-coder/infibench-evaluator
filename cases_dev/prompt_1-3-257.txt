@@ -1,0 +1,34 @@
+Dividing an even number into N parts each part being a multiple of 2
+
+Let's assume I have the number 100 which I need to divide into N parts each of which shouldn't exceed 30 initially. So the initial grouping would be (30,30,30). The remainder (which is 10) is to be distributed among these three groups by adding 2 to each group in succession, thus ensuring that each group is a multiple of 2. The desired output should therefore look like (34,34,32).
+
+Note: The original number is always even.
+
+I tried solving this in Python and this is what I came up with. Clearly it's not working in the way I thought it would. It distributes the remainder by adding 1 (and not 2, as desired) iteratively to each group.
+
+```python
+num = 100
+parts = num//30  #Number of parts into which 'num' is to be divided
+
+def split(a, b):
+  result = ([a//b + 1] * (a%b) + [a//b] * (b - a%b))
+  return(result)
+
+print(split(num, parts))
+```
+
+Output:
+
+```
+[34, 33, 33]
+```
+
+Desired output:
+
+```
+[34, 34, 32]
+```
+
+Please write a function `divideNumber` in Python, which takes `num` and `n` as arguments and returns the dividing results (divide `num` into `n` parts) in List according to my above requirements.
+
+Function signature is: `divideNumber(num, n)`

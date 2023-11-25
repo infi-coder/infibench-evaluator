@@ -1,0 +1,47 @@
+To identify if a div is visible on the viewport on scroll, you can use the `Intersection Observer API`. This API allows you to observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+
+Here's an example of how you can use the `Intersection Observer API` to get the list of divs inside of `#parent` which are visible on viewport on scroll:
+
+```javascript
+import React, { useEffect, useRef, useState } from "react";
+
+const ParentComponent = ({ data }) => {
+  const parentRef = useRef(null);
+  const [visibleDivs, setVisibleDivs] = useState([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleIds = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target.id);
+        setVisibleDivs(visibleIds);
+      },
+      { root: null, rootMargin: "0px", threshold: 0.5 }
+    );
+
+    const childDivs = parentRef.current.querySelectorAll("div");
+    childDivs.forEach((div) => observer.observe(div));
+
+    return () => observer.disconnect();
+  }, [data]);
+
+  return (
+    <div id="parent" ref={parentRef}>
+      {data.map((item) => (
+        <div key={item.id} id={item.id}>
+          {item.title}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+In this example, we create a new `IntersectionObserver` instance and pass a callback function to it. The callback function is called whenever the intersection of the observed element with the viewport changes. In the callback function, we filter the entries to get only the ones that are intersecting and map them to their respective ids. We then set the state of `visibleDivs` to the array of visible ids.
+
+We use the `useRef` hook to get a reference to the `#parent` div and the `useEffect` hook to create and observe the child divs. We also pass the `data` prop to the `useEffect` hook so that it runs whenever the data changes.
+
+Note that we set the `root` option of the `IntersectionObserver` to `null` to observe the intersection of the child divs with the viewport. We also set the `rootMargin` option to `"0px

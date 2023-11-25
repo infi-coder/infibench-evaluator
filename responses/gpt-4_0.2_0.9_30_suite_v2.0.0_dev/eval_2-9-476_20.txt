@@ -1,0 +1,2 @@
+You need to add two things to your `~/.zshenv` file. First `rbenv` itself and second the ruby `shims`. 
+You might also run the `rbenv doctor` to check your installation.

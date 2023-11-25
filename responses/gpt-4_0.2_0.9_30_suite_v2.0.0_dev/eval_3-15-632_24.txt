@@ -1,0 +1,23 @@
+Assuming that your data is separated by a specific character (like a comma, space, or tab), you can use the `Split` function in VBA to split the string into an array and then assign the array elements to the cells. 
+
+Here is how you can modify your code:
+
+```vba
+idx = InStr(textline, "Cabinet No.")
+If idx > 0 Then
+    Line Input #1, textline
+    Line Input #1, textline
+    Dim arr() As String
+    arr = Split(textline, " ") ' replace " " with your delimiter
+    ActiveSheet.Cells(nextrow, "G").Value = arr(0)
+    ActiveSheet.Cells(nextrow, "H").Value = arr(1)
+    ActiveSheet.Cells(nextrow, "I").Value = arr(2)
+    ActiveSheet.Cells(nextrow, "J").Value = arr(3)
+    ActiveSheet.Cells(nextrow, "K").Value = arr(4)
+    nextrow = nextrow + 1 'now move to next row
+End If
+```
+
+Replace `" "` in `Split(textline, " ")` with the character that separates your data. If your data is separated by a tab, use `vbTab` instead. If it's a comma, use `","`.
+
+This code assumes that there are exactly 5 items on the line. If the number of items can vary, you'll need to add some error checking to prevent a "Subscript out of range" error.

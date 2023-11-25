@@ -1,0 +1,9 @@
+You can disable the automatic ordering of includes in clang-format by adding the following line to your `.clang-format` file:
+
+```
+SortIncludes: false
+```
+
+This will disable the sorting of includes and keep them in the order they were written in your code. You can also use this option on the command line by passing `-sort-includes=false` to clang-format.
+
+Keep in mind that disabling the sorting of includes may cause some issues with third-party libraries that require a specific include order. It's important to make sure that your code still compiles and runs correctly after disabling the sorting of includes.

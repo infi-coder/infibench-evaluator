@@ -1,0 +1,40 @@
+In order to use the Swagger UI with Spring Boot, you need to make sure that you have the following configurations in your application:
+
+1. Make sure that you have the `@EnableSwagger2` annotation in your Spring Boot application class.
+
+```java
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+    // ...
+}
+```
+
+2. Make sure that you have the `@Configuration` annotation in your Swagger configuration class.
+
+```java
+@Configuration
+public class SwaggerConfig {
+    // ...
+}
+```
+
+3. Make sure that you have the `@Bean` annotation for the `Docket` bean in your Swagger configuration class.
+
+```java
+@Configuration
+public class SwaggerConfig {
+    @Bean
+    public Docket api() {
+        // ...
+    }
+}
+```
+
+4. Make sure that you have the `springdoc.swagger-ui.path` property set in your `application.properties` file.
+
+```
+springdoc.swagger-ui.path=/swagger-ui.html
+```
+
+If you have all of these configurations set up correctly, then you should be able to access the Swagger UI at `localhost:8080/swagger-ui.html`.

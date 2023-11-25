@@ -1,0 +1,9 @@
+id: 2-8-466
+prompt_path: prompt_2-8-466.txt
+type: code completion
+lang: go
+grading:
+  similarity:
+    - metric: rougeLsum
+      references:
+        - path: answer_467_0.txt

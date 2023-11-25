@@ -1,0 +1,15 @@
+Yes, you can use the `first` and `not:last-child` pseudo-class variants in Tailwind to achieve this effect. Here's the revised code:
+
+```html
+<ul>
+  <li
+    v-for="(item, index) in items"
+    :key="`item-${index}`"
+    class="border-solid border-b border-black {{ index === 0 ? 'first:border-b-0' : '' }} {{ index === items.length - 1 ? '' : 'not:last-child:border-b-0' }}"
+  >
+    Item
+  </li>
+</ul>
+```
+
+In this code, we're using the `first:border-b-0` class to remove the border-bottom from the first `<li>` element, and the `not:last-child:border-b-0` class to remove the border-bottom from all `<li>` elements except the last one. We're also using the `{{ }}` syntax to conditionally apply these classes based on the index of the current item in the `v-for` loop.

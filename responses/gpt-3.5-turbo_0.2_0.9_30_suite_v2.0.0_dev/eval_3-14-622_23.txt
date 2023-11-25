@@ -1,0 +1,22 @@
+To conform to the ShapeStyle protocol, you need to implement the `func _apply(to shape: inout _ShapeStyle_Self)` method in your custom view. Here's an example implementation for your `RedView`:
+
+```
+struct RedView: ShapeStyle {
+    func _apply(to shape: inout ShapeStyle.Shape) {
+        shape.fill(Color.red)
+    }
+}
+```
+
+Then you can use it in your `MyContentView` like this:
+
+```
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedView())
+    }
+}
+``` 
+
+This should resolve the error you were seeing.

@@ -1,0 +1,19 @@
+The error message is indicating that the map-loop function is not a valid Sass function. It seems like you're trying to override Bootstrap's default theme colors. Here's how you can do it:
+
+```scss
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": #your-color,
+  // Add other color variables if needed
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Replace `#your-color` with the color you want to use for the primary theme color. You can also add more color variables to the `$theme-colors` map if you want to override other theme colors.
+
+The reason why you're getting an error is because you're trying to import the `variables` file before defining your own `$theme-colors` map. The `variables` file contains the default `$theme-colors` map, and it's used in the `bootstrap` file, so you need to define your own `$theme-colors` map before importing these files.
+
+Also, you need to import the `functions` file before the `variables` file because the `variables` file might use some functions defined in the `functions` file.

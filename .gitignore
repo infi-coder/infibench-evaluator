@@ -1,0 +1,14 @@
+*.key
+test.*
+__pycache__/
+tmp/
+.idea/
+tmp.csv
+batched_responses/
+.*
+!.gitignore
+package-lock.json
+package.json
+node_modules/
+bin/
+*.xlsx

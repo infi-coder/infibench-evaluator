@@ -1,0 +1,11 @@
+The error message "419 Page Expired" usually occurs when the CSRF token expires or is invalid. This is a security feature in Laravel to prevent cross-site request forgery attacks. 
+
+To avoid this error message, you can try the following solutions:
+
+1. Use a different browser or incognito mode: When you open a new tab in the same browser, it shares the same session and CSRF token. So, if you log out from one tab, the CSRF token becomes invalid in the other tab as well. To avoid this, you can use a different browser or incognito mode to open the second tab.
+
+2. Use a different CSRF token for each tab: You can generate a new CSRF token for each tab using JavaScript and update the CSRF token in the form before submitting it. This way, each tab will have a unique CSRF token, and logging out from one tab will not affect the other tab.
+
+3. Increase the CSRF token lifetime: By default, the CSRF token lifetime is set to 120 minutes in Laravel. You can increase this value in the `App\Http\Middleware\VerifyCsrfToken` middleware by setting the `$lifetime` property to a higher value. This will give users more time to submit forms without the CSRF token expiring.
+
+4. Use a different logout URL for each tab: You can generate a unique logout URL for each tab using JavaScript and redirect the user to that URL when they click the logout button. This way, each tab will have a different logout URL, and logging out from one tab will not affect the other tab.

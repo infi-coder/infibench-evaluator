@@ -1,0 +1,17 @@
+I have the following typescript code:
+
+```typescript
+type fruit = "apple" | "banana" | "pear"
+type color = "red" | "yellow" | "green"
+```
+
+And I want to create a type that has a numeric property for each fruit and a boolean property for each color, something like
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit]: number;
+  [key in color]: boolean
+}
+```
+
+Could you help me fix the above code and give a correct definition of the type `FruitsAndColors`? Please do not repeat the definition of `type fruit` and `type color` --- You only need to output the definition of `FruitsAndColors` fixing the error.

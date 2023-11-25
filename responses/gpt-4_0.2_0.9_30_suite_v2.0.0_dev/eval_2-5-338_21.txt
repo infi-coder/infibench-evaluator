@@ -1,0 +1,28 @@
+The error message is indicating that Jackson is trying to serialize a `ByteArrayInputStream` object, which it doesn't know how to do. This is happening because you're trying to send a `MultipartFile` directly in your `RestTemplate` request. 
+
+`MultipartFile` is a Spring class that represents an uploaded file received in a multipart HTTP request. The file contents are either stored in memory or temporarily on disk. In some cases, users may wish to send the uploaded file's data to another server or store it in a database.
+
+To solve this issue, you need to convert the `MultipartFile` to a `Resource` or `File` object before adding it to the `MultiValueMap`. Here's an example:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+// Convert MultipartFile to Resource
+Resource resource = new InputStreamResource(souqBean.getCircularAttachment().getInputStream());
+body.add("circularAttachment", resource);
+
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<?> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+In this code, we're using `InputStreamResource` which is a `Resource` implementation for a given `InputStream`. This should be used instead of `ByteArrayResource` or any other `Resource` implementation, as they might have issues with large files or streams.
+
+Please note that you need to handle the `IOException` that `getInputStream()` might throw.

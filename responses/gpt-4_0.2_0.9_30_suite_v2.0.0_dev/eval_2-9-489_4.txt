@@ -1,0 +1,32 @@
+The warning you're seeing is because Elasticsearch 7.13.1 has built-in security features that are not enabled by default. Without these features, your Elasticsearch cluster could be accessible to anyone.
+
+To fix this, you need to enable Elasticsearch's built-in security features. Here's how you can do it:
+
+1. Open your `elasticsearch.yml` file. This file is usually located in the `/etc/elasticsearch` or `/usr/local/etc/elasticsearch` directory.
+
+2. Add the following lines to the file:
+
+```yml
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+```
+
+3. Save and close the file.
+
+4. Restart Elasticsearch.
+
+If you're using Homebrew to manage Elasticsearch, you can restart it with the following command:
+
+```bash
+brew services restart elasticsearch
+```
+
+If you're not using Homebrew, you can usually restart Elasticsearch with the following command:
+
+```bash
+sudo service elasticsearch restart
+```
+
+Please note that enabling security will require you to set up users and roles, and to authenticate to Elasticsearch. You can find more information on how to do this in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/security-minimal-setup.html).
+
+Also, keep in mind that the location of your `elasticsearch.yml` file and the command to restart Elasticsearch may vary depending on your setup. If the above steps don't work, I recommend checking the Elasticsearch documentation or the documentation for your specific setup.

@@ -1,0 +1,35 @@
+The `[Keyless]` attribute is not part of the `System.ComponentModel.DataAnnotations` namespace. It is part of the `Microsoft.EntityFrameworkCore` namespace. 
+
+This attribute was introduced in Entity Framework Core 5.0. If you are using an older version of EF Core, you won't have access to this attribute.
+
+To use the `[Keyless]` attribute, you need to:
+
+1. Make sure you are using EF Core 5.0 or later.
+2. Add a reference to the `Microsoft.EntityFrameworkCore` namespace in your code.
+
+Here is an example of how to use it:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+
+[Keyless]
+public class MyKeylessClass
+{
+    public string SomeProperty { get; set; }
+    // Other properties...
+}
+```
+
+And in your `DbContext`:
+
+```csharp
+public DbSet<MyKeylessClass> KeylessModel { get; set; }
+```
+
+Then you can use it as you mentioned:
+
+```csharp
+_context.KeylessModel.FromSqlRaw(...)
+```
+
+Remember, the `[Keyless]` attribute is used to specify that the entity type does not have any key and will never have a key. It is typically used for entities that map to views or queries and may not have a primary key.

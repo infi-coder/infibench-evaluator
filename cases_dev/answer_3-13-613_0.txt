@@ -1,0 +1,9 @@
+My scenario and resolution is different for the accepted answer.
+
+I encountered this error today when I moved all my views into a 'Views' group folder. Then my latest view would not generate a preview and xcode displayed the error reported.
+
+Preview provider "Your View" must belong to at least one target in the current scheme in order to use previews
+
+This error was pointing to an existing view I wasn't currently working on, but it was an opened tab.
+
+I closed all the tabs with views that I had open prior to file restructuring. I then reopen the view I was working on and xcode began redisplaying previews.

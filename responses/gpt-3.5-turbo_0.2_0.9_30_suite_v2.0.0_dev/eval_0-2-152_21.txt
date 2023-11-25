@@ -1,0 +1,7 @@
+To show the toast, you need to call the `toast` method on the `.toast` element. Here's how you can modify your JavaScript code:
+
+```javascript
+$('.toast').toast('show');
+```
+
+This will trigger the toast to show up. You can also add this code to an event listener, such as a button click, to show the toast when the button is clicked.

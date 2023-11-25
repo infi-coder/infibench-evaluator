@@ -1,0 +1,44 @@
+Your code seems to be on the right track, but there are a few issues that need to be addressed:
+
+1. You are trying to use `query` and `currentSheet` as objects, but you are assigning them string values. You should declare them as appropriate types.
+
+2. You are trying to use `query.Name` but `query` is a string, not an object, so it doesn't have a `Name` property.
+
+3. You are trying to use `ActiveSheet.ListObjects.Add` to add a new query, but this method is used to add a new table, not a query.
+
+Here is a revised version of your code:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    Dim query As String
+    Dim currentSheet As Worksheet
+
+    ' Assign the query string and the worksheet
+    query = Sheets("Sheet6").Range("A1").Value
+    Set currentSheet = ActiveSheet
+
+    ' Create a new QueryTable
+    With currentSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+
+End Sub
+```
+
+This code should create a new QueryTable in the active sheet, using the query string from cell A1 of Sheet6. The results of the query will be loaded into the table starting at cell A1 of the active sheet.

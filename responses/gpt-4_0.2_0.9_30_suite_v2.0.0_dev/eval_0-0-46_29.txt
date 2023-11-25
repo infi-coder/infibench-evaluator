@@ -1,0 +1,22 @@
+The error message you're seeing is from ESLint, which is having trouble reading your `tsconfig.json` file. This is likely because the `project` property in your `.eslintrc.js` file is set to `"tsconfig.json"`, which is a relative path. ESLint is trying to find the `tsconfig.json` file in the same directory as the `.ts` file it's linting, but it's not there.
+
+To fix this, you need to provide an absolute path to your `tsconfig.json` file. You can use the `__dirname` global variable in Node.js, which gives you the directory of the current module, to construct this path.
+
+Here's how you can modify your `.eslintrc.js` file:
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  // ... other properties ...
+  parserOptions: {
+    project: path.resolve(__dirname, './tsconfig.json'),
+    sourceType: 'module',
+  },
+  // ... other properties ...
+};
+```
+
+This code uses the `path.resolve` function to construct an absolute path to your `tsconfig.json` file. The `__dirname` variable is the directory of the `.eslintrc.js` file, and `'./tsconfig.json'` is the path to the `tsconfig.json` file relative to the `.eslintrc.js` file.
+
+After making this change, ESLint should be able to find and read your `tsconfig.json` file correctly.

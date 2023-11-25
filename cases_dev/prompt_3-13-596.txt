@@ -1,0 +1,44 @@
+Spring Boot 2.5.0 generates plain.jar file. Can I remove it?
+
+After the Spring Boot 2.5.0 update, it generates the `myprogram-0.0.1-plain.jar` file alongside the usual `myprogram-0.0.1.jar`. Can I disallow gradle to generate the `*.plain.jar` file? I use Gradle 7.0.2.
+What I get:
+```
+build/
+  libs/
+    myprogram-0.0.1.jar
+    myprogram-0.0.1-plain.jar
+```
+
+What I want:
+```
+build/
+  libs/
+    myprogram-0.0.1.jar
+```
+
+build.gradle:
+```
+plugins {
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+```
+

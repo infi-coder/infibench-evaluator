@@ -1,0 +1,23 @@
+Here is a function `mySplit` that uses the `strsplit` function to split the strings in `col1` by commas and colons, and then restructures the data into a data frame with separate columns for `name`, `Age`, and `City`.
+
+```r
+mySplit <- function(df) {
+  # Split the strings in col1 by commas
+  split_comma <- strsplit(df$col1, ",")
+  
+  # Split each element of split_comma by colons
+  split_colon <- lapply(split_comma, function(x) strsplit(x, ":"))
+  
+  # Extract the names, ages, and cities
+  names <- sapply(split_colon, function(x) x[[1]][2])
+  ages <- sapply(split_colon, function(x) x[[2]][2])
+  cities <- sapply(split_colon, function(x) x[[3]][2])
+  
+  # Combine the names, ages, and cities into a data frame
+  df_new <- data.frame(name = names, Age = ages, City = cities)
+  
+  return(df_new)
+}
+```
+
+This function assumes that the strings in `col1` always follow the pattern "name:Name,Age:Age,City:City". If the strings in `col1` do not always follow this pattern, the function may not work as expected.

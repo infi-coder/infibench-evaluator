@@ -1,0 +1,20 @@
+Sure, you can create a function that checks if the year is a leap year or not. If it is a leap year, it returns 366, otherwise it returns 365. Here is a simple function that does that:
+
+```python
+def DaysInYear(year):
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        return 366
+    else:
+        return 365
+```
+
+This function works by checking if the year is divisible by 4 but not by 100, or if it is divisible by 400. These are the rules for determining if a year is a leap year in the Gregorian calendar. 
+
+You can then use this function in your pandas dataframe like this:
+
+```python
+df['year'] = pd.DatetimeIndex(df['date']).year
+df['days_in_year'] = df['year'].apply(DaysInYear)
+```
+
+In this example, 'date' is the column in your dataframe that contains the dates, and 'year' and 'days_in_year' are new columns that will contain the year of the date and the number of days in that year, respectively.

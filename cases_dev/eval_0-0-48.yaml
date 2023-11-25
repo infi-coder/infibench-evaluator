@@ -1,0 +1,57 @@
+# Corresponding to post https://stackoverflow.com/questions/71626538
+id: 0-0-48
+# for case self identificaton
+
+prompt_path: prompt_0-0-48.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+
+  unit_test:
+
+    lang: typescript
+    # [optional] overwrite the root lang field and decide how to execute the code
+
+    tests:
+        - path: test_0-0-48_0.ts
+          prefix_path: test_0-0-48_prefix.ts
+        - path: test_0-0-48_1.ts
+          prefix_path: test_0-0-48_prefix.ts
+        # - content: str
+        #   # source code in string
+        #   path: str
+        #   # source code relative path, either content or path needs specify
+        #   # the source code is appended to model's generated code
+        #   #
+        #   prefix: str
+        #   prefix_path: str
+        #   # [optional] prefix code prepended to model's generated code before unit test execution
+        #   #
+        #   cleanup_path: str
+        #   # [optional] cleanup code path after execution, used when some files need to be cleaned up
+        #   #
+        #   weight: 1.0
+        #   # [optional] set the weight
+        #   timetout: float
+        #   # [optional] set customized timeout in seconds, default python,js,java 10s, cpp 60s, go 20s, rust 300s
+  

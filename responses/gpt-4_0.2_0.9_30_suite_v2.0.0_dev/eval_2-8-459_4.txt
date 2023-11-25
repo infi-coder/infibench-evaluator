@@ -1,0 +1,19 @@
+The error message you're seeing indicates that Go is unable to find the specific revision of the `github.ibm.com/kms/key-protect-client` module. This could be due to a number of reasons, including network issues, incorrect configuration, or access control restrictions.
+
+Here are some steps you can take to debug this issue:
+
+1. **Check your network connection**: Make sure that you have a stable internet connection and that you can reach `github.ibm.com` from your computer.
+
+2. **Verify your GitHub credentials**: Ensure that your GitHub credentials are correctly configured on computer B. If you're using SSH to connect to GitHub, make sure that your SSH keys are correctly set up. If you're using HTTPS, make sure that your username and password or personal access token are correctly configured.
+
+3. **Check the module version**: Make sure that the `v0.1.5` version of the `github.ibm.com/kms/key-protect-client` module actually exists. You can do this by navigating to the module's GitHub page and checking the list of tags.
+
+4. **Check access permissions**: Ensure that you have the necessary permissions to access the `github.ibm.com/kms/key-protect-client` repository. If the repository is private, you will need to be added as a collaborator or be a member of a team that has access to the repository.
+
+5. **Try downloading the module manually**: You can try to download the module manually by running `go get github.ibm.com/kms/key-protect-client@v0.1.5`. This might give you more detailed error messages.
+
+6. **Check your Go version and configuration**: Make sure that you're running a recent version of Go that supports modules (Go 1.11 or later). Also, check your Go environment configuration by running `go env`. Look for the `GOPROXY` and `GONOSUMDB` variables. If `GOPROXY` is set to `direct`, Go will not use the module proxy and will instead download modules directly from their sources. If `GONOSUMDB` is set to `github.ibm.com`, Go will not use the checksum database for modules from `github.ibm.com`.
+
+7. **Check the Go module cache**: The Go module cache is located in the `GOPATH/pkg/mod` directory. You can try to delete the cache and download the modules again.
+
+If none of these steps help, you might want to consider asking for help

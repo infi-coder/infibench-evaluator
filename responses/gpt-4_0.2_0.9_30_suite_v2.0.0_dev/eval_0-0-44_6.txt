@@ -1,0 +1,38 @@
+To create an index in Mongoose schema using Nest.js, you need to use the `@Index()` decorator from the `@nestjs/mongoose` package. 
+
+Here is how you can do it:
+
+```javascript
+import { Prop, Schema, SchemaFactory, Index } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema()
+@Index({ type: 1 }) // This is where you define your index
+export class MySchema extends Document {
+
+  @Prop()
+  _id: string;
+
+  @Prop({required: true})
+  type: string;
+
+  @Prop()
+  creationDate: string;
+
+  @Prop()
+  name: string;
+}
+
+export const MySchemaModel = SchemaFactory.createForClass(MySchema);
+```
+
+In the above code, `@Index({ type: 1 })` is creating an index on the `type` field. The `1` means in ascending order. You can use `-1` for descending order.
+
+Please note that Mongoose will not automatically build indexes defined in your schema. You need to call `Model.init()` function to ensure the indexes are built, like so:
+
+```javascript
+const MyModel = mongoose.model('MyModel', MySchemaModel);
+MyModel.init();
+```
+
+This will ensure that the indexes are built before any operations are performed on your model.

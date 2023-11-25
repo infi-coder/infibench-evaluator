@@ -1,0 +1,23 @@
+Here is a Python function that divides an even number into N parts, each part being a multiple of 2:
+
+```python
+def divideNumber(num, n):
+    quotient, remainder = divmod(num, n)
+    # Ensure quotient is even
+    if quotient % 2 != 0:
+        quotient -= 1
+        remainder += n
+    # Distribute the remainder
+    result = [quotient + 2] * (remainder // 2) + [quotient] * (n - remainder // 2)
+    return result
+```
+
+This function first divides the number into N parts using integer division (`divmod`). If the quotient is not even, it subtracts 1 from the quotient and adds N to the remainder to ensure that the quotient is even. Then it distributes the remainder by adding 2 to each part in succession, ensuring that each part is a multiple of 2.
+
+Here is how you can use this function to divide 100 into 3 parts:
+
+```python
+print(divideNumber(100, 3))  # Output: [34, 34, 32]
+```
+
+This function works by ensuring that the initial division of the number results in even parts, and then distributing the remainder in increments of 2. This ensures that each part is a multiple of 2, as required.

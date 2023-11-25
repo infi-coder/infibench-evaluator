@@ -1,0 +1,15 @@
+Your code seems fine, but the issue might be that you're trying to test the `@Binding` in the `PreviewProvider`. The `PreviewProvider` doesn't actually run your code, it just provides a static preview of your views. 
+
+To test your `@Binding`, you should create a parent view that owns the `@State` and passes the `@Binding` to `ContentView`. Here's an example:
+
+```swift
+struct ParentView: View {
+    @State private var selected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $selected)
+    }
+}
+```
+
+Now, you can use `ParentView` in your app and it should work as expected.

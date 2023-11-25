@@ -1,0 +1,15 @@
+In Tailwind CSS, you cannot directly target child elements like you can in traditional CSS. Tailwind CSS is a utility-first CSS framework where you apply pre-existing classes directly to your HTML.
+
+However, you can use `@apply` directive in your CSS to apply a set of classes to an element. For example:
+
+```css
+div.section > div {
+  @apply bg-red-500 text-white;
+}
+```
+
+This will apply the `bg-red-500` and `text-white` classes to direct children `div` of `div` with class `section`.
+
+Remember to rebuild your CSS after adding this to your styles using your build tool (like PostCSS).
+
+Please note that `@apply` can only be used for classes that are part of the same CSS tree. It cannot be used to inherit styles from other rules, apply classes from other CSS modules, or apply classes from within `@media` queries.

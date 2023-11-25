@@ -1,0 +1,29 @@
+Here is a Python function that generates a random string according to your requirements:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Generate a random string of 11 characters (letters only)
+    letters = string.ascii_letters
+    random_string = ''.join(random.choice(letters) for i in range(11))
+
+    # Generate 2 random digits
+    digits = string.digits
+    random_digits = ''.join(random.choice(digits) for i in range(2))
+
+    # Combine the random string, random digits and "NAA3U" to form the final string
+    final_string = random_string + random_digits + "NAA3U"
+
+    # Shuffle the final string to ensure randomness
+    final_string = list(final_string)
+    random.shuffle(final_string)
+    final_string = ''.join(final_string)
+
+    return final_string
+```
+
+This function first generates a random string of 11 characters (letters only), then generates 2 random digits. It then combines these with the string "NAA3U" to form a string of 16 characters. The final string is then shuffled to ensure randomness.
+
+Please note that the string "NAA3U" and the 2 random digits could appear anywhere in the final string, and not necessarily at the end. If you want them to always appear at the end, you can remove the shuffling step.

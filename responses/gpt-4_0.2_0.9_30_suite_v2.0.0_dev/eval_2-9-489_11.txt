@@ -1,0 +1,37 @@
+The warning message you're seeing is because Elasticsearch 7.13.1 has built-in security features that are not enabled by default. This means that without authentication, your Elasticsearch cluster could be accessible to anyone.
+
+Here are the steps to enable Elasticsearch security features:
+
+1. Open your `elasticsearch.yml` file. This file is usually located in the `config` directory of your Elasticsearch installation.
+
+2. Add the following lines to the `elasticsearch.yml` file:
+
+    ```yaml
+    xpack.security.enabled: true
+    xpack.security.transport.ssl.enabled: true
+    ```
+
+3. Save the changes and close the file.
+
+4. Restart Elasticsearch.
+
+Please note that enabling security will require all Elasticsearch clients to authenticate. This includes Kibana, Logstash, and any applications that use the Elasticsearch API.
+
+For your Rails app that uses Searchkick, you will have to update your Elasticsearch client configuration to include the necessary credentials. Here is an example:
+
+```ruby
+Searchkick.client = Elasticsearch::Client.new(
+  urls: 'http://localhost:9200',
+  transport_options: {
+    request: { timeout: 5 }
+  },
+  user: 'elastic', # username
+  password: 'password' # password
+)
+```
+
+Remember to replace `'elastic'` and `'password'` with your actual Elasticsearch credentials.
+
+Also, please note that enabling transport security (`xpack.security.transport.ssl.enabled: true`) will require additional configuration to set up SSL. If you don't need transport security (for example, if your Elasticsearch server and clients are all on the same secure network), you can leave this setting as `false`.
+
+For more information, you can refer to the [Elasticsearch security settings documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-settings.html).

@@ -1,0 +1,13 @@
+Yes, you can use the `Get-WmiObject` cmdlet to retrieve the detailed description of a Windows Service. Here's an example:
+
+```
+Get-WmiObject -Class Win32_Service | Select-Object Name, DisplayName, Description | Out-GridView
+```
+
+This will retrieve the `Name`, `DisplayName`, and `Description` properties of all Windows Services and display them in a grid view. You can also filter the results by specifying the name of a specific service, like this:
+
+```
+Get-WmiObject -Class Win32_Service -Filter "Name='wuauserv'" | Select-Object Name, DisplayName, Description
+```
+
+This will retrieve the `Name`, `DisplayName`, and `Description` properties of the `wuauserv` (Windows Update) service.

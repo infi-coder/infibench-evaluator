@@ -1,0 +1,27 @@
+Yes, with Go modules (formerly known as vgo), you can take advantage of Docker's layer caching by separating the dependency installation step from the build step. Here's an example Dockerfile that demonstrates this:
+
+```
+# First stage: build the dependencies
+FROM golang:1.11-alpine AS build-deps
+WORKDIR /go/src/myapp
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Second stage: build the binary
+FROM build-deps AS build
+COPY . ./
+RUN go build -o /myapp
+
+# Third stage: create the final image
+FROM alpine
+COPY --from=build /myapp /
+CMD ["/myapp"]
+```
+
+In this example, we use a multi-stage build to separate the dependency installation step from the build step. In the first stage, we copy the `go.mod` and `go.sum` files and run `go mod download` to download the dependencies. This stage produces a Docker image that contains only the dependencies.
+
+In the second stage, we copy the entire application code and build the binary using `go build`. This stage produces a Docker image that contains the binary.
+
+Finally, in the third stage, we copy the binary from the second stage into a minimal Alpine Linux image and set the command to run the binary.
+
+By separating the dependency installation step from the build step, we can take advantage of Docker's layer caching. If the `go.mod` and `go.sum` files haven't changed, Docker will reuse the cached layer from the first stage, which means that we don't have to download the dependencies again. This can significantly speed up the build process, especially if the dependencies don't change often.

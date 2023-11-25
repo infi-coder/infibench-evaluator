@@ -1,0 +1,5 @@
+How can I install a previous version of Python 3 in macOS using brew?
+With the command brew install python I got the latest version of Python 3 (currently v3.7.0), but I want the version of Python 3.6.5.
+I have read about another package pyenv that can assist in handle different python installation, but this solution is not suitable for me.
+
+Please write a bash script for me to use `brew` to achieve my requirement, without any extra comments.

@@ -1,0 +1,9 @@
+When you set `"sourceMap": false` in your `tsconfig.json` file, the TypeScript compiler will not generate source map files for your TypeScript code. 
+
+Source maps are used to map the compiled JavaScript code back to the original TypeScript code. This is useful for debugging purposes, as it allows you to set breakpoints and step through your TypeScript code in the browser's developer tools.
+
+If you set `"sourceMap": false`, the browser's developer tools will not be able to map the compiled JavaScript code back to the original TypeScript code. This means that you will not be able to debug your TypeScript code in the browser's developer tools.
+
+However, setting `"sourceMap": false` can have some benefits in terms of performance. Source maps can add some overhead to the size of your compiled JavaScript files, so disabling them can result in smaller file sizes and faster load times for your application.
+
+In summary, setting `"sourceMap": false` will disable source map generation, which can improve performance but will also make it more difficult to debug your TypeScript code in the browser's developer tools.

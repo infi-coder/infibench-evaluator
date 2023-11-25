@@ -1,0 +1,63 @@
+You can create a factory method that returns a `ServiceBusSender` instance for a specific queue name and use that factory method to register multiple `ServiceBusSender` instances with the dependency injection container. Here's an example:
+
+```c#
+// Define a factory method that returns a ServiceBusSender instance for a specific queue name
+private ServiceBusSender CreateServiceBusSender(string connectionString, string queueName)
+{
+    var serviceBusClient = new ServiceBusClient(connectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+
+    return serviceBusClient.CreateSender(queueName);
+}
+
+// Register multiple ServiceBusSender instances with the dependency injection container
+_services.AddSingleton(provider => CreateServiceBusSender(connectionString, "queue1"));
+_services.AddSingleton(provider => CreateServiceBusSender(connectionString, "queue2"));
+_services.AddSingleton(provider => CreateServiceBusSender(connectionString, "queue3"));
+```
+
+Then, in your `CarReservationMessagingService` class, you can inject the `ServiceBusSender` instance for the specific queue you want to use:
+
+```c#
+public CarReservationMessagingService(ServiceBusSender serviceBusSender)
+{
+    _serviceBusSender = serviceBusSender ?? throw new ArgumentNullException(nameof(serviceBusSender));
+}
+
+public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation)
+{
+    var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+    {
+        Id = Guid.NewGuid().ToString(),
+        CarId = carReservation.CarId,
+        CustomerId = carReservation.CustomerId,
+        RentFrom = carReservation.RentFrom,
+        RentTo = carReservation.RentTo
+    };
+
+    var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+    ServiceBusMessage message = new ServiceBusMessage(serializedMessage);
+    await _serviceBusSender.SendMessageAsync(message);
+}
+```
+
+When you want to use a specific queue, you can inject the corresponding `ServiceBusSender` instance in the constructor of `CarReservationMessagingService`. For example:
+
+```c#
+public class CarReservationMessagingServiceForQueue1 : CarReservationMessagingService
+{
+    public CarReservationMessagingServiceForQueue1(ServiceBusSender serviceBusSender) : base(serviceBusSender)
+    {
+    }
+}
+
+public class CarReservationMessagingServiceForQueue2 : CarReservationMessagingService
+{
+    public CarReservationMessagingServiceForQueue2(ServiceBusSender serviceBusSender) : base(serviceBusSender)
+    {
+    }
+}
+
+// Register the services with the dependency

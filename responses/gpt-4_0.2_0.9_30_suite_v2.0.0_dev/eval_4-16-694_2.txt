@@ -1,0 +1,19 @@
+The issue you're facing is due to the variability in the position of the `lang` attribute in the HTML tag. In some cases, it might not be the third attribute, and hence your `cut` command fails.
+
+To solve this, you can use a more flexible tool like `awk` or `perl` to extract the language code. Here's an example using `awk`:
+
+```bash
+curl -Ls stick-it.app | awk -F 'lang="' '{print $2}' | awk -F '"' '{print $1}'
+```
+
+This command works by first splitting the input on `lang="`, and then printing the second part. The second `awk` command splits the result on `"` and prints the first part, which is the language code.
+
+And here's an example using `perl`:
+
+```bash
+curl -Ls stick-it.app | perl -l -0777 -ne 'print $1 if /lang="(.*?)"/'
+```
+
+This command uses Perl's regex capabilities to find the `lang` attribute and capture its value. The `-0777` option tells Perl to read the entire file at once, allowing the regex to match across multiple lines.
+
+Please note that these commands will only work correctly if the `lang` attribute is present and correctly formatted in the HTML. If the attribute is missing or malformed, the commands will not return a result.

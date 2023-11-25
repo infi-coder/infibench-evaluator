@@ -1,0 +1,55 @@
+The error you're seeing is because you're trying to use asynchronous code (`await getApplicationDocumentsDirectory()`) in the `main()` function without marking it as `async`. However, in Flutter, the `main()` function can't be asynchronous.
+
+To fix this, you should move your asynchronous code to the `initState()` method of your widget. Here's how you can do it:
+
+```dart
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    initHive();
+  }
+
+  Future<void> initHive() async {
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    Hive.init(appDocsDir.path);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter Demo Home Page'),
+      ),
+      body: Center(
+        child: Text('You have pushed the button this many times:'),
+      ),
+    );
+  }
+}
+```
+
+In this code, I've moved the Hive initialization to the `initState()` method of `MyHomePage` widget. The `initHive()` method is marked as `async` and it's where the asynchronous code is executed.

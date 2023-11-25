@@ -1,0 +1,16 @@
+The error you're encountering is due to the fact that you're trying to use Flutter's engine before it's ready. In your `main()` function, you're trying to access the application's document directory before `runApp()` is called, which initializes the Flutter engine.
+
+To fix this, you need to ensure that the Flutter engine is initialized before you try to access the application's document directory. You can do this by using `WidgetsFlutterBinding.ensureInitialized()`.
+
+Here's how you can modify your code:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+
+`WidgetsFlutterBinding.ensureInitialized()` ensures that the Flutter engine is ready before you try to use it.

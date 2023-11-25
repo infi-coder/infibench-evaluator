@@ -1,0 +1,5 @@
+Is the Rule of 5 (for constructors and destructors) outdated?
+The rule of 5 states that if a class has a user-declared destructor, copy constructor, copy assignment constructor, move constructor, or move assignment constructor, then it must have the other 4.
+But today it dawned on me: when do you ever need a user-defined destructor, copy constructor, copy assignment constructor, move constructor, or move assignment constructor?
+In my understanding, implicit constructors / destructors work just fine for aggregate data structures. However, classes which manage a resource need user-defined constructors / destructors.
+However, can't all resource managing classes be converted into an aggregate data structure using a smart pointer? Am I missing something here?

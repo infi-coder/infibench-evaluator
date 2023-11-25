@@ -1,0 +1,17 @@
+The code you've posted seems to be fine. The problem might be that you're trying to observe the changes in the `ContentView` itself. However, SwiftUI views are structurally immutable. This means that once you've created a view, you can't change its properties. Instead, SwiftUI uses a diffing algorithm to understand what has changed and what needs to be redrawn.
+
+In your case, you're changing the `isSelected` property, but SwiftUI might not be redrawing the view because it doesn't see any other changes in the `ContentView`. 
+
+To solve this, you should use `@State` in the parent view that uses `ContentView` and pass the binding to `isSelected` to `ContentView`. Here's an example:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+```
+
+In this example, `ParentView` is the owner of the source of truth. When `isSelected` changes, `ParentView` will redraw, and `ContentView` will get the updated value.

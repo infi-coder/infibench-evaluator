@@ -1,0 +1,20 @@
+Sure, here is a bash script for you:
+
+```bash
+#!/bin/bash
+
+# Unlink the current python version
+brew unlink python
+
+# Install the required python version
+brew install python@3.6
+
+# Link the installed python version
+brew link --force python@3.6
+```
+
+Please note that this script will unlink the current version of Python that you have installed via Homebrew. If you have other applications that depend on the current version, they may not work properly. 
+
+Also, please note that the `--force` flag in the `brew link` command is used to force the link even if it will overwrite already linked files. This may not be what you want if you have other versions of Python installed. 
+
+You may want to consider using a version manager like `pyenv` to manage multiple versions of Python. This will allow you to switch between different versions of Python easily and without affecting other applications.

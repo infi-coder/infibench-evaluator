@@ -1,0 +1,43 @@
+You can use Python's `multiprocessing` module to run these two tasks concurrently. The `multiprocessing` module allows you to create new processes, assign them tasks and manage them in Python.
+
+Here's how you can modify your code:
+
+```python
+import multiprocessing
+from dash import Dash
+import dash_bootstrap_components as dbc
+import db
+import hp
+import fd
+
+def run_dash():
+    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database=db.dataBase()
+    homepage=hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+    app.run_server(debug=True)
+
+def run_data_mining():
+    database=db.dataBase()
+    dataMiningScript= fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    # Create a process for dash
+    p1 = multiprocessing.Process(target=run_dash)
+    # Create a process for data mining
+    p2 = multiprocessing.Process(target=run_data_mining)
+
+    # Start both processes
+    p1.start()
+    p2.start()
+
+    # Wait for both processes to finish
+    p1.join()
+    p2.join()
+```
+
+In this code, we define two functions `run_dash` and `run_data_mining` that encapsulate the tasks you want to run concurrently. We then create two separate processes for these tasks and start them. The `join` method ensures that the main process waits for both of these tasks to complete before it continues.
+
+Please note that `multiprocessing` creates new processes, and each process has its own memory space. Therefore, if you want to share data between these processes, you'll need to use one of the methods provided by the `multiprocessing` module, such as `Queue`, `Pipe`, `Value` or `Array`.

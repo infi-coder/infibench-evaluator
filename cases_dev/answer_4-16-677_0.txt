@@ -1,0 +1,3 @@
+if grep -q -wi "$searchT" test.txt; then
+   ...
+fi

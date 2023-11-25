@@ -1,0 +1,1 @@
+You need to add two things to your `~/.zshenv` file. First `rbenv` itself and second the ruby `build` plugin. You might also run the `rbenv doctor` script to check your installation.

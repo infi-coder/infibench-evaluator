@@ -1,0 +1,42 @@
+It seems like ESLint is trying to read your `tsconfig.json` file but it cannot find it. You can try specifying the path to your `tsconfig.json` file in your `.eslintrc.js` file.
+
+In your `.eslintrc.js` file, change the `parserOptions` object to include the `tsconfigRootDir` property and set it to the root directory of your project. Then, add the `project` property to the `parserOptions` object and set it to the path of your `tsconfig.json` file.
+
+Here's what your updated `.eslintrc.js` file should look like:
+
+```javascript
+module.exports = {
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+  },
+  extends: [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+  ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: "./tsconfig.json",
+    sourceType: "module",
+  },
+  plugins: [
+    "@typescript-eslint",
+    "import",
+  ],
+  rules: {
+    // your rules here
+  },
+  settings: {
+    jsdoc: {
+      tagNamePreference: {
+        returns: "return",
+      },
+    },
+  },
+};
+```
+
+Make sure to save the changes and restart VSCode. The error should disappear and your TypeScript files should be properly linted by ESLint.

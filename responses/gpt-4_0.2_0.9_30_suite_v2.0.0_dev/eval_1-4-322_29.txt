@@ -1,0 +1,25 @@
+You can achieve this by using the `tidyverse` functions `group_by()` and `summarise()`, and then converting the resulting tibble to a list with `as.list()`. Here is the function `myConvert`:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>%
+    group_by(list_names) %>%
+    summarise(list_values = list(list_values)) %>%
+    with(setNames(list_values, list_names))
+}
+```
+
+In this function, `group_by(list_names)` groups the data by the `list_names` column. `summarise(list_values = list(list_values))` then creates a list of `list_values` for each group. `with(setNames(list_values, list_names))` finally converts the tibble to a named list.
+
+You can use this function with your data like this:
+
+```r
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+                  list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+```
+
+This will give you the desired output.

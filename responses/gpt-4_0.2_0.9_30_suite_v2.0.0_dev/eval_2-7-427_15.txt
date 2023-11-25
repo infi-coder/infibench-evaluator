@@ -1,0 +1,17 @@
+For the first issue, the "CSRF token mismatch" error could be due to a number of reasons. Here are a few things you could check:
+
+1. **Domain Configuration**: Ensure that your domain is correctly configured to point to the public directory of your Laravel application. Incorrect domain configuration could lead to issues with session management.
+
+2. **Session Domain**: In your `config/session.php` file, check the value of the 'domain' key. If it's set to null, Laravel will use the server's domain. If your application is on a subdomain, you need to set the 'domain' key to your root domain. For example, if your application is hosted on `sub.domain.com`, set 'domain' to `.domain.com`.
+
+3. **Cookie Settings**: Check your cookie settings in `config/session.php`. Ensure that the 'secure' option is set to true if you are using HTTPS, and false if you are using HTTP. Also, check the 'same_site' option. If it's set to 'strict', try changing it to 'lax' or 'none'.
+
+For the second issue, the error message suggests that there is a problem with the SSL connection to the SMTP server. Here are a few things you could try:
+
+1. **Change MAIL_ENCRYPTION**: Try changing `MAIL_ENCRYPTION` from `ssl` to `tls` in your `.env` file. Some servers use `tls` instead of `ssl`.
+
+2. **Check MAIL_PORT**: The port you are using (587) is typically used with `tls`. If you are using `ssl`, the port should be 465. If changing `MAIL_ENCRYPTION` to `tls` doesn't work, try changing `MAIL_PORT` to 465 and `MAIL_ENCRYPTION` back to `ssl`.
+
+3. **Contact the Email Provider**: If none of the above solutions work, you should contact the email provider (propnex.sg). They might have specific settings or requirements for connecting to their SMTP server.
+
+Remember to clear the config cache (`php artisan config:cache`) after making changes to your `.env` file or config files.

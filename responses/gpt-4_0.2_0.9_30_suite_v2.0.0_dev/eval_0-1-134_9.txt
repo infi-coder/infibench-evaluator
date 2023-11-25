@@ -1,0 +1,13 @@
+It sounds like you're referring to a feature provided by a tool called Emmet. Emmet is a plugin for many popular text editors that greatly improves HTML & CSS workflow. 
+
+For example, in HTML, if you type `.classname` and then press `Tab`, it will automatically expand to `<div class="classname"></div>`.
+
+To use this feature, you need to make sure that your text editor supports Emmet, and that it's enabled. Here's how you can enable it in some popular text editors:
+
+- **Visual Studio Code**: Emmet is built in and enabled by default. You don't need to do anything.
+
+- **Sublime Text**: You need to install the Emmet package. You can do this via the Package Control: Install Package option in the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`).
+
+- **Atom**: You need to install the Emmet package. You can do this via the Install option in the Settings view (`Ctrl+,` or `Cmd+,`).
+
+Once you've ensured that Emmet is enabled, you should be able to use the `.classname` shortcut. If it's still not working, there might be an issue with your text editor's configuration.

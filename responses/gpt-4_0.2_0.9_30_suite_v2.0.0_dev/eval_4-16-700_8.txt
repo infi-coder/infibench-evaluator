@@ -1,0 +1,15 @@
+You can optimize your task by using `awk` command. Here is a more efficient way to do it:
+
+```bash
+awk -F'=' '/^name/ { if (value) print name "=" value; name=$2; value="" } /^value/ { value=$2 } END { if (value) print name "=" value }' input.txt > output.txt
+```
+
+This `awk` command works as follows:
+
+- `-F'='` sets the field separator to `=`.
+- `/^name/` matches lines starting with `name`. If `value` is not empty, it prints `name=value`, then sets `name` to the second field of the current line and `value` to an empty string.
+- `/^value/` matches lines starting with `value` and sets `value` to the second field of the current line.
+- `END` is a special pattern that matches the end of the input. If `value` is not empty, it prints `name=value`.
+- `input.txt > output.txt` redirects the output to `output.txt`.
+
+This should be much faster than your original script because it reads the input file only once and doesn't use any external commands in the loop.

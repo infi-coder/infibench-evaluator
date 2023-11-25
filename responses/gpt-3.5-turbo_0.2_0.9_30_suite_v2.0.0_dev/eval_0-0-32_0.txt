@@ -1,0 +1,58 @@
+To identify if a div is visible on the viewport, you can use the `Intersection Observer API`. This API allows you to observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+
+Here's an example of how you can use it to get the list of divs inside `#parent` which are visible on viewport on scroll:
+
+```javascript
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      console.log(`#${entry.target.id} is visible on viewport`);
+    }
+  });
+});
+
+const parent = document.querySelector('#parent');
+const divs = parent.querySelectorAll('div');
+
+divs.forEach(div => {
+  observer.observe(div);
+});
+```
+
+In this example, we create a new `IntersectionObserver` object and pass a callback function to it. The callback function receives an array of `IntersectionObserverEntry` objects, which contain information about the intersection of the observed element with the viewport.
+
+We then select the `#parent` element and all its child `div` elements. We loop through each `div` element and call the `observe` method of the `IntersectionObserver` object, passing the `div` element as an argument.
+
+Finally, when a `div` element intersects with the viewport, the callback function logs a message to the console indicating that the `div` is visible on the viewport.
+
+There are also some npm packages available that can help you with this, such as `react-intersection-observer`. This package provides a React component that wraps the `IntersectionObserver` API and makes it easier to use in a React application. You can install it using npm:
+
+```
+npm install react-intersection-observer
+```
+
+Here's an example of how you can use it:
+
+```javascript
+import React, { useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+const MyComponent = ({ data }) => {
+  const parentRef = useRef();
+  const [visibleDivs, setVisibleDivs] = useState([]);
+
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    root: parentRef.current,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      setVisibleDivs(prevVisibleDivs => [
+        ...prevVisibleDivs,
+        ref.current.id,
+      ]);
+    }
+  }, [inView, ref]);
+
+  return

@@ -1,0 +1,19 @@
+To split the data into 5 separate columns, you can use the `Split` function in VBA. Here's an example of how you can modify the code:
+
+```
+idx = InStr(textline, "Cabinet No.")
+If idx > 0 Then
+    Line Input #1, textline
+    Line Input #1, textline
+    Dim values() As String
+    values = Split(textline, ",")
+    ActiveSheet.Cells(nextrow, "G").Value = values(0)
+    ActiveSheet.Cells(nextrow, "H").Value = values(1)
+    ActiveSheet.Cells(nextrow, "I").Value = values(2)
+    ActiveSheet.Cells(nextrow, "J").Value = values(3)
+    ActiveSheet.Cells(nextrow, "K").Value = values(4)
+    nextrow = nextrow + 1 'now move to next row
+End If
+```
+
+This assumes that the data in `textline` is separated by commas. You can modify the delimiter in the `Split` function as needed.

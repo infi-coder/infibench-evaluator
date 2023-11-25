@@ -1,0 +1,33 @@
+In Rust, a `Box` cannot be null. Instead, you can use an `Option<Box<Node>>` to represent a nullable pointer. Here's an updated version of your code that uses `Option<Box<Node>>`:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+
+impl Stack {
+    fn push(&mut self, value: i32) {
+        let new_node = Box::new(Node {
+            value: value,
+            next: self.top.take(),
+        });
+        self.top = Some(new_node);
+    }
+
+    fn pop(&mut self) -> Option<i32> {
+        self.top.take().map(|node| {
+            self.top = node.next;
+            node.value
+        })
+    }
+}
+```
+
+In this implementation, `self.top` is an `Option<Box<Node>>` that starts out as `None`. When you push a value onto the stack, you create a new `Box<Node>` and set its `next` field to the current top of the stack (which may be `None` if the stack is empty). You then set `self.top` to the new node.
+
+When you pop a value from the stack, you use `Option::take` to remove the `Box<Node>` from `self.top` and replace it with `None`. You then use `Option::map` to transform the `Box<Node>` into an `Option<i32>` by extracting the `value` field from the node and setting `self.top` to the node's `next` field. If `self.top` was originally `None`, the `map` call will return `None` and the function will return `None`. Otherwise, it will return the extracted value wrapped in `Some`.

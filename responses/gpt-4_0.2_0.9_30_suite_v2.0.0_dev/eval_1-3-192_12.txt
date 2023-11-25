@@ -1,0 +1,15 @@
+Here is a Python function that uses the `re` module to find all words in the input string, and then uses the `str.capitalize` method to capitalize the first character of each word except the first one:
+
+```python
+import re
+
+def to_camel_case(text):
+    words = re.findall(r'\b\w+\b', text)
+    return words[0] + ''.join(word.capitalize() for word in words[1:])
+```
+
+This function works by first splitting the input string into words using the regular expression `\b\w+\b`, which matches any sequence of word characters (`\w`) that are surrounded by word boundaries (`\b`). This effectively splits the string at any non-word characters, such as dashes or underscores.
+
+Then, it returns a new string that is constructed by concatenating the first word with the rest of the words, each of which has been capitalized using the `str.capitalize` method. This method returns a copy of the string with its first character capitalized and the rest lowercased.
+
+Note that this function preserves the case of the first word in the input string, as required by the problem statement. If the first word is capitalized, it will remain capitalized in the output string; if it is not, it will not be capitalized in the output string.

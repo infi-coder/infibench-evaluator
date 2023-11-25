@@ -1,0 +1,15 @@
+The error you're experiencing might be due to a few reasons. Here are some suggestions to troubleshoot:
+
+1. **Check SeleniumBasic version**: Ensure that you have the latest version of SeleniumBasic installed. You can download it from [here](https://github.com/florentbr/SeleniumBasic/releases).
+
+2. **Check Browser Driver**: Make sure that the browser driver (e.g., ChromeDriver for Google Chrome, GeckoDriver for Firefox, etc.) is up-to-date and compatible with the version of the browser installed on your machine. The drivers should be placed in the same directory as SeleniumBasic.
+
+3. **Check References**: In VBA, go to `Tools > References` and make sure that Selenium Type Library is checked.
+
+4. **Try a different browser**: You're starting the driver with "ie" which stands for Internet Explorer. Internet Explorer is deprecated and might not work properly with Selenium. Try using a different browser like Chrome or Firefox.
+
+5. **Check Excel Trust Center Settings**: In Excel, go to `File > Options > Trust Center > Trust Center Settings > Macro Settings` and ensure that `Trust access to the VBA project object model` is checked.
+
+6. **Check Excel Version**: Ensure that you're using a 32-bit version of Excel. SeleniumBasic currently does not support 64-bit versions of Excel.
+
+If none of the above solutions work, please provide the exact error message you're getting for further assistance.

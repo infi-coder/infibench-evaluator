@@ -1,0 +1,9 @@
+To select the second column by name, you can use the index of the column name in the `names()` function. In this case, since there are two columns with the same name, you can use the `[[]]` operator to select the second column by index.
+
+Here's the code to select the second column by name and assign it to a variable named `second_col`:
+
+```r
+second_col <- d3[[names(d3)[2]]]
+```
+
+This code uses the `names()` function to get the names of the columns in `d3`, and then selects the second column by index using the `[[` operator. The selected column is then assigned to the variable `second_col`.

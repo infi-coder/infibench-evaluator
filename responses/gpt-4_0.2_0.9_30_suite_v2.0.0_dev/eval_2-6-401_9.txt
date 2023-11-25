@@ -1,0 +1,78 @@
+You can use the factory pattern to create multiple instances of `ServiceBusClient` and `ServiceBusSender` with different queue names. Here's an example of how you can do this:
+
+First, define an interface for your factory:
+
+```csharp
+public interface IServiceBusClientFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+    ServiceBusReceiver CreateReceiver(string queueName);
+}
+```
+
+Then, implement this interface:
+
+```csharp
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusClientFactory(string connectionString)
+    {
+        _serviceBusClient = new ServiceBusClient(connectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+
+    public ServiceBusReceiver CreateReceiver(string queueName)
+    {
+        return _serviceBusClient.CreateReceiver(queueName, new ServiceBusReceiverOptions
+        {
+            ReceiveMode = ServiceBusReceiveMode.PeekLock
+        });
+    }
+}
+```
+
+Register your factory in your DI container:
+
+```csharp
+_services.AddSingleton<IServiceBusClientFactory>(provider =>
+{
+    var serviceBusConfiguration = provider.GetRequiredService<IOptions<UserEventConsumerSetting>>().Value;
+    return new ServiceBusClientFactory(serviceBusConfiguration.ServiceBusConnectionString);
+});
+```
+
+Now, you can inject `IServiceBusClientFactory` into your service and create `ServiceBusSender` instances for different queues:
+
+```csharp
+public class CarReservationMessagingService
+{
+    private readonly IServiceBusClientFactory _serviceBusClientFactory;
+
+    public CarReservationMessagingService(IServiceBusClientFactory serviceBusClientFactory)
+    {
+        _serviceBusClientFactory = serviceBusClientFactory ?? throw new ArgumentNullException(nameof(serviceBusClientFactory));
+    }
+
+    public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation, string queueName)
+    {
+        var serviceBusSender = _serviceBusClientFactory.CreateSender(queueName);
+
+        var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+        {
+            Id = Guid.NewGuid().ToString(),
+            CarId = carReservation.CarId,
+            CustomerId = carReservation.CustomerId,
+            RentFrom = carReservation.RentFrom,
+            RentTo = carReservation.RentTo
+        };
+
+        var serializedMessage = JsonSerializer

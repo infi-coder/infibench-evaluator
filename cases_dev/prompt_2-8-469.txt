@@ -1,0 +1,24 @@
+I have simple proto file with following content.
+```go
+syntax="proto3";
+
+package main;
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+I am trying to generate go code for it using protoc. I run:
+```bash
+protoc --go_out=. simple.proto
+```
+I receive following error:
+```
+protoc-gen-go: unable to determine Go import path for "simple.proto"
+
+Please specify either:
+        • a "go_package" option in the .proto source file, or
+        • a "M" argument on the command line.
+```
+How to change the code to make it right?

@@ -1,0 +1,23 @@
+One way to express this more idiomatically is to use the `Option::filter()` method, which returns the original `Option` if the inner value meets the condition, or `None` otherwise. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.filter(|&x| x < 5).or(Some(5));
+}
+```
+
+This code first checks if `foo` contains a value less than 5 using the `filter()` method. If it does, the original `Option` is returned. If it doesn't, `None` is returned. The `or()` method is then used to replace `None` with `Some(5)`.
+
+Another way to express this is to use the `Option::map_or_else()` method, which takes two closures as arguments. The first closure is called if the `Option` is `None`, and the second closure is called with the inner value if it meets the condition. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map_or_else(|| Some(5), |x| if x < 5 { Some(x) } else { None });
+}
+```
+
+This code first checks if `foo` is `None` using the `map_or_else()` method. If it is, `Some(5)` is returned. If it isn't, the second closure is called with the inner value. If the inner value is less than 5, `Some(x)` is returned. Otherwise, `None` is returned.
+
+Both of these approaches are more concise and expressive than the original `match` statement.

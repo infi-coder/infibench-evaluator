@@ -1,0 +1,19 @@
+The error message suggests that the response from the server is not in the expected JSON format. It looks like the response starts with a '<' character, which is not valid JSON.
+
+One possible reason for this error is that the server is returning an HTML error page instead of the expected JSON data. To confirm this, you can try accessing the API endpoint directly in your browser and see if it returns a JSON response or an HTML error page.
+
+If the server is indeed returning an HTML error page, you need to fix the server-side code to return a JSON response instead. You can use the `Json` method of the `ControllerBase` class to serialize an object to JSON and return it as the response.
+
+Here's an example of how you can modify your `Index` method to return a JSON response:
+
+```c#
+[HttpGet]
+[Route("api/Employee/Index")]
+public IActionResult Index()
+{
+    var employees = objemployee.GetAllEmployees();
+    return Json(employees);
+}
+```
+
+With this change, the server should return a JSON response when you access the `/api/Employee/Index` endpoint, and the `Http.GetJsonAsync` method should be able to deserialize the response correctly.

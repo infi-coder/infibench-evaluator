@@ -1,0 +1,18 @@
+Your code looks correct, but you may need to handle errors in the `getCurrentPosition` method. Here's a revised version of your code that includes error handling:
+
+```javascript
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+        position => {
+            console.log("Location accessed");
+        },
+        error => {
+            console.log("Error occurred. Error code: " + error.code);
+        }
+    );
+} else {
+    console.log("User not allowed")
+}
+```
+
+The `getCurrentPosition` method takes two arguments: a success callback function and an error callback function. The error callback function is called if there is an error getting the location. In this example, the error callback function simply logs the error code to the console.

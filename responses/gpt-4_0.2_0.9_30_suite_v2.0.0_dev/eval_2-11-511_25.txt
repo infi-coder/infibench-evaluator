@@ -1,0 +1,13 @@
+Here is the implementation of the function `my_2d_array`:
+
+```c++
+std::vector<std::string> my_2d_array(int N, int M) {
+    std::vector<std::string> A(N*M);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            A[i*M+j] = std::to_string(i) + std::to_string(j);
+        }
+    }
+    return A;
+}
+```

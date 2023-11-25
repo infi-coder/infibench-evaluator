@@ -1,0 +1,97 @@
+To sort a list alphabetically in R, you can use the `sort()` function with the argument `method = "radix"`. This function sorts the elements of a list in alphabetical order.
+
+Here's the modified code:
+
+```r
+# Creating a random vector of letters
+random_text_data = sample(letters, 10)
+random_text_data
+
+# Convert to list
+list_text_data = as.list(random_text_data)
+list_text_data
+
+# Sort list alphabetically
+sort_data = sort(list_text_data, method = "radix")
+sort_data
+```
+
+Output:
+
+```r
+> random_text_data
+ [1] "z" "y" "n" "j" "k" "e" "x" "p" "r" "u"
+> list_text_data = as.list(random_text_data)
+> list_text_data
+[[1]]
+[1] "z"
+
+[[2]]
+[1] "y"
+
+[[3]]
+[1] "n"
+
+[[4]]
+[1] "j"
+
+[[5]]
+[1] "k"
+
+[[6]]
+[1] "e"
+
+[[7]]
+[1] "x"
+
+[[8]]
+[1] "p"
+
+[[9]]
+[1] "r"
+
+[[10]]
+[1] "u"
+
+> sort_data = sort(list_text_data, method = "radix")
+> sort_data
+[[1]]
+[1] "e"
+
+[[2]]
+[1] "j"
+
+[[3]]
+[1] "k"
+
+[[4]]
+[1] "n"
+
+[[5]]
+[1] "p"
+
+[[6]]
+[1] "r"
+
+[[7]]
+[1] "u"
+
+[[8]]
+[1] "x"
+
+[[9]]
+[1] "y"
+
+[[10]]
+[1] "z"
+```
+
+And here's the `mySort` function:
+
+```r
+mySort <- function(l) {
+  sort(l, method = "radix")
+}
+```
+
+You can use this function to sort any list alphabetically.

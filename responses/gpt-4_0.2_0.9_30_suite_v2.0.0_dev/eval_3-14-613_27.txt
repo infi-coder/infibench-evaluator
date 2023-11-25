@@ -1,0 +1,15 @@
+This issue can be caused by various reasons. Here are some steps you can try to fix it:
+
+1. **Clean Build Folder**: Go to `Product` > `Clean Build Folder` or use the shortcut `Shift + Command + K`.
+
+2. **Delete Derived Data**: Go to `Window` > `Devices and Simulators` > `Devices` > `Right Click on your Mac` > `Show Provisioning Profiles` > `Delete Derived Data`.
+
+3. **Check Target Membership**: Make sure your `ContentView` is a member of the target. You can check this by selecting `ContentView.swift` and in the `File Inspector` on the right side, ensure the checkbox for your target under `Target Membership` is checked.
+
+4. **Restart Xcode**: Sometimes, simply restarting Xcode can solve this issue.
+
+5. **Update Xcode**: If you're not using the latest version of Xcode, consider updating it.
+
+6. **Check Scheme**: Go to `Product` > `Scheme` > `Edit Scheme` > `Build` > `Add your project`.
+
+If none of these steps work, it might be an Xcode bug. Consider reporting it to Apple.

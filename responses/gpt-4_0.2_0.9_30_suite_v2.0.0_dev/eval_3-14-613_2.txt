@@ -1,0 +1,11 @@
+This issue might be due to the SwiftUI Preview not being part of the current build scheme. Here are some steps to try and resolve the issue:
+
+1. Ensure that the SwiftUI Preview is part of the current build scheme. You can do this by going to `Product > Scheme > Edit Scheme`. Under `Build`, make sure your target is added and checked.
+
+2. Clean your project by going to `Product > Clean Build Folder`.
+
+3. Close Xcode and delete derived data. You can do this by going to `~/Library/Developer/Xcode/DerivedData` and deleting the folder related to your project.
+
+4. Restart Xcode and try to build your project again.
+
+If the problem persists, you might want to consider creating a new project and migrating your code. This can sometimes resolve issues that are related to project configuration.

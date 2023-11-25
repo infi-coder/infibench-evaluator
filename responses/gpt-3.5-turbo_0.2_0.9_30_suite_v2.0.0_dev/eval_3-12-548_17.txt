@@ -1,0 +1,10 @@
+To disable the back button in Flutter when you have reached the login page after logging out, you can use the `pushReplacement` method of the `Navigator` class to replace the current route with a new one. This will prevent the user from navigating back to the previous page using the back button. Here's an example:
+
+```
+Navigator.pushReplacement(
+  context,
+  MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
+);
+```
+
+In this example, `LoginPage` is the new route that will replace the current one. The `pushReplacement` method will remove the current route from the stack and add the new one, effectively disabling the back button.

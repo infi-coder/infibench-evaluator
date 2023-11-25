@@ -1,0 +1,1 @@
+@Configuration should be used when you want to define beans using Java configuration instead of XML configuration. It is typically used to define beans that require more complex initialization or wiring logic. @Service, @Controller, and @Component are used to define beans that are part of the application's business logic or presentation layer.

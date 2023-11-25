@@ -1,0 +1,63 @@
+You can create a factory method that returns a `ServiceBusSender` instance for a specific queue name and register it as a scoped service. Then, you can inject the `IServiceScopeFactory` into your `CarReservationMessagingService` and use it to create a new scope and resolve the `ServiceBusSender` instance for the specific queue name.
+
+Here's an example of how you can register the `ServiceBusSender` instances as scoped services:
+
+```c#
+// Register the ServiceBusClient instances as singleton services
+_services.AddSingleton(implementationFactory =>
+{
+    var serviceBusConfiguration = implementationFactory.GetRequiredService<IOptions<UserEventConsumerSetting>>().Value;
+
+    var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+
+    return serviceBusClient;
+});
+
+// Register the ServiceBusSender instances as scoped services
+_services.AddScoped<IServiceBusSenderFactory, ServiceBusSenderFactory>();
+
+// Define the factory method for creating ServiceBusSender instances
+public interface IServiceBusSenderFactory
+{
+    ServiceBusSender Create(string queueName);
+}
+
+public class ServiceBusSenderFactory : IServiceBusSenderFactory
+{
+    private readonly IServiceScopeFactory _serviceScopeFactory;
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusSenderFactory(IServiceScopeFactory serviceScopeFactory, ServiceBusClient serviceBusClient)
+    {
+        _serviceScopeFactory = serviceScopeFactory;
+        _serviceBusClient = serviceBusClient;
+    }
+
+    public ServiceBusSender Create(string queueName)
+    {
+        var scope = _serviceScopeFactory.CreateScope();
+        var serviceBusSender = _serviceBusClient.CreateSender(queueName);
+        scope.Dispose();
+        return serviceBusSender;
+    }
+}
+```
+
+Then, you can inject the `IServiceBusSenderFactory` into your `CarReservationMessagingService` and use it to create a `ServiceBusSender` instance for the specific queue name:
+
+```c#
+public class CarReservationMessagingService
+{
+    private readonly IServiceBusSenderFactory _serviceBusSenderFactory;
+
+    public CarReservationMessagingService(IServiceBusSenderFactory serviceBusSenderFactory)
+    {
+        _serviceBusSenderFactory = serviceBusSenderFactory ?? throw new ArgumentNullException(nameof(serviceBusSenderFactory));
+    }
+
+    public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation, string queueName)
+    {
+        var carReservationIntegrationMessage = new Car

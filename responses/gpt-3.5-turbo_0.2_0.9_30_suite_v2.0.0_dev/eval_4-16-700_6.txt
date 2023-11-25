@@ -1,0 +1,9 @@
+You can try using `awk` to achieve the same result more efficiently. Here's an example command:
+
+```
+awk -F= '/name/ {name=$2} /value/ && prev!="name" {print name "=" $2} {prev=$1}' input.txt > output.txt
+```
+
+This command uses `awk` to read the input file line by line and split each line into fields using the `=` delimiter. It then checks if the current line contains the string "name" and saves the name value in a variable. If the current line contains the string "value" and the previous line was not a "name" line, it prints the name and value separated by an equal sign. Finally, it saves the current line's field 1 as the previous line's value for the next iteration.
+
+This command should be much faster than the original `bash` script.

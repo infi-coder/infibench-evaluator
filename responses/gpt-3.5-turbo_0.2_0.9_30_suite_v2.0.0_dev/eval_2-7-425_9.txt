@@ -1,0 +1,15 @@
+You can use the `now()` function in MySQL to store the current date time in the `created_at` and `updated_at` fields. Here's the updated code:
+
+```php
+function insert(Request $req)
+{
+    $name = $req->input('name');
+    $address = $req->input('address');
+    $data = array("name" => $name, "address" => $address, "created_at" => now(), "updated_at" => now());
+    DB::table('student')->insert($data);
+    echo "Record inserted successfully.<br/>";
+    return redirect('/');
+}
+```
+
+This will store the current date time in the `created_at` and `updated_at` fields in the database.

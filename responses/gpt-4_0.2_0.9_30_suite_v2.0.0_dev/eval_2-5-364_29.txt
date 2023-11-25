@@ -1,0 +1,23 @@
+If you are using a build system like Jenkins or Azure DevOps, they usually have a way to specify the JDK version for a particular job or pipeline. However, if you want to use a specific version of Java with Maven Wrapper, you can do so by setting the `JAVA_HOME` environment variable to point to the desired JDK before running the Maven Wrapper command.
+
+Here's an example of how you can do this on a Unix-like system:
+
+```bash
+export JAVA_HOME=/path/to/your/jdk
+./mvnw clean install
+```
+
+And here's how you can do it on Windows:
+
+```cmd
+set JAVA_HOME=C:\path\to\your\jdk
+mvnw.cmd clean install
+```
+
+Replace `/path/to/your/jdk` or `C:\path\to\your\jdk` with the actual path to the JDK you want to use.
+
+This will ensure that the Maven Wrapper uses the specified JDK for its execution.
+
+If you want to permanently set the `JAVA_HOME` environment variable, you can do so in your system's environment variables settings. The process for this varies depending on your operating system.
+
+Please note that the Maven Wrapper (mvnw) will use the version of Maven specified in the `.mvn/wrapper/maven-wrapper.properties` file in your project, and it's independent of the JDK version. If you want to use a different version of Maven, you can change it in this file.

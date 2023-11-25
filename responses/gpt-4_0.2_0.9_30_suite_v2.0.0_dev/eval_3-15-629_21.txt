@@ -1,0 +1,20 @@
+You can use the `MSForms.DataObject` to interact with the clipboard. Here's a simple function to copy text to the clipboard:
+
+```vba
+Sub CopyTextToClipboard(sText As String)
+    Dim DataObj As MSForms.DataObject
+    Set DataObj = New MSForms.DataObject
+    DataObj.SetText sText
+    DataObj.PutInClipboard
+End Sub
+```
+
+You can use this function like this:
+
+```vba
+CopyTextToClipboard Me.NodeKey.Value
+```
+
+Please note that you need to add a reference to `Microsoft Forms 2.0 Object Library` to use `MSForms.DataObject`. You can do this by going to `Tools -> References` in the VBA editor, and then checking `Microsoft Forms 2.0 Object Library`.
+
+If you can't find `Microsoft Forms 2.0 Object Library`, you can add it manually. The file is usually located in `C:\Windows\System32\FM20.dll` or `C:\Windows\SysWOW64\FM20.dll`.

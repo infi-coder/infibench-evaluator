@@ -1,0 +1,17 @@
+The error message you're seeing is related to the way the command is being interpreted by the command line. It seems like there's an issue with the quotes in your command.
+
+Here's a simplified version of your command that might work:
+
+```cmd
+cd C:\projects\open
+set JAVA_HOME=C:\Program Files\Java\jdk-11.0.5
+"C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\mvn.cmd" -DskipTests=true -Dmaven.ext.class.path=C:\Program Files\NetBeans-11.1\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install
+```
+
+In this version, I've removed the embedded quotes around the `-Dmaven.ext.class.path` argument. If the path to `netbeans-eventspy.jar` contains spaces, you might need to add quotes back, but only around the path, not around the entire argument.
+
+If you still encounter issues, you might want to check the following:
+
+- Make sure the paths in your command are correct and all the referenced files exist.
+- Make sure your `JAVA_HOME` environment variable is set correctly.
+- Make sure you have the necessary permissions to execute the command and access all the referenced files and directories.

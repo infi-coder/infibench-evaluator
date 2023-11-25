@@ -1,0 +1,11 @@
+The error message suggests that the Jackson JSON serializer used by RestTemplate is unable to serialize the `MultipartFile` object. One solution is to configure RestTemplate to use a different message converter that can handle multipart requests.
+
+Here's an example of how to configure RestTemplate to use the `RestTemplateBuilder` with a `FormHttpMessageConverter` and a `ByteArrayHttpMessageConverter`:
+
+```java
+RestTemplate restTemplate = new RestTemplateBuilder()
+        .additionalMessageConverters(new FormHttpMessageConverter(), new ByteArrayHttpMessageConverter())
+        .build();
+```
+
+This should allow RestTemplate to properly serialize the `MultipartFile` object and send it in a multipart request to the microservice.

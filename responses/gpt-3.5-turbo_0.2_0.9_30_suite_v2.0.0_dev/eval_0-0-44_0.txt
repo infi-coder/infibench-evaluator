@@ -1,0 +1,29 @@
+To create an index in Mongoose schema using Nest.js, you can use the `@Schema` decorator's `indexes` property to define the indexes. Here's an example:
+
+```javascript
+@Schema({
+  timestamps: true,
+  collection: 'my_collection',
+  indexes: [
+    { fields: { type: 1 }, options: { unique: true } },
+    { fields: { creationDate: -1 } },
+  ],
+})
+export class MySchema extends Document {
+  @Prop({ required: true })
+  type: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ default: Date.now })
+  creationDate: Date;
+}
+```
+
+In this example, we define two indexes:
+
+- An index on the `type` field with ascending order (`1`) and unique option.
+- An index on the `creationDate` field with descending order (`-1`).
+
+Note that the `indexes` property is an array of objects, where each object represents an index. The `fields` property of each object is an object that defines the fields to be indexed and their order. The `options` property of each object is an object that defines the options for the index, such as `unique`.

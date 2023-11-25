@@ -1,0 +1,18 @@
+The error message suggests that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `CommonsMultipartFile` class has a `fileItem` property of type `org.apache.commons.fileupload.disk.DiskFileItem`, which has an `inputStream` property of type `java.io.ByteArrayInputStream`. 
+
+To solve this issue, you can add the `jackson-datatype-jdk8` and `jackson-datatype-jsr310` dependencies to your project, and then configure the `ObjectMapper` used by the `RestTemplate` to register these modules. Here's an example:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+
+ObjectMapper objectMapper = new ObjectMapper();
+objectMapper.registerModule(new Jdk8Module());
+objectMapper.registerModule(new JavaTimeModule());
+
+MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+converter.setObjectMapper(objectMapper);
+
+restTemplate.getMessageConverters().add(converter);
+```
+
+This will configure the `RestTemplate` to use the `MappingJackson2HttpMessageConverter` with an `ObjectMapper` that has the necessary modules registered to handle the `java.io.ByteArrayInputStream` class.

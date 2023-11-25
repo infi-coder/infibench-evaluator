@@ -1,0 +1,42 @@
+The `*.plain.jar` file is generated due to the `jar` task in Spring Boot 2.5.0. You can disable this task in your `build.gradle` file to prevent the generation of the `*.plain.jar` file.
+
+Add the following lines to your `build.gradle`:
+
+```groovy
+tasks.named('jar').configure {
+    enabled = false
+}
+```
+
+This will disable the `jar` task and prevent the generation of the `*.plain.jar` file. Your `build.gradle` should look like this:
+
+```groovy
+plugins {
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.named('jar').configure {
+    enabled = false
+}
+```
+
+Now, when you build your project, only the `myprogram-0.0.1.jar` file will be generated.

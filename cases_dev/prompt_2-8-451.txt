@@ -1,0 +1,5 @@
+I'm using go 1.11 with module support. I understand that the go tool now installs dependencies automatically on build/install. I also understand the reason.
+
+I'm using docker to build my binaries. In many other ecosystems it's common to copy over your dependency manifest (package.json, requirements.txt, etc) and install dependencies as a separate stage from build. This takes advantage of docker's layer caching, and makes rebuilds much faster since generally code changes vastly outnumber dependency changes.
+
+I was wondering if vgo has any way to do this?

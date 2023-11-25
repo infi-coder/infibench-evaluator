@@ -1,0 +1,28 @@
+Here is a Python function that fulfills your requirements:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the characters that can be used
+    chars = string.ascii_letters
+
+    # Generate two random strings of letters with lengths 5 and 6
+    str1 = ''.join(random.choice(chars) for _ in range(5))
+    str2 = ''.join(random.choice(chars) for _ in range(6))
+
+    # Generate a random string of 3 digits
+    digits = ''.join(random.choice(string.digits) for _ in range(3))
+
+    # Combine the strings and the substring "NAA3U" in a random order
+    code = [str1, "NAA3U", str2, digits]
+    random.shuffle(code)
+    code = ''.join(code)
+
+    return code
+```
+
+This function first generates two random strings of letters and a random string of digits. Then it combines these strings and the substring "NAA3U" in a random order to create the final code.
+
+Please note that the function `random.shuffle` shuffles the elements of the list in place. Therefore, the order of the strings in the final code is random.

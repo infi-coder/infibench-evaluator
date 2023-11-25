@@ -1,0 +1,7 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven than the one used to generate the project. To fix this issue, you can follow these steps:
+
+1. Open the Maven settings in IntelliJ IDEA by going to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+2. In the "Maven home directory" field, specify the path to the Maven installation that was used to generate the project. If you don't have it installed, you can download it from the Apache Maven website.
+3. Click "OK" to save the settings and restart IntelliJ IDEA.
+
+After restarting IntelliJ IDEA, the error should be resolved and you should be able to work with the project without any issues.

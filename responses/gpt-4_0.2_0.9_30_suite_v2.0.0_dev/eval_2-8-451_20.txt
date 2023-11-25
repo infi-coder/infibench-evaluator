@@ -1,0 +1,44 @@
+Yes, Go 1.11 with module support (vgo) has a way to do this. You can take advantage of Docker's layer caching by separating the downloading of dependencies from the building of your application. Here's an example of how you can structure your Dockerfile:
+
+```Dockerfile
+# Start from the latest golang base image
+FROM golang:1.11-alpine as builder
+
+# Add Maintainer Info
+LABEL maintainer="Your Name <your-email@example.com>"
+
+# Set the Current Working Directory inside the container
+WORKDIR /app
+
+# Copy go mod and sum files
+COPY go.mod go.sum ./
+
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+RUN go mod download
+
+# Copy the source from the current directory to the Working Directory inside the container
+COPY . .
+
+# Build the Go app
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+
+######## Start a new stage from scratch #######
+FROM alpine:latest  
+
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /root/
+
+# Copy the Pre-built binary file from the previous stage
+COPY --from=builder /app/main .
+
+# Expose port 8080 to the outside world
+EXPOSE 8080
+
+#Command to run the executable
+CMD ["./main"] 
+```
+
+In this Dockerfile, we first copy the `go.mod` and `go.sum` files and then run `go mod download`. This will download all the dependencies your project needs and will be cached as long as the `go.mod` and `go.sum` files are not changed. After that, we copy the rest of the source code and build the application.
+
+This way, as long as your dependencies don't change, Docker will use the cached layers and only your source code will be built each time, which should be much faster.

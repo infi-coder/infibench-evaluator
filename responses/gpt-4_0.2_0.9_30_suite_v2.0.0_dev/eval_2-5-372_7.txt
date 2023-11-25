@@ -1,0 +1,21 @@
+The issue you're experiencing is due to a version mismatch between Hibernate Validator and the Bean Validation API. The `@NotEmpty` and `@NotBlank` annotations are part of the Bean Validation 2.0 API, which is implemented by Hibernate Validator 6.0 and later. However, your application is using Hibernate Validator 5.3.5.Final-redhat-2, which only supports the Bean Validation 1.1 API.
+
+Spring Boot 2.0.4.RELEASE, which you're using, includes Hibernate Validator 6.0.7.Final by default. However, it seems that JBoss is providing Hibernate Validator 5.3.5.Final-redhat-2, which is being used instead.
+
+To resolve this issue, you can try one of the following solutions:
+
+1. **Upgrade your version of JBoss**: If you're using an older version of JBoss, it might be providing an older version of Hibernate Validator. Upgrading to a newer version of JBoss might resolve the issue.
+
+2. **Exclude Hibernate Validator from JBoss**: If you can't upgrade JBoss, you can try excluding Hibernate Validator from the modules that JBoss provides to your application. This will force your application to use the version of Hibernate Validator that's included with Spring Boot. You can do this by creating a `jboss-deployment-structure.xml` file in your `src/main/webapp/WEB-INF` directory with the following content:
+
+    ```xml
+    <jboss-deployment-structure>
+        <deployment>
+            <exclusions>
+                <module name="org.hibernate.validator" />
+            </exclusions>
+        </deployment>
+    </jboss-deployment-structure>
+    ```
+
+3. **Downgrade to Bean Validation 1.1**: If you can't upgrade JBoss and excluding Hibernate Validator doesn't work, you can downgrade your code to use the Bean Validation 1.1 API. This means replacing `@NotEmpty` and `@NotBlank` with `@NotNull` and `@Size(min=1)`. This isn't an ideal solution, as it means you can't use the newer features of the Bean Validation 2.0 API, but it should resolve the error.

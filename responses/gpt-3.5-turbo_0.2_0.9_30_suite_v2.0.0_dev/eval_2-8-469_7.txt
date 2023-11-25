@@ -1,0 +1,22 @@
+You need to add the `go_package` option to your proto file. This option specifies the Go package name and import path for the generated code. Here's an example of how to add it to your proto file:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "github.com/yourusername/yourproject/yourpackage";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+Replace `github.com/yourusername/yourproject/yourpackage` with the actual import path for your Go package. Then, run the `protoc` command again with the `--go_out` flag and the `M` argument:
+
+```bash
+protoc --go_out=plugins=grpc,M=github.com/yourusername/yourproject/yourpackage:. simple.proto
+```
+
+This should generate the Go code for your proto file in the specified package and import path.

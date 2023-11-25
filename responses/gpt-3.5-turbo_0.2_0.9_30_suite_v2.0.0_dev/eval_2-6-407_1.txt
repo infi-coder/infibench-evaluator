@@ -1,0 +1,25 @@
+The error message suggests that the response from the server is not in the expected JSON format. It seems like the response is starting with a '<' character, which indicates that the response is not JSON but some other format, such as HTML.
+
+To fix this issue, you need to make sure that the server is returning the response in the correct format. You can use a tool like Postman to test the API and see what the response looks like.
+
+Assuming that the server is returning the response in the correct format, you can try changing the code to use the full URL instead of the relative URL. Here's an example:
+
+```c#
+empList = await Http.GetJsonAsync<Employee[]>("https://localhost:5001/api/Employee/Index");
+```
+
+Replace the URL with the actual URL of your API endpoint.
+
+If the above solution doesn't work, you can try adding the `[Produces("application/json")]` attribute to your API method to ensure that the response is always in JSON format. Here's an example:
+
+```c#
+[HttpGet]
+[Route("api/Employee/Index")]
+[Produces("application/json")]
+public IEnumerable<Employee> Index()
+{
+    return objemployee.GetAllEmployees();
+}
+```
+
+If none of the above solutions work, you may need to provide more information about your code and the server configuration to diagnose the issue further.

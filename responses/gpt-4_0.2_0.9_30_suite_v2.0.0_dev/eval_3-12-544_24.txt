@@ -1,0 +1,18 @@
+The error you're encountering is due to the fact that you're trying to access platform-specific functionality before `runApp()` has been called. This is because `runApp()` initializes the binding with the host platform, which is necessary for the `path_provider` package to work.
+
+To fix this error, you should move the code that uses `getApplicationDocumentsDirectory()` inside the `main()` function after `runApp()`. However, since `runApp()` does not await for a Future, you can't directly use `await` inside it. 
+
+You can use `WidgetsFlutterBinding.ensureInitialized()` before calling any asynchronous code in your `main()` function. This method ensures that the widget binding has been initialized. 
+
+Here's how you can modify your code:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+
+This should resolve the error you're encountering.

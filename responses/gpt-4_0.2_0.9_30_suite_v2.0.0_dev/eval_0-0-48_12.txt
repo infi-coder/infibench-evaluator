@@ -1,0 +1,11 @@
+Sure, you can use the `&` operator to combine the two mapped types into one. Here's how you can define the `FruitsAndColors` type:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit]: number;
+} & {
+  [key in color]: boolean;
+}
+```
+
+This type will have a numeric property for each fruit and a boolean property for each color.

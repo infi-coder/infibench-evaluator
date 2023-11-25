@@ -1,0 +1,19 @@
+Sure, here's a possible implementation using the `random` module in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    while True:
+        # Generate a random string of length 13
+        random_string = ''.join(random.choices(string.ascii_letters + string.digits, k=13))
+        # Insert "NAA3U" at a random position
+        index = random.randint(0, 13)
+        random_string = random_string[:index] + "NAA3U" + random_string[index:]
+        # Check if the string contains exactly 3 digits
+        if sum(c.isdigit() for c in random_string) == 3:
+            return random_string
+```
+
+The function generates a random string of length 13, inserts "NAA3U" at a random position, and checks if the resulting string contains exactly 3 digits. If not, it repeats the process until a valid string is generated.

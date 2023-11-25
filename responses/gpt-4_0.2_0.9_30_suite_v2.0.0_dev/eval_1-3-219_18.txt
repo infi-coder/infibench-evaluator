@@ -1,0 +1,19 @@
+It seems like you are having trouble starting a Jupyter notebook session in your VS Code environment. Here are a few steps you can try to resolve this issue:
+
+1. **Check your Python Interpreter**: Make sure you have selected the correct Python interpreter for your virtual environment 'da38'. You can do this by clicking on the Python version in the bottom-left of the status bar, or by using the `Python: Select Interpreter` command from the Command Palette (`Ctrl+Shift+P`).
+
+2. **Reinstall Jupyter and ipykernel**: It's possible that the Jupyter or ipykernel installation in your environment is corrupted. Try reinstalling them with the following commands:
+
+    ```bash
+    conda activate da38
+    conda uninstall jupyter ipykernel
+    conda install jupyter ipykernel
+    ```
+
+3. **Check your Jupyter Server**: VS Code uses the Jupyter server to run notebooks. If there's an issue with the server, it might prevent notebooks from starting. You can check the Jupyter server logs in the `Jupyter` output tab in the Output panel (`Ctrl+Shift+U`).
+
+4. **Update VS Code and Python Extension**: Make sure you are using the latest version of VS Code and the Python extension. You can check for updates by going to `Help > Check for Updates` in VS Code, and you can update the Python extension by going to the Extensions view (`Ctrl+Shift+X`) and clicking on the `Update` button for the Python extension if it's available.
+
+5. **Check your VS Code Settings**: There might be a setting in VS Code that's preventing notebooks from starting. You can check your settings by going to `File > Preferences > Settings` and searching for 'Jupyter'. Make sure the `Jupyter: Allow Import From Notebook` and `Jupyter: Enable Native Interactive Window` settings are enabled.
+
+If none of these steps work, you might want to consider submitting an issue on the [VS Code GitHub repository](https://github.com/microsoft/vscode/issues) or the [Python extension GitHub repository](https://github.com/microsoft/vscode-python/issues) with more details about your setup and the issue you're experiencing.

@@ -1,0 +1,45 @@
+One way to express this more idiomatically is to use the `Option::filter()` method, which returns `None` if the inner value does not meet the condition, or `Some(inner_value)` otherwise. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    if let Some(foo_val) = foo.filter(|&x| x < 5) {
+        // do something with foo_val
+    } else {
+        foo.replace(5);
+    }
+}
+```
+
+Another way is to use the `Option::map_or_else()` method, which takes two closures: one to handle the `Some` case, and one to handle the `None` case. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map_or_else(|| Some(5), |x| if x < 5 { None } else { Some(x) });
+    // do something with foo
+}
+```
+
+This code replaces `foo` with `Some(5)` if it was `None`, or with `None` if the inner value is less than 5, or with the original `Some(inner_value)` otherwise.
+
+Finally, you can use the `Option::take()` method to replace the inner value with `None` and return the original value, and then use a combination of `if` statements to handle the different cases. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    let foo_val = foo.take();
+    if let Some(val) = foo_val {
+        if val < 5 {
+            foo.replace(5);
+        } else {
+            foo.replace(val);
+            // do something with val
+        }
+    } else {
+        foo.replace(5);
+    }
+}
+```
+
+This code replaces `foo` with `Some(5)` if it was `None`, or with the original value if it is greater than or equal to 5, or with `None` otherwise.

@@ -1,0 +1,14 @@
+The error message suggests that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `CommonsMultipartFile` class contains a `fileItem` field of type `org.apache.commons.fileupload.disk.DiskFileItem`, which in turn contains an `inputStream` field of type `java.io.ByteArrayInputStream`. 
+
+To solve this issue, you can configure the `RestTemplate` to use a `ByteArrayResourceHttpMessageConverter` instead of the default `MappingJackson2HttpMessageConverter`. This converter can handle the `ByteArrayResource` class, which is a subclass of `Resource` that wraps a byte array.
+
+Here's an example of how to configure the `RestTemplate` to use the `ByteArrayResourceHttpMessageConverter`:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
+messageConverters.add(new ByteArrayResourceHttpMessageConverter());
+restTemplate.setMessageConverters(messageConverters);
+```
+
+With this configuration, the `RestTemplate` will use the `ByteArrayResourceHttpMessageConverter` to serialize the `MultiValueMap` containing the `MultipartFile`.

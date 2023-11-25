@@ -1,0 +1,29 @@
+I'm writing a command line application that involves centering text in the terminal. This is the function I wrote to do this:
+```rust
+use console::{Alignment, pad_str};
+
+fn get_padded_row(row: &str, width: u16, symbol: Option<char>) -> String {
+    let symbol = symbol.unwrap_or(' ');
+    return pad_str(row, width as usize, Alignment::Center, None)
+        .to_string()
+        .replace(' ', &symbol.to_string());
+}
+```
+This function works perfectly fine, and there were no errors with it. Then I wrote a test:
+```rust
+#[cfg(test)]
+mod tests {
+    use crate::get_padded_row;
+
+    #[test]
+    fn row_padding_dashes() {
+        let padded_row = get_padded_row("hello", 15, Some('-'));
+        assert_eq!(
+            padded_row, "-----hello-----".to_string(),
+            "`get_padded_row` was not correct, got `{}`", padded_row
+        );
+    }
+}
+```
+The code still works perfectly fine. Both `cargo run` and `cargo test` work, the function passes the test, and `cargo check` returns no issues. But rust-analyzer gives an error, highlighting everything from the `tr};` in the `use` statement to the `p` right after `return`: "could not resolve macro `$crate::format_args` rust-analyzer(macro-error)". 
+What does the error mean and how do I fix it?

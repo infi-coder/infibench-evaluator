@@ -1,0 +1,13 @@
+The issue you are facing could be due to the incompatibility of the Selenium WebDriver version with the Excel 2019 version. Here are a few things you can try to resolve the issue:
+
+1. Make sure that you have the latest version of the Selenium WebDriver installed. You can download it from the official Selenium website.
+
+2. Try using a different browser driver. For example, if you are using the Internet Explorer driver, try using the Chrome or Firefox driver instead.
+
+3. Check if the reference to the Selenium type library is properly set. To do this, go to the VBA editor, click on Tools > References, and make sure that the reference to the Selenium type library is checked.
+
+4. Try running the code in compatibility mode. To do this, right-click on the Excel icon, select Properties, go to the Compatibility tab, and select the option to run the program in compatibility mode for an earlier version of Windows.
+
+5. If none of the above solutions work, try uninstalling and reinstalling Excel 2019 and the Selenium WebDriver.
+
+I hope one of these solutions works for you.

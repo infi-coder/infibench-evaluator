@@ -1,0 +1,25 @@
+Yes, we can achieve this using pandas' `groupby`, `cumsum`, and `fillna` functions. Here's the `aggregation` function that should do what you want:
+
+```python
+def aggregation(df):
+    # Convert 'value' column to numeric type
+    df['value'] = pd.to_numeric(df['value'], errors='coerce')
+    
+    # Group by 'exchange' and forward-fill 'type' column
+    df['type'] = df.groupby('exchange')['type'].fillna(method='ffill')
+    
+    # Group by 'exchange' and 'type', then calculate cumulative sum of 'value'
+    df['balance'] = df.groupby(['exchange', 'type'])['value'].cumsum()
+    
+    return df
+```
+
+This function first converts the 'value' column to a numeric type using `pd.to_numeric` to ensure that we can perform mathematical operations on it. Then, it groups the DataFrame by 'exchange' and forward-fills the 'type' column using `fillna`. Finally, it groups the DataFrame by 'exchange' and 'type', and calculates the cumulative sum of 'value' using `cumsum`. The resulting DataFrame is returned.
+
+You can call this function with your DataFrame `df` as follows:
+
+```python
+aggregation(df)
+```
+
+This should return the desired output DataFrame.

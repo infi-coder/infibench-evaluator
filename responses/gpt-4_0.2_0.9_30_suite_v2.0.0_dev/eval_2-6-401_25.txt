@@ -1,0 +1,71 @@
+You can use the factory pattern to create different instances of `ServiceBusClient` and `ServiceBusSender` for different queues. Here's how you can do it:
+
+1. Define an interface for your factory:
+
+```csharp
+public interface IServiceBusClientFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+    ServiceBusReceiver CreateReceiver(string queueName);
+}
+```
+
+2. Implement the factory:
+
+```csharp
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly string _connectionString;
+    private readonly ServiceBusClientOptions _clientOptions;
+
+    public ServiceBusClientFactory(string connectionString, ServiceBusClientOptions clientOptions)
+    {
+        _connectionString = connectionString;
+        _clientOptions = clientOptions;
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        var client = new ServiceBusClient(_connectionString, _clientOptions);
+        return client.CreateSender(queueName);
+    }
+
+    public ServiceBusReceiver CreateReceiver(string queueName)
+    {
+        var client = new ServiceBusClient(_connectionString, _clientOptions);
+        return client.CreateReceiver(queueName);
+    }
+}
+```
+
+3. Register your factory in the DI container:
+
+```csharp
+_services.TryAddSingleton<IServiceBusClientFactory>(implementationFactory =>
+{
+    var serviceBusConfiguration = implementationFactory.GetRequiredService<Microsoft.Extensions.Options.IOptions<UserEventConsumerSetting>>().Value;
+
+    return new ServiceBusClientFactory(serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+});
+```
+
+4. Use the factory to create `ServiceBusSender` and `ServiceBusReceiver` instances:
+
+```csharp
+public class CarReservationMessagingService
+{
+    private readonly ServiceBusSender _serviceBusSender;
+
+    public CarReservationMessagingService(IServiceBusClientFactory serviceBusClientFactory)
+    {
+        _serviceBusSender = serviceBusClientFactory.CreateSender("yourQueueName");
+    }
+
+    // ...
+}
+```
+
+This way, you can inject `IServiceBusClientFactory` wherever you need and create `ServiceBusSender` or `ServiceBusReceiver` for any queue.

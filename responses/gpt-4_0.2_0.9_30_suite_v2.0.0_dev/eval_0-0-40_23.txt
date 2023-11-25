@@ -1,0 +1,31 @@
+The error message you're seeing is due to a conflict between the Windows version of Node.js and the version installed in WSL2. The Windows version is not compatible with WSL2, and you're seeing this error because the `npm` command is trying to use the Windows version.
+
+To resolve this issue, you need to remove the Windows version from your PATH within WSL2. You can do this by editing your `.bashrc` or `.bash_profile` file.
+
+Here are the steps:
+
+1. Open your `.bashrc` file in a text editor. You can use `nano` for this:
+
+```bash
+nano ~/.bashrc
+```
+
+2. Add the following line to the end of the file:
+
+```bash
+export PATH=$PATH:/usr/bin
+```
+
+This line adds `/usr/bin` to your PATH, which is where the WSL2 version of `node` and `npm` are located.
+
+3. Save the file and exit the text editor. If you're using `nano`, you can do this by pressing `Ctrl+X`, then `Y` to confirm that you want to save the changes, and then `Enter` to confirm the file name.
+
+4. Close your terminal and open a new one, or source your `.bashrc` file to apply the changes immediately:
+
+```bash
+source ~/.bashrc
+```
+
+5. Now, when you run `node -v` and `npm -v`, you should see the versions installed in WSL2, and you should no longer see the error message.
+
+If you still encounter issues, you might need to uninstall the Windows version of Node.js and only use the version installed in WSL2.

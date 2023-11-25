@@ -1,0 +1,50 @@
+You can use multiple `Consumer` widgets in a single widget to listen to multiple `ChangeNotifier` classes. Here's an example of how you can do it:
+
+```dart
+Consumer<ChangeNotifier1>(
+  builder: (context, changeNotifier1, child) {
+    return Consumer<ChangeNotifier2>(
+      builder: (context, changeNotifier2, child) {
+        return Consumer<ChangeNotifier3>(
+          builder: (context, changeNotifier3, child) {
+            return Consumer<ChangeNotifier4>(
+              builder: (context, changeNotifier4, child) {
+                return CurvedNavigationBar(
+                  // Use the values from the ChangeNotifiers to build your widget
+                  // For example:
+                  // index: changeNotifier1.index,
+                  // color: changeNotifier2.color,
+                  // backgroundColor: changeNotifier3.backgroundColor,
+                  // buttonBackgroundColor: changeNotifier4.buttonBackgroundColor,
+                );
+              },
+            );
+          },
+        );
+      },
+    );
+  },
+);
+```
+
+In this example, each `Consumer` listens to a different `ChangeNotifier`. The `builder` function is called whenever the `ChangeNotifier` notifies its listeners. You can use the values from the `ChangeNotifier` to build your widget.
+
+Note: Make sure that you have provided your `ChangeNotifier` classes higher up in the widget tree using `ChangeNotifierProvider`.
+
+```dart
+ChangeNotifierProvider<ChangeNotifier1>(
+  create: (context) => ChangeNotifier1(),
+  child: ChangeNotifierProvider<ChangeNotifier2>(
+    create: (context) => ChangeNotifier2(),
+    child: ChangeNotifierProvider<ChangeNotifier3>(
+      create: (context) => ChangeNotifier3(),
+      child: ChangeNotifierProvider<ChangeNotifier4>(
+        create: (context) => ChangeNotifier4(),
+        child: YourWidget(),
+      ),
+    ),
+  ),
+);
+```
+
+This way, each `Consumer` can find its `ChangeNotifier` in the widget tree.

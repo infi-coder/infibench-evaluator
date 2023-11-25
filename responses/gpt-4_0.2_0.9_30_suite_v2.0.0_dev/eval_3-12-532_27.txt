@@ -1,0 +1,40 @@
+The error message indicates that the response from the server is not a valid JSON string. This could be due to several reasons:
+
+1. The server might not be returning a JSON response. You can check this by printing the `response.body` before trying to decode it.
+
+2. There might be some invisible characters or white spaces at the beginning of the response. You can try to trim the response before decoding it.
+
+3. The server might be returning an error message or a different response format under certain conditions. You should check the server-side code to ensure it always returns a valid JSON.
+
+Here is how you can modify your code to print and trim the response:
+
+```dart
+Future<String> iniciarSesion() async{
+  var usuario = textUsuario.text;
+  var password = textPassword.text;
+  var nombreUsuario;
+  var url ="http://192.168.1.37/usuario.php";
+
+  //Metodo post
+  var response = await http.post(
+      url,
+      headers:{ "Accept": "application/json" } ,
+      body: { "usuario": '$usuario',"password": '$password'},
+      encoding: Encoding.getByName("utf-8")
+  );
+
+  print('Response body: ${response.body}'); // print the response
+
+  String trimmedResponse = response.body.trim(); // trim the response
+
+  List data = json.decode(trimmedResponse); // decode the trimmed response
+}
+```
+
+Remember to import the `dart:convert` package to use the `json.decode` function:
+
+```dart
+import 'dart:convert';
+```
+
+If the problem persists, you should check the server-side code or the actual response from the server to ensure it is a valid JSON.

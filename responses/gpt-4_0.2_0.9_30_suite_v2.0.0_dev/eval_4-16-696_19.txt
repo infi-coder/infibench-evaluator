@@ -1,0 +1,9 @@
+The problem is that the shell performs the command substitution `$(echo {} | sed 's/\?.*//g')` before `find` is even invoked, so it doesn't have the desired effect. You need to use a shell in the `-exec` part of the `find` command to get the correct behavior.
+
+Here is a corrected version of your command:
+
+```bash
+find . -type f -name '*\?*' -exec bash -c 'mv "$0" "${0%%\?*}"' {} \;
+```
+
+This command uses `bash`'s string manipulation capabilities (`${0%%\?*}`) to remove the `?` and everything after it from the filename. The `$0` argument to the `bash -c` command is the filename found by `find`.

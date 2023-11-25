@@ -1,0 +1,33 @@
+The error you're seeing is typically caused by the response from the server not being a valid JSON string. 
+
+Here are a few steps you can take to debug and solve this issue:
+
+1. **Print the response body**: Before decoding the JSON, print the response body to see what you're actually receiving from the server. This will help you understand if the response is valid JSON or not.
+
+```dart
+print('Response body: ${response.body}');
+```
+
+2. **Check the server-side script**: Make sure that your PHP script is correctly outputting a JSON response. You can use `json_encode` in PHP to ensure the response is in the correct format.
+
+3. **Handle non-200 HTTP status codes**: If the server returns an HTTP status code other than 200, it means there was an error. You should handle these cases in your Dart code. For example:
+
+```dart
+if (response.statusCode == 200) {
+  List data = json.decode(response.body);
+} else {
+  print('Request failed with status: ${response.statusCode}.');
+}
+```
+
+4. **Use `try/catch` to handle exceptions**: Wrap your JSON decoding in a `try/catch` block to handle any exceptions that might occur.
+
+```dart
+try {
+  List data = json.decode(response.body);
+} catch (e) {
+  print('Error: $e');
+}
+```
+
+By following these steps, you should be able to identify and fix the issue causing the `FormatException`.

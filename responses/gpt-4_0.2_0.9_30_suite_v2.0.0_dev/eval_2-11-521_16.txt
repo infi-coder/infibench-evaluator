@@ -1,0 +1,29 @@
+The comment is partially correct. 
+
+A constructor is indeed not a regular function, but it is a special type of method in a class. In object-oriented programming, a constructor is a special method that is used to initialize a newly created object. It's automatically called when an object of a class is created.
+
+However, the part of the comment that says "A constructor cannot be called" is not entirely accurate. While it's true that constructors are automatically invoked when an object is created, they can also be explicitly called in some programming languages. 
+
+For example, in JavaScript, you can explicitly call a constructor using the `new` keyword followed by the constructor function:
+
+```javascript
+function MyClass() {
+  // Constructor code here
+}
+
+// Create a new object and call the constructor
+var obj = new MyClass();
+```
+
+In Python, you can also call the constructor directly, although it's not a common practice:
+
+```python
+class MyClass:
+    def __init__(self):
+        # Constructor code here
+
+# Create a new object and call the constructor
+obj = MyClass.__init__(MyClass)
+```
+
+So, while the comment is correct in saying that constructors are not regular functions and are automatically invoked when an object is created, it's not entirely accurate to say that constructors cannot be called.

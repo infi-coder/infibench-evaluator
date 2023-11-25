@@ -1,0 +1,1 @@
+TypeScript is ignoring `index.d.ts` because it assumes that it is generated from `index.tsx`, which is more likely to be up to date. Name your `index.d.ts` file something else, e.g., `declaration.d.ts`.

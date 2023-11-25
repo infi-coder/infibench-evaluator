@@ -1,0 +1,32 @@
+One way to express this more idiomatically is to use the `Option::filter()` method, which returns the original `Option` if the inner value meets the condition, or `None` otherwise. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.filter(|&val| val < 5).map(|_| 5);
+}
+```
+
+This code first checks if `foo` contains a value less than 5 using the `filter()` method. If the value meets the condition, the original `Option` is returned. If not, `None` is returned. Then, the `map()` method is used to replace the `Option` with a new one containing the value 5.
+
+Another way to express this is to use the `Option::and_then()` method, which applies a function to the inner value if it exists, and returns a new `Option`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.and_then(|val| if val < 5 { Some(val) } else { None }).map(|_| 5);
+}
+```
+
+This code first applies a function to the inner value using the `and_then()` method. If the value meets the condition, a new `Some` is returned. If not, `None` is returned. Then, the `map()` method is used to replace the `Option` with a new one containing the value 5.
+
+Finally, you can also use the `Option::unwrap_or()` method to provide a default value if the `Option` is `None`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = Some(foo.unwrap_or(5)).filter(|&val| val < 5);
+}
+```
+
+This code first uses the `unwrap_or()` method to provide a default value of 5 if `foo` is `None`. Then, the `filter()` method is used to check if the value meets the condition. If it does, the original `Option` is returned. If not, `None` is returned.

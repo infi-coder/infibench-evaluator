@@ -1,0 +1,24 @@
+You need to specify the `go_package` option in your proto file. This option should be a full import path, which will be used if there are no more obvious ways to import it.
+
+Here's how you can modify your proto file:
+
+```protobuf
+syntax = "proto3";
+
+package main;
+
+option go_package = "github.com/yourusername/yourproject/yourpackage";
+
+message Person {
+    string name = 1;
+    int32 age = 2;
+}
+```
+
+Replace `"github.com/yourusername/yourproject/yourpackage"` with the actual path where you want the generated Go file to be placed.
+
+After you've done this, you should be able to generate the Go code with the same command:
+
+```bash
+protoc --go_out=. simple.proto
+```

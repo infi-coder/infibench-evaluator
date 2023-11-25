@@ -1,0 +1,7 @@
+The Rule of 5 is not outdated and is still relevant today. While it is true that implicit constructors and destructors work fine for aggregate data structures, there are cases where you need to define your own constructors and destructors.
+
+For example, if your class manages a resource such as memory or a file handle, you need to define your own destructor to properly release that resource. Similarly, if your class has non-copyable or non-movable members, you need to define your own copy and move constructors and assignment operators.
+
+While smart pointers can help manage resources, they are not always the best solution. In some cases, you may need more fine-grained control over the resource management, or you may need to use a different type of resource that is not supported by smart pointers.
+
+In summary, while the Rule of 5 may not apply to all classes, it is still an important guideline to follow when designing classes that manage resources or have non-copyable or non-movable members.

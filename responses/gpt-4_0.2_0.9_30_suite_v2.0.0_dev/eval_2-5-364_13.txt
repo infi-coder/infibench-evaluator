@@ -1,0 +1,19 @@
+If you want to use a specific version of Java with Maven, you can specify the Java version in the `JAVA_HOME` environment variable. The Maven Wrapper will use the version of Java specified in `JAVA_HOME`.
+
+Here's how you can do it:
+
+1. Find out the path to the Java version you want to use. This will be the directory that contains the `bin` directory where `java` executable is located. For example, it might be something like `/usr/lib/jvm/java-11-openjdk-amd64`.
+
+2. Set the `JAVA_HOME` environment variable to point to this directory. You can do this in the command line:
+
+```bash
+export JAVA_HOME=/path/to/your/jdk
+```
+
+Replace `/path/to/your/jdk` with the actual path to your JDK.
+
+3. Now, when you run the Maven Wrapper, it should use the specified version of Java.
+
+Please note that this will only set the `JAVA_HOME` for the current terminal session. If you want to set it permanently, you can add the `export` line to your shell profile file (like `~/.bashrc` or `~/.bash_profile` for Bash, `~/.zshrc` for Zsh).
+
+If you're using a CI/CD tool, you can usually set environment variables in the job configuration. Check the documentation for your specific tool to see how to do this.

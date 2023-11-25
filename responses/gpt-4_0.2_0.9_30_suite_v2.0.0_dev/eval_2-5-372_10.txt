@@ -1,0 +1,25 @@
+The issue you're experiencing is likely due to a version mismatch between the Hibernate Validator and the Bean Validation API. The `@NotEmpty` and `@NotBlank` annotations are part of the Bean Validation 2.0 API, which is supported by Hibernate Validator 6.0.0.Final and later.
+
+However, your logs indicate that you're using Hibernate Validator 5.3.5.Final-redhat-2, which only supports Bean Validation 1.1. This is why you're able to use the `@NotNull` and `@Size` annotations (which are part of Bean Validation 1.1), but not `@NotEmpty` or `@NotBlank`.
+
+To resolve this issue, you need to ensure that your project is using Hibernate Validator 6.0.0.Final or later. You can do this by adding the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.0.11.Final</version>
+</dependency>
+```
+
+You also need to ensure that your project is using the Bean Validation 2.0 API. You can do this by adding the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>javax.validation</groupId>
+    <artifactId>validation-api</artifactId>
+    <version>2.0.1.Final</version>
+</dependency>
+```
+
+If you're still experiencing issues after adding these dependencies, it's possible that there's a conflict with another dependency in your project. You can check for conflicts by running `mvn dependency:tree` in your project directory and looking for multiple versions of the same dependency. If you find any conflicts, you can resolve them by excluding the conflicting dependency from the dependencies that are pulling it in.

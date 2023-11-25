@@ -1,0 +1,28 @@
+One solution to this problem is to use multiprocessing instead of threading. Multiprocessing allows you to run multiple processes in parallel, which can be useful when dealing with infinite loops.
+
+Here's an example of how you can modify your code to use multiprocessing:
+
+```python
+import multiprocessing as mp
+
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+database=db.dataBase()
+homepage=hp.homepage(database)
+homepage.timeUpdateCallback(app)
+homepage.gaugeRefreshCallback(app)
+
+def run_data_mining():
+    dataMiningScript= fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    p1 = mp.Process(target=run_data_mining)
+    p1.start()
+    p2 = mp.Process(target=app.run_server, args=(dict(debug=True),))
+    p2.start()
+    p1.join()
+    p2.join()
+```
+
+In this code, we define a new function `run_data_mining` that runs the `financeData` script. We then create two processes, one for `run_data_mining` and one for `app.run_server`. We start both processes and then wait for them to finish using the `join` method.
+
+Note that the `debug=True` argument for `app.run_server` is passed as a dictionary to avoid a pickling error that can occur when passing arguments directly to a multiprocessing process.

@@ -1,0 +1,14 @@
+The `rename` function is used to rename the DataFrame's index or columns. However, when you use the `groupby` function and then calculate the mean, the result is a Series, not a DataFrame. The `rename` function for a Series only has a single argument, which is used to rename the Series itself, not the columns.
+
+Here is the function `renameDataFrame` which takes a DataFrame `df` as an argument and returns a DataFrame with the "p" column renamed as "mean" and the average numbers grouped by "t" column.
+
+```python
+import pandas as pd
+
+def renameDataFrame(df):
+    avg = df.groupby(["t"], sort=False)["p"].mean().reset_index()
+    avg.columns = ["t", "mean"]
+    return avg
+```
+
+In this function, `reset_index` is used to convert the Series to a DataFrame. Then, the `columns` attribute is used to rename the columns. The column "t" is the index after grouping, and the column "mean" is the mean of "p" grouped by "t".

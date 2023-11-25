@@ -1,0 +1,25 @@
+The error message you're seeing indicates that the response from the server is not valid JSON. The '<' character is the start of an HTML or XML tag, so it's possible that the server is returning an HTML error page instead of the JSON data you're expecting.
+
+Here are a few things you can do to troubleshoot this issue:
+
+1. Check the server-side code: Make sure that your `GetAllEmployees` method in `EmployeeRepository` is returning a list of `Employee` objects and not an error or exception.
+
+2. Check the URL: The URL you're using to make the request (`/api/Employee/Index`) should match the route defined in your `EmployeeController`. In your case, the route defined in the controller is `"[controller]"`, which means it will use the controller's name (without the "Controller" suffix) as the route. So, the correct URL should be `/Employee/Index` instead of `/api/Employee/Index`.
+
+3. Use `GetFromJsonAsync` method: In .NET 5.0 and later, the `GetJsonAsync` method is obsolete. You should use the `GetFromJsonAsync` method instead.
+
+Here is how you can modify your code:
+
+```csharp
+empList = await Http.GetFromJsonAsync<Employee[]>("/Employee/Index");
+```
+
+4. Check the response: If you're still having issues, you can use the `GetAsync` method to get the raw response from the server and check if it's valid JSON. Here's how you can do it:
+
+```csharp
+var response = await Http.GetAsync("/Employee/Index");
+var responseBody = await response.Content.ReadAsStringAsync();
+Console.WriteLine(responseBody);
+```
+
+This will print the response body to the console, which can help you identify what's going wrong. If the response is an HTML error page, you should see HTML tags in the output. If it's valid JSON, you should see a JSON array of `Employee` objects.

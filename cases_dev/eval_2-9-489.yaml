@@ -1,0 +1,13 @@
+# Corresponding to post https://stackoverflow.com/questions/67993633
+id: 2-9-489
+prompt_path: prompt_2-9-489.txt
+type: non-code debugging
+lang: ruby
+
+grading:  
+  max_score: 3.0
+  min_score: 0.0
+  keywords:
+    - "elasticsearch.yml"
+    - "xpack.security.enabled"
+    - "false"

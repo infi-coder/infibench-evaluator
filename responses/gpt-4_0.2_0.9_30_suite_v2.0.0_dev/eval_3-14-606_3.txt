@@ -1,0 +1,15 @@
+It seems like there's a misunderstanding here. iOS doesn't have a "Developer Mode" that you can enable or disable like Android. The alert you're seeing is likely related to the provisioning profile used to sign the app you're trying to install.
+
+If you're trying to install an app that's been signed with a developer provisioning profile, you'll need to trust the developer on your device. Here are the steps:
+
+1. After the app is installed, go to `Settings` > `General` > `Profiles` or `Profiles & Device Management`. You then see a profile for the developer under the "Developer App" heading.
+
+2. Tap the profile to establish trust for this developer. (An Internet connection is required to verify the app developer's certificate when establishing trust.)
+
+3. On the "Developer App" certificate page, tap `Trust "<Developer>"`.
+
+4. In the pop-up window, tap `Trust`.
+
+This process allows the iOS device to run apps made by the developer without querying the App Store. After you trust this certificate, you can manually install other apps from the same developer and open them immediately. This developer remains trusted until you use the `Delete App` button to remove all apps from the developer.
+
+If you're still having issues, it might be a problem with the provisioning profile used to sign the app. In that case, you'll need to contact the developer or re-sign the app with a valid provisioning profile.

@@ -1,0 +1,23 @@
+The error message suggests that the response from the server is not in the expected JSON format. It seems that the response starts with a '<' character, which is not valid JSON.
+
+One possible reason for this error is that the server is returning an HTML error page instead of the expected JSON data. To confirm this, you can try accessing the API endpoint directly in your browser and see if it returns the expected JSON data.
+
+If the API endpoint is returning the expected JSON data, then the issue may be with the way you are calling the API from your Blazor component. Here are a few things you can try:
+
+1. Make sure that the URL you are using to call the API is correct. In your code, you are using "/api/Employee/Index", which is a relative URL. If the API is hosted on a different domain or port, you may need to use an absolute URL instead.
+
+2. Try using the `HttpClient` class instead of the `Http` helper. Here's an example:
+
+```c#
+@inject HttpClient httpClient
+
+...
+
+empList = await httpClient.GetFromJsonAsync<Employee[]>("/api/Employee/Index");
+```
+
+3. Check if there are any CORS issues. If the API is hosted on a different domain or port, you may need to configure CORS on the server to allow requests from your Blazor app.
+
+4. Check if there are any network issues. Make sure that your Blazor app can reach the API endpoint and that there are no firewall or proxy issues.
+
+I hope this helps! Let me know if you have any further questions.

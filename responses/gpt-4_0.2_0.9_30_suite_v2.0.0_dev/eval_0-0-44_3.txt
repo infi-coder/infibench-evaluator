@@ -1,0 +1,24 @@
+The `index` option in the `@Prop` decorator should work as expected. However, you need to ensure that the indexes are actually being created in MongoDB. This is not done automatically when you define the schema, but you can do it manually by calling the `createIndexes` function on the model.
+
+Here is how you can do it:
+
+```javascript
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+@Injectable()
+export class MyService implements OnModuleInit {
+  constructor(@InjectModel('Schema') private readonly myModel: Model<Schema>) {}
+
+  async onModuleInit() {
+    await this.myModel.createIndexes();
+  }
+}
+```
+
+In this example, `MyService` implements the `OnModuleInit` interface, which means that the `onModuleInit` function will be called when the module is initialized. In this function, we call `createIndexes` on the model, which will create the indexes in MongoDB according to the schema definition.
+
+Remember to replace `'Schema'` with the actual name of your schema.
+
+Also, note that creating indexes can take some time if you have a lot of data in your collection, so it's usually a good idea to do this as part of a setup or migration script, and not every time your application starts.

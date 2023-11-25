@@ -1,0 +1,25 @@
+The error you're experiencing might be due to several reasons. Here are a few possible solutions:
+
+1. **Check SeleniumBasic and Browser Driver Version Compatibility**: Ensure that the version of SeleniumBasic you're using is compatible with the browser driver version. If not, you may need to either update or downgrade your SeleniumBasic or browser driver.
+
+2. **Check Excel References**: Go to `VBA Editor > Tools > References` and check if there are any missing references. If there are, try to locate and add them.
+
+3. **Reinstall SeleniumBasic**: Uninstall and reinstall the SeleniumBasic add-in. After reinstalling, make sure to add the reference to Selenium Type Library in VBA references.
+
+4. **Check Internet Explorer Settings**: Since you're using Internet Explorer (`driver.Start "ie"`), make sure that the version of IE installed on your machine is compatible with the SeleniumBasic version you're using. Also, check if the necessary settings are enabled in Internet Explorer (like enabling Protected Mode in all zones).
+
+5. **Try Using a Different Browser**: If none of the above solutions work, try using a different browser. For example, you can try using Chrome or Firefox and see if the error persists.
+
+Here's an example of how to use Chrome:
+
+```vba
+Dim driver As New WebDriver
+
+driver.Start "chrome"
+driver.Window.Maximize
+driver.Get "https://www.google.com/"
+```
+
+Remember to have the corresponding browser driver (like `chromedriver.exe` for Chrome) in the SeleniumBasic installation directory.
+
+If the error persists, please provide the exact error message you're getting. It will help in diagnosing the problem more accurately.

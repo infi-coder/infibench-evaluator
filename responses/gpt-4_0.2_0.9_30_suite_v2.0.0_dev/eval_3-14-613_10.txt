@@ -1,0 +1,15 @@
+This error usually occurs when Xcode can't find the target for the SwiftUI preview. Here are some steps you can try to fix it:
+
+1. **Ensure the file is part of the target**: In Xcode, select the file that contains your `ContentView_Previews` struct. In the file inspector on the right, under "Target Membership", make sure your app's target is checked.
+
+2. **Clean the build folder**: Go to `Product > Clean Build Folder` or press `Shift + Command + K`.
+
+3. **Restart Xcode**: Sometimes, Xcode can get into a weird state, and a simple restart can fix the problem.
+
+4. **Reset iOS Simulator**: If you're using a simulator, try resetting it. Go to `Simulator > Reset Content and Settings...`.
+
+5. **Update Xcode**: If you're not on the latest version of Xcode, consider updating. Apple often fixes bugs in new releases.
+
+6. **Create a new SwiftUI View**: If none of the above works, try creating a new SwiftUI View and see if the preview works there. If it does, you can move your code over to the new file.
+
+Remember to rebuild your project after each step to check if the problem is resolved.

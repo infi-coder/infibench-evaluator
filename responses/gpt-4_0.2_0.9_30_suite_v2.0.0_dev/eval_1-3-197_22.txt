@@ -1,0 +1,21 @@
+You can achieve this by using the `itertools.cycle` function, which returns an iterator that produces elements from the iterable until it is exhausted, then repeats the sequence indefinitely.
+
+Here is the function `fillColumn` in Python:
+
+```python
+import pandas as pd
+import itertools
+
+def fillColumn(df, columnName, columnData):
+    df[columnName] = list(itertools.islice(itertools.cycle(columnData), len(df)))
+    return df
+```
+
+You can use this function like this:
+
+```python
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+```
+
+This function will fill the `names` column of the DataFrame `df` with the values in `my_list` in a repeating cycle until all rows in the DataFrame are filled.

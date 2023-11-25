@@ -1,0 +1,24 @@
+You can remove the timezone from a datetime column in a DataFrame by using the `dt.tz_localize(None)` function. Here is a function that does this:
+
+```python
+def removeTimezone(df):
+    # Check if 'time' column exists in the DataFrame
+    if 'time' in df.columns:
+        # Remove timezone
+        df['time'] = df['time'].dt.tz_localize(None)
+    return df
+```
+
+This function checks if the 'time' column exists in the DataFrame. If it does, it removes the timezone from the datetime objects in that column. The DataFrame is then returned with the timezone removed from the 'time' column.
+
+Please replace 'time' with your actual column name if it's different. If you have multiple columns with timezone, you can loop through them:
+
+```python
+def removeTimezone(df):
+    for col in df.columns:
+        if df[col].dtype.name == 'datetime64[ns, UTC]':
+            df[col] = df[col].dt.tz_localize(None)
+    return df
+```
+
+This function will remove timezone from all datetime columns with timezone.

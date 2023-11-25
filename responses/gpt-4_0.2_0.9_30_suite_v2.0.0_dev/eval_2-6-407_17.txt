@@ -1,0 +1,35 @@
+The error message you're seeing indicates that the response from your API call is not valid JSON. The '<' character at the start of the response suggests that you might be getting an HTML response, possibly an error page.
+
+The issue might be due to the route configuration of your API. In your API controller, you've defined the route as "[controller]" and then for your Index method, you've defined the route as "api/Employee/Index". This might be causing the issue because the final route would be "/Employee/api/Employee/Index" which is probably not what you want.
+
+Try changing your API controller to:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+    [HttpGet]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+And then in your Blazor app, you can call the API like this:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("api/Employee");
+```
+
+This way, your API route will be "/api/Employee" which is a more standard convention.
+
+Also, please note that `GetJsonAsync` method is obsolete since .NET 5.0. It's recommended to use `GetFromJsonAsync` method instead:
+
+```csharp
+empList = await Http.GetFromJsonAsync<Employee[]>("api/Employee");
+```
+
+Remember to add `using System.Net.Http.Json;` at the top of your file to use `GetFromJsonAsync`.

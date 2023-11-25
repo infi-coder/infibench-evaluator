@@ -1,0 +1,16 @@
+Tailwind CSS is a utility-first CSS framework for rapidly building custom user interfaces. It doesn't provide a direct way to target child elements like you would do in traditional CSS with selectors like `div.section > div`.
+
+Tailwind CSS operates by providing utility classes that you apply directly to your HTML elements. So, you would add classes to the child `div` elements directly.
+
+Here's an example:
+
+```html
+<div class="section">
+  <div class="bg-blue-500 text-white">Child 1</div>
+  <div class="bg-red-500 text-white">Child 2</div>
+</div>
+```
+
+In this example, `bg-blue-500` and `bg-red-500` are Tailwind CSS utility classes that set the background color of the `div` elements. `text-white` is a utility class that sets the text color.
+
+If you need to apply styles based on some hierarchy or context, you would need to use JavaScript or a JavaScript framework to dynamically add or remove Tailwind CSS classes based on your conditions.

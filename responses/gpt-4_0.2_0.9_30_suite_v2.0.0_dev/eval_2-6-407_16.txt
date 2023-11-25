@@ -1,0 +1,36 @@
+The error message you're seeing is typically caused by the server returning HTML when JSON is expected. This can happen if the server returns an error page or if the requested URL is not found.
+
+The first thing to check is the URL you're using to make the request. In your `EmployeeController`, you've defined the route as `api/Employee/Index`, but you've also added a `[Route("[controller]")]` attribute to the controller itself. This means the actual URL for the `Index` method is `/Employee/api/Employee/Index`.
+
+To fix this, you can remove the `api/Employee` part from the `HttpGet` attribute, like this:
+
+```csharp
+[ApiController]
+[Route("[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+    [HttpGet]
+    [Route("Index")]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+Then, in your Blazor code, you should be able to call the API like this:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("/Employee/Index");
+```
+
+If you're still having issues, you might want to check the response from the server to see if it's returning the expected JSON. You can do this by making the HTTP request manually and reading the response as a string:
+
+```csharp
+var response = await Http.GetAsync("/Employee/Index");
+var responseText = await response.Content.ReadAsStringAsync();
+Console.WriteLine(responseText);
+```
+
+This will print the response from the server to the console, which should help you debug the issue. If the response is not valid JSON, you'll need to check your server code to see why it's not returning the expected data.

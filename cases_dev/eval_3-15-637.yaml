@@ -1,0 +1,32 @@
+# Corresponding to post https://stackoverflow.com/questions/65918864
+id: 3-15-637
+# for case self identificaton
+
+prompt_path: prompt_3-15-637.txt
+# relative path to the prompt text
+
+type: code debugging
+# type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: vba
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  keywords:
+    - content: implementation
+    - content: androidx.work:work-runtime-ktx:2.7.1

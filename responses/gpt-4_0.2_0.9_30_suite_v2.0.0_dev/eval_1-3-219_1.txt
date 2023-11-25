@@ -1,0 +1,15 @@
+There could be several reasons why you're unable to start a Jupyter notebook on VS Code. Here are a few steps you can take to troubleshoot this issue:
+
+1. **Check your Python interpreter**: Make sure you have selected the correct Python interpreter for your virtual environment. You can do this by clicking on the Python version in the bottom left corner of the VS Code status bar and selecting the interpreter that corresponds to your virtual environment.
+
+2. **Check your Jupyter server**: Try starting your Jupyter server manually from the command line using the command `jupyter notebook`. If there are any issues with your Jupyter installation, they should become apparent here.
+
+3. **Reinstall Jupyter**: If you're still having issues, try reinstalling Jupyter in your virtual environment. You can do this by activating your virtual environment and running the command `pip install jupyter`.
+
+4. **Check your VS Code settings**: Make sure that the setting `python.dataScience.jupyterServerURI` is set to `"local"` (the default value). If it's set to something else, VS Code might be trying to connect to a remote Jupyter server and failing.
+
+5. **Check your firewall settings**: If you're still having issues, it's possible that your firewall is blocking the connection to the Jupyter server. You can try temporarily disabling your firewall to see if this resolves the issue.
+
+6. **Check for conflicting extensions**: If you have other Python-related extensions installed, they might be conflicting with the Python extension's ability to start a Jupyter server. Try disabling other extensions to see if this resolves the issue.
+
+If none of these steps work, please provide more information about your setup (e.g., the exact version of VS Code and the Python extension you're using, any error messages you're seeing in the VS Code output or developer console, etc.) so we can help you troubleshoot further.

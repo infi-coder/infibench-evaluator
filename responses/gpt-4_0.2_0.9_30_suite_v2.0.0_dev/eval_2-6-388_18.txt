@@ -1,0 +1,27 @@
+The `[Keyless]` attribute is not part of `System.ComponentModel.DataAnnotations`. It is part of the `Microsoft.EntityFrameworkCore` namespace. 
+
+You need to make sure that you have the correct version of Entity Framework Core installed, as the `[Keyless]` attribute was introduced in EF Core 5.0. 
+
+If you are using a version prior to EF Core 5.0, you can use the `[NotMapped]` attribute instead, or you can use the `modelBuilder` in your `DbContext` to configure the entity as a view or a query type.
+
+Here is how you can do it:
+
+```c#
+public class MyDbContext : DbContext
+{
+    public DbSet<MyKeylessClass> KeylessModel { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<MyKeylessClass>().HasNoKey().ToView(null);
+    }
+}
+```
+
+In this code, `HasNoKey()` method is used to define the entity as keyless and `ToView(null)` method is used to tell EF Core that this entity is not mapped to any database table or view.
+
+Remember to add the following using statement:
+
+```c#
+using Microsoft.EntityFrameworkCore;
+```

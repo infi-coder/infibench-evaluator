@@ -1,0 +1,16 @@
+Sure, here is a bash script to install a specific version of Python using brew:
+
+```bash
+#!/bin/bash
+
+# Unlink the current python version
+brew unlink python
+
+# Install python 3.6.5
+brew install python@3.6
+
+# Link python 3.6.5
+brew link --force python@3.6
+```
+
+Please note that this script will unlink the current version of Python you have installed. If you have other versions of Python installed, you may need to adjust the script accordingly.

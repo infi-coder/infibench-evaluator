@@ -1,0 +1,5 @@
+I have a tensor `inps`, which has a size of [64, 161, 1] and I have some new data `d` which has a size of [64, 161]. How can I add `d` to `inps` such that the new size is [64, 161, 2]?
+
+Please write a function `addTensor` in Python, which takes two pytorch tensors `inps` and `d` as arguments, which are defined above, and returns the pytorch tensor I needed.
+
+Function signature is: `addTensor(inps, d)`

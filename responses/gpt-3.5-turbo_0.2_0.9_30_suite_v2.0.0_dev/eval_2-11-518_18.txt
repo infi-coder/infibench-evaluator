@@ -1,0 +1,7 @@
+The Rule of 5 is not outdated, as it is still relevant in modern C++. While it is true that implicit constructors and destructors work fine for aggregate data structures, there are cases where you need to define your own constructors and destructors.
+
+For example, if your class manages a resource such as memory or a file handle, you will need to define your own destructor to properly release that resource. Similarly, if your class has non-trivial member variables, you may need to define your own copy constructor, copy assignment operator, move constructor, or move assignment operator to properly handle those members.
+
+While it is true that smart pointers can be used to manage resources, there are cases where you may not want to use them. For example, if you are writing a library and you want to give users the flexibility to manage resources themselves, you may not want to force them to use smart pointers.
+
+In summary, while implicit constructors and destructors work fine for simple cases, there are still cases where you need to define your own constructors and destructors. The Rule of 5 is still relevant in modern C++.

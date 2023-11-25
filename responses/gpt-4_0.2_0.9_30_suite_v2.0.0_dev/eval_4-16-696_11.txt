@@ -1,0 +1,9 @@
+The issue is that the shell evaluates `$(echo {} | sed 's/\?.*//g')` before `find` is executed, so it doesn't replace `{}` with the actual file name. You can solve this by using a shell script or a shell function. Here is an example using a bash shell script:
+
+```bash
+find . -type f -name '*\?*' | while read file; do
+    mv -- "$file" "${file%%\?*}"
+done
+```
+
+This script uses a while loop to read each file name output by `find`. The `mv` command renames each file, and `${file%%\?*}` removes the `?` and everything after it from the file name. The `--` in the `mv` command is used to prevent file names starting with `-` from being treated as options.

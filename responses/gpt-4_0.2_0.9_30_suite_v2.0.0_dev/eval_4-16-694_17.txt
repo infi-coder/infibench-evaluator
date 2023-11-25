@@ -1,0 +1,15 @@
+You can use `awk` to extract the language code. Here is an example:
+
+```bash
+curl -Ls stick-it.app | awk -F 'lang="' '{print $2}' | awk -F '"' '{print $1}' | head -1
+```
+
+This command will fetch the page content, split the content by `lang="`, then split the result by `"`, and finally print the first part which is the language code.
+
+However, this command will fail if the `lang` attribute is not in the first line of the HTML. To handle this, you can use `grep` with a Perl-style regular expression (`-P`) and `-o` to only output the match:
+
+```bash
+curl -Ls stick-it.app | grep -oP '(?<=lang=")[^"]*'
+```
+
+This command will fetch the page content, then find the string that is immediately after `lang="` and before the next `"`. The `(?<=lang=")` is a positive lookbehind assertion which means "match a string that is preceded by `lang="`", and `[^"]*` means "match any number of characters that are not `"`.

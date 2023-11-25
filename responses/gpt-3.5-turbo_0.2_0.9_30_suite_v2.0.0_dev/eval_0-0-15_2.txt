@@ -1,0 +1,21 @@
+To mock the `API` class and eliminate the `TypeError`, you can use the `jest.fn()` method to create a mock implementation of the class constructor and its methods. Here's an example:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {
+      someMethod: jest.fn()
+    };
+  });
+});
+
+// Now you can create a new instance of the mocked API class
+const api = new API();
+
+// You can also call its methods
+api.someMethod();
+```
+
+In this example, we're using `jest.fn()` to create a mock implementation of the `API` class constructor. We're then returning an object with a `someMethod` method that is also a mock function created with `jest.fn()`. This allows us to test that the `someMethod` method is called correctly without actually executing its implementation.

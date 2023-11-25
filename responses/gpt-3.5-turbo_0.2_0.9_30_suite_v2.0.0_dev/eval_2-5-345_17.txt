@@ -1,0 +1,17 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven than the one used to generate the project. To fix this issue, you can try the following steps:
+
+1. Go to File -> Settings -> Build, Execution, Deployment -> Build Tools -> Maven -> Importing.
+2. Change the "Maven home directory" to the location of the Maven installation used to generate the project.
+3. Click "OK" to save the changes.
+4. Re-import the Maven project.
+
+If the above steps do not work, you can try updating the Maven version used by IntelliJ IDEA. To do this, follow these steps:
+
+1. Go to File -> Settings -> Build, Execution, Deployment -> Build Tools -> Maven.
+2. Click the "Add" button to add a new Maven installation.
+3. Enter the path to the latest version of Maven that you have installed.
+4. Click "OK" to save the changes.
+5. Select the new Maven installation from the dropdown list.
+6. Re-import the Maven project.
+
+If none of the above steps work, you can try deleting the `.idea` folder and the `target` folder in your project directory and then re-importing the project.

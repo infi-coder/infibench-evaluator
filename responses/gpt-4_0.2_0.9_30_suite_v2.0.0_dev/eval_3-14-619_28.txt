@@ -1,0 +1,23 @@
+Your code seems fine, but the issue might be that you're trying to test the `@Binding` behavior in the SwiftUI preview. The SwiftUI preview doesn't always reflect state changes correctly.
+
+Try running your code in a simulator or on a real device. If you want to test it in the preview, you need to wrap your `ContentView` in another view that owns the `@State`.
+
+Here's an example:
+
+```swift
+struct TestView: View {
+    @State private var selected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $selected)
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        TestView()
+    }
+}
+```
+
+In this example, `TestView` owns the `@State` and `ContentView` receives it as a `@Binding`. This should reflect changes in the SwiftUI preview.

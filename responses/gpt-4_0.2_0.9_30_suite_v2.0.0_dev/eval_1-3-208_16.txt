@@ -1,0 +1,16 @@
+Sure, I can help with that. The issue with your code is that you're checking if the entire input string is within the `correct` string, not if each individual character is within `correct`. 
+
+Here is the corrected code:
+
+```python
+import string
+
+def checkString(text):
+    correct = string.ascii_letters + string.digits
+    for char in text:
+        if char not in correct:
+            return False
+    return True
+```
+
+This function will return `True` if all characters in the input string are either a letter (uppercase or lowercase) or a digit, and `False` otherwise.

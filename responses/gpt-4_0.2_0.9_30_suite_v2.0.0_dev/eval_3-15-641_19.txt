@@ -1,0 +1,20 @@
+You can use the `Environ` function in VBA to get the local path of the OneDrive folder. The `Environ` function returns the string associated with an operating system environment variable. 
+
+Here is a simple example of how you can get the local path of the OneDrive folder:
+
+```vba
+Sub GetOneDrivePath()
+
+    Dim OneDrivePath As String
+    OneDrivePath = Environ("OneDrive")
+    
+    MsgBox OneDrivePath
+
+End Sub
+```
+
+This will return the local path of the OneDrive folder. From there, you can append your specific folder paths.
+
+However, please note that this will only work if the user has set up OneDrive on their local machine and it is syncing correctly. Also, the path returned will be the root path of the OneDrive folder, so you will need to append the rest of the path to your specific SharePoint folder.
+
+As for the issue of users syncing folders at different levels, you might need to enforce a standard for how users set up their local OneDrive sync settings. This could be part of your user training or setup documentation.

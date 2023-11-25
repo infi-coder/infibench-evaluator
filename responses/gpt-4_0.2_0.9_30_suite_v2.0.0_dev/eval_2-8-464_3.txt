@@ -1,0 +1,21 @@
+The error message `fork/exec /var/task/main: no such file or directory` is indicating that AWS Lambda is unable to find the executable file. This is likely due to the fact that you're building the Go binary on a Windows machine, which will not be compatible with the Linux environment that AWS Lambda uses.
+
+To solve this issue, you need to cross-compile your Go code for a Linux environment. You can do this by setting the `GOOS` and `GOARCH` environment variables before building your Go code. Here's how you can do it:
+
+```bash
+SET GOOS=linux
+SET GOARCH=amd64
+go build -o main main.go
+```
+
+This will create a `main` binary that is compatible with the Linux environment used by AWS Lambda.
+
+After that, you need to zip the `main` binary (not `main.exe`) and upload it to AWS Lambda:
+
+```bash
+zip function.zip main
+```
+
+Then, upload `function.zip` to AWS Lambda and set the handler name to `main`.
+
+This should solve the issue and your Lambda function should be able to execute the Go code without any problems.

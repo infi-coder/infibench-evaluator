@@ -1,0 +1,13 @@
+The error message you're seeing is due to a known issue with Java 8u20 and later on Windows, where the handling of quotes in command line arguments has changed. This can cause problems when trying to run certain commands from within Java applications, like NetBeans.
+
+Here's a workaround that you can try:
+
+1. Open the `mvn.cmd` file located at `C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\`.
+
+2. Look for the line that starts with `"%JAVA_HOME%\bin\java"`.
+
+3. Replace the double quotes around `%JAVA_HOME%\bin\java` with double double quotes, like this: `""%JAVA_HOME%\bin\java""`.
+
+4. Save the file and try to build your project again.
+
+This should allow the command to be run correctly. If you're still having problems, you might need to adjust the quotes in other parts of the command as well.

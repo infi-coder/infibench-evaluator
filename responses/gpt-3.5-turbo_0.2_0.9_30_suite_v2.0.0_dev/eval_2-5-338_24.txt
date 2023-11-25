@@ -1,0 +1,25 @@
+The error message indicates that Jackson (the JSON serializer/deserializer used by Spring) cannot serialize the `ByteArrayInputStream` object that is part of the `MultipartFile` object. 
+
+To solve this issue, you can configure Jackson to ignore the `ByteArrayInputStream` property by adding the following line to your application's configuration:
+
+```java
+objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+```
+
+This will disable the `SerializationFeature.FAIL_ON_EMPTY_BEANS` feature, which causes Jackson to throw an exception when it encounters an empty bean (i.e. a class with no properties). By disabling this feature, Jackson will simply ignore the `ByteArrayInputStream` property and continue serializing the rest of the object.
+
+To add this configuration to your application, you can create a bean of type `ObjectMapper` and configure it in a `@Configuration` class:
+
+```java
+@Configuration
+public class JacksonConfig {
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        return objectMapper;
+    }
+}
+```
+
+This will create a new `ObjectMapper` bean with the `FAIL_ON_EMPTY_BEANS` feature disabled, which can be used by Spring to serialize/deserialize JSON objects.

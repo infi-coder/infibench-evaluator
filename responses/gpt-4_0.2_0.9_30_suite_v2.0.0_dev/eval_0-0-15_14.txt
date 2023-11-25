@@ -1,0 +1,14 @@
+Sure, the issue is that you are returning an object from your mock, but you are trying to use it as a class. You should return a function that returns an object instead. Here's the revised version:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  // Returns a function that returns an object
+  return jest.fn().mockImplementation(() => {
+    return {someMethod: () => {}};
+  });
+});
+```
+
+Now, `const api = new API()` should work as expected.

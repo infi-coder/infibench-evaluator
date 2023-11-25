@@ -1,0 +1,20 @@
+The issue seems to be with the way you are copying your files into the Docker container. You are copying your `requirements.txt` to the root directory `/` and then your `app` directory to `/app`. However, when you run your application, it's looking for the `app` module in the root directory, not in the `/app` directory where you copied it.
+
+Here's how you can revise your Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --requirement requirements.txt
+
+COPY ./app .
+
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+This Dockerfile sets the working directory to `/app` and then copies the `requirements.txt` and `app` directory into the `/app` directory. The `.` in the `COPY` commands refers to the current directory, which is `/app` in this case.
+
+Then, when you run your application, it will look for the `app` module in the current directory, which is where you copied it.

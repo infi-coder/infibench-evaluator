@@ -1,0 +1,13 @@
+Sure, the problem is that you're mocking the `API` class as an object, not as a class. Here's how you can fix it:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {someMethod: () => {}};
+  });
+});
+```
+
+In this revised version, `jest.fn().mockImplementation()` is used to mock the `API` class. This way, you can create an instance of the `API` class without any issues.

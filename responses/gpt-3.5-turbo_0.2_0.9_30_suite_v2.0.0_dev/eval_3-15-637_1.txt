@@ -1,0 +1,21 @@
+The issue might be related to the compatibility of the Selenium WebDriver with the version of Internet Explorer installed on your machine. Excel 2019 comes with Internet Explorer 11, which might not be fully compatible with the Selenium WebDriver.
+
+You can try the following steps to resolve the issue:
+
+1. Make sure that the Selenium WebDriver is compatible with Internet Explorer 11. You can check the compatibility matrix on the Selenium website.
+
+2. Try running the code with a different browser, such as Chrome or Firefox, to see if the issue persists.
+
+3. Make sure that the Selenium add-in is enabled in Excel. You can check this by going to File > Options > Add-ins > Manage: Excel Add-ins > Go, and making sure that the Selenium add-in is checked.
+
+4. Try re-registering the Selenium add-in by running the following command in Command Prompt as an administrator:
+
+```
+regsvr32 "C:\path\to\SeleniumWrapper.dll"
+```
+
+Replace "C:\path\to\" with the actual path to the SeleniumWrapper.dll file.
+
+5. If none of the above steps work, you can try downgrading to Excel 2013 or upgrading to a newer version of Selenium WebDriver that is compatible with Internet Explorer 11.
+
+I hope this helps!

@@ -1,0 +1,12 @@
+Tying to install a Laravel 9 project.
+
+Updated Composer from 2.0.8 to 2.3.10
+
+Running
+```bash
+composer create-project laravel/laravel blog "9.*"
+```
+
+Gives me :
+```
+Could not find package laravel/laravel with version 9.* in a version installable using your PHP version, PHP extens ions and Composer version.

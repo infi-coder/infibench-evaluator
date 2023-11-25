@@ -1,0 +1,13 @@
+Sure, I can help with that. The problem with your code is that you're checking if the entire input string is in the `correct` string, not if each character of the input string is in the `correct` string. 
+
+Here's a function that should work:
+
+```python
+import string
+
+def checkString(text):
+    correct = set(string.ascii_letters + string.digits)
+    return set(text).issubset(correct)
+```
+
+This function works by converting both the `correct` string and the input string to sets, and then checking if the set of characters in the input string is a subset of the `correct` set. This will return `True` if all characters in the input string are in the `correct` string, and `False` otherwise.

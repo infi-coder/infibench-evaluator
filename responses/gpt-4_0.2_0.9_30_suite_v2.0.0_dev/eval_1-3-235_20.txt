@@ -1,0 +1,11 @@
+The error you're encountering is due to the presence of floating point values in your 'year' column. The `.astype(int)` method is unable to handle these, hence the ValueError. 
+
+To solve this, you can first convert the 'year' column to float using `.astype(float)`, then convert to integer. Here's how you can modify your function:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].astype(float).astype(int)
+    return data_h_df
+```
+
+This function will first convert the 'year' column to float, effectively handling any floating point values, and then convert the float to integer.

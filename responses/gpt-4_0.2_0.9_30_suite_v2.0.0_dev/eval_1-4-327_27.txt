@@ -1,0 +1,15 @@
+In R, when you bind two data frames with the same column names using `cbind()`, it actually makes the column names unique by adding a suffix. So, in your case, the column names of `d3` would be `a` and `a.1`.
+
+You can select the second column by its name as follows:
+
+```r
+second_col <- d3$a.1
+```
+
+However, if you still want to select the second column by its original name, you can use the `duplicated()` function in combination with the column names:
+
+```r
+second_col <- d3[,which(duplicated(names(d3)))]
+```
+
+This will select the second column with the name `a` and assign it to the variable `second_col`.

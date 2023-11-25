@@ -1,0 +1,37 @@
+## CSRF Token Mismatch
+
+The CSRF token mismatch issue could be due to a number of reasons. Here are a few things you can check:
+
+1. **Domain Configuration**: Make sure your domain is correctly configured. If you have a `www` in your domain name, make sure you are accessing your site with `www`. If not, the session will not be recognized and a new one will be created.
+
+2. **Cookie Configuration**: Check your `config/session.php` file and make sure the `domain` and `path` are correctly set. The `domain` should match your domain and the `path` should be `/`.
+
+3. **Middleware**: Ensure that the `VerifyCsrfToken` middleware is included in your `app/Http/Kernel.php` file.
+
+4. **HTTPS**: If your site is served over HTTPS, make sure your `config/session.php` file has `secure` set to `true`.
+
+5. **Session Driver**: If you are using a different session driver, make sure it is correctly configured and working properly.
+
+## SMTP Email Sending
+
+The error you're getting is related to the SSL version used by the SMTP server. Here are a few things you can try:
+
+1. **Change Encryption**: Try changing `MAIL_ENCRYPTION` from `ssl` to `tls` in your `.env` file. Some servers use `tls` instead of `ssl`.
+
+2. **Change Port**: Try changing `MAIL_PORT` from `587` to `465` in your `.env` file. Port `465` is usually used with `ssl` and port `587` is usually used with `tls`.
+
+3. **Check SSL Version**: Check with your hosting provider or the email service provider to see which SSL version they are using. You might need to specify the SSL version in your mail configuration.
+
+4. **Disable SSL Verification**: As a last resort, you can try disabling SSL verification. This is not recommended for production environments as it can make your application vulnerable to man-in-the-middle attacks. You can disable SSL verification by adding the following code to your `mail.php` configuration file:
+
+```php
+'stream' => [
+    'ssl' => [
+        'allow_self_signed' => true,
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+    ],
+],
+```
+
+Remember to clear your configuration cache by running `php artisan config:clear` after making changes to your `.

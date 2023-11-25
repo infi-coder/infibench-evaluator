@@ -1,0 +1,15 @@
+You can use the `iter()` method to create an iterator over the vector, and then use the `min()` method to find the minimum value. Here is how you can do it:
+
+```rust
+let mut v = vec![5, 6, 8, 4, 2, 7];
+let min = v.iter().min();
+
+match min {
+    Some(min) => println!("Minimum value is {}", min),
+    None => println!("Vector is empty"),
+}
+```
+
+In this code, `v.iter().min()` returns an `Option` that contains the minimum value if the vector is not empty, or `None` if it is. The `match` statement is then used to handle both possibilities.
+
+Note that `min()` returns a reference to the minimum value, not the value itself. If you want the value, you can dereference it using `*`.

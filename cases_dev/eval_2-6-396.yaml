@@ -1,0 +1,20 @@
+id: 2-6-396
+prompt_path: prompt_2-6-396.txt
+type: code debugging
+lang: c#
+grading:
+  blank_filling:
+    template: "You can change
+```c#
+[blank]
+```
+to
+```c#
+[blank]
+```"
+    escape: " '\"\n`"
+    targets:
+      - content:
+        - 'user.HasIndex(x => x.Gender)'
+      - content:
+        - 'user.HasIndex(x => x.GenderId)'

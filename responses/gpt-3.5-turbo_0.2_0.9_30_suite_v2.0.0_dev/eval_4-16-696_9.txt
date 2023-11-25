@@ -1,0 +1,8 @@
+Your `sed` command is not correctly removing the `?` and everything after it. Instead of `s/\?.*//g`, try using `s/\?.*$//g`. This should remove the `?` and everything after it. 
+
+Also, the `mv` command is not working because the source and destination filenames are the same. You can try using the `-i` option with `mv` to prompt before overwriting files with the same name. 
+
+Here's the updated command:
+```
+find . -type f -name '*\?*' -exec sh -c 'mv "$1" "$(echo "$1" | sed "s/\?.*$//g")"' sh {} \;
+```

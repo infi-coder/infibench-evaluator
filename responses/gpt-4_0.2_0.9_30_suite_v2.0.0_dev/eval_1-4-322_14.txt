@@ -1,0 +1,35 @@
+You can achieve this by using the `split` function from base R along with the `pull` function from `tidyverse`. Here is how you can define your function:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>% 
+    split(.$list_names) %>% 
+    map(~ pull(., list_values))
+}
+```
+
+In this function, `split` is used to split the data frame into a list of data frames based on the `list_names` column. Then, `map` is used to apply the `pull` function to each data frame in the list, extracting the `list_values` column.
+
+Here is how you can use this function with your data:
+
+```r
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+                  list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+```
+
+This will give you the desired output:
+
+```r
+$Chevy
+[1] "Equinox"
+
+$Dodge
+[1] "Caravan" "Ram"    
+
+$Ford
+[1] "Ranger"   "F150"     "Explorer"
+```

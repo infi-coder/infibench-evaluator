@@ -1,0 +1,18 @@
+Sure, here is a recursive function that will traverse the tree and return the object with the matching `id`:
+
+```javascript
+function findObject(id, node) {
+    if (node.id === id) {
+        return node;
+    }
+    for (let i = 0; i < node.child.length; i++) {
+        const found = findObject(id, node.child[i]);
+        if (found) {
+            return found;
+        }
+    }
+    return null;
+}
+```
+
+This function starts by checking if the current node's `id` matches the target `id`. If it does, it returns the current node. If it doesn't, it iterates over the `child` array and recursively calls `findObject` on each child. If a match is found in a subtree, it is returned immediately. If no match is found after checking all children, the function returns `null`.

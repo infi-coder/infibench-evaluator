@@ -1,0 +1,36 @@
+The issue you are facing is due to the conflict between the Node.js installed in your Windows system and the Node.js installed in your WSL2: Ubuntu 20.04.
+
+When you run the `npm -v` command, it's trying to execute the npm installed in your Windows system (`/mnt/c/Program Files/nodejs/npm`) which will not work in the WSL2 environment.
+
+To solve this issue, you need to remove the Windows system paths from the WSL2 environment. You can do this by editing the `.bashrc` or `.bash_profile` file in your home directory.
+
+Open the `.bashrc` file:
+
+```bash
+nano ~/.bashrc
+```
+
+Add the following lines at the end of the file:
+
+```bash
+# remove /mnt/c/Program Files/nodejs from PATH
+export PATH=$(echo "$PATH" | sed -e 's/:\/mnt\/c\/Program Files\/nodejs//g')
+```
+
+Save the file and exit. Then, source the `.bashrc` file to apply the changes:
+
+```bash
+source ~/.bashrc
+```
+
+Now, when you run `npm -v`, it should execute the npm installed in your WSL2: Ubuntu 20.04.
+
+If you still face the issue, you might need to reinstall `nodejs` and `npm` in your WSL2 environment:
+
+```bash
+sudo apt-get purge nodejs npm
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+This will install Node.js v14.x which comes with npm. You can replace `14.x` with your desired version.

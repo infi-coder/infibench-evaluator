@@ -1,0 +1,5 @@
+Your `sed` command is not correctly removing the `?` and the rest of the string. Instead of using `.*` which matches any character, you should use `[^?]*` which matches any character except `?`. Try this command instead:
+```
+find . -type f -name '*\?*' -exec sh -c 'mv "$1" "${1/\?[^?]*}"' sh {} \;
+``` 
+This should remove the `?` and everything after it in the filename.

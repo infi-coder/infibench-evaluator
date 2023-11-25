@@ -1,0 +1,29 @@
+You can use multiprocessing to run both scripts simultaneously. Here's an example of how you can modify your code to achieve this:
+
+```python
+import multiprocessing
+
+def run_data_mining(database):
+    dataMiningScript = fd.financeData(database, 1600)
+    dataMiningScript.run()
+
+if __name__ == "__main__":
+    database = db.dataBase()
+    homepage = hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+
+    app.layout = homepage.layoutMaker()
+
+    # Create a new process for data mining script
+    data_mining_process = multiprocessing.Process(target=run_data_mining, args=(database,))
+    data_mining_process.start()
+
+    # Run the web app in the main process
+    app.run_server(debug=True)
+
+    # Wait for the data mining process to finish
+    data_mining_process.join()
+```
+
+In this modified code, we define a new function `run_data_mining` that runs the `financeData` script in a loop. We then create a new process for this function using `multiprocessing.Process` and start it. Finally, we run the web app in the main process and wait for the data mining process to finish using `data_mining_process.join()`. This way, both scripts can run simultaneously without interfering with each other.

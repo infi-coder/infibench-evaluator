@@ -1,0 +1,26 @@
+You can use the Windows API function `SHGetKnownFolderPath` to retrieve the local path of the OneDrive folder. Here's an example code snippet:
+
+```
+Option Explicit
+
+Private Declare PtrSafe Function SHGetKnownFolderPath Lib "shell32.dll" _
+    (ByRef rfid As Any, ByVal dwFlags As Long, ByVal hToken As LongPtr, ByRef pszPath As Any) As Long
+
+Private Const FOLDERID_SkyDrive As String = "{A52BBA46-E9E1-435f-B3D9-28DAA648C0F6}"
+Private Const KNOWN_FOLDER_FLAG_SIMPLE_IDLIST As Long = &H1000
+
+Sub GetOneDriveLocalPath()
+    Dim path As String
+    Dim hr As Long
+    
+    hr = SHGetKnownFolderPath(StrPtr(FOLDERID_SkyDrive), KNOWN_FOLDER_FLAG_SIMPLE_IDLIST, 0, path)
+    
+    If hr = 0 Then
+        MsgBox "OneDrive local path: " & path
+    Else
+        MsgBox "Failed to retrieve OneDrive local path"
+    End If
+End Sub
+```
+
+This code retrieves the local path of the OneDrive folder using its known folder ID (`FOLDERID_SkyDrive`). You can modify the code to search for the "2021 Tenders" folder within the OneDrive folder and return its path.

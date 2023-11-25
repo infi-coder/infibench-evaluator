@@ -1,0 +1,44 @@
+The error message you're seeing, `System.Text.Json.JsonException: '<' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0`, is usually indicative of an issue with the response from the server not being valid JSON. This could be due to a number of reasons, such as the server returning an error page or the server not returning JSON at all.
+
+Firstly, check your server-side code to ensure that it's returning JSON as expected. You can do this by using a tool like Postman to make a request to your API and inspect the response.
+
+Secondly, you should check your route configuration. In your controller, you've defined the route as `api/Employee/Index`, but in your Blazor code, you're trying to access `/api/Employee/Index`. This could be causing issues if your server is not set up to handle requests at that path.
+
+Here's how you can modify your controller:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    [Route("Index")]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+And here's how you can modify your Blazor code:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("api/Employee/Index");
+```
+
+If you're still having issues after checking these things, it might be helpful to add some error handling to your Blazor code to get more information about what's going wrong. You can do this by wrapping your code in a try-catch block and logging any exceptions that are thrown:
+
+```csharp
+try
+{
+    empList = await Http.GetJsonAsync<Employee[]>("api/Employee/Index");
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+```
+
+This will print out any exceptions to the console, which should give you more information about what's going wrong.

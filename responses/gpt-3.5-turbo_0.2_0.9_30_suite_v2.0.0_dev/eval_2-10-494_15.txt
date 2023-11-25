@@ -1,0 +1,7 @@
+This error is caused by a bug in rust-analyzer, which is a language server for Rust. It is a false positive and does not actually indicate an issue with your code. You can safely ignore this error for now.
+
+However, if you want to get rid of the error, you can try updating your Rust toolchain and rust-analyzer to the latest versions. If that doesn't work, you can try disabling rust-analyzer's macro expansion feature by adding the following line to your `settings.json` file in VS Code:
+```
+"rust-analyzer.procMacro.enable": false
+```
+This will disable macro expansion in rust-analyzer and should get rid of the error.

@@ -1,0 +1,15 @@
+You need to use the `toast()` method to show the toast. Here's an example:
+
+```javascript
+$('.toast').toast('show');
+```
+
+This will show the toast with the default settings. If you want to customize the toast, you can pass an options object to the `toast()` method. For example:
+
+```javascript
+$('.toast').toast({
+  delay: 2000 // show the toast for 2 seconds
+}).toast('show');
+```
+
+This will show the toast for 2 seconds before hiding it. You can customize other options as well, such as animation settings and positioning. Check out the Bootstrap documentation for more information on customizing toasts.

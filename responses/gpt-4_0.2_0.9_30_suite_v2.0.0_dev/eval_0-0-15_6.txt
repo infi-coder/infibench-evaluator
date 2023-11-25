@@ -1,0 +1,13 @@
+Sure, you're getting the error because you're trying to instantiate an object, not a class. You should return a function that returns an object in your mock to simulate a class. Here's how you can do it:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {someMethod: () => {}};
+  });
+});
+```
+
+In this way, when you call `new API()`, it will return a new object with the `someMethod` function.

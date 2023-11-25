@@ -1,0 +1,13 @@
+The issue you are facing could be related to the compatibility of the Selenium WebDriver with the version of Internet Explorer installed on your machine. Here are a few things you can try:
+
+1. Make sure you have the latest version of the Selenium WebDriver installed. You can download it from the official Selenium website.
+
+2. Check if the version of Internet Explorer installed on your machine is compatible with the version of the Selenium WebDriver you are using. You can find the compatibility matrix on the Selenium website.
+
+3. Try using a different browser, such as Chrome or Firefox, to see if the issue persists.
+
+4. Check if the Microsoft Internet Controls reference is added to your VBA project. To do this, go to the VBA editor, click on Tools > References, and make sure the "Microsoft Internet Controls" checkbox is checked.
+
+5. Try running the code as an administrator to see if it resolves the issue.
+
+6. If none of the above solutions work, you can try downgrading to an earlier version of Excel or Internet Explorer that is known to work with the Selenium WebDriver.

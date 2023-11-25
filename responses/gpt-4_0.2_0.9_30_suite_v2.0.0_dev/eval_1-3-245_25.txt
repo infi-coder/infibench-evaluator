@@ -1,0 +1,44 @@
+The problem you're encountering is likely due to the fact that Python can't find the `app` module. This is because the `app` directory is not in a location that Python looks in for modules.
+
+Here's how you can revise your Dockerfile:
+
+```Dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.8
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Add the current directory contents into the container at /app
+ADD . /app
+
+# Install any needed packages specified in requirements.txt
+COPY requirements.txt /app
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
+
+# Run the command to start uvicorn
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0", "--port", "8000"]
+```
+
+This Dockerfile sets the working directory to `/app`, then adds the current directory (which should be your project directory) to the container at `/app`. It then installs the requirements and runs the command to start uvicorn.
+
+Please ensure that your project structure is as follows:
+
+```
+project_directory
+│
+├── app
+│   ├── main.py
+│   └── language_detector.py
+│
+├── Dockerfile
+├── docker-compose.yml
+└── requirements.txt
+```
+
+And you are running the `docker build` command from the `project_directory`.
+
+Also, note that you should remove the `--reload` option from the CMD command in Dockerfile. The `--reload` option is for development use. It allows the server to restart after code changes. This is not suitable for production use.

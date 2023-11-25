@@ -1,0 +1,13 @@
+Sure, here is a function that does exactly what you described:
+
+```javascript
+function keys_and_prices(raw_obj) {
+    let keys = Object.keys(raw_obj);
+    let prices = keys.map(key => raw_obj[key].price);
+    return [keys, prices];
+}
+```
+
+This function first extracts the keys from the object using `Object.keys()`. Then it maps over these keys and for each key, it retrieves the corresponding price from the original object. Finally, it returns an array containing the keys and prices arrays.
+
+Please note that the order of keys and prices in the returned arrays depends on the order of properties in the original object. In JavaScript, the order of object properties is not guaranteed, but in practice they are usually iterated in the order they were defined.

@@ -1,0 +1,44 @@
+Yes, you can disable the generation of the `*-plain.jar` file by configuring the `bootJar` task in your `build.gradle` file. 
+
+Add the following configuration to your `build.gradle`:
+
+```groovy
+bootJar {
+    enabled = false
+}
+```
+
+This will disable the `bootJar` task, which is responsible for creating the `*-plain.jar` file. 
+
+Your `build.gradle` should look like this:
+
+```groovy
+plugins {
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+bootJar {
+    enabled = false
+}
+
+test {
+    useJUnitPlatform()
+}
+```
+
+Now, when you build your project, only the `myprogram-0.0.1.jar` file will be generated.

@@ -1,0 +1,21 @@
+Sure, here's a possible implementation of the `generateRandomString` function in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the possible characters for the code
+    chars = string.ascii_letters + string.digits
+    
+    # Generate a random code that contains "NAA3U" and 3 digits
+    while True:
+        code = "NAA3U" + ''.join(random.choices(chars, k=11))
+        digits = [c for c in code if c.isdigit()]
+        if len(digits) == 3:
+            return code
+```
+
+This function uses the `random` and `string` modules to generate a random code that meets the requirements. It first defines the possible characters for the code as all the letters (lowercase and uppercase) and digits. Then, it enters a loop that generates a random code and checks if it contains "NAA3U" and exactly 3 digits. If it does, the function returns the code. If it doesn't, the loop continues until a valid code is found.
+
+You can call this function multiple times to generate different random codes that meet your requirements.

@@ -1,0 +1,11 @@
+What is the idiomatic way to do something when an Option is either None, or the inner value meets some condition?
+Is there a more idiomatic way to express something like the following? List as many ways as possible.
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    match foo {
+        Some(foo_val) if ! (foo_val < 5) /* i.e. the negation of my acceptance condition */ => {}
+        _ => { foo.replace(5); }
+    }
+}
+```

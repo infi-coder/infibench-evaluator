@@ -1,0 +1,26 @@
+Here's the revised code for the `pig_latin` function:
+
+```python
+def pig_latin(text):
+  words = text.split()
+  pig_words = []
+  for word in words:
+    endString = word[1:].lower() + word[0].lower() + 'ay'
+    pig_words.append(endString)
+  return ' '.join(pig_words)
+```
+
+The changes made are:
+
+1. Instead of initializing an empty string `say`, we initialize an empty list `pig_words` to store the pig Latin words.
+2. We iterate through each word in the `words` list and apply the pig Latin transformation to each word.
+3. The pig Latin transformation is done by concatenating the lowercase version of the word starting from the second character (`word[1:].lower()`) with the lowercase first character of the word (`word[0].lower()`) and the string `'ay'`.
+4. The resulting pig Latin word is appended to the `pig_words` list.
+5. Finally, we join the `pig_words` list into a string with spaces between each word and return it.
+
+Now, if you run the test cases, you should get the expected output:
+
+```python
+print(pig_latin("hello how are you")) # Should be "ellohay owhay reaay ouyay"
+print(pig_latin("programming in python is fun")) # Should be "rogrammingpay niay ythonpay siay unfay"
+```

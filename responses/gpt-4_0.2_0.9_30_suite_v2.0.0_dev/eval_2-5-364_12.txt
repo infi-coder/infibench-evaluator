@@ -1,0 +1,29 @@
+It seems like you want to use a specific version of Java with Maven Wrapper without downloading it from a remote source. Here's how you can do it:
+
+1. First, you need to ensure that the required Java version is installed on your system. You can check this by running `java -version` in your terminal.
+
+2. If the required version is not installed, you need to install it. You can download it from the official Oracle website or use a package manager like `apt` for Ubuntu or `brew` for macOS.
+
+3. Once the required Java version is installed, you need to set the `JAVA_HOME` environment variable to point to the installation directory of the required Java version. 
+
+    For example, if you are using bash, you can add the following line to your `~/.bashrc` or `~/.bash_profile` file:
+
+    ```bash
+    export JAVA_HOME=/path/to/your/jdk
+    ```
+
+    Replace `/path/to/your/jdk` with the actual path to the JDK installation directory.
+
+    If you are using Windows, you can set the `JAVA_HOME` environment variable through the System Properties.
+
+4. After setting the `JAVA_HOME` environment variable, you need to ensure that the Maven Wrapper uses this Java version. You can do this by modifying the `mvnw` or `mvnw.cmd` script (depending on your operating system) in your Maven project.
+
+    Find the line that starts with `JAVACMD` and modify it to use the `JAVA_HOME` environment variable. For example:
+
+    ```bash
+    JAVACMD="$JAVA_HOME/bin/java"
+    ```
+
+5. Save the changes and run the Maven Wrapper again. It should now use the specified Java version.
+
+Remember to replace `/path/to/your/jdk` with the path where your JDK is installed. Also, the changes to `~/.bashrc` or `~/.bash_profile` will take effect in new terminal sessions, so you need to start a new terminal session or run `source ~/.bashrc` or `source ~/.bash_profile` to apply the changes immediately.

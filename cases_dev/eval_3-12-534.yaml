@@ -1,0 +1,15 @@
+# Corresponding to post https://stackoverflow.com/questions/59884126
+id: 3-12-534
+prompt_path: prompt_3-12-534.txt
+type: knowledge question-answering
+
+lang: dart
+
+grading:
+  max_score: 1.0
+  min_score: 0.0
+  keywords:
+    - content:
+        content: "Consumer[2-6]"
+      regex: true
+      to_lower: true

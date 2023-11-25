@@ -1,0 +1,49 @@
+When importing images in a TypeScript project, you need to define the module resolution for image files. Here's how you can do it:
+
+1. Install the `parcel-plugin-static-files-copy` package:
+
+```
+npm install parcel-plugin-static-files-copy --save-dev
+```
+
+2. Add the following configuration to your `package.json` file:
+
+```
+"parcel": {
+  "transformers": {
+    ".*\\.(jpg|png|svg)$": ["parcel-transformer-static-files-copy", {
+      "destDir": "dist/assets"
+    }]
+  }
+}
+```
+
+This tells Parcel to copy image files to the `dist/assets` directory during the build process.
+
+3. In your TypeScript file, import the image like this:
+
+```
+import * as React from 'react';
+import image from '../assets/image.jpg';
+
+const Box = props => {
+  return <img src={image} alt="My Image" />;
+}
+
+export default Box;
+```
+
+Note that we're using `import image from '../assets/image.jpg'` instead of `import * as img from '../assets/image.jpg'`. This is because we're importing the default export of the image file, which is the URL of the image.
+
+4. Finally, create a `declarations.d.ts` file in your project root with the following content:
+
+```
+declare module '*.jpg' {
+  const value: any;
+  export default value;
+}
+```
+
+This tells TypeScript that any file with a `.jpg` extension should be treated as a module with a default export of type `any`.
+
+Make sure to remove the `index.d.ts` file you created earlier, as TypeScript is ignoring it because it assumes that it is generated from `index.tsx`, which is more likely to be up to date.

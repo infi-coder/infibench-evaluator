@@ -1,0 +1,39 @@
+This warning is related to Elasticsearch's built-in security features not being enabled, which means that your Elasticsearch cluster could be accessible to anyone without authentication. To fix this, you need to enable security in Elasticsearch.
+
+Here are the steps to enable security in Elasticsearch:
+
+1. Open the Elasticsearch configuration file (`config/elasticsearch.yml`) in your Rails app.
+
+2. Add the following lines to the bottom of the file:
+
+   ```
+   xpack.security.enabled: true
+   xpack.security.transport.ssl.enabled: true
+   ```
+
+   These lines enable security and SSL encryption for Elasticsearch.
+
+3. Save the file and restart Elasticsearch.
+
+   If you're using Elasticsearch with Searchkick in development mode, you can restart Elasticsearch by running the following command in your terminal:
+
+   ```
+   bin/elasticsearch
+   ```
+
+   If you're using Elasticsearch with Searchkick in production mode, you'll need to restart Elasticsearch using your server's init system.
+
+After enabling security in Elasticsearch, you'll need to create a user with the appropriate permissions to access your Elasticsearch cluster. You can follow the instructions in the Elasticsearch documentation to create a user with the necessary permissions: https://www.elastic.co/guide/en/elasticsearch/reference/7.13/security-minimal-setup.html#security-minimal-setup.
+
+Once you've created a user, you'll need to update your Rails app's Searchkick configuration to use the new user's credentials. You can do this by adding the following lines to your Rails app's `config/initializers/searchkick.rb` file:
+
+```
+Searchkick.client_options = {
+  user: "your_username",
+  password: "your_password"
+}
+```
+
+Replace `your_username` and `your_password` with the username and password of the user you created in Elasticsearch.
+
+After making these changes, the Elasticsearch warning should no longer appear.

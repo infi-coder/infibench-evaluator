@@ -1,0 +1,15 @@
+It sounds like you're referring to a feature provided by a package called Emmet. Emmet is a set of plug-ins for text editors that allow for high-speed coding and editing in HTML, XML, CSS, and other web languages.
+
+For example, if you type `.classname` and press `Tab`, it should automatically expand to `<div class="classname"></div>`.
+
+If it's not working for you, it could be because of a few reasons:
+
+1. **You don't have Emmet installed or enabled.** If you're using a text editor like Visual Studio Code, Emmet is included by default. For other text editors like Sublime Text or Atom, you might need to install it manually.
+
+2. **Your file is not saved with the correct extension.** Emmet only works in files with certain extensions like `.html`, `.css`, etc. Make sure your file is saved with the correct extension.
+
+3. **You're not using the correct syntax.** Make sure you're typing `.classname` and then pressing `Tab`. If you're still having trouble, you might want to check the [Emmet Cheat Sheet](https://docs.emmet.io/cheat-sheet/) for more information.
+
+4. **Your text editor is not in the correct mode.** Some text editors have different modes (like insert mode, command mode, etc.). Make sure you're in the correct mode to use Emmet.
+
+If you've checked all of these and it's still not working, you might want to look for specific instructions for your text editor.

@@ -1,0 +1,5 @@
+RAILS Calling `DidYouMean::SPELL_CHECKERS.merge!(error_name => spell_checker)' has been deprecated.
+How to fix it?
+Specifically, please don't add other text and repeat the following paragraph with [blank] filled:
+
+The message about `DidYouMean` is a deprecation warning not an error, it doesn't break your app. It means that usage of `[blank]` is deprecated and will be removed in a future version of ruby. You shouldn't worry about it until you use versions that are lower than 3.3. It's not your code that triggers the warning. You can update the gem by calling `bundle update [blank]`.

@@ -1,0 +1,5 @@
+The error message "Bad CPU type in executable" usually means that the binary is not compatible with the CPU architecture of your Mac. This can happen if you are trying to run a 32-bit binary on a 64-bit Mac or vice versa.
+
+Unfortunately, pdftk is a 32-bit application and it is not compatible with macOS Catalina, which only supports 64-bit applications. Therefore, you will not be able to use pdftk on your Mac unless you downgrade to an earlier version of macOS that supports 32-bit applications.
+
+Alternatively, you can try using a different PDF manipulation tool that is compatible with macOS Catalina, such as PDFsam or Adobe Acrobat DC.

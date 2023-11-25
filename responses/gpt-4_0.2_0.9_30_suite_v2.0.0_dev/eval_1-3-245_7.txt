@@ -1,0 +1,42 @@
+The error you're seeing is because Python cannot find the module 'app'. This is likely due to the way your Dockerfile is set up. 
+
+Here's a revised version of your Dockerfile:
+
+```Dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.8
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Add the current directory contents into the container at /app
+ADD . /app
+
+# Install any needed packages specified in requirements.txt
+COPY requirements.txt /app
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
+
+# Run the command to start uvicorn
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0", "--port", "8000", "--reload"]
+```
+
+This Dockerfile will add the entire current directory (which should include your 'app' directory) into the Docker container. It then installs the Python dependencies and starts the uvicorn server.
+
+Please make sure that your `docker-compose.yml` file is correctly set up to build using this Dockerfile. Here's a basic example:
+
+```yaml
+version: '3'
+services:
+  web:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+```
+
+This `docker-compose.yml` file will build the Docker image using the Dockerfile in the current directory, then run the container, mapping the host's port 8000 to the container's port 8000.

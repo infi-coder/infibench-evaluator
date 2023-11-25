@@ -1,0 +1,9 @@
+This error message suggests that the preview target is not included in the current scheme. You can try the following steps to fix the issue:
+
+1. Go to the scheme editor by clicking on the scheme dropdown in the top left corner of Xcode and selecting "Edit Scheme".
+2. Select the "Test" action in the left sidebar.
+3. Make sure that the preview target is selected in the "Target" section.
+4. If the preview target is not listed, click the "+" button and add it to the scheme.
+5. Try running the preview again.
+
+If this doesn't work, you can also try cleaning the build folder by going to "Product" in the menu bar and selecting "Clean Build Folder".

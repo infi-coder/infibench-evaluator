@@ -1,0 +1,17 @@
+The issue with your script is that the variable `$searchT` is enclosed in single quotes within the `if` statement. Single quotes prevent variable expansion, so the variable is not being evaluated and is being treated as a literal string. To fix this, you can replace the single quotes with double quotes or remove the quotes altogether. Here's an updated version of your script:
+
+```
+#!/bin/bash
+read -p "enter search term here: " searchT
+
+if grep -wi "$searchT" test.txt; then     
+    echo "$(grep -w "$searchT" test.txt | wc -l) number of matches found"
+    grep -w "$searchT" test.txt
+else 
+    echo "no match found"    
+fi
+
+exit 0
+```
+
+In this version, the `if` statement uses the exit status of the `grep` command to determine whether there was a match or not. If the exit status is 0 (true), then the `if` statement is executed. If the exit status is non-zero (false), then the `else` statement is executed. Also, I have removed the unnecessary use of `cat` and combined the `grep` and `wc` commands to reduce redundancy.

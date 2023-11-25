@@ -1,0 +1,13 @@
+The `myprogram-0.0.1-plain.jar` file is generated due to the new feature in Spring Boot 2.5.0 that creates a "plain" jar alongside the executable jar. If you want to disable this feature, you can add the following configuration to your `build.gradle` file:
+
+```groovy
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+```
+
+This will only generate the `myprogram-0.0.1.jar` file.

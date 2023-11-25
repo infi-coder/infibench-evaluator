@@ -1,0 +1,31 @@
+You can use the Windows API to get the local path of the OneDrive folder. Here's some sample code:
+
+```
+Private Declare Function SHGetKnownFolderPath Lib "shell32.dll" (ByRef rfid As Any, ByVal dwFlags As Long, ByVal hToken As Long, ByRef pszPath As Any) As Long
+
+Private Const FOLDERID_SkyDrive = "{A52BBA46-E9E1-435f-B3D9-28DAA648C0F6}"
+Private Const FOLDERID_SkyDrivePro = "{7C9D8867-D853-4E60-841E-AB360140D6F4}"
+
+Sub GetOneDrivePath()
+    Dim path As String
+    Dim rfid As Variant
+    
+    If IsOffice365() Then
+        rfid = FOLDERID_SkyDrivePro
+    Else
+        rfid = FOLDERID_SkyDrive
+    End If
+    
+    If SHGetKnownFolderPath(rfid, 0, 0, path) = 0 Then
+        MsgBox path
+    Else
+        MsgBox "Unable to get OneDrive path"
+    End If
+End Sub
+
+Function IsOffice365() As Boolean
+    IsOffice365 = InStr(Application.Version, "16") = 1
+End Function
+```
+
+This code uses the `SHGetKnownFolderPath` function to get the local path of the OneDrive folder. The `IsOffice365` function checks if the user is using Office 365, which determines whether to use the OneDrive or OneDrive for Business folder ID. You can modify this code to search for the "2021 Tenders" folder and return its path.

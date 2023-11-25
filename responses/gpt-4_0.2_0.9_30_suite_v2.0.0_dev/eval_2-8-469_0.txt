@@ -1,0 +1,24 @@
+The error message is indicating that `protoc-gen-go` is unable to determine the Go import path for your `simple.proto` file. This is because the Go protocol buffers compiler needs to know the package import path for the generated Go code.
+
+You can specify the Go package by adding the `go_package` option in your `simple.proto` file. Here's how you can do it:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "github.com/yourusername/yourrepository";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+Replace `"github.com/yourusername/yourrepository"` with the actual path where the generated Go code will be placed.
+
+After adding the `go_package` option, you should be able to generate the Go code using the same `protoc` command:
+
+```bash
+protoc --go_out=. simple.proto
+```

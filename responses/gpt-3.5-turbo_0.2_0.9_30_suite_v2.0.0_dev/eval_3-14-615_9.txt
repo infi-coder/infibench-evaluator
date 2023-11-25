@@ -1,0 +1,69 @@
+Yes, you can get the current scroll position of a SwiftUI ScrollView using the `ScrollViewProxy` and its `contentOffset` method. Here's an example:
+
+```swift
+struct ContentView: View {
+    @State private var scrollOffset: CGPoint = .zero
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                ForEach(0..<50) { index in
+                    Text("Item \(index)")
+                        .frame(width: 200, height: 50)
+                }
+            }
+        }
+        .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
+            self.scrollOffset = value
+        }
+    }
+}
+
+struct ScrollViewOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGPoint = .zero
+    static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {
+        value = nextValue()
+    }
+}
+
+struct ScrollViewReaderExample: View {
+    @State private var scrollToIndex: Int? = nil
+    @State private var scrollOffset: CGPoint = .zero
+    var body: some View {
+        VStack {
+            Button("Get Scroll Offset") {
+                print("Current scroll offset: \(scrollOffset)")
+            }
+            ScrollViewReader { proxy in
+                Button("Scroll to Item 30") {
+                    scrollToIndex = 30
+                }
+                ScrollView {
+                    VStack(spacing: 20) {
+                        ForEach(0..<50) { index in
+                            Text("Item \(index)")
+                                .frame(width: 200, height: 50)
+                                .id(index)
+                        }
+                    }
+                    .background(GeometryReader {
+                        Color.clear.preference(key: ScrollViewOffsetPreferenceKey.self, value: proxy.contentOffset)
+                    })
+                }
+                .onAppear {
+                    if let scrollToIndex = scrollToIndex {
+                        withAnimation {
+                            proxy.scrollTo(scrollToIndex, anchor: .top)
+                        }
+                        self.scrollToIndex = nil
+                    }
+                }
+                .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
+                    self.scrollOffset = value
+                }
+            }
+        }
+    }
+}
+```
+
+In this example, we use a `ScrollViewOffsetPreferenceKey` to capture the current scroll offset as a preference. We then use this preference to update the `scrollOffset` state variable, which can be accessed and printed by the "Get Scroll Offset" button.

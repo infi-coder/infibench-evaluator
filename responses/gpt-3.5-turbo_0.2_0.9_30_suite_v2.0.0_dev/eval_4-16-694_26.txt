@@ -1,0 +1,7 @@
+You can use `grep` with a regular expression to match the `lang` attribute regardless of its position in the HTML tag. Here's an example command that should work for both cases:
+
+```
+curl -Ls yahoo.com | grep -oP 'lang="\K[^"]+' | head -1
+```
+
+This command uses the `-o` option to only output the matched text, and the `-P` option to enable Perl-compatible regular expressions. The regular expression `lang="\K[^"]+` matches the `lang` attribute followed by one or more non-quote characters, and the `\K` sequence discards the `lang="` prefix from the output. The `head -1` command is used to only output the first match, in case there are multiple `lang` attributes in the HTML.

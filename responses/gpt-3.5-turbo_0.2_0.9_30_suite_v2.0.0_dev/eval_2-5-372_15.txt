@@ -1,0 +1,26 @@
+It seems that there might be a conflict between the version of Hibernate Validator that is included in your project and the one that is included in JBoss. 
+
+You can try excluding the Hibernate Validator dependency from your project and let JBoss use its own version. To do this, add the following exclusion to your `spring-boot-starter-web` dependency:
+
+```xml
+<exclusion>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+</exclusion>
+```
+
+This will exclude the Hibernate Validator dependency from your project, and JBoss will use its own version.
+
+Alternatively, you can try upgrading the version of Hibernate Validator in your project to match the one in JBoss. To do this, add the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>5.3.5.Final-redhat-2</version>
+</dependency>
+```
+
+This will ensure that your project is using the same version of Hibernate Validator as JBoss.
+
+After making these changes, try running your project again and see if the issue is resolved.

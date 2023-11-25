@@ -1,0 +1,13 @@
+Here are some steps you can try to solve the issue:
+
+1. Make sure that you have the latest version of the Python extension installed in VS Code.
+
+2. Check if the Jupyter server is running. Open a terminal in VS Code and type `jupyter notebook`. If the server is not running, start it by typing `jupyter notebook` in the terminal.
+
+3. Check if the correct Python environment is selected in VS Code. Click on the Python version in the bottom left corner of the VS Code window and select the correct environment.
+
+4. Try creating a new virtual environment and installing Jupyter in it. Activate the new environment and try running Jupyter notebook in it.
+
+5. If none of the above steps work, try uninstalling and reinstalling both VS Code and Miniconda.
+
+Hopefully, one of these steps will solve the issue and you will be able to use Jupyter notebook in VS Code again.

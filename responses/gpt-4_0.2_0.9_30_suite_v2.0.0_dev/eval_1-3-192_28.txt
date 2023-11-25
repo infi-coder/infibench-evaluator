@@ -1,0 +1,23 @@
+Here is a Python function that uses the `re` module to replace all occurrences of dashes and underscores with the next character capitalized:
+
+```python
+import re
+
+def to_camel_case(text):
+    return re.sub('[_-](.)', lambda x: x.group(1).upper(), text)
+```
+
+This function works by using a regular expression to find all occurrences of a dash or underscore followed by any character (`[_-](.)`). The `re.sub` function then replaces each match with the result of the lambda function, which takes the matched string `x`, extracts the character after the dash or underscore (`x.group(1)`), and converts it to uppercase. 
+
+This function preserves the case of the first character of the input string, as required by the problem statement. 
+
+Let's test this function with the provided test cases:
+
+```python
+print(to_camel_case(''))  # ''
+print(to_camel_case("the_stealth_warrior"))  # 'theStealthWarrior'
+print(to_camel_case("The-Stealth-Warrior"))  # 'TheStealthWarrior'
+print(to_camel_case("A-B-C"))  # 'ABC'
+```
+
+This function should pass all the test cases.

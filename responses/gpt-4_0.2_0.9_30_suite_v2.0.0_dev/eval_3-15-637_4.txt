@@ -1,0 +1,17 @@
+The error you're experiencing might be due to a few reasons. Here are some possible solutions:
+
+1. **Check the SeleniumBasic version**: Ensure that you have the latest version of SeleniumBasic installed. You can download it from the [official GitHub repository](https://github.com/florentbr/SeleniumBasic/releases).
+
+2. **Check the browser driver**: SeleniumBasic requires specific browser drivers to interact with different browsers. Make sure you have the correct driver for the browser you're using and that it's up-to-date. The drivers should be placed in the same directory as the SeleniumBasic installation.
+
+3. **Check the browser version**: Ensure that the browser version you're using is compatible with the SeleniumBasic and the driver version.
+
+4. **Check the references in VBA**: In the VBA editor, go to `Tools > References` and ensure that Selenium Type Library is checked.
+
+5. **Try using late binding**: Instead of `Dim driver As New WebDriver`, try using `Dim driver As Object` and `Set driver = CreateObject("Selenium.ChromeDriver")`. This might help if there are issues with the early binding.
+
+6. **Check Excel Trust Center Settings**: Go to `File > Options > Trust Center > Trust Center Settings > Macro Settings` and ensure that `Trust access to the VBA project object model` is checked.
+
+7. **Run as Administrator**: Try running Excel as an administrator. This can sometimes resolve issues with access and permissions.
+
+If none of these solutions work, please provide the exact error message you're getting for more specific help.

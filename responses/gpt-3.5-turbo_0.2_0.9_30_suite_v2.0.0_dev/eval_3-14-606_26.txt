@@ -1,0 +1,9 @@
+To enable developer mode on iOS 16.0, follow these steps:
+
+1. Open the Settings app on your iOS device.
+2. Tap on "General".
+3. Scroll down and tap on "About".
+4. Scroll down to the bottom and tap on "Developer".
+5. Toggle on the "Developer Mode" switch.
+
+Once you have enabled developer mode, you should be able to run the provisioned testing build without any issues.

@@ -1,0 +1,79 @@
+You can create a factory that will generate `ServiceBusSender` instances for different queues. Here is an example of how you can do it:
+
+First, create a factory interface:
+
+```c#
+public interface IServiceBusSenderFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+}
+```
+
+Then, implement this interface:
+
+```c#
+public class ServiceBusSenderFactory : IServiceBusSenderFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusSenderFactory(ServiceBusClient serviceBusClient)
+    {
+        _serviceBusClient = serviceBusClient;
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+}
+```
+
+Register this factory in your DI container:
+
+```c#
+_services.TryAddSingleton<IServiceBusSenderFactory>(implementationFactory =>
+{
+    var serviceBusConfiguration = implementationFactory.GetRequiredService<Microsoft.Extensions.Options.IOptions<UserEventConsumerSetting>>().Value;
+
+    var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+
+    return new ServiceBusSenderFactory(serviceBusClient);
+});
+```
+
+Now you can inject `IServiceBusSenderFactory` into your `CarReservationMessagingService` and create `ServiceBusSender` for any queue:
+
+```c#
+public class CarReservationMessagingService
+{
+    private readonly IServiceBusSenderFactory _serviceBusSenderFactory;
+
+    public CarReservationMessagingService(IServiceBusSenderFactory serviceBusSenderFactory)
+    {
+        _serviceBusSenderFactory = serviceBusSenderFactory ?? throw new ArgumentNullException(nameof(serviceBusSenderFactory));
+    }
+
+    public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation, string queueName)
+    {
+        var serviceBusSender = _serviceBusSenderFactory.CreateSender(queueName);
+
+        var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+        {
+            Id = Guid.NewGuid().ToString(),
+            CarId = carReservation.CarId,
+            CustomerId = carReservation.CustomerId,
+            RentFrom = carReservation.RentFrom,
+            RentTo = carReservation.RentTo
+        };
+
+        var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+        ServiceBusMessage message = new ServiceBusMessage(serializedMessage);
+        await serviceBusSender.SendMessageAsync(message);
+    }
+}
+```
+
+This way, you can create `ServiceBusSender`

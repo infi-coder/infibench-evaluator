@@ -1,0 +1,56 @@
+It seems that the issue is related to the URI you are using. The URI `https://48p1r2roz4.sse.codesandbox.io` is a public GraphQL API provided by Apollo, but it may not be working properly at the moment.
+
+To fix the issue, you can try using a different GraphQL API or creating your own GraphQL server. Here are the steps to create a simple GraphQL server using Apollo Server:
+
+1. Install the required packages:
+
+   ```
+   npm install apollo-server graphql
+   ```
+
+2. Create a new file named `server.js` and add the following code:
+
+   ```javascript
+   const { ApolloServer, gql } = require('apollo-server');
+
+   const typeDefs = gql`
+     type Query {
+       hello: String
+     }
+   `;
+
+   const resolvers = {
+     Query: {
+       hello: () => 'Hello world!',
+     },
+   };
+
+   const server = new ApolloServer({ typeDefs, resolvers });
+
+   server.listen().then(({ url }) => {
+     console.log(`Server ready at ${url}`);
+   });
+   ```
+
+   This code defines a simple GraphQL schema with a single query `hello` that returns the string "Hello world!".
+
+3. Start the server by running the following command:
+
+   ```
+   node server.js
+   ```
+
+   This will start the server at `http://localhost:4000`.
+
+4. Update the `uri` in `ApolloClient` to `http://localhost:4000`:
+
+   ```javascript
+   const apolloClient = new ApolloClient({
+     uri: 'http://localhost:4000',
+     cache: new InMemoryCache(),
+   });
+   ```
+
+   This will connect your Apollo Client to the GraphQL server running on your local machine.
+
+After making these changes, you should be able to fetch data using `useQuery` without any issues.

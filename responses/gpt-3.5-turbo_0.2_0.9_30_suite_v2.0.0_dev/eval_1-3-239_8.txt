@@ -1,0 +1,7 @@
+Here is the bash script to install Python 3.6.5 using brew:
+
+```
+brew install python@3.6
+```
+
+After running this command, you should have Python 3.6.5 installed on your macOS system.

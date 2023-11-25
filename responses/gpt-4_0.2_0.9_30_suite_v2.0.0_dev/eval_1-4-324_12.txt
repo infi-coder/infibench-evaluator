@@ -1,0 +1,29 @@
+Here is a function that uses the `strsplit` function to split the strings in the column `col1` of your data frame `df` first by comma, then by colon. The function then uses the `sapply` function to apply these operations to each element of the list, and finally converts the list to a data frame.
+
+```r
+mySplit <- function(df) {
+  # Split the strings in the column 'col1' by comma
+  split_comma <- strsplit(as.character(df$col1), ",")
+  
+  # Split the resulting strings by colon
+  split_colon <- lapply(split_comma, function(x) strsplit(x, ":"))
+  
+  # Extract the values after the colon
+  values <- lapply(split_colon, function(x) sapply(x, function(y) y[2]))
+  
+  # Convert the list to a data frame
+  df_new <- do.call(rbind, values)
+  colnames(df_new) <- sapply(split_colon[[1]], function(x) x[1])
+  
+  return(df_new)
+}
+```
+
+You can use this function on your data frame `df` like this:
+
+```r
+df <- data.frame(col1 = c("name:Michael,Age:31,City:NYC", "name:Tom,Age:25,City:NA"))
+df_new <- mySplit(df)
+```
+
+This will return a new data frame `df_new` with the columns `name`, `Age`, and `City` and the respective values from the column `col1` of the original data frame `df`.

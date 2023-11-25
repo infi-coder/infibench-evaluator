@@ -1,0 +1,13 @@
+If you want to use the same version of Java that works with the Maven task, you can specify the `JAVA_HOME` environment variable to point to the location of the JDK that Maven is using.
+
+To do this, you can run the following command in your terminal or command prompt:
+
+```
+export JAVA_HOME=/path/to/your/jdk
+```
+
+Replace `/path/to/your/jdk` with the actual path to your JDK installation.
+
+Alternatively, you can set the `JAVA_HOME` environment variable in your operating system's settings or in your shell's configuration file (e.g. `.bashrc` or `.zshrc`).
+
+Once you have set the `JAVA_HOME` environment variable, you can run the Maven wrapper as usual and it should use the correct version of Java.

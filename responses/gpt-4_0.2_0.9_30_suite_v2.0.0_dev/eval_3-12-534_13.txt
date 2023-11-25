@@ -1,0 +1,37 @@
+You can use multiple `Consumer` widgets to listen to multiple `ChangeNotifier` classes in a single widget. Here's an example of how you can do it:
+
+```dart
+Consumer<ChangeNotifier1>(
+  builder: (context, changeNotifier1, child) => 
+    Consumer<ChangeNotifier2>(
+      builder: (context, changeNotifier2, child) => 
+        Consumer<ChangeNotifier3>(
+          builder: (context, changeNotifier3, child) => 
+            Consumer<ChangeNotifier4>(
+              builder: (context, changeNotifier4, child) => 
+                CurvedNavigationBar(
+                  // use changeNotifier1, changeNotifier2, changeNotifier3, changeNotifier4 here
+                ),
+            ),
+        ),
+    ),
+)
+```
+
+In this example, `ChangeNotifier1`, `ChangeNotifier2`, `ChangeNotifier3`, and `ChangeNotifier4` are your four different classes that extend `ChangeNotifier`. You can use these four `ChangeNotifier` instances (`changeNotifier1`, `changeNotifier2`, `changeNotifier3`, `changeNotifier4`) inside your `CurvedNavigationBar` widget.
+
+Remember to provide these `ChangeNotifier` classes above in the widget tree using `ChangeNotifierProvider` or `MultiProvider`.
+
+```dart
+MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (_) => ChangeNotifier1()),
+    ChangeNotifierProvider(create: (_) => ChangeNotifier2()),
+    ChangeNotifierProvider(create: (_) => ChangeNotifier3()),
+    ChangeNotifierProvider(create: (_) => ChangeNotifier4()),
+  ],
+  child: MyApp(),
+)
+```
+
+In this way, you can listen to multiple `ChangeNotifier` classes in a single widget.

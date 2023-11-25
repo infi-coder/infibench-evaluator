@@ -1,0 +1,58 @@
+The code you have written is mixing JavaScript and React in a way that is not recommended. In React, you should handle events using React's own event system. Here's how you can modify your code to display the alert when the button is clicked:
+
+```javascript
+import React, { Component } from 'react'
+
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      imageURL: '',
+    };
+
+    this.handleUploadImage = this.handleUploadImage.bind(this);
+  }
+
+  handleUploadImage(ev) {
+    ev.preventDefault();
+
+    const data = new FormData();
+    data.append('file', this.uploadInput.files[0]);
+    data.append('filename', this.fileName.value);
+
+    fetch('http://localhost:8000/upload', {
+      method: 'POST',
+      body: data,
+    }).then((response) => {
+      response.json().then((body) => {
+        this.setState({ imageURL: `http://localhost:8000/${body.file}` });
+      });
+    });
+
+    alert("Your file is being uploaded!");
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleUploadImage}>
+        <div>
+          <input ref={(ref) => { this.uploadInput = ref; }} type="file" />
+        </div>
+        <div>
+          <input ref={(ref) => { this.fileName = ref; }} type="text" placeholder="Enter the desired name of file" />
+        </div>
+        <br />
+        <div>
+          <button type="submit">Upload</button>
+        </div>
+        <img src={this.state.imageURL} alt="img" />
+      </form>
+    );
+  }
+}
+
+export default Main;
+```
+
+In this code, the alert is triggered in the `handleUploadImage` function, which is called when the form is submitted. The `onclick` attribute and the `<script>` tag have been removed from the button, as they are not needed. The button now has a `type="submit"` attribute, which means that clicking it will submit the form and trigger the `onSubmit` event.

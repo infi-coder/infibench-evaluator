@@ -1,0 +1,16 @@
+Sure, you can use the `last:` variant provided by Tailwind CSS to remove the border from the last item. Here is how you can do it:
+
+```html
+  <ul>
+    <li
+      v-for="(item, index) in items"
+      :key="`item-${index}`"
+      :class="{ 'border-b border-black': index !== items.length - 1 }"
+      class="border-solid"
+    >
+      Item
+    </li>
+  </ul>
+```
+
+In this code, we're using Vue's dynamic class binding (`:class`) to conditionally apply the `border-b border-black` classes only when the current item is not the last one in the list (`index !== items.length - 1`). This will effectively remove the bottom border from the last item.

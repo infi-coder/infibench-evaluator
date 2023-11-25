@@ -1,0 +1,50 @@
+You can use the `MultiProvider` widget to provide multiple instances of `ChangeNotifier` to your widget tree. Here's an example of how you can use it:
+
+1. Wrap your widget tree with `MultiProvider`:
+
+```dart
+return MultiProvider(
+  providers: [
+    ChangeNotifierProvider<Item1Notifier>(create: (_) => Item1Notifier()),
+    ChangeNotifierProvider<Item2Notifier>(create: (_) => Item2Notifier()),
+    ChangeNotifierProvider<Item3Notifier>(create: (_) => Item3Notifier()),
+    ChangeNotifierProvider<Item4Notifier>(create: (_) => Item4Notifier()),
+  ],
+  child: MaterialApp(
+    home: MyHomePage(),
+  ),
+);
+```
+
+2. In your widget, use the `Consumer` widget to listen to changes from each `ChangeNotifier`:
+
+```dart
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Consumer<Item1Notifier>(
+              builder: (context, item1, child) => Text('Item 1 count: ${item1.count}'),
+            ),
+            Consumer<Item2Notifier>(
+              builder: (context, item2, child) => Text('Item 2 count: ${item2.count}'),
+            ),
+            Consumer<Item3Notifier>(
+              builder: (context, item3, child) => Text('Item 3 count: ${item3.count}'),
+            ),
+            Consumer<Item4Notifier>(
+              builder: (context, item4, child) => Text('Item 4 count: ${item4.count}'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+In this example, each `Consumer` listens to changes from its corresponding `ChangeNotifier` and rebuilds only the part of the widget tree that depends on that `ChangeNotifier`.

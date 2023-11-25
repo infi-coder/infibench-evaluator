@@ -1,0 +1,21 @@
+The `[Keyless]` attribute is not part of the `System.ComponentModel.DataAnnotations` namespace. It is part of the `Microsoft.EntityFrameworkCore` namespace.
+
+You should have the Entity Framework Core package installed in your project. If you don't have it, you can install it via NuGet package manager.
+
+```shell
+Install-Package Microsoft.EntityFrameworkCore
+```
+
+After installing the package, you should be able to use the `[Keyless]` attribute in your model class by including the correct namespace:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+
+[Keyless]
+public class MyKeylessClass
+{
+    // ...
+}
+```
+
+Remember that `[Keyless]` attribute is used to denote that an entity does not have a key and should never be tracked for changes in the DbContext. It is typically used for read-only entities which are mapped to database views or queries.

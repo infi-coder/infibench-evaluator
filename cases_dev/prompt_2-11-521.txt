@@ -1,0 +1,4 @@
+Here is one user comment:
+A constructor cannot be called, it is not a function. It is invoked automatically when a new object is created.
+
+Is the above comment true/correct and why? 

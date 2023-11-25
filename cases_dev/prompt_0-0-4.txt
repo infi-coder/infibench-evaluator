@@ -1,0 +1,9 @@
+In reactjs, With the update react native to version 0.63, new components like Pressable have appeared. Could you explain how the Pressable differs from the TouchableOpacity and when it is better to use them?
+
+Please follow this template to answer the question. Specifically, pelase don't add other text and repeat the following paragraph with [blank] filled:
+
+- Pressable and TouchableOpacity have the same basic functionalities. They both are for making a text/image [blank].
+
+- Pressable has some new props, like [blank] which you can use to define how far a touch can register away from the the wrapped element.
+
+- On the other hand, TouchableOpacity also have some unique functionalities. For example, TouchableOpacity has automatic [blank], where with Pressable you need to add your own custom [blank] with Pressable's `style` prop. Furthermore, TouchableOpacity adds the [blank] animation on press.

@@ -1,0 +1,19 @@
+The error is because you're trying to create an index on a navigation property `Gender`. EF Core does not support this. You should create an index on the foreign key `GenderId` instead.
+
+Here's the corrected code:
+
+```c#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderId);
+    });
+}
+```
+Now, when you run `dotnet ef add migration User`, it should work without any issues.

@@ -1,0 +1,18 @@
+The error you're getting is because you're trying to import the Bootstrap variables before you define your own. Bootstrap's `_variables.scss` file already contains a definition for `$theme-colors`, so when you try to redefine it afterwards, it causes a conflict.
+
+To fix this, you should define your own variables before importing Bootstrap's variables and other styles. Here's how you can do it:
+
+```scss
+// Define your own theme colors
+$theme-colors: (
+  "primary": #your-color, // replace #your-color with your desired color
+  // add other colors if needed
+);
+
+// Then import Bootstrap's styles
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In this way, your color definitions will take precedence over Bootstrap's default colors. When the Bootstrap styles are imported, your colors will be used instead of the default ones.
+
+Also, make sure you're using a valid color value. It can be a named color (like `red`), a hexadecimal color (like `#ff0000`), an RGB color (like `rgb(255, 0, 0)`), or an HSL color (like `hsl(0, 100%, 50%)`).

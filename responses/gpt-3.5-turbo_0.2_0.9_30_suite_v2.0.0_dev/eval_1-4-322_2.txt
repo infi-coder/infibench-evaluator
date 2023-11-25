@@ -1,0 +1,41 @@
+Here's a solution using `tidyverse` functions:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>%
+    group_by(list_names) %>%
+    summarise(list_values = list(list_values)) %>%
+    deframe()
+}
+```
+
+Explanation:
+
+1. Group the data by `list_names` using `group_by`.
+2. Use `summarise` to create a new column `list_values` which contains a list of all the values of `list_values` for each group.
+3. Use `deframe` to convert the resulting tibble to a named list.
+
+This should give you the desired output:
+
+```r
+desired_output <- list(Ford = c("Ranger", "F150", "Explorer"),
+                       Chevy = c("Equinox"),
+                       Dodge = c("Caravan", "Ram"))
+
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+                  list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+#> $Ford
+#> [1] "Ranger"   "F150"     "Explorer"
+#> 
+#> $Chevy
+#> [1] "Equinox"
+#> 
+#> $Dodge
+#> [1] "Caravan" "Ram"
+```
+
+Note that the order of the elements in the list may be different from the desired output, but the elements themselves should be the same.

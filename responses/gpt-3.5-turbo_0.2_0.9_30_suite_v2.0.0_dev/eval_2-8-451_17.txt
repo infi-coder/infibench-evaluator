@@ -1,0 +1,35 @@
+Yes, Go modules (formerly known as vgo) also supports a similar approach to what you described with other ecosystems. You can use a multi-stage Docker build to separate the dependency installation from the actual build process.
+
+Here's an example Dockerfile:
+
+```
+# First stage: Install dependencies
+FROM golang:1.11-alpine AS build-env
+RUN apk add --no-cache git
+ADD go.mod /app/
+ADD go.sum /app/
+WORKDIR /app
+RUN go mod download
+
+# Second stage: Build the binary
+FROM golang:1.11-alpine
+RUN apk add --no-cache ca-certificates
+COPY --from=build-env /app /app
+WORKDIR /app
+ADD . /app
+RUN go build -o myapp
+
+# Final stage: Run the binary
+FROM alpine
+RUN apk add --no-cache ca-certificates
+COPY --from=1 /app/myapp /usr/local/bin/myapp
+CMD ["myapp"]
+```
+
+In the first stage, we install the dependencies by running `go mod download`. This will download all the dependencies specified in `go.mod` and `go.sum` files. We then copy the entire `/app` directory to the second stage.
+
+In the second stage, we build the binary using `go build -o myapp`. We then copy the binary to the final stage.
+
+In the final stage, we copy the binary from the second stage and run it.
+
+By separating the dependency installation from the build process, we can take advantage of Docker's layer caching and only rebuild the dependencies when they change. This can significantly speed up the build process.

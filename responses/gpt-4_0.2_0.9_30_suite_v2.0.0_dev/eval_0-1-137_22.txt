@@ -1,0 +1,17 @@
+The error you're getting is because you're trying to import the Bootstrap variables before you set your own. The `!default` flag in Sass means that the variable will only be assigned if it hasn't been assigned yet. 
+
+So, you should define your variables before importing the Bootstrap's variables and main file. Here's how you can do it:
+
+```scss
+$theme-colors: (
+  "primary": #your-color-here
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In this code, you define your primary color before importing the Bootstrap SCSS file. This way, when the Bootstrap SCSS file is imported, it will use your primary color instead of the default one.
+
+Please replace `#your-color-here` with the color you want to use.
+
+Also, ensure that you have the correct path to the Bootstrap SCSS file. The path should be relative to the file where you're importing it. If the path is incorrect, the Bootstrap SCSS file won't be found and your styles won't be applied.

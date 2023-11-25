@@ -1,0 +1,12 @@
+With Font Awesome 5, the syntax for using icons has changed. You need to use the `font-family: "Font Awesome 5 Free"` property instead of `font-family: "FontAwesome"`. Also, the syntax for using icons has changed from `\f107` to `content: "\f107";` to `content: "\f107"; font-weight: 900;`. So, the updated code should be:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+```
+
+Make sure that you have included the Font Awesome 5 CSS file in your project.

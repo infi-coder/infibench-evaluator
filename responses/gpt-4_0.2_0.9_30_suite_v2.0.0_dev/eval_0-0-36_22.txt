@@ -1,0 +1,13 @@
+```javascript
+import { useRouter } from "next/router";
+
+export default function Component(){
+    const router = useRouter();
+
+    const reloadData = async () => {
+        router.replace(router.asPath);
+    }
+
+    reloadData();
+}
+```

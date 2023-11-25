@@ -1,0 +1,6 @@
+Get the current scroll position of a SwiftUI ScrollView
+
+With the new `ScrollViewReader`, it seems possible to set the scroll offset programmatically.
+But I was wondering if it is also possible to  the current scroll position?
+It seems like the `ScrollViewProxy` only comes with the `scrollTo` method, allowing us to set the offset.
+Thanks!

@@ -1,0 +1,23 @@
+The error you're seeing is due to the fact that pdftk is not compatible with macOS Catalina (v10.15) and later versions. This is because Catalina only supports 64-bit applications, and pdftk is a 32-bit application.
+
+Here are a few alternatives you can use:
+
+1. **PDFtk Server**: This is a command-line tool that is a part of the PDFtk toolkit. It is a simple tool that allows you to merge PDF documents, split PDF pages into new documents, decrypt and encrypt, rotate, stamp, and more. You can download it from the [PDF Labs website](https://www.pdflabs.com/tools/pdftk-server/).
+
+2. **PDFsam**: This is a free, open-source PDF manipulation tool. It can merge, split, extract pages, rotate and mix PDF files. You can download it from the [PDFsam website](https://pdfsam.org/downloads/).
+
+3. **QPDF**: This is a command-line program that does structural, content-preserving transformations on PDF files. It could be used to decrypt and encrypt, compress and decompress, and more. You can install it using Homebrew with the following command:
+
+    ```bash
+    brew install qpdf
+    ```
+
+4. **Homebrew's pdftk-java**: This is a version of pdftk ported to Java. It can be installed with the following command:
+
+    ```bash
+    brew install pdftk-java
+    ```
+
+    After installing, you can use `pdftk-java` instead of `pdftk` in your commands.
+
+Remember to replace `pdftk` with the alternative you choose in your scripts or commands.

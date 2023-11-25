@@ -1,0 +1,42 @@
+Your code seems to be on the right track, but there are a few issues that need to be addressed:
+
+1. You're trying to use `query` and `currentSheet` as variables, but you haven't declared them. You should declare them at the beginning of your subroutine with `Dim query As String` and `Dim currentSheet As String`.
+
+2. You're trying to use `query` as both a string (when you assign it the value of a cell) and as a `WorkbookQuery` object (when you use `query.Name`). You should only use it as a string, since you're getting the query from a cell.
+
+3. The `Location` in the connection string should be the name of the query in Power Query, not the value of the query itself. If you're storing the name of the query in a cell, you can use that.
+
+Here's how you can modify your code:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    Dim query As String
+    Dim currentSheet As String
+
+    query = Sheets("Sheet6").Range("A1").Value 'here is where my query from power query is. I put the text from power query advanced editor in another sheet cell.
+    currentSheet = ActiveSheet.Name
+
+    With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=Sheets("target").Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+
+End Sub
+```
+
+This code assumes that the name of your Power Query query is stored in cell A1 of Sheet6. If you're storing the actual M code of the query in that cell, you'll need to create the query in VBA before you can use it,

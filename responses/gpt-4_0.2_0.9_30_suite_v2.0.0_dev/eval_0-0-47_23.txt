@@ -1,0 +1,9 @@
+In TypeScript, you can define an array of objects by specifying the object structure inside the array brackets. However, your syntax is slightly off. You should use `{}` to define the object structure and then use `[]` to denote an array of such objects. Here's the corrected version:
+
+```typescript
+bagTotal = (products: {name: string, price: number, description: string}[]) => {
+ // function does stuff
+}
+```
+
+In this case, `products` is an array of objects, where each object has a `name` property of type `string`, a `price` property of type `number`, and a `description` property of type `string`.

@@ -1,0 +1,22 @@
+The error message `ModuleNotFoundError: No module named 'app'` is indicating that Python can't find the module 'app'. This is likely because the Docker container doesn't have the correct file structure.
+
+In your Dockerfile, you are copying the contents of your local `app` directory to the `/app` directory in the Docker container. Then, you are trying to run `uvicorn app.main:app`, which is looking for `main.py` in the `/app` directory.
+
+However, based on your file structure, `main.py` is not directly under the `app` directory, it's under the `fastapi/app` directory. So, you should adjust your Dockerfile to reflect this structure.
+
+Here's how you can revise your Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt /
+RUN pip install --requirement /requirements.txt
+
+COPY ./fastapi/app /app
+
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+This Dockerfile changes the `COPY` command to copy from the correct local directory (`./fastapi/app` instead of `./app`), and changes the `CMD` command to look for `main.py` in the current directory (`main:app` instead of `app.main:app`).

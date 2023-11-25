@@ -1,0 +1,15 @@
+The error message you're seeing is due to a known issue with how Java handles command line arguments that contain spaces. The problem is that the command line arguments are being split on spaces, but the quotes that are supposed to prevent this are being ignored because they're being escaped by the backslashes.
+
+Here's a possible solution:
+
+1. Open the `netbeans.conf` file in a text editor. This file is usually located in the `etc` directory of your NetBeans installation folder.
+
+2. Look for the line that starts with `netbeans_default_options`. This line contains a list of options that are passed to the JVM when NetBeans starts up.
+
+3. Add the following option to the list: `-J-Djdk.lang.Process.allowAmbiguousCommands=true`
+
+4. Save the `netbeans.conf` file and restart NetBeans.
+
+This JVM option changes the behavior of the `ProcessBuilder` class to allow command line arguments with embedded quotes, which should resolve the issue you're seeing.
+
+Please note that this is a workaround and not a definitive solution. The definitive solution would be to fix the code that generates the command line arguments to properly handle spaces in paths.

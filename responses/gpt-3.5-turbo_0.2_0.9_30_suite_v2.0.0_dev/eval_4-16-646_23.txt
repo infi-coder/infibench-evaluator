@@ -1,0 +1,27 @@
+This error message usually appears when you are trying to run a binary that was compiled for a different CPU architecture than the one you are currently using. In this case, it seems that the pdftk binary you are trying to run was compiled for a 32-bit architecture, which is no longer supported on the latest versions of macOS.
+
+One solution is to install a 64-bit version of pdftk. You can do this by using the Homebrew package manager. Here are the steps:
+
+1. Install Homebrew by running the following command in your terminal:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+2. Once Homebrew is installed, run the following command to install pdftk:
+
+```
+brew install pdftk-java
+```
+
+This will install a Java-based version of pdftk that is compatible with macOS Catalina.
+
+3. After installation, you can run pdftk by typing the following command in your terminal:
+
+```
+pdftk
+```
+
+This should launch pdftk and you should be able to use it without any issues.
+
+I hope this helps!

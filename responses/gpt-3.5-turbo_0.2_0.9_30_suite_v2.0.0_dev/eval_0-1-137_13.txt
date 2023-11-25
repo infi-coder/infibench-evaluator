@@ -1,0 +1,15 @@
+The issue is that you are missing a comma after the value of the "primary" color. Here's the corrected code:
+
+```scss
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": #your-color-here,
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Make sure to replace "#your-color-here" with the actual color value you want to use.
+
+Also, make sure that you have installed Bootstrap's dependencies and are using the correct version of SASS. You can install Bootstrap's dependencies by running `npm install` in your project directory.

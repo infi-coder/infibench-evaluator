@@ -1,0 +1,18 @@
+It seems like the issue is related to the URI you are using for your Apollo Client. The URI `https://48p1r2roz4.sse.codesandbox.io` is a demo server provided by Apollo Client, and it may not be working properly at the moment.
+
+You should replace the URI with the endpoint of your GraphQL server. You can check if your GraphQL server is working properly by using a GraphQL client like GraphQL Playground or Altair.
+
+If you don't have a GraphQL server, you can create a simple one using a service like Apollo Studio or Hasura. Once you have a GraphQL server running, replace the URI in your `ApolloClient` configuration with the endpoint of your server.
+
+For example:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'https://my-graphql-server.com/graphql',
+    cache: new InMemoryCache(),
+});
+```
+
+Make sure to replace `https://my-graphql-server.com/graphql` with the actual endpoint of your GraphQL server.
+
+Once you have updated the URI, try running your app again and see if it works.

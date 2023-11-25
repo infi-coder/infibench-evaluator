@@ -1,0 +1,16 @@
+```c++
+#include <vector>
+#include <utility>
+#include <algorithm>
+#include <iterator>
+
+std::vector<std::pair<int, int>> origin_to_goal(std::vector<int> origin) {
+    std::vector<std::pair<int, int>> goal(origin.size() / 2);
+    std::transform(origin.begin(), origin.end(), goal.begin(), 
+        [it = origin.begin()] (int&) mutable {
+            return std::make_pair(*it, *(it + 1));
+        }
+    );
+    return goal;
+}
+```

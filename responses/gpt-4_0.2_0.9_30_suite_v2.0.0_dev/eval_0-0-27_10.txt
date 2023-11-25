@@ -1,0 +1,24 @@
+Your code seems correct and should work as expected. However, there are a few things you can check if the data is not being fetched:
+
+1. **Network Connection**: Make sure your device/emulator has a proper internet connection.
+
+2. **Server Status**: Check if the server at 'https://48p1r2roz4.sse.codesandbox.io' is up and running. You can do this by simply pasting the URL in your browser and see if it returns a response.
+
+3. **GraphQL Query**: Test your GraphQL query in a GraphQL playground to see if it returns the expected data. The server 'https://48p1r2roz4.sse.codesandbox.io' should provide a GraphQL playground at the same URL.
+
+4. **Apollo Client Version**: There might be compatibility issues with the version of Apollo Client you are using. Try downgrading to a lower version (like 3.3.0) and see if the problem persists.
+
+5. **Error Handling**: Enhance your error handling to log the actual error message. This might give you more insights into what is going wrong. You can do this by logging the `error` object in your `TestScreen` component:
+
+```javascript
+if (error) {
+    console.error(error);
+    return <Text>Error :(</Text>;
+}
+```
+
+6. **React Native Debugger**: Use React Native Debugger to inspect the network request and see if it's being made correctly and what response it's getting.
+
+7. **Apollo Client Setup**: Make sure the Apollo Client is set up correctly. The `uri` should point to your GraphQL server and the `cache` should be an instance of `InMemoryCache`.
+
+If none of these steps help, the issue might be more specific to your development environment or a bug in the libraries you are using.

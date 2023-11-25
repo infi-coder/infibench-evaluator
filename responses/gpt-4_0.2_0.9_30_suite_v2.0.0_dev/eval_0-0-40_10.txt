@@ -1,0 +1,24 @@
+The error message you're seeing suggests that there is a conflict between the Node.js and npm installations on your WSL2 Ubuntu and the installations on your Windows system. The `whereis` command shows that there are two versions of both `node` and `npm` available: one in `/usr/bin/` (the Ubuntu version) and one in `/mnt/c/Program Files/nodejs/` (the Windows version).
+
+To resolve this issue, you should adjust your `PATH` environment variable to prioritize the Ubuntu versions of `node` and `npm`. You can do this by adding the following line to your `.bashrc` or `.bash_profile` file:
+
+```bash
+export PATH=/usr/bin:$PATH
+```
+
+This line will add `/usr/bin` to the beginning of your `PATH`, which means that the system will look there first when trying to find `node` and `npm`.
+
+After adding this line, you should source your `.bashrc` or `.bash_profile` file to apply the changes:
+
+```bash
+source ~/.bashrc
+# or
+source ~/.bash_profile
+```
+
+Then, you should be able to run `npm -v` without any issues. If you still encounter problems, you might need to reinstall `npm` using the following commands:
+
+```bash
+sudo apt-get remove npm
+sudo apt-get install npm
+```

@@ -1,0 +1,36 @@
+One way to express this more idiomatically is to use the `map_or_else` method on the `Option` type. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map_or_else(|| Some(5), |val| if val < 5 { Some(5) } else { None });
+}
+```
+
+This code uses the `map_or_else` method to map the `Option` to either `Some(5)` or `None`, depending on whether the inner value meets the acceptance condition. If the `Option` is `None`, it returns `Some(5)` by default. If the inner value is less than 5, it also returns `Some(5)`. Otherwise, it returns `None`.
+
+Another way to express this is to use the `filter` method on the `Option` type. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.filter(|&val| val < 5).or(Some(5));
+}
+```
+
+This code uses the `filter` method to filter out the inner value if it doesn't meet the acceptance condition. If the inner value is less than 5, it returns the `Option` unchanged. Otherwise, it returns `None`. Then, it uses the `or` method to return `Some(5)` if the `Option` is `None`.
+
+Finally, you can also use the `unwrap_or_else` method on the `Option` type. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = if let Some(val) = foo {
+        if val < 5 { Some(val) } else { None }
+    } else {
+        Some(5)
+    }.unwrap_or_else(|| Some(5));
+}
+```
+
+This code uses an `if let` statement to check if the `Option` is `Some`. If it is, it checks if the inner value meets the acceptance condition. If it does, it returns `None`. Otherwise, it returns the `Option` unchanged. If the `Option` is `None`, it returns `Some(5)` by default. Then, it uses the `unwrap_or_else` method to return the `Option` if it's not `None`, or `Some(5)`

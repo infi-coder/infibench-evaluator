@@ -1,0 +1,26 @@
+In Rust, a `Box` is a smart pointer that represents ownership of a heap-allocated object. To check if a `Box` is a null pointer, you can use the `Box::into_raw` method to convert the `Box` into a raw pointer, and then check if the pointer is null.
+
+Here's an example implementation of the `Stack` struct that checks if the `top` field is a null pointer:
+
+```rust
+struct Node {
+    value: i32,
+    next: Box<Node>,
+}
+
+struct Stack {
+    top: Box<Node>,
+}
+
+impl Stack {
+    fn new() -> Stack {
+        Stack { top: Box::new(Node { value: 0, next: Box::new(Node { value: 0, next: Box::null() }) }) }
+    }
+
+    fn is_empty(&self) -> bool {
+        self.top.as_ref() as *const Node == std::ptr::null()
+    }
+}
+```
+
+In this example, the `is_empty` method checks if the `top` field is a null pointer by converting it to a raw pointer using the `as_ref` method and then comparing it to the null pointer using the `std::ptr::null` function. Note that the `as_ref` method is used to convert the `Box<Node>` into a reference to the `Node` struct, which is required to use the `as *const Node` syntax to get a raw pointer.

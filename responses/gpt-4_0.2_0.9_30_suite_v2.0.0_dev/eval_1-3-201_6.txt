@@ -1,0 +1,43 @@
+You can use multiprocessing in Python to run these two tasks concurrently. Here's how you can do it:
+
+```python
+import multiprocessing
+from dash import Dash
+import db
+import hp
+import fd
+import dbc
+
+def run_dash():
+    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database=db.dataBase()
+    homepage=hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+
+    if __name__ == "__main__":
+        app.run_server(debug=True)
+
+def run_data_mining():
+    database=db.dataBase()
+    dataMiningScript= fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    # Create a process for dash
+    p1 = multiprocessing.Process(target=run_dash)
+    # Create a process for data mining
+    p2 = multiprocessing.Process(target=run_data_mining)
+
+    # Start both processes
+    p1.start()
+    p2.start()
+
+    # Wait for both processes to finish
+    p1.join()
+    p2.join()
+```
+
+This script creates two separate processes, one for running the Dash server and another for data mining. Both processes will run independently and concurrently.
+
+Note: If your `fd.financeData` function has an infinite loop, you might want to add some mechanism to stop it gracefully, otherwise, it will keep running even after you stop your main script.

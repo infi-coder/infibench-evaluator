@@ -1,0 +1,49 @@
+To use multiple consumers for a single widget in Flutter Provider, you can use the `MultiProvider` widget. 
+
+First, you need to create a `MultiProvider` widget and pass in a list of the 4 different classes that extend `ChangeNotifier`. 
+
+```dart
+return MultiProvider(
+  providers: [
+    ChangeNotifierProvider<Item1Notifier>(create: (_) => Item1Notifier()),
+    ChangeNotifierProvider<Item2Notifier>(create: (_) => Item2Notifier()),
+    ChangeNotifierProvider<Item3Notifier>(create: (_) => Item3Notifier()),
+    ChangeNotifierProvider<Item4Notifier>(create: (_) => Item4Notifier()),
+  ],
+  child: MyWidget(),
+);
+```
+
+Then, in your widget, you can use the `Consumer` widget from the Provider package to listen to each of the 4 change notifiers. 
+
+```dart
+return Scaffold(
+  body: Consumer4<Item1Notifier, Item2Notifier, Item3Notifier, Item4Notifier>(
+    builder: (_, item1, item2, item3, item4, __) {
+      // Use item1, item2, item3, item4 here
+      return CurvedNavigationBar(
+        items: [
+          Icon(Icons.home),
+          Icon(Icons.search),
+          Icon(Icons.favorite),
+          Icon(Icons.person),
+        ],
+        onTap: (index) {
+          // Call the appropriate method on the corresponding notifier
+          if (index == 0) {
+            item1.doSomething();
+          } else if (index == 1) {
+            item2.doSomething();
+          } else if (index == 2) {
+            item3.doSomething();
+          } else if (index == 3) {
+            item4.doSomething();
+          }
+        },
+      );
+    },
+  ),
+);
+```
+
+In the `Consumer4` widget, you can access each of the 4 change notifiers using the `item1`, `item2`, `item3`, and `item4` parameters. You can then use these notifiers to update the state of your widget based on the selected item in the `CurvedNavigationBar`.

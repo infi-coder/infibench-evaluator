@@ -1,0 +1,36 @@
+The error `FormatException: Unexpected character (at character 1)` usually occurs when the JSON you are trying to decode is not properly formatted. This could be due to a variety of reasons:
+
+1. The server might not be returning a JSON at all. It could be returning HTML or plain text.
+2. The JSON returned by the server might be malformed.
+3. There might be some invisible characters in the JSON that are causing the parsing to fail.
+
+Here are some steps you can take to debug and solve this issue:
+
+1. **Print the response body**: Before trying to decode the JSON, print the response body to the console. This will allow you to see exactly what you are trying to decode.
+
+```dart
+print('Response body: ${response.body}');
+```
+
+2. **Check the server response**: Use a tool like Postman to send a request to the server and see what it returns. Make sure it's returning a valid JSON.
+
+3. **Check the JSON format**: If the server is indeed returning a JSON, make sure it's properly formatted. You can use a JSON validator tool to check this.
+
+4. **Handle the error**: You can use a try-catch block to handle the `FormatException` and print more detailed information about the error.
+
+```dart
+try {
+  List data = json.decode(response.body);
+} catch (e) {
+  print('Error: $e');
+}
+```
+
+5. **Check your PHP script**: Make sure your PHP script is correctly outputting a JSON response. You should be using `json_encode` to encode your response and you should set the `Content-Type` header to `application/json`.
+
+```php
+header('Content-Type: application/json');
+echo json_encode($your_data);
+```
+
+By following these steps, you should be able to identify and fix the issue causing the `FormatException`.

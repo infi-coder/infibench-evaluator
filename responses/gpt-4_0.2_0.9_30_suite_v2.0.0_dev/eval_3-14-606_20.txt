@@ -1,0 +1,15 @@
+It seems like there's a misunderstanding. iOS doesn't have a "Developer Mode" that you can enable or disable like Android. The message you're seeing is likely related to the provisioning profile used to sign the app.
+
+Here are some steps you can follow to resolve this issue:
+
+1. **Check the Provisioning Profile**: Make sure the app is signed with a valid provisioning profile that matches your device. You can do this in Xcode by going to `Window > Devices and Simulators`, selecting your device, and checking the `Provisioning Profiles` section.
+
+2. **Trust the Developer**: If the app was signed with a developer or enterprise certificate, you might need to manually trust the developer on your device. You can do this by going to `Settings > General > Profiles & Device Management`, selecting the developer under the `Developer App` section, and tapping `Trust`.
+
+3. **Use a Registered Device**: If you're using a developer provisioning profile, make sure your device's UDID is added to the list of devices in your Apple Developer account. You can check this by going to the [Apple Developer website](https://developer.apple.com/account/), navigating to `Devices` under the `Certificates, Identifiers & Profiles` section, and checking if your device is listed.
+
+4. **Update Xcode**: Make sure you're using the latest version of Xcode that supports iOS 16.0. You can download the latest version of Xcode from the [Mac App Store](https://apps.apple.com/us/app/xcode/id497799835).
+
+5. **Reinstall the App**: Delete the app from your device and reinstall it. If you're installing the app from Xcode, make sure your device is selected as the target in the toolbar before you click `Run`.
+
+If you're still having trouble, you might want to contact the developer of the app or ask for help on a site like [Stack Overflow](https://stackoverflow.com/).

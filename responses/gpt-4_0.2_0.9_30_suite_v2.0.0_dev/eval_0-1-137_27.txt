@@ -1,0 +1,20 @@
+The error message is indicating that the `$theme-colors` map is not a valid CSS value. This is because you are trying to overwrite the `$theme-colors` map after it has already been used in the Bootstrap's `_variables.scss` file.
+
+To fix this issue, you should define your custom `$theme-colors` map before importing the Bootstrap's `_variables.scss` file. However, you should not import the `_variables.scss` file directly, instead, import the `bootstrap.scss` file which will import all necessary files in the correct order.
+
+Here is how you should structure your SCSS file:
+
+```scss
+// Define your custom theme colors
+$theme-colors: (
+  "primary": #your-color, // replace #your-color with your desired color
+  // Add other colors if needed
+);
+
+// Import Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In this way, your custom `$theme-colors` map will be used when compiling the Bootstrap SCSS files.
+
+Please replace `#your-color` with the color you want to use for the primary color. You can add more color definitions to the `$theme-colors` map if you want to customize other colors as well.

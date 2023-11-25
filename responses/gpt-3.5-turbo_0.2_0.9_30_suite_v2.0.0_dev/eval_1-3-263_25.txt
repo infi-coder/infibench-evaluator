@@ -1,0 +1,7 @@
+The `f` in `print(f"...")` stands for formatted string literals, also known as f-strings. 
+
+F-strings were introduced in Python 3.6 and provide a concise and convenient way to embed expressions inside string literals, using a minimal syntax. 
+
+In your example, the `f` before the opening quotation mark indicates that the string is a formatted string literal. The expressions inside the curly braces `{}` are evaluated at runtime and their values are inserted into the string. 
+
+So, in the first `print` statement, the value of `args.input_directory` is inserted into the string at the position of `{args.input_directory}`, and in the second `print` statement, the value of `args.output_directory` is inserted into the string at the position of `{args.output_directory}`.

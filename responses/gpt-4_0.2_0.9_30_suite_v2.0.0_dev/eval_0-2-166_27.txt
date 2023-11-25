@@ -1,0 +1,26 @@
+Tailwind CSS is a utility-first CSS framework that doesn't provide a direct way to target child elements like you would in traditional CSS. It doesn't support selectors like `div.section > div`.
+
+Instead, Tailwind CSS is designed to be used in the HTML (or JSX, etc.) directly, applying utility classes to the elements you want to style. 
+
+For example, if you have a div with class "section" and you want to style its direct children divs, you would do something like this:
+
+```html
+<div class="section">
+  <div class="bg-blue-500 text-white">...</div>
+  <div class="bg-blue-500 text-white">...</div>
+</div>
+```
+
+In this example, `bg-blue-500` and `text-white` are Tailwind CSS utility classes applied directly to the child divs.
+
+If you need to apply styles to elements based on their parent or other contextual factors, you might need to use JavaScript (or a JavaScript framework) to add the necessary classes dynamically. For example, with React you might do something like this:
+
+```jsx
+<div className="section">
+  {children.map(child => (
+    <div className="bg-blue-500 text-white">{child}</div>
+  ))}
+</div>
+```
+
+In this example, the `map` function is used to apply the `bg-blue-500` and `text-white` classes to each child of the "section" div.

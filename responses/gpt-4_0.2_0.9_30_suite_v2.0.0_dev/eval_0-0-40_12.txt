@@ -1,0 +1,24 @@
+The issue you're facing is due to the fact that your system is trying to use the Windows version of npm, which is not compatible with the Linux subsystem. You need to make sure that the Linux version of npm is being used instead.
+
+To solve this issue, you can add the following lines to your `.bashrc` or `.bash_profile` file:
+
+```bash
+export PATH=/usr/bin:$PATH
+```
+
+This line will prioritize the Linux versions of node and npm over the Windows versions. After adding this line, you need to source your `.bashrc` or `.bash_profile` file to apply the changes:
+
+```bash
+source ~/.bashrc
+# or
+source ~/.bash_profile
+```
+
+Then, you can check the versions of node and npm again:
+
+```bash
+node -v
+npm -v
+```
+
+This should now display the correct versions of node and npm that are installed in your Linux subsystem.

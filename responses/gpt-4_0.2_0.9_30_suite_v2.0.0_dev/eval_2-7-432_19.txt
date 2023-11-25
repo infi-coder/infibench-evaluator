@@ -1,0 +1,24 @@
+The "419 Page Expired" error is due to Laravel's CSRF protection. When you log out in one tab, the session is invalidated. So, when you try to log out from the other tab, the CSRF token associated with that session is no longer valid, hence the "419 Page Expired" error.
+
+To handle this, you can catch the `TokenMismatchException` in your `Handler.php` file and redirect the user to the login page.
+
+Here's how you can do it:
+
+```php
+// app/Exceptions/Handler.php
+
+use Illuminate\Session\TokenMismatchException;
+
+public function render($request, Exception $exception)
+{
+    if ($exception instanceof TokenMismatchException) {
+        // Redirect to a form. Here is an example of how we can
+        // return a view or redirect to a different route
+        return redirect('/login');
+    }
+
+    return parent::render($request, $exception);
+}
+```
+
+This way, if a user tries to perform an action with an expired CSRF token (like logging out from an already logged out session), they will be redirected to the login page instead of seeing the "419 Page Expired" error.

@@ -1,0 +1,12 @@
+It seems that the issue is with the `uri` you are using in the `ApolloClient` configuration. The `uri` you are using is not working and that's why the query is not being executed.
+
+You can try using a different `uri` for testing purposes. Here is an example of a working `uri`:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'https://48p1r2roz4.sse.codesandbox.io/graphql',
+    cache: new InMemoryCache(),
+});
+```
+
+Also, make sure that your device or emulator has an active internet connection.

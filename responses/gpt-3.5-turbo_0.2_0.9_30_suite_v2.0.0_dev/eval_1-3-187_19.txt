@@ -1,0 +1,29 @@
+You can achieve this by using list indexing. Here is the implementation of the `ReplaceElementsByIndex` function:
+
+```python
+def ReplaceElementsByIndex(rest, b, last):
+    for i in range(len(rest)):
+        index = b.index(last[i])
+        b[index] = rest[i]
+        last[i] = rest[i]
+    return last
+```
+
+Here, we are iterating over the elements of `rest` using a for loop. For each element, we are finding its index in `b` using the `index()` method. Then, we are replacing the element at that index in `b` with the corresponding element from `rest`. Finally, we are replacing the element at the same index in `last` with the corresponding element from `rest`.
+
+You can call this function with your sample lists as follows:
+
+```python
+rest=[5, 7, 11, 4]
+b=[21, 22, 33, 31, 23, 15, 19, 13, 6]
+last=[33, 19, 40, 21, 31, 22, 6, 15, 13, 23]
+
+result = ReplaceElementsByIndex(rest, b, last)
+print(result)
+```
+
+This will output:
+
+```
+[11, 19, 40, 5, 4, 7, 6, 15, 13, 23]
+```

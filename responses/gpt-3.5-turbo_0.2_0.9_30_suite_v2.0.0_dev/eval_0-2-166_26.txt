@@ -1,0 +1,22 @@
+In TailwindCSS, you can use the `>` (direct child) selector by using the `child` variant. Here's an example:
+
+```html
+<div class="section">
+  <div class="child:bg-red-500">Direct child</div>
+  <div class="grandchild:bg-blue-500">Grandchild</div>
+</div>
+```
+
+In this example, the `child:bg-red-500` class will only apply to the direct child of the `div` with class `section`. The `grandchild:bg-blue-500` class will not be affected.
+
+Here's the CSS that TailwindCSS generates for this example:
+
+```css
+.child\:bg-red-500 > * {
+  --bg-opacity: 1;
+  background-color: #f56565;
+  background-color: rgba(245, 101, 101, var(--bg-opacity));
+}
+```
+
+Note that the `>` selector is escaped with a backslash (`\`) in the class name. This is because the colon (`:`) is not a valid character in a class name.

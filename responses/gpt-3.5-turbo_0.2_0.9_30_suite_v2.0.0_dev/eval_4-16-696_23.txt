@@ -1,0 +1,9 @@
+Your `sed` command is not correctly removing the `?` and everything after it. Instead of `s/\?.*//g`, try using `s/\?.*$//g`. This will remove the `?` and everything after it until the end of the filename. 
+
+Also, the `mv` command is failing because the source and destination filenames are the same. You can fix this by using a different temporary filename for the `mv` command. Here's the updated command:
+
+```
+find . -type f -name '*\?*' -exec sh -c 'mv "$1" "$(echo "$1" | sed "s/\?.*$//g")_temp" && mv "$(echo "$1" | sed "s/\?.*$//g")_temp" "$(echo "$1" | sed "s/\?.*$//g")"' sh {} \;
+```
+
+This command uses a temporary filename with `_temp` appended to it during the `mv` command, and then renames it back to the original filename without the `?` and everything after it.

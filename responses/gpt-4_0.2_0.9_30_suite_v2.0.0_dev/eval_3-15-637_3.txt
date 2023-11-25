@@ -1,0 +1,30 @@
+The error you're experiencing might be due to several reasons. Here are some suggestions that you can try:
+
+1. **Check SeleniumBasic Version**: Make sure you have the latest version of SeleniumBasic installed. You can download it from [here](https://github.com/florentbr/SeleniumBasic/releases).
+
+2. **Check Browser Driver**: Ensure that you have the correct version of the browser driver (like ChromeDriver for Chrome, GeckoDriver for Firefox, etc.) installed and it's in your system PATH. The driver version should be compatible with the browser version you are using.
+
+3. **Check SeleniumBasic References**: In VBA, go to `Tools > References` and make sure that `Selenium Type Library` is checked.
+
+4. **Check Internet Explorer Settings**: Since you're using Internet Explorer in your code, make sure that the `Enable Protected Mode` setting is the same for all zones in Internet Explorer options. To do this, go to `Internet Options > Security Tab` and check the `Enable Protected Mode` checkbox for Internet, Local intranet, Trusted sites, and Restricted sites.
+
+5. **Code Modification**: Try to modify your code as follows:
+    ```vba
+    Dim driver As WebDriver
+    Set driver = New WebDriver
+    driver.Start "ie"
+    driver.Get "https://www.google.com/"
+    ```
+    Here, `WebDriver` is not declared as `New WebDriver` at the start. Instead, a new instance of `WebDriver` is created using `Set driver = New WebDriver`.
+
+6. **Try a Different Browser**: If none of the above solutions work, try using a different browser. If you're using Chrome, the code would look like this:
+    ```vba
+    Dim driver As WebDriver
+    Set driver = New WebDriver
+    driver.Start "chrome"
+    driver.Get "https://www.google.com/"
+    ```
+
+Remember to replace `"chrome"` with the name of the browser you want to use.
+
+If none of these suggestions work, please provide the exact error message you're receiving for further assistance.

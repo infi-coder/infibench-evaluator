@@ -1,0 +1,21 @@
+The error message you're seeing is related to the way Windows handles command line arguments. The issue is that the command you're trying to run has embedded quotes, which Windows doesn't handle well.
+
+Here's a simplified version of your command that should work:
+
+```cmd
+cd C:\projects\open
+set JAVA_HOME=C:\Program Files\Java\jdk-11.0.5
+"C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\mvn.cmd" -DskipTests=true -Dmaven.ext.class.path=C:\Program Files\NetBeans-11.1\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install
+```
+
+This command does the same thing as your original command, but it sets the `JAVA_HOME` environment variable in a separate command, and it removes the unnecessary quotes around the `-Dmaven.ext.class.path` argument.
+
+If you're running this command from a script, you might need to modify it slightly to make sure the `JAVA_HOME` environment variable is set correctly for the `mvn.cmd` command. Here's how you could do it:
+
+```cmd
+cd C:\projects\open
+set "JAVA_HOME=C:\Program Files\Java\jdk-11.0.5"
+"C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\mvn.cmd" -DskipTests=true -Dmaven.ext.class.path=C:\Program Files\NetBeans-11.1\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install
+```
+
+In this version of the command, the `JAVA_HOME` environment variable is set in a way that it will only affect the `mvn.cmd` command and not any subsequent commands.

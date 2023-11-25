@@ -1,0 +1,17 @@
+To check if a package is at its latest version programmatically in a script and return a true or false, you can use the `pip` package in Python. Here is a function `checkVersion` that takes the package name `pkgName` as the argument and returns a boolean value indicating whether the package is up-to-date or not:
+
+```python
+import subprocess
+
+def checkVersion(pkgName):
+    # Get the latest version of the package from PyPI
+    latest_version = subprocess.check_output(['pip', 'install', '--no-cache-dir', '--upgrade', pkgName, '-q', '--no-color']).decode().strip()
+    
+    # Get the installed version of the package
+    installed_version = subprocess.check_output(['pip', 'show', pkgName]).decode().split('\n')[1].split(': ')[1].strip()
+    
+    # Compare the versions and return True if the package is up-to-date, False otherwise
+    return latest_version == installed_version
+```
+
+This function first uses `subprocess` to run the `pip install` command with the `--upgrade` flag to get the latest version of the package from PyPI. It then uses `pip show` to get the installed version of the package. Finally, it compares the two versions and returns `True` if they are the same (i.e., the package is up-to-date) and `False` otherwise.

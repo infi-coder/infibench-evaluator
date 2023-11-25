@@ -1,0 +1,45 @@
+Either wrap your custom appbar into a `PreferredSize` widget or implement the `PreferredSizeWidget` interface. 
+
+The `AppBar` widget in Flutter requires a `PreferredSizeWidget` as its argument. You can either wrap your custom `AppBarDesign` widget into a `PreferredSize` widget or make `AppBarDesign` implement the `PreferredSizeWidget` interface. 
+
+Here's an example of wrapping `AppBarDesign` into a `PreferredSize` widget:
+
+```dart
+class MyHomePage extends StatelessWidget {
+  MyHomePage(Key key, this.title) : super(key: key);
+
+  final title;
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: new AppBarDesign(key, title),
+      ),
+    );
+  }
+}
+```
+
+Alternatively, you can make `AppBarDesign` implement the `PreferredSizeWidget` interface by overriding the `preferredSize` property:
+
+```dart
+class AppBarDesign extends StatelessWidget implements PreferredSizeWidget {
+  AppBarDesign(Key key, this.title) : super(key: key);
+
+  final title;
+
+  @override
+  Widget build(BuildContext context) {
+    return new AppBar(
+      title: new Text(title),
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+}
+```
+
+Either way, your custom `AppBar` widget should now work properly.

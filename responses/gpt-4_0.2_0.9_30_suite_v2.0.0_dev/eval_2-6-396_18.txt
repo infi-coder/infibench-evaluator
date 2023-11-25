@@ -1,0 +1,19 @@
+The error message is indicating that you're trying to create an index on a navigation property (`Gender`), which is not allowed. Navigation properties are used to establish relationships between entities in Entity Framework, they are not mapped to a specific column in the database, so you can't create an index on them.
+
+If you want to create an index on the `GenderId` property, you should do it like this:
+
+```c#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderId);
+    });
+}
+```
+This will create an index on the `GenderId` column in the `User` table.

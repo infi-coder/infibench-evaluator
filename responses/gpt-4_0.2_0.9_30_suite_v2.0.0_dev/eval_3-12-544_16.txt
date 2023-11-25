@@ -1,0 +1,44 @@
+The error you're seeing is due to the fact that you're trying to use an asynchronous function (`getApplicationDocumentsDirectory()`) at the top level of your application, which isn't allowed in Flutter. 
+
+You should move the initialization of the `appDocsDir` variable inside the `runApp()` function or inside the `initState()` method of your `MyApp` widget.
+
+Here's an example of how you can do it:
+
+```dart
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      // Initialize Hive and get the appDocsDir
+      future: _initHive(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          // Hive and appDocsDir have been initialized, return the main app
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: MyHomePage(title: 'Flutter Demo Home Page'),
+          );
+        } else {
+          // Hive and appDocsDir are still being initialized, return a loading screen
+          return CircularProgressIndicator();
+        }
+      },
+    );
+  }
+
+  Future _initHive() async {
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    Hive.init(appDocsDir.path);
+  }
+}
+```
+
+In this code, we're using a `FutureBuilder` to handle the initialization of Hive and getting the `appDocsDir`. The `FutureBuilder` will show a loading spinner until `_initHive()` has completed. Once it's done, it will build the main app.

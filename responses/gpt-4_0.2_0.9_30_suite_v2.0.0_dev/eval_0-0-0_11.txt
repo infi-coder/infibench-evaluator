@@ -1,0 +1,22 @@
+Sure, here is a function that does what you want:
+
+```javascript
+function keys_and_prices(raw_obj) {
+    let keys = Object.keys(raw_obj);
+    let prices = keys.map(key => raw_obj[key].price);
+    return [keys, prices];
+}
+```
+
+This function first uses `Object.keys()` to get an array of the keys in the object. Then it uses `Array.prototype.map()` to create a new array containing the prices associated with each key. Finally, it returns an array containing the keys array and the prices array.
+
+Here is how you can use it with your example:
+
+```javascript
+var itemsToBuy = { milk: { quantity : 5, price: 20 }, bread: { quantity : 2, price: 15 }, potato: { quantity : 3, price: 10 } }
+let ret = keys_and_prices(itemsToBuy)
+console.log(ret[0]) // ["milk", "bread", "potato"]
+console.log(ret[1]) // [20, 15, 10]
+```
+
+Please note that the order of keys and prices in the returned arrays depends on the order of properties in the original object, which is not guaranteed to be consistent across different JavaScript implementations.

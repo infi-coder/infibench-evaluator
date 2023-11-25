@@ -1,0 +1,15 @@
+You can use the `Environ` function in VBA to get the local path of the OneDrive folder. Here's a simple example:
+
+```vba
+Sub GetOneDrivePath()
+    Dim OneDrivePath As String
+    OneDrivePath = Environ("OneDrive")
+    MsgBox OneDrivePath
+End Sub
+```
+
+This will return the path to the root of the OneDrive folder. If you need to navigate to a specific subfolder, you can append it to the `OneDrivePath` string.
+
+However, this method assumes that the OneDrive folder is located in the default location and that the user has not changed it. If the location is different for each user, you may need to create a setup procedure where each user inputs their OneDrive path, which is then stored and used in your macros.
+
+As for the "Open File Location" button, unfortunately, there's no built-in VBA function to replicate this. This button uses internal Excel functions that are not exposed to VBA.

@@ -1,0 +1,5 @@
+find . -name '*\?*' -type f -exec sh -c '
+for fp; do
+  fn=${fp##*/}
+  echo mv "$fp" "${fp%/*}/${fn%%\?*}"
+done' sh {} +

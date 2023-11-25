@@ -1,0 +1,19 @@
+Sure, here is the completed Javascript template:
+
+Way 1:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').should('have.text', "Wildness")
+```
+
+Way 2:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').invoke('text').then((text) => {
+    expect(text.trim()).to.equal('Wildness')
+});
+```
+
+In the first way, `'.WildnessText-kRKTej'` is the selector for the div you want to check, and `'have.text'` is the assertion that checks if the div has the text `"Wildness"`.
+
+In the second way, `'text'` is a function that gets the text of the div, and `expect(text.trim()).to.equal('Wildness')` is the assertion that checks if the trimmed text equals `"Wildness"`.

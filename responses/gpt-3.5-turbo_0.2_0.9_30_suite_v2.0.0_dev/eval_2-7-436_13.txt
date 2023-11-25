@@ -1,0 +1,13 @@
+Laravel 9 is not yet released. The latest stable version of Laravel is 8.x. You can create a new Laravel 8 project by running the following command:
+
+```bash
+composer create-project --prefer-dist laravel/laravel blog
+```
+
+This will create a new Laravel 8 project in a directory named "blog". If you want to specify a specific version of Laravel 8, you can add the version number after "laravel/laravel". For example, to create a project with Laravel 8.6.0, you can run:
+
+```bash
+composer create-project --prefer-dist laravel/laravel blog "8.6.*"
+```
+
+I hope this helps!

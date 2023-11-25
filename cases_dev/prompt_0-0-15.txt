@@ -1,0 +1,29 @@
+I am using Jest tests to test an API class in a React app. The API class is defined in a class file `utils/API` like so:
+
+```javascript
+class API {
+  someMethod() {
+    // Does stuff
+  }
+}
+
+export default API;
+```
+
+I mock this class with the following code:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  // Returns an object
+  return {
+    someMethod: () => {}
+  };
+})
+```
+
+However, `const api = new API()` after the mock code throws a `TypeError... is not a constructor`` error.
+
+Could you revise the above snippet to eliminate the error? 
+You don't need to output other context, but just the revised version of the above code snippet.

@@ -1,0 +1,17 @@
+The Rule of Five is not outdated, but its necessity has been reduced due to the introduction of smart pointers and other features in modern C++. 
+
+You're correct that for many classes, especially those that manage their resources properly using RAII (Resource Acquisition Is Initialization) idiom, the compiler-generated versions of these functions will be just fine. 
+
+However, there are still cases where you might need to define these functions yourself:
+
+1. **Performance considerations**: Compiler-generated copy and move operations perform member-wise copy or move, which might not be the most efficient way for your specific class. 
+
+2. **Ownership semantics**: If your class has unique ownership semantics that cannot be expressed using standard library smart pointers, you might need to define these functions yourself.
+
+3. **Managing non-memory resources**: If your class manages a resource other than memory (like a file handle or a network socket), you'll need to define these functions to manage those resources correctly.
+
+4. **Interfacing with C or older C++ code**: If your class needs to interface with C-style code, or older C++ code that doesn't use smart pointers, you might need to define these functions.
+
+5. **Polymorphic classes**: If your class is intended to be a base class, you'll need to declare your destructor virtual. Compiler-generated destructors are non-virtual, so you'll need to define your own.
+
+So while it's true that you need these functions less often in modern C++, there are still cases where you need them. That's why the Rule of Five is still relevant.

@@ -1,0 +1,17 @@
+The error message "could not resolve macro `$crate::format_args`" is coming from the Rust Analyzer, which is a language server protocol implementation for Rust. It's not an error from the Rust compiler itself.
+
+This error message means that the Rust Analyzer is having trouble resolving the macro `format_args!` which is used internally by the `assert_eq!` macro in your test function. This is likely a bug or limitation in the Rust Analyzer itself, rather than a problem with your code.
+
+If your code is compiling and running correctly, and the tests are passing, then you can safely ignore this error. However, I understand that it can be annoying to see an error message in your editor when there's nothing wrong with your code.
+
+Here are a few things you can try to get rid of the error message:
+
+1. **Update Rust Analyzer**: If you're using an old version of the Rust Analyzer, updating to the latest version might fix the problem.
+
+2. **Restart your editor**: Sometimes, the Rust Analyzer can get into a bad state, and restarting your editor can fix the problem.
+
+3. **Clear the Rust Analyzer cache**: The Rust Analyzer stores a cache of information about your code to speed up analysis. If this cache gets corrupted, it can cause problems. You can clear the cache by deleting the `.rust-analyzer` directory in your project root.
+
+4. **Disable and re-enable the Rust Analyzer**: If all else fails, you can try disabling the Rust Analyzer extension in your editor, restarting your editor, and then re-enabling the Rust Analyzer. This can sometimes fix problems.
+
+If none of these solutions work, you might want to consider filing a bug report with the Rust Analyzer project. They might be able to help you figure out what's going wrong.

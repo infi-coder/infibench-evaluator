@@ -1,0 +1,35 @@
+You can use Python's multiprocessing module to run these two tasks concurrently. Here is how you can modify your code:
+
+```python
+import multiprocessing
+
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+database=db.dataBase()
+homepage=hp.homepage(database)
+homepage.timeUpdateCallback(app)
+homepage.gaugeRefreshCallback(app)
+
+def run_data_mining():
+    dataMiningScript= fd.financeData(database,1600)
+
+def run_server():
+    app.layout = homepage.layoutMaker()
+    app.run_server(debug=True)
+
+if __name__ == "__main__":
+    # Create processes
+    p1 = multiprocessing.Process(target=run_data_mining)
+    p2 = multiprocessing.Process(target=run_server)
+
+    # Start processes
+    p1.start()
+    p2.start()
+
+    # Join processes
+    p1.join()
+    p2.join()
+```
+
+This code creates two separate processes, one for the data mining script and one for the server. The `start()` method starts the process's activity and the `join()` method makes the main program wait until both processes have completed.
+
+Please note that multiprocessing in Python creates new processes. Each process gets its own Python interpreter and memory space so the Global Interpreter Lock is not a problem. However, because of this, sharing data between processes is not as straightforward as with threads and you might need to use methods like pipes, queues or shared memory.

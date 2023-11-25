@@ -1,0 +1,13 @@
+According with the Microsoft Documentation Here, I should have access to the Attribute for [Keyless] so I can define my Model has Keyless, so that in my DBContext I could have something like:
+```c#
+public DbSet<MyKeylessClass> KeylessModel { get; set; }
+```
+And use
+```c#
+_context.KeylessModel.FromSqlRaw(...)
+```
+without having the need to add a PK to it. I have the reference to
+```c#
+System.ComponentModel.DataAnnotations
+```
+and all the Attributes except Keyless are there, what am I missing here?

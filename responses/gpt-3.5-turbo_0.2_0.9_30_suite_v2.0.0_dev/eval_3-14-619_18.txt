@@ -1,0 +1,30 @@
+The issue might be that you are using a `@Binding` property in the `ContentView` struct, which means that the view is not the source of truth for the `isSelected` property. Instead, it is being passed in from another view. 
+
+To fix this, you can change the `@Binding` property to a `@State` property. Then, you can pass in the initial value of `isSelected` from the `ContentView_Previews` struct using the `@State` property wrapper. 
+
+Here's the updated code:
+
+```
+swift
+import SwiftUI
+
+struct ContentView: View {
+    @State var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(isSelected: .init(initialValue: false))
+    }
+}
+``` 
+
+This should update the view when the button is clicked.

@@ -1,0 +1,22 @@
+The error message "bad CPU type in executable" usually occurs when you are trying to run an executable that was compiled for a different CPU architecture than the one you are currently using. 
+
+In the case of pdftk, it is likely that you are trying to run a 32-bit version of the program on a 64-bit version of macOS. Starting with macOS Catalina (10.15), Apple dropped support for 32-bit applications, which means that pdftk (which is a 32-bit application) will no longer work on Catalina or later versions of macOS.
+
+One solution is to use an alternative tool to pdftk that is compatible with macOS Catalina. One such tool is called "qpdf" and it can be installed using Homebrew, a package manager for macOS. Here are the steps to install qpdf using Homebrew:
+
+1. Open Terminal (you can find it in the Utilities folder in the Applications folder).
+2. Install Homebrew by running the following command:
+
+   `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
+
+3. Once Homebrew is installed, run the following command to install qpdf:
+
+   `brew install qpdf`
+
+4. After qpdf is installed, you can use it to manipulate PDF files. For example, to merge two PDF files, you can run the following command:
+
+   `qpdf --empty --pages file1.pdf file2.pdf -- output.pdf`
+
+This will create a new PDF file called "output.pdf" that contains the pages from both file1.pdf and file2.pdf.
+
+I hope this helps! Let me know if you have any other questions.

@@ -1,0 +1,13 @@
+Sure, here is your revised function:
+
+```python
+def pig_latin(text):
+    words = text.split()
+    result = []
+    for word in words:
+        endString = word[1:] + word[0].lower() + 'ay'
+        result.append(endString)
+    return ' '.join(result)
+```
+
+This function works by splitting the input text into words, then for each word, it moves the first character to the end and appends "ay". The transformed words are then joined back together with spaces in between to form the final result.

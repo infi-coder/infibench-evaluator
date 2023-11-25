@@ -1,0 +1,25 @@
+Sure, here's a possible implementation using the `random` module in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the substring and the number of digits
+    substring = "NAA3U"
+    num_digits = 3
+    
+    # Define the set of characters to choose from
+    chars = string.ascii_letters + string.digits
+    
+    # Generate a random string until it satisfies the requirements
+    while True:
+        # Generate a random string of length 16
+        rand_str = ''.join(random.choice(chars) for _ in range(16))
+        
+        # Check if the substring and the number of digits are present
+        if substring in rand_str and sum(c.isdigit() for c in rand_str) == num_digits:
+            return rand_str
+```
+
+This function generates a random string of length 16 using the `random.choice` function to pick characters from the set of letters and digits. It then checks if the substring "NAA3U" is present in the string and if the number of digits is exactly 3. If the string satisfies these requirements, it returns the string. If not, it generates another random string and repeats the process until a valid string is found.

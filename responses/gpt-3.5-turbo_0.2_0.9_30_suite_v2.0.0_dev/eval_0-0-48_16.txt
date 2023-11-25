@@ -1,0 +1,11 @@
+Sure! The code you provided is almost correct, but you need to use the `|` operator instead of `,` when defining the type `FruitsAndColors`. Here's the corrected code:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit]: number;
+} & {
+  [key in color]: boolean;
+}
+```
+
+This creates a type that has a numeric property for each fruit and a boolean property for each color. The `&` operator combines the two mapped types into a single type.

@@ -1,0 +1,19 @@
+The error message suggests that Go is unable to find the specific revision of the private repository. This could be due to a few reasons:
+
+1. **Incorrect or missing credentials**: Ensure that you have the correct credentials set up on computer B. You mentioned that you have access to the private repositories, but it's worth double-checking. If you're using SSH, make sure your SSH keys are set up correctly. If you're using HTTPS, you might need to set up a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+
+2. **Network issues**: There might be network issues preventing Go from accessing the private repository. Check your internet connection and firewall settings.
+
+3. **Go proxy settings**: Go uses a module proxy to download modules. If you're behind a corporate proxy, you might need to set the `GOPROXY` environment variable. If you're using a private repository, you might need to set `GOPRIVATE` or `GONOPROXY` to tell Go to not use a proxy for your private repos. You can read more about this in the [Go documentation](https://golang.org/cmd/go/#hdr-Module_configuration_for_non_public_modules).
+
+4. **Incorrect version**: The error message suggests that Go is unable to find the specific revision (`v0.1.5`) of the private repository. Check if this version actually exists in the repository. If it doesn't, you'll need to update your `go.mod` file with a valid version.
+
+To debug this issue, you can try the following:
+
+- Run `go get -v` to get more verbose output.
+- Run `go mod download -x` to see the exact commands that Go is running to download the modules.
+- Check the `go.mod` and `go.sum` files for any inconsistencies.
+- Try deleting the `go.sum` file and running `go mod tidy` to regenerate it.
+- Check your environment variables (`GOPROXY`, `GOPRIVATE`, `GONOPROXY`, etc.) and Go configuration with `go env`.
+- Check your network settings and credentials.
+- Try accessing the private repository manually to see if there are any issues.

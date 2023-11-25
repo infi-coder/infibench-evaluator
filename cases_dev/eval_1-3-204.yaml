@@ -1,0 +1,49 @@
+# Corresponding to post https://stackoverflow.com/questions/54912626
+id: 1-3-204
+# for case self identificaton
+
+prompt_path: prompt_1-3-204.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: python
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+
+
+  unit_test:
+
+    # lang: ...
+    # [optional] overwrite the root lang field and decide how to execute the code
+
+    tests:
+        - path: test/test_1-3-204.py
+          only_longest: true
+        # - content: str
+        #   # source code in string
+        #   path: str
+        #   # source code relative path, either content or path needs specify
+        #   # the source code is appended to model's generated code
+        #   #
+        #   prefix: str
+        #   prefix_path: str
+        #   # [optional] prefix code prepended to model's generated code before unit test execution
+        #   #
+        #   cleanup_path: str
+        #   # [optional] cleanup code path after execution, used when some files need to be cleaned up
+        #   #
+        #   weight: 1.0
+        #   # [optional] set the weight
+        #   timetout: float
+        #   # [optional] set customized timeout in seconds, default python,js,java 10s, cpp 60s, go 20s, rust 300s

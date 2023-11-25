@@ -1,0 +1,37 @@
+I am using Vuetify and trying to copy text from v-text-field component to clipboard when button is clicked.
+
+Here is the code:
+
+```html
+<template>
+    <div id="app">
+      <v-app id="inspire">
+        <v-container>
+          <v-text-field v-model="text1"></v-text-field>
+          <v-btn @click="copyText">copy</v-btn>
+        </v-container>
+      </v-app>
+    </div>
+</template>
+
+<script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data() { 
+        return {
+          text1: 'lorem ipsum 123'
+        }
+      },
+      methods: {
+        copyText () {
+          [blank]
+        }
+      }
+    })
+</script>
+```
+
+What code to put in the `copyText` method of the Vue instance? 
+
+Specifically, pelase don't add other text and just repeat the above code snippet with [blank] filled.

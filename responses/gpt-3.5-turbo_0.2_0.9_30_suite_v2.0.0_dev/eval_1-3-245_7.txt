@@ -1,0 +1,16 @@
+It seems that the Dockerfile is unable to find the `app` module. You can try modifying the `COPY` command in the Dockerfile to copy the entire `fastapi` directory instead of just the `app` directory. Here's the modified Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt /
+RUN pip install --requirement /requirements.txt
+
+COPY ./fastapi /app
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+This should copy the entire `fastapi` directory to the `/app` directory in the Docker container, which should include the `app` module.

@@ -1,0 +1,13 @@
+The error you are encountering may be due to compatibility issues between Excel 2019 and the Selenium add-in. Here are a few things you can try:
+
+1. Make sure that you have the latest version of the Selenium add-in installed. You can download it from the Selenium website.
+
+2. Try running the code in a different browser, such as Firefox or Chrome, to see if the issue is specific to Internet Explorer.
+
+3. Check that the correct version of the Selenium WebDriver is installed for the browser you are using. You can find the latest version of the WebDriver on the Selenium website.
+
+4. Try running the code in compatibility mode for Excel 2013. To do this, right-click on the Excel shortcut and select Properties. Then, go to the Compatibility tab and select "Run this program in compatibility mode for" and choose Excel 2013.
+
+5. Check that the reference to the Selenium add-in is correctly set in the VBA editor. To do this, go to Tools > References and make sure that the Selenium add-in is selected.
+
+Hopefully, one of these solutions will help you resolve the issue.

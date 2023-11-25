@@ -1,0 +1,43 @@
+I have an entity user with the following:
+```c#
+public class User
+{
+    [Key, Required]
+    public int Id { get; set; }
+    public int GenderId { get; set; }
+    public virtual Gender Gender { get; set; }
+}
+```
+In gender:
+```c#
+public class Gender
+{
+    [Key, Required]
+    public int Id { get; set; }
+    public virtual ICollection<User> Users { get; set; }
+}
+```
+Then, inside my DbContext, I have:
+```c#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+    }
+
+    user.HasIndex(x => x.Gender);
+}
+```
+When I run
+```powershell
+dotnet ef add migration User
+```
+, I am getting the error:
+```
+'Gender' cannot be used as a property on entity type 'User' because it is configured as a navigation.
+```
+How to solve this problem?

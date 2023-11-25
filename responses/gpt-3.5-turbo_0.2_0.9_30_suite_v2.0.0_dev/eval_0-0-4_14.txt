@@ -1,0 +1,5 @@
+- Pressable and TouchableOpacity have the same basic functionalities. They both are for making a text/image clickable.
+- Pressable has some new props, like `android_disableSound` which you can use to define how far a touch can register away from the the wrapped element.
+- On the other hand, TouchableOpacity also have some unique functionalities. For example, TouchableOpacity has automatic opacity change, where with Pressable you need to add your own custom opacity with Pressable's `style` prop. Furthermore, TouchableOpacity adds the fade-out animation on press. 
+
+In general, if you need a simple clickable element, either Pressable or TouchableOpacity will work. However, if you need more control over the touch area or want to add custom animations, Pressable might be a better choice. If you want the default opacity change and fade-out animation, TouchableOpacity is the way to go.

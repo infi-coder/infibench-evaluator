@@ -1,0 +1,24 @@
+The problem you're encountering is due to a conflict between the Node.js and npm versions installed in your WSL2 Ubuntu and the versions installed in your Windows system. The `whereis` command shows that both the Ubuntu and Windows versions are accessible, which is causing the conflict.
+
+To solve this, you need to remove the Windows path from the Ubuntu $PATH. You can do this by editing the `.bashrc` file in your home directory.
+
+1. Open the `.bashrc` file in a text editor. You can use `nano`:
+
+    ```bash
+    nano ~/.bashrc
+    ```
+
+2. Add the following lines at the end of the file:
+
+    ```bash
+    # remove Windows paths
+    export PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+    ```
+
+3. Save the file and exit the editor. If you're using `nano`, you can do this by pressing `Ctrl + X`, then `Y` to confirm the save, and finally `Enter` to confirm the file name.
+
+4. Close the terminal and open a new one to apply the changes.
+
+Now, when you run `npm -v`, it should show the version of npm installed in your Ubuntu system, not the one from Windows.
+
+Remember that this change will prevent you from running any Windows executables from the Ubuntu terminal. If you need to do this, you might want to consider a different approach, such as installing Node.js and npm directly in Windows and accessing them from WSL2 via the `/mnt/c/` path.

@@ -1,0 +1,17 @@
+Yes, you can use the `first` and `last` pseudo-class variants in Tailwind to achieve this. Here's the revised code:
+
+```html
+<ul>
+  <li
+    v-for="(item, index) in items"
+    :key="`item-${index}`"
+    class="border-solid border-b border-black {{ index === items.length - 1 ? '' : 'pb-2' }}"
+  >
+    Item
+  </li>
+</ul>
+```
+
+In the above code, we're using the ternary operator to conditionally add the `pb-2` (padding-bottom) class to all `li` elements except the last one. The `pb-2` class will add a padding-bottom of 0.5rem to the `li` element, which will create the space between the border and the text.
+
+Note that we're also using string interpolation to dynamically generate the `key` attribute value.

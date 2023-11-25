@@ -1,0 +1,27 @@
+Sure, here's a possible implementation using the `random` module in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the substring and the number of digits
+    substring = "NAA3U"
+    num_digits = 3
+    
+    # Define the set of characters to choose from
+    chars = string.ascii_letters + string.digits
+    
+    # Generate a random string until it meets the requirements
+    while True:
+        # Generate a random string of length 16
+        rand_str = ''.join(random.choices(chars, k=16))
+        
+        # Check if it contains the substring and the right number of digits
+        if substring in rand_str and sum(c.isdigit() for c in rand_str) == num_digits:
+            return rand_str
+```
+
+This function first defines the substring and the number of digits required. It then defines the set of characters to choose from, which includes all letters (lowercase and uppercase) and digits. 
+
+The function then enters a loop where it generates a random string of length 16 using the `random.choices` function. It checks if the string contains the required substring and has the right number of digits using the `in` operator and the `sum` function with a generator expression, respectively. If the string meets the requirements, it returns it. If not, it generates another random string and repeats the process.

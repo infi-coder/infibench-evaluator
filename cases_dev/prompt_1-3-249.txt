@@ -1,0 +1,7 @@
+I would like to generate a 16 character code that consists of letters ('a-z' and 'A-Z') and digits.
+
+The code must has a sub-string "NAA3U". The code must has exact 3 digits. And the code must be random.
+
+Please write a function `generateRandomString` in Python, which takes no argument and returns a string according to my requirements after each call.
+
+Function signature is: `generateRandomString()`

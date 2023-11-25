@@ -1,0 +1,42 @@
+You can use Python's multiprocessing module to run your two scripts concurrently. Here's how you can modify your code to use multiprocessing:
+
+```python
+from multiprocessing import Process
+import dash
+import dash_bootstrap_components as dbc
+import db
+import hp
+import fd
+
+def run_dash():
+    app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database=db.dataBase()
+    homepage=hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+
+    if __name__ == "__main__":
+        app.run_server(debug=True)
+
+def run_data_mining():
+    database=db.dataBase()
+    dataMiningScript= fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    # Create processes
+    p1 = Process(target=run_dash)
+    p2 = Process(target=run_data_mining)
+
+    # Start processes
+    p1.start()
+    p2.start()
+
+    # Join processes
+    p1.join()
+    p2.join()
+```
+
+In this code, we define two functions, `run_dash` and `run_data_mining`, each of which runs one of your scripts. We then create two processes, one for each function, and start them. The `join` method is used to wait for both processes to finish, but since your scripts are running infinite loops, they will keep running until you stop them.
+
+Please note that multiprocessing creates separate processes, each with its own Python interpreter. This means that they do not share global variables. If your scripts need to share data, you will need to use a different approach, such as using a database or a file as a shared resource.

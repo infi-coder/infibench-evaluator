@@ -1,0 +1,32 @@
+The reason why you are seeing the logs in that order is because the `onItemSelectedListener` is triggered asynchronously when the user selects an item from the spinner. This means that the `return` statement in your function is executed before the `onItemSelected` function is called.
+
+To fix this, you can use a callback function to return the selected item instead of returning it directly from the function. Here's an example:
+
+```
+fun Spinner.setupListWithAdapter(list: MutableList<String>, callback: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            callback(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+}
+```
+
+In this updated function, we are passing a callback function as a parameter. This callback function takes a `String` parameter, which is the selected item from the spinner. Instead of returning the item directly, we call the callback function with the selected item as its argument.
+
+To use this function, you can pass a lambda expression as the callback parameter. Here's an example:
+
+```
+spinner.setupListWithAdapter(listOf("Item 1", "Item 2", "Item 3")) { selectedItem ->
+    // Do something with the selected item
+    Log.d("Selected item", selectedItem)
+}
+```
+
+In this example, we are passing a list of items to the `setupListWithAdapter` function, and then using a lambda expression to handle the selected item. The lambda expression takes a `String` parameter, which is the selected item from the spinner. In this case, we are simply logging the selected item to the console.

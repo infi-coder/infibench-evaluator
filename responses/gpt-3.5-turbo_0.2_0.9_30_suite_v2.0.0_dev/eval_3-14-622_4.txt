@@ -1,0 +1,11 @@
+To conform to the `ShapeStyle` protocol, you need to implement the `func _apply(to shape: inout _ShapeStyle_Self)` method in your `RedView` struct. Here's an example implementation:
+
+```
+struct RedView: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_Self) {
+        shape.fill(Color.red)
+    }
+}
+```
+
+With this implementation, you can use `RedView()` as a fill for any shape in SwiftUI.

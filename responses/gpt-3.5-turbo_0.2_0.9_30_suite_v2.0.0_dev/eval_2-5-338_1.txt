@@ -1,0 +1,20 @@
+The error message suggests that the `RestTemplate` is trying to serialize the `MultipartFile` to JSON, but it cannot find a serializer for the `ByteArrayInputStream` inside the `MultipartFile`.
+
+To solve this, you can use a `ByteArrayResource` instead of the `MultipartFile`. Here's an example:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body= new LinkedMultiValueMap<>();
+body.add("circularAttachment", new ByteArrayResource(souqBean.getCircularAttachment().getBytes()));
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.exchange("http://localhost:8081/circular-save", HttpMethod.POST, requestEntity, Boolean.class);
+status = response.getBody();
+```
+
+In this example, we create a `ByteArrayResource` from the `MultipartFile`'s bytes, and use it in the `MultiValueMap` instead of the `MultipartFile`. This way, the `RestTemplate` can serialize the `ByteArrayResource` to JSON without any issues.

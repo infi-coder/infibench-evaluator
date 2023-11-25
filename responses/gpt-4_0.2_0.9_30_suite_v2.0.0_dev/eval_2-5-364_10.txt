@@ -1,0 +1,28 @@
+The Maven Wrapper is a shell script used to automatically manage the correct version of Maven for your project. It's similar to the Maven task, but it doesn't require you to have Maven installed on your machine.
+
+The Maven Wrapper uses the JAVA_HOME environment variable to find the Java installation on your machine. If it's pointing to an older version of Java, you'll need to update it to point to the correct version.
+
+Here's how you can do it:
+
+1. Find out where your correct Java version is installed. This is usually in a directory like `/usr/lib/jvm/java-11-openjdk-amd64/` on Linux or `C:\Program Files\Java\jdk-11.0.1` on Windows.
+
+2. Update the JAVA_HOME environment variable to point to this directory. On Linux or macOS, you can do this in your shell profile file (like `~/.bashrc` or `~/.zshrc`):
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+```
+
+On Windows, you can do this in the System Properties:
+
+- Right-click on Computer
+- Click on Properties
+- Click on Advanced system settings
+- Click on Environment Variables
+- Under System Variables, click New
+- Enter `JAVA_HOME` as the variable name and the path to your Java installation as the variable value.
+
+3. Restart your shell or command prompt for the changes to take effect.
+
+Now, when you run the Maven Wrapper, it should use the correct version of Java.
+
+If you're running this in a CI/CD pipeline, you'll need to set the JAVA_HOME environment variable in the pipeline configuration. The exact steps for this will depend on the CI/CD tool you're using.

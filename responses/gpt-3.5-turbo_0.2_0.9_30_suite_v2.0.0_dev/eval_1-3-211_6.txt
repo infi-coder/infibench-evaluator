@@ -1,0 +1,48 @@
+Yes, we can achieve this using pandas' `groupby`, `cumsum`, and `fillna` functions. Here's the `aggregation` function that should do what you need:
+
+```python
+def aggregation(df):
+    # Convert 'value' column to numeric type
+    df['value'] = pd.to_numeric(df['value'], errors='coerce')
+    
+    # Filter rows where 'type' is 'deposit'
+    deposits = df[df['type'] == 'deposit']
+    
+    # Group by 'exchange' and forward-fill missing values
+    deposits['balance'] = deposits.groupby('exchange')['value'].cumsum().fillna(method='ffill')
+    
+    # Merge 'balance' column back into original DataFrame
+    df = pd.merge(df, deposits[['exchange', 'type', 'balance']], on=['exchange', 'type'], how='left')
+    
+    return df
+```
+
+This function first converts the 'value' column to a numeric type using `pd.to_numeric` with the `errors` parameter set to 'coerce', which converts any non-numeric values to NaN. 
+
+Next, it filters the DataFrame to only include rows where 'type' is 'deposit'. It then groups this filtered DataFrame by 'exchange' and calculates the cumulative sum of the 'value' column using `groupby` and `cumsum`. The resulting 'balance' column is then forward-filled using `fillna` with the 'ffill' method.
+
+Finally, the 'balance' column is merged back into the original DataFrame using `pd.merge` with the 'exchange' and 'type' columns as the join keys.
+
+Here's an example usage of the function:
+
+```python
+import pandas as pd
+
+df=pd.DataFrame()
+df['exchange'] = [1, 1, 1, 2, 3]
+df['type'] = ['deposit', 'deposit', 'trade', 'deposit', 'deposit']
+df['value'] = [10, 10, '30', '40', '100]
+
+df = aggregation(df)
+print(df)
+```
+
+This should output:
+
+```
+   exchange     type value  balance
+0         1  deposit    10     10.0
+1         1  deposit    10     20.0
+2         1    trade    30      NaN
+3         2  deposit    40     40.0
+4         3  deposit   

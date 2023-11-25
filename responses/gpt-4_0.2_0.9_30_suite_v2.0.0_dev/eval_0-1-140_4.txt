@@ -1,0 +1,26 @@
+Font Awesome 5 has made some changes in the way it's used compared to Font Awesome 4. The `font-family` is no longer just "FontAwesome", but is specific to the style of icon you're using. 
+
+Here's how you can update your CSS for Font Awesome 5:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free"; /* Update this line */
+  font-weight: 900; /* Add this line */
+}
+```
+
+In Font Awesome 5, the `font-family` can be one of the following, depending on the style of icon you're using:
+
+- "Font Awesome 5 Free" for solid, regular, or brands style.
+- "Font Awesome 5 Pro" for light or duotone style (Pro subscription required).
+
+Also, you need to specify the `font-weight`:
+
+- `font-weight: 900;` for solid style.
+- `font-weight: 400;` for regular or brands style.
+- `font-weight: 300;` for light style (Pro subscription required).
+- `font-weight: 200;` or `font-weight: 900;` for duotone style (Pro subscription required).
+
+In your case, you're using the solid style (as indicated by the unicode `\f107` which is the "angle-down" icon in solid style), so you should use "Font Awesome 5 Free" as the `font-family` and `900` as the `font-weight`.

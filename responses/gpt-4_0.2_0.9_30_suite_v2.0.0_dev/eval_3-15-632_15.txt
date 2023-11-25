@@ -1,0 +1,20 @@
+If the data you want to split into 5 separate columns is space-separated, you can use the `Split` function in VBA. Here's how you can modify your code:
+
+```vba
+idx = InStr(textline, "Cabinet No.")
+If idx > 0 Then
+    Line Input #1, textline
+    Line Input #1, textline
+    Dim splitData As Variant
+    splitData = Split(textline, " ") ' split the line into an array
+    ' assuming you want to put the data in columns G, H, I, J, K
+    ActiveSheet.Cells(nextrow, "G").Value = splitData(0)
+    ActiveSheet.Cells(nextrow, "H").Value = splitData(1)
+    ActiveSheet.Cells(nextrow, "I").Value = splitData(2)
+    ActiveSheet.Cells(nextrow, "J").Value = splitData(3)
+    ActiveSheet.Cells(nextrow, "K").Value = splitData(4)
+    nextrow = nextrow + 1 'now move to next row
+End If
+```
+
+This code assumes that `textline` contains exactly 5 space-separated values. If the number of values can vary, you should add error checking to prevent out-of-bounds errors.

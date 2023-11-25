@@ -1,0 +1,29 @@
+If you want to use the same version of Java that works with the Maven task, you can specify the `JAVA_HOME` environment variable to point to the location of the JDK that Maven is using. 
+
+To do this, follow these steps:
+
+1. Find the location of the JDK that Maven is using. You can do this by running the following command in your terminal or command prompt:
+
+   ```
+   mvn -version
+   ```
+
+   Look for the `Java home` line in the output. It should look something like this:
+
+   ```
+   Java home: /usr/lib/jvm/java-8-openjdk-amd64/jre
+   ```
+
+2. Set the `JAVA_HOME` environment variable to the location of the JDK. In the example above, you would run the following command:
+
+   ```
+   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+   ```
+
+   Note: If you are using Windows, you can set the `JAVA_HOME` environment variable by following these instructions: https://confluence.atlassian.com/doc/setting-the-java_home-variable-in-windows-8895.html
+
+3. Run the Maven wrapper command again. It should now use the same version of Java that Maven is using.
+
+   ```
+   ./mvnw clean install
+   ```

@@ -1,0 +1,10 @@
+Sure! The code you provided is almost correct, but you need to use the `keyof` keyword to reference the union types `fruit` and `color`:
+
+```typescript
+type FruitsAndColors = {
+  [key in keyof fruit]: number;
+  [key in keyof color]: boolean;
+};
+```
+
+This will create a type with a numeric property for each fruit and a boolean property for each color.

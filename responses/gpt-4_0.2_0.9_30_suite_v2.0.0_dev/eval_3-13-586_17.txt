@@ -1,0 +1,22 @@
+The error message you're seeing is due to a change in Android 12 (API level 31) that requires you to specify whether a `PendingIntent` is mutable or immutable when you create it.
+
+The AndroidX Media library version 1.4.0, which you're using, should handle this requirement. However, it seems like there's a bug in the library that causes the error you're seeing.
+
+The Android team is aware of this issue and they have fixed it in the AndroidX Media library version 1.4.3. So, you should update your library version to 1.4.3 or later.
+
+Here's how to do it:
+
+1. Open your `build.gradle` (Module: app) file.
+2. Update the version of the AndroidX Media library in your dependencies block:
+
+```gradle
+dependencies {
+    // other dependencies...
+
+    implementation 'androidx.media:media:1.4.3'
+}
+```
+
+3. Sync your project with Gradle files.
+
+After updating the library, the error should be resolved. If you're still seeing the error after updating, please let me know.

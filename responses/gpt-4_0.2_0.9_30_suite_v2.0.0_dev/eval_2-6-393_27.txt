@@ -1,0 +1,20 @@
+The error message is indicating that you're trying to create an index on a navigation property (`Gender`), which is not allowed. Navigation properties are used to establish relationships between entities, they are not scalar properties that can be indexed.
+
+If you want to create an index on the `GenderId` property, you should do it like this:
+
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+            .HasOne(x => x.Gender)
+            .WithMany(x => x.Users)
+            .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderId);
+    });
+}
+```
+
+In this code, `user.HasIndex(x => x.GenderId);` is creating an index on the `GenderId` property of the `User` entity, which is a scalar property and can be indexed.

@@ -1,0 +1,2 @@
+I am new in Angular. I saw `sourcemap` in `tsconfig.json` and by default it is `"sourceMap": true`. I
+I set `"sourceMap": false`, but couldn't find any change in the app. What will be the actual change if I set so?

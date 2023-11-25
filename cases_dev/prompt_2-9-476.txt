@@ -1,0 +1,16 @@
+When switching from bash to zsh, I looked up how to resolve an issue with my rbenv folder not being used correctly by zsh and found this:
+```
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshenv
+$ echo 'eval "$(rbenv init -)"' >> ~/.zshenv
+$ echo 'source $HOME/.zshenv' >> ~/.zshrc
+$ exec $SHELL
+```
+I ran all of these and seem to be using the correct rbenv folder now, but I get this error message whenever I open a new iTerm window:
+```
+/Users/myname/.zshenv:2: command not found: rbenv
+```
+What am I doing wrong?
+Specifically, please don't add other text and repeat the following paragraph with [blank] filled:
+
+You need to add two things to your [blank]. First [blank] itself and second the ruby [blank].
+You might also run the `[blank]` to check your installation.

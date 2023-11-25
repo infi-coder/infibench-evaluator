@@ -1,0 +1,31 @@
+Here is a Python function that should solve your problem:
+
+```python
+def divideNumber(num, n):
+    # Calculate the base value and the remainder
+    base, rem = divmod(num, n)
+    
+    # Ensure the base value is a multiple of 2
+    if base % 2 != 0:
+        base -= 1
+        rem += n
+
+    # Create the initial list with base values
+    result = [base] * n
+
+    # Distribute the remainder
+    for i in range(0, rem, 2):
+        result[i // 2] += 2
+
+    return result
+```
+
+This function first calculates the base value and the remainder. If the base value is not a multiple of 2, it subtracts 1 from the base value and adds `n` to the remainder. Then it creates a list with `n` base values. Finally, it distributes the remainder by adding 2 to each element in the list in succession.
+
+Let's test it with your example:
+
+```python
+print(divideNumber(100, 3))  # Output: [34, 34, 32]
+```
+
+This function works as expected. It divides the number into `n` parts, each part being a multiple of 2, and the sum of all parts equals the original number.

@@ -1,0 +1,58 @@
+To add Jetpack Compose to your existing Android project, follow these steps:
+
+1. **Update Android Studio**: Make sure you're using Android Studio Arctic Fox or later.
+
+2. **Update Gradle**: In your project-level `build.gradle` file, make sure you're using Gradle 7.0.0 or later.
+
+    ```gradle
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.0'
+    }
+    ```
+
+3. **Update Kotlin**: In your project-level `build.gradle` file, make sure you're using Kotlin 1.5.10 or later.
+
+    ```gradle
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
+    }
+    ```
+
+4. **Enable Jetpack Compose**: In your app-level `build.gradle` file, inside the `android` block, add the following lines to enable Jetpack Compose:
+
+    ```gradle
+    android {
+        ...
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+        kotlinOptions {
+            jvmTarget = '1.8'
+            useIR = true
+        }
+        buildFeatures {
+            compose true
+        }
+        composeOptions {
+            kotlinCompilerExtensionVersion '1.0.1'
+            kotlinCompilerVersion '1.5.10'
+        }
+    }
+    ```
+
+5. **Add Compose Dependencies**: Still in your app-level `build.gradle` file, add the following dependencies:
+
+    ```gradle
+    dependencies {
+        implementation 'androidx.compose.ui:ui:1.0.1'
+        implementation 'androidx.compose.material:material:1.0.1'
+        implementation 'androidx.compose.ui:ui-tooling:1.0.1'
+        implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+        implementation 'androidx.activity:activity-compose:1.3.1'
+    }
+    ```
+
+6. **Sync your project**: Click on `Sync Now` in the top right corner of the Android Studio.
+
+After these steps, you should be able to use Jetpack Compose in your existing Android project.

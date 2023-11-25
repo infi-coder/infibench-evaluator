@@ -1,0 +1,5 @@
+Your `sed` command is not correctly removing the `?` and everything after it. Try using `sed 's/\?.*$//'` instead. Also, the `mv` command is not necessary if the filename is not changing, so you can add a check to only execute `mv` if the filename is different. Here's the updated command:
+
+```
+find . -type f -name '*\?*' -exec sh -c 'if [ "{}" != "$(echo {} | sed "s/\?.*$//")" ]; then mv "{}" "$(echo {} | sed "s/\?.*$//")"; fi' \;
+```

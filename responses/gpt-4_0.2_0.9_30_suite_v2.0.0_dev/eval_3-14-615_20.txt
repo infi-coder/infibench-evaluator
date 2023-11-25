@@ -1,0 +1,25 @@
+In SwiftUI, there's no direct way to get the current scroll position of a `ScrollView`. The `ScrollViewReader` and `ScrollViewProxy` only provide a `scrollTo` method, which allows you to programmatically scroll to a specific item.
+
+However, you can use a workaround by attaching a `GeometryReader` to each item inside the `ScrollView`. The `GeometryReader` can provide the position of its content in its own coordinate space, which can be used to calculate the scroll position.
+
+Here's an example:
+
+```swift
+ScrollView {
+    VStack {
+        ForEach(0..<100) { i in
+            GeometryReader { geometry in
+                Text("Item \(i)")
+                    .onAppear {
+                        let scrollOffset = geometry.frame(in: .global).minY
+                        print("Current scroll position: \(scrollOffset)")
+                    }
+            }
+        }
+    }
+}
+```
+
+In this example, `geometry.frame(in: .global).minY` gives you the y-coordinate of the top edge of the item's frame, relative to the global coordinate space. This value changes as you scroll through the list, effectively giving you the scroll position.
+
+Please note that this is a workaround and may not be perfect in all situations. SwiftUI currently lacks a direct way to get the scroll position.

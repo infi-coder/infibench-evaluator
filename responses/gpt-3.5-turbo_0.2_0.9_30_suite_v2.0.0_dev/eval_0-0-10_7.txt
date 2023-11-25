@@ -1,0 +1,17 @@
+Sure! Here are the completed templates:
+
+Way 1:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').should('have.text', 'Wildness');
+```
+
+Way 2:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').invoke('text').then((text) => {
+    expect(text.trim()).to.equal('Wildness');
+});
+``` 
+
+Both ways should work to assert that the text within the `WildnessText-kRKTej` div equals to `Wildness`.

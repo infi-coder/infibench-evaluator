@@ -1,0 +1,24 @@
+Your code seems correct and should work as expected. However, there are a few things you can check to troubleshoot this issue:
+
+1. **Network Connection**: Make sure your device/emulator has a proper internet connection. Apollo Client fetches data over the network, so a lack of connectivity could cause the loading state to persist.
+
+2. **Server Availability**: Check if the server at 'https://48p1r2roz4.sse.codesandbox.io' is up and running. You can do this by visiting the URL in your web browser. If the server is down, Apollo Client won't be able to fetch data, leading to a persistent loading state.
+
+3. **Correct Query**: Ensure that the GraphQL query you're using is correct and the server supports it. You can test your query using a GraphQL playground or tool like GraphiQL.
+
+4. **Apollo Client Version**: There might be compatibility issues with the version of Apollo Client you're using. Try downgrading or upgrading the version to see if it resolves the issue.
+
+5. **Error Handling**: It's possible that an error is occurring but not being displayed. Try logging the error to the console to see if there's any useful information:
+
+    ```javascript
+    if (error) {
+        console.error(error);
+        return <Text>Error :(</Text>;
+    }
+    ```
+
+6. **React Native Debugger**: If you're using React Native Debugger, make sure to enable network inspect. This will allow you to see the network requests made by Apollo Client and check if they're successful or not.
+
+7. **Apollo Client Setup**: Make sure Apollo Client is set up correctly. The `uri` should point to your GraphQL server, and the `cache` should be an instance of `InMemoryCache`.
+
+If none of the above solutions work, it would be helpful to see any error messages or logs that are being produced. This could provide more insight into what's causing the issue.

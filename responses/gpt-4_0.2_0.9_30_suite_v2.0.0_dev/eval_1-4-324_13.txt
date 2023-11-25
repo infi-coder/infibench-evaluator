@@ -1,0 +1,34 @@
+Here is a function `mySplit` that uses the `strsplit` function to split the strings in `col1` by commas, then uses `strsplit` again to split each of those strings by colons. The `sapply` function is used to apply these operations to each element of `col1`. The `do.call` function is then used to combine the results into a data frame.
+
+```r
+mySplit <- function(df) {
+  # Split the strings in col1 by commas
+  split_commas <- strsplit(df$col1, ",")
+  
+  # Split each of those strings by colons
+  split_colons <- lapply(split_commas, function(x) strsplit(x, ":"))
+  
+  # Extract the values (i.e., the parts of the strings after the colons)
+  values <- lapply(split_colons, function(x) sapply(x, function(y) y[2]))
+  
+  # Combine the values into a data frame
+  df_new <- do.call(rbind, values)
+  
+  # Set the column names
+  colnames(df_new) <- c("name", "Age", "City")
+  
+  # Convert the Age column to numeric
+  df_new$Age <- as.numeric(df_new$Age)
+  
+  return(df_new)
+}
+```
+
+You can use this function on your data frame `df` like this:
+
+```r
+df <- data.frame(col1 = c("name:Michael,Age:31,City:NYC", "name:Tom,Age:25,City:NA"))
+df_new <- mySplit(df)
+```
+
+This will give you a new data frame `df_new` where the `col1` column has been split into separate columns for `name`, `Age`, and `City`.

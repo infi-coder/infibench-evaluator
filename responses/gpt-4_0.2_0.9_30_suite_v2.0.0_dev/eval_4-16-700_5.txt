@@ -1,0 +1,10 @@
+You can optimize your script by using awk, which is designed for text processing and is much faster than bash loops. Here is a simple awk script that does what you want:
+
+```bash
+awk -F'=' '
+  /^name=/ {name=$2}
+  /^value=/ {if (name) print name"="$2; name=""}
+' input.txt > output.txt
+```
+
+This script works by storing the name when it encounters a line starting with "name=", and then printing the name and value when it encounters a line starting with "value=". The name is cleared after printing to ensure that names without corresponding values are not printed.

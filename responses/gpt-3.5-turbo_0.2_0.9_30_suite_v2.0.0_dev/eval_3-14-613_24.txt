@@ -1,0 +1,14 @@
+This error message usually occurs when the preview target is not included in the current scheme. To fix this, try the following steps:
+
+1. Go to the project navigator and select your project.
+2. Select the target that contains your preview code.
+3. Click on the "Build Phases" tab.
+4. Expand the "Compile Sources" section.
+5. Make sure that all the files containing your preview code are listed here. If not, add them by clicking the "+" button and selecting the appropriate files.
+6. Go back to the project navigator and select the scheme that you are using to build your project.
+7. Click on "Edit Scheme".
+8. Select the "Build" tab.
+9. Make sure that the target containing your preview code is selected under "Targets".
+10. Click "Close" to save your changes.
+
+After following these steps, try running your preview again.

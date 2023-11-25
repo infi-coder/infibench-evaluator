@@ -1,0 +1,29 @@
+One way to express this more idiomatically is to use the `Option::filter()` method. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.filter(|&x| x < 5).or(Some(5));
+}
+```
+
+This code does the same thing as your original code, but it's more concise and arguably more readable. Here's how it works:
+
+- The `filter()` method takes a closure that returns a boolean. If the closure returns `true`, the method returns the original `Option` value. If the closure returns `false`, the method returns `None`.
+- In this case, the closure checks if the value is less than 5. If it is, the `filter()` method returns the original `Option` value (which is `None` in this case). If it's not, the `filter()` method returns `None`.
+- The `or()` method takes another `Option` value. If the original `Option` value is `Some`, the method returns the original value. If the original `Option` value is `None`, the method returns the value passed as an argument.
+- In this case, we pass `Some(5)` as the argument to `or()`. If the `filter()` method returns `None`, the `or()` method returns `Some(5)`. If the `filter()` method returns `Some`, the `or()` method returns the original value.
+
+Another way to express this is to use the `Option::map_or_else()` method. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map_or_else(|| Some(5), |x| if x < 5 { None } else { Some(x) });
+}
+```
+
+This code also does the same thing as your original code, but it's a bit more verbose. Here's how it works:
+
+- The `map_or_else()` method takes two closures. The first closure is called if the `Option` value is `None`. The second closure is called if the `Option` value is `Some`.
+- In this case, we pass a closure that returns `Some(5)` if the `Option` value is `None`. We pass a closure that returns `None` if the value is less than 5, and `Some(x)` if

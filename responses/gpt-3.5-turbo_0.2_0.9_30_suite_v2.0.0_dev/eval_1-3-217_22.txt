@@ -1,0 +1,19 @@
+You can use the `torch.unsqueeze()` function to add a new dimension to the tensor `d` and then concatenate it with `inps` along the last dimension using the `torch.cat()` function. Here's the implementation of the `addTensor` function:
+
+```python
+import torch
+
+def addTensor(inps, d):
+    d = torch.unsqueeze(d, dim=2)  # add a new dimension
+    out = torch.cat((inps, d), dim=2)  # concatenate along the last dimension
+    return out
+```
+
+You can call this function with your input tensors as follows:
+
+```python
+inps = torch.randn(64, 161, 1)
+d = torch.randn(64, 161)
+out = addTensor(inps, d)
+print(out.size())  # should output [64, 161, 2]
+```

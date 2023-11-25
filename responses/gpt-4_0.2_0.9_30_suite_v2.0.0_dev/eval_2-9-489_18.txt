@@ -1,0 +1,38 @@
+The warning message is indicating that your Elasticsearch instance does not have security features enabled. This means that anyone can access your Elasticsearch instance without authentication.
+
+To fix this, you need to enable Elasticsearch's built-in security features. Here are the steps to do this:
+
+1. Open your `elasticsearch.yml` configuration file. This file is usually located in the `config` directory of your Elasticsearch installation.
+
+2. Add the following lines to the file:
+
+   ```yaml
+   xpack.security.enabled: true
+   xpack.security.transport.ssl.enabled: true
+   ```
+
+3. Save and close the file.
+
+4. Restart Elasticsearch.
+
+Please note that enabling security will require you to use a username and password when accessing Elasticsearch. The default username is `elastic`. To set the password, you can use the `elasticsearch-setup-passwords` command-line tool that comes with Elasticsearch.
+
+Here is how you can use it:
+
+1. Open a terminal.
+
+2. Navigate to the directory where Elasticsearch is installed.
+
+3. Run the following command:
+
+   ```bash
+   bin/elasticsearch-setup-passwords interactive
+   ```
+
+4. Follow the prompts to set the passwords for the built-in users.
+
+Remember to update your application's Elasticsearch client with the new username and password.
+
+Also, please note that enabling transport security (with `xpack.security.transport.ssl.enabled: true`) will require you to configure SSL/TLS. If you don't want to do this, you can leave this setting out.
+
+If you're using a version of Elasticsearch that doesn't come with X-Pack (like the OSS version), you won't be able to enable these security features. In that case, you should consider using a different method to secure your Elasticsearch instance, like running it behind a firewall or using a proxy that requires authentication.

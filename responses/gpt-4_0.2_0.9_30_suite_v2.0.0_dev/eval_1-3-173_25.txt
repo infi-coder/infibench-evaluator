@@ -1,0 +1,28 @@
+Sure, you can create a function to calculate the total number of days in a year by checking if the year is a leap year or not. Here is a simple function that does this:
+
+```python
+def DaysInYear(year):
+    if (year % 4) == 0:
+        if (year % 100) == 0:
+            if (year % 400) == 0:
+                return 366  # Leap year
+            else:
+                return 365  # Not a leap year
+        else:
+            return 366  # Leap year
+    else:
+        return 365  # Not a leap year
+```
+
+This function works by checking if the year is divisible by 4, 100, and 400. According to the Gregorian calendar, a year is a leap year if it is divisible by 4, but not by 100, unless it is also divisible by 400. 
+
+So, for example, the year 2000 was a leap year, but the years 1700, 1800, and 1900 were not.
+
+You can use this function in your pandas DataFrame by applying it to your year column. For example:
+
+```python
+df['Year'] = pd.DatetimeIndex(df['date']).year
+df['DaysInYear'] = df['Year'].apply(DaysInYear)
+```
+
+In this example, `df['date']` is your column with dates in the format 'YYYY-MM-DD'. The function `pd.DatetimeIndex(df['date']).year` extracts the year from your dates, and `df['Year'].apply(DaysInYear)` applies the `DaysInYear` function to each year in your DataFrame.

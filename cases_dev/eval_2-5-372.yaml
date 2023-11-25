@@ -1,0 +1,8 @@
+id: 2-5-372
+prompt_path: prompt_2-5-372.txt
+type: code debugging
+lang: java
+grading:
+  keywords:
+    - '@NotEmpty'
+    - '@Size'

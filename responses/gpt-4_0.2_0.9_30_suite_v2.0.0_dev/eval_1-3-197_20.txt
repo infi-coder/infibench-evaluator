@@ -1,0 +1,20 @@
+Here is the function `fillColumn` written in Python using the pandas library:
+
+```python
+import pandas as pd
+
+def fillColumn(df, columnName, columnData):
+    df[columnName] = pd.Series(columnData * (df.shape[0] // len(columnData) + 1))[:df.shape[0]]
+    return df
+```
+
+This function works by creating a new pandas Series from the `columnData` list. The list is repeated enough times to cover the number of rows in the DataFrame (`df.shape[0] // len(columnData) + 1`), and then it is sliced to the exact number of rows in the DataFrame (`[:df.shape[0]]`). This Series is then assigned to the new column in the DataFrame.
+
+You can use this function like this:
+
+```python
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+```
+
+This will fill the 'names' column of the DataFrame `df` with the values in `my_list`, repeating them as necessary.

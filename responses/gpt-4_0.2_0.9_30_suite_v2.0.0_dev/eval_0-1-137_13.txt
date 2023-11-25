@@ -1,0 +1,32 @@
+The error message you're seeing is due to the fact that the `map-loop` function is not a built-in Sass function, and it's not defined anywhere in your code or in Bootstrap's code. 
+
+The `$theme-colors` map should be defined before importing Bootstrap's `_variables.scss` and `_bootstrap.scss` files. Also, you should not import the `_variables.scss` file directly because it's already imported in `_bootstrap.scss`.
+
+Here's how you can modify your SCSS file:
+
+```scss
+$theme-colors: (
+  "primary": #your-color, // replace #your-color with your desired color
+  // you can add more colors here
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+This will override the default primary color with your own color. 
+
+Please replace `#your-color` with the color you want to use. You can also add more colors to the `$theme-colors` map if you want to override more default colors. 
+
+If you're still having issues, please make sure you're using Dart Sass instead of Node Sass, as Bootstrap 5 requires Dart Sass. You can install it with npm:
+
+```bash
+npm install sass
+```
+
+Then you can compile your SCSS file with the following command:
+
+```bash
+npx sass your-file.scss output.css
+```
+
+Replace `your-file.scss` with the path to your SCSS file and `output.css` with the path where you want the compiled CSS file to be saved.

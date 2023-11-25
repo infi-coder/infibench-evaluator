@@ -1,0 +1,32 @@
+The error message you're seeing is because Jackson, the library used by Spring to serialize and deserialize JSON, is trying to serialize a `ByteArrayInputStream` object, which it doesn't know how to handle.
+
+When you're sending a `MultipartFile` over HTTP, you should convert it to a `Resource` or `ByteArrayResource` instead of sending it directly. Here's how you can do it:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+// Convert MultipartFile to ByteArrayResource
+MultipartFile multipartFile = souqBean.getCircularAttachment();
+ByteArrayResource resource = new ByteArrayResource(multipartFile.getBytes()) {
+    @Override
+    public String getFilename() {
+        return multipartFile.getOriginalFilename();
+    }
+};
+
+body.add("circularAttachment", new HttpEntity<>(resource, headers));
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+This code converts the `MultipartFile` to a `ByteArrayResource` before sending it. The `ByteArrayResource` is a type of `InputStreamResource` that Jackson knows how to serialize. The anonymous subclass is used to preserve the original file name.
+
+Remember to handle the `IOException` that `multipartFile.getBytes()` may throw.

@@ -1,0 +1,16 @@
+In Font Awesome 5, the way to use icons has changed a bit. Now, each icon is separated into different styles (Solid, Regular, Light, Duotone, and Brands). 
+
+For your case, the equivalent code in Font Awesome 5 would be:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free"; /* for solid style */
+  font-weight: 900; /* necessary for correct display */
+}
+```
+
+Please note that you need to specify the correct `font-family` and `font-weight` for the style you are using. The `font-family` can be one of the following: "Font Awesome 5 Free", "Font Awesome 5 Pro", "Font Awesome 5 Brands". The `font-weight` should be `900` for Solid, `400` for Regular and Light, and does not need to be specified for Brands.
+
+Also, make sure you have correctly included the Font Awesome 5 CSS file in your project.

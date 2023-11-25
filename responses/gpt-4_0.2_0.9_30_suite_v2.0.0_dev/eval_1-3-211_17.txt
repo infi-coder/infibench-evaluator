@@ -1,0 +1,25 @@
+Sure, you can use the `groupby` function in combination with `cumsum` to achieve this. Here is the function `aggregation`:
+
+```python
+def aggregation(df):
+    # Ensure 'value' column is numeric
+    df['value'] = pd.to_numeric(df['value'])
+
+    # Create a new column 'balance' where 'type' is 'deposit', else NaN
+    df['balance'] = df['value'].where(df['type'] == 'deposit')
+
+    # Group by 'exchange' and calculate cumulative sum, forward-filling NaN values
+    df['balance'] = df.groupby('exchange')['balance'].cumsum().ffill()
+
+    return df
+```
+
+This function first ensures that the 'value' column is numeric. Then it creates a new column 'balance' where it copies the 'value' where 'type' is 'deposit', else it puts NaN. Then it groups the DataFrame by 'exchange' and calculates the cumulative sum of 'balance' within each group. The `ffill` function is used to forward-fill the NaN values.
+
+You can call this function with your DataFrame as follows:
+
+```python
+df = aggregation(df)
+```
+
+After calling this function, your DataFrame `df` will have the desired 'balance' column.

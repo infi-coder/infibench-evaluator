@@ -1,0 +1,15 @@
+Instead of reading the entire file into a variable and then processing it, you can use a while loop to read the file line by line. This will reduce memory usage and improve performance. Here's an example:
+
+```
+while read -r line1 && read -r line2; do
+  if [[ $line1 == name=* && $line2 == name=* ]]; then
+    continue
+  elif [[ $line1 == name=* && $line2 == value=* ]]; then
+    name=${line1#name=}
+    value=${line2#value=}
+    echo "${name}=${value}" >> output.txt
+  fi
+done < input.txt
+```
+
+This script reads two lines at a time and checks if both lines start with "name=". If they do, it skips the first line and moves on to the next pair. If the first line starts with "name=" and the second line starts with "value=", it extracts the name and value and writes them to the output file.

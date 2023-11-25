@@ -1,0 +1,27 @@
+The error message indicates that when creating a PendingIntent, you need to specify either FLAG_IMMUTABLE or FLAG_MUTABLE. This is a new requirement in Android SDK 31 for security reasons.
+
+To fix the error, you can update the code where you create the PendingIntent to include the FLAG_IMMUTABLE flag. Here's an example:
+
+```
+val intent = Intent(context, MyBroadcastReceiver::class.java)
+val pendingIntent = PendingIntent.getBroadcast(
+    context,
+    0,
+    intent,
+    PendingIntent.FLAG_IMMUTABLE // add this flag
+)
+```
+
+Alternatively, you can use the PENDING_INTENT_FLAG_MUTABLE constant provided by MediaSessionCompat, which will use FLAG_MUTABLE on Android S and above, and FLAG_IMMUTABLE on earlier versions:
+
+```
+val intent = Intent(context, MyBroadcastReceiver::class.java)
+val pendingIntent = PendingIntent.getBroadcast(
+    context,
+    0,
+    intent,
+    MediaSessionCompat.PENDING_INTENT_FLAG_MUTABLE // use this constant
+)
+```
+
+You should update the code where you create the PendingIntent in your MediaSessionCompat constructor to include the FLAG_IMMUTABLE flag or use the PENDING_INTENT_FLAG_MUTABLE constant.

@@ -1,0 +1,32 @@
+This warning message indicates that Elasticsearch built-in security features are not enabled, which means that your Elasticsearch cluster could be accessible to anyone without authentication. To fix this, you need to enable Elasticsearch security features.
+
+Here are the steps to enable Elasticsearch security features:
+
+1. Open the Elasticsearch configuration file `elasticsearch.yml` in your Rails app.
+
+2. Add the following lines to the end of the file:
+
+   ```
+   xpack.security.enabled: true
+   xpack.security.transport.ssl.enabled: true
+   ```
+
+3. Save the file and restart Elasticsearch.
+
+   If you're using Searchkick with Rails, you can restart Elasticsearch by running the following command in your terminal:
+
+   ```
+   bin/elasticsearch
+   ```
+
+   If you're using Elasticsearch as a standalone service, you can restart it using the appropriate command for your operating system.
+
+4. Once Elasticsearch has restarted, you should see a message in the logs indicating that security features have been enabled.
+
+   ```
+   [INFO ][o.e.x.s.SecurityStatusChangeListener] [node-1] Cluster health status changed from [YELLOW] to [GREEN] (reason: [initializing security]).
+   ```
+
+   This indicates that Elasticsearch security features have been enabled.
+
+For more information on Elasticsearch security features, you can refer to the Elasticsearch documentation: https://www.elastic.co/guide/en/elasticsearch/reference/7.13/security-settings.html

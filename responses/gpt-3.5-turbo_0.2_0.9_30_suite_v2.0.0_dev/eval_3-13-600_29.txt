@@ -1,0 +1,18 @@
+To disable the animation when switching between pages in ViewPager2, you can use the `setPageTransformer` method and pass in a `ViewPager2.PageTransformer` that does not perform any animation. Here's an example:
+
+```
+viewPager2.setPageTransformer(new ViewPager2.PageTransformer() {
+    @Override
+    public void transformPage(@NonNull View page, float position) {
+        // Do nothing to disable animation
+    }
+});
+```
+
+Alternatively, you can use the `setCurrentItem` method on the ViewPager2 to programmatically switch to the desired page without any animation:
+
+```
+viewPager2.setCurrentItem(position, false);
+```
+
+The second parameter `false` indicates that no animation should be used.

@@ -1,0 +1,30 @@
+It seems that there might be a version conflict between the Hibernate Validator version that is included in your Spring Boot parent and the one that is resolved by Maven. 
+
+You can try to exclude the Hibernate Validator dependency from your Spring Boot parent and explicitly include the version that you want to use in your pom.xml file. To do this, add the following exclusion to your spring-boot-starter-parent dependency:
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.4.RELEASE</version>
+    <relativePath/>
+    <exclusions>
+        <exclusion>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+```
+
+Then, add the following dependency to explicitly include the version of Hibernate Validator that you want to use:
+
+```xml
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.0.11.Final</version>
+</dependency>
+```
+
+This should resolve the version conflict and allow you to use the @NotEmpty and @NotBlank annotations as expected.

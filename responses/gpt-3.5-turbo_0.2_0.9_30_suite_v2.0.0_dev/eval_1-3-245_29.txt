@@ -1,0 +1,9 @@
+It seems like the Dockerfile is not able to find the `app` module. You can try changing the `COPY` command in the Dockerfile to the following:
+
+```
+COPY ./fastapi/app /app
+```
+
+This will copy the `app` module from the `fastapi` directory to the `/app` directory in the Docker container. 
+
+Also, make sure that the `requirements.txt` file is present in the `fastapi` directory. If it is not, you will need to update the `COPY` command for the `requirements.txt` file as well.

@@ -1,0 +1,23 @@
+The error you're seeing is because `pdftk` is not compatible with MacOS Catalina. Catalina dropped support for 32-bit executables, and `pdftk` is a 32-bit executable.
+
+Here are some alternatives you can use:
+
+1. **PDFtk Server**: This is a command-line tool that is a sibling to PDFtk. It is a collection of command-line tools that allow you to manipulate PDF documents in many useful ways. It is free to use in any setting, and it does not require any additional software. You can download it from the official website.
+
+2. **Homebrew**: This is a package manager for MacOS. You can use it to install software packages directly from the command line. Here is how you can install `pdftk` using Homebrew:
+
+```bash
+brew install pdftk-java
+```
+
+3. **PDFsam**: This is a free, open-source PDF manipulation tool. It can merge, split, extract pages, rotate and mix PDF files. You can download it from the official website.
+
+4. **QPDF**: This is a command-line program that does structural, content-preserving transformations on PDF files. It could have been called something like pdf-to-pdf. It also provides many useful capabilities to developers of PDF-producing software or for people who just want to look at the innards of a PDF file to learn more about how they work. You can install it using Homebrew:
+
+```bash
+brew install qpdf
+```
+
+5. **Cpdf**: This is a commercial command-line program that manipulates PDF files. It's available for Windows, MacOS, and Linux.
+
+Remember to always check the compatibility of your tools with your operating system to avoid such issues.

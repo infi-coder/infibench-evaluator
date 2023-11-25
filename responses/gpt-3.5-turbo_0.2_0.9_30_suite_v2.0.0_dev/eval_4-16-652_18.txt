@@ -1,0 +1,9 @@
+You can use the `--output` parameter to specify the output format as `text` and then pipe the output to `/dev/null` to discard it. This will prevent the interactive pager from opening up and allow the `for` loop to continue to the next iteration without any manual intervention. Here's the modified script:
+
+```
+for x in 1 2 3; do 
+  aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo --output text > /dev/null; 
+done
+```
+
+This will send the output of the AWS CLI command to `/dev/null`, which is a special file that discards all data written to it.

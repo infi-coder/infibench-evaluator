@@ -1,0 +1,17 @@
+This error occurs because of a conflict between the Maven version used by IntelliJ and the Maven version used by Spring Boot 2.7. The solution is to configure IntelliJ to use the same Maven version as Spring Boot 2.7.
+
+To do this, follow these steps:
+
+1. Open the Maven settings in IntelliJ by going to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+
+2. In the "Maven home directory" field, enter the path to the Maven installation that is used by Spring Boot 2.7. This can be found in the pom.xml file of your Spring Boot project, under the <maven.version> tag.
+
+3. Click "OK" to save the settings.
+
+4. Re-import the Maven project by going to View > Tool Windows > Maven Projects, right-clicking on the project, and selecting "Reimport".
+
+5. Wait for the project to re-import and the dependencies to be resolved.
+
+6. Run the project and the error should be resolved.
+
+If the error persists, try deleting the .idea folder and the .iml files in the project directory and re-importing the project.

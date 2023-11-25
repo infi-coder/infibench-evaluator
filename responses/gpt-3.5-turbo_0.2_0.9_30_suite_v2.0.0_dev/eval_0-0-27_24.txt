@@ -1,0 +1,23 @@
+It seems like you are trying to fetch data from a GraphQL API using Apollo Client in React Native, but the loading state hangs at true and fails to fetch data. 
+
+One possible reason for this issue could be that the Apollo Client is not able to connect to the GraphQL API. In your code, you are using the URI `https://48p1r2roz4.sse.codesandbox.io` as the endpoint for the Apollo Client. This URI is provided by the Apollo Client official documentation as an example endpoint for testing purposes. 
+
+However, it is possible that this endpoint is not currently available or is experiencing issues. You can try using a different GraphQL API endpoint to see if that resolves the issue. 
+
+Another possible reason for this issue could be related to network connectivity. Make sure that your device or emulator is connected to the internet and that there are no network issues that could be preventing the Apollo Client from connecting to the GraphQL API. 
+
+You can also try adding some error handling to your code to get more information about any errors that may be occurring. For example, you can add a `console.log` statement to log any errors that are returned by the `useQuery` hook:
+
+```javascript
+const { loading, error, data } = useQuery(EXCHANGE_RATES);
+
+if (loading) return <Text>Loading...</Text>;
+if (error) {
+    console.log(error);
+    return <Text>Error :(</Text>;
+}
+```
+
+This will log any errors to the console, which can help you diagnose the issue. 
+
+I hope this helps! Let me know if you have any further questions.

@@ -1,0 +1,13 @@
+With Font Awesome 5, the syntax to call an icon has changed. You need to use the `font-family: "Font Awesome 5 Free"` property instead of `font-family: "FontAwesome"`. Also, the syntax to call an icon has changed from `\f107` to `content: "\f007";` for example. 
+
+So, the updated code for Font Awesome 5 would be:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f007";
+  font-family: "Font Awesome 5 Free";
+}
+```
+
+Make sure you have included the Font Awesome 5 CSS file in your project.

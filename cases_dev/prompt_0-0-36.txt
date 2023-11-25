@@ -1,0 +1,12 @@
+How to trigger client-side reload in next.js? To be more specific, I have an index page using "getInitialProps" to load data. Then I create a dialog which can create a new data. After creating a new data, the current page should be reloaded. I tried to use `Router.repace('\')`, but it triggers a server-side rendering. What I need is a client-side reload. The "getInitialProps" function should be called in the browser. So, how to do the client-side reload? Specifically, please don't add other text and repeat the following code with [blank] filled:
+
+```javascript
+import { useRouter } from "next/navigation";
+
+export default function Component(){
+    const router = useRouter();
+
+    [blank]
+}
+
+```

@@ -1,0 +1,32 @@
+Xcode 12.3 SwiftUI Preview 1 of "Content View Previews" not found in any targets
+
+I see others post with issues using SwiftUI Previews in Xcode 11 and 12, but have not seen this issue elsewhere.
+Older project that worked in Xcode 11, loaded in Xcode 12, fails to launch the preview, no matter how simple the Preview content.
+Actual preview code:
+```
+swift
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        Text("I heart Xcode")
+            .previewDevice("iPhone 11")
+    }
+}
+```
+
+After clicking "Resume" or "Try Again":
+> CouldNotFindInputNodeInBuiltGraphError<XcodeGraphSource,
+PreviewInstance>: Preview 1 of "Content View Previews" not found in
+any targetsPreview 1 of "Content View Previews" must belong to at least one
+target in the current scheme in order to use previewsElement: PreviewInstance(destinationDescription:
+UVPreviewPipeline.AnyPreviewDestinationDescription(storage:
+UVPreviewPipeline.(unknown context at
+$1382211e0).AnyPreviewDestinationDescriptionBoxImpl<UVIntegration.SimulatorPreviewDestinationDescription>),
+previewIdentity: UVPreviewPipeline.PreviewIdentity(identifier:
+ContentView_Previews[0], description: contentType: Element
+contextType: application device: iPhone 11 index: 0 layout: device
+supportsLive: true supportsOnDevice: true), variant: nil,
+variantedIdentifier: ContentView_Previews[0], identifier:
+AnyHashable(ContentView_Previews[0]))
+I only have one target, same as before, with no special configuration. I have tried reloading Xcode as well as copying all sources files to a new directory (saw that one somewhere).
+Anyone else able to parse this error message or make a recommendation for how to fix SwiftUI previews?
+Thanks.

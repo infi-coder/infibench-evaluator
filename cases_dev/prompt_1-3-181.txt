@@ -1,0 +1,39 @@
+I have a 3D NumPy array like so:
+
+```python
+[[[4 1 5 2 5 5 7 8 9 7]
+  [7 4 2 4 7 8 4 1 3 5]
+ [6 1 2 1 1 1 2 3 7 6]
+[5 5 5 0 5 4 3 8 7 1]
+[2 8 6 7 4 7 5 5 5 1]]
+
+[[9 9 5 8 0 7 3 9 8 1]
+ [9 1 9 5 7 4 5 4 7 0]
+[1 0 4 8 7 3 4 3 8 8]
+[8 1 3 1 7 0 9 9 3 8]
+[4 0 2 3 8 2 0 1 2 4]]
+
+[[1 6 2 4 4 0 2 3 0 3]
+ [9 6 8 6 6 5 6 9 4 1]
+[0 4 0 2 9 1 1 2 4 6]
+[6 1 9 9 7 8 9 7 6 8]
+[9 3 9 0 7 0 0 0 7 0]]]
+```
+``
+With it, I like to create a 2d ndarray like so:
+
+```python
+[[6]
+ [9]
+ [9]]
+```
+
+Where each element of this 2d array is the max value of the third column on the original array
+
+I have been a couple of hours trying to puzzle this out but no luck...
+
+I'm asking for a 2d array as the output because I have other calculations to make (say, I also need to min value of the second column in a similar fashion), but I think I can extrapolate those from this.
+
+Please write a function getMax in python, which takes a 3D numpy array as arguments and returns the array I need.
+
+Function signature is: getMax(matrix)

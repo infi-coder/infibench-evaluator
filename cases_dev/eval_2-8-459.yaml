@@ -1,0 +1,9 @@
+id: 2-8-459
+prompt_path: prompt_2-8-459.txt
+type: non-code debugging
+lang: go
+grading:
+  keywords:
+    - 'git config'
+    - 'url'
+    - 'ssh'

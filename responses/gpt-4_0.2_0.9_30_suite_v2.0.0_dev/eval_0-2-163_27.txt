@@ -1,0 +1,24 @@
+Here is the completed JavaScript code:
+
+```javascript
+document.getElementById('check').onclick = function() {
+  let allAreFilled = true;
+  document.getElementById("myForm").querySelectorAll('input,textarea,select').forEach(function(i) {
+    if (!allAreFilled) return;
+    if (i.type === "radio") {
+      let radioValueCheck = false;
+      document.getElementById("myForm").querySelectorAll(`input[name=${i.name}]`).forEach(function(r) {
+        if (r.checked) radioValueCheck = true;
+      })
+      allAreFilled = radioValueCheck;
+      return;
+    }
+    if (!i.value) { allAreFilled = false;  return; }
+  })
+  if (!allAreFilled) {
+    alert('Fill all the fields');
+  }
+};
+```
+
+In this code, `querySelectorAll` is used to select all the input, textarea, and select elements within the `myForm` div. The `name` attribute of the radio buttons is used to select all radio buttons with the same name. If any of the required fields are not filled, an alert is shown.

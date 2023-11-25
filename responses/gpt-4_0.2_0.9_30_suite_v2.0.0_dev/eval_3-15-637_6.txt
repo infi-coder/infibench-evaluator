@@ -1,0 +1,24 @@
+The error you're experiencing might be due to several reasons. Here are a few things you could try:
+
+1. **Check SeleniumBasic and Browser Driver Compatibility**: Ensure that the SeleniumBasic version you're using is compatible with the browser driver (ChromeDriver, IEDriver, etc.). If not, you might need to download the appropriate version of the browser driver.
+
+2. **Check Excel Version Compatibility**: SeleniumBasic might not be fully compatible with Excel 2019. You could try downgrading your Excel version or look for an updated SeleniumBasic version that supports Excel 2019.
+
+3. **Check References in VBA**: Go to VBA Editor > Tools > References and make sure that Selenium Type Library is checked. If it's missing, you might need to browse and add it manually.
+
+4. **Reinstall SeleniumBasic**: Uninstall SeleniumBasic, restart your machine, and then reinstall SeleniumBasic.
+
+5. **Update Your Code**: The way you're initializing the WebDriver and keys might be causing issues. Try the following code:
+
+```vba
+Dim driver As WebDriver
+Set driver = New WebDriver
+driver.Start "ie"
+driver.Get "https://www.google.com/"
+```
+
+Remember to replace `"ie"` with the appropriate browser driver you're using if it's not Internet Explorer.
+
+6. **Check Internet Explorer Settings**: If you're using Internet Explorer, ensure that the "Enable Protected Mode" setting is the same for all zones in Internet Options > Security.
+
+If none of these solutions work, please provide the exact error message you're receiving for more specific help.

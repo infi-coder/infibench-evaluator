@@ -1,0 +1,43 @@
+You can use multiple `Consumer` widgets for a single widget in Flutter Provider. Each `Consumer` widget can listen to a different `ChangeNotifier`.
+
+Here is an example of how you can do this:
+
+```dart
+Consumer<ChangeNotifier1>(
+  builder: (context, changeNotifier1, child) => 
+    Consumer<ChangeNotifier2>(
+      builder: (context, changeNotifier2, child) => 
+        Consumer<ChangeNotifier3>(
+          builder: (context, changeNotifier3, child) => 
+            Consumer<ChangeNotifier4>(
+              builder: (context, changeNotifier4, child) => 
+                CurvedNavigationBar(
+                  // Use values from changeNotifier1, changeNotifier2, changeNotifier3, and changeNotifier4
+                ),
+            ),
+        ),
+    ),
+)
+```
+
+In this example, `ChangeNotifier1`, `ChangeNotifier2`, `ChangeNotifier3`, and `ChangeNotifier4` are the classes that extend `ChangeNotifier`. The `CurvedNavigationBar` widget can use values from all four change notifiers.
+
+Remember to provide your `ChangeNotifier` classes higher up in the widget tree using the `ChangeNotifierProvider` widget. For example:
+
+```dart
+ChangeNotifierProvider<ChangeNotifier1>(
+  create: (context) => ChangeNotifier1(),
+  child: ChangeNotifierProvider<ChangeNotifier2>(
+    create: (context) => ChangeNotifier2(),
+    child: ChangeNotifierProvider<ChangeNotifier3>(
+      create: (context) => ChangeNotifier3(),
+      child: ChangeNotifierProvider<ChangeNotifier4>(
+        create: (context) => ChangeNotifier4(),
+        child: YourWidget(),
+      ),
+    ),
+  ),
+)
+```
+
+In this example, `YourWidget` is the widget that contains the `Consumer` widgets.

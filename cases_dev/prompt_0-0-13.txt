@@ -1,0 +1,45 @@
+I have a series of user data elements which I'm collecting inside a React component using hooks.
+
+```javascript
+const [mobile, setMobile] = useState('');
+const [username, setUsername] = useState('');
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const [confirmPassword, setConfirmPassword] = useState('');
+```
+
+Each of these are updated as follows.
+
+```html
+<input type="text"
+       className="form-control"
+       id="mobile"
+       placeholder="Enter a valid mobile number"
+       onChange={event => {setMobile(event.target.value)}}/>
+```
+
+Is there a more succint way to do this using an object as the variable?
+
+I found this template from the web. Could you help me finish `changeHandler` function by filling ***blank***? Specifically, pelase don't add other text and just repeat the following paragraph with [blank] filled:
+
+```javascript
+const [allValues, setAllValues] = useState({
+   mobile: '',
+   username: '',
+   email: '',
+   password: '',
+   confirmPassword: ''
+});
+const changeHandler = e => ***blank***
+// end filling
+return (
+   <input type="text"
+       className="form-control"
+       id="mobile"
+       name="mobile"
+       placeholder="Enter a valid mobile number"
+       onChange={changeHandler}
+   />
+   // ...
+)
+```

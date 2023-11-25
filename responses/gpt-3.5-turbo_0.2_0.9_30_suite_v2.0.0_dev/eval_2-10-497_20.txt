@@ -1,0 +1,40 @@
+In Rust, a `Box` cannot be null. However, it can be empty, which means it does not own any value. You can check if a `Box` is empty by using the `is_none` method. Here's an example:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+
+impl Stack {
+    fn push(&mut self, value: i32) {
+        let new_node = Box::new(Node {
+            value: value,
+            next: self.top.take(),
+        });
+        self.top = Some(new_node);
+    }
+
+    fn pop(&mut self) -> Option<i32> {
+        self.top.take().map(|node| {
+            self.top = node.next;
+            node.value
+        })
+    }
+}
+
+fn main() {
+    let mut stack = Stack { top: None };
+    stack.push(1);
+    stack.push(2);
+    assert_eq!(stack.pop(), Some(2));
+    assert_eq!(stack.pop(), Some(1));
+    assert_eq!(stack.pop(), None);
+}
+```
+
+In this example, we use an `Option<Box<Node>>` instead of a `Box<Node>` for the `next` field of `Node` and the `top` field of `Stack`. This allows us to represent an empty `Box` using `None`. The `push` method creates a new `Box<Node>` and sets its `next` field to the current `top` of the stack. It then sets the `top` of the stack to the new node. The `pop` method takes the `top` of the stack using `take`, which replaces it with `None` and returns the value. If the `top` was `None`, `map` returns `None` immediately. Otherwise, it sets the new `top` to the `next` field of the old `top` and returns the value of the old `top`.

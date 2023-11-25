@@ -1,0 +1,39 @@
+You can use the `MultiProvider` widget to provide multiple providers to your widget tree. However, if you want to consume multiple providers in a single widget, you can nest multiple `Consumer` widgets.
+
+Here is an example of how you can achieve this:
+
+```dart
+Consumer<Provider1>(
+  builder: (context, provider1, child) => 
+    Consumer<Provider2>(
+      builder: (context, provider2, child) => 
+        Consumer<Provider3>(
+          builder: (context, provider3, child) => 
+            Consumer<Provider4>(
+              builder: (context, provider4, child) => 
+                CurvedNavigationBar(
+                  // Use provider1, provider2, provider3, provider4 here
+                ),
+            ),
+        ),
+    ),
+)
+```
+
+In this example, `Provider1`, `Provider2`, `Provider3`, and `Provider4` are your classes that extend `ChangeNotifier`. You can replace them with your actual class names. Inside the `CurvedNavigationBar` widget, you can use `provider1`, `provider2`, `provider3`, and `provider4` to access the data from your providers.
+
+Remember to wrap your app (or a part of your widget tree where these providers will be used) with `MultiProvider` and provide all these providers:
+
+```dart
+MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (context) => Provider1()),
+    ChangeNotifierProvider(create: (context) => Provider2()),
+    ChangeNotifierProvider(create: (context) => Provider3()),
+    ChangeNotifierProvider(create: (context) => Provider4()),
+  ],
+  child: MyApp(),
+)
+```
+
+In this example, replace `Provider1`, `Provider2`, `Provider3`, and `Provider4` with your actual class names, and `MyApp` with your actual app or widget.

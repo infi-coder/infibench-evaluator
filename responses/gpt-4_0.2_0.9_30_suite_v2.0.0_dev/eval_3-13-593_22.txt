@@ -1,0 +1,61 @@
+To add Jetpack Compose to your existing Android project, you need to make sure you're using Android Studio Arctic Fox or later and your project is using Android Gradle Plugin 7.0.0 or later.
+
+Here are the steps:
+
+1. Update your `build.gradle` (Project level) file:
+
+```groovy
+dependencies {
+    classpath 'com.android.tools.build:gradle:7.0.0'
+}
+```
+
+2. Update your `gradle-wrapper.properties` file:
+
+```properties
+distributionUrl=https\://services.gradle.org/distributions/gradle-7.0.2-bin.zip
+```
+
+3. Update your `build.gradle` (Module level) file:
+
+```groovy
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        // Enables Jetpack Compose for this module
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.10'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.compose.ui:ui:1.0.1'
+    implementation 'androidx.compose.material:material:1.0.1'
+    implementation 'androidx.compose.ui:ui-tooling-preview:1.0.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.activity:activity-compose:1.3.1'
+}
+```
+
+Replace `compose_version` with the latest Jetpack Compose version, which is `1.0.1` at the time of writing.
+
+4. Sync your project with Gradle files.
+
+Now, you can start using Jetpack Compose in your project.

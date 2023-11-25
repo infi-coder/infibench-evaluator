@@ -1,0 +1,35 @@
+You can achieve this by using the `split` function in R, which splits a vector into groups determined by a factor level. Here's how you can write the `myConvert` function:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>%
+    split(.$list_names) %>%
+    map(~.$list_values)
+}
+```
+
+In this function, we first split the `my_data` tibble by the `list_names` column. This creates a list where each element is a tibble containing the rows for a specific `list_names` value. Then, we use `map` to replace each tibble in the list with its `list_values` column.
+
+Let's test this function with your `my_data`:
+
+```r
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+                  list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+```
+
+This will return the desired output:
+
+```r
+$Chevy
+[1] "Equinox"
+
+$Dodge
+[1] "Caravan" "Ram"    
+
+$Ford
+[1] "Ranger"   "F150"     "Explorer"
+```

@@ -1,0 +1,9 @@
+Sure! The code you provided is almost correct, but you need to use the `|` operator instead of `,` when defining the properties of the `FruitsAndColors` type. Here's the corrected code:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit | color]: key extends fruit ? number : boolean
+}
+```
+
+This code uses a mapped type to iterate over each key in the union of `fruit` and `color`. For each key, it checks whether it extends `fruit`. If it does, it assigns the value type `number`, otherwise it assigns the value type `boolean`.

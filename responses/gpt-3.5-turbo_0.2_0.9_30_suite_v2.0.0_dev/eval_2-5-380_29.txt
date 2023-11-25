@@ -1,0 +1,30 @@
+There are a few things you can check to troubleshoot this issue:
+
+1. Make sure that the `@EnableSwagger2WebMvc` annotation is present in your Spring Boot application class. This annotation enables Swagger support in your application.
+
+2. Check if the `@ComponentScan` annotation is present in your Spring Boot application class. This annotation scans the package and its sub-packages for components, such as controllers, that need to be registered with Spring.
+
+3. Verify that the `springdoc.swagger-ui.path` property is set to `/swagger-ui.html` in your `application.properties` or `application.yml` file. This property sets the path for the Swagger UI endpoint.
+
+4. Check if the `@RestController` annotation is present in your controller class. This annotation tells Spring that the class is a REST controller and should be scanned for Swagger documentation.
+
+5. Verify that the `@ApiOperation` annotation is present on your controller methods. This annotation provides information about the operation, such as its summary and description, which is used to generate the Swagger documentation.
+
+If none of these steps resolve the issue, you can try adding the following configuration to your application class:
+
+```java
+@Configuration
+public class SwaggerConfig {
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("My API")
+                        .version("1.0.0")
+                        .description("API documentation using springdoc-openapi and OpenAPI 3."));
+    }
+}
+```
+
+This creates a custom OpenAPI object that can be used to configure the Swagger UI.

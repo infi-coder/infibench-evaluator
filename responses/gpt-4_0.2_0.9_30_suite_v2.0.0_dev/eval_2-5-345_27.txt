@@ -1,0 +1,15 @@
+The error you're encountering is due to a compatibility issue between IntelliJ IDEA and Maven 3.8.5. The version of IntelliJ IDEA you're using is probably not compatible with Maven 3.8.5.
+
+Here are a few solutions you can try:
+
+1. **Downgrade Maven version**: You can downgrade the Maven version in your project to a version that is compatible with your IntelliJ IDEA. You can do this by modifying the `pom.xml` file in your project.
+
+2. **Upgrade IntelliJ IDEA**: You can upgrade your IntelliJ IDEA to the latest version. The latest versions of IntelliJ IDEA usually support the latest versions of Maven.
+
+3. **Change Maven version in IntelliJ IDEA settings**: You can change the Maven version used by IntelliJ IDEA in its settings. Here is how you can do it:
+
+    - Go to `File` -> `Settings` (or `Preferences` for macOS)
+    - Navigate to `Build, Execution, Deployment` -> `Build Tools` -> `Maven`
+    - In the `Maven home directory` field, point it to a Maven version that is compatible with your IntelliJ IDEA.
+
+Remember to restart IntelliJ IDEA after making these changes.

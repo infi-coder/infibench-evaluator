@@ -1,0 +1,15 @@
+To check if a package is at its latest version programmatically in a script and return a true or false, you can use the `pip` module in Python. Here's a function `checkVersion` that takes the package name `pkgName` as the argument and returns a boolean value indicating whether the package is up-to-date or not:
+
+```python
+import pip
+
+def checkVersion(pkgName):
+    # Get the latest version of the package from PyPI
+    latest_version = str(pip.get_installed_distributions()[0]).split(' ')[1]
+    # Get the currently installed version of the package
+    installed_version = str(pip.get_installed_distributions(local_only=True)[0]).split(' ')[1]
+    # Compare the two versions and return True if they are the same, False otherwise
+    return latest_version == installed_version
+```
+
+This function first gets the latest version of the package from PyPI using the `get_installed_distributions()` function from the `pip` module. It then gets the currently installed version of the package using the same function but with the `local_only=True` argument to only get locally installed packages. Finally, it compares the two versions and returns `True` if they are the same, `False` otherwise.

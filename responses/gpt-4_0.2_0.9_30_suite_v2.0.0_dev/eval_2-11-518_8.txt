@@ -1,0 +1,14 @@
+The Rule of Five is not outdated, but it's true that modern C++ practices can reduce the need for it.
+
+The Rule of Five is a guideline that helps to prevent resource leaks and subtle bugs. It's particularly relevant when you're dealing with raw pointers, which need to be manually managed. If you define any of the five functions (destructor, copy constructor, copy assignment operator, move constructor, move assignment operator), it's a sign that your class is managing a resource that requires special handling, so you should define all five to ensure correct behavior.
+
+However, modern C++ encourages the use of smart pointers and container classes, which automatically manage resources. If you use these tools, you often don't need to define any of the five functions, because the default behavior is correct.
+
+But there are still cases where you might need to define these functions. For example:
+
+- You're writing a container or smart pointer class.
+- You're managing a resource that isn't memory, like a file or a network connection.
+- You're working with a library that requires you to use raw pointers.
+- You need to control the copying or moving behavior of your class for reasons other than resource management.
+
+So while it's true that modern C++ can reduce the need for the Rule of Five, it's still a useful guideline to know and understand.

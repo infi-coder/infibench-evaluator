@@ -1,0 +1,20 @@
+The issue seems to be with the format of the `$theme-colors` map. The map should be defined with color values in quotes. Here's the revised code:
+
+```scss
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": "#0d6efd",
+  "secondary": "#6c757d",
+  "success": "#198754",
+  "info": "#0dcaf0",
+  "warning": "#ffc107",
+  "danger": "#dc3545",
+  "light": "#f8f9fa",
+  "dark": "#212529"
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Make sure to replace the color values with your desired colors. This should fix the invalid CSS value error.

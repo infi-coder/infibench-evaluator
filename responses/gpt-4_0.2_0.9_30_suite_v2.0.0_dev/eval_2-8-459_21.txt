@@ -1,0 +1,31 @@
+The error message you're seeing indicates that Go is unable to find the specified version of the module `github.ibm.com/kms/key-protect-client`. This could be due to a number of reasons:
+
+1. **Network issues**: Check your internet connection and make sure you can reach `github.ibm.com` from your computer.
+
+2. **Access rights**: Even though you have access to the private repository, Go might not. Go uses the `https` protocol to fetch modules, which requires authentication for private repositories. You can configure Git to use your GitHub credentials for `https` operations by caching your GitHub password in Git using a credential helper.
+
+3. **Incorrect version**: The version `v0.1.5` might not exist in the `github.ibm.com/kms/key-protect-client` repository. Check the repository to make sure the version exists.
+
+4. **Go Proxy and Checksum Database**: If you're using Go 1.13 or later, Go by default uses `proxy.golang.org` as the module proxy and `sum.golang.org` as the checksum database. These services do not support private modules. You can configure Go to bypass these services for private modules by setting the `GOPRIVATE` environment variable:
+
+    ```bash
+    export GOPRIVATE=github.ibm.com/kms/key-protect-client
+    ```
+
+    This tells Go to fetch the `github.ibm.com/kms/key-protect-client` module directly from the source instead of using the proxy and checksum database.
+
+5. **Vendoring**: If the module is a dependency of your project, you could consider vendoring it. Vendoring is a process where you include the source code of your dependencies in your project repository. This can be done using the `go mod vendor` command. This way, Go does not need to fetch the module from the internet every time you build your project.
+
+To debug this issue, you can use the `-x` flag with the `go build` command to print the commands that `go build` is executing. This might give you more information about what's going wrong:
+
+```bash
+go build -x
+```
+
+You can also use the `-v` flag to print the names of packages as they are compiled:
+
+```bash
+go build -v
+```
+
+Remember to replace `go build` with the actual command you're using if it's different.

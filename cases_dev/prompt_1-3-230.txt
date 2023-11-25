@@ -1,0 +1,28 @@
+I am using this function to uncompress the body of a HTTP response if it is compressed with gzip, compress or deflate.
+
+```python
+def uncompress_body(self, compression_type, body):
+    if compression_type == 'gzip' or compression_type == 'compress':
+        return zlib.decompress(body)
+    elif compression_type == 'deflate':
+        compressor = zlib.compressobj(9, zlib.DEFLATED, -zlib.MAX_WBITS)
+        compressed = compressor.compress(body)
+        compressed += compressor.flush()
+        return base64.b64encode(compressed)
+
+    return body
+```
+
+However python throws this error message.
+
+```bash
+TypeError: a bytes-like object is required, not '_io.BytesIO'
+```
+
+on this line:
+
+```python
+return zlib.decompress(body)
+```
+
+Essentially, how do I convert from `_io.BytesIO` to a bytes-like object?

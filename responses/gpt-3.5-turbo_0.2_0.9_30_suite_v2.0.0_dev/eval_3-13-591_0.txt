@@ -1,0 +1,29 @@
+The reason why you are seeing the logs in that order is because the `onItemSelectedListener` is triggered asynchronously when the user selects an item from the spinner. This means that the `return` statement is executed before the `onItemSelected` function is called, and therefore the value of `itemSelected` is still an empty string.
+
+To fix this, you can use a callback function to return the selected item instead of returning it directly from the `setupListWithAdapter` function. Here's an example:
+
+```
+fun Spinner.setupListWithAdapter(list: MutableList<String>, callback: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+            callback(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+    Log.e("categoryLog","2")
+}
+```
+
+In this updated function, we pass a callback function as a parameter that takes a `String` as an argument. When an item is selected from the spinner, we call this callback function with the selected item as the argument. This way, you can get the selected item by passing a lambda function to the `setupListWithAdapter` function like this:
+
+```
+spinner.setupListWithAdapter(list) { selectedItem ->
+    // Do something with the selected item
+}
+```

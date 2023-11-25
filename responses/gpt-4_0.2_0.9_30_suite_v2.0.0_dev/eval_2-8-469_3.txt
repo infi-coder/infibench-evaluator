@@ -1,0 +1,24 @@
+The error message is indicating that `protoc-gen-go` doesn't know what Go package to generate the code in. You can specify this using the `go_package` option in your .proto file.
+
+Here's how you can modify your .proto file:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "main";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+In the `go_package` option, you should specify the full import path of the Go package where you want the generated Go code to be placed. In this case, I've used "main" as an example, but you should replace this with your actual package's import path.
+
+After adding the `go_package` option, you should be able to generate the Go code with the same `protoc` command:
+
+```bash
+protoc --go_out=. simple.proto
+```

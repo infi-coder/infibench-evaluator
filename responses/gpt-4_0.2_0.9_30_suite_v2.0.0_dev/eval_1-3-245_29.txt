@@ -1,0 +1,26 @@
+The error you're seeing is because Python cannot find the `app` module. This is likely due to the way your project is structured and how the Dockerfile is set up.
+
+The Dockerfile you provided is copying the `app` directory into the `/app` directory of the Docker image. However, when you run the `uvicorn` command, it's looking for `app.main:app` in the root directory, not in the `/app` directory where you copied it to.
+
+Here's how you can revise your Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --requirement requirements.txt
+
+COPY ./app .
+
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+In this revised Dockerfile:
+
+- The `requirements.txt` file is copied to the current working directory (`/app`) instead of the root directory.
+- The `app` directory is copied into the current working directory (`/app`).
+- The `uvicorn` command is updated to look for `main:app` instead of `app.main:app`.
+
+This should solve the `ModuleNotFoundError` you're seeing.

@@ -1,0 +1,40 @@
+Your Dockerfile seems to be correct. The issue might be related to the Python import system. The Python interpreter is not able to find the `app` module. This could be due to the way you're structuring your project or how you're running your Docker container.
+
+Here is a revised version of your Dockerfile:
+
+```Dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.8
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Add the current directory contents into the container at /app
+ADD . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
+
+# Run app.py when the container launches
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0", "--port", "8000"]
+```
+
+This Dockerfile copies the current directory (which should include your `app` directory and `requirements.txt`) into the `/app` directory in the container, then runs `pip install`.
+
+Also, make sure your `docker-compose.yml` file is correctly set up. Here is an example:
+
+```yaml
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+```
+
+This will build the Docker image according to the Dockerfile in the current directory and map the container's port 8000 to your machine's port 8000.
+
+If you're still having issues, make sure your `app` directory is in the same directory as your Dockerfile and `docker-compose.yml` file. If it's not, Docker won't be able to copy it into the container.

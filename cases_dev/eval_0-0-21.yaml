@@ -1,0 +1,78 @@
+# Corresponding to post https://stackoverflow.com/questions/57713402
+id: 0-0-21
+# for case self identificaton
+
+prompt_path: prompt_0-0-21.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  max_score: 2.0
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  blank_filling:
+    template: >
+      ```html
+
+      <template>
+          <div id="app">
+            <v-app id="inspire">
+              <v-container>
+                <v-text-field v-model="text1"></v-text-field>
+                <v-btn @click="copyText">copy</v-btn>
+              </v-container>
+            </v-app>
+          </div>
+      </template>
+
+      <script>
+          new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data() { 
+              return {
+                text1: 'lorem ipsum 123'
+              }
+            },
+            methods: {
+              copyText () {
+                [blank]
+              }
+            }
+          })
+      </script>
+      
+      ```
+    
+    # blank_str: "[blank]"
+    # [optional] how blanks are represented in the template
+
+    # escape: " '\"\n`"
+    # [optional] list of characters to be pre-filtered for model responses for blanks, default: " '"·"
+
+    targets: 
+        - content:
+          - navigator.clipboard.writeText
+          - .select()
+          - document.execCommand("copy");
+          weight: 2.0
+    post_handler:
+      module: cases_dev.handler_0-0-21
+      func: handler

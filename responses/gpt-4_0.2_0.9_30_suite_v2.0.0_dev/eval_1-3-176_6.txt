@@ -1,0 +1,17 @@
+The error message you're seeing indicates that the Pillow library is not yet compatible with Python 3.8, and it's having trouble finding the necessary zlib headers and library files to compile from source.
+
+Here are a few potential solutions:
+
+1. **Downgrade Python**: You could downgrade to an earlier version of Python that is compatible with Pillow. Python 3.7 should work.
+
+2. **Install a precompiled binary**: You could try installing a precompiled binary of Pillow. This can be done using the following command:
+
+    ```bash
+    pip install pillow --only-binary=:all:
+    ```
+
+3. **Install zlib manually**: If you want to stick with Python 3.8, you could try manually installing zlib. This can be a bit complicated, especially on Windows. You would need to download the zlib source code, compile it, and then set the appropriate environment variables so that Python can find it. This is not recommended unless you're comfortable with this level of system configuration.
+
+4. **Wait for a compatible version**: You could wait for a new version of Pillow that is compatible with Python 3.8. You can keep an eye on the [Pillow GitHub page](https://github.com/python-pillow/Pillow) for updates.
+
+Remember to always work in a virtual environment to avoid conflicts between different projects and system-wide packages.

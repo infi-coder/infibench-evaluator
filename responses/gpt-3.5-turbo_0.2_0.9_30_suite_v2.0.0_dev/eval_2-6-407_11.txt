@@ -1,0 +1,17 @@
+The error message suggests that the response from the server is not in the expected JSON format. It seems like the response starts with a '<' character, which is not valid JSON.
+
+One possible reason for this error is that the API endpoint is returning an HTML page instead of the expected JSON data. This can happen if there is an error in the API code or if the endpoint is not configured correctly.
+
+To troubleshoot this issue, you can try the following steps:
+
+1. Check the API endpoint URL to make sure it is correct and matches the route defined in the API controller.
+
+2. Use a tool like Postman or curl to test the API endpoint and see if it returns the expected JSON data.
+
+3. Check the API code to make sure there are no errors and that it is returning the expected data in the correct format.
+
+4. If the API endpoint is hosted on a different domain, make sure that CORS is configured correctly to allow cross-domain requests.
+
+5. If none of the above steps work, try adding some logging statements to the API code to see what is happening and where the error is occurring.
+
+Once you have identified the issue, you can modify the API code or the Blazor code to fix the problem.

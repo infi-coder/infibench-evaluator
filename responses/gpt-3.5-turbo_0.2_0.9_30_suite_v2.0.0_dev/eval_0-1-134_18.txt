@@ -1,0 +1,5 @@
+It sounds like you may be trying to use a CSS preprocessor like Sass or Less. These preprocessors allow you to write CSS in a more efficient and organized way, using variables, mixins, and other features. 
+
+When you write `.classname` and then the class with the div appears, it's likely that the preprocessor is compiling that code into regular CSS. 
+
+Make sure you have the preprocessor installed and set up correctly in your project. If you're still having trouble, double-check the syntax and make sure you're following the correct conventions for the preprocessor you're using.

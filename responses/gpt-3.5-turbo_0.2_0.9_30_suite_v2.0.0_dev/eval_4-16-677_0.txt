@@ -1,0 +1,7 @@
+The issue is with the single quotes around `$searchT` in the `grep` command. Single quotes prevent variable expansion, so `$searchT` is not being replaced with the user input. To fix this, you can use double quotes instead of single quotes:
+
+```
+if [[ $(cat test.txt | grep -wi "$searchT") ]]; then
+```
+
+This will allow the variable to be expanded and the `grep` command will search for the user input in the `test.txt` file.

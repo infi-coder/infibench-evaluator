@@ -1,0 +1,26 @@
+How to set a field in a struct with an empty value in Rust?
+I am writing a TCP client and have a `conn` field in my client struct. My client implements two methods `new` to instantiate the struct and connect to open a connection to the server and set that as the value of the `conn` field.
+```rust
+pub struct FistClient {
+    addr: String,
+    conn: TcpStream,
+}
+
+impl FistClient {
+    pub fn new(ip: &str, port: &str) -> Self {
+        FistClient {
+            addr: String::from(ip) + ":" + &String::from(port),
+            // conn: <some-defaullt-value>,
+        }
+    }
+
+    pub fn connect(&mut self, ip: &str, port: &str) {
+        let res = TcpStream::connect(&self.addr);
+        match res {
+            Ok(c) => self.conn = c,
+            Err(_) => panic!(),
+        }
+    }
+}
+```
+I want to set the `conn` field in the new method to some default value. How to do it in Rust?

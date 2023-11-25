@@ -1,0 +1,10 @@
+The error message suggests that the `getApplicationDocumentsDirectory()` method is returning null. This can happen if the path_provider package is not properly initialized.
+
+Make sure that you have added the path_provider package to your pubspec.yaml file and have run `flutter pub get` to install it.
+
+Also, try adding the following import statement at the top of your file:
+```dart
+import 'package:path_provider/path_provider.dart';
+```
+
+If the issue persists, try running `flutter clean` and then rebuild your project.

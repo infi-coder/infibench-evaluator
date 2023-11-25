@@ -1,0 +1,21 @@
+This issue is related to the way Java handles quotes in arguments for the ProcessBuilder and Runtime.exec methods. It's a known issue that has been reported to the Java bug tracker.
+
+Here's a workaround that you can try:
+
+1. Open the `netbeans.conf` file in a text editor. The file is located in the `etc` directory of your NetBeans installation folder.
+
+2. Find the `netbeans_default_options` line.
+
+3. Add `-J-Djdk.lang.Process.allowAmbiguousCommands=true` to the list of options. Make sure to separate it from the other options with a space.
+
+The line should look something like this:
+
+```markdown
+netbeans_default_options="-J-client -J-Xss2m -J-Xms32m -J-XX:PermSize=32m -J-Dapple.laf.useScreenMenuBar=true -J-Dapple.awt.graphics.UseQuartz=true -J-Dsun.java2d.noddraw=true -J-Djdk.lang.Process.allowAmbiguousCommands=true"
+```
+
+4. Save the file and restart NetBeans.
+
+This option tells Java to use the old way of handling command line arguments, which allows arguments with embedded quotes.
+
+Please note that this is a workaround and not a permanent solution. The issue is caused by a bug in Java, and it's up to the Java developers to fix it.

@@ -1,0 +1,27 @@
+The error message you're seeing indicates that Go is unable to find the specific version of the module you're trying to import. This could be due to a number of reasons:
+
+- The module version does not exist.
+- There are network issues preventing Go from accessing the module.
+- There are authentication issues preventing Go from accessing the module.
+
+Since you mentioned that the module is in a private repository, it's likely that the issue is related to authentication. Here are a few things you can try to resolve this issue:
+
+1. **Check your Git configuration:** Make sure that Git is configured correctly to access private repositories. You can do this by running `git config --list` and checking the output.
+
+2. **Check your Go configuration:** Go uses the `GOPRIVATE` environment variable to determine which modules should be treated as private. You should set this variable to the path of your private repository. For example:
+
+    ```bash
+    export GOPRIVATE=github.ibm.com/kms/*
+    ```
+
+3. **Use Go modules proxy:** If you're using Go 1.13 or later, you can use a Go modules proxy to access private modules. You can configure this by setting the `GOPROXY` environment variable. For example:
+
+    ```bash
+    export GOPROXY=https://proxy.golang.org,direct
+    ```
+
+4. **Check your network connection:** If you're still having issues, it might be worth checking your network connection. Try accessing the module repository directly from your browser to see if you can reach it.
+
+5. **Check the module version:** Finally, make sure that the version of the module you're trying to import actually exists. You can do this by checking the repository's tags or releases.
+
+If none of these solutions work, you might want to consider asking for help on the Go community forums or on Stack Overflow.

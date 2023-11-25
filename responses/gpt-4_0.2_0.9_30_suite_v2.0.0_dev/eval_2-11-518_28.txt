@@ -1,0 +1,9 @@
+The Rule of Five is not outdated, but it's true that the need for it has been reduced with the introduction of smart pointers and other features in modern C++. 
+
+The Rule of Five is still relevant in cases where you are managing resources that are not memory, or when you are dealing with memory in a way that is not easily encapsulated by a smart pointer. For example, if you are writing a class that wraps a file handle or a network socket, you might need to define all five of these special member functions to handle the resource correctly.
+
+Even when using smart pointers, there can be reasons to define these functions. For example, you might want to control the copying behavior of your class, or you might want to implement move semantics in a specific way.
+
+In general, the Rule of Five is a guideline that helps ensure that your classes behave correctly in the face of copying and moving. It's not always necessary to follow it, but it's a good idea to understand it and to consider whether it applies each time you write a class that manages a resource.
+
+So, while it's true that modern C++ features have reduced the need for the Rule of Five, it's still a useful guideline and it's definitely not outdated.

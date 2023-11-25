@@ -1,0 +1,25 @@
+The error message you are seeing is related to ESLint, which is a popular tool for linting JavaScript and TypeScript code. It seems that ESLint is unable to find your `tsconfig.json` file, which is needed to properly parse and analyze your TypeScript code.
+
+To fix this issue, you need to update your `.eslintrc.js` file to point to the correct location of your `tsconfig.json` file. In your current configuration, ESLint is looking for `tsconfig.json` in the same directory as your `.eslintrc.js` file. However, based on your `tsconfig.json` file, it seems that your `tsconfig.json` file is located in the `src` directory.
+
+To update your `.eslintrc.js` file, you need to change the `parserOptions.project` property to point to the correct location of your `tsconfig.json` file. Here's what you need to change:
+
+```javascript
+parserOptions: {
+  project: "tsconfig.json",
+  sourceType: "module",
+},
+```
+
+Change it to:
+
+```javascript
+parserOptions: {
+  project: "./src/tsconfig.json",
+  sourceType: "module",
+},
+```
+
+This assumes that your `tsconfig.json` file is located in the `src` directory. If it's located in a different directory, you need to update the path accordingly.
+
+After making this change, save your `.eslintrc.js` file and restart your editor. The error message should disappear and ESLint should be able to properly analyze your TypeScript code.

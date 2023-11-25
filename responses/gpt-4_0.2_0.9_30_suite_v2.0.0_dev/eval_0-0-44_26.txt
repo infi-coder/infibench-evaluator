@@ -1,0 +1,22 @@
+In Mongoose, you can create an index on a field in the schema definition by using the `@Prop` decorator with the `index` or `unique` option. However, Mongoose will not automatically build indexes defined in your schema. You need to manually trigger the creation of indexes with the `Model.createIndexes()` function.
+
+Here is how you can do it:
+
+```javascript
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+@Injectable()
+export class MyService implements OnModuleInit {
+  constructor(@InjectModel(Schema.name) private readonly myModel: Model<Schema>) {}
+
+  async onModuleInit(): Promise<void> {
+    await this.myModel.createIndexes();
+  }
+}
+```
+
+In the above code, `MyService` implements `OnModuleInit` lifecycle hook and in the `onModuleInit` method, we are calling `createIndexes()` on the model. This will ensure that the indexes are created when the module is initialized.
+
+Remember to replace `Schema` and `MyService` with your actual schema and service names.

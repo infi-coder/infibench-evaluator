@@ -1,0 +1,35 @@
+You can use nested `Consumer` widgets to listen to multiple `ChangeNotifier` providers in a single widget. Here's an example:
+
+```dart
+Consumer<FirstChangeNotifier>(
+  builder: (context, firstNotifier, _) => Consumer<SecondChangeNotifier>(
+    builder: (context, secondNotifier, _) => Consumer<ThirdChangeNotifier>(
+      builder: (context, thirdNotifier, _) => Consumer<FourthChangeNotifier>(
+        builder: (context, fourthNotifier, _) => CurvedNavigationBar(
+          // Use the notifiers here
+          // For example:
+          index: firstNotifier.currentIndex,
+          items: <Widget>[
+            Icon(Icons.add, size: 30),
+            Icon(Icons.list, size: 30),
+            Icon(Icons.compare_arrows, size: 30),
+            Icon(Icons.call_split, size: 30),
+          ],
+          onTap: (index) {
+            // You can use the notifiers here
+            // For example:
+            firstNotifier.changeIndex(index);
+            secondNotifier.doSomething();
+            thirdNotifier.doSomethingElse();
+            fourthNotifier.doAnotherThing();
+          },
+        ),
+      ),
+    ),
+  ),
+);
+```
+
+In this example, `FirstChangeNotifier`, `SecondChangeNotifier`, `ThirdChangeNotifier`, and `FourthChangeNotifier` are your four `ChangeNotifier` classes. The `Consumer` widget listens to changes in these classes and rebuilds the `CurvedNavigationBar` widget whenever any of them change.
+
+Remember to provide your `ChangeNotifier` classes higher up in the widget tree using the `ChangeNotifierProvider` widget.

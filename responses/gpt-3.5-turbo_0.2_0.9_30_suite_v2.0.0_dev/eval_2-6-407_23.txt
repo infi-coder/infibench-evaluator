@@ -1,0 +1,39 @@
+The error message suggests that the response from the server is not in the expected JSON format. It looks like the response starts with a '<' character, which indicates that it might be an HTML error page instead of a JSON response.
+
+To troubleshoot this issue, you can try the following steps:
+
+1. Check the network tab in your browser's developer tools to see the actual response from the server. Make sure that it is a valid JSON response and not an HTML error page.
+
+2. If the response is an HTML error page, check the server logs to see what went wrong. Fix the issue and make sure that the server returns a valid JSON response.
+
+3. If the response is a valid JSON response, make sure that the Employee class matches the JSON structure. You can use a tool like https://jsonutils.com/ to generate C# classes from JSON.
+
+4. If the issue persists, try using a different HTTP client library like HttpClient instead of Http. You can also try using a different serialization library like Newtonsoft.Json instead of System.Text.Json.
+
+Here's an example of how to use HttpClient to call the API:
+
+```c#
+private readonly HttpClient httpClient;
+
+public FetchEmployee(HttpClient httpClient)
+{
+    this.httpClient = httpClient;
+}
+
+protected override async Task OnInitializedAsync()
+{
+    var response = await httpClient.GetAsync("/api/Employee/Index");
+    response.EnsureSuccessStatusCode();
+    var empList = await response.Content.ReadFromJsonAsync<Employee[]>();
+}
+```
+
+Make sure to register the HttpClient in your Blazor app's Startup.cs file:
+
+```c#
+services.AddScoped<HttpClient>(s =>
+{
+    var httpClient = new HttpClient { BaseAddress = new Uri("https://localhost:5001") };
+    return httpClient;
+});
+```

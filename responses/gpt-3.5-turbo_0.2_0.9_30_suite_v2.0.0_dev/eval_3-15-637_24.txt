@@ -1,0 +1,23 @@
+The issue you are facing could be due to the incompatibility of the Selenium WebDriver with the latest version of Internet Explorer. Microsoft has stopped supporting Internet Explorer and has moved to Microsoft Edge as the default browser. Therefore, it is recommended to use Microsoft Edge instead of Internet Explorer.
+
+You can try the following steps to resolve the issue:
+
+1. Install the latest version of Microsoft Edge.
+2. Download the latest version of the Selenium WebDriver for Microsoft Edge from the official Selenium website.
+3. Add a reference to the Selenium WebDriver in your VBA project.
+4. Modify your code to use the Microsoft Edge driver instead of the Internet Explorer driver.
+
+Here's an example of how to modify your code to use the Microsoft Edge driver:
+
+```
+Dim driver As New WebDriver
+Dim keyObj As Selenium.keys
+
+Set keyObj = New Selenium.keys
+
+driver.Start "edge"
+driver.Window.Maximize
+driver.Get "https://www.google.com/"
+```
+
+Make sure to update the reference to the Selenium WebDriver in your VBA project to the latest version.

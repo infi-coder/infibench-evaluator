@@ -1,0 +1,18 @@
+You can use `ElevatedButton`, `OutlinedButton`, and `TextButton` that are not deprecated button themes.
+You can change the `shape` property which is placed in the `style` property. 
+
+Here is an example of how to create a rounded button with `border-radius` in Flutter:
+
+```dart
+ElevatedButton(
+  onPressed: () {},
+  style: ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20), // 20 is the radius value
+    ),
+  ),
+  child: Text('Rounded Button'),
+)
+```
+
+In this example, `ElevatedButton` is used, but you can also use `OutlinedButton` or `TextButton` in the same way. The `shape` property is placed in the `style` property and you can change it to `RoundedRectangleBorder` and set the `borderRadius` to create a rounded button.

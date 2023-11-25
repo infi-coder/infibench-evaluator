@@ -1,0 +1,22 @@
+Yes, you can use the `go mod download` command to download the dependencies specified in your `go.mod` file. This command will download the dependencies and cache them in your local module cache, which is located in `$GOPATH/pkg/mod`.
+
+You can use this command in your Dockerfile to download the dependencies as a separate stage from the build. Here's an example Dockerfile:
+
+```
+# Build stage
+FROM golang:1.11 AS build
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN go build -o myapp
+
+# Final stage
+FROM scratch
+COPY --from=build /app/myapp /myapp
+ENTRYPOINT ["/myapp"]
+```
+
+In this example, the `go mod download` command is run in a separate `build` stage, which allows Docker to cache the downloaded dependencies. The final stage uses the `scratch` image to create a minimal image that only contains the compiled binary.
+
+Note that the `go mod download` command only downloads the dependencies and does not build them. If you want to build the dependencies as well, you can use the `go mod vendor` command to create a vendor directory containing the dependencies and then build your application using the vendor directory.

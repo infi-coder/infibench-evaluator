@@ -1,0 +1,39 @@
+You can use Python's multiprocessing module to run these two tasks concurrently. Here's how you can modify your code to use multiprocessing:
+
+```python
+import multiprocessing
+from dash import Dash
+import dash_bootstrap_components as dbc
+import db
+import hp
+import fd
+
+def run_dash():
+    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database = db.dataBase()
+    homepage = hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+    app.run_server(debug=True)
+
+def run_data_mining():
+    database = db.dataBase()
+    fd.financeData(database, 1600)
+
+if __name__ == "__main__":
+    # Create processes
+    p1 = multiprocessing.Process(target=run_dash)
+    p2 = multiprocessing.Process(target=run_data_mining)
+
+    # Start processes
+    p1.start()
+    p2.start()
+
+    # Join processes
+    p1.join()
+    p2.join()
+```
+In this code, `run_dash` and `run_data_mining` are the two tasks that you want to run concurrently. We create two separate processes for these tasks and start them. The `join` method is used to ensure that the main process waits until both processes have completed.
+
+Please note that the `multiprocessing` module spins up new processes and thus does not have the limitations of Python's threading due to the Global Interpreter Lock (GIL). However, it does not share memory and is a bit heavier than threading. If your tasks are I/O bound, threading might be a better option. If they are CPU bound, multiprocessing will likely be more efficient.

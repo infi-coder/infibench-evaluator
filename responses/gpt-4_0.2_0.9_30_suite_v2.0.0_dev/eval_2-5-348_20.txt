@@ -1,0 +1,24 @@
+The error message you're seeing is due to a known issue with Java and Windows where Java doesn't correctly handle command line arguments that contain spaces. The issue is that the command line arguments are being split on spaces, even those spaces that are within quotes.
+
+Here's a workaround you can try:
+
+1. Open the `mvn.cmd` file located at `C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\mvn.cmd` in a text editor.
+2. Look for a line that looks like this:
+
+    ```cmd
+    @REM Execute Maven, based on environment settings:
+    "%JAVA_HOME%\bin\java" %MAVEN_OPTS% %MAVEN_DEBUG_OPTS% -classpath "%CLASSWORLDS_JAR%" "-Dclassworlds.conf=%M2_HOME%\bin\m2.conf" "-Dmaven.home=%M2_HOME%" "-Dmaven.multiModuleProjectDirectory=%MAVEN_PROJECTBASEDIR%" %CLASSWORLDS_LAUNCHER% %MAVEN_CMD_LINE_ARGS%
+    ```
+
+3. Change the line to this:
+
+    ```cmd
+    @REM Execute Maven, based on environment settings:
+    "%JAVA_HOME%\bin\java" %MAVEN_OPTS% %MAVEN_DEBUG_OPTS% -classpath "%CLASSWORLDS_JAR%" "-Dclassworlds.conf=%M2_HOME%\bin\m2.conf" "-Dmaven.home=%M2_HOME%" "-Dmaven.multiModuleProjectDirectory=%MAVEN_PROJECTBASEDIR%" %CLASSWORLDS_LAUNCHER% "%MAVEN_CMD_LINE_ARGS%"
+    ```
+
+    The difference is that `%MAVEN_CMD_LINE_ARGS%` is now within quotes.
+
+4. Save the file and try to build your project again.
+
+This change should prevent the command line arguments from being split on spaces.

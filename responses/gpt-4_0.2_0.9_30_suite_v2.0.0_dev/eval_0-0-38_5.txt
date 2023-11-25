@@ -1,0 +1,10 @@
+Sure, you can use async/await with toPromise() to handle this. Here is the revised code:
+
+```javascript
+async getData() {
+  this.newIds = await this.repository.getById(Ids).toPromise();
+  console.log(this.newIds);
+}
+
+this.getData();
+```

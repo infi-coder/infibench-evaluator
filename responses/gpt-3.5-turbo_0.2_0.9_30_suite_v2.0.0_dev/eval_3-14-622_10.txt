@@ -1,0 +1,11 @@
+To conform to the `ShapeStyle` protocol, you need to implement the `fill` method in your `RedView` struct. Here's an example:
+
+```
+struct RedView: ShapeStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Color.red
+    }
+}
+```
+
+Now you can use `RedView()` as a fill for your `Circle` shape in `MyContentView`.

@@ -1,0 +1,31 @@
+The reason why you are seeing the logs in that order is because the `onItemSelected` method is called asynchronously when the user selects an item from the spinner. This means that the `return` statement in your function is executed before the `onItemSelected` method is called, and therefore the value of `itemSelected` is still an empty string.
+
+To fix this, you can use a callback function to return the selected item from the spinner. Here's an example of how you can modify your function to use a callback:
+
+```
+fun Spinner.setupListWithAdapter(list: MutableList<String>, callback: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            callback(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+}
+```
+
+In this modified function, instead of returning a value, we are passing a callback function as a parameter. The callback function takes a `String` parameter, which is the selected item from the spinner. When the user selects an item, we call the callback function with the selected item as the argument.
+
+To use this modified function, you can pass a lambda expression as the callback parameter, like this:
+
+```
+spinner.setupListWithAdapter(list) { selectedItem ->
+    // Do something with the selected item
+}
+```
+
+In this example, `list` is the list of items to populate the spinner with, and the lambda expression `{ selectedItem -> // Do something with the selected item }` is the callback function that will be called when the user selects an item from the spinner. The `selectedItem` parameter in the lambda expression is the selected item from the spinner. You can replace the comment with the code that you want to execute with the selected item.

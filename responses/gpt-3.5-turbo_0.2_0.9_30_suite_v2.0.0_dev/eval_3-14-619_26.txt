@@ -1,0 +1,23 @@
+The issue is that `ContentView_Previews` is using `@State` instead of `@Binding` for the `selected` variable. Change `@State` to `@Binding` and pass a `Bool` value to `ContentView` to fix the issue. Here's the updated code:
+
+```
+struct ContentView_Previews: PreviewProvider {
+    @State static var selected: Bool = false
+
+    static var previews: some View {
+        ContentView(isSelected: $selected)
+    }
+}
+```
+
+should be changed to:
+
+```
+struct ContentView_Previews: PreviewProvider {
+    @Binding static var selected: Bool = false
+
+    static var previews: some View {
+        ContentView(isSelected: $selected)
+    }
+}
+```

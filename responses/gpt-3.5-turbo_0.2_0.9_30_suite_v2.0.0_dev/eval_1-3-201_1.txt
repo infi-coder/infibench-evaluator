@@ -1,0 +1,28 @@
+You can use multiprocessing to run the two scripts in parallel. Here's an example of how you can modify your code to use multiprocessing:
+
+```python
+import multiprocessing as mp
+
+if __name__ == "__main__":
+    database = db.dataBase()
+    homepage = hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    dataMiningScript = fd.financeData(database, 1600)
+
+    app.layout = homepage.layoutMaker()
+
+    # Create two processes, one for each script
+    p1 = mp.Process(target=dataMiningScript.run)
+    p2 = mp.Process(target=app.run_server, kwargs={"debug": True})
+
+    # Start the processes
+    p1.start()
+    p2.start()
+
+    # Wait for the processes to finish
+    p1.join()
+    p2.join()
+```
+
+In this example, we create two processes, one for `dataMiningScript` and one for `app.run_server()`. We start both processes and wait for them to finish using `join()`. Note that you need to modify `dataMiningScript` to have a `run()` method that contains the infinite while loop.

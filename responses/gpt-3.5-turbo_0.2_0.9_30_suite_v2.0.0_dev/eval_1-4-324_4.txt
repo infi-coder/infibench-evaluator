@@ -1,0 +1,21 @@
+You can use the `separate()` function from the `tidyr` package to split the column into separate columns based on the delimiter. Here's the `mySplit()` function that achieves the desired result:
+
+```r
+library(tidyr)
+
+mySplit <- function(df) {
+  df %>%
+    separate(col1, into = c("name", "Age", "City"), sep = ",|:", remove = FALSE) %>%
+    select(-col1)
+}
+```
+
+Here, we first load the `tidyr` package. Then, we use the `separate()` function to split the `col1` column into three separate columns `name`, `Age`, and `City`. We specify the delimiter as `,|:` to split the column based on either a comma or a colon. We also set `remove = FALSE` to keep the original column in the resulting data frame. Finally, we use `select()` to drop the original `col1` column from the data frame.
+
+You can call this function by passing your data frame `df` as an argument:
+
+```r
+result <- mySplit(df)
+```
+
+This will return a data frame with three columns `name`, `Age`, and `City`, as shown in the desired output.

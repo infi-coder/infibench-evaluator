@@ -1,0 +1,8 @@
+This error message is caused by a known issue in rust-analyzer where it sometimes fails to resolve macros correctly. In this case, it is likely caused by the `console` crate using the `format_args!` macro internally, which rust-analyzer is failing to resolve.
+
+Fortunately, this error should not affect the functionality of your code, and it should still compile and run correctly. If you want to get rid of the error message in rust-analyzer, you can try updating your rust-analyzer version or disabling the macro error diagnostics in your editor settings.
+
+To disable macro error diagnostics in VS Code, you can add the following line to your settings.json file:
+```
+"rust-analyzer.diagnostics.disabled": ["macro-error"]
+```

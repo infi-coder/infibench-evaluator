@@ -1,0 +1,26 @@
+The error you're experiencing might be due to a few reasons. Here are some suggestions that you can try:
+
+1. **Check SeleniumBasic version**: Ensure that you have the latest version of SeleniumBasic installed. You can download it from [here](https://github.com/florentbr/SeleniumBasic/releases).
+
+2. **Check WebDriver**: Make sure you have the correct WebDriver for the browser you are using. For example, if you are using Chrome, you should have ChromeDriver. You can download it from [here](https://sites.google.com/a/chromium.org/chromedriver/). After downloading, place it in the SeleniumBasic installation folder (usually `C:\Users\YourUserName\AppData\Local\SeleniumBasic`).
+
+3. **Check References**: In VBA, go to `Tools > References` and ensure that Selenium Type Library is checked.
+
+4. **Check Excel Version**: SeleniumBasic might not work properly with 64-bit versions of Excel. If you're using a 64-bit version, consider switching to a 32-bit version.
+
+5. **Code Modification**: Try to modify your code as follows:
+
+    ```vba
+    Dim driver As WebDriver
+    Set driver = New WebDriver
+
+    driver.Start "ie"
+    driver.Window.Maximize
+    driver.Get "https://www.google.com/"
+    ```
+
+6. **Check Internet Explorer**: If you're using Internet Explorer, make sure that it's not running in protected mode.
+
+7. **Check Browser Version**: Make sure your browser version is compatible with the WebDriver version you're using.
+
+If none of these suggestions work, please provide the exact error message you're receiving for further assistance.

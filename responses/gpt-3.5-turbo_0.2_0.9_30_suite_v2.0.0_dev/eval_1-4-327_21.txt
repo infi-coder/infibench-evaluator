@@ -1,0 +1,7 @@
+To select the second column with the name "a" from the data frame `d3`, you can use the indexing notation with the column name enclosed in backticks. Here's the code:
+
+```r
+second_col <- d3$`a.1`
+```
+
+The backticks are used to escape the dot in the column name, which is automatically added by R when there are duplicate column names.

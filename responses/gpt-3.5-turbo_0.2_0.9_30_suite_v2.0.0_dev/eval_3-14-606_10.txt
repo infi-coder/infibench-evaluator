@@ -1,0 +1,11 @@
+Developer mode is not a feature that can be enabled or disabled on iOS 16.0. It is possible that the app you are trying to run requires certain permissions or settings that are only available to developers. 
+
+To resolve this issue, you can try the following steps:
+
+1. Check if the app you are trying to run is compatible with iOS 16.0. If it is not, you may need to wait for an update from the developer.
+
+2. Make sure that your device is registered as a development device. You can do this by going to Settings > General > Profiles & Device Management and checking if there is a profile for your developer account.
+
+3. If you are a developer, make sure that you have the necessary permissions and certificates to run the app on your device.
+
+4. If none of the above steps work, you can try contacting the developer of the app for further assistance.

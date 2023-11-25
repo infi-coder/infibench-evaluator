@@ -1,0 +1,25 @@
+Sure, here's a possible implementation of `generateRandomString()` function in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the characters to use for the code
+    characters = string.ascii_letters + string.digits
+    
+    # Generate a random 3-digit number
+    number = random.randint(100, 999)
+    
+    # Generate a random string of length 11
+    random_string = ''.join(random.choice(characters) for i in range(11))
+    
+    # Insert the number and the sub-string into the random string
+    code = random_string[:5] + "NAA3U" + str(number) + random_string[8:]
+    
+    return code
+```
+
+This function first defines the characters to use for the code as all the letters (both lowercase and uppercase) and digits. Then, it generates a random 3-digit number using the `random.randint()` function. After that, it generates a random string of length 11 using the `random.choice()` function and `join()` method. Finally, it inserts the sub-string "NAA3U" and the 3-digit number into the random string at the appropriate positions to form the final code.
+
+You can call this function multiple times to generate different codes each time.

@@ -1,0 +1,15 @@
+Here is a Python function that uses the `re` module to find all words in the input string, then uses a list comprehension to capitalize all words except possibly the first one, and finally joins them together without spaces:
+
+```python
+import re
+
+def to_camel_case(text):
+    words = re.findall(r'\b\w+\b', text)
+    return ''.join([words[0]] + [word.capitalize() for word in words[1:]])
+```
+
+This function works by first splitting the input string into words at each occurrence of a dash or underscore. The `re.findall` function is used with the regular expression `r'\b\w+\b'` to find all words in the string. The `\b` is a word boundary, and `\w+` matches one or more word characters.
+
+Then, it uses a list comprehension to capitalize all words except possibly the first one. The `[word.capitalize() for word in words[1:]]` part of the code creates a new list where each word is capitalized. The `[words[0]]` part of the code adds the first word to the list without changing its case.
+
+Finally, the `join` function is used to combine all the words into a single string without spaces.

@@ -1,0 +1,27 @@
+# Corresponding to post https://stackoverflow.com/questions/71680595
+id: 2-11-521
+
+prompt_path: prompt_2-11-521.txt
+type: knowledge question-answering
+
+lang: c++/c
+
+grading:
+  max_score: 2.0
+  min_score: 0.0
+  keywords:
+    - content: 
+        or:
+          - content: 
+              content: "not correct"
+            to_lower: true
+          - content: 
+              content: "not true"
+            to_lower: true
+          - content: 
+              content: "it is a function"
+            to_lower: true
+      weight: 1.0
+    - content:
+        content: "special"
+      weight: 1.0

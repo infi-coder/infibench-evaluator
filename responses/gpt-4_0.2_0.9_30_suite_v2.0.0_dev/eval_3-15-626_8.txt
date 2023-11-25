@@ -1,0 +1,46 @@
+Your code is almost correct, but there are a few issues. 
+
+First, you are trying to use `query` and `currentSheet` as variables, but you haven't declared them. 
+
+Second, you are trying to use `query` as both a string (when you assign it the value of a cell) and as a `WorkbookQuery` object (when you use `query.Name`). 
+
+Third, you are assigning `currentSheet` the name of the active sheet, but you never use it.
+
+Here is a corrected version of your code:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    Dim query As String
+    Dim currentSheet As Worksheet
+
+    ' Assign the query string from a cell
+    query = Sheets("Sheet6").Range("A1").Value
+
+    ' Assign the active sheet to currentSheet
+    Set currentSheet = ActiveSheet
+
+    ' Add a QueryTable to the active sheet
+    With currentSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=Sheets("target").Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+
+End Sub
+```
+
+This code should work assuming that the query string in `Sheet6` cell `A1` is a valid Power Query query.

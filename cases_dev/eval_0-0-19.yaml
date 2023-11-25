@@ -1,0 +1,57 @@
+# Corresponding to post https://stackoverflow.com/questions/50522376
+id: 0-0-19
+# for case self identificaton
+
+prompt_path: prompt_0-0-19.txt
+# relative path to the prompt text
+
+type: non-code debugging
+# type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  max_score: 3.0
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  keywords:
+    - content:
+        and:
+          - content: package-lock.json
+          - or:
+            - content: remove
+            - content: delete
+            - content: rm
+      to_lower: true
+    - content:
+        or:
+          - content: git config --global http.sslVerify false
+          - content: npm config set strict-ssl false
+    - content:
+        and:
+          - content: node_modules
+          - or:
+            - content: remove
+            - content: delete
+            - content: rm
+      to_lower: true
+    - content: npm config set registry http://registry.npmjs.org/
+    - content: npm cache clear
+    - content: 
+        or:
+          - content: slow
+          - content: vpn
+      to_lower: true

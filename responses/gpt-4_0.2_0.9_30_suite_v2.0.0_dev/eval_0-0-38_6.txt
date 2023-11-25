@@ -1,0 +1,14 @@
+Sure, you can use async/await to handle this. Here is your revised code:
+
+```javascript
+async getData() {
+  const response = await this.repository.getById(Ids).toPromise();
+  console.log(response);
+  this.newIds = response.map((id) => {
+    return id;
+  });
+  console.log(this.newIds);
+}
+```
+
+Please note that you need to call `getData()` function to execute the code.

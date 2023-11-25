@@ -1,0 +1,2 @@
+curl -Ls yahoo.com | sed -n 's/^<html.* lang="\([^"]*\).*/\1/p'
+en-US

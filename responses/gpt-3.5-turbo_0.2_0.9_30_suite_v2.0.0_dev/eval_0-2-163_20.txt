@@ -1,0 +1,24 @@
+You can use the following code to check if all the required fields in the `myForm` div are filled:
+
+```javascript
+document.getElementById("check").onclick = function() {
+  let allAreFilled = true;
+  document.getElementById("myForm").querySelectorAll("[required]").forEach(function(i) {
+    if (!allAreFilled) return;
+    if (i.type === "radio") {
+      let radioValueCheck = false;
+      document.getElementById("myForm").querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
+        if (r.checked) radioValueCheck = true;
+      })
+      allAreFilled = radioValueCheck;
+      return;
+    }
+    if (!i.value) { allAreFilled = false;  return; }
+  })
+  if (!allAreFilled) {
+    alert('Fill all the fields');
+  }
+};
+```
+
+This code adds a click event listener to the `check` button. When clicked, it selects all the elements with the `required` attribute inside the `myForm` div using `querySelectorAll`. It then loops through each element and checks if it is filled. If it is a radio button, it checks if at least one option is selected. If any required field is not filled, it sets `allAreFilled` to `false`. Finally, if `allAreFilled` is still `true`, it does nothing, but if it is `false`, it shows an alert message.

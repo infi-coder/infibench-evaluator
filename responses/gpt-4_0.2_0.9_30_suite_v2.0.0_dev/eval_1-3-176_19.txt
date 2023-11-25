@@ -1,0 +1,29 @@
+The error message indicates that the Pillow library could not be installed because the zlib library, which is a required dependency, could not be found. 
+
+Here are a few steps you can take to resolve this issue:
+
+1. **Upgrade pip, setuptools, and wheel**: Sometimes, these packages become outdated and cause errors during installation. You can upgrade them using the following commands:
+
+    ```bash
+    pip install --upgrade pip setuptools wheel
+    ```
+
+2. **Install the Microsoft Visual C++ Build Tools**: The zlib library is a C library, and you need the Microsoft Visual C++ Build Tools to compile C code on Windows. You can download it from the [official Microsoft website](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
+
+3. **Install a precompiled Pillow package**: If you're still having trouble, you can try installing a precompiled version of Pillow from the Unofficial Windows Binaries for Python Extension Packages. Here is the command to do that:
+
+    ```bash
+    pip install --upgrade Pillow
+    ```
+
+4. **Try an older version of Pillow**: If none of the above solutions work, you can try installing an older version of Pillow that is compatible with your version of Python. For example, if you're using Python 3.8, you can try installing Pillow 6.2.2, which is the last version to support Python 3.8:
+
+    ```bash
+    pip install Pillow==6.2.2
+    ```
+
+Remember to replace `6.2.2` with the version number that is compatible with your Python version.
+
+5. **Check your Python version**: The error message indicates that Pillow does not yet support Python 3.8. If you're using Python 3.8, you might consider downgrading to an earlier version of Python that is supported by Pillow.
+
+If none of these solutions work, please provide more information about your Python environment, such as the Python version and the operating system you're using.

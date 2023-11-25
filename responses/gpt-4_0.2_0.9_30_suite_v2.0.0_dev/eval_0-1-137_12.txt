@@ -1,0 +1,34 @@
+The error you're getting is because the `to-rgb` function is not available in Sass 3. It was introduced in Sass 4.0.0.
+
+However, you can still change the Bootstrap's default theme colors with Sass 3. You just need to import the `variables` file after you declare your custom `$theme-colors` map.
+
+Here is how you can do it:
+
+```scss
+$theme-colors: (
+  "primary": #your-color-here
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In the above code, replace `#your-color-here` with the color you want to use for the primary theme color.
+
+Please note that the above code will only change the `primary` color. If you want to change other colors as well, you need to include them in the `$theme-colors` map. For example:
+
+```scss
+$theme-colors: (
+  "primary": #your-primary-color,
+  "secondary": #your-secondary-color,
+  "success": #your-success-color,
+  "info": #your-info-color,
+  "warning": #your-warning-color,
+  "danger": #your-danger-color,
+  "light": #your-light-color,
+  "dark": #your-dark-color
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Replace `#your-xxx-color` with the colors you want to use for the corresponding theme colors.

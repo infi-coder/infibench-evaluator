@@ -1,0 +1,52 @@
+To conform to `ShapeStyle` protocol, you need to implement a function that returns a `Shader`. Here is how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedStyle())
+    }
+}
+
+struct RedStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType) {
+        // Implementation here
+    }
+    
+    func _makeView(view: _GraphValue<_ShapeView<Self, _StrokedShape<_InsetAround<Rectangle>>>>, inputs: _ViewInputs) -> _ViewOutputs {
+        // Implementation here
+    }
+}
+```
+
+However, these methods are marked as internal (`_apply` and `_makeView`) and are not intended to be used directly. 
+
+In SwiftUI, you typically don't need to conform to `ShapeStyle` directly. Instead, you use the provided types that conform to `ShapeStyle`, such as `Color`, `LinearGradient`, `RadialGradient`, and `AngularGradient`.
+
+In your case, you can simply use `Color.red` directly:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(Color.red)
+    }
+}
+```
+
+If you want to create a custom color, you can create an extension of `Color`:
+
+```swift
+extension Color {
+    static let myRed = Color.red
+}
+
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(Color.myRed)
+    }
+}
+```
+
+This way, you can use `Color.myRed` anywhere you would use `Color.red`.

@@ -1,0 +1,26 @@
+This error is caused by a compatibility issue between IntelliJ IDEA and Maven 3.8.5. IntelliJ IDEA's embedded Maven version is not compatible with Maven 3.8.5 which is used in Spring Boot 2.7. 
+
+To resolve this issue, you can downgrade the Maven version to 3.8.4 or earlier in your project's `pom.xml` file. 
+
+Here is how you can do it:
+
+1. Open your `pom.xml` file.
+2. Locate the `maven-wrapper-plugin` section.
+3. Change the `maven` version to `3.8.4` or earlier.
+
+Here is an example:
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-wrapper-plugin</artifactId>
+    <version>1.2</version>
+    <configuration>
+        <distributionUrl>https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.4/apache-maven-3.8.4-bin.zip</distributionUrl>
+    </configuration>
+</plugin>
+```
+
+After making these changes, re-import the project in IntelliJ IDEA.
+
+Alternatively, you can wait for an update from IntelliJ IDEA that supports Maven 3.8.5.

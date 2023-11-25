@@ -1,0 +1,19 @@
+The issue you're facing is because of the way you're trying to override the `$theme-colors` map. You're trying to redefine the `$theme-colors` map after it's been imported from Bootstrap's `_variables.scss` file. This is causing the error because the map is already being used in the imported file.
+
+To fix this issue, you should define your custom `$theme-colors` map before importing Bootstrap's `_variables.scss` and `_bootstrap.scss` files. Also, you should import `_functions.scss` before defining your custom `$theme-colors` map because it contains the `map-loop` function that is used in `_variables.scss`.
+
+Here's how you should modify your SCSS file:
+
+```scss
+@import "../../node_modules/bootstrap/scss/functions";
+
+$theme-colors: (
+  "primary": #your-color, // replace #your-color with your desired color
+  // add other colors if needed
+);
+
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Remember to replace `#your-color` with the color you want to use for the primary theme color. You can also add other colors to the `$theme-colors` map if you want to override them as well.

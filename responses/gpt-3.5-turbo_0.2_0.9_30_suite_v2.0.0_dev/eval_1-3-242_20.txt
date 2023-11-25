@@ -1,0 +1,4 @@
+No
+```python
+roll = [str(i) for i in roll]
+```

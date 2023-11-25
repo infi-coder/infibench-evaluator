@@ -1,0 +1,20 @@
+The error you're encountering is related to the SSL version being used to establish the connection with the SMTP server. The error message `ssl3_get_record:wrong version number` indicates that the client and server are unable to agree on a common SSL version to use for the connection.
+
+Here are a few things you could try:
+
+1. **Change the MAIL_ENCRYPTION setting:** The error message suggests that there's an issue with the SSL version. You could try changing the `MAIL_ENCRYPTION` setting in your `.env` file from `ssl` to `tls`. Some servers may not support SSLv3 due to its known security vulnerabilities.
+
+```markdown
+MAIL_ENCRYPTION=tls
+```
+
+2. **Check the port number:** The standard port for SSL connections is 465, and for TLS it's 587. If changing the encryption to TLS doesn't work, you could try changing the port to 465 and setting the encryption back to SSL.
+
+```markdown
+MAIL_PORT=465
+MAIL_ENCRYPTION=ssl
+```
+
+3. **Contact the email service provider:** If neither of the above solutions work, it's possible that there's a specific configuration required by the email service provider. You could try reaching out to them to ask for the correct settings to use.
+
+Remember to clear the configuration cache using `php artisan config:cache` after making changes to your `.env` file.

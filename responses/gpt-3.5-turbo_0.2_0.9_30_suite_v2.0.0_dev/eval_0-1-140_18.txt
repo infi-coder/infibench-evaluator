@@ -1,0 +1,13 @@
+With Font Awesome 5, the syntax has changed slightly. You will need to use the `font-family` property to specify the Font Awesome 5 font family, which is `"Font Awesome 5 Free"` or `"Font Awesome 5 Pro"` depending on whether you are using the free or pro version.
+
+Here is the updated code:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+}
+```
+
+Make sure that you have included the Font Awesome 5 CSS file in your project and that the font files are in the correct location.

@@ -1,0 +1,13 @@
+The issue with your code is that TypeScript doesn't allow you to use multiple index signatures in a single type. However, you can create two separate types and then merge them using intersection (`&`).
+
+Here's how you can define `FruitsAndColors`:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit]: number;
+} & {
+  [key in color]: boolean;
+}
+```
+
+This will create a type that has a numeric property for each fruit and a boolean property for each color.

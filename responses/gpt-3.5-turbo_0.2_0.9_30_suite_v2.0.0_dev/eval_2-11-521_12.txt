@@ -1,0 +1,7 @@
+Yes, the above comment is true/correct. 
+
+In object-oriented programming, a constructor is a special method that is automatically called when an object is created. It is used to initialize the object's properties and set its initial state. 
+
+Unlike regular methods, constructors cannot be called explicitly like a regular function. Instead, they are invoked automatically when a new object is created using the `new` keyword. 
+
+Therefore, the statement "A constructor cannot be called, it is not a function. It is invoked automatically when a new object is created" is accurate.

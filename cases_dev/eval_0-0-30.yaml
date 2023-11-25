@@ -1,0 +1,33 @@
+# Corresponding to post https://stackoverflow.com/questions/64658031
+id: 0-0-30
+# for case self identificaton
+
+prompt_path: prompt_0-0-30.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  keywords:
+    - enzyme-adapter-react-17
+    - "@wojtekmaj"
+    # - content: ...
+    #   weight: 1.0
+    #   # [optional] customized keyword weight 
+    #   to_lower: false
+    #   # [optional] whether to be case-sensitive (default is sensitive, set to true will apply lower() then match)
+    #   neg: false
+    #   # [optional] if neg=true, match means subtracting the score (use for common wrong answers)

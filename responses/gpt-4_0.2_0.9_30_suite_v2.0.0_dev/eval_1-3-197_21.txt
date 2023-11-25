@@ -1,0 +1,20 @@
+Here is a Python function that uses the pandas library to achieve this. The function `fillColumn` takes a DataFrame `df`, a column name `columnName`, and a list of strings `columnData`. It then uses the `itertools.cycle` function to create an infinite iterator that repeats the `columnData` list. This iterator is used to fill the new column in the DataFrame.
+
+```python
+import pandas as pd
+import itertools
+
+def fillColumn(df, columnName, columnData):
+    df[columnName] = [next(itertools.cycle(columnData)) for _ in range(len(df))]
+    return df
+```
+
+You can use this function like this:
+
+```python
+df = pd.DataFrame()
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+```
+
+This will create a new column 'names' in the DataFrame `df` and fill it with the values from `my_list` in a repeating cycle.

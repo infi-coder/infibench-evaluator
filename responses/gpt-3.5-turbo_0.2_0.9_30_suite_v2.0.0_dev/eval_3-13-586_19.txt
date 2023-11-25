@@ -1,0 +1,27 @@
+The error message is indicating that you need to specify either `FLAG_IMMUTABLE` or `FLAG_MUTABLE` when creating a `PendingIntent`. You can fix the error by updating the code that creates the `PendingIntent` in the `MediaSessionCompat` constructor.
+
+Instead of using `PENDING_INTENT_FLAG_MUTABLE`, you can use `PendingIntent.FLAG_IMMUTABLE` or `PendingIntent.FLAG_MUTABLE` directly, depending on your use case. Here's an example of how to create a `PendingIntent` with `FLAG_IMMUTABLE`:
+
+```
+val mediaButtonIntent = Intent(Intent.ACTION_MEDIA_BUTTON)
+mediaButtonIntent.setComponent(mbrComponent)
+val pendingIntent = PendingIntent.getBroadcast(
+    context,
+    0,
+    mediaButtonIntent,
+    PendingIntent.FLAG_IMMUTABLE
+)
+```
+
+If you need a mutable `PendingIntent`, you can use `PendingIntent.FLAG_MUTABLE` instead:
+
+```
+val pendingIntent = PendingIntent.getBroadcast(
+    context,
+    0,
+    mediaButtonIntent,
+    PendingIntent.FLAG_MUTABLE
+)
+```
+
+Note that the `FLAG_MUTABLE` flag should only be used if you need to modify the `PendingIntent` later, such as adding inline replies or bubbles. If you don't need to modify the `PendingIntent`, you should use `FLAG_IMMUTABLE`.

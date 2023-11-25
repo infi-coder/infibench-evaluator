@@ -1,0 +1,15 @@
+Your code is correct, but the problem might be that you're trying to observe the change in the `ContentView_Previews`. The `@State` property wrapper is designed to work with SwiftUI's view updating mechanism, but this mechanism doesn't work in the `PreviewProvider`.
+
+To see the changes, you need to run your app in the simulator or on a device. Here's a simple example of how you can use your `ContentView`:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+```
+
+In this example, `ParentView` is the owner of the `@State`, and it passes a binding to `ContentView`. When you toggle `isSelected` in `ContentView`, it will update the `@State` in `ParentView`, causing both views to be refreshed.

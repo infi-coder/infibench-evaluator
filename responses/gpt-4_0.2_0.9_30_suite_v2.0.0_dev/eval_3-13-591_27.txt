@@ -1,0 +1,35 @@
+The reason you're seeing the logs in the order "2" then "1" is because the `onItemSelected` method is called asynchronously. This means that the rest of your `setupListWithAdapter` function continues to execute while waiting for a selection event to occur. 
+
+Because of this, your function returns `itemSelected` before it has been set by the `onItemSelected` method. This is why you're seeing an empty value when you try to log or return `itemSelected` after setting up the listener.
+
+If you want to perform an action with the selected item, you should do it inside the `onItemSelected` method. If you need to return the selected item from the `setupListWithAdapter` function, you'll need to restructure your code, because the `onItemSelected` method is asynchronous and won't have a value to return immediately.
+
+Here's an example of how you might handle this:
+
+```kotlin
+fun Spinner.setupListWithAdapter(list: MutableList<String>, onItemSelected: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+            onItemSelected(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+}
+```
+
+In this version, you pass a function `onItemSelected` to `setupListWithAdapter`, and this function is called with the selected item whenever an item is selected. This allows you to handle the selected item outside of `setupListWithAdapter`. Here's an example of how you might call this function:
+
+```kotlin
+spinner.setupListWithAdapter(list) { selectedItem ->
+    // Do something with selectedItem
+    Log.e("categoryLog","Selected item: " + selectedItem)
+}
+```
+
+In this example, whenever an item is selected, it will be logged with the tag "categoryLog" and the message "Selected item: [selected item]".

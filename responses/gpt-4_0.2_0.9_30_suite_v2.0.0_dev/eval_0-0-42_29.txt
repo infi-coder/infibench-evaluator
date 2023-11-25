@@ -1,0 +1,15 @@
+Sure, here is your updated code:
+
+```javascript
+const MongoStore = require('connect-mongo');
+
+...
+
+app.use(session({
+    secret: 'story book',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+}))
+```
+Please note that in `connect-mongo` v4, the `create` method is used instead of `new` to create a new instance of `MongoStore`.

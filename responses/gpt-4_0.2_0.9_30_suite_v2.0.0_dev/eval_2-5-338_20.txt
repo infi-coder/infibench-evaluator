@@ -1,0 +1,34 @@
+The error message suggests that Jackson is trying to serialize the `MultipartFile` object, but it can't because it doesn't know how to serialize `java.io.ByteArrayInputStream` which is a part of `MultipartFile`.
+
+To solve this issue, you should convert the `MultipartFile` to `HttpEntity<FileSystemResource>` before sending it. Here is how you can do it:
+
+```java
+// Convert MultipartFile to File
+File convFile = new File(souqBean.getCircularAttachment().getOriginalFilename());
+try (FileOutputStream fos = new FileOutputStream(convFile)) {
+    fos.write(souqBean.getCircularAttachment().getBytes());
+} catch (IOException e) {
+    e.printStackTrace();
+}
+
+// Prepare headers
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+// Prepare body
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+body.add("circularAttachment", new FileSystemResource(convFile));
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+// Prepare entity
+HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+
+// Send request
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+This code converts the `MultipartFile` to a `File` and then wraps it in a `FileSystemResource` which is serializable by Jackson. The `FileSystemResource` is then added to the `MultiValueMap` which is used as the body of the `HttpEntity`.
+
+Please note that this code writes the `MultipartFile` to a file on the server's file system. You should handle the deletion of this file after it's no longer needed.

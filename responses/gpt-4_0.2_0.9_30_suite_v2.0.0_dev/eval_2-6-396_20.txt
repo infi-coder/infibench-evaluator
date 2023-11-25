@@ -1,0 +1,22 @@
+The error message is telling you that you cannot create an index on a navigation property. In Entity Framework, an index can only be created on scalar properties, not on navigation properties. 
+
+In your case, you are trying to create an index on the `Gender` property of the `User` entity, which is a navigation property. 
+
+To solve this problem, you should create an index on the `GenderId` property instead of the `Gender` property. Here is how you can do it:
+
+```c#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderId); // Create index on GenderId, not Gender
+    });
+}
+```
+
+Now, when you run the `dotnet ef add migration User` command, it should work without any errors.

@@ -1,0 +1,29 @@
+The error you're seeing is because Python can't find your `app` module. This is likely because the `app` directory isn't being correctly copied into your Docker container.
+
+Here's how you can revise your Dockerfile:
+
+```Dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.8
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Add the current directory contents into the container at /app
+ADD . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
+
+# Run the command to start uvicorn
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0", "--port", "8000"]
+```
+
+This Dockerfile will copy the entire current directory (which should include your `app` directory and `requirements.txt` file) into the `/app` directory in the container. Then it will install your Python dependencies and start the server.
+
+Please make sure that your Dockerfile is in the root directory of your project (the same level as your `app` directory and `requirements.txt` file). If it's not, you'll need to adjust the paths in the `ADD` and `RUN` commands accordingly.
+
+Also, please note that the `--reload` option is not recommended for production use. It is a convenient feature for development, but it can leak memory under heavy load.

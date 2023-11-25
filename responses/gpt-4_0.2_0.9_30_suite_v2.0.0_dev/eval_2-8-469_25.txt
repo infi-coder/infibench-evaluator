@@ -1,0 +1,24 @@
+The error message is indicating that you need to specify a `go_package` option in your `.proto` file. This option is used to specify the package name for the generated Go code.
+
+You can add the `go_package` option to your `.proto` file like this:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "main";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+In this example, the `go_package` option is set to "main", which means the generated Go code will be in package "main". You can replace "main" with whatever package name you want to use.
+
+After adding the `go_package` option, you should be able to generate the Go code with the `protoc` command you provided:
+
+```bash
+protoc --go_out=. simple.proto
+```

@@ -1,0 +1,13 @@
+Yes, you can use the `pd.date_range()` function to create a range of dates for the entire year and then count the number of days in that range. Here's an example function `DaysInYear` that takes a year as an argument and returns the total number of days in that year:
+
+```python
+import pandas as pd
+
+def DaysInYear(year):
+    start_date = pd.to_datetime(str(year) + '-01-01')
+    end_date = pd.to_datetime(str(year) + '-12-31')
+    days_in_year = (end_date - start_date).days + 1
+    return days_in_year
+```
+
+This function first creates a `start_date` and `end_date` using the `pd.to_datetime()` function. It then calculates the number of days between these two dates using the `.days` attribute of the resulting `Timedelta` object. Finally, it adds 1 to the result to include the last day of the year.

@@ -1,0 +1,32 @@
+One way to express this more idiomatically is to use the `filter()` method on `Option` to check if the inner value meets the condition, and then use `or()` to provide a default value if the `Option` is `None` or the inner value fails the condition. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.filter(|&x| x < 5).or(Some(5));
+}
+```
+
+This code does the same thing as your original code, but it's more concise and arguably more readable.
+
+Another way to express this is to use the `unwrap_or()` method on `Option` to provide a default value if the `Option` is `None`, and then use an `if` statement to check if the inner value meets the condition. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = Some(foo.unwrap_or(5)).filter(|&x| x < 5);
+}
+```
+
+This code does the same thing as the previous example, but it uses `unwrap_or()` instead of `or()`. It's slightly less concise, but it might be more readable to some people.
+
+Finally, you could use the `and_then()` method on `Option` to apply a function to the inner value if it meets the condition, and then use `or()` to provide a default value if the `Option` is `None` or the inner value fails the condition. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.and_then(|x| if x < 5 { Some(x) } else { None }).or(Some(5));
+}
+```
+
+This code does the same thing as the previous examples, but it uses `and_then()` to apply a function to the inner value if it meets the condition. This might be more readable to some people, but it's also the most verbose of the three examples.

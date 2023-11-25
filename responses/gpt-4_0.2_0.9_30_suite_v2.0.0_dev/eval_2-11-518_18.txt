@@ -1,0 +1,21 @@
+The Rule of Five is not necessarily outdated, but it is true that modern C++ practices have reduced its necessity. 
+
+The Rule of Five is a guideline that suggests that if you provide or delete one of the following functions, you should consider providing or deleting all of them:
+
+- Destructor
+- Copy Constructor
+- Copy Assignment Operator
+- Move Constructor
+- Move Assignment Operator
+
+This rule is based on the idea that these operations are often related, and if you need to customize one, you probably need to customize all of them.
+
+However, with the advent of smart pointers in C++11, the need for manual memory management (and thus the need for custom destructors, copy constructors, etc.) has been greatly reduced. Smart pointers automatically manage the memory of the object they own, and they can be used to simplify resource management in your classes.
+
+That being said, there are still cases where you might need to define these functions. For example:
+
+- If your class is managing a non-memory resource (like a file handle or a network socket), you might need to define a custom destructor to release that resource, and custom copy/move operations to correctly handle the "ownership" of that resource.
+- If your class needs to maintain a certain invariant that cannot be maintained by simply copying or moving all data members, you might need to define custom copy/move operations.
+- If you want to implement some sort of reference counting or shared ownership semantics, you might need to define custom copy/move operations.
+
+So, while it's true that modern C++ practices have made the Rule of Five less necessary, it's not completely outdated. It's just that the cases where you need to apply it have become less common.

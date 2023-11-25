@@ -1,0 +1,12 @@
+With Font Awesome 5, the syntax for using icons has changed. You can use the following code to achieve the same result:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+```
+
+In Font Awesome 5, the font family name has changed to "Font Awesome 5 Free" and the font weight needs to be set to 900 to display the solid version of the icon. You can also use "Font Awesome 5 Brands" for brand icons and "Font Awesome 5 Pro" for the pro version of the icons if you have a license.

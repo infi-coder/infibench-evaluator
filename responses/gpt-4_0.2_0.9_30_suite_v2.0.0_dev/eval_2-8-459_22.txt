@@ -1,0 +1,21 @@
+This issue could be due to several reasons. Here are a few things you can try to debug and solve the issue:
+
+1. **Check your Go version**: Ensure that you are using the same Go version on both computers. You can check your Go version by running `go version` in your terminal.
+
+2. **Check your GOPROXY settings**: The GOPROXY environment variable determines the locations from where Go modules will be downloaded. If you're using private repositories, you might need to set this variable to `direct`. You can do this by running `export GOPROXY=direct` in your terminal.
+
+3. **Check your Git configuration**: Ensure that your Git configuration is set up correctly to access private repositories. You can check your Git configuration by running `git config --list`.
+
+4. **Check your network connection**: If you're behind a firewall or using a VPN, it might be blocking your connection to the repository. Try disabling these temporarily to see if it solves the issue.
+
+5. **Clear your Go module cache**: Sometimes, the Go module cache can cause issues. You can clear it by running `go clean -modcache`.
+
+6. **Check your GitHub credentials**: Ensure that your GitHub credentials are set up correctly on computer B. You can do this by running `git config --global --get user.name` and `git config --global --get user.email`. If these commands don't return your GitHub username and email, you need to set them up by running `git config --global user.name "Your Name"` and `git config --global user.email "your-email@example.com"`.
+
+7. **Check your SSH keys**: If you're using SSH to connect to GitHub, ensure that your SSH keys are set up correctly on computer B. You can check your SSH keys by running `ssh -T git@github.com`.
+
+8. **Check the repository's access permissions**: Ensure that you have the necessary permissions to access the repository on GitHub. You can check this by going to the repository's settings on GitHub.
+
+9. **Check the repository's dependencies**: Ensure that all the dependencies of the repository are available and accessible. You can check this by going to the repository's `go.mod` file.
+
+10. **Check the error message**: The error message might contain clues about what's causing the issue. In your case, the error message is saying that it can't find the revision `v0.1.5` of the repository `

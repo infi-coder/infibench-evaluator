@@ -1,0 +1,14 @@
+You need to add two things to your `~/.zshenv`. First, add the rbenv initialization code itself and second, add the ruby version. Here's an example:
+
+```
+# Add rbenv to PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+
+# Initialize rbenv
+eval "$(rbenv init -)"
+
+# Set global Ruby version
+rbenv global 2.7.2
+```
+
+You might also run the `rbenv doctor` command to check your installation.

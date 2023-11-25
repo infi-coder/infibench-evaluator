@@ -1,0 +1,1 @@
+File > Setting > Build Execution... > Build tools > Maven > Maven home path

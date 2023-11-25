@@ -1,0 +1,21 @@
+Use `WillPopScope` instead of `Navigator.pop(context)` or `Navigator.of(context).pop()`. 
+
+`WillPopScope` is a widget that detects when the user has pressed the back button on their device. It has a property called `onWillPop` that you can override to control whether the route should be popped. 
+
+Here is an example of how to use it:
+
+```dart
+return WillPopScope(
+  onWillPop: () async => false, // this will disable the back button
+  child: Scaffold(
+    appBar: AppBar(
+      title: Text('Login Page'),
+    ),
+    body: Center(
+      child: Text('Login Page'),
+    ),
+  ),
+);
+```
+
+In this example, the `onWillPop` function is set to an asynchronous function that always returns false. This means that the back button will be disabled and the user will not be able to navigate back to the previous page.

@@ -1,0 +1,11 @@
+The `[Keyless]` attribute was introduced in Entity Framework Core 5.0, so you need to make sure that you are using EF Core 5.0 or later in your project. 
+
+To check the version of EF Core that you are using, you can open the NuGet Package Manager Console and run the following command:
+
+```
+Get-Package Microsoft.EntityFrameworkCore -ListAvailable
+```
+
+This will show you a list of available versions of EF Core. Make sure that you have version 5.0 or later installed in your project.
+
+If you are using an earlier version of EF Core, you can either upgrade to version 5.0 or later, or you can add a primary key to your keyless entity to use it with `DbSet`.

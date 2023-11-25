@@ -1,0 +1,40 @@
+You can use Python's multiprocessing module to run these two tasks concurrently. Here is how you can modify your code:
+
+```python
+import multiprocessing
+from dash import Dash
+import dash_bootstrap_components as dbc
+import db
+import hp
+import fd
+
+def run_dash():
+    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database=db.dataBase()
+    homepage=hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+    app.run_server(debug=True)
+
+def run_data_mining():
+    database=db.dataBase()
+    fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    # Create processes
+    p1 = multiprocessing.Process(target=run_dash)
+    p2 = multiprocessing.Process(target=run_data_mining)
+
+    # Start processes
+    p1.start()
+    p2.start()
+
+    # Join processes
+    p1.join()
+    p2.join()
+```
+
+This code creates two separate processes, one for the Dash server and one for the data mining script. Each process will run independently of the other, so they can both run in an infinite loop without blocking each other.
+
+Please note that you need to ensure that both processes can access the database concurrently. If the database doesn't support concurrent access, you might need to add some synchronization mechanism to prevent data corruption.

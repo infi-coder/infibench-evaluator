@@ -1,0 +1,51 @@
+You can create a factory method that creates and returns a `ServiceBusSender` instance for a given queue name. Then, you can register this factory method as a singleton in the service collection. Here's an example:
+
+```c#
+// Register the factory method as a singleton
+_services.AddSingleton<Func<string, ServiceBusSender>>(implementationFactory =>
+{
+    var serviceBusConfiguration = implementationFactory.GetRequiredService<IOptions<UserEventConsumerSetting>>().Value;
+
+    var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+
+    return (queueName) => serviceBusClient.CreateSender(queueName);
+});
+
+// Use the factory method to create a sender for a specific queue
+var sender = _services.GetService<Func<string, ServiceBusSender>>()("myQueueName");
+```
+
+In your `CarReservationMessagingService`, you can then inject the factory method and use it to create a `ServiceBusSender` instance for the specific queue you want to send messages to:
+
+```c#
+private readonly Func<string, ServiceBusSender> _senderFactory;
+
+public CarReservationMessagingService(Func<string, ServiceBusSender> senderFactory)
+{
+    _senderFactory = senderFactory ?? throw new ArgumentNullException(nameof(senderFactory));
+}
+
+public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation)
+{
+    var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+    {
+        Id = Guid.NewGuid().ToString(),
+        CarId = carReservation.CarId,
+        CustomerId = carReservation.CustomerId,
+        RentFrom = carReservation.RentFrom,
+        RentTo = carReservation.RentTo
+    };
+
+    var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+    ServiceBusMessage message = new ServiceBusMessage(serializedMessage);
+
+    // Use the factory method to create a sender for the specific queue
+    var sender = _senderFactory("myQueueName");
+    await sender.SendMessageAsync(message);
+}
+```
+
+You can repeat this process for each queue you want to send messages to, using a different queue name each time.

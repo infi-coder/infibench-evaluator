@@ -1,0 +1,46 @@
+Your code seems to be on the right track, but there are a few issues that need to be addressed:
+
+1. You're trying to use `query` and `currentSheet` as variables, but you haven't declared them. In VBA, you need to declare variables with `Dim` before you use them.
+
+2. You're trying to use `query` as a `WorkbookQuery` object, but you're assigning it a string value. You need to create a `WorkbookQuery` object and assign it to `query`.
+
+3. You're trying to use `query.Name` in your connection string and SQL command text, but `query` is a string, not a `WorkbookQuery` object. You need to use the name of the query, not the query text.
+
+Here's a corrected version of your code:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    Dim query As String
+    Dim currentSheet As String
+
+    ' Get the query text from Sheet6
+    query = Sheets("Sheet6").Range("A1").Value
+
+    ' Get the name of the active sheet
+    currentSheet = ActiveSheet.Name
+
+    ' Create a new ListObject and QueryTable
+    With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=Sheets("target").Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+
+End Sub
+```
+
+This code assumes that the text in cell A1 of Sheet6 is the name of a Power Query query in the workbook. If it's actually the SQL command text for the query, you'll need to create a `WorkbookQuery` object with that command text and use its name in your connection string and SQL command text

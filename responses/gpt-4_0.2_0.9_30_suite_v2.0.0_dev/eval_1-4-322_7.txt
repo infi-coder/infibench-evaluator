@@ -1,0 +1,35 @@
+You can achieve this by using the `split` function in R, which divides the data into subsets based on the levels of a factor. Here is how you can write the `myConvert` function:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>%
+    split(.$list_names) %>%
+    map(~ pull(., list_values))
+}
+```
+
+In this function, we first split the `my_data` tibble based on the `list_names` column. This will create a list where each element is a subset of `my_data` corresponding to a unique `list_names` value. Then, we use `map` to apply the `pull` function to each element of the list, extracting the `list_values` column. The result is a named list where the names are the unique `list_names` values and the elements are vectors of `list_values` values.
+
+You can test this function with your example data:
+
+```r
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+                  list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+```
+
+This will produce the desired output:
+
+```r
+$Chevy
+[1] "Equinox"
+
+$Dodge
+[1] "Caravan" "Ram"    
+
+$Ford
+[1] "Ranger"   "F150"     "Explorer"
+```

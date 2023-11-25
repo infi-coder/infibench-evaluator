@@ -1,0 +1,31 @@
+The error `bad CPU type in executable` usually means that the binary you are trying to run is not compatible with the architecture of your CPU. This is a common issue on MacOS Catalina and later versions because Apple dropped support for 32-bit applications starting from Catalina.
+
+The `pdftk` tool is one of the applications that has not been updated to support 64-bit architecture, hence the error.
+
+Here are some alternatives to `pdftk` that you can use:
+
+1. **PDFtk Server**: This is a command-line tool that is a part of the PDFtk toolkit. It is updated to support 64-bit architecture. You can install it using Homebrew:
+
+    ```bash
+    brew install pdftk-java
+    ```
+
+2. **qpdf**: This is another command-line tool that you can use to manipulate PDF files. You can install it using Homebrew:
+
+    ```bash
+    brew install qpdf
+    ```
+
+3. **mutool**: This is a part of the mupdf tools, which is a lightweight PDF and XPS viewer. You can install it using Homebrew:
+
+    ```bash
+    brew install mupdf-tools
+    ```
+
+4. **Poppler**: This is a PDF rendering library that comes with a set of command-line tools to manipulate PDF files. You can install it using Homebrew:
+
+    ```bash
+    brew install poppler
+    ```
+
+Remember to replace `pdftk` commands with the equivalent commands of the tool you choose to install.

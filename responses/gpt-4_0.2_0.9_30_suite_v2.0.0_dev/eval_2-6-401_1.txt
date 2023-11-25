@@ -1,0 +1,83 @@
+You can use the factory pattern to create multiple instances of `ServiceBusClient` with different queue names. Here is an example of how you can do this:
+
+First, create a factory interface:
+
+```c#
+public interface IServiceBusClientFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+    ServiceBusReceiver CreateReceiver(string queueName);
+}
+```
+
+Then, implement this interface:
+
+```c#
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusClientFactory(string connectionString)
+    {
+        _serviceBusClient = new ServiceBusClient(connectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+
+    public ServiceBusReceiver CreateReceiver(string queueName)
+    {
+        return _serviceBusClient.CreateReceiver(queueName, new ServiceBusReceiverOptions
+        {
+            ReceiveMode = ServiceBusReceiveMode.PeekLock
+        });
+    }
+}
+```
+
+Now, you can register this factory in your DI container:
+
+```c#
+_services.TryAddSingleton<IServiceBusClientFactory>(implementationFactory =>
+{
+    var serviceBusConfiguration = implementationFactory.GetRequiredService<Microsoft.Extensions.Options.IOptions<UserEventConsumerSetting>>().Value;
+    return new ServiceBusClientFactory(serviceBusConfiguration.ServiceBusConnectionString);
+});
+```
+
+Finally, you can use this factory to create `ServiceBusSender` and `ServiceBusReceiver` instances with different queue names:
+
+```c#
+public class CarReservationMessagingService
+{
+    private readonly ServiceBusSender _serviceBusSender;
+
+    public CarReservationMessagingService(IServiceBusClientFactory serviceBusClientFactory)
+    {
+        _serviceBusSender = serviceBusClientFactory.CreateSender("queueName");
+    }
+
+    // ...
+}
+```
+
+```c#
+public class SomeOtherService
+{
+    private readonly ServiceBusReceiver _serviceBusReceiver;
+
+    public SomeOtherService(IServiceBusClientFactory serviceBusClientFactory)
+    {
+        _serviceBusReceiver = serviceBusClientFactory.CreateReceiver("anotherQueueName");
+    }
+
+    // ...
+}
+```
+
+This way, you can create multiple `ServiceBusSender` and `ServiceBusReceiver` instances with the same connection string but different queue names.

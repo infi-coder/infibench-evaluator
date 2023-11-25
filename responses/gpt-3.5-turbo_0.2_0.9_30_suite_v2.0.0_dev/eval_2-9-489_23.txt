@@ -1,0 +1,31 @@
+This warning is related to Elasticsearch's built-in security features not being enabled. Without authentication, your Elasticsearch cluster could be accessible to anyone. 
+
+To fix this, you need to enable Elasticsearch security. Here are the steps to follow:
+
+1. Open the Elasticsearch configuration file `elasticsearch.yml` located in the `config` directory of your Elasticsearch installation.
+
+2. Uncomment the following lines:
+```
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+```
+
+3. Save the file and restart Elasticsearch.
+
+4. If you're using Searchkick, you may need to update your Searchkick configuration to include the Elasticsearch username and password. Here's an example:
+```
+Searchkick.client_options = {
+  hosts: ["localhost:9200"],
+  transport_options: {
+    request: { timeout: 5 },
+    headers: { "Content-Type" => "application/json" },
+    ssl: { verify: false }
+  },
+  user: "elastic",
+  password: "changeme"
+}
+```
+
+Note that the default Elasticsearch username is `elastic` and the default password is `changeme`. You should change the password to something more secure.
+
+After following these steps, the warning should disappear and your Elasticsearch cluster will be more secure.

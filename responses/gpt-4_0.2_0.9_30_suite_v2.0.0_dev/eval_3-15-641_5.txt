@@ -1,0 +1,26 @@
+Unfortunately, Excel VBA does not have a built-in function to retrieve the local path of a file that is stored on OneDrive or SharePoint. The "Open File Location" button you mentioned is a feature of the Excel interface and not accessible via VBA.
+
+However, there are a few workarounds you might consider:
+
+1. **Use the `Environ` function**: This function can return the local path of the OneDrive folder. You can then append the relative path of your file to this. Here is a simple example:
+
+    ```vba
+    Dim OneDrivePath As String
+    OneDrivePath = Environ("OneDrive")
+    Debug.Print OneDrivePath
+    ```
+
+    This will print the local path of the OneDrive folder. You can then append your file's relative path to this.
+
+2. **Use the `Application.ActiveWorkbook.Path` property**: This property returns the full path of the workbook. If the workbook is stored on OneDrive or SharePoint, this will be a URL. You can then replace the URL parts with the local path parts. Here is a simple example:
+
+    ```vba
+    Dim FilePath As String
+    FilePath = Application.ActiveWorkbook.Path
+    FilePath = Replace(FilePath, "https://yoursharepointsite.sharepoint.com/", Environ("OneDrive"))
+    Debug.Print FilePath
+    ```
+
+    This will print the local path of the workbook.
+
+Please note that these are just workarounds and might not work in all situations. For example, the `Environ` function will not work if OneDrive is not installed or if the user has changed the default OneDrive folder location. Similarly, the `Application.ActiveWorkbook.Path` property will not return the local path if the workbook is not stored on OneDrive or SharePoint.

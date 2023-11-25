@@ -1,0 +1,9 @@
+The issue is that the shell is expanding the command inside `$(...)` before `find` executes `mv`. This means that `{}` is replaced with the original filename, not the modified filename. 
+
+You can solve this by using a shell script inside `-exec` to delay the expansion of `{}`. Here's an example:
+
+```bash
+find . -type f -name '*\?*' -exec bash -c 'mv "$0" "$(echo "$0" | sed 's/\?.*//')" ' {} \;
+```
+
+In this command, `bash -c` starts a new shell to run the command, and `$0` is the first argument to the shell, which is `{}` from `find`. The new shell doesn't start until `find` executes `-exec`, so `{}` is correctly replaced with the filename.

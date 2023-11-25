@@ -1,0 +1,53 @@
+You can use the `MultiProvider` widget to provide multiple providers to a single widget. Here's an example:
+
+```dart
+MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (_) => Provider1()),
+    ChangeNotifierProvider(create: (_) => Provider2()),
+    ChangeNotifierProvider(create: (_) => Provider3()),
+    ChangeNotifierProvider(create: (_) => Provider4()),
+  ],
+  child: CurvedNavigationBar(
+    // your code here
+  ),
+)
+```
+
+Then, in your `CurvedNavigationBar` widget, you can use `Consumer` or `Provider.of` to access the data from your providers.
+
+Here's an example of how to use `Consumer`:
+
+```dart
+Consumer<Provider1>(
+  builder: (context, provider1, child) => Consumer<Provider2>(
+    builder: (context, provider2, child) => Consumer<Provider3>(
+      builder: (context, provider3, child) => Consumer<Provider4>(
+        builder: (context, provider4, child) => CurvedNavigationBar(
+          // your code here
+        ),
+      ),
+    ),
+  ),
+)
+```
+
+In this example, `provider1`, `provider2`, `provider3`, and `provider4` are instances of your providers and you can use them to access the data from your providers.
+
+If you want to use `Provider.of`, you can do it like this:
+
+```dart
+final provider1 = Provider.of<Provider1>(context);
+final provider2 = Provider.of<Provider2>(context);
+final provider3 = Provider.of<Provider3>(context);
+final provider4 = Provider.of<Provider4>(context);
+
+// Then use provider1, provider2, provider3, and provider4 to access the data from your providers.
+```
+
+Remember that `Provider.of` will cause your widget to rebuild whenever the data from your providers changes. If you don't want this behavior, you can set the `listen` parameter to `false`:
+
+```dart
+final provider1 = Provider.of<Provider1>(context, listen: false);
+// etc.
+```

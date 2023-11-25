@@ -1,0 +1,13 @@
+Sure, here is the corrected version of your function:
+
+```python
+def pig_latin(text):
+    words = text.split()
+    result = []
+    for word in words:
+        endString = word[1:] + word[0].lower() + 'ay'
+        result.append(endString)
+    return ' '.join(result)
+```
+
+In your original code, you were returning the result inside the loop, which caused the function to exit after processing the first word. You also didn't need to convert the first letter to uppercase and the rest of the word to lowercase. The corrected function creates a list of transformed words and then joins them into a single string with spaces in between.

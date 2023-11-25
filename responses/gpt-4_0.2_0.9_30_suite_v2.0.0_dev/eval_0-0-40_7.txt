@@ -1,0 +1,25 @@
+The error message you're seeing is due to a conflict between the Node.js and npm versions installed on your Windows system and those installed in your WSL2 Ubuntu environment. 
+
+The `whereis` command shows that there are two installations of Node.js and npm: one in `/usr/bin/` (the Ubuntu installation) and one in `/mnt/c/Program Files/nodejs/` (the Windows installation). 
+
+When you run `npm -v`, the system is trying to use the Windows version of npm, but it can't interpret the file correctly because it's running in a Linux environment.
+
+To solve this issue, you need to adjust your `PATH` environment variable to prioritize the Ubuntu installation over the Windows one. You can do this by adding the following line to your `~/.bashrc` or `~/.bash_profile` file:
+
+```bash
+export PATH=/usr/bin:$PATH
+```
+
+After adding this line, you need to source the file to apply the changes:
+
+```bash
+source ~/.bashrc
+```
+
+or 
+
+```bash
+source ~/.bash_profile
+```
+
+Now, when you run `npm -v`, the system should use the Ubuntu version of npm, and you should not see the error message anymore.

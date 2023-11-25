@@ -1,0 +1,11 @@
+The `ext-zip` package is not a regular package that can be installed via Composer. It is actually a PHP extension that needs to be installed on your system separately.
+
+To install the `ext-zip` extension on Ubuntu, you can run the following command:
+
+```
+sudo apt-get install php-zip
+```
+
+If you're using a different operating system, you'll need to find the appropriate command to install the extension.
+
+Once the extension is installed, you can try running the `composer require ext-zip` command again and it should work.

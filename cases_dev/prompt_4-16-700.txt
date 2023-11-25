@@ -1,0 +1,40 @@
+How to filter text data in bash more efficiently
+
+I have data file which I need to filter with bash script, see data example:
+```
+name=pencils
+name=apples
+value=10
+name=rocks
+value=3
+name=tables
+value=6
+name=beds
+name=cups
+value=89
+```
+
+I need to group  pairs like so , if current line starts with name and next line starts with name, first line should be omitted entirely. So result file should look like this:
+```
+apples=10
+rocks=3
+tables=6
+cups=89
+```
+
+I came with this simple solution which works but is very slow, it takes 5 min to complete for file with 2000 lines.
+```
+bash
+VALUES=$(cat input.txt)
+for x in $VALUES; do
+  if [[ -n $(echo $x | grep 'name=') ]]; then
+    name=$(echo $x | sed "s/name=//")
+  elif [[ -n $(echo $x | grep 'value=') ]]; then
+    value=$(echo $x | sed "s/value=//")
+    echo "${name}=${value}" >> output.txt
+  fi
+done
+```
+
+I'm aware that this kind of task is not very suitable for bash, but script is already written and this is just small part of it.
+How can I optimize this task in bash?

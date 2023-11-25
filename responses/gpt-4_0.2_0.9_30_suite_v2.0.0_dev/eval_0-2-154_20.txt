@@ -1,0 +1,31 @@
+Sure, here is a generator function that should do what you want:
+
+```javascript
+function* iterLeafNodes(strHTML, format=[]) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strHTML, "text/html");
+  const body = doc.body;
+
+  function* walk(node, format) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.textContent.trim() !== '') {
+        yield { text: node.textContent, format };
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const newFormat = [...format];
+      if (node.tagName.toLowerCase() !== 'p') {
+        newFormat.push(node.tagName.toLowerCase());
+      }
+      for (let child of node.childNodes) {
+        yield* walk(child, newFormat);
+      }
+    }
+  }
+
+  for (let child of body.childNodes) {
+    yield* walk(child, format);
+  }
+}
+```
+
+This function uses a recursive approach to walk through the DOM tree, yielding an object for each text node it encounters. The `format` array is updated as the function descends into nested tags.

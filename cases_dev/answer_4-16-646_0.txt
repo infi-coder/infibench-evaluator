@@ -1,0 +1,5 @@
+This version of pdftk works on macOS Catalina (10.15).
+
+https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-mac_osx-10.11-setup.pkg
+
+The link on the website is not up to date. That means by clicking the download button on the website you get an old version.

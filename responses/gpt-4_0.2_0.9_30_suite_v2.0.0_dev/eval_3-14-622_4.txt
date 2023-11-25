@@ -1,0 +1,22 @@
+To conform to `ShapeStyle` protocol, you need to implement a method that provides a `Shader` when given a `Rect`. Here's how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedStyle())
+    }
+}
+
+struct RedStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType) {
+        // Implementation here
+    }
+    
+    func _makeView(geometry: _GraphValue<_ShapeStyle_ShapeType>, inputs: _ViewInputs) -> _ViewOutputs {
+        // Implementation here
+    }
+}
+```
+
+However, these methods are underscored, which means they're not intended for public use. SwiftUI doesn't provide a public API for creating custom `ShapeStyle`s. Therefore, it's recommended to use the existing `ShapeStyle`s like `Color`, `Gradient`, etc., or create a custom `View` that draws your shape.

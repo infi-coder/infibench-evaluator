@@ -1,0 +1,13 @@
+In TailwindCSS, you can use the `>` (direct child) selector by using the `@layer` directive to add custom styles to the `utilities` layer. Here's an example:
+
+```css
+@layer utilities {
+  .section > .child {
+    /* Your styles here */
+  }
+}
+```
+
+In this example, `.section > .child` targets the direct children of elements with the class `section`. You can replace `.child` with any selector you want to target the specific children you need.
+
+Make sure to include this code in a CSS file that is included in your project.

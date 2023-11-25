@@ -1,0 +1,28 @@
+It seems like you have two installations of Node.js: one in your WSL2 Ubuntu and the other in your Windows system. The `npm` command is trying to use the Windows installation, which is causing the error.
+
+You can solve this issue by adding the following lines to your `~/.bashrc` or `~/.bash_profile` file:
+
+```bash
+export PATH=/usr/bin:$PATH
+```
+
+This line will prioritize the Ubuntu's `/usr/bin` directory over Windows's directories. After adding the line, you need to source the `~/.bashrc` or `~/.bash_profile` file to apply the changes:
+
+```bash
+source ~/.bashrc
+```
+
+or 
+
+```bash
+source ~/.bash_profile
+```
+
+Then, you can check the versions of `node` and `npm` again:
+
+```bash
+node -v
+npm -v
+```
+
+You should now see the correct versions of `node` and `npm` that you installed in your Ubuntu system.

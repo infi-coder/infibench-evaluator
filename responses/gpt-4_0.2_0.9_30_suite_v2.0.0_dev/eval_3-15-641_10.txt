@@ -1,0 +1,23 @@
+Unfortunately, Excel VBA does not have built-in support for interacting with SharePoint or OneDrive URLs directly. However, there are a few workarounds you could consider:
+
+1. **Using the SharePoint Client Object Model**: This requires installing the SharePoint SDK and writing .NET code, which can be called from VBA. This is a complex solution and requires knowledge of .NET programming.
+
+2. **Using WebDAV**: SharePoint exposes a WebDAV interface that can be used to interact with it as if it were a file system. This can be accessed from VBA using the `FileSystemObject` or `Dir` function. However, this requires that WebDAV is enabled and correctly configured on the SharePoint server, which may not be the case in all environments.
+
+3. **Using the OneDrive Sync Client**: If the SharePoint library is synced to the local machine using the OneDrive sync client, it can be accessed as a local folder. The path to this folder can be found in the OneDrive settings. However, this requires that all users have the OneDrive sync client installed and configured correctly, and that they have synced the relevant SharePoint library.
+
+4. **Using Office 365 REST APIs**: This is a more modern and flexible approach, but it requires a good understanding of HTTP and REST, and it may be overkill for your needs.
+
+In your case, since you are already using the OneDrive Sync Client, the third option might be the most feasible. You could write a VBA function that retrieves the local OneDrive path from the registry (where it's stored), and then appends the relative path of your SharePoint library. This would give you the local path to the SharePoint library, which you can then use in your existing code.
+
+Here is a sample code snippet that retrieves the local OneDrive path from the registry:
+
+```vba
+Function GetOneDrivePath() As String
+    Dim WshShell As Object
+    Set WshShell = CreateObject("WScript.Shell")
+    GetOneDrivePath = WshShell.RegRead("HKEY_CURRENT_USER\Software\Microsoft\OneDrive\Accounts\Business1\UserFolder")
+End Function
+```
+
+You can then append the relative path of your SharePoint library to this path. Note that the exact registry key may vary depending on your OneDrive configuration.

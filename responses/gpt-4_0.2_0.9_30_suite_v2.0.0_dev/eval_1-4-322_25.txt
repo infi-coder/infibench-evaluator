@@ -1,0 +1,24 @@
+You can achieve this by using the `split` function in R, which divides the data into subsets based on the levels of a factor. Here is the function `myConvert`:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>%
+    split(.$list_names) %>%
+    map(~ pull(.x, list_values))
+}
+```
+
+In this function, we first split the data by the `list_names` column. This creates a list of data frames, where each data frame contains the rows for a specific `list_names` value. Then, we use `map` to apply the `pull` function to each data frame in the list. The `pull` function extracts the `list_values` column from each data frame.
+
+You can use this function on your data like this:
+
+```r
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+                  list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+```
+
+This will return the desired output.

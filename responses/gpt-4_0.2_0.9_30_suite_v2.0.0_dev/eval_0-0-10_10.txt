@@ -1,0 +1,19 @@
+Sure, here is the completed Javascript code:
+
+Way 1:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').should('have.text', "Wildness")
+```
+
+Way 2:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').invoke('text').then((text) => {
+    expect(text.trim()).to.equal('Wildness')
+});
+```
+
+In the first way, we are using Cypress's `should` command to assert that the text of the element with class `WildnessText-kRKTej` is "Wildness".
+
+In the second way, we are using Cypress's `invoke` command to get the text of the element with class `WildnessText-kRKTej`, then we use the `then` command to process the text (trimming it) and finally we use the `expect` function from Chai.js (which is bundled with Cypress) to assert that the trimmed text is "Wildness".

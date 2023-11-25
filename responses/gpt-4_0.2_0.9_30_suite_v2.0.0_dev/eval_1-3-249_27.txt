@@ -1,0 +1,30 @@
+Here is a Python function that meets your requirements:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the characters to use
+    chars = string.ascii_letters
+
+    # Generate a random string of 11 characters
+    random_string = ''.join(random.choice(chars) for _ in range(11))
+
+    # Insert the substring "NAA3U" at a random position
+    random_string = random_string[:random.randint(0, 11)] + "NAA3U" + random_string[random.randint(0, 11):]
+
+    # Generate two random digits and insert them at random positions
+    for _ in range(2):
+        random_string = random_string[:random.randint(0, len(random_string))] + str(random.randint(0, 9)) + random_string[random.randint(0, len(random_string)):]
+
+    # If the string is too long, cut it to 16 characters
+    if len(random_string) > 16:
+        random_string = random_string[:16]
+
+    return random_string
+```
+
+This function first generates a random string of 11 characters, then inserts the substring "NAA3U" at a random position. It then generates two random digits and inserts them at random positions. If the resulting string is longer than 16 characters, it is cut to 16 characters.
+
+Please note that this function does not guarantee that the generated string will be unique each time it is called. If you need unique strings, you will need to keep track of the previously generated strings and check the new string against them.

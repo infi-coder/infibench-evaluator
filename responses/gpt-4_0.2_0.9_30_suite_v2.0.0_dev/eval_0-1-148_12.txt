@@ -1,0 +1,30 @@
+Sure, you can use the `last` pseudo-class variant provided by Tailwind CSS to remove the border from the last item. Here is how you can do it:
+
+```html
+  <ul>
+    <li
+      v-for="(item, index) in items"
+      :key="`item-${index}`"
+      class="border-solid border-b border-black last:border-b-0"
+    >
+      Item
+    </li>
+  </ul>
+```
+
+In the above code, `last:border-b-0` will remove the border from the last `<li>` element. 
+
+Please note that by default, variants like `last` are not enabled in Tailwind CSS. You need to manually enable them in your Tailwind CSS configuration file (`tailwind.config.js`) like this:
+
+```javascript
+module.exports = {
+  variants: {
+    extend: {
+      borderWidth: ['last'],
+    }
+  },
+  plugins: [],
+}
+```
+
+This will enable the `last` variant for the `borderWidth` utility. After making this change, you need to rebuild your CSS.

@@ -1,0 +1,12 @@
+You can change the color of the accordion arrow by targeting the `::after` pseudo-element of the `.accordion-button` class. This pseudo-element is responsible for the arrow. Here is how you can do it:
+
+```css
+.accordion-button::after {
+    /* You may need to override the color property */
+    color: green !important;
+}
+```
+
+This will change the color of the accordion arrow to green. The `!important` rule is used to override any other conflicting styles that might be affecting the accordion arrow. However, it's generally recommended to avoid using `!important` if possible, as it can make debugging more difficult in the future.
+
+If the above solution doesn't work, it means that the arrow might be an image or an SVG, in which case you would need to replace it with a green version.

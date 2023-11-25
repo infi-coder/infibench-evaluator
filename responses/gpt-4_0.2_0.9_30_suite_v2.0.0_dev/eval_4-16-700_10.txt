@@ -1,0 +1,16 @@
+You can optimize your task by using `awk` command. It is a powerful text processing command in Unix/Linux. Here is an optimized version of your script:
+
+```bash
+awk -F'=' '
+  /^name/ { if (name) print name"="value; name=$2; next }
+  /^value/ { value=$2 }
+  END { if (name) print name"="value }
+' input.txt > output.txt
+```
+
+This script works as follows:
+
+- `-F'='` sets the field separator to `=`.
+- `/^name/` matches lines starting with "name". If a previous "name" line was found, it prints the name-value pair, then stores the new name and skips to the next line.
+- `/^value/` matches lines starting with "value" and stores the value.
+- `END` is a special pattern that matches the end of the input. If a "name" line was found but no corresponding "value" line, it prints the last name-value pair.

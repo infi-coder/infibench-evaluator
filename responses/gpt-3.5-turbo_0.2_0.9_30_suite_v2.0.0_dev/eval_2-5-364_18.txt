@@ -1,0 +1,11 @@
+You can specify the Java version to use with the Maven wrapper by setting the `JAVA_HOME` environment variable. 
+
+First, make sure you have the correct version of Java installed on your machine. Then, set the `JAVA_HOME` environment variable to the path of the Java installation directory. 
+
+For example, if you have Java 11 installed on your machine and it is located at `C:\Program Files\Java\jdk-11`, you can set the `JAVA_HOME` environment variable by running the following command in your terminal or command prompt:
+
+```
+set JAVA_HOME=C:\Program Files\Java\jdk-11
+```
+
+Once you have set the `JAVA_HOME` environment variable, you can run the Maven wrapper and it will use the specified version of Java.

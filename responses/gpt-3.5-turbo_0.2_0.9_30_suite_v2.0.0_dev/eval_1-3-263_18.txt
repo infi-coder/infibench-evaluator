@@ -1,0 +1,17 @@
+The `f` before the opening quotation mark indicates that this is an f-string. F-strings are a feature introduced in Python 3.6 that allow you to embed expressions inside string literals, using curly braces `{}`. 
+
+In the example you provided, the curly braces are used to embed the values of `args.input_directory` and `args.output_directory` into the string. The `f` before the string allows you to use this syntax to embed expressions inside the string.
+
+For example, instead of writing:
+
+```python
+print("Input directory: " + args.input_directory)
+```
+
+You can use an f-string to embed the variable directly into the string:
+
+```python
+print(f"Input directory: {args.input_directory}")
+```
+
+This makes the code more concise and easier to read.

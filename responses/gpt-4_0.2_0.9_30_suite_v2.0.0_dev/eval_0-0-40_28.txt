@@ -1,0 +1,29 @@
+The error message you're seeing is due to a conflict between the Windows and Linux versions of Node.js and npm. When you're running the `npm -v` command, it's trying to execute the Windows version of npm, but it's using the Linux subsystem's shell interpreter, which doesn't understand the Windows-style line endings.
+
+To resolve this issue, you can adjust the system PATH in your WSL environment to prioritize the Linux version of Node.js and npm. Here's how you can do it:
+
+1. Open your `.bashrc` file in a text editor. You can use nano, vim, or any other text editor you prefer. For example:
+
+   ```bash
+   nano ~/.bashrc
+   ```
+
+2. Add the following line to the end of the file:
+
+   ```bash
+   export PATH=/usr/bin:$PATH
+   ```
+
+   This line adjusts the system PATH to look in `/usr/bin` (where the Linux versions of Node.js and npm are located) before any other directories.
+
+3. Save the file and exit the text editor.
+
+4. To make the changes take effect, either close and reopen your terminal, or run the following command:
+
+   ```bash
+   source ~/.bashrc
+   ```
+
+5. Now, when you run `node -v` and `npm -v`, you should see the versions of Node.js and npm that you installed in your Linux subsystem.
+
+Please note that this solution assumes that you want to use the Linux versions of Node.js and npm in your WSL environment. If you want to use the Windows versions instead, you'll need to adjust your solution accordingly.

@@ -1,0 +1,32 @@
+I am trying to import images to use inside a React component with TypeScript. The bundler I'm using is Parcel (not Webpack).
+I have created a `.d.ts` file inside the project with the image file extension, and included it inside `tsconfig.json`. However, when I try to import an image, TS yells at me about `Cannot find module`.
+My project structure:
+```
++ src
+  + assets
+    - image.jpg
+  + components
+    - Box.tsx
+    - App.tsx
+  - index.d.ts
+  - index.html
+  - index.tsx
+- tsconfig.json
+- tslint.json
+```typescript
+I tried to import the image in App.tsx like this. VS Code underlined '../assets/image.jpg' and said Cannot find module '../assets/image.jpg'.
+```
+import * as React from 'react';
+import * as img from '../assets/image.jpg';
+
+const Box = props => {
+  // do things...
+}
+
+export default Box;
+```
+The discussions I found online point to the need of defining a `.d.ts` file myself, so I created that `index.d.ts` file, then added `"include": ["./src/index.d.ts"]` inside `tsconfig.json`.
+What did I miss? How can I fix the error TS is throwing?
+Specifically, please don't add other text and repeat the following paragraph with [blank] filled:
+
+TypeScript is ignoring `[blank]` because it assumes that it is generated from `index.tsx`, which is more likely to be up to date. Name your `[blank]` file something else, e.g., `declaration.d.ts`.

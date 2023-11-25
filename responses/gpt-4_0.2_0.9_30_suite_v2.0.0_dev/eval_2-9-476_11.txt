@@ -1,0 +1,2 @@
+You need to add two things to your `.zshrc` file. First `export PATH="$HOME/.rbenv/bin:$PATH"` itself and second the ruby `eval "$(rbenv init -)"`.
+You might also run the `rbenv doctor` to check your installation.

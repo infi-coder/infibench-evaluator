@@ -1,0 +1,14 @@
+The `rename` function works on a DataFrame, but when you use `groupby` and `mean` functions, it returns a Series, not a DataFrame. That's why you're getting an error.
+
+Here is the correct way to rename the column:
+
+```python
+def renameDataFrame(df):
+    avg = df.groupby(["t"], sort=False)["p"].mean().reset_index()
+    avg.columns = ['t', 'mean']
+    return avg
+```
+
+In the above function, `reset_index` is used to convert the Series to a DataFrame. Then, you can rename the columns by assigning a list of new column names to `df.columns`. The new DataFrame `avg` will have 't' and 'mean' as its columns. 
+
+The 't' column will contain the unique values from the 't' column of the original DataFrame, and the 'mean' column will contain the mean of the 'p' values for each unique 't' value.

@@ -1,0 +1,35 @@
+The error you're encountering is due to the fact that you're trying to access platform-specific code before `runApp()` is called. The `runApp()` function initializes the binding with the host platform, which is necessary for the `getApplicationDocumentsDirectory()` function to work.
+
+To fix this, you should move your code inside the `main()` function to the `initState()` method of your root widget. Here's an example of how you can do this:
+
+```dart
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    initHive();
+  }
+
+  Future<void> initHive() async {
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    Hive.init(appDocsDir.path);
+    // You can also open your Hive boxes here if needed.
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Your widget tree here.
+  }
+}
+```
+
+In this example, the `initHive()` function is called from the `initState()` method of the `MyApp` widget. This ensures that the platform channels are properly initialized before you try to access the application documents directory.

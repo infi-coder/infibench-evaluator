@@ -1,0 +1,28 @@
+In Tailwind CSS, you don't directly select elements like you would in traditional CSS. Instead, you apply utility classes directly to the elements you want to style in your HTML.
+
+So, if you want to style direct children of a `div` with class `section`, you would apply the styles directly to those child `div` elements in your HTML.
+
+Here's an example:
+
+```html
+<div class="section">
+  <div class="bg-blue-500 text-white"> <!-- Apply your styles here -->
+    Content here...
+  </div>
+  <div class="bg-blue-500 text-white"> <!-- And here -->
+    More content...
+  </div>
+</div>
+```
+
+In this example, `bg-blue-500` applies a blue background and `text-white` applies white text color to the direct children of the `section` div.
+
+If you want to apply the same styles to all direct children of a `section` div, you might want to consider creating a custom CSS class and using `@apply` to reuse Tailwind's utility classes:
+
+```css
+.section > div {
+  @apply bg-blue-500 text-white;
+}
+```
+
+Remember to include this in your CSS file that is being processed by Tailwind's PostCSS plugin. This way, you can keep the utility-first philosophy of Tailwind and still apply styles to specific elements based on their hierarchy.

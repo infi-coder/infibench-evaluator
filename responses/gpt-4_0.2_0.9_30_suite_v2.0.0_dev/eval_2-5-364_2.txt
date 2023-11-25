@@ -1,0 +1,18 @@
+The Java version used by Maven can be configured in several ways. The most common way is to set the `JAVA_HOME` environment variable to point to the installation directory of the desired Java version. 
+
+If you are using the Maven Wrapper, you can specify the Java version in the `maven-wrapper.properties` file. This file is located in the `.mvn/wrapper` directory of your project. 
+
+Here is an example of how to specify the Java version in `maven-wrapper.properties`:
+
+```properties
+distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.zip
+wrapperUrl=https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/0.5.6/maven-wrapper-0.5.6.jar
+wrapperVersion=0.5.6
+javaHome=/path/to/your/jdk
+```
+
+Replace `/path/to/your/jdk` with the path to the JDK you want to use. 
+
+If you are running your build in a Continuous Integration server, you might need to configure the Java version in the settings of the CI server. For example, in Jenkins, you can configure the Java version in the "Global Tool Configuration" section.
+
+If none of these solutions work, please provide more details about your setup (operating system, IDE, CI server, etc.) and the exact error message you are getting.

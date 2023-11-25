@@ -1,0 +1,15 @@
+This issue can be caused by several reasons. Here are some steps you can try:
+
+1. **Clean the build folder**: In Xcode, select `Product > Clean Build Folder`.
+
+2. **Delete derived data**: Go to `Xcode > Preferences > Locations > Derived Data`. Click on the arrow to open the folder in Finder and delete its contents.
+
+3. **Check your scheme**: Make sure that your scheme is set to the correct target. Go to `Product > Scheme > Edit Scheme` and check the `Build` and `Run` sections.
+
+4. **Check your preview struct**: Make sure that your preview struct is within the same `.swift` file as the `View` it's previewing.
+
+5. **Restart Xcode**: Sometimes, simply restarting Xcode can solve the issue.
+
+6. **Update Xcode**: Make sure you're using the latest version of Xcode. Some older versions have known issues with SwiftUI previews.
+
+If none of these steps work, you might want to consider creating a new project and moving your files there.

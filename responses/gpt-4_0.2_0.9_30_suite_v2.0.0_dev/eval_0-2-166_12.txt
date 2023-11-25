@@ -1,0 +1,20 @@
+In Tailwind CSS, you don't directly select elements like you would in traditional CSS. Instead, you apply utility classes directly to the elements you want to style in your HTML.
+
+For example, if you want to apply a background color to direct children `div` of a `div` with class `section`, you would do something like this:
+
+```html
+<div class="section">
+  <div class="bg-red-500"> <!-- Apply styles directly here -->
+    <!-- Content -->
+  </div>
+  <div class="bg-red-500"> <!-- And here -->
+    <!-- Content -->
+  </div>
+</div>
+```
+
+In this example, `bg-red-500` is a utility class provided by Tailwind CSS to apply a specific background color.
+
+If you want to apply styles to all direct children `div` of a `div` with class `section`, you would need to apply the utility classes to each child `div`.
+
+If you want to apply styles conditionally or dynamically, you would need to use JavaScript or a JavaScript framework like React, Vue, or Angular in combination with Tailwind CSS.

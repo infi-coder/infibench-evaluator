@@ -1,0 +1,9 @@
+It seems like the `app` module is not being found by Docker. You can try changing the `COPY` command in your Dockerfile to:
+
+```
+COPY ./fastapi/app /app
+```
+
+This will copy the `app` module from the `fastapi` directory to the `/app` directory in the Docker container.
+
+Also, make sure that the `requirements.txt` file includes all the necessary dependencies for your FastAPI application, including `fastapi` and `uvicorn`.

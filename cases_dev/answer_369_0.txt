@@ -1,0 +1,16 @@
+In order to make it work, you need to:
+
+Have devtools enable in maven or gradle. In maven it looks like :
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+     <scope>runtime</scope><!-- -->
+    <optional>true</optional>
+</dependency>
+```
+
+In IntellijIDEA: go in settings(ctrl +alt+s) -> Build,Execution,Deployment -> compiler, check "Build project automatically"
+
+Enable option 'allow auto-make to start even if developed application is currently running' in Settings -> Advanced Settings under compiler

@@ -1,0 +1,19 @@
+Openssh Private Key to RSA Private Key
+
+(I am using MAC)
+My id_rsa starts with
+```
+-----BEGIN OPENSSH PRIVATE KEY-----
+```
+
+but I expect it to starts with
+```
+-----BEGIN RSA PRIVATE KEY-----
+```
+
+I have send my id_rsa.pub to server administrator to get the access to server, so I don't want to generate a new key.
+
+1. Is there any way that I can transfer my id_rsa which is a openssh private key to a RSA private key? (command please.)
+2. If I can transfer, do I also need to transfer id_rsa.pub? (command please.) It seems id_rsa.pub doesn't have a header like id_rsa, so I am not sure if I should also transfer this.
+
+

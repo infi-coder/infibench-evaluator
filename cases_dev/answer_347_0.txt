@@ -1,0 +1,1 @@
+File -> Settings.. -> Build, Execution, Deployment -> Build Tools -> Gradle there select your project and set Gradle JVM to your java 17.0.1

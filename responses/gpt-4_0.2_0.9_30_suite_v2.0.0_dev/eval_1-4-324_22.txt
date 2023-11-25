@@ -1,0 +1,45 @@
+Here is a function `mySplit` that uses the `strsplit` function to split the strings in `col1` by comma, then uses `strsplit` again to split each of those strings by colon. The result is a list of lists, where each inner list contains the name, age, and city of one person.
+
+```r
+mySplit <- function(df) {
+  # Split the strings in col1 by comma
+  split1 <- strsplit(df$col1, ",")
+  
+  # Split each of those strings by colon
+  split2 <- lapply(split1, function(x) strsplit(x, ":"))
+  
+  # Extract the second element of each inner list (the name, age, or city)
+  split3 <- lapply(split2, function(x) sapply(x, function(y) y[2]))
+  
+  # Convert the list of lists to a data frame
+  df2 <- do.call(rbind, split3)
+  
+  # Set the column names
+  colnames(df2) <- c("name", "Age", "City")
+  
+  return(df2)
+}
+```
+
+This function assumes that the strings in `col1` are always in the format "name:Name,Age:Age,City:City". If the format can vary, you may need to modify the function to handle the different formats.
+
+Here's how you can use this function:
+
+```r
+# Create a data frame
+df <- data.frame(col1 = c("name:Michael,Age:31,City:NYC", "name:Tom,Age:25,City:NA"))
+
+# Use the function to split the column
+df2 <- mySplit(df)
+
+# Print the new data frame
+print(df2)
+```
+
+This will print:
+
+```r
+     name Age City
+[1,] "Michael" "31" "NYC"
+[2,] "Tom"     "25" "NA"
+```

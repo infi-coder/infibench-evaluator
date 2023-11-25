@@ -1,0 +1,2 @@
+You can use `ElevatedButton`, `TextButton`, and `OutlinedButton` that are not deprecated button themes.
+You can change the `borderRadius` property which is placed in the `ButtonStyle` property.

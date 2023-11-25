@@ -1,0 +1,7 @@
+This error is caused by a bug in rust-analyzer, which is a language server for Rust. It is a known issue and has been reported on GitHub. 
+
+The error message is related to the `format_args!` macro, which is used internally by Rust to format strings. The macro is not being resolved correctly by rust-analyzer, which is causing the error.
+
+Fortunately, this error does not affect the functionality of your code, and it should still work correctly. You can safely ignore the error for now.
+
+If you want to get rid of the error message, you can try updating rust-analyzer to the latest version or disabling it temporarily. You can also try using a different IDE or editor that supports Rust, such as Visual Studio Code with the Rust extension.

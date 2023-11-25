@@ -1,0 +1,28 @@
+The warning message is telling you that your Elasticsearch instance does not have security features enabled. This means that anyone can access your Elasticsearch data without any authentication. 
+
+To fix this, you need to enable the built-in security features of Elasticsearch. Here are the steps to do that:
+
+1. Open your `elasticsearch.yml` configuration file. The location of this file depends on your installation. For Homebrew on macOS, it's typically located at `/usr/local/etc/elasticsearch/elasticsearch.yml`.
+
+2. Add the following lines to the file:
+
+    ```yaml
+    xpack.security.enabled: true
+    xpack.security.transport.ssl.enabled: true
+    ```
+
+3. Save and close the file.
+
+4. Restart Elasticsearch. If you're using Homebrew, you can do this with the command `brew services restart elasticsearch`.
+
+After doing these steps, your Elasticsearch instance should have security features enabled, and you should no longer see the warning.
+
+Please note that enabling security will require you to set up users and roles, and to use these credentials when accessing Elasticsearch. You can find more information about this in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/configuring-security.html).
+
+If you don't want to enable security, you can suppress the warning by adding the following line to your `elasticsearch.yml` file:
+
+```yaml
+xpack.security.enabled: false
+```
+
+This will tell Elasticsearch that you intentionally want to run it without security. However, this is not recommended for production environments.

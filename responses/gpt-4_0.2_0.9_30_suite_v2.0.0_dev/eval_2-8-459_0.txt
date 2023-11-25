@@ -1,0 +1,21 @@
+The error message you're seeing indicates that Go is unable to find the specified version of the module. This could be due to a number of reasons, including network issues, incorrect configuration, or the specified version not existing.
+
+Here are a few steps you can take to debug this issue:
+
+1. **Check your network connection**: Make sure that your internet connection is stable and you're able to access the internet.
+
+2. **Check your Go version**: Ensure that you're using the same Go version on both computers. You can check your Go version by running `go version` in your terminal.
+
+3. **Check your Go environment variables**: Run `go env` to check your Go environment variables. Ensure that `GOPROXY` is set correctly. If you're behind a corporate proxy, you might need to set this variable to `direct`.
+
+4. **Check your Git configuration**: Since the module that's failing is a private repository, ensure that your Git configuration is correct. You might need to set your `git config --global url."https://".insteadOf git://` if you're behind a firewall.
+
+5. **Check the module version**: Ensure that the specified version of the module actually exists. You can check this by visiting the module's repository and checking the list of tags.
+
+6. **Try to manually clone the repository**: Try to manually clone the repository using `git clone`. This can help you determine if the issue is with Go or with your Git configuration.
+
+7. **Check your GitHub credentials**: Ensure that your GitHub credentials are correct and that you have access to the repository. You can check this by trying to clone the repository manually.
+
+8. **Clear your Go module cache**: You can clear your Go module cache by running `go clean -modcache`. This will force Go to redownload all your dependencies.
+
+If none of these steps help, you might want to consider asking for help on the Go community forums or on Stack Overflow.

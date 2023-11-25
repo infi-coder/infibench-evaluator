@@ -1,0 +1,26 @@
+Your Dockerfile seems correct. The problem might be related to the Python import paths. 
+
+In Python, the import paths are relative to the current working directory (which is set to `/app` in your Dockerfile). So, when you try to import the `app` module, Python is looking for it in the `/app` directory.
+
+However, your project structure shows that the `app` module is actually inside another directory named `fastapi`. 
+
+To fix this, you should either change your project structure to match the import paths, or change the import paths to match the project structure.
+
+Here is a revised Dockerfile that changes the working directory to `/app/fastapi`:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app/fastapi
+
+COPY requirements.txt /
+RUN pip install --requirement /requirements.txt
+
+COPY ./fastapi /app/fastapi
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+This Dockerfile sets the working directory to `/app/fastapi`, which is where your `app` module is located according to your project structure. Then, when you try to import the `app` module, Python will be able to find it.
+
+Please note that you might need to adjust the `COPY` command to match your actual project structure. The `COPY` command in the revised Dockerfile assumes that the `fastapi` directory is in the same directory as the Dockerfile. If that's not the case, you should adjust the `COPY` command accordingly.

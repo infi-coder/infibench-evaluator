@@ -1,0 +1,9 @@
+VBA is absolutely suitable for automating PowerQuery and is particularly efficient for repetitive work. The trick is to create first the query you need in PowerQuery, then use the Advanced Editor to capture the M. Copy it and store it, either in a cell in the workbook, or in a separate text file.
+
+The method is described in detail by Gil Raviv. For convenience, I store my M in text files instead of the workbook and load it with:
+
+Function LoadTextFile(FullFileName As String) As String
+  With CreateObject("Scripting.FileSystemObject")
+    LoadTextFile = .OpenTextFile(FullFileName, 1).readall
+  End With
+End Function

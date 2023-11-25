@@ -1,0 +1,13 @@
+Sure, here is the corrected version of your function:
+
+```python
+def pig_latin(text):
+    words = text.split()
+    result = []
+    for word in words:
+        endString = word[1:] + word[0].lower() + 'ay'
+        result.append(endString)
+    return ' '.join(result)
+```
+
+In your original code, you were returning the word immediately after processing the first word, which is why you were getting only one word in the output. Instead, you should append each processed word to a list and return the joined list at the end. Also, there's no need to convert the first letter to uppercase and the rest to lowercase, as pig Latin doesn't require that.

@@ -1,0 +1,13 @@
+Tailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs. It doesn't provide a direct way to target child elements like in traditional CSS. 
+
+However, you can use `@apply` directive in your CSS to apply Tailwind classes to your specific selector. Here's an example:
+
+```css
+div.section > div {
+  @apply bg-red-500 text-white;
+}
+```
+
+In this example, direct children `div` of `div` with class `section` will have a red background and white text.
+
+Remember to include this CSS in your project and ensure that your project is set up to process Tailwind's `@apply` directive.

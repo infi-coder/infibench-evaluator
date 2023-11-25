@@ -1,0 +1,27 @@
+Yes, Go modules (formerly known as vgo) also supports this approach. You can use the `go mod download` command to download all the dependencies specified in your `go.mod` file. This command will download the dependencies and cache them in your local module cache, which is located in `$GOPATH/pkg/mod`.
+
+You can then copy your code into the Docker image and build your binary without having to download the dependencies again. This takes advantage of Docker's layer caching, as you mentioned.
+
+Here's an example Dockerfile that demonstrates this approach:
+
+```
+# First stage: download dependencies
+FROM golang:1.11-alpine AS build
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Second stage: build binary
+FROM build AS compile
+COPY . .
+RUN go build -o myapp
+
+# Final stage: create minimal image
+FROM alpine
+COPY --from=compile /app/myapp /usr/local/bin/myapp
+CMD ["myapp"]
+```
+
+In this example, the first stage downloads the dependencies and caches them in the local module cache. The second stage copies the code and builds the binary. Finally, the third stage creates a minimal image with just the binary and its dependencies.
+
+Note that this approach requires Go 1.11 or later, as well as module support.

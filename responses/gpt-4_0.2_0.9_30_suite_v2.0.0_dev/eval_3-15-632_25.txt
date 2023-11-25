@@ -1,0 +1,21 @@
+Assuming the data you want to split is separated by spaces, you can use the `Split` function in VBA. This function splits a string into a one-dimensional array based on a delimiter.
+
+Here's how you can modify your code:
+
+```vba
+idx = InStr(textline, "Cabinet No.")
+If idx > 0 Then
+    Line Input #1, textline
+    Line Input #1, textline
+    Dim splitData() As String
+    splitData = Split(textline, " ") ' assuming the delimiter is a space
+    ActiveSheet.Cells(nextrow, "G").Value = splitData(0) ' first piece of data
+    ActiveSheet.Cells(nextrow, "H").Value = splitData(1) ' second piece of data
+    ActiveSheet.Cells(nextrow, "I").Value = splitData(2) ' third piece of data
+    ActiveSheet.Cells(nextrow, "J").Value = splitData(3) ' fourth piece of data
+    ActiveSheet.Cells(nextrow, "K").Value = splitData(4) ' fifth piece of data
+    nextrow = nextrow + 1 'now move to next row
+End If
+```
+
+This code will split the line into five parts and put each part into its own cell in the same row. If your data is separated by a different character, replace the space in the `Split` function with that character.

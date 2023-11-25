@@ -1,0 +1,25 @@
+You can try using the following VBA code to get the local path of the OneDrive folder:
+
+```
+Sub GetOneDriveLocalPath()
+    Dim objFSO As Object
+    Dim objShell As Object
+    Dim objFolder As Object
+    Dim strOneDrivePath As String
+    
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    Set objShell = CreateObject("Shell.Application")
+    Set objFolder = objShell.Namespace(13) '13 is the OneDrive folder type
+    
+    If Not objFolder Is Nothing Then
+        strOneDrivePath = objFolder.Self.Path
+        MsgBox strOneDrivePath
+    End If
+    
+    Set objFolder = Nothing
+    Set objShell = Nothing
+    Set objFSO = Nothing
+End Sub
+```
+
+This code uses the Windows Shell object to get the OneDrive folder and its local path. You can modify it to search for the "2021 Tenders" folder within the OneDrive folder and return its path. However, keep in mind that this may be slow if the OneDrive folder contains a large number of files and folders.

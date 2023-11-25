@@ -1,0 +1,12 @@
+id: 2-5-334
+# for case self identificaton
+prompt_path: prompt_2-5-334.txt
+# relative path to the prompt text
+type: knowledge question-answering
+# question type, for later statistics, e.g., 'knowledge question-answering'
+lang: java
+grading:
+  similarity:
+    - metric: rougeLsum
+      references:
+        - path: answer_335_0.txt

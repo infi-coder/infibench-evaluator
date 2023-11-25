@@ -1,0 +1,34 @@
+Here's the `fillColumn` function in Python:
+
+```python
+import pandas as pd
+
+def fillColumn(df, columnName, columnData):
+    # Repeat the list to match the length of the dataframe
+    repeated_data = columnData * (len(df) // len(columnData)) + columnData[:len(df) % len(columnData)]
+    # Assign the repeated list to the new column
+    df[columnName] = pd.Series(repeated_data)
+    return df
+```
+
+Here's how you can use the function:
+
+```python
+my_list = ['abc','def','hig']
+df = pd.DataFrame({'col1': [1, 2, 3, 4, 5]})
+df = fillColumn(df, 'names', my_list)
+print(df)
+```
+
+Output:
+
+```
+   col1 names
+0     1   abc
+1     2   def
+2     3   hig
+3     4   abc
+4     5   def
+```
+
+The function repeats the list `columnData` to match the length of the dataframe `df`. It then assigns the repeated list to the new column `columnName` and returns the updated dataframe.

@@ -1,0 +1,13 @@
+Sure, here is the revised code:
+
+```python
+def pig_latin(text):
+    words = text.split()
+    result = []
+    for word in words:
+        endString = word[1:] + word[0].lower() + 'ay'
+        result.append(endString)
+    return ' '.join(result)
+```
+
+In your original code, you were returning the result inside the loop, which is why you were only getting the first word transformed. You need to store the results in a list and join them into a string after the loop. Also, there's no need to convert the first character to uppercase and the rest to lowercase, as pig Latin doesn't change the case of the letters.

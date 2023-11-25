@@ -1,0 +1,41 @@
+To conform to `ShapeStyle` protocol, you need to implement a method that returns a `Shader`. Here's how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedStyle())
+    }
+}
+
+struct RedStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType) {
+        // Implementation goes here
+    }
+    
+    func _makeView(geometry: _GraphValue<_ShapeStyle_ShapeType>, inputs: _ViewInputs) -> _ViewOutputs {
+        // Implementation goes here
+    }
+}
+```
+
+However, `ShapeStyle` is a protocol with underscored methods, which are considered private and not intended to be used directly. It's not recommended to conform to this protocol directly. Instead, you should use one of the provided types that conform to `ShapeStyle`, such as `Color`, `Gradient`, `AngularGradient`, or `RadialGradient`. 
+
+If you want to create a custom `ShapeStyle`, you should create a new `Shape` instead. Here's an example:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        MyCircle()
+            .fill(Color.red)
+    }
+}
+
+struct MyCircle: Shape {
+    func path(in rect: CGRect) -> Path {
+        // Implementation goes here
+    }
+}
+```
+
+In this example, `MyCircle` is a custom shape that you can fill with any `ShapeStyle`.

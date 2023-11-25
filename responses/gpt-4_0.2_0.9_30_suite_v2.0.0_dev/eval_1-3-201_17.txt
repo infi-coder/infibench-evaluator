@@ -1,0 +1,42 @@
+You can use Python's `multiprocessing` module to run these two tasks concurrently. Here's how you can modify your code:
+
+```python
+import multiprocessing
+from dash import Dash
+import dash_bootstrap_components as dbc
+import db
+import hp
+import fd
+
+def run_dash():
+    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database=db.dataBase()
+    homepage=hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+    app.run_server(debug=True)
+
+def run_data_mining():
+    database=db.dataBase()
+    dataMiningScript= fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    # Create processes
+    p1 = multiprocessing.Process(target=run_dash)
+    p2 = multiprocessing.Process(target=run_data_mining)
+
+    # Start processes
+    p1.start()
+    p2.start()
+
+    # Join processes
+    p1.join()
+    p2.join()
+```
+
+In this code, `run_dash` and `run_data_mining` are two separate functions that are run in different processes. The `multiprocessing.Process` class is used to create a new process for each function. The `start` method is used to start each process, and the `join` method is used to make the main process wait until both processes have completed.
+
+Please note that `multiprocessing` creates separate processes and not threads. Each Python process has its own Python interpreter and memory space, so the Global Interpreter Lock (GIL) is not a problem. This means that your two functions can run truly concurrently, taking full advantage of multiple processors if they are available.
+
+However, keep in mind that sharing data between processes is more complicated than sharing data between threads. If your `run_dash` and `run_data_mining` functions need to share data, you may need to use one of the data sharing techniques provided by the `multiprocessing` module, such as pipes, queues, or shared memory.

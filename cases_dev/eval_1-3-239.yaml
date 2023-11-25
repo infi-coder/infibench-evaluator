@@ -1,0 +1,39 @@
+# Corresponding to post https://stackoverflow.com/questions/51125013
+id: 1-3-239
+# for case self identificaton
+
+prompt_path: prompt_1-3-239.txt
+# relative path to the prompt text
+
+# type: code debugging
+# type: code completion
+type: knowledge question-answering
+# question type, for later statistics
+
+lang: python
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+
+  keywords:
+    - brew install python@3.6
+    # - content: ...
+    #   weight: 1.0
+    #   # [optional] customized keyword weight 
+    #   to_lower: false
+    #   # [optional] whether to be case-sensitive (default is sensitive, set to true will apply lower() then match)
+    #   neg: false
+    #   # [optional] if neg=true, match means subtracting the score (use for common wrong answers)

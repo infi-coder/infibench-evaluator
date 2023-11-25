@@ -1,0 +1,22 @@
+The error message indicates that the `go_package` option is missing in the `.proto` file. You need to add the `go_package` option to the `.proto` file to specify the Go package name and import path for the generated code.
+
+To fix the error, add the `go_package` option to the `.proto` file like this:
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "example.com/your/package/path";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+Replace `example.com/your/package/path` with the actual import path for your Go package.
+
+Then run the `protoc` command again with the `--go_out` flag and the `M` argument to specify the import mapping:
+```bash
+protoc --go_out=plugins=grpc,M=example.com/your/package/path:. simple.proto
+```
+This should generate the Go code for your `.proto` file without any errors.

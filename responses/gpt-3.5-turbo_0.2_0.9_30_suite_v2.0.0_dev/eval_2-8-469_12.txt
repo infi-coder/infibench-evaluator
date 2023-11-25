@@ -1,0 +1,22 @@
+The error message suggests that you need to specify either a `go_package` option in the `.proto` source file or a `-I` argument on the command line. 
+
+To fix the error, you can add a `go_package` option to your `.proto` file like this:
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "github.com/your-username/your-repo/your-package-path";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+Replace `github.com/your-username/your-repo/your-package-path` with the actual import path of your Go package.
+
+Then, run the `protoc` command again with the `--go_out` flag and the `-I` flag to specify the directory containing your `.proto` file:
+```bash
+protoc --go_out=. -I=. simple.proto
+```
+This should generate the Go code for your `.proto` file without any errors.

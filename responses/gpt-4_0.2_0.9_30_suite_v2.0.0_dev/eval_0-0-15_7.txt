@@ -1,0 +1,13 @@
+Sure, the issue is that you're returning an object instead of a function that returns an object. When you use `new API()`, JavaScript expects `API` to be a constructor function, not an object. Here's how you can fix it:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {someMethod: () => {}};
+  });
+});
+```
+
+In this code, `jest.fn().mockImplementation()` returns a mock function that, when called with `new`, will return the object `{someMethod: () => {}}`.

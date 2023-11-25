@@ -1,0 +1,22 @@
+The error you're getting is because you're trying to import the Bootstrap variables before you declare your own. This causes the Bootstrap variables to overwrite your own.
+
+Here's how you can fix it:
+
+```scss
+// Define your custom colors first
+$theme-colors: (
+  "primary": #123456 // replace with your color
+);
+
+// Then import Bootstrap's variables and mixins
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+// Then import the rest of Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In this way, your custom colors will be used instead of the default ones. Make sure to replace `#123456` with the color you want to use.
+
+Also, note that you need to import `functions.scss` and `mixins.scss` before `variables.scss` because `variables.scss` may depend on functions or mixins defined in those files.

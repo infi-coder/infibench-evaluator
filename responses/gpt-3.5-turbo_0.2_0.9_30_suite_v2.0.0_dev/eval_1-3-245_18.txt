@@ -1,0 +1,15 @@
+It seems that the Dockerfile is unable to find the `app` module. You can try changing the `COPY` command in the Dockerfile to:
+
+```
+COPY ./fastapi/app /app
+```
+
+This will copy the `app` directory from the `fastapi` directory to the `/app` directory in the Docker container.
+
+Also, make sure that the `requirements.txt` file is in the `fastapi` directory and not in the `app` directory. If it is in the `app` directory, change the `COPY` command to:
+
+```
+COPY ./fastapi/requirements.txt /
+```
+
+After making these changes, rebuild the Docker image and try running the `docker-compose up` command again.

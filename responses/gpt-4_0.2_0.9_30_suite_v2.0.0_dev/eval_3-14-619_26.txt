@@ -1,0 +1,29 @@
+The code you've posted seems correct. However, the issue might be that you're trying to observe the changes in `ContentView` but you're changing the state in `ContentView_Previews`. 
+
+The `@Binding` property wrapper is used to create a two-way binding to a mutable state. When you're updating `isSelected` in `ContentView`, it's actually updating `selected` in `ContentView_Previews`. But `ContentView_Previews` is not a real view, it's just for preview purposes in Xcode, so you won't see any changes there.
+
+If you want to see the changes, you should create a `@State` in a parent view and pass it as `@Binding` to `ContentView`. Here's an example:
+
+```swift
+struct ParentView: View {
+    @State private var selected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $selected)
+    }
+}
+
+struct ContentView: View {
+    @Binding var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+```
+
+In this example, `ParentView` is the owner of the state and `ContentView` can mutate it through the binding. When `isSelected` is updated in `ContentView`, the view will be refreshed.

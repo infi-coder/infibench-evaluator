@@ -1,0 +1,19 @@
+It seems like you're trying to use a specific version of Java with Maven Wrapper in your build process. If you're using a build system like Jenkins or a CI/CD tool like GitHub Actions or GitLab CI/CD, you can specify the Java version in the configuration.
+
+However, if you're running this on your local machine, you can specify the Java version in the `JAVA_HOME` environment variable. Here's how you can do it:
+
+1. Find out where your desired Java version is installed. This is usually in a directory like `/usr/lib/jvm/java-11-openjdk-amd64/` on Linux, `C:\Program Files\Java\jdk-11.0.1` on Windows, or `/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home` on macOS.
+
+2. Set the `JAVA_HOME` environment variable to point to this directory. On Linux or macOS, you can do this in your shell profile file (like `~/.bashrc` or `~/.zshrc`):
+
+```bash
+export JAVA_HOME=/path/to/your/java
+```
+
+On Windows, you can do this in the System Properties -> Environment Variables.
+
+3. Now, when you run the Maven Wrapper with `./mvnw` (on Linux/macOS) or `mvnw.cmd` (on Windows), it should use the Java version you specified.
+
+Remember to replace `/path/to/your/java` with the actual path to your Java installation.
+
+If you're using a build system or a CI/CD tool, you'll need to consult its documentation on how to set environment variables.

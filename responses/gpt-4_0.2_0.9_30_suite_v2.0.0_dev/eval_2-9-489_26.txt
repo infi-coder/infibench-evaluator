@@ -1,0 +1,41 @@
+The warning you're seeing is because Elasticsearch 7.13.1 has built-in security features that are not enabled by default. It's a warning, not an error, so it won't stop Elasticsearch from running. However, it's recommended to enable these security features to prevent unauthorized access to your Elasticsearch cluster.
+
+Here are the steps to enable Elasticsearch security features:
+
+1. Open the Elasticsearch configuration file (`elasticsearch.yml`). The location of this file depends on how you installed Elasticsearch. If you used Homebrew, it's likely in `/usr/local/etc/elasticsearch`.
+
+2. Add the following lines to the `elasticsearch.yml` file:
+
+```yaml
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+```
+
+3. Save and close the file.
+
+4. Restart Elasticsearch. If you installed it with Homebrew, you can use the command `brew services restart elasticsearch`.
+
+5. After Elasticsearch restarts, you'll need to set up passwords for the built-in users. Run the following command:
+
+```bash
+bin/elasticsearch-setup-passwords auto
+```
+
+This command will generate random passwords for the built-in users (including `elastic`, `kibana_system`, `logstash_system`, etc.). Make sure to note these passwords down, as you'll need them to access Elasticsearch and Kibana.
+
+6. Update your Rails app to use the new `elastic` user and password. In your `config/initializers/searchkick.rb` file (or wherever you've configured Searchkick), update the `Searchkick.client` configuration:
+
+```ruby
+Searchkick.client = Elasticsearch::Client.new(
+  hosts: ["localhost:9200"],
+  http_auth: {user: "elastic", password: "your_generated_password"}
+)
+```
+
+Replace `"your_generated_password"` with the actual password generated in step 5.
+
+7. Restart your Rails server.
+
+Please note that enabling security will also enable Transport Layer Security (TLS) for the transport networking layer. You might need to configure TLS for internode communication. You can find more information about this in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-minimal-setup.html).
+
+Also, keep in mind that these steps enable basic security features. For a production environment, you might want to consider additional security measures.

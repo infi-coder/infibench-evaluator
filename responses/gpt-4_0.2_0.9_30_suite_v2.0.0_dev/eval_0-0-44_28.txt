@@ -1,0 +1,25 @@
+You are on the right track. The `@Prop({ index: true })` decorator should work. However, Mongoose will not automatically build indexes defined in your schema. You need to explicitly tell Mongoose to build the indexes.
+
+You can do this by calling the `ensureIndexes()` function on your model. Here is how you can do it:
+
+```javascript
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+@Injectable()
+export class MyService implements OnModuleInit {
+  constructor(@InjectModel(Schema.name) private readonly myModel: Model<Schema>) {}
+
+  async onModuleInit() {
+    await this.myModel.init();
+    await this.myModel.ensureIndexes(); // this will ensure indexes in the schema are created
+  }
+}
+```
+
+In the above code, `MyService` implements `OnModuleInit` lifecycle hook and `onModuleInit` method is called when the module has been initialized. Inside this method, we are ensuring that the indexes are created.
+
+Please note that `ensureIndexes()` returns a promise, so you should wait for it to finish. This might take a while if you have a lot of documents in your collection. 
+
+Also, keep in mind that creating indexes can be a resource-intensive operation, so it's generally a good idea to do this as part of your deployment process, not at application startup.

@@ -1,0 +1,13 @@
+Here's a possible implementation of the `to_camel_case` function in Python:
+
+```python
+def to_camel_case(text):
+    if not text:
+        return ''
+    words = re.split(r'[-_]', text)
+    return words[0] + ''.join(word.capitalize() for word in words[1:])
+```
+
+This implementation uses the `re.split` function from the `re` module to split the input string into words based on either a dash or an underscore separator. It then capitalizes the first letter of each word except the first one, and concatenates them together to form the camel case string.
+
+Note that the function checks for the case where the input string is empty and returns an empty string in that case. Also, the function assumes that the input string contains only valid characters (letters, dashes, and underscores). If the input string contains other characters, the function may produce unexpected results.

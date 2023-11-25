@@ -1,0 +1,11 @@
+The error you're encountering is because the 'year' column in your dataframe contains float values as strings. The `int()` function in Python cannot convert a string representation of a float into an integer directly. 
+
+You need to convert the string to a float first, then convert the float to an integer. Here is the function `transformation` that does this:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].apply(lambda x: int(float(x)))
+    return data_h_df
+```
+
+This function uses the `apply()` method to apply a lambda function to each element in the 'year' column. The lambda function converts the string to a float first, then converts the float to an integer.

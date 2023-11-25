@@ -1,0 +1,23 @@
+The error message indicates that there is a problem with the command you are trying to run. The issue is likely due to the way the command is quoted. 
+
+Here is a corrected version of your command:
+
+```bash
+cd C:\projects\open; set "JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5"; cmd /c ""C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd" -DskipTests=true -Dmaven.ext.class.path="C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar" -Dfile.encoding=UTF-8 clean install"
+```
+
+In this version, the `JAVA_HOME` environment variable is set using the `set` command before running `cmd /c`. 
+
+If you still face the issue, you can try to set the `JAVA_HOME` environment variable globally in your system. Here is how you can do it:
+
+1. Right-click the Computer icon on your desktop or in File Explorer.
+2. Choose Properties from the context menu.
+3. Click the Advanced system settings link.
+4. Click Environment Variables. In the section System Variables, find the `JAVA_HOME` environment variable and select it. If it doesn't exist, click on New.
+5. In the Edit System Variable (or New System Variable) window, specify the value of the `JAVA_HOME` environment variable (`C:\Program Files\Java\jdk-11.0.5`). Click OK. Close all remaining windows by clicking OK.
+
+After setting the `JAVA_HOME` environment variable, you can run your command as follows:
+
+```bash
+cd C:\projects\open; cmd /c ""C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd" -DskipTests=true -Dmaven.ext.class.path="C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar" -Dfile.encoding=UTF-8 clean install"
+```

@@ -1,0 +1,25 @@
+You can use multiprocessing to run the two scripts simultaneously. Here's an example of how you can modify your code to use multiprocessing:
+
+```python
+import multiprocessing as mp
+
+if __name__ == "__main__":
+    database = db.dataBase()
+    homepage = hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    dataMiningScript = fd.financeData(database, 1600)
+
+    app_process = mp.Process(target=app.run_server, args=(False,))
+    data_process = mp.Process(target=dataMiningScript.run)
+
+    app_process.start()
+    data_process.start()
+
+    app_process.join()
+    data_process.join()
+```
+
+In this code, we create two processes, one for running the Dash app and the other for running the data mining script. We start both processes and wait for them to finish using the `join()` method. Note that we pass `False` as an argument to `app.run_server()` to disable debug mode.
+
+Also, make sure that your `financeData` class has a `run()` method that contains the infinite loop for data mining.

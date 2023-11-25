@@ -1,0 +1,25 @@
+The error message you're seeing indicates that Go is unable to find the specific version of the module you're trying to import. This could be due to a few reasons:
+
+1. The version does not exist: Make sure that the version `v0.1.5` of `github.ibm.com/kms/key-protect-client` actually exists. You can verify this by visiting the repository and checking the tags.
+
+2. Access issues: Even though you have access to the repository, Go might not. This is especially true if you're using private repositories. Go uses `https` to fetch modules by default, and it might not have access to your GitHub credentials. You can try configuring Git to use SSH instead of HTTPS for GitHub with the following command:
+
+    ```bash
+    git config --global url."git@github.com:".insteadOf "https://github.com/"
+    ```
+
+3. Proxy issues: If you're behind a proxy, you might need to configure Go to use it. You can do this by setting the `HTTP_PROXY` and `HTTPS_PROXY` environment variables.
+
+4. Cache issues: Sometimes, the module cache might get corrupted, causing issues. You can try clearing the module cache with the following command:
+
+    ```bash
+    go clean -modcache
+    ```
+
+To debug this issue further, you can use the `-x` flag with the `go get` command to see exactly what commands Go is running. This might give you more insight into what's going wrong:
+
+```bash
+go get -x github.ibm.com/kms/key-protect-client@v0.1.5
+```
+
+Also, make sure that you're running a recent version of Go. The Go modules feature is still relatively new, and many bugs have been fixed in recent versions. You can check your Go version with the `go version` command.

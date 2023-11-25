@@ -1,0 +1,13 @@
+The warning message is indicating that Elasticsearch built-in security features are not enabled, which means that your Elasticsearch cluster could be accessible to anyone without authentication. To fix this, you need to enable security features in Elasticsearch. Here are the steps to follow:
+
+1. Open the Elasticsearch configuration file `elasticsearch.yml` in your Rails app.
+
+2. Add the following lines to the file:
+
+```
+xpack.security.enabled: true
+```
+
+3. Save the file and restart Elasticsearch.
+
+After restarting Elasticsearch, the warning message should disappear. If you still see the warning message, you may need to check your Elasticsearch version and make sure it's compatible with the `xpack.security.enabled` setting.

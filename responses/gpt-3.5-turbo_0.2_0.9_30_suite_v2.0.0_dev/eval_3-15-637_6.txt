@@ -1,0 +1,13 @@
+The issue you are facing could be due to the incompatibility of the Selenium WebDriver with the latest version of Internet Explorer. Microsoft has stopped supporting Internet Explorer and has moved to Edge as their default browser. 
+
+To resolve this issue, you can try the following solutions:
+
+1. Use a different browser: Instead of Internet Explorer, you can try using Chrome or Firefox as they are more compatible with Selenium WebDriver.
+
+2. Use the latest version of Selenium WebDriver: Make sure you are using the latest version of Selenium WebDriver that is compatible with Excel 2019.
+
+3. Use Edge instead of Internet Explorer: Since Microsoft has moved to Edge as their default browser, you can try using Edge instead of Internet Explorer.
+
+4. Enable the "Protected Mode" in Internet Explorer: If you still want to use Internet Explorer, you can try enabling the "Protected Mode" in Internet Explorer. To do this, go to Internet Options > Security > Enable Protected Mode.
+
+I hope one of these solutions will help you resolve the issue.

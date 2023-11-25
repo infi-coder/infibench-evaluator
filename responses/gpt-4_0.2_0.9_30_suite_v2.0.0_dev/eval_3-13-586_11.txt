@@ -1,0 +1,9 @@
+The error message you're seeing is due to changes in Android 12 (API level 31) regarding PendingIntent mutability. Starting from this version, you need to explicitly specify whether the PendingIntent is mutable or immutable when you create it.
+
+The MediaSessionCompat class in the AndroidX Media library creates a PendingIntent internally, and it seems like it's not setting the mutability flag correctly. This is likely a bug in the library.
+
+As a workaround, you could try downgrading your target SDK version to 30 until the issue is fixed in the library. This way, your app won't be subject to the new PendingIntent requirements in Android 12.
+
+However, if you want to target API level 31, you may need to wait for an update to the AndroidX Media library that fixes this issue. You can also consider filing a bug report to the Android team.
+
+Please note that targeting a lower API level won't prevent your app from running on Android 12 devices. It just means that your app won't be able to use new APIs introduced in Android 12 and won't be subject to new behavior changes that apply only when targeting Android 12.

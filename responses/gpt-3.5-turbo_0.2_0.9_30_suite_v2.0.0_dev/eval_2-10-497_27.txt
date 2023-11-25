@@ -1,0 +1,24 @@
+In Rust, a `Box` is a smart pointer that owns the heap-allocated object it points to. It is guaranteed to always point to a valid object or be null. To check if a `Box` is null, you can use the `is_null` method. Here's an example:
+
+```rust
+struct Node {
+    value: i32,
+    next: Box<Node>,
+}
+
+struct Stack {
+    top: Box<Node>,
+}
+
+impl Stack {
+    fn new() -> Stack {
+        Stack { top: Box::new(Node { value: 0, next: Box::new(None) }) }
+    }
+
+    fn is_empty(&self) -> bool {
+        self.top.next.is_null()
+    }
+}
+```
+
+In this example, the `is_empty` method checks if the `next` field of the `top` node is null. If it is null, then the stack is empty. Note that we initialize the `top` field with a dummy node that has a null `next` field. This is to avoid having to deal with null pointers when the stack is empty.

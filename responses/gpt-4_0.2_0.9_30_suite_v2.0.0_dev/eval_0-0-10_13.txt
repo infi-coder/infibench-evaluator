@@ -1,0 +1,19 @@
+Sure, here is the completed Javascript code:
+
+Way 1:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').should('have.text', "Wildness")
+```
+
+Way 2:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').invoke('text').then((text) => {
+    expect(text.trim()).to.equal('Wildness')
+});
+```
+
+In the first way, `.should('have.text', "Wildness")` is used to assert that the selected element has the specified text.
+
+In the second way, `.invoke('text')` is used to get the text of the selected element, and then the `expect` function from Chai.js is used to assert that the trimmed text equals 'Wildness'.

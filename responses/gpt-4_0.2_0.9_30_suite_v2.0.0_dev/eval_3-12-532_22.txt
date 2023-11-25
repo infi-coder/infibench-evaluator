@@ -1,0 +1,37 @@
+The error message suggests that the JSON you're trying to decode is not properly formatted. This could be due to a variety of reasons, such as:
+
+- The server might not be returning a JSON response.
+- The server might be returning an empty response.
+- The server might be returning a JSON response that includes unexpected characters.
+
+Here are a few steps you can take to debug and solve this issue:
+
+1. **Print the server response:** Before trying to decode the response, print it to the console. This will help you understand what you're actually receiving from the server.
+
+```dart
+print('Response body: ${response.body}');
+```
+
+2. **Check the server-side script:** Make sure that your PHP script is correctly outputting a JSON response. You can do this by running the script independently and checking the output.
+
+3. **Handle empty or null responses:** If the server returns an empty or null response, trying to decode it will result in an error. You can add a check for this before trying to decode the response.
+
+```dart
+if (response.body != null && response.body.isNotEmpty) {
+  List data = json.decode(response.body);
+} else {
+  print('Empty response received from the server.');
+}
+```
+
+4. **Handle non-JSON responses:** If the server is returning a response that is not JSON, you'll need to handle this in your code. You could do this by checking the `Content-Type` header of the response, or by using a try/catch block to handle the `FormatException`.
+
+```dart
+try {
+  List data = json.decode(response.body);
+} catch (e) {
+  print('Received non-JSON response from the server.');
+}
+```
+
+Remember, the error is not in the Flutter/Dart code, but in the server response. You need to ensure that the server is returning a valid JSON response.

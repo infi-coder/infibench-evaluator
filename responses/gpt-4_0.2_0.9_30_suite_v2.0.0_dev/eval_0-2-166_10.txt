@@ -1,0 +1,19 @@
+Tailwind CSS is a utility-first CSS framework that doesn't provide a direct way to target child elements as you would do in traditional CSS. It doesn't support child selectors or any other kind of selectors. 
+
+The main idea behind Tailwind CSS is to apply styles directly to the HTML elements via utility classes, rather than defining CSS selectors and rulesets.
+
+So, if you want to style direct children of a div with a class of "section", you would need to apply the classes directly to those child div elements in your HTML.
+
+For example:
+
+```html
+<div class="section">
+  <div class="bg-blue-500 ...">...</div>
+  <div class="text-lg ...">...</div>
+  <!-- more child divs -->
+</div>
+```
+
+In the above example, `bg-blue-500` and `text-lg` are Tailwind CSS utility classes applied directly to the child divs.
+
+If you need to apply styles based on child selectors, you would need to use traditional CSS or CSS preprocessor like Sass, Less alongside Tailwind CSS.

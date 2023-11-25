@@ -1,0 +1,22 @@
+The issue with your script is that you are using single quotes around the `$searchT` variable in the `grep` command. Single quotes prevent variable expansion, so the `grep` command is searching for the literal string `$searchT` instead of the value of the variable.
+
+To fix this, you can use double quotes around the `grep` command instead of single quotes. This will allow the variable to be expanded and the `grep` command will search for the value of the variable.
+
+Here's the corrected script:
+
+```
+#!/bin/bash
+read -p "enter search term here: " searchT
+
+if [[ $(cat test.txt | grep -wi "$searchT") ]]; then     
+    echo "$(cat test.txt | grep "$searchT" | wc -l) number of matches found"
+    echo $(cat test.txt | grep "$searchT")
+
+else 
+    echo "no match found"    
+fi
+
+exit 0
+```
+
+In this script, the `grep` command is enclosed in double quotes, which allows the variable to be expanded. Also, the `wc -l` command is piped to the `grep` command to count the number of matches found.

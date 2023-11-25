@@ -1,0 +1,12 @@
+To disable the back button in Flutter when the user has reached the login page after logging out, you can use the `WillPopScope` widget. Wrap your login page with `WillPopScope` and set its `onWillPop` property to return a `Future.value(false)`. This will prevent the user from going back to the previous page using the back button or swipe gesture.
+
+Here's an example:
+
+```
+WillPopScope(
+  onWillPop: () => Future.value(false),
+  child: LoginPage(),
+)
+```
+
+Note that this approach only prevents the user from going back using the back button or swipe gesture. If the user navigates back programmatically using `Navigator.pop(context)` or `Navigator.of(context).pop()`, they will still be able to go back.

@@ -1,0 +1,20 @@
+It seems that the Dockerfile is unable to find the `app` module. You can try modifying the `COPY` command to include the parent directory of the `app` module. 
+
+Here's an updated Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt /
+RUN pip install --requirement /requirements.txt
+
+COPY ./fastapi /app
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+In this updated Dockerfile, the `COPY` command copies the `fastapi` directory to the `/app` directory in the container. This should include the `app` module and its dependencies. 
+
+You can then run `docker-compose up -d` to start the container.

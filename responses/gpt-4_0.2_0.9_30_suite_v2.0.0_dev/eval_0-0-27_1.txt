@@ -1,0 +1,40 @@
+Your code seems correct, but there could be a few reasons why your `useQuery` is hanging at the loading state:
+
+1. **Network Issues**: The most common reason for this issue is a network problem. Make sure your device/emulator is connected to the internet and can reach the GraphQL server.
+
+2. **Server Issues**: The server at 'https://48p1r2roz4.sse.codesandbox.io' might be down or not responding. Try to access this URL in your browser to see if it's up and running.
+
+3. **CORS Issues**: If your server is not set up to accept requests from your client's origin, it will result in a CORS (Cross-Origin Resource Sharing) error. This usually happens when you're trying to access a server from a different domain. Check your server's CORS settings.
+
+4. **Apollo Client Setup**: Make sure the Apollo Client is correctly set up. The `uri` in the `ApolloClient` should point to your GraphQL server.
+
+5. **Query Issues**: There might be an issue with your GraphQL query. Try running the query in a GraphQL playground or similar tool to see if it returns the expected data.
+
+6. **React Native Debugger**: If you're using React Native Debugger, there's a known issue where network requests can hang indefinitely. Try disabling it to see if that's the cause.
+
+7. **React Native Version**: There might be compatibility issues with the version of React Native you're using. Try updating to the latest version.
+
+If none of the above solutions work, you could try to debug the issue by adding an error link to your Apollo Client to log any GraphQL errors:
+
+```javascript
+import { onError } from "@apollo/client/link/error";
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.map(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
+    );
+
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
+
+const client = new ApolloClient({
+  link: errorLink,
+  uri: 'https://48p1r2roz4.sse.codesandbox.io',
+  cache: new InMemoryCache(),
+});
+```
+
+This will log any GraphQL or network errors to the console, which might give you more insight into

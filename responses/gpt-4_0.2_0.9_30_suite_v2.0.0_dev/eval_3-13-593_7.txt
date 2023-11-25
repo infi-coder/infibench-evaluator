@@ -1,0 +1,57 @@
+To add Jetpack Compose to your existing project, follow these steps:
+
+1. Update your project-level `build.gradle` file:
+
+```gradle
+buildscript {
+    ext {
+        compose_version = '1.0.5' // Check the latest version on the official site
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4" // Check the latest version on the official site
+    }
+}
+```
+
+2. Update your module-level `build.gradle` file:
+
+```gradle
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdk 31 // Check the latest version on the official site
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 31 // Check the latest version on the official site
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.31' // Check the latest version on the official site
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.31" // Check the latest version on the official site
+    implementation 'androidx.core:core-ktx:1.7.0' // Check the latest version on the official site
+    implementation 'androidx.appcompat:appcompat:1.4.0' // Check the latest version on the official site
+    implementation 'com.google.android.material:material:1.4.0' // Check the latest version on the official site
+    implementation 'androidx.compose.ui:ui:1.0.5' // Check the latest version on the official site
+    implementation 'androidx.compose.material:material:1.0.5' // Check the latest version on the official site
+    implementation 'androidx.compose.ui:ui-tooling:1.0.5' // Check the latest version on the official site
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1' // Check the latest version on the official site
+    implementation 'androidx.activity:activity-compose:1.3.1' // Check the latest version on the official site
+}
+```
+

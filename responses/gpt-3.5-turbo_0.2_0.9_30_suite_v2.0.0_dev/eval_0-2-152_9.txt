@@ -1,0 +1,16 @@
+To show the toast, you need to call the `toast()` method on the `.toast` element. Here's how you can modify your JavaScript code:
+
+```javascript
+$('.toast').toast('show');
+```
+
+This will show the toast with the default animation. If you want to customize the animation, you can pass an options object to the `toast()` method. For example:
+
+```javascript
+$('.toast').toast({
+  animation: true,
+  delay: 2000
+}).toast('show');
+```
+
+This will show the toast with a fade animation and a delay of 2 seconds before it disappears. You can customize other options as well, such as the position of the toast, the duration of the animation, etc. You can find more information about the available options in the Bootstrap documentation.

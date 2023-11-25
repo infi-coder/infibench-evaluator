@@ -1,0 +1,33 @@
+The issue you're encountering is due to the fact that your system is trying to use the Windows version of npm, which is not compatible with the Linux subsystem. You can solve this issue by adjusting the PATH variable in your bash profile to prioritize the Linux version of npm.
+
+Here's how you can do it:
+
+1. Open your bash profile file for editing. If you're using bash, this will be `~/.bashrc`. If you're using zsh, it will be `~/.zshrc`. You can open this file with a text editor like nano or vim. For example:
+
+    ```bash
+    nano ~/.bashrc
+    ```
+
+2. Add the following line to the end of the file:
+
+    ```bash
+    export PATH="/usr/bin:$PATH"
+    ```
+
+    This line adjusts the PATH variable to prioritize `/usr/bin` (where the Linux version of npm is located) over other directories.
+
+3. Save and close the file. If you're using nano, you can do this by pressing `Ctrl+X`, then `Y` to confirm that you want to save the changes, and then `Enter` to confirm the file name.
+
+4. Source your bash profile to apply the changes. If you're using bash, use:
+
+    ```bash
+    source ~/.bashrc
+    ```
+
+    If you're using zsh, use:
+
+    ```bash
+    source ~/.zshrc
+    ```
+
+5. Now, when you run `npm -v`, it should display the version of npm installed on your Linux subsystem, and you should be able to use npm as expected.

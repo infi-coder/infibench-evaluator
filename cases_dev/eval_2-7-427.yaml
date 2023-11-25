@@ -1,0 +1,8 @@
+id: 2-7-427
+prompt_path: prompt_2-7-427.txt
+type: code debugging
+lang: php
+grading:
+  keywords:
+    - 'MAIL_ENCRYPTION=""'
+    - "'encryption' => env('MAIL_ENCRYPTION', '')"

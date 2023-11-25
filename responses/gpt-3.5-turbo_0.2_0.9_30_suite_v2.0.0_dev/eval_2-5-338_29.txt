@@ -1,0 +1,26 @@
+The error message indicates that Jackson, the JSON serialization library used by Spring, is unable to serialize the `MultipartFile` object. This is because `MultipartFile` contains an `InputStream` object, which cannot be serialized directly.
+
+To solve this, you can configure Jackson to ignore the `InputStream` property of the `MultipartFile` object. You can do this by adding the following annotation to your controller method:
+
+```java
+@JsonSerialize(using = MultipartFileSerializer.class)
+```
+
+And create the serializer class as follows:
+
+```java
+public class MultipartFileSerializer extends JsonSerializer<MultipartFile> {
+
+    @Override
+    public void serialize(MultipartFile value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+        gen.writeStartObject();
+        gen.writeStringField("name", value.getName());
+        gen.writeStringField("originalFilename", value.getOriginalFilename());
+        gen.writeStringField("contentType", value.getContentType());
+        gen.writeNumberField("size", value.getSize());
+        gen.writeEndObject();
+    }
+}
+```
+
+This serializer will only serialize the metadata of the `MultipartFile` object, and ignore the `InputStream` property.

@@ -1,0 +1,7 @@
+Your `sed` command is not correctly removing the question mark and everything after it. Instead of `sed 's/\?.*//g'`, try using `sed 's/\?.*$//'`. This should remove the question mark and everything after it. Also, you can simplify your `find` command by using the `-execdir` option instead of `-exec`. Here's the updated command:
+
+```
+find . -type f -name '*\?*' -execdir sh -c 'mv "$1" "${1/\?.*/}"' sh {} \;
+``` 
+
+This should remove the question mark and everything after it from all file names that contain a question mark.

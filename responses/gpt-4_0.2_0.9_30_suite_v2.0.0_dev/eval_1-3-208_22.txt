@@ -1,0 +1,13 @@
+The issue with your code is that you're checking if the entire input string is within the `correct` string, not if each individual character is within `correct`. 
+
+Here is the corrected function:
+
+```python
+import string
+
+def checkString(text):
+    correct = string.ascii_letters + string.digits
+    return all(char in correct for char in text)
+```
+
+This function uses the `all()` function, which returns `True` if all elements in the given iterable are true. The iterable in this case is a generator expression that checks if each character in the text is in the `correct` string. If any character is not in `correct`, `all()` will return `False`.

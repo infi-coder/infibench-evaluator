@@ -1,0 +1,16 @@
+```c++
+#include <vector>
+#include <string>
+
+std::vector<std::string> my_2d_array(int N, int M) {
+    std::vector<std::string> result;
+    for (int i = 0; i < N; i++) {
+        std::string row = "";
+        for (int j = 0; j < M; j++) {
+            row += std::to_string(i) + std::to_string(j) + " ";
+        }
+        result.push_back(row);
+    }
+    return result;
+}
+```

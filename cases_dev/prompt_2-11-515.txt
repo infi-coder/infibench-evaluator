@@ -1,0 +1,10 @@
+Complete the function ```vector<pair<int, int>> origin_to_goal(vector<int> origin)```.
+The function creat a vector of pairs, where each pair contains always two elements, from a single even-sized vector in C++ without simple loops.
+It can be assumed that the original vector always contains an even amount of elements.
+Using a nice standard-library tool for this (if you can).
+Example:
+```c++
+vector<int> origin = {1, 2, 3, 4, 5, 6, 7, 8};
+vector<pair<int, int>> goal = origin_to_goal(origin); //{ {1, 2}, {3, 4}, {5, 6}, {7, 8} };
+```
+Return the implementation of origin_to_goal, without any other information.

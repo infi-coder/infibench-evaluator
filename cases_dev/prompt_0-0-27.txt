@@ -1,0 +1,123 @@
+I am trying to fetch data using Apollo Client useQuery in React Native, but loading hangs at true state and fails to fetch data.
+
+Below is the actual code.
+
+`App.js`:
+
+```javascript
+import React from 'react';
+
+import { SafeAreaView, Text, View } from 'react-native';
+
+import { ApolloClient, ApolloProvider, InMemoryCache, gql, useQuery } from '@apollo/client';
+
+const EXCHANGE_RATES = gql`
+    query GetExchangeRates {
+        rates(currency: "USD") {
+            currency
+            rate
+        }
+    }
+`;
+
+const TestScreen = () => {
+    const { loading, error, data } = useQuery(EXCHANGE_RATES);
+
+    console.log(loading, error, data); // Stop at "true undefined undefined" 🥲
+
+    if (loading) return <Text>Loading...</Text>;
+    if (error) return <Text>Error :(</Text>;
+
+    return data.rates.map(({ currency, rate }) => (
+        <View key={currency}>
+            <Text>
+                {currency}: {rate}
+            </Text>
+        </View>
+    ));
+};
+
+const apolloClient = new ApolloClient({
+    // this uri is the uri provided by the apolloClient official documentation.
+    // https://www.apollographql.com/docs/react/get-started#3-connect-your-client-to-react
+    uri: 'https://48p1r2roz4.sse.codesandbox.io',
+    cache: new InMemoryCache(),
+});
+
+const App = () => {
+    return (
+        <ApolloProvider client={apolloClient}>
+            <SafeAreaView>
+                <TestScreen />
+            </SafeAreaView>
+        </ApolloProvider>
+    );
+};
+
+export default App;
+```
+
+`package.json`:
+
+```json
+{
+    ...,
+    "dependencies": {
+        "@apollo/client": "^3.5.10",
+        "graphql": "^16.4.0",
+        "react": "17.0.2",
+        "react-native": "0.68.1",
+        "react-native-flipper-apollo-devtools": "^0.0.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.9",
+        "@babel/runtime": "^7.12.5",
+        "@graphql-codegen/cli": "^2.6.2",
+        "@graphql-codegen/fragment-matcher": "^3.2.1",
+        "@graphql-codegen/typed-document-node": "^2.2.8",
+        "@graphql-codegen/typescript": "^2.4.8",
+        "@graphql-codegen/typescript-apollo-client-helpers": "^2.1.15",
+        "@graphql-codegen/typescript-operations": "^2.3.5",
+        "@react-native-community/eslint-config": "^2.0.0",
+        "@types/jest": "^26.0.23",
+        "@types/react-native": "^0.67.3",
+        "@types/react-test-renderer": "^17.0.1",
+        "@typescript-eslint/eslint-plugin": "^5.17.0",
+        "@typescript-eslint/parser": "^5.17.0",
+        "babel-jest": "^26.6.3",
+        "babel-plugin-module-resolver": "^4.1.0",
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-config-standard-with-typescript": "^21.0.1",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^6.0.0",
+        "eslint-plugin-react": "^7.29.4",
+        "eslint-plugin-react-hooks": "^4.5.0",
+        "eslint-plugin-react-native": "^4.0.0",
+        "husky": "^7.0.4",
+        "jest": "^26.6.3",
+        "lint-staged": "^12.4.1",
+        "metro-react-native-babel-preset": "^0.67.0",
+        "react-native-flipper": "^0.144.0",
+        "react-test-renderer": "17.0.2",
+        "typescript": "^4.4.4"
+    },
+    "resolutions": {
+        "@types/react": "^17"
+    },
+    "jest": {
+        "preset": "react-native",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx",
+            "json",
+            "node"
+        ]
+    }
+}
+```
+
+I don't know what the problem is. Could you help me?

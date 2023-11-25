@@ -1,0 +1,22 @@
+The error message is indicating that you're trying to create an index on a navigation property (`Gender`), which is not allowed. 
+
+Indexes in Entity Framework Core are used to speed up the performance of data retrieval operations on a database. They are only applicable to scalar properties of an entity, not navigation properties.
+
+If you want to create an index on `GenderId` (the foreign key), you can do it like this:
+
+```c#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderId);
+    });
+}
+```
+
+In this code, `user.HasIndex(x => x.GenderId);` creates an index on the `GenderId` column in the `User` table.

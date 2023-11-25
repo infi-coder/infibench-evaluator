@@ -1,0 +1,12 @@
+Sure, you can use async/await with toPromise() to make your code wait for the response. Here is the revised code:
+
+```javascript
+async getData() {
+  this.newIds = await this.repository.getById(Ids).toPromise();
+  console.log(this.newIds);
+}
+
+this.getData();
+```
+
+Please note that you should call `this.getData()` wherever you want to get the data and wait for the response.

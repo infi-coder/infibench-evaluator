@@ -1,0 +1,29 @@
+Your code is correct, but you're missing a key point about how SwiftUI works. SwiftUI views are not updated in response to changes in their properties, but rather in response to changes in their state.
+
+In your case, `isSelected` is a `@Binding`, which means it's a reference to a value that's owned by some other part of your code. When you toggle `isSelected`, you're changing the value it refers to, but you're not changing the state of your `ContentView`.
+
+To fix this, you need to introduce a `@State` property in your `ContentView` that will own the value of `isSelected`. Here's how you can do it:
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    @State private var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+```
+
+In this code, `isSelected` is a `@State` property, which means it owns its value and SwiftUI will update the view when this value changes.

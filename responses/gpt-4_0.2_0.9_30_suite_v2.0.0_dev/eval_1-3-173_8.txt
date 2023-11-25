@@ -1,0 +1,13 @@
+Sure, you can use the `calendar` module in Python to calculate the total number of days in a year. Here is a function that does this:
+
+```python
+import calendar
+
+def DaysInYear(year):
+    if calendar.isleap(year):
+        return 366
+    else:
+        return 365
+```
+
+This function uses the `calendar.isleap()` function to check if the year is a leap year. If it is, it returns 366 (the number of days in a leap year). If it's not a leap year, it returns 365 (the number of days in a non-leap year).

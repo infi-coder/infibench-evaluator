@@ -1,0 +1,13 @@
+Here is the bash script to install Python 3.6.5 using brew:
+
+```
+brew install python@3.6
+```
+
+This will install the latest version of Python 3.6.x available in the Homebrew repository. If you want to specifically install version 3.6.5, you can use the following command:
+
+```
+brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/7a4b3f9a9a7a9a4d6c8b0e8d5d3f1c5c4a9e7c5c/Formula/python%403.6.rb
+```
+
+This will install Python 3.6.5 from a specific commit in the Homebrew repository.

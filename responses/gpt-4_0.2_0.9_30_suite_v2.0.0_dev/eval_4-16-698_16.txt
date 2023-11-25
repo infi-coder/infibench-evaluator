@@ -1,0 +1,15 @@
+You can use the `source` command to load any changes made to your `.bash_profile` without having to close and reopen your terminal. Here's how you can do it:
+
+```bash
+source ~/.bash_profile
+```
+
+This command reads and executes commands from the filename argument in the current shell context. If you made changes to your `.bash_profile`, those changes are recognized because the file is read and executed in your current shell context.
+
+Alternatively, you can use the `.` command, which is an alias for `source`:
+
+```bash
+. ~/.bash_profile
+```
+
+Both of these commands will work in MacOS and Linux.

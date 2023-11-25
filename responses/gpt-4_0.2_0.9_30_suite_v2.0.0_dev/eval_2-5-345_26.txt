@@ -1,0 +1,17 @@
+This error is related to the Maven version that IntelliJ IDEA uses internally. The version of Maven bundled with IntelliJ IDEA might not be compatible with the version used in your project.
+
+Here are a few steps you can take to resolve this issue:
+
+1. **Update IntelliJ IDEA**: Make sure you are using the latest version of IntelliJ IDEA. JetBrains regularly releases updates that include bug fixes and compatibility improvements.
+
+2. **Configure IntelliJ IDEA to use the project's Maven version**: You can configure IntelliJ IDEA to use the same Maven version as your project. Here's how:
+
+   - Open the Settings dialog (`File > Settings` for Windows/Linux, `IntelliJ IDEA > Preferences` for macOS)
+   - Navigate to `Build, Execution, Deployment > Build Tools > Maven`
+   - In the `Maven home directory` field, enter the path to the Maven installation that matches the version used in your project.
+
+3. **Reimport the project**: After changing the Maven settings, you might need to reimport your project. You can do this by right-clicking on the project and selecting `Maven > Reimport`.
+
+4. **Check your `pom.xml` file**: Make sure there are no errors in your `pom.xml` file that could be causing this issue. You can validate your `pom.xml` file using the `mvn validate` command.
+
+If none of these steps resolve the issue, it might be a bug in IntelliJ IDEA or in the Maven integration. In that case, you should report the issue to JetBrains.

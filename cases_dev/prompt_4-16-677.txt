@@ -1,0 +1,19 @@
+grep command in an if statement
+
+```
+bash
+#!/bin/bash
+read -p "enter search term here: " searchT
+
+if [[ $(cat test.txt | grep -wi '$searchT') ]]; then     
+    echo "$(cat test.txt | grep '$searchT' && wc -l) number of matches found"
+    echo $(cat test.txt | grep '$searchT')
+
+else echo "no match found"    
+
+fi
+
+exit 0
+```
+
+How do I make the script run if the `if statement` is true. when i run the script the script will output the `else` statement. because there is no value to compare with the grep command.

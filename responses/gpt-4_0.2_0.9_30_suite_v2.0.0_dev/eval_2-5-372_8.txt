@@ -1,0 +1,40 @@
+It seems like you're facing a version conflict issue. The `@NotEmpty` and `@NotBlank` annotations are part of the Bean Validation 2.0 specification, which is implemented by Hibernate Validator 6.0.0.Final and later. 
+
+However, the log shows that Hibernate Validator 5.3.5.Final-redhat-2 is being used, which only supports Bean Validation 1.1. This version of Hibernate Validator doesn't recognize the `@NotEmpty` and `@NotBlank` annotations, hence the error.
+
+The version of Hibernate Validator being used is likely coming from JBoss, which has its own bundled version of Hibernate Validator. 
+
+To resolve this, you can try one of the following:
+
+1. **Upgrade your JBoss version to one that includes Hibernate Validator 6.0.0.Final or later.** This is the simplest solution if it's feasible for you.
+
+2. **Exclude the Hibernate Validator from JBoss and include it in your application.** This is a bit more complex and may have other implications, but it would allow you to use the version of Hibernate Validator that you want. Here's how you can do it:
+
+    Add this to your `jboss-deployment-structure.xml`:
+
+    ```xml
+    <jboss-deployment-structure>
+        <deployment>
+            <exclusions>
+                <module name="org.hibernate.validator" />
+            </exclusions>
+        </deployment>
+    </jboss-deployment-structure>
+    ```
+
+    And add this to your `pom.xml`:
+
+    ```xml
+    <dependency>
+        <groupId>org.hibernate.validator</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>6.0.11.Final</version>
+    </dependency>
+    <dependency>
+        <groupId>org.hibernate.validator</groupId>
+        <artifactId>hibernate-validator-annotation-processor</artifactId>
+        <version>6.0.11.Final</version>
+    </dependency>
+    ```
+
+3. **Use the older `@NotNull` and `@Size(min=1)` annotations instead of `@NotEmpty` and `@NotBlank`.** This would work with the older version of Hibernate Validator, but it's not as clean or intuitive.

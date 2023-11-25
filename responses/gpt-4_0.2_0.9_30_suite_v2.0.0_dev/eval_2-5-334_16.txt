@@ -1,0 +1,5 @@
+You should use `@Configuration` when you want to define beans explicitly in your application. It is typically used in situations where you need to create Spring Beans using third-party classes that you can't annotate with `@Component`, `@Service`, or `@Controller`.
+
+`@Configuration` classes contain methods annotated with `@Bean`. Each `@Bean` method generates a bean managed by the Spring container. This is particularly useful when the bean creation process involves some complex Java logic.
+
+On the other hand, `@Service`, `@Controller`, and `@Component` are used to auto-detect and auto-configure beans using Spring's component scanning feature. They are typically used to define beans for your own classes.

@@ -1,0 +1,11 @@
+This error message suggests that the preview is not associated with any target in your Xcode project. You can try the following steps to fix the issue:
+
+1. Make sure that the file containing the preview is included in the target membership of your project. You can check this by selecting the file in the Project navigator, and then checking the Target Membership section in the File inspector.
+
+2. Clean your project by selecting Product > Clean Build Folder from the Xcode menu.
+
+3. Try restarting Xcode and rebuilding your project.
+
+4. If the issue persists, try creating a new SwiftUI preview file and see if it works. If it does, you can try copying the code from the old file to the new one.
+
+Hopefully one of these steps will help you resolve the issue.

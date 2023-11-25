@@ -1,0 +1,17 @@
+There are a few things you can check to troubleshoot this issue:
+
+1. Make sure that the `@EnableSwagger2` annotation is present in your Spring Boot application class. This annotation enables Swagger support for your application.
+
+2. Check that the `@ComponentScan` annotation is present in your Spring Boot application class. This annotation scans the package where your controllers are located.
+
+3. Verify that the `springdoc.swagger-ui.path` property is set in your `application.properties` file. This property specifies the URL path where the Swagger UI should be available. For example:
+
+   ```
+   springdoc.swagger-ui.path=/api-docs
+   ```
+
+4. Check that the `@RestController` annotation is present in your controller class. This annotation tells Spring that this class is a controller and should be scanned for Swagger documentation.
+
+5. Verify that the `@ApiOperation` annotation is present in your controller methods. This annotation provides additional information about the API operation, such as the HTTP method, the path, and the response type.
+
+If you have checked all of these things and are still experiencing issues, you may want to try restarting your application or clearing your browser cache.

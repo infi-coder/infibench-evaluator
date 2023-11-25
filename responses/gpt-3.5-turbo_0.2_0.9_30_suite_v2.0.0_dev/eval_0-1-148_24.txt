@@ -1,0 +1,19 @@
+Yes, you can use the `first` and `last` pseudo-class variants in Tailwind to achieve this effect. Here's the revised code:
+
+```html
+<ul>
+  <li
+    v-for="(item, index) in items"
+    :key="`item-${index}`"
+    class="border-solid border-b border-black {{ index === items.length - 1 ? '' : 'pb-4' }}"
+  >
+    Item
+  </li>
+</ul>
+```
+
+In the `class` attribute of the `<li>` element, we added the `pb-4` class to all elements except the last one. This class adds a padding-bottom of 1rem (which is equivalent to 4 in Tailwind's spacing scale) to the element. 
+
+We also used a ternary operator to conditionally add the `pb-4` class based on whether the current element is the last one in the list. If it is, we add an empty string instead, which doesn't add any additional classes to the element.
+
+This should give you the desired effect of having a border-bottom on all `<li>` elements except the last one.

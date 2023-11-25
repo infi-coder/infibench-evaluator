@@ -1,0 +1,26 @@
+To identify if a div is visible on the viewport on scroll, you can use the `Intersection Observer API`. This API allows you to observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+
+Here's an example of how you can use it to get the list of divs inside `#parent` which are visible on viewport on scroll:
+
+```javascript
+const parent = document.querySelector('#parent');
+const divs = parent.querySelectorAll('div');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      console.log(entry.target.id + ' is visible on viewport');
+    }
+  });
+});
+
+divs.forEach(div => {
+  observer.observe(div);
+});
+```
+
+In the above code, we first select the `#parent` element and all the `div` elements inside it. Then we create a new `IntersectionObserver` instance and pass a callback function to it. This callback function will be called whenever the intersection of the observed element with the viewport changes. If the observed element is currently intersecting with the viewport, we log a message to the console.
+
+Finally, we loop through all the `div` elements and call the `observe` method of the `IntersectionObserver` instance to start observing each of them.
+
+You don't need any external npm modules to use the `Intersection Observer API`. It is supported by all modern browsers.

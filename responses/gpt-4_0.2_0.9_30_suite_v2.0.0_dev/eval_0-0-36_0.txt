@@ -1,0 +1,16 @@
+```javascript
+import { useRouter } from "next/router";
+
+export default function Component(){
+    const router = useRouter();
+
+    const handleReload = async () => {
+        router.replace(router.asPath);
+    }
+
+    // Call handleReload() wherever you need to reload the page
+}
+```
+In the `[blank]` section, a function `handleReload` is defined. This function uses the `router.replace()` method to replace the current entry in the history stack. `router.asPath` is used to get the current path (including the query) shown in the browser.
+
+You can call `handleReload()` wherever you need to reload the page. This will trigger a client-side navigation and `getInitialProps` will be called in the browser.

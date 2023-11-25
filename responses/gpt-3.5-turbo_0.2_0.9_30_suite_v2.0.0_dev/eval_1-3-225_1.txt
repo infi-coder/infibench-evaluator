@@ -1,0 +1,15 @@
+Here's the revised code for the `pig_latin` function:
+
+```python
+def pig_latin(text):
+  words = text.split()
+  pig_words = []
+  for word in words:
+    endString = word[1:].lower()
+    startString = word[0].lower()
+    pig_word = endString + startString + 'ay'
+    pig_words.append(pig_word)
+  return ' '.join(pig_words)
+```
+
+The problem with the original code is that the `return` statement is inside the `for` loop, so it returns the first word after the first iteration. Also, the `them` variable is unnecessary and the capitalization of the second letter is incorrect. The revised code creates an empty list `pig_words` to store the pig Latin words, loops through each word in `words`, and creates a new pig Latin word by slicing the original word and concatenating the end string, start string, and "ay". The pig Latin word is then appended to `pig_words`. Finally, the function returns the joined `pig_words` with a space separator.

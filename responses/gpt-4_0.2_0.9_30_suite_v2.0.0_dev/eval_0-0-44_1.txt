@@ -1,0 +1,59 @@
+The issue you're facing might be due to the fact that Mongoose only creates indexes when the model is compiled, and it only does this once. If you're trying to add an index to an existing collection, you'll need to use the `Model.on('index')` event to catch any errors that occurred during indexing.
+
+Here's how you can do it:
+
+```javascript
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema()
+export class MySchemaClass extends Document {
+
+  @Prop()
+  _id: string;
+
+  @Prop({required: true, index: true})
+  type: string;
+
+  @Prop()
+  creationDate: string;
+
+  @Prop()
+  name: string;
+}
+
+export const MySchema = SchemaFactory.createForClass(MySchemaClass);
+```
+
+Then, in your module where you import the schema:
+
+```javascript
+@Module({
+  imports: [
+    MongooseModule.forFeatureAsync([
+      {
+        name: 'MySchemaClass',
+        useFactory: () => {
+          const schema = MySchema;
+          schema.index({ type: 1 });
+          return schema;
+        },
+      },
+    ]),
+  ],
+})
+export class MyModule {}
+```
+
+This will ensure that the index is created when the model is compiled.
+
+If you're still having trouble, you can also try using the `ensureIndexes()` function after the model has been compiled. This will force Mongoose to re-check and ensure all the defined indexes in your schema exist in the MongoDB collection.
+
+```javascript
+const MyModel = mongoose.model('MySchemaClass', MySchema);
+MyModel.ensureIndexes((err) => {
+  if (err) console.log(err);
+});
+```
+
+Remember to replace `'MySchemaClass'` with the name of your model.

@@ -1,0 +1,21 @@
+As of now, there is no specific "Developer Mode" to be enabled on iOS like there is on Android. The alert you're seeing is likely due to the app being a developer or test build that isn't properly signed for your device.
+
+Here's what you can do:
+
+1. Make sure the app is properly provisioned for your device. If you're not the developer, you'll need to get in touch with them and make sure your device's UDID is included in the provisioning profile that was used to build the app.
+
+2. If you're the developer, go to the Apple Developer portal and make sure the device is added to your list of devices and included in the provisioning profile.
+
+3. If the app was distributed via TestFlight, make sure you've accepted the invitation and are signed in with the correct Apple ID.
+
+4. If none of the above work, you may need to completely uninstall the app and reinstall it.
+
+If you're trying to access developer options for web development or debugging, you can do so through the Safari settings on your device:
+
+1. Go to Settings > Safari > Advanced > Turn on Web Inspector.
+
+2. Connect your device to your Mac.
+
+3. Open Safari on your Mac, go to the Develop menu. You should see your device listed there, and you can select the page to inspect.
+
+Remember, you need to have Safari on your Mac for this to work.

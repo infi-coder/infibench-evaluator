@@ -1,0 +1,52 @@
+The error you're seeing is due to the fact that you're trying to use Flutter's plugin services before `runApp()` has been called. The plugin services are not available until `runApp()` is called. 
+
+To fix this, you should move your code inside the `main()` function into the `initState()` method of your root widget. Here's an example of how you can do this:
+
+```dart
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    initHive();
+  }
+
+  Future<void> initHive() async {
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    Hive.init(appDocsDir.path);
+    // rest of your code...
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // ...
+  }
+}
+```
+In this example, the `initHive()` method is called from `initState()`, which is the first method called when the widget is inserted into the tree. This ensures that the plugin services are available when you try to use them.

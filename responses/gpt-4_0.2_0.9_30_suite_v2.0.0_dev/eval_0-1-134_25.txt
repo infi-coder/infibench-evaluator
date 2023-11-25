@@ -1,0 +1,33 @@
+It sounds like you're referring to a feature provided by a tool called Emmet. Emmet is a plugin for many popular text editors that greatly improves HTML & CSS workflow. 
+
+For example, if you type `.classname` and press `Tab`, it will automatically expand to `<div class="classname"></div>`.
+
+Here are the steps to use Emmet in some popular code editors:
+
+**Visual Studio Code:**
+
+1. Open Visual Studio Code.
+2. Create a new file and save it with a `.html` extension.
+3. Type `.classname` and press `Tab`.
+
+Emmet is built into Visual Studio Code by default, so you don't need to install anything extra.
+
+**Sublime Text:**
+
+1. Open Sublime Text.
+2. Go to `Tools > Install Package Control`.
+3. After installing Package Control, press `Ctrl+Shift+P` (Windows, Linux) or `Cmd+Shift+P` (OS X) to open the Command Palette.
+4. Type `Install Package` and press `Enter`.
+5. Type `Emmet` and press `Enter` to install Emmet.
+6. After installing Emmet, create a new file, save it with a `.html` extension, type `.classname`, and press `Tab`.
+
+**Atom:**
+
+1. Open Atom.
+2. Go to `Atom > Preferences`.
+3. Click on `Install`.
+4. In the search box, type `Emmet` and press `Enter`.
+5. Click on `Install` to install Emmet.
+6. After installing Emmet, create a new file, save it with a `.html` extension, type `.classname`, and press `Tab`.
+
+If you're using a different text editor, you can search "how to install Emmet in [your text editor]" to find specific instructions for your environment.

@@ -1,0 +1,56 @@
+The Java version used by Maven can be specified in the `JAVA_HOME` environment variable or in the `maven.compiler.source` and `maven.compiler.target` properties in your `pom.xml` file.
+
+If you're using the Maven Wrapper, you can specify the Java version in the `maven-wrapper.properties` file located in the `.mvn` directory of your project. Here's how you can do it:
+
+1. Open the `maven-wrapper.properties` file in a text editor.
+2. Look for the `distributionUrl` property.
+3. Change the value of the `distributionUrl` property to point to the Maven distribution that you want to use. The value should be a URL that points to a `.zip` or `.tar.gz` file.
+
+Here's an example:
+
+```properties
+distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.zip
+```
+
+If you want to use a specific version of Java, you can specify it in the `JAVA_HOME` environment variable. Here's how you can do it:
+
+1. Find the path to the Java installation directory. This is usually something like `C:\Program Files\Java\jdk1.8.0_241` on Windows or `/usr/lib/jvm/java-8-oracle` on Linux.
+2. Set the `JAVA_HOME` environment variable to the path of the Java installation directory.
+
+Here's how you can do it on Windows:
+
+```cmd
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_241
+```
+
+And here's how you can do it on Linux:
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+```
+
+You can also specify the Java version in the `pom.xml` file. Here's how you can do it:
+
+```xml
+<project>
+  ...
+  <build>
+    ...
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+    ...
+  </build>
+  ...
+</project>
+```
+
+In

@@ -1,0 +1,30 @@
+The error message `unknown revision v0.1.5` suggests that Go is unable to find the specified version of the module in the repository. This could be due to a few reasons:
+
+1. The specified version does not exist in the repository.
+2. There are issues with the access permissions to the repository.
+3. There are network issues preventing Go from accessing the repository.
+
+Here are a few steps you can take to debug this issue:
+
+1. **Check the specified version**: Make sure that the version `v0.1.5` of the `github.ibm.com/kms/key-protect-client` module actually exists in the repository. You can do this by visiting the repository and checking the tags.
+
+2. **Check access permissions**: Even though you have access to the repository, there might be issues with the access token or SSH key that Go is using. You can try the following steps to debug this:
+
+   - **Check the access token**: If you are using an access token, make sure it has the correct permissions. You can do this by visiting the settings of your GitHub account.
+
+   - **Check the SSH key**: If you are using an SSH key, make sure it is correctly set up. You can do this by running `ssh -T git@github.com` in your terminal. You should see a message saying that you've successfully authenticated.
+
+3. **Check network issues**: If there are no issues with the version or access permissions, there might be network issues preventing Go from accessing the repository. You can try the following steps to debug this:
+
+   - **Check your internet connection**: Make sure you have a stable internet connection.
+
+   - **Check the repository's availability**: Make sure the repository is available and not down for maintenance. You can do this by visiting the repository in your browser.
+
+   - **Check your firewall settings**: Your firewall might be blocking Go from accessing the repository. You can check this by temporarily disabling your firewall and trying to build the program again.
+
+4. **Clear Go's module cache**: Sometimes, Go's module cache can cause issues. You can clear it by running `go clean -modcache`.
+
+5. **Enable Go's debug mode**: You can enable Go's debug mode to get more information about what's going wrong. You can do this by setting the `GO111MODULE` environment variable to `debug` before running `go build`.
+
+   ```bash
+   $ export GO111MODULE=debug

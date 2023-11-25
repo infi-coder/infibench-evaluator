@@ -1,0 +1,16 @@
+The Rule of Five is not necessarily outdated, but it's true that modern C++ practices have reduced the need for it in many cases. 
+
+The Rule of Five is particularly important when you're dealing with raw owning pointers. If your class has a raw owning pointer, and you don't define these five functions, you can easily run into problems like double deletion, leaks, slicing, etc.
+
+However, as you've noted, smart pointers like `std::unique_ptr` and `std::shared_ptr` can manage the lifetime of resources, reducing the need for a custom destructor, copy constructor, copy assignment operator, move constructor, or move assignment operator. 
+
+So, in modern C++, you can often avoid defining these five functions by using smart pointers, container classes, and other RAII (Resource Acquisition Is Initialization) techniques. 
+
+But there are still cases where you might need to define these functions. For example:
+
+- You're writing a low-level data structure, where you need precise control over memory management.
+- You're interfacing with C-style code, which doesn't understand C++ smart pointers.
+- You're writing a class that needs to control its copy behavior, for example to implement reference counting or copy-on-write semantics.
+- You're writing a class that has nontrivial move semantics.
+
+In these cases, the Rule of Five is still relevant and important. But in general, modern C++ code should prefer smart pointers and RAII techniques, which can make the code safer and easier to understand.

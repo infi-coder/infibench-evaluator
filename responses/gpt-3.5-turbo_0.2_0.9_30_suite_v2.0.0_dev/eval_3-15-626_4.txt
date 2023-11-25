@@ -1,0 +1,25 @@
+You can use the `WorkbookConnection` object in VBA to automate Power Query. Here's an example code to load data from a Power Query to a worksheet:
+
+```
+Sub LoadPowerQueryToWorksheet()
+    Dim conn As WorkbookConnection
+    Dim cmdText As String
+    Dim targetSheet As Worksheet
+    
+    ' Set the target worksheet
+    Set targetSheet = ThisWorkbook.Worksheets("Sheet2")
+    
+    ' Set the command text for the Power Query
+    cmdText = "SELECT * FROM [MyQuery]"
+    
+    ' Get the connection for the Power Query
+    Set conn = ThisWorkbook.Connections("MyQuery")
+    
+    ' Refresh the connection and load the data to the target worksheet
+    conn.OLEDBConnection.CommandText = cmdText
+    conn.Refresh
+    conn.Worksheet.ListObjects(1).DataBodyRange.Copy targetSheet.Range("A1")
+End Sub
+```
+
+Replace "MyQuery" with the name of your Power Query.

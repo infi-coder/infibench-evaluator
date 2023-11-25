@@ -1,0 +1,37 @@
+# Corresponding to post https://stackoverflow.com/questions/66654037
+id: 0-0-42
+# for case self identificaton
+
+prompt_path: prompt_0-0-42.txt
+# relative path to the prompt text
+
+type: code debugging
+# type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  keywords:
+    - content:
+        or:
+          - content: const MongoStore = require('connect-mongo')
+          - content: const MongoStore = require("connect-mongo")
+    - content:
+        content: "MongoStore\\.create\\(\\{.*mongoUrl:.*process\\.env\\.MONGODB_URI"
+        regex: true

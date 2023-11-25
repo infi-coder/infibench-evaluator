@@ -1,0 +1,18 @@
+The `FormatException` occurs when the response body is not in a valid JSON format. To solve this issue, you can try the following steps:
+
+1. Check the response body: You can print the response body and check if it is in a valid JSON format. If it is not, you need to fix the PHP file to return a valid JSON response.
+
+2. Check the content-type header: Make sure that the content-type header of the response is set to `application/json`. If it is not, you can set it in the PHP file or in the Flutter code.
+
+3. Use a try-catch block: Wrap the `json.decode()` method in a try-catch block to catch the `FormatException` and handle it gracefully. For example:
+
+```dart
+try {
+  List data = json.decode(response.body);
+  // do something with the data
+} catch (e) {
+  print('Error decoding JSON: $e');
+}
+```
+
+By using these steps, you should be able to solve the `FormatException` and decode the JSON response successfully.

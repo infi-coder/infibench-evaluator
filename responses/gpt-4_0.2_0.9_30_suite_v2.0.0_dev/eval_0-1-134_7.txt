@@ -1,0 +1,15 @@
+It sounds like you're referring to a feature provided by a tool called Emmet. Emmet is a plugin for many popular text editors that greatly improves HTML & CSS workflow. 
+
+For example, if you type `.classname` and press `Tab`, it will automatically expand to `<div class="classname"></div>`. 
+
+If it's not working for you, here are a few things you can check:
+
+1. **Check if your text editor supports Emmet**: Emmet is built-in in many text editors like Visual Studio Code, Sublime Text, Atom, etc. If you're using an editor that doesn't support Emmet, you might need to install it manually.
+
+2. **Check if Emmet is enabled**: If your editor supports Emmet but it's not working, it might be disabled. You can check this in your editor's settings.
+
+3. **Check your syntax**: Make sure you're using the correct syntax. For example, `.classname` should expand to a `div` with a class of `classname`. If you're trying to create an element other than a `div`, you need to specify it, like `ul.classname` for a `ul` with a class of `classname`.
+
+4. **Check your key binding**: In some editors, you might need to press a different key instead of `Tab` to expand Emmet abbreviations. Check your editor's documentation to see if this is the case.
+
+If you've checked all of these and it's still not working, you might want to look for help specific to your text editor.

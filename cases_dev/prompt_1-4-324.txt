@@ -1,0 +1,20 @@
+How to split a comma and colon separated column into respective columns in R?
+
+Say for example I have a dataframe `df`, who has only one column `col1` that looks something like:
+
+```r
+name:Michael,Age:31,City:NYC
+name:Tom,Age:25,City:NA
+```
+
+How could I split this column into separate columns such that it would yield a result similar as a data frame to:
+
+```r
+   name   | Age | City
+1 Michael | 31  | NYC
+2  Tom    | 25  | NA
+```
+
+Please write a function `mySplit` in R, which takes data frame variable `df` as the argument, which is shown above, and returns tables according to my above requirements.
+
+Function signature is: `mySplit <- function(df)`

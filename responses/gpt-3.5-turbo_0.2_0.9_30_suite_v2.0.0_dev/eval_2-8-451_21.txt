@@ -1,0 +1,30 @@
+Yes, Go modules (formerly known as vgo) also supports a similar approach to what you described. You can use a multi-stage Dockerfile to separate the dependency installation from the actual build process.
+
+Here's an example Dockerfile:
+
+```
+# First stage: Install dependencies
+FROM golang:1.11-alpine AS build-env
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Second stage: Build the binary
+FROM build-env AS build
+COPY . .
+RUN go build -o myapp
+
+# Final stage: Copy the binary and run it
+FROM alpine
+WORKDIR /app
+COPY --from=build /app/myapp ./
+CMD ["./myapp"]
+```
+
+In the first stage, we install the dependencies using `go mod download`. This will download all the dependencies listed in `go.mod` and `go.sum`. We also copy over the `go.mod` and `go.sum` files.
+
+In the second stage, we copy over the entire application code and build the binary using `go build`.
+
+Finally, in the third stage, we copy over the binary from the second stage and run it.
+
+This approach takes advantage of Docker's layer caching, so if the `go.mod` and `go.sum` files haven't changed, Docker will reuse the cached layer and skip the dependency installation step, making rebuilds faster.

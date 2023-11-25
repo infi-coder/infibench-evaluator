@@ -1,0 +1,63 @@
+# Corresponding to post https://stackoverflow.com/questions/62810567
+id: 0-0-4
+# for case self identificaton
+
+prompt_path: prompt_0-0-4.txt
+# relative path to the prompt text
+
+# type: code debugging
+# type: code completion
+type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  blank_filling:
+    template: "- Pressable and TouchableOpacity have the same basic functionalities. They both are for making a text/image [blank].
+
+- Pressable has some new props, like [blank] which you can use to define how far a touch can register away from the the wrapped element.
+
+- On the other hand, TouchableOpacity also have some unique functionalities. For example, TouchableOpacity has automatic [blank], where with Pressable you need to add your own custom [blank] with Pressable's `style` prop. Furthermore, TouchableOpacity adds the [blank] animation on press."
+    
+    # blank_str: "[blank]"
+    # [optional] how blanks are represented in the template
+
+    escape: " '\"\n`"
+    # [optional] list of characters to be pre-filtered for model responses for blanks, default: " '"·"
+
+    targets: 
+        # list gold answers for blanks sequentially
+        - content:
+          - content: .*clickable.*
+            regex: true
+          - content: .*interactive.*
+            regex: true
+          - content: .*user interactive.*
+            regex: true
+          - content: .*interaction.*
+            regex: true
+        - content: 
+          - content: .*hitrect.*
+            regex: true
+          to_lower: true
+        - content: feedback
+        - content: feedback
+        - content: 
+          - opacity
+          - content: .*fade.*
+            regex: true

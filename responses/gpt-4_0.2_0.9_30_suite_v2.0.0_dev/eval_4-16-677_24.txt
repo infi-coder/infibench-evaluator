@@ -1,0 +1,20 @@
+The issue you're facing is due to the single quotes around the `$searchT` variable. In Bash, single quotes preserve the literal value of all characters within the quotes, which means the variable `$searchT` is not being expanded to its value.
+
+You should use double quotes instead. Here's the corrected script:
+
+```bash
+#!/bin/bash
+read -p "enter search term here: " searchT
+
+if [[ $(cat test.txt | grep -wi "$searchT") ]]; then     
+    echo "$(cat test.txt | grep "$searchT" | wc -l) number of matches found"
+    echo $(cat test.txt | grep "$searchT")
+
+else 
+    echo "no match found"    
+fi
+
+exit 0
+```
+
+In this script, `$searchT` will be correctly expanded to the value that the user inputs. Also, I've moved `wc -l` to only count the lines from the `grep` command, not from the `cat` command. This will give you the correct count of matches.

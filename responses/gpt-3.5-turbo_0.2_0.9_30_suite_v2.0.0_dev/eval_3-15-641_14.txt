@@ -1,0 +1,24 @@
+You can use the Windows API to get the local path of the OneDrive folder. Here's an example code snippet that you can use:
+
+```
+Private Declare Function SHGetKnownFolderPath Lib "shell32.dll" (ByRef rfid As Any, ByVal dwFlags As Long, ByVal hToken As Long, ByRef pszPath As Any) As Long
+
+Private Const FOLDERID_SkyDrive As String = "{A52BBA46-E9E1-435f-B3D9-28DAA648C0F6}"
+Private Const FOLDERID_SkyDrivePro As String = "{7A3B4ADD-CC5F-4EBA-9B8C-2F8A0B93EAF4}"
+Private Const FOLDERID_OneDrive As String = "{018D5C66-4533-4307-9B53-224DE2ED1FE6}"
+
+Public Function GetOneDriveFolderPath() As String
+    Dim sPath As String
+    Dim lResult As Long
+    
+    lResult = SHGetKnownFolderPath(StrPtr(FOLDERID_OneDrive), 0, 0, sPath)
+    
+    If lResult = 0 Then
+        GetOneDriveFolderPath = sPath
+    Else
+        GetOneDriveFolderPath = ""
+    End If
+End Function
+```
+
+You can call this function to get the local path of the OneDrive folder and then use it to create folders and files on SharePoint using VBA.

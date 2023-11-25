@@ -1,0 +1,11 @@
+In R, when you bind two data frames with the same column names using `cbind()`, it actually alters the names slightly to maintain uniqueness. The column names of the resulting data frame are made unique when they are bound together by making the names of the second data frame as 'a.1', 'b.1' and so on.
+
+So, in your case, the second 'a' column would actually be named 'a.1'. You can select the second 'a' column by using this unique name.
+
+Here is the code to select the second 'a' column and assign it to a variable named `second_col`:
+
+```r
+second_col <- d3$a.1
+```
+
+This will select the second 'a' column from the `d3` data frame and assign it to the `second_col` variable.

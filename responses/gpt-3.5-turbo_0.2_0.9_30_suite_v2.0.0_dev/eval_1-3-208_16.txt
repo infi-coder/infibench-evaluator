@@ -1,0 +1,26 @@
+The issue with your code is that you are checking if the entire input string is present in the `correct` string, which is not what you want. Instead, you should check if all characters in the input string are present in the `correct` string.
+
+Here's the corrected code:
+
+```python
+import string
+
+def checkString(text):
+    correct = string.ascii_letters + string.digits
+    for char in text:
+        if char not in correct:
+            return False
+    return True
+```
+
+In this code, we iterate over each character in the input string and check if it is present in the `correct` string. If any character is not present, we immediately return `False`. If all characters are present, we return `True`.
+
+You can call this function with the input string as follows:
+
+```python
+text = input("Enter: ")
+if checkString(text):
+    print("Success")
+else:
+    print("Failure")
+```

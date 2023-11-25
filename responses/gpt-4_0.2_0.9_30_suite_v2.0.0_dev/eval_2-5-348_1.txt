@@ -1,0 +1,9 @@
+The error message you're seeing is due to a known issue with Java 8u20 and later on Windows, where the handling of quotes in command line arguments has changed. This can cause problems when trying to run commands that include spaces in the paths, as you are doing.
+
+One way to solve this problem is to avoid using spaces in your paths. You can do this by installing your tools (like NetBeans and Java) in directories that don't include spaces. For example, you could use `C:\Java\jdk-11.0.5` instead of `C:\Program Files\Java\jdk-11.0.5`, and `C:\NetBeans-11.1` instead of `C:\Program Files\NetBeans-11.1`.
+
+If changing the installation paths is not an option, you can try to escape the quotes in your command. However, this can be tricky due to the way different parts of the command line interpret escape characters.
+
+Another possible solution is to downgrade to a version of Java that doesn't have this issue, but this may not be desirable or possible depending on your project requirements.
+
+Finally, you may want to check if there are any updates or patches available for NetBeans that address this issue.

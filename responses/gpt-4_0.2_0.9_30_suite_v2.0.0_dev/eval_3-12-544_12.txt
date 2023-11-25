@@ -1,0 +1,16 @@
+The error you're encountering is due to the fact that you're trying to use Flutter's engine bindings before they've been initialized. This is because you're calling `getApplicationDocumentsDirectory()` at the top level of your application, which is executed before `runApp()`.
+
+To fix this, you need to ensure that `WidgetsFlutterBinding.ensureInitialized()` is called before you use `getApplicationDocumentsDirectory()`. This method ensures that Flutter's engine bindings are properly initialized.
+
+Here's how you can modify your code:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // add this line
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+
+This should resolve the error you're encountering.

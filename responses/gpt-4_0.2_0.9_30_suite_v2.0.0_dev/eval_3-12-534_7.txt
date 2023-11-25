@@ -1,0 +1,45 @@
+You can use multiple `Consumer` widgets in a single widget to listen to multiple `ChangeNotifier` classes. Here is an example:
+
+```dart
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<FirstNotifier>(
+      builder: (context, firstNotifier, _) => Consumer<SecondNotifier>(
+        builder: (context, secondNotifier, _) => Consumer<ThirdNotifier>(
+          builder: (context, thirdNotifier, _) => Consumer<FourthNotifier>(
+            builder: (context, fourthNotifier, _) => CurvedNavigationBar(
+              items: <Widget>[
+                Icon(Icons.add, size: 30),
+                Icon(Icons.list, size: 30),
+                Icon(Icons.compare_arrows, size: 30),
+                Icon(Icons.call_split, size: 30),
+              ],
+              onTap: (index) {
+                switch (index) {
+                  case 0:
+                    firstNotifier.doSomething();
+                    break;
+                  case 1:
+                    secondNotifier.doSomething();
+                    break;
+                  case 2:
+                    thirdNotifier.doSomething();
+                    break;
+                  case 3:
+                    fourthNotifier.doSomething();
+                    break;
+                }
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+In this example, `FirstNotifier`, `SecondNotifier`, `ThirdNotifier`, and `FourthNotifier` are the classes that extend `ChangeNotifier`. The `doSomething()` method is a method in each of these classes that you want to call when the corresponding item in the `CurvedNavigationBar` is tapped.
+
+Remember to provide these notifiers in your widget tree using `ChangeNotifierProvider` or `MultiProvider`.

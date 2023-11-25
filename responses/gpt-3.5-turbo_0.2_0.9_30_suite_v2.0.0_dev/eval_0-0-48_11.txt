@@ -1,0 +1,11 @@
+Sure! The code you provided is almost correct, but you need to use the `|` operator instead of the `,` operator to combine the two index signatures. Here's the corrected code:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit]: number;
+} | {
+  [key in color]: boolean;
+}
+```
+
+This creates a union type that can have either the numeric properties for each fruit or the boolean properties for each color.

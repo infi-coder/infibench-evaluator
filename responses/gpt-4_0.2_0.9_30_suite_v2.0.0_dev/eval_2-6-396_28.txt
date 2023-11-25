@@ -1,0 +1,20 @@
+The error message is telling you that you cannot create an index on a navigation property. Indexes can only be created on scalar properties, such as `int`, `string`, `DateTime`, etc.
+
+In your case, you are trying to create an index on `Gender`, which is a navigation property. If you want to create an index on `GenderId`, which is a foreign key and a scalar property, you should do it like this:
+
+```c#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderId);
+    });
+}
+```
+
+This way, you are creating an index on `GenderId`, which is a scalar property and it's allowed.

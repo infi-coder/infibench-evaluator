@@ -1,0 +1,29 @@
+The `rename()` function in pandas is used to alter axes labels, that is to change the names of the labels (index or columns) of the DataFrame. However, in your case, you are trying to rename the series returned by the `mean()` function, which is why you are getting the error.
+
+Here is a function `renameDataFrame(df)` that should do what you want:
+
+```python
+import pandas as pd
+
+def renameDataFrame(df):
+    avg = df.groupby(["t"], sort=False)["p"].mean().reset_index()
+    avg = avg.rename(columns = {"p":"mean"})
+    return avg
+```
+
+In this function, `df.groupby(["t"], sort=False)["p"].mean()` will return a Series with the mean of "p" for each "t". `reset_index()` is used to convert the index "t" into a column of the DataFrame. Then, `rename(columns = {"p":"mean"})` is used to rename the column "p" to "mean". 
+
+You can use this function like this:
+
+```python
+import pandas as pd
+import numpy as np
+
+datafile = 'your_data_file.txt'
+datain = np.loadtxt(datafile)
+df = pd.DataFrame(data = datain, columns = ["t","p","x","y","z"])
+
+avg = renameDataFrame(df)
+```
+
+In this code, replace `'your_data_file.txt'` with the path to your data file. The DataFrame `avg` will contain the average of "p" for each "t", with the column name changed to "mean".

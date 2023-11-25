@@ -1,0 +1,10 @@
+I've a fresh install of netbean 11.1. Now I'm trying to build a project:
+```
+cd C:\projects\open; "JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5" cmd /c "\"\"C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd\" -DskipTests=true -Dmaven.ext.class.path=\"C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar\" -Dfile.encoding=UTF-8 clean install\"" Cannot run program "cmd" (in directory "C:\projects\open"): Malformed argument has embedded quote: "C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\mvn.cmd" -DskipTests=true -Dmaven.ext.class.path="C:\Program Files\NetBeans-11.1\netbeans\java\maven-nblib\netbeans-eventspy.jar" -Dfile.encoding=UTF-8 clean install
+```
+But I get the following error output:
+```
+Cannot run program "cmd" (in directory "C:\projects\open"): Malformed argument has embedded quote: "C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\mvn.cmd"
+```
+I've build this project with netbeans 11.1 before but have a new pc. and a fresh install, tho I'm sure there was no problem last time I tried to install everything.
+How to solve the problem?

@@ -1,0 +1,59 @@
+In Rust, there are several ways to express the same logic in a more idiomatic way. Here are a few examples:
+
+1. Using `if let` with a condition:
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        if let Some(foo_val) = foo {
+            if foo_val < 5 {
+                foo.replace(5);
+            }
+        } else {
+            foo.replace(5);
+        }
+    }
+    ```
+
+2. Using `match` with a tuple:
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        match (foo, foo.filter(|&x| x >= 5)) {
+            (None, _) | (_, None) => { foo.replace(5); }
+            _ => {}
+        }
+    }
+    ```
+
+3. Using `if` with `Option::is_none` and `Option::filter`:
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        if foo.is_none() || foo.filter(|&x| x < 5).is_some() {
+            foo.replace(5);
+        }
+    }
+    ```
+
+4. Using `Option::unwrap_or` and `Option::filter`:
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        foo = foo.filter(|&x| x >= 5).or(Some(5));
+    }
+    ```
+
+5. Using `Option::map_or`:
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        foo = foo.map_or(Some(5), |x| if x < 5 { Some(5) } else { Some(x) });
+    }
+    ```
+
+All of these examples will replace the value of `foo` with `5` if `foo` is `None` or if the value of `foo` is less than `5`.

@@ -1,0 +1,17 @@
+The Rule of Five is not necessarily outdated, but it's true that with the advent of smart pointers and RAII (Resource Acquisition Is Initialization) in modern C++, the need for manual memory management (and thus the need for a user-defined destructor, copy constructor, copy assignment operator, move constructor, or move assignment operator) has been greatly reduced.
+
+Smart pointers, such as `std::unique_ptr` and `std::shared_ptr`, automatically manage the memory they own, which means they automatically delete the memory when it's no longer needed. This makes it easier to write code that doesn't leak memory, and reduces the need for a user-defined destructor.
+
+However, there are still cases where you might need to define these special member functions:
+
+1. **Performance**: While smart pointers are great, they do introduce a slight overhead. In performance-critical code, you might choose to manage memory manually to avoid this overhead.
+
+2. **Legacy Code**: If you're working with older code that doesn't use smart pointers, you might need to define these special member functions.
+
+3. **Resource Management**: If your class manages resources other than memory (like a file or network connection), you might need to define these special member functions to correctly manage those resources.
+
+4. **Deep Copy**: If your class contains pointers and you want to provide a deep copy functionality, you would need to define a copy constructor and copy assignment operator.
+
+5. **Custom Behavior**: If you want to provide custom behavior when an object is copied or moved, you would need to define these special member functions.
+
+So while it's true that the need for these special member functions has been reduced, there are still cases where they're necessary. The Rule of Five is a guideline to ensure that if you do need to define one of these special member functions, you define all of them to ensure correct behavior.

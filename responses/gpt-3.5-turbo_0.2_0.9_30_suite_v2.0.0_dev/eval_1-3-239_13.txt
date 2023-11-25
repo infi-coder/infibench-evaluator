@@ -1,0 +1,8 @@
+Here's a bash script that you can use to install Python 3.6.5 using brew:
+
+```
+#!/bin/bash
+brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/7a4d0d3c5d5c9a8d5d4c3c8c3f4b9f9c4d5a7e5b/Formula/python%403.6.rb
+```
+
+Save this script to a file with a `.sh` extension (e.g. `install_python.sh`), make it executable with `chmod +x install_python.sh`, and then run it with `./install_python.sh`. This will install Python 3.6.5 using brew.

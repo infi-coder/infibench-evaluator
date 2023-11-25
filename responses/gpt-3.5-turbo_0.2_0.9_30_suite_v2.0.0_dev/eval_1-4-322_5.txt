@@ -1,0 +1,39 @@
+You can use `group_split` and `map` functions from the `tidyverse` package to achieve this. Here's the implementation of the `myConvert` function:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>%
+    group_split(list_names) %>%
+    map(~ .x$list_values)
+}
+```
+
+Here's how it works:
+
+1. `group_split(list_names)` splits the data into groups based on the unique values of `list_names` column.
+2. `map(~ .x$list_values)` takes each group and extracts the `list_values` column as a vector.
+3. The resulting list has names based on the unique values of `list_names` column and elements based on the corresponding values of `list_values` column.
+
+You can test the function with the sample data provided in the question:
+
+```r
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+                  list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+```
+
+This should give you the desired output:
+
+```
+$Chevy
+[1] "Equinox"
+
+$Dodge
+[1] "Caravan" "Ram"    
+
+$Ford
+[1] "Ranger"   "F150"     "Explorer"
+```

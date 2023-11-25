@@ -1,0 +1,14 @@
+The error message you're seeing is due to a known issue with the way Java handles quotes in command line arguments. It's trying to interpret the embedded quotes in your command line argument and failing.
+
+One way to solve this problem is to update your JDK to a version that has a fix for this issue. JDK 8u40 and later versions include a fix for this issue.
+
+If you can't update your JDK, another workaround is to modify your command to avoid using embedded quotes. You can do this by setting the `JAVA_HOME` and `MAVEN_OPTS` environment variables separately, like this:
+
+```bash
+set JAVA_HOME=C:\Program Files\Java\jdk-11.0.5
+set MAVEN_OPTS=-DskipTests=true -Dmaven.ext.class.path=C:\Program Files\NetBeans-11.1\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8
+cd C:\projects\open
+"C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\mvn.cmd" clean install
+```
+
+This way, you're not embedding any quotes in your command line arguments, which should avoid the issue.

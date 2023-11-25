@@ -1,0 +1,34 @@
+How to return value from function in Kotlin Android
+
+In my application I want used  function and I want return !
+I set return value from function and I write below codes, but show me  value!
+
+```
+fun Spinner.setupListWithAdapter(list: MutableList<String>): String {
+    var itemSelected = ""
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+    Log.e("categoryLog","2 : " +itemSelected)
+    return itemSelected
+}
+```
+
+When show logs in , first show 2 then show 1 !
+
+```
+2022-08-12 14:49:59.261 12074-12074/com.my.app E/categoryLog: 2 : 
+2022-08-12 14:49:59.310 12074-12074/com.my.app E/categoryLog: 1 : Movies
+```
+
+Why first call  then call  ?!
+I used this  in fragment and for this when used this in `fragment` show me  value!
+How can I fix it?

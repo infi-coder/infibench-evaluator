@@ -1,0 +1,19 @@
+To define an array of objects with a specific structure, you can use an interface. Here's an example of how you can define an interface for the objects in the array:
+
+```typescript
+interface Product {
+  name: string;
+  price: number;
+  description: string;
+}
+```
+
+Then, you can use this interface to define the type of the `products` parameter in your function:
+
+```typescript
+bagTotal = (products: Product[]) => {
+  // function does stuff
+}
+```
+
+This will ensure that the `products` parameter is an array of objects that have the `name`, `price`, and `description` properties with the correct types.

@@ -1,0 +1,17 @@
+You can use the `source` command to reload your `.bash_profile` without closing and reopening your terminal. Here's how:
+
+```bash
+source ~/.bash_profile
+```
+
+This command reads and executes the `.bash_profile` file in the current shell. The `~` symbol is a shortcut for your home directory.
+
+If you've made changes to the `.bash_profile`, this will apply them to your current terminal session. 
+
+Alternatively, you can use the `.` command, which is a shorthand for `source`:
+
+```bash
+. ~/.bash_profile
+```
+
+These commands won't restart your terminal, but they will apply any new changes you've made to your `.bash_profile`.

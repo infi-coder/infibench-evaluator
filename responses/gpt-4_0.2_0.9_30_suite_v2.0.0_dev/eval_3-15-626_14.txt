@@ -1,0 +1,44 @@
+Your code seems to be on the right track, but there are a few issues that need to be addressed:
+
+1. `query` and `currentSheet` are not declared. You should declare them as `String` and `Worksheet` respectively.
+2. You are trying to use `query.Name` but `query` is a string, not an object. You should use `query` directly.
+3. You are not using `currentSheet` anywhere in your code.
+
+Here is a corrected version of your code:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    Dim query As String
+    Dim targetSheet As Worksheet
+
+    ' Get the query from Sheet6
+    query = Sheets("Sheet6").Range("A1").Value
+
+    ' Set the target sheet
+    Set targetSheet = Sheets("target")
+
+    ' Create a ListObject with a Query Table
+    With targetSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=targetSheet.Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+
+End Sub
+```
+
+This code will get the query from cell A1 in Sheet6, and then use that query to create a new QueryTable in the target sheet. The QueryTable will be refreshed immediately.

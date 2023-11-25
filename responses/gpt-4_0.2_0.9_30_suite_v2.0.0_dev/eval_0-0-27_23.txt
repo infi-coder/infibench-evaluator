@@ -1,0 +1,26 @@
+Your code seems fine at first glance. However, there are a few things you can check to troubleshoot this issue:
+
+1. **Network Connection**: Ensure that your device/emulator has a proper internet connection. Apollo Client fetches data over the network, so a lack of connectivity could cause the loading state to persist indefinitely.
+
+2. **Server Availability**: Check if the server at 'https://48p1r2roz4.sse.codesandbox.io' is up and running. You can do this by visiting the URL in a web browser or using a tool like Postman to send a request.
+
+3. **Correct Query**: Make sure the GraphQL query `EXCHANGE_RATES` is correct and the server supports it. You can test the query directly on the server if it provides a GraphQL playground.
+
+4. **Apollo Client Version**: There might be compatibility issues with the version of Apollo Client you're using. Try downgrading or upgrading the version to see if it resolves the issue.
+
+5. **Error Handling**: It's possible that an error is occurring but not being logged. Try logging the error in a more explicit way:
+
+    ```javascript
+    if (error) {
+        console.error('Error:', error);
+        return <Text>Error :(</Text>;
+    }
+    ```
+
+6. **React Native Debugger**: If you're using React Native Debugger, try disabling it. There are known issues with React Native Debugger causing network requests to hang.
+
+7. **React Native Version**: There might be compatibility issues with the version of React Native you're using. Try downgrading or upgrading the version to see if it resolves the issue.
+
+8. **Apollo Client Setup**: Check if the Apollo Client is set up correctly. You can refer to the [official Apollo Client documentation](https://www.apollographql.com/docs/react/get-started/) for this.
+
+If none of the above solutions work, please provide more context or any error messages you're seeing, and I'd be happy to help further.

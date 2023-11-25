@@ -1,0 +1,29 @@
+Here's a possible implementation of the `to_camel_case` function in Python:
+
+```python
+def to_camel_case(text):
+    if not text:
+        return ""
+    words = re.split(r"[_-]", text)
+    return words[0] + "".join(word.capitalize() for word in words[1:])
+```
+
+This function first checks if the input string is empty and returns an empty string in that case. It then splits the string into words using a regular expression that matches either underscores or dashes as delimiters. The first word is added to the result as is, while the remaining words are capitalized and concatenated together. The `capitalize()` method capitalizes the first letter of each word, but leaves the rest of the word unchanged.
+
+Here's how you can use this function to pass the test cases:
+
+```python
+import re
+
+def to_camel_case(text):
+    if not text:
+        return ""
+    words = re.split(r"[_-]", text)
+    return words[0] + "".join(word.capitalize() for word in words[1:])
+
+# Test cases
+print(to_camel_case(''))  # ""
+print(to_camel_case("the_stealth_warrior"))  # "theStealthWarrior"
+print(to_camel_case("The-Stealth-Warrior"))  # "TheStealthWarrior"
+print(to_camel_case("A-B-C"))  # "ABC"
+```

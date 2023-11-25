@@ -1,0 +1,15 @@
+Tailwind CSS is a utility-first CSS framework for rapidly building custom designs. It doesn't provide a direct way to target child elements like you would do in CSS with the `>` operator. 
+
+Tailwind CSS operates by adding utility classes directly to HTML elements. Therefore, you would need to add the necessary classes to the child `div` elements directly.
+
+For example:
+
+```html
+<div class="section">
+  <div class="bg-red-500"> <!-- Add your Tailwind CSS classes here -->
+    <!-- Content -->
+  </div>
+</div>
+```
+
+If you need to apply styles conditionally or based on some hierarchy, you might need to use JavaScript to add or remove classes, or consider using a CSS-in-JS solution that works with Tailwind CSS, like `@emotion/css` or `styled-components`.

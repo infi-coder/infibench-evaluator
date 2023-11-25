@@ -1,0 +1,21 @@
+The error message you're seeing is typically caused by an HTTP request that is not returning valid JSON. The '<' character at the start of the response suggests that you might be getting an HTML error page instead.
+
+First, ensure that your API is working correctly by testing the endpoint (`/api/Employee/Index`) directly in a browser or using a tool like Postman. If you get a JSON response, then your API is working correctly.
+
+If your API is working correctly, then the issue might be with the URL you're using in your Blazor app. The URL `/api/Employee/Index` is relative to the current page, not the root of the site. If your Blazor app is hosted at a different base address than your API, you'll need to use an absolute URL.
+
+Here's how you can modify your code:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("https://your-api-url/api/Employee/Index");
+```
+
+Replace `https://your-api-url` with the actual URL of your API.
+
+Also, note that `GetJsonAsync` method is obsolete in .NET 5.0+. You should use `GetFromJsonAsync` method from `System.Net.Http.Json` namespace.
+
+```csharp
+empList = await Http.GetFromJsonAsync<Employee[]>("https://your-api-url/api/Employee/Index");
+```
+
+If you're still having issues, please provide more details about your setup, including where your API and Blazor app are hosted, and we can provide more specific advice.

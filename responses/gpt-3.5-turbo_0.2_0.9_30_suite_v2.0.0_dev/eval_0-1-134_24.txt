@@ -1,0 +1,37 @@
+It sounds like you might be trying to use a CSS preprocessor like Sass or Less. These preprocessors allow you to write CSS in a more efficient way by using variables, nesting, and other features. 
+
+In Sass, for example, you can use the `&` symbol to reference the parent selector. So if you have a class called `.button` and you want to add a hover effect, you can write:
+
+```
+.button {
+  background-color: blue;
+  color: white;
+  
+  &:hover {
+    background-color: red;
+  }
+}
+```
+
+This will compile to:
+
+```
+.button {
+  background-color: blue;
+  color: white;
+}
+
+.button:hover {
+  background-color: red;
+}
+```
+
+If you're not using a preprocessor and you're just trying to use regular CSS, make sure you're using the correct syntax. To target a class, you should use a period before the class name, like this:
+
+```
+.my-class {
+  /* styles go here */
+}
+```
+
+If you're still having trouble, feel free to provide more information or code snippets and I can try to help you troubleshoot further.

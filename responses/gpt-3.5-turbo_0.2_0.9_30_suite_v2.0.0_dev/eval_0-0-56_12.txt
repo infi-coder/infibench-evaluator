@@ -1,0 +1,43 @@
+It seems like the issue is with the port mapping in your Docker configuration. When you run the container with `docker-compose run --publish 8080:8080 --rm app bash`, you are publishing the container's port 8080 to the host's port 8080. However, in your Vite configuration, you are setting the server to listen on port 8080 inside the container.
+
+To fix this, you can either change the port mapping in your Docker configuration to map the container's port 8080 to a different port on the host, like this:
+
+```yaml
+version: '3.7'
+
+services:
+  app:
+    image: myapp
+    build: .
+    container_name: myapp
+    ports:
+      - "8081:8080" # map container's port 8080 to host's port 8081
+```
+
+Then, you can access the Vite server at `localhost:8081` on your host machine.
+
+Alternatively, you can change the port that Vite listens on inside the container to match the port mapping in your Docker configuration, like this:
+
+```typescript
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+    resolve: { alias: { '@': '/src' } },
+    plugins: [vue()],
+    server: {
+        port: 8080 // change to 0 to use a random port
+    }
+})
+```
+
+Then, you can run the container with the original port mapping:
+
+```bash
+docker-compose run --publish 8080:8080 --rm app bash
+```
+
+And access the Vite server at `localhost:8080` on your host machine.
+
+Note that if you change the port that Vite listens on inside the container, you will need to update the `EXPOSE` instruction in your Dockerfile to match the new port.

@@ -1,0 +1,36 @@
+It seems like you are trying to use a specific version of Java with Maven Wrapper in your build process. If you are using a build system like Jenkins or a CI/CD pipeline, you might have a pre-installed JDK on your build agent.
+
+However, if you want to use Maven Wrapper with a specific version of Java, you can specify the Java version in the `pom.xml` file of your Maven project. Here's how you can do it:
+
+```xml
+<properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+```
+
+In the above example, replace `1.8` with the version of Java you want to use.
+
+If you are using the Maven Wrapper from the command line, you can specify the Java version by setting the `JAVA_HOME` environment variable to point to the JDK installation directory. Here's how you can do it:
+
+For Unix-based systems (like Linux or macOS):
+
+```bash
+export JAVA_HOME=/path/to/your/jdk
+```
+
+For Windows:
+
+```cmd
+set JAVA_HOME=C:\path\to\your\jdk
+```
+
+Replace `/path/to/your/jdk` or `C:\path\to\your\jdk` with the actual path to your JDK installation.
+
+After setting the `JAVA_HOME` environment variable, you can run the Maven Wrapper command:
+
+```bash
+./mvnw clean install
+```
+
+This will use the specified Java version to run your Maven build.

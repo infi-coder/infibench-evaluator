@@ -1,0 +1,22 @@
+Sure! Here's a possible implementation of the `keys_and_prices` function:
+
+```javascript
+function keys_and_prices(raw_obj) {
+  let keys = Object.keys(raw_obj);
+  let prices = keys.map(key => raw_obj[key].price);
+  return [keys, prices];
+}
+```
+
+This function first extracts the keys of the input object using `Object.keys`. Then, it uses the `map` method to iterate over the keys and extract the `price` field of each corresponding object. Finally, it returns an array with the two resulting arrays.
+
+You can use this function like this:
+
+```javascript
+var itemsToBuy = { milk: { quantity : 5, price: 20 }, bread: { quantity : 2, price: 15 }, potato: { quantity : 3, price: 10 } }
+let ret = keys_and_prices(itemsToBuy)
+console.log(ret[0]); // ["milk", "bread", "potato"]
+console.log(ret[1]); // [20, 15, 10]
+```
+
+Note that the `console.log` statements are used here to print the resulting arrays to the console. You can replace them with your own code to use the arrays in your program.

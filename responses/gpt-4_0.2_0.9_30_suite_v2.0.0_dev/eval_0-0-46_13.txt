@@ -1,0 +1,47 @@
+The error message you're seeing is because ESLint is trying to find your `tsconfig.json` file in the same directory as your `.eslintrc.js` file, but it's not there.
+
+To fix this, you need to provide the correct path to your `tsconfig.json` file in your `.eslintrc.js` file. 
+
+If your `tsconfig.json` file is in the root directory of your project, and your `.eslintrc.js` file is also in the root directory, then you can leave it as `"project": "tsconfig.json"`.
+
+However, if your `tsconfig.json` file is in a different directory, you need to provide the relative path from your `.eslintrc.js` file to your `tsconfig.json` file. For example, if your `tsconfig.json` file is in a `config` directory, you would change it to `"project": "./config/tsconfig.json"`.
+
+Here is the updated `.eslintrc.js` file:
+
+```javascript
+module.exports = {
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+  },
+  extends: [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+  ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "./path/to/your/tsconfig.json", // update this path
+    sourceType: "module",
+  },
+  plugins: [
+    "@typescript-eslint",
+    "import",
+  ],
+  rules: {
+    // ... your rules
+  },
+  settings: {
+    jsdoc: {
+      tagNamePreference: {
+        returns: "return",
+      },
+    },
+  },
+};
+```
+
+Replace `"./path/to/your/tsconfig.json"` with the actual relative path to your `tsconfig.json` file. 
+
+After updating the path, restart your IDE or the ESLint server for the changes to take effect.

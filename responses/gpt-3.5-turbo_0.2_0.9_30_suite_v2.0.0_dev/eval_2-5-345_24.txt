@@ -1,0 +1,9 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven than the one used by the project generated with start.spring.io. To fix this issue, you can follow these steps:
+
+1. Open the Maven settings in IntelliJ IDEA by going to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+2. In the "Maven home directory" field, make sure that the path points to the latest version of Maven installed on your system.
+3. Click "OK" to save the changes and close the settings window.
+4. Re-import the Maven project by going to File > New > Project from Existing Sources and selecting the pom.xml file of your project.
+5. Wait for IntelliJ IDEA to finish importing the project and resolving the dependencies.
+
+If the issue persists, you can try deleting the .idea folder and the .iml files in your project directory and re-importing the project from scratch.

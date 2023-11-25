@@ -1,0 +1,15 @@
+I'm trying to add swagger-ui (OpenAPI 3.0) to a Spring Boot v3 application.
+
+I've added the openapi-ui maven dependency, and it should work as per the documentation.
+
+```xml
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-ui</artifactId>
+    <version>1.6.11</version>
+</dependency>
+```
+
+But apparently, it still doesn't work and localhost:8080/swagger-ui.html returns an 404 error.
+
+What am I missing?

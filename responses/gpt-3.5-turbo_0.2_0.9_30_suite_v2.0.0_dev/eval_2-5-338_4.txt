@@ -1,0 +1,21 @@
+The error message indicates that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `CommonsMultipartFile` class contains a `fileItem` field of type `org.apache.commons.fileupload.disk.DiskFileItem`, which in turn contains an `inputStream` field of type `java.io.ByteArrayInputStream`.
+
+To solve this issue, you can configure the `RestTemplate` to use a `ByteArrayHttpMessageConverter` instead of the default `MappingJackson2HttpMessageConverter`. This can be done as follows:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.getMessageConverters().add(new ByteArrayHttpMessageConverter());
+```
+
+This will add the `ByteArrayHttpMessageConverter` to the list of message converters used by the `RestTemplate`, and it will be used to serialize and deserialize byte arrays.
+
+Alternatively, you can also disable the `FAIL_ON_EMPTY_BEANS` feature of the `ObjectMapper` used by the `MappingJackson2HttpMessageConverter`, as suggested by the error message. This can be done as follows:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+converter.getObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+restTemplate.getMessageConverters().add(converter);
+```
+
+This will disable the `FAIL_ON_EMPTY_BEANS` feature of the `ObjectMapper` used by the `MappingJackson2HttpMessageConverter`, and it will not throw an exception when it encounters an empty bean.

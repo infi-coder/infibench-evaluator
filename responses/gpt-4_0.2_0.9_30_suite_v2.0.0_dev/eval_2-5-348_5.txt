@@ -1,0 +1,19 @@
+This error is caused by a known issue in Java versions 1.8.0_191 and later, where the handling of quotes in command line arguments has been changed. This issue affects NetBeans when it tries to run Maven commands.
+
+There are a few ways to solve this problem:
+
+1. **Downgrade your Java version**: You can downgrade to a Java version before 1.8.0_191. This is not recommended because you will miss out on the latest features and security fixes.
+
+2. **Upgrade NetBeans**: Upgrade to a newer version of NetBeans that has fixed this issue. As of NetBeans 11.3, this issue has been fixed.
+
+3. **Change the NetBeans configuration**: You can change the NetBeans configuration to use a different method to run Maven commands that doesn't have this issue.
+
+   To do this, open the `netbeans.conf` file in the `etc` directory of your NetBeans installation. Add the following line to the file:
+
+   ```
+   netbeans_default_options="-J-Djdk.lang.Process.allowAmbiguousCommands=true"
+   ```
+
+   This will tell Java to use the old method of handling quotes in command line arguments.
+
+After making these changes, you should be able to build your project without encountering this error.

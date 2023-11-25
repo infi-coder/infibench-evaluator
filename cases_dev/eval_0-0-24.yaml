@@ -1,0 +1,44 @@
+# Corresponding to post https://stackoverflow.com/questions/61228114
+id: 0-0-24
+# for case self identificaton
+
+prompt_path: prompt_0-0-24.txt
+# relative path to the prompt text
+
+# type: code debugging
+# type: code completion
+type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  blank_filling:
+    template: >
+      You only need to modify the [blank] property in your [blank] --- If you want the base directory to be your root directory you would set [blank] to `.` or `src` if you want it to be your source directory.
+    
+    # blank_str: "[blank]"
+    # [optional] how blanks are represented in the template
+
+    # escape: " '\"\n`"
+    # [optional] list of characters to be pre-filtered for model responses for blanks, default: " '"·"
+
+    targets: 
+        # list gold answers for blanks sequentially
+        - baseUrl
+        - tsconfig.json
+        - baseUrl

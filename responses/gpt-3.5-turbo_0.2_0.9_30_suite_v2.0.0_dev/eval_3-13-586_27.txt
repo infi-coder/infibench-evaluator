@@ -1,0 +1,11 @@
+The error message suggests that you need to specify either `FLAG_IMMUTABLE` or `FLAG_MUTABLE` when creating a `PendingIntent`. In this case, you can modify the `MediaSessionCompat` constructor call to include the `FLAG_IMMUTABLE` flag as follows:
+
+```
+mediaSession = MediaSessionCompat(this, TAG).apply {
+    setCallback(mediaSessionCallback)
+    isActive = true
+    setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS or MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS or MediaSessionCompat.FLAG_IMMUTABLE)
+}
+```
+
+This should resolve the issue and allow your app to target Android SDK 31.

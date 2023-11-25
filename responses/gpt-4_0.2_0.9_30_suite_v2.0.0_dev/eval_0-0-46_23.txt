@@ -1,0 +1,25 @@
+The error message you're seeing is from ESLint, which is complaining that it can't read your `tsconfig.json` file. This is likely because the path to the `tsconfig.json` file in your `.eslintrc.js` file is incorrect.
+
+In your `.eslintrc.js` file, you have the following line:
+
+```javascript
+project: "tsconfig.json",
+```
+
+This tells ESLint to look for the `tsconfig.json` file in the same directory as the `.eslintrc.js` file. If your `tsconfig.json` file is not in the same directory, you'll need to provide the correct relative path.
+
+For example, if your `tsconfig.json` file is in the root directory of your project, and your `.eslintrc.js` file is in a subdirectory, you would change the line to:
+
+```javascript
+project: "../tsconfig.json",
+```
+
+If your `tsconfig.json` file is in a different subdirectory, you would provide the path to that subdirectory. For example:
+
+```javascript
+project: "../config/tsconfig.json",
+```
+
+Make sure to replace `"../config/tsconfig.json"` with the actual path to your `tsconfig.json` file. The path should be relative to the location of the `.eslintrc.js` file.
+
+After you've made this change, save your `.eslintrc.js` file and restart your editor. ESLint should now be able to find and read your `tsconfig.json` file.

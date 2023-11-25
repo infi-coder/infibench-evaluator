@@ -1,0 +1,17 @@
+The error message suggests that you need to specify either `FLAG_IMMUTABLE` or `FLAG_MUTABLE` when creating a `PendingIntent`. In this case, you can modify the code that creates the `PendingIntent` in the `MediaSessionCompat` constructor to include the `FLAG_IMMUTABLE` flag. 
+
+Replace this line:
+```
+mbrIntent = PendingIntent.getBroadcast(context,
+    0/* requestCode, ignored */, mediaButtonIntent,
+    PENDING_INTENT_FLAG_MUTABLE);
+```
+
+with this line:
+```
+mbrIntent = PendingIntent.getBroadcast(context,
+    0/* requestCode, ignored */, mediaButtonIntent,
+    PendingIntent.FLAG_IMMUTABLE);
+```
+
+This should resolve the issue and allow you to target Android SDK 31.

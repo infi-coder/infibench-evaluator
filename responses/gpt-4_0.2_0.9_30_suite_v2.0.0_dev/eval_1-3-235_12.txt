@@ -1,0 +1,11 @@
+The error you're getting is because there are some values in your 'year' column that are not integers but are in float format (like '2021.0'). When you try to convert this to an integer, Python throws an error because it doesn't know how to handle the decimal point.
+
+You can solve this by first converting the column to float, and then to int. Here's how you can do it:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].astype(float).astype(int)
+    return data_h_df
+```
+
+This function first converts the 'year' column to float, which handles the decimal point, and then converts it to int, which removes the decimal point.

@@ -1,0 +1,16 @@
+You can optimize your task by using `awk` command which is faster and more efficient for text processing. Here is the optimized bash script:
+
+```bash
+awk -F'=' '
+  /^name/ { if (name && value) print name "=" value; name=$2; value="" }
+  /^value/ { value=$2 }
+  END { if (name && value) print name "=" value }
+' input.txt > output.txt
+```
+
+This script works as follows:
+
+- `-F'='` sets the field separator to `=`.
+- `/^name/` checks if the line starts with `name`. If it does, it checks if `name` and `value` variables are set. If they are, it prints them and then sets `name` to the second field of the current line and `value` to an empty string.
+- `/^value/` checks if the line starts with `value`. If it does, it sets `value` to the second field of the current line.
+- `END` is a special pattern that matches the end of the input. If `name` and `value` are set at the end of the input, it prints them.

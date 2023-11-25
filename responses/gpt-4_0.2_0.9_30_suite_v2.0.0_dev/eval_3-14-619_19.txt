@@ -1,0 +1,15 @@
+Your code seems correct, but the problem might be that you're trying to observe the change in `ContentView_Previews` which is just for previewing the UI in Xcode and not for actual runtime behavior.
+
+If you want to test the behavior of the `isSelected` state, you should create another view that owns the `@State` and passes the `@Binding` to `ContentView`. Here's an example:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+```
+
+Now, when you run `ParentView`, you should see the `isSelected` state change when the button in `ContentView` is clicked.

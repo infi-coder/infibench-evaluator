@@ -1,0 +1,65 @@
+You can use the factory pattern to create different instances of `ServiceBusClient` and `ServiceBusSender` for different queues. Here is an example:
+
+1. Define an interface for the factory:
+```c#
+public interface IServiceBusClientFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+    ServiceBusReceiver CreateReceiver(string queueName);
+}
+```
+
+2. Implement the factory:
+```c#
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusClientFactory(string connectionString)
+    {
+        _serviceBusClient = new ServiceBusClient(connectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+
+    public ServiceBusReceiver CreateReceiver(string queueName)
+    {
+        return _serviceBusClient.CreateReceiver(queueName, new ServiceBusReceiverOptions
+        {
+            ReceiveMode = ServiceBusReceiveMode.PeekLock
+        });
+    }
+}
+```
+
+3. Register the factory in your DI container:
+```c#
+_services.TryAddSingleton<IServiceBusClientFactory>(implementationFactory =>
+{
+    var serviceBusConfiguration = implementationFactory.GetRequiredService<Microsoft.Extensions.Options.IOptions<UserEventConsumerSetting>>().Value;
+    return new ServiceBusClientFactory(serviceBusConfiguration.ServiceBusConnectionString);
+});
+```
+
+4. Use the factory to create `ServiceBusSender` and `ServiceBusReceiver` for different queues:
+```c#
+public class CarReservationMessagingService
+{
+    private readonly ServiceBusSender _serviceBusSender;
+
+    public CarReservationMessagingService(IServiceBusClientFactory serviceBusClientFactory)
+    {
+        _serviceBusSender = serviceBusClientFactory.CreateSender("QueueName");
+    }
+
+    // ...
+}
+```
+
+In this way, you can create `ServiceBusSender` and `ServiceBusReceiver` for different queues by calling `CreateSender` and `CreateReceiver` with different queue names.

@@ -1,0 +1,28 @@
+The warning you're seeing is because Elasticsearch 7.13.1 has built-in security features that are not enabled by default. This means that without authentication, your Elasticsearch cluster could be accessible to anyone.
+
+To fix this, you need to enable these security features. Here's how you can do it:
+
+1. Open your Elasticsearch configuration file (`elasticsearch.yml`). The location of this file can vary depending on how you installed Elasticsearch, but it's often located in `/etc/elasticsearch`, `/usr/local/etc/elasticsearch`, or `/usr/local/opt/elasticsearch/config` on a Mac.
+
+2. Add the following lines to the `elasticsearch.yml` file:
+
+```yaml
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+```
+
+3. Save and close the file.
+
+4. Restart Elasticsearch. If you're using Homebrew, you can do this by running `brew services restart elasticsearch`.
+
+After doing this, Elasticsearch's built-in security features should be enabled, and you should no longer see the warning.
+
+Please note that enabling these security features will require you to set up user authentication for Elasticsearch. You can do this by following the instructions in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-minimal-setup.html).
+
+If you don't want to enable these security features, you can suppress the warning by adding the following line to your `elasticsearch.yml` file:
+
+```yaml
+xpack.security.enabled: false
+```
+
+This will tell Elasticsearch that you intentionally want to run it without the built-in security features. However, please be aware that this could potentially leave your Elasticsearch cluster vulnerable to unauthorized access.

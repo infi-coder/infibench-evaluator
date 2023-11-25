@@ -1,0 +1,1 @@
+You need to add two things to your `PATH`. First `~/.rbenv/bin` itself and second the ruby `shims` directory. You might also run the `rbenv doctor` script to check your installation.

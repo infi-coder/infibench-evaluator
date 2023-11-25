@@ -1,0 +1,31 @@
+The error you're seeing is because `pdftk` is not compatible with macOS Catalina (10.15) and later versions. This is because Catalina dropped support for 32-bit applications, and `pdftk` is a 32-bit application.
+
+Here are a few alternatives to solve this issue:
+
+1. **Use pdftk-java**: `pdftk-java` is a reimplementation of `pdftk` in Java, which should work on Catalina. You can install it via Homebrew:
+
+    ```bash
+    brew install pdftk-java
+    ```
+
+    After installation, you can use `pdftk-java` in the same way as you would use `pdftk`.
+
+2. **Use Docker**: If you have Docker installed, you can use a Docker image that contains `pdftk`. Here is an example:
+
+    ```bash
+    docker run --rm -v $(pwd):/workdir -w /workdir jlesage/pdftk my.pdf cat 1-endeast output out.pdf
+    ```
+
+    This command will run `pdftk` in a Docker container, with the current directory mounted as a volume.
+
+3. **Use a Virtual Machine**: You can set up a virtual machine (using software like VirtualBox or VMWare) with an older version of macOS or a different OS that supports `pdftk`.
+
+4. **Use an alternative tool**: There are many other tools that can manipulate PDF files, such as `qpdf`, `mutool`, `pdfjam`, `pdfbox`, etc. You can install these tools via Homebrew:
+
+    ```bash
+    brew install qpdf
+    ```
+
+Remember to replace `qpdf` with the name of the tool you want to install.
+
+5. **Downgrade your macOS version**: This is not recommended unless you really need to use `pdftk` and none of the above solutions work for you. Downgrading your OS can lead to other compatibility issues and security vulnerabilities.

@@ -1,0 +1,7 @@
+You can use the `this` keyword to call the constructor with parameters and provide default values for them. Here's the code to introduce another constructor overload with no parameters:
+```c#
+public record Person(int Id, string FirstName, string LastName)
+{
+    public Person() : this(0, "", "") { }
+}
+```

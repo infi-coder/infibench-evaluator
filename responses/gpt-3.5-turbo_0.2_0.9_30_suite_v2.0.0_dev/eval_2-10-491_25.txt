@@ -1,0 +1,17 @@
+One more idiomatic way to express the same logic is to use the `and_then` method of `Option`. Here's an example:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.and_then(|val| if val < 5 { Some(val) } else { None }).or(Some(5));
+}
+```
+This code first uses `and_then` to check if the inner value of `foo` is less than 5. If it is, it returns `Some(val)`, which means the value is kept as is. If the inner value is greater than or equal to 5, it returns `None`, which means the value is replaced with `None`. Finally, `or(Some(5))` is used to replace the value with 5 if it is `None`.
+
+Another way to express the same logic is to use the `map_or_else` method of `Option`. Here's an example:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map_or_else(|| Some(5), |val| if val < 5 { Some(val) } else { None });
+}
+```
+This code first uses `map_or_else` to check if the inner value of `foo` is less than 5. If it is, it returns `Some(val)`, which means the value is kept as is. If the inner value is greater than or equal to 5, it returns `None`, which means the value is replaced with `None`. Finally, `|| Some(5)` is used to replace the value with 5 if it is `None`.

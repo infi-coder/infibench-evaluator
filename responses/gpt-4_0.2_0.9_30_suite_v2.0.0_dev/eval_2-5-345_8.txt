@@ -1,0 +1,15 @@
+This error is due to a compatibility issue between IntelliJ IDEA and Maven 3.8.5. The problem arises because IntelliJ IDEA uses an embedded Maven version that is not compatible with Maven 3.8.5.
+
+Here are a few solutions to fix this issue:
+
+1. **Downgrade Maven version:** You can downgrade your Maven version to 3.8.4 or lower. This is the easiest solution, but it might not be the best one if you want to use the latest features of Maven.
+
+2. **Update IntelliJ IDEA:** JetBrains is aware of this issue and they are working on a fix. You can check for updates in IntelliJ IDEA to see if the fix is available. Go to `Help -> Check for Updates...` in IntelliJ IDEA.
+
+3. **Use an external Maven:** You can configure IntelliJ IDEA to use an external Maven instead of the embedded one. Here's how you can do it:
+
+   - Download and install Maven 3.8.4 or lower from the [official website](https://maven.apache.org/download.cgi).
+   - In IntelliJ IDEA, go to `File -> Settings -> Build, Execution, Deployment -> Build Tools -> Maven`.
+   - In the `Maven home directory` field, enter the path to the directory where you installed Maven.
+
+After applying one of these solutions, the error should be resolved.

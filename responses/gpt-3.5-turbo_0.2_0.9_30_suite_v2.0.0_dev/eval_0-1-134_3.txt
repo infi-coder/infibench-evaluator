@@ -1,0 +1,5 @@
+It sounds like you might be trying to use a CSS preprocessor like Sass or Less. These preprocessors allow you to write CSS in a more efficient way, using variables, nesting, and other features that make it easier to write and maintain your stylesheets.
+
+To use the `.classname` syntax you mentioned, you would need to have a preprocessor set up and configured in your project. If you're not using a preprocessor, you would need to write your CSS in the standard way, using selectors and curly braces.
+
+If you are using a preprocessor and still having trouble, make sure you have the correct syntax for your preprocessor. For example, in Sass, you would use `.` to indicate a class selector, but in Less, you would use `&.`. Check the documentation for your preprocessor to make sure you're using the correct syntax.

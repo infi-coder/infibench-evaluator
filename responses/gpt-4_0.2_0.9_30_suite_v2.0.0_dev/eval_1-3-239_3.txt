@@ -1,0 +1,20 @@
+Sure, here is a bash script for installing Python 3.6.5 using Homebrew on macOS:
+
+```bash
+#!/bin/bash
+
+# Unlink current python
+brew unlink python
+
+# Install python 3.6.5
+brew install python@3.6
+
+# Link python 3.6.5
+brew link --force python@3.6
+```
+
+Please note that this script will unlink your current Python installation before installing Python 3.6.5. After the installation, it will force link Python 3.6.5. 
+
+You can save this script to a file, make it executable with `chmod +x filename`, and then run it with `./filename`. 
+
+Also, please note that you need to have Homebrew installed on your macOS. If you don't have it, you can install it by running `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` in your terminal.

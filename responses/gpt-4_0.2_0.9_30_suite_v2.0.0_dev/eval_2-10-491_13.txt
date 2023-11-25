@@ -1,0 +1,62 @@
+Yes, there are more idiomatic ways to express this in Rust. Here are a few alternatives:
+
+1. **Using `if let` with a guard:**
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        if let Some(foo_val) = &foo {
+            if *foo_val < 5 {
+                foo.replace(5);
+            }
+        } else {
+            foo.replace(5);
+        }
+    }
+    ```
+    This is a bit more verbose, but it's arguably clearer.
+
+2. **Using `map_or`:**
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        foo = foo.map_or(Some(5), |foo_val| if foo_val < 5 { Some(5) } else { Some(foo_val) });
+    }
+    ```
+    This is a bit more concise, but it's arguably less clear.
+
+3. **Using `unwrap_or_else`:**
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        foo = Some(*foo.get_or_insert(5));
+    }
+    ```
+    This is the most concise, but it's also the least clear.
+
+4. **Using `match` with a guard and a default case:**
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        match foo {
+            Some(foo_val) if foo_val >= 5 => {},
+            _ => { foo.replace(5); }
+        }
+    }
+    ```
+    This is similar to your original code, but it uses a guard to check the condition directly rather than negating it.
+
+5. **Using `or_else`:**
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        foo = foo.or_else(|| Some(5));
+    }
+    ```
+    This is a bit more concise, but it's arguably less clear.
+
+Each of these alternatives has its own trade-offs in terms of clarity, conciseness, and idiomaticity. The best one to use depends on your specific use case and personal preference.

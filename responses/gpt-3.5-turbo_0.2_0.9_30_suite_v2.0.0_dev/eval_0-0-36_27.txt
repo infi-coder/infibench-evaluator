@@ -1,0 +1,21 @@
+You can use `router.reload()` to trigger a client-side reload in Next.js. Here's how you can modify your code:
+
+```javascript
+import { useRouter } from "next/navigation";
+
+export default function Component(){
+    const router = useRouter();
+
+    const handleReload = () => {
+        router.reload();
+    }
+
+    // Call handleReload after creating a new data
+
+    return (
+        // Your component JSX
+    )
+}
+``` 
+
+Call the `handleReload` function after creating a new data to trigger a client-side reload.

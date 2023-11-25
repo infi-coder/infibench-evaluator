@@ -1,0 +1,15 @@
+It seems like there's a misunderstanding here. iOS doesn't have a "Developer Mode" like Android. The alert you're seeing is likely because the app you're trying to install is a developer-signed app, not a store-signed app.
+
+To install a developer-signed app, you need to trust the developer on your device. Here's how to do that:
+
+1. After you've installed the developer-signed app, go to `Settings > General > Profiles & Device Management` on your iOS device.
+
+2. Under the `Enterprise App` section, you should see the developer's name.
+
+3. Tap the developer's name, then tap `Trust`.
+
+4. In the pop-up window, tap `Trust` again.
+
+Now you should be able to run the app. If you still can't run the app, it's possible that the app was signed with a non-enterprise developer account. In that case, you need to be added to the developer's team in order to run the app.
+
+If you're a developer and you want to run your own apps on your device, you need to enroll in the [Apple Developer Program](https://developer.apple.com/programs/). Once you're enrolled, you can use Xcode to install your apps on your device.

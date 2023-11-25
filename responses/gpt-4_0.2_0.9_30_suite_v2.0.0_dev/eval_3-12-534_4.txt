@@ -1,0 +1,53 @@
+You can use multiple `Consumer` widgets for a single widget in Flutter Provider. Each `Consumer` widget can listen to a different `ChangeNotifier`.
+
+Here is an example:
+
+```dart
+Consumer<ChangeNotifier1>(
+  builder: (context, changeNotifier1, child) => 
+    Consumer<ChangeNotifier2>(
+      builder: (context, changeNotifier2, child) => 
+        Consumer<ChangeNotifier3>(
+          builder: (context, changeNotifier3, child) => 
+            Consumer<ChangeNotifier4>(
+              builder: (context, changeNotifier4, child) => 
+                CurvedNavigationBar(
+                  // Use values from change notifiers here
+                  // For example:
+                  index: changeNotifier1.index,
+                  color: changeNotifier2.color,
+                  backgroundColor: changeNotifier3.backgroundColor,
+                  buttonBackgroundColor: changeNotifier4.buttonBackgroundColor,
+                  items: <Widget>[
+                    Icon(Icons.add, size: 30),
+                    Icon(Icons.list, size: 30),
+                    Icon(Icons.compare_arrows, size: 30),
+                    Icon(Icons.call_split, size: 30),
+                  ],
+                  onTap: (index) {
+                    // Handle tap here
+                  },
+                ),
+            ),
+        ),
+    ),
+)
+```
+
+In this example, `ChangeNotifier1`, `ChangeNotifier2`, `ChangeNotifier3`, and `ChangeNotifier4` are your four different classes that extend `ChangeNotifier`. Each `Consumer` listens to a different `ChangeNotifier` and provides its value to the `CurvedNavigationBar` widget.
+
+Remember to provide your `ChangeNotifier` classes higher up in the widget tree using `ChangeNotifierProvider` or `MultiProvider`.
+
+```dart
+MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (context) => ChangeNotifier1()),
+    ChangeNotifierProvider(create: (context) => ChangeNotifier2()),
+    ChangeNotifierProvider(create: (context) => ChangeNotifier3()),
+    ChangeNotifierProvider(create: (context) => ChangeNotifier4()),
+  ],
+  child: MyApp(),
+)
+```
+
+In this example, `MyApp` is the root widget of your application.

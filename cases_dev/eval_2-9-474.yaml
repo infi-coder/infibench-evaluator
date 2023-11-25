@@ -1,0 +1,18 @@
+# Corresponding to post https://stackoverflow.com/questions/70800753
+id: 2-9-474
+prompt_path: prompt_2-9-474.txt
+type: non-code debugging
+
+lang: ruby
+
+grading:
+  max_score: 2.0
+  min_score: 0.0
+  blank_filling:
+    template: "The message about `DidYouMean` is a deprecation warning not an error, it doesn't break your app. It means that usage of `[blank]` is deprecated and will be removed in a future version of ruby. You shouldn't worry about it until you use versions that are lower than 3.3. It's not your code that triggers the warning. You can update the gem by calling `bundle update [blank]`."
+    blank_str: "[blank]"
+    targets: 
+        - content:
+          - content: "DidYouMean::SPELL_CHECKERS.*"
+            regex: true
+        - "thor"

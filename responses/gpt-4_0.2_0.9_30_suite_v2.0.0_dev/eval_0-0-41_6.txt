@@ -1,0 +1,20 @@
+The `navigator.geolocation` object is available in most modern browsers, but it doesn't necessarily mean that the user has granted permission for location access. The `getCurrentPosition` method is asynchronous and takes two callback functions as arguments: the first one is called when the location is successfully obtained, and the second one is called when an error occurs.
+
+Here's how you can modify your code to handle both cases:
+
+```javascript
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+        position => {
+            console.log("Location accessed");
+        },
+        error => {
+            console.log("User not allowed");
+        }
+    );
+} else {
+    console.log("Geolocation is not supported by this browser.");
+}
+```
+
+In this code, if the user denies access to their location, the error callback will be invoked and "User not allowed" will be logged to the console. If the `navigator.geolocation` object is not available at all (which could be the case in some older browsers), "Geolocation is not supported by this browser." will be logged.

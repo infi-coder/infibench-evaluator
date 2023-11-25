@@ -1,0 +1,21 @@
+The error message indicates that when creating a PendingIntent, you need to specify either FLAG_IMMUTABLE or FLAG_MUTABLE. The MediaSessionCompat constructor is creating a PendingIntent without specifying any flags, which is causing the error.
+
+To fix this, you can create the PendingIntent yourself with the appropriate flags and pass it to the MediaSessionCompat constructor. Here's an example:
+
+```
+val mediaButtonIntent = Intent(Intent.ACTION_MEDIA_BUTTON)
+mediaButtonIntent.setComponent(mbrComponent)
+val pendingIntent = PendingIntent.getBroadcast(
+    context,
+    0,
+    mediaButtonIntent,
+    PendingIntent.FLAG_IMMUTABLE // or PendingIntent.FLAG_MUTABLE
+)
+mediaSession = MediaSessionCompat(this, TAG).apply {
+    setCallback(mediaSessionCallback)
+    setSessionActivity(pendingIntent)
+    isActive = true
+}
+```
+
+In this example, we create a PendingIntent with the FLAG_IMMUTABLE flag and pass it to the setSessionActivity method of the MediaSessionCompat object. This should resolve the error.

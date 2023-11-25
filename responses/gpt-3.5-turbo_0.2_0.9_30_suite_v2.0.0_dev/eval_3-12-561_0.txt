@@ -1,0 +1,2 @@
+You can set a timeout on any Future using the `timeout` method. This will short-circuit after the given duration has elapsed by throwing a `TimeoutException`.
+You can also set a timeout on the HttpClient itself using `HttpClient.connectionTimeout`. This will apply to all requests made by the same client, after the timeout was set. When a request exceeds this timeout, a `SocketException` is thrown.

@@ -1,0 +1,13 @@
+The Rule of Five is not outdated, but it's true that modern C++ practices have reduced the need for it in many cases. The use of smart pointers and other RAII (Resource Acquisition Is Initialization) techniques can often eliminate the need for explicit resource management in your classes.
+
+However, there are still cases where you might need to define these special member functions:
+
+1. **Performance**: While smart pointers are great, they do have a slight overhead compared to raw pointers. In performance-critical code, you might choose to manage memory manually.
+
+2. **Legacy Code**: If you're working with older codebases that don't use modern C++ practices, you might need to define these functions.
+
+3. **Custom Behavior**: Sometimes you might want to define custom behavior for copy/move operations. For example, you might want to do a deep copy of a resource, or you might want to transfer ownership of a resource in a move operation.
+
+4. **Non-Memory Resources**: RAII and smart pointers are great for memory, but there are other resources that might need manual management. For example, file handles, network sockets, database connections, etc. These resources can't be managed by smart pointers.
+
+So while it's true that modern C++ has reduced the need for the Rule of Five, there are still cases where it's necessary. It's also important to understand the Rule of Five and why it exists, because it's a fundamental part of how C++ works.

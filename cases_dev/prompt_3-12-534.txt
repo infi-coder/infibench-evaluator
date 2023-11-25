@@ -1,0 +1,3 @@
+How to use multiple Consumers for a single widget in flutter Provider?
+Suppose my widget is CurvedNavigationBar and I have 4 items in that widget. I also have 4 different classes that extend ChangeNotifier and are responsible for each item in CurvedNavigationBar.
+How can I listen to those 4 change notifiers in a single widget?

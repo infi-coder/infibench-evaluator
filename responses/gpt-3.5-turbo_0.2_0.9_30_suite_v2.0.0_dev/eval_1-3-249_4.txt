@@ -1,0 +1,26 @@
+Here's a possible implementation:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the possible characters
+    characters = string.ascii_letters + string.digits
+    
+    # Generate a random string of length 9
+    random_string = ''.join(random.choice(characters) for i in range(9))
+    
+    # Insert the required substring
+    random_string = random_string[:4] + "NAA3U" + random_string[4:]
+    
+    # Replace the first 3 non-digit characters with random digits
+    for i in range(3):
+        index = random.choice([j for j in range(len(random_string)) if not random_string[j].isdigit()])
+        random_string = random_string[:index] + str(random.randint(0, 9)) + random_string[index+1:]
+    
+    # Return the final string
+    return random_string
+```
+
+This function first generates a random string of length 9 consisting of letters and digits. It then inserts the required substring "NAA3U" at a random position in the string. Finally, it replaces the first 3 non-digit characters with random digits to satisfy the requirement of having exactly 3 digits in the code.

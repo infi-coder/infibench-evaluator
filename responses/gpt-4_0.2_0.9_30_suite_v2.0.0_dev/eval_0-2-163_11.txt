@@ -1,0 +1,30 @@
+Here is your JavaScript code with the blanks filled in:
+
+```javascript
+document.getElementById('check').onclick = function() {
+  let allAreFilled = true;
+  document.getElementById("myForm").querySelectorAll('input,textarea,select').forEach(function(i) {
+    if (!allAreFilled) return;
+    if (i.type === "radio") {
+      let radioValueCheck = false;
+      document.getElementById("myForm").querySelectorAll(`input[name=${i.name}]`).forEach(function(r) {
+        if (r.checked) radioValueCheck = true;
+      })
+      allAreFilled = radioValueCheck;
+      return;
+    }
+    if (!i.value) { allAreFilled = false;  return; }
+  })
+  if (!allAreFilled) {
+    alert('Fill all the fields');
+  }
+};
+```
+
+In this code:
+
+- `getElementById('check')` is used to get the button with the id "check".
+- `onclick` is an event that occurs when the button is clicked.
+- `querySelectorAll('input,textarea,select')` is used to select all input, textarea, and select elements in the form.
+- `querySelectorAll(`input[name=${i.name}]`)` is used to select all input elements with the same name as the current input element in the loop. This is used to check if any radio button with the same name is checked.
+- `i.value` is used to get the value of the current input, textarea, or select element in the loop. If it's empty, `allAreFilled` is set to false.

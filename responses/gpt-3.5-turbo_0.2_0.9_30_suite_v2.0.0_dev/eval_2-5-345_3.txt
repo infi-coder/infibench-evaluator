@@ -1,0 +1,9 @@
+This error occurs because of a version conflict between Maven and IntelliJ IDEA. IntelliJ IDEA 2021.3 comes with Maven 3.8.5 bundled, but the version of Maven used by the Spring Initializr project is not compatible with this version of IntelliJ IDEA.
+
+To fix this issue, you can do the following:
+
+1. Open the Maven settings in IntelliJ IDEA by going to File -> Settings -> Build, Execution, Deployment -> Build Tools -> Maven.
+2. In the "Maven home directory" field, select the option "Bundled Maven 3" instead of "Maven 3.8.5".
+3. Click "OK" to save the changes.
+
+This should resolve the issue and allow you to import the Spring Initializr project without any errors.

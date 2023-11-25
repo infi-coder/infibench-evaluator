@@ -1,0 +1,1 @@
+You can use the `Application.ActiveWorkbook.Path` property to get the local path of the current workbook. This should work even if the file is stored on OneDrive/SharePoint. You can then use this path to create folders and files locally using VBA.

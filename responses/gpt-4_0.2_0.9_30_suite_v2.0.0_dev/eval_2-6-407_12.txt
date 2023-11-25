@@ -1,0 +1,29 @@
+The exception you're seeing is a `JsonException` with the message `'<' is an invalid start of a value.`. This usually happens when the response from the server is not a valid JSON. It could be an HTML error page or something else.
+
+The problem might be in the route of your API method. In your `EmployeeController`, you have defined the route as `[Route("api/Employee/Index")]`. However, in the controller's route attribute, you have defined `[Route("[controller]")]`. This means that the final route to your method would be `/Employee/api/Employee/Index`.
+
+Try changing the route in your `EmployeeController` to this:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+    [HttpGet]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+And then in your Blazor component, call the API like this:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("api/Employee");
+```
+
+This should solve the problem if it was caused by an incorrect route.
+
+If the problem persists, you might want to check the response from the server manually. You can do this by calling the API from a tool like Postman or even from your browser and see what you get. If you get an HTML page (which starts with '<'), then you need to fix the server-side code to return a valid JSON.

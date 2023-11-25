@@ -1,0 +1,13 @@
+Sure, you need to return a function that returns an object in your mock, not just an object. Here is the revised code:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {someMethod: () => {}};
+  });
+});
+```
+
+In this code, `jest.fn().mockImplementation()` returns a mock function. When you call `new API()`, it will return an object `{someMethod: () => {}}`.

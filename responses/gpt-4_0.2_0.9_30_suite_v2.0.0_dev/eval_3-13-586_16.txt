@@ -1,0 +1,15 @@
+The error you're seeing is due to changes in Android 12 (API level 31) regarding `PendingIntent` mutability. Starting from this version, you must explicitly specify whether a `PendingIntent` is mutable or immutable by using `FLAG_IMMUTABLE` or `FLAG_MUTABLE`.
+
+The issue you're experiencing is a known issue with `MediaSessionCompat` in the AndroidX Media library version 1.4.0. The library is not yet fully compatible with Android 12.
+
+The AndroidX team has fixed this issue in the AndroidX Media library version 1.4.3. So, you should update your dependency to the latest version.
+
+In your `build.gradle` file, update the version of the AndroidX Media library:
+
+```groovy
+dependencies {
+    implementation 'androidx.media:media:1.4.3'
+}
+```
+
+After updating the library, clean and rebuild your project. The issue should be resolved.

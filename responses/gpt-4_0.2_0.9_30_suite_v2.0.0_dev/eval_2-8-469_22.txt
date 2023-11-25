@@ -1,0 +1,20 @@
+The error message is indicating that the `go_package` option is missing in your proto file. This option is used to specify the full Go package path. 
+
+You can fix this by adding `option go_package = "<your-package-path>";` to your proto file. Replace `<your-package-path>` with the actual path of your Go package.
+
+Here's how your proto file should look:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "<your-package-path>";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+After making these changes, you should be able to generate the Go code without any errors.

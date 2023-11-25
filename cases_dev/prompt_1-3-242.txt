@@ -1,0 +1,9 @@
+I have a list:
+
+```python
+roll = [1, 2, 3]
+```
+
+For converting each of the element into a string, can we directly do `roll = str(roll)`` rather that iterating over it and calling `str()` on each element? Is this a correct way?
+
+Please output "yes" or "no" in the first line without any extra comment. If no, please show the right code in the second line with out any comment.

@@ -1,0 +1,19 @@
+id: 2-7-439
+prompt_path: prompt_2-7-439.txt
+type: non-code debugging
+lang: php
+grading:
+  blank_filling:
+    template: 'You can add ext-zip to your composer.json:
+```json
+[blank]
+```'
+    escape: " '\"\n`"
+    targets:
+      - '{
+             "require" : {
+                 "ext-zip": "*"
+             }
+         }'
+
+

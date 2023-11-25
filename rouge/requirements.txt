@@ -1,0 +1,4 @@
+git+https://github.com/huggingface/evaluate@344b8b45be3a5eb927bef6d897da876ba9b2f228
+absl-py
+nltk
+rouge_score>=0.1.2

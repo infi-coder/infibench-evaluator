@@ -1,0 +1,28 @@
+# Corresponding to post https://stackoverflow.com/questions/70859478
+id: 2-10-491
+prompt_path: prompt_2-10-491.txt
+type: knowledge question-answering
+
+lang: rust
+
+grading:
+  
+  max_score: 2.0
+  min_score: 0.0
+  keywords:
+    - content: 
+        or:
+          - "map_or"
+          - "Option::map_or"
+      weight: 2.0
+    - content:
+        content: "unwrap_or"
+      weight: 1.0
+    - content: 
+        and:
+          - "filter"
+          - "is_none"
+      weight: 1.0
+    - content:
+        content: "is_some_and"
+      weight: 1.0

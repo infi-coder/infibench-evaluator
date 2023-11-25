@@ -1,0 +1,13 @@
+The issue is that you are missing a comma after the value of the "primary" color in your `$theme-colors` map. Here's the corrected code:
+
+```scss
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": #your-color-here,
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Make sure to replace `#your-color-here` with the actual color value you want to use. After making this change, you should be able to compile your SCSS file without any errors.

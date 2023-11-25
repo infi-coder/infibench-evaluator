@@ -1,0 +1,38 @@
+# Corresponding to post https://stackoverflow.com/questions/57150426
+id: 1-3-263
+# for case self identificaton
+
+prompt_path: prompt_1-3-263.txt
+# relative path to the prompt text
+
+# type: code debugging
+# type: code completion
+type: knowledge question-answering
+# question type, for later statistics
+
+lang: python
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+
+  keywords:
+    - content:
+        or:
+          - content: Python 3.6
+          - content: python 3.6
+    - content:
+        or:
+          - content: formatting strings?
+            regex: true
+          - content: f-string
+          - content: formatted string literal

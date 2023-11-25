@@ -1,0 +1,9 @@
+The problem is that the command substitution `$(echo {} | sed 's/\?.*//g')` is evaluated before `find` starts its execution, so it doesn't have the desired effect. You can solve this by using a shell loop inside `-exec`:
+
+```bash
+find . -type f -name '*\?*' -exec bash -c 'mv "$0" "${0%%\?*}"' {} \;
+```
+
+This command uses `bash`'s parameter expansion to remove the `?` and everything after it. The `${0%%\?*}` expression means "remove the longest match of `\?*` from the end of `$0`". Since `$0` is the filename passed by `find`, this effectively renames the file.
+
+Please note that this command can potentially overwrite files if the truncated names are not unique.

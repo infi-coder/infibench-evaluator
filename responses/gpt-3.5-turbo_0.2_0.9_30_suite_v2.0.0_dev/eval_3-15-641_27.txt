@@ -1,0 +1,11 @@
+You can use the following VBA code to get the local path of the OneDrive folder:
+
+```
+Sub GetOneDriveLocalPath()
+    Dim objShell As Object
+    Set objShell = CreateObject("WScript.Shell")
+    MsgBox objShell.SpecialFolders("OneDrive")
+End Sub
+```
+
+This will display a message box with the local path of the OneDrive folder. You can modify this code to search for a specific folder within the OneDrive directory. However, keep in mind that this may be slow if there are a large number of files and folders in the OneDrive directory.

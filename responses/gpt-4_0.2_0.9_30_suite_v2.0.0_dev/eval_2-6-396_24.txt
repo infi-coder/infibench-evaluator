@@ -1,0 +1,24 @@
+The error message you're getting is because you're trying to create an index on a navigation property, which is not allowed in Entity Framework. 
+
+Indexes in Entity Framework are used to speed up the performance of data retrieval operations on a database. They are typically created on columns that are frequently searched or that are used in JOIN, WHERE, ORDER BY, GROUP BY, or top-N queries.
+
+Navigation properties in Entity Framework represent the other side of a relationship between two entities. In your case, `Gender` is a navigation property on `User` entity, representing the relationship between a user and their gender.
+
+You should create an index on the `GenderId` property instead, which is the foreign key property. Here's how you can do it:
+
+```c#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderId);
+    });
+}
+```
+
+Now, when you run the migration command, it should work without any errors.

@@ -1,0 +1,33 @@
+Here are a few things you can try to solve the issue:
+
+1. Make sure that the Jupyter package is installed in your conda environment. You can do this by running the following command in your terminal: 
+
+   ```
+   conda install jupyter
+   ```
+
+2. Check if the Jupyter kernel is installed in your environment. You can do this by running the following command in your terminal:
+
+   ```
+   jupyter kernelspec list
+   ```
+
+   This should show you a list of all the kernels installed in your system. Make sure that the kernel for your environment is listed.
+
+3. Try launching Jupyter notebook from the command line instead of from within VS Code. Open your terminal and activate your conda environment by running:
+
+   ```
+   conda activate da38
+   ```
+
+   Then run the following command to launch Jupyter notebook:
+
+   ```
+   jupyter notebook
+   ```
+
+   If Jupyter notebook launches successfully, then the issue might be with the VS Code setup.
+
+4. Try resetting the VS Code Python extension settings. Open the VS Code settings and search for "Python: Reset Extension Settings". Click on the "Reset Settings" button and restart VS Code.
+
+5. If none of the above solutions work, try uninstalling and reinstalling the VS Code Python extension. You can do this by going to the Extensions tab in VS Code, searching for "Python", and clicking on the "Uninstall" button. Then restart VS Code and reinstall the extension.

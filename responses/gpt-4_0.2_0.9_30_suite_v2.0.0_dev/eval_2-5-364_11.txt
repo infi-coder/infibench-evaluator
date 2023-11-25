@@ -1,0 +1,31 @@
+If you are using a build system like Jenkins or Azure DevOps, you can specify the Java version in the build configuration. However, if you want to use a specific version of Java with Maven Wrapper locally, you can do so by setting the `JAVA_HOME` environment variable to point to the desired JDK before running the Maven Wrapper.
+
+Here's how you can do it:
+
+1. Find out the path to the JDK that works with your Maven task. This path should be the root directory of the JDK installation. For example, it might be something like `/usr/lib/jvm/java-11-openjdk-amd64` on a Linux system or `C:\Program Files\Java\jdk-11.0.1` on a Windows system.
+
+2. Set the `JAVA_HOME` environment variable to this path. The way to do this depends on your operating system:
+
+   - On Linux or macOS, you can do this in the terminal:
+
+     ```bash
+     export JAVA_HOME=/path/to/your/jdk
+     ```
+
+   - On Windows, you can do this in the Command Prompt:
+
+     ```cmd
+     set JAVA_HOME=C:\path\to\your\jdk
+     ```
+
+   - Or in PowerShell:
+
+     ```powershell
+     $env:JAVA_HOME = "C:\path\to\your\jdk"
+     ```
+
+3. Run the Maven Wrapper. It should now use the specified JDK.
+
+Remember that this will only set the `JAVA_HOME` variable for the current terminal session. If you open a new terminal window or tab, you'll have to set it again.
+
+If you want to set `JAVA_HOME` permanently, you can do so by adding the `export JAVA_HOME=/path/to/your/jdk` line (on Linux or macOS) or the `setx JAVA_HOME "C:\path\to\your\jdk"` line (on Windows) to your shell's startup script. This script is usually called `.bashrc`, `.bash_profile`, or `.zshrc` on Linux or macOS, and it's located in your home directory. On Windows, you can set environment variables permanently through the System Properties dialog.

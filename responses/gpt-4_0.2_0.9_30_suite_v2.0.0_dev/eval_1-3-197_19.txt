@@ -1,0 +1,21 @@
+Here is the Python function `fillColumn` that fills a new column in a DataFrame with a list of string values:
+
+```python
+import pandas as pd
+import numpy as np
+
+def fillColumn(df, columnName, columnData):
+    df[columnName] = np.resize(columnData, len(df))
+    return df
+```
+
+This function uses the `numpy.resize` function to repeat the list of strings until it matches the length of the DataFrame. Then it assigns this list to the new column in the DataFrame.
+
+Here is how you can use this function:
+
+```python
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+```
+
+This will fill the 'names' column in the DataFrame `df` with the values in `my_list`, repeating the list until it fills all rows.

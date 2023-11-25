@@ -1,0 +1,11 @@
+You can try using the `tz_localize` method to set the timezone to None and then use the `tz_convert` method to convert it to the desired timezone. Here's an example:
+
+```python
+import pandas as pd
+
+def removeTimezone(df):
+    df['time'] = df['time'].dt.tz_localize(None).dt.tz_convert('desired_timezone')
+    return df
+```
+
+Replace `'desired_timezone'` with the timezone you want to convert the datetime to. You can also use `pytz` library to get a list of available timezones.

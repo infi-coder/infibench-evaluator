@@ -1,0 +1,19 @@
+The error message you're seeing suggests that there's a problem with the way the command is being interpreted due to embedded quotes. 
+
+The command you're trying to run is quite complex, with multiple nested quotes. This can sometimes confuse the command interpreter. 
+
+Here's a simplified version of your command that might work:
+
+```bash
+cd C:\projects\open
+set JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5
+"C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd" -DskipTests=true -Dmaven.ext.class.path=C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install
+```
+
+This version of the command sets the `JAVA_HOME` environment variable and then runs the `mvn.cmd` command, all without using the `cmd /c` construct that was causing problems.
+
+If you still encounter issues, it might be worth checking that all the file paths in your command are correct and that the files they refer to exist. For example, make sure that `mvn.cmd` is present at the path you're specifying. 
+
+Also, ensure that the `JAVA_HOME` environment variable is correctly set to your JDK installation directory. 
+
+If the problem persists, please provide more details about your setup (like OS, JDK version, etc.) and the exact steps you're following. This will help in diagnosing the issue.

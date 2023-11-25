@@ -1,0 +1,17 @@
+To restart your current MacOS terminal session without closing the window, you can use the `source` command. This command reads and executes commands from the file specified as its argument in the current shell environment.
+
+If you made changes to your `.bash_profile`, you can apply them to the current session by using the `source` command followed by the path to the `.bash_profile`:
+
+```bash
+source ~/.bash_profile
+```
+
+This command will read and execute the `.bash_profile` file in the current shell. The `~` is a shortcut for your home directory, so `~/.bash_profile` is the `.bash_profile` in your home directory.
+
+If you're using a different shell like `zsh` (which is the default shell in macOS Catalina and later), you would source the `.zshrc` file instead:
+
+```bash
+source ~/.zshrc
+```
+
+This will apply any changes you made to the `.zshrc` file to the current terminal session.

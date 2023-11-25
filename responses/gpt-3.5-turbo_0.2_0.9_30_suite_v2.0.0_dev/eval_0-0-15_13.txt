@@ -1,0 +1,18 @@
+Sure! You need to return a constructor function from the mock instead of an object. Here's the revised code:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {
+      someMethod: () => {}
+    };
+  });
+});
+
+// Now you can create a new instance of the mocked API class
+const api = new API();
+```
+
+This should eliminate the `TypeError` and allow you to create a new instance of the mocked `API` class.

@@ -1,0 +1,35 @@
+The error message you're seeing is due to changes in Android 12 (API level 31) regarding PendingIntent mutability. As of Android 12, you must explicitly specify the mutability of PendingIntent instances using either `FLAG_IMMUTABLE` or `FLAG_MUTABLE`.
+
+The issue you're facing is that the `MediaSessionCompat` class in the AndroidX Media library is trying to create a PendingIntent without specifying its mutability, which is not allowed when targeting Android 12 and above.
+
+The AndroidX Media library version 1.4.0, which you're using, has not been updated to handle this requirement yet. The TODO comment in the code you posted indicates that the Android team is aware of this issue and plans to fix it in a future update.
+
+In the meantime, you can use a workaround to avoid this issue. You can create a PendingIntent yourself and pass it to the `MediaSessionCompat` constructor:
+
+```kotlin
+val mediaButtonReceiver = ComponentName(this, MediaButtonReceiver::class.java)
+val mediaButtonIntent = Intent(Intent.ACTION_MEDIA_BUTTON)
+mediaButtonIntent.component = mediaButtonReceiver
+
+val pendingIntentFlags = if (Build.VERSION.SDK_INT >= 31) {
+    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+} else {
+    PendingIntent.FLAG_UPDATE_CURRENT
+}
+
+val mbrIntent = PendingIntent.getBroadcast(
+    this,
+    0, // requestCode, ignored
+    mediaButtonIntent,
+    pendingIntentFlags
+)
+
+mediaSession = MediaSessionCompat(this, TAG, mediaButtonReceiver, mbrIntent).apply {
+    setCallback(mediaSessionCallback)
+    isActive = true
+}
+```
+
+In this code, we're creating a PendingIntent with the `FLAG_IMMUTABLE` flag if the Android version is 31 or above. We then pass this PendingIntent to the `MediaSessionCompat` constructor.
+
+Please note that this is a temporary workaround until the AndroidX Media library is updated to handle PendingIntent mutability correctly.

@@ -1,0 +1,17 @@
+It seems like there's a misunderstanding here. iOS does not have a "Developer Mode" that can be enabled like Android. The alert you're seeing is likely related to an enterprise app or a beta app that's been distributed outside of the App Store.
+
+If you're trying to install an app that's been provisioned for testing (like an app distributed through TestFlight or an enterprise app), you'll need to trust the developer certificate on your device. Here's how you can do that:
+
+1. Go to `Settings` > `General` > `Profiles` or `Profiles & Device Management`. You then see a list of all the device management profiles installed on your device.
+
+2. Under the `ENTERPRISE APP` section, find the profile that corresponds to the developer of the app you're trying to install.
+
+3. Tap on the profile to see more details, then tap `Trust "Name of the Developer"`.
+
+4. In the popup that appears, tap `Trust` to confirm.
+
+After you trust this profile, you can manually install other apps from the same developer and open them immediately. This developer remains trusted until you use the `Delete App` button to remove all apps from the developer.
+
+Remember, you must be connected to the Internet to verify the app developer's certificate when establishing trust. If you're behind a firewall, make sure it's configured to allow connections to https://ppq.apple.com.
+
+If you're trying to install an app through Xcode for development purposes, you'll need to ensure that your device is added to your Apple Developer account and that the app is properly signed with a development provisioning profile.

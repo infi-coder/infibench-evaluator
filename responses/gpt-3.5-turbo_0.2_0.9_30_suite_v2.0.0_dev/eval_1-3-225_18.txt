@@ -1,0 +1,23 @@
+Here's the revised code for the `pig_latin` function:
+
+```python
+def pig_latin(text):
+  words = text.split()
+  pig_words = []
+  for word in words:
+    endString = str(word[1:]).lower()
+    startString = str(word[0]).lower()
+    pig_word = endString + startString + 'ay'
+    pig_words.append(pig_word)
+  return ' '.join(pig_words)
+```
+
+The changes I made are:
+
+- I removed the `say` variable since it's not being used.
+- I created an empty list `pig_words` to store the pig Latin versions of each word.
+- I changed the `endString` variable to include all characters from the second character to the end of the word, and made it lowercase.
+- I created a new variable `startString` to store the first character of the word, also in lowercase.
+- I concatenated `endString`, `startString`, and `'ay'` to create the pig Latin version of the word.
+- I appended each pig Latin word to the `pig_words` list.
+- Finally, I used `' '.join(pig_words)` to join all the pig Latin words into a single string separated by spaces.

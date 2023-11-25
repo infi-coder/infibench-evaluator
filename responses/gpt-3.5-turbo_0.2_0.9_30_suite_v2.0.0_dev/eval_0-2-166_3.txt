@@ -1,0 +1,28 @@
+TailwindCSS is a utility-first CSS framework that provides pre-defined classes for common CSS properties. It does not provide a specific class for selecting direct children of an element.
+
+However, you can use the `@layer` directive in TailwindCSS to define your own custom classes. Here's an example of how you can define a custom class to select direct children of an element:
+
+```css
+@layer utilities {
+  .direct-child > * {
+    /* styles for direct children */
+  }
+}
+```
+
+In this example, we define a new utility class `.direct-child > *` that selects all direct children of an element with the class `.direct-child`. You can then use this class in your HTML to apply the styles:
+
+```html
+<div class="direct-child">
+  <p>Direct child 1</p>
+  <p>Direct child 2</p>
+</div>
+<div>
+  <p>Not a direct child</p>
+  <div>
+    <p>Also not a direct child</p>
+  </div>
+</div>
+```
+
+Note that the `@layer` directive is only available in TailwindCSS v2.0 and above. If you're using an older version of TailwindCSS, you can define your custom classes in a separate CSS file and include it in your project.

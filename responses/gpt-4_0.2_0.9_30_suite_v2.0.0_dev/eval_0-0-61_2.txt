@@ -1,0 +1,42 @@
+You can use the `CssBaseline` component from Material-UI. It's a modern alternative to CSS resets. It provides an elegant solution to set up the global CSS for your application, including the background color.
+
+Here is an example of how you can use it:
+
+```jsx
+import React from 'react';
+import { createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
+
+const lightTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+    // other palette properties
+  },
+  // other theme properties
+});
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    // other palette properties
+  },
+  // other theme properties
+});
+
+export default function App() {
+  const [theme, setTheme] = React.useState(lightTheme);
+
+  const toggleTheme = () => {
+    setTheme(theme.palette.type === 'light' ? darkTheme : lightTheme);
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* other components */}
+      <button onClick={toggleTheme}>Toggle theme</button>
+    </ThemeProvider>
+  );
+}
+```
+
+In this example, `CssBaseline` will apply the background color defined in your theme to the body of your document. When you switch the theme, the background color will be updated accordingly.

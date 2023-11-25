@@ -1,0 +1,16 @@
+It seems like there's a bit of confusion here. iOS doesn't have a "Developer Mode" that you can enable or disable like Android. The alert you're seeing is likely related to the provisioning profile used to sign the app you're trying to install.
+
+Here are the steps to install a provisioned app:
+
+1. Connect your iOS device to your Mac.
+2. Open Xcode.
+3. Go to `Window` -> `Devices and Simulators`.
+4. Under the `Devices` tab, select your device.
+5. Click the `+` button under `Installed Apps`.
+6. Select the `.ipa` file of the app you want to install.
+
+If you're still seeing the alert, it's possible that the provisioning profile used to sign the app doesn't include your device or your developer account. You'll need to get a new `.ipa` file signed with a provisioning profile that includes your device and your developer account.
+
+If you're the developer of the app, you can do this in Xcode by going to `Project` -> `Signing & Capabilities` -> `All` and making sure your device and developer account are included in the provisioning profile.
+
+If you're not the developer of the app, you'll need to contact the developer and ask them to provide a new `.ipa` file.

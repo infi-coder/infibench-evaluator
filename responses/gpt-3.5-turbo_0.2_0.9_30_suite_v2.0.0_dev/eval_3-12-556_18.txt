@@ -1,0 +1,13 @@
+If your compileSdkVersion and targetSdkVersion is 30 (or above), then add the camera info to your AndroidManifest.xml file, directly under the manifest tag:
+```
+<manifest package=\"com.example\">
+    <queries>
+        <intent>
+            <action android:name=\"android.intent.action.CAMERA\" />
+        </intent>
+    </queries>
+    ...
+</manifest>
+``` 
+
+This will allow your app to query for the availability of the camera before attempting to use it.

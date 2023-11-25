@@ -1,0 +1,43 @@
+I want to inject multiple ServiceBusClient with same connectionstring but different queue name.
+```c#
+    _services.TryAddSingleton(implementationFactory =>
+    {
+        var serviceBusConfiguration = implementationFactory.GetRequiredService<Microsoft.Extensions.Options.IOptions<UserEventConsumerSetting>>().Value;
+
+        var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+
+        return serviceBusClient.CreateReceiver(serviceBusConfiguration.ServiceBusQueueName, new ServiceBusReceiverOptions
+        {
+            ReceiveMode = ServiceBusReceiveMode.PeekLock
+        });
+    });
+```
+In order to use I have to create ServiceBusSender Instance.
+```c#
+    private readonly ServiceBusSender _serviceBusSender;
+
+    public CarReservationMessagingService(ServiceBusSender serviceBusSender)
+    {
+        _serviceBusSender = serviceBusSender ?? throw new ArgumentNullException(nameof(serviceBusSender));
+    }
+
+    public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation)
+    {
+        var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+        {
+            Id = Guid.NewGuid().ToString(),
+            CarId = carReservation.CarId,
+            CustomerId = carReservation.CustomerId,
+            RentFrom = carReservation.RentFrom,
+            RentTo = carReservation.RentTo
+        };
+
+        var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+        ServiceBusMessage message = new ServiceBusMessage(serializedMessage);
+        await _serviceBusSender.SendMessageAsync(message);
+    }
+```
+How can I inject multiple servicebusclient and use them differently?

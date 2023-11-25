@@ -1,0 +1,10 @@
+This error is likely caused by a bug in rust-analyzer, a popular Rust language server. It seems to be a false positive, as your code compiles and runs without any issues. 
+
+You can try updating your Rust toolchain and rust-analyzer to see if the error goes away. If it persists, you can try disabling rust-analyzer's macro validation by adding the following to your `settings.json` file in VS Code:
+
+```json
+"rust-analyzer.checkOnSave.enable": false,
+"rust-analyzer.checkOnType.enable": false
+```
+
+This will disable rust-analyzer's macro validation, which should get rid of the error. However, keep in mind that this will also disable other macro-related checks, so use this solution with caution.

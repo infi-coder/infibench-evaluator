@@ -1,0 +1,13 @@
+The error message suggests that your current PHP version and extensions are not compatible with Laravel 9. Laravel 9 requires PHP 8.0 or higher and some extensions like `mbstring`, `xml`, `curl`, `zip`, `gd`, and `mysqlnd` to be installed.
+
+You can check your PHP version by running the following command in your terminal:
+
+```bash
+php -v
+```
+
+If your PHP version is lower than 8.0, you need to upgrade it to a higher version. You can follow the official PHP documentation to upgrade your PHP version.
+
+Once you have upgraded your PHP version, make sure that all the required extensions are installed. You can check the list of required extensions in the Laravel documentation.
+
+After installing the required extensions, try running the `composer create-project` command again. It should work without any issues.

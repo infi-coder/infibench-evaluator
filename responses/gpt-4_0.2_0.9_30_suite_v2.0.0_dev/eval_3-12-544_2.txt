@@ -1,0 +1,16 @@
+The error you're seeing is because you're trying to access platform channels before `runApp()` has been called. This is a common issue when trying to perform asynchronous operations in the `main()` function.
+
+To fix this, you should ensure that `WidgetsFlutterBinding.ensureInitialized()` is called first. This method initializes the binding between the framework and the Flutter engine.
+
+Here's how you can modify your code:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+
+This should resolve the error you're seeing.

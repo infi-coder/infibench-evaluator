@@ -1,0 +1,12 @@
+If your compileSdkVersion and targetSdkVersion is 30 (or above), then add the following info to your AndroidManifest.xml file, directly under the manifest tag:
+```
+<manifest package="com.example">
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
+    ...
+</manifest>
+```
+This is necessary because from Android 11 (API level 30) and above, you need to explicitly declare in your app's manifest file that your app needs to access the device's camera.

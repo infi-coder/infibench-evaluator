@@ -1,0 +1,7 @@
+You can try using awk instead of a bash loop. Here's an example command that should achieve the same result much faster:
+
+```
+awk -F= '/name/ {name=$2} /value/ {print name "=" $2}' input.txt > output.txt
+```
+
+This command sets the field separator to "=" and then uses two patterns to match lines containing "name" and "value". When a line containing "name" is found, it saves the name to a variable. When a line containing "value" is found, it prints the saved name and the value. The output is redirected to the output file.

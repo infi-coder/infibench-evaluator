@@ -1,0 +1,44 @@
+You can use multiple `Consumer` widgets for a single widget in Flutter Provider. Each `Consumer` widget can listen to a different `ChangeNotifier`.
+
+Here is an example:
+
+```dart
+Consumer<FirstChangeNotifier>(
+  builder: (context, firstChangeNotifier, child) {
+    return Consumer<SecondChangeNotifier>(
+      builder: (context, secondChangeNotifier, child) {
+        return Consumer<ThirdChangeNotifier>(
+          builder: (context, thirdChangeNotifier, child) {
+            return Consumer<FourthChangeNotifier>(
+              builder: (context, fourthChangeNotifier, child) {
+                return CurvedNavigationBar(
+                  // Use the values from the ChangeNotifiers to build your widget
+                  // For example:
+                  index: firstChangeNotifier.currentIndex,
+                  items: <Widget>[
+                    Icon(Icons.add, size: 30),
+                    Icon(Icons.list, size: 30),
+                    Icon(Icons.compare_arrows, size: 30),
+                    Icon(Icons.call_split, size: 30),
+                  ],
+                  onTap: (index) {
+                    // Handle the onTap event and notify the ChangeNotifiers
+                    firstChangeNotifier.updateIndex(index);
+                    secondChangeNotifier.updateSomething(index);
+                    thirdChangeNotifier.updateSomethingElse(index);
+                    fourthChangeNotifier.updateYetAnotherThing(index);
+                  },
+                );
+              },
+            );
+          },
+        );
+      },
+    );
+  },
+)
+```
+
+In this example, `FirstChangeNotifier`, `SecondChangeNotifier`, `ThirdChangeNotifier`, and `FourthChangeNotifier` are your classes that extend `ChangeNotifier`.
+
+This way, you can listen to multiple `ChangeNotifier`s in a single widget. Each `ChangeNotifier` can be responsible for a different aspect of your `CurvedNavigationBar` widget.

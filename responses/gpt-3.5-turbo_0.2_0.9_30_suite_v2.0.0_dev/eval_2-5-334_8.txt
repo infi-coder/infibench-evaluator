@@ -1,0 +1,1 @@
+@Configuration should be used when you need to define beans that require additional configuration beyond what is available through annotations like @Service, @Controller, or @Component. For example, if you need to configure a third-party library or set up a complex dependency graph, you would use @Configuration to define a bean and provide the necessary configuration.

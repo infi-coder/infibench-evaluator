@@ -1,0 +1,16 @@
+Here's the revised code for the `pig_latin` function:
+
+```python
+def pig_latin(text):
+  words = text.split()
+  pig_latin_words = []
+  for word in words:
+    endString = str(word[1:]).lower()
+    startString = str(word[0]).lower()
+    pig_latin_words.append(endString + startString + 'ay')
+  return ' '.join(pig_latin_words)
+```
+
+In this revised code, we first split the input `text` into a list of words using the `split()` method. Then, we iterate over each word in the list and perform the pig Latin transformation by moving the first character to the end of the word and appending "ay". We store each transformed word in a new list called `pig_latin_words`. Finally, we join the elements of `pig_latin_words` using a space character and return the resulting string.
+
+Note that we also modified the way we extract the first and remaining characters of each word. Instead of using indexing, we used string slicing to extract the appropriate substrings. We also made sure to convert the first character to lowercase before appending it to the end of the word.

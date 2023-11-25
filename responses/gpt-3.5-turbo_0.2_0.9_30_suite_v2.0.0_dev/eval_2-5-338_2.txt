@@ -1,0 +1,35 @@
+The error message suggests that the Jackson JSON serializer used by RestTemplate is unable to serialize the `MultipartFile` object. One solution is to use a different serializer that can handle `MultipartFile` objects.
+
+One such serializer is the `MappingJackson2HttpMessageConverter` with the `ObjectMapper` configured to use the `Jackson2ObjectMapperBuilder` with the `DefaultSerializerProvider` set to use the `JsonComponentModule`. Here's an example:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+
+// Configure the ObjectMapper with the JsonComponentModule
+ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json()
+        .modules(new JsonComponentModule())
+        .build();
+
+// Use the MappingJackson2HttpMessageConverter with the configured ObjectMapper
+MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+converter.setObjectMapper(objectMapper);
+
+// Add the converter to the RestTemplate's list of message converters
+restTemplate.getMessageConverters().add(converter);
+
+// Make the request as before
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body= new LinkedMultiValueMap<>();
+body.add("circularAttachment", souqBean.getCircularAttachment()); //MultipartFile
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<?> entity = new HttpEntity<MultiValueMap<String, Object>>(body,headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status=response.getBody();
+```
+
+This should allow the `MultipartFile` object to be serialized and sent in the request.

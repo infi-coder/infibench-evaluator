@@ -1,0 +1,12 @@
+You can use `grep` with a regular expression to match the `lang` attribute regardless of its position in the HTML tag. Here's an example:
+
+```
+curl -Ls stick-it.app | grep -oP 'lang="\K[^"]+'
+```
+
+This will output `he-IL` for the example you provided. Here's how it works:
+
+- `-o` option tells `grep` to only output the matched text, not the entire line.
+- `-P` option enables Perl-compatible regular expressions.
+- `lang="\K` matches `lang="` but discards it from the output using `\K`.
+- `[^"]+` matches one or more characters that are not a double quote, which is the value of the `lang` attribute.

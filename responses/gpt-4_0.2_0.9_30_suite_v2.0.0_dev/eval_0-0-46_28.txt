@@ -1,0 +1,23 @@
+The error message you're seeing is because ESLint is trying to find the `tsconfig.json` file in the same directory as the `.eslintrc.js` file. If your `tsconfig.json` file is not in the same directory, you'll need to provide the correct relative path to it.
+
+In your `.eslintrc.js` file, you have the following line:
+
+```javascript
+project: "tsconfig.json",
+```
+
+This tells ESLint to look for `tsconfig.json` in the same directory as `.eslintrc.js`. If `tsconfig.json` is not in the same directory, you'll need to provide the correct relative path.
+
+For example, if your `tsconfig.json` file is in the root directory of your project and your `.eslintrc.js` file is in a subdirectory, you would change the line to:
+
+```javascript
+project: "../tsconfig.json",
+```
+
+Or if both files are in the root directory, you should specify the full path:
+
+```javascript
+project: "./tsconfig.json",
+```
+
+After making this change, you should no longer see the error message. If you do, make sure the path to `tsconfig.json` is correct.

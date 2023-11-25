@@ -1,0 +1,42 @@
+The `[Keyless]` attribute is not part of the `System.ComponentModel.DataAnnotations` namespace. It's part of the `Microsoft.EntityFrameworkCore` namespace.
+
+The `[Keyless]` attribute is used to denote that an entity does not contain a key and therefore cannot be saved to the database using Entity Framework Core. It is typically used for views or tables that are read-only.
+
+To use the `[Keyless]` attribute, you need to add a reference to the `Microsoft.EntityFrameworkCore` namespace. 
+
+Here is an example of how to use it:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+
+[Keyless]
+public class MyKeylessClass
+{
+    public string SomeProperty { get; set; }
+    // other properties...
+}
+```
+
+And in your `DbContext`:
+
+```csharp
+public DbSet<MyKeylessClass> KeylessModel { get; set; }
+```
+
+You can then use the `FromSqlRaw` method as you mentioned:
+
+```csharp
+_context.KeylessModel.FromSqlRaw(...)
+```
+
+Make sure you have installed the correct Entity Framework Core package. You can install it via NuGet Package Manager with the following command:
+
+```shell
+Install-Package Microsoft.EntityFrameworkCore
+```
+
+Or via .NET CLI:
+
+```shell
+dotnet add package Microsoft.EntityFrameworkCore
+```

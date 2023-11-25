@@ -1,0 +1,7 @@
+You can use awk to achieve the same result more efficiently. Here's an example command:
+
+```
+awk -F= '/name/ {name=$2} /value/ {if (name) print name "=" $2; name=""}' input.txt > output.txt
+```
+
+This command sets the field separator to "=" and then looks for lines containing "name" and "value". When it finds a line containing "name", it saves the name value in a variable. When it finds a line containing "value", it prints the name and value values separated by "=" if the name value is not empty. Finally, it resets the name value to an empty string. This command should be much faster than your original script.

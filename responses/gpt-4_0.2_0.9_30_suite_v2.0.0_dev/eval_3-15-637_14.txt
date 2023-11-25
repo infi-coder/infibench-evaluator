@@ -1,0 +1,15 @@
+The error you're experiencing could be due to a number of reasons. Here are a few things you can try:
+
+1. **Check your SeleniumBasic version**: Ensure that you have the latest version of SeleniumBasic installed. You can download it from [here](https://github.com/florentbr/SeleniumBasic/releases).
+
+2. **Check your browser driver**: Make sure you have the correct driver for the browser you're using. The driver should match the version of your browser. You can download the latest drivers from the Selenium [website](https://www.selenium.dev/downloads/).
+
+3. **Check your references**: In VBA, go to `Tools > References` and make sure that Selenium Type Library is checked.
+
+4. **Try using late binding**: Instead of `Dim driver As New WebDriver`, try using `Dim driver As Object` and `Set driver = CreateObject("Selenium.ChromeDriver")`. This can sometimes solve issues related to early binding.
+
+5. **Check your Internet Explorer settings**: If you're using IE, make sure that the "Enable Protected Mode" setting is the same for all zones. You can find this setting in `Internet Options > Security`.
+
+6. **Try using a different browser**: If you're still having issues with IE, try using a different browser like Chrome or Firefox.
+
+If none of these suggestions work, please provide the exact error message you're getting so we can better assist you.

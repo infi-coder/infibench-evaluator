@@ -1,0 +1,7 @@
+The issue is that the `$(echo {} | sed 's/\?.*//g')` part of your command is evaluated before `find` executes, so it doesn't replace `{}` with the actual file name. You need to use a shell to delay the evaluation of the `sed` command until `find` has found a file. Here is the corrected command:
+
+```bash
+find . -type f -name '*\?*' -exec sh -c 'mv "$1" "$(echo "$1" | sed "s/\?.*//")"' _ {} \;
+```
+
+In this command, `sh -c` starts a new shell and the `_` is a placeholder for `$0` (the name of the script, which is not used here), and `{}` is passed as an argument to the shell script, which is accessed as `$1`.

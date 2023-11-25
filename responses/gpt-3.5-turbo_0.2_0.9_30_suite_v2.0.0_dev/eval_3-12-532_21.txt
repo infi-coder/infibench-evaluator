@@ -1,0 +1,16 @@
+The `FormatException` error occurs when the JSON string is not properly formatted. In your case, it seems that the response body is not in a valid JSON format. 
+
+To solve this issue, you can try to print the response body and check if it is a valid JSON string. If it is not a valid JSON string, you can modify your PHP file to return a valid JSON response.
+
+Also, you can wrap the `json.decode()` method in a try-catch block to handle the `FormatException` error. Here is an example:
+
+```dart
+try {
+  List data = json.decode(response.body);
+  // Do something with the data
+} catch (e) {
+  print('Error decoding JSON: $e');
+}
+``` 
+
+This will catch any `FormatException` errors and print the error message to the console.

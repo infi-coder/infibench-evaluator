@@ -1,0 +1,21 @@
+Here is a Python function that uses the `re` module to replace dash and underscore delimited words with their camel case equivalent:
+
+```python
+import re
+
+def to_camel_case(text):
+    return re.sub('[_-](.)', lambda x: x.group(1).upper(), text)
+```
+
+This function works by using a regular expression to find all occurrences of a dash or underscore followed by any character (`[_-](.)`). The `re.sub` function then replaces each match with the result of the lambda function, which is the character that follows the dash or underscore, converted to uppercase (`lambda x: x.group(1).upper()`).
+
+This function will correctly handle the case where the first word is capitalized, because the regular expression does not match the first character of the string, so it will remain unchanged.
+
+Here is how you can use this function with the test cases you provided:
+
+```python
+print(to_camel_case(''))  # ''
+print(to_camel_case("the_stealth_warrior"))  # 'theStealthWarrior'
+print(to_camel_case("The-Stealth-Warrior"))  # 'TheStealthWarrior'
+print(to_camel_case("A-B-C"))  # 'ABC'
+```

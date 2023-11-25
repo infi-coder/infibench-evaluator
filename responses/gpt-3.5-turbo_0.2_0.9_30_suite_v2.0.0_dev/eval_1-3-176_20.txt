@@ -1,0 +1,23 @@
+The error message indicates that the headers or library files for zlib are missing, which is a required dependency for Pillow. You can try installing zlib by running the following command in your terminal:
+
+```bash
+sudo apt-get install zlib1g-dev
+```
+
+If you are using Windows, you can download the pre-built binaries for zlib from the following link: https://www.zlib.net/
+
+Once you have installed zlib, try installing Pillow again using pip:
+
+```bash
+pip install pillow
+```
+
+If the above steps do not work, you can try installing Pillow from a wheel file. Download the appropriate wheel file for your system from the following link: https://pypi.org/project/Pillow/#files
+
+Then, install the wheel file using pip:
+
+```bash
+pip install path/to/wheel/file.whl
+```
+
+Replace `path/to/wheel/file.whl` with the actual path to the downloaded wheel file.

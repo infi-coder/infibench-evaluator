@@ -1,0 +1,13 @@
+Yes, you can disable the generation of the `*-plain.jar` file. This is a new feature in Spring Boot 2.5.0 that generates a jar without the embedded container. If you don't need it, you can disable it by adding the following configuration to your `build.gradle` file:
+
+```groovy
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = false
+}
+```
+
+This configuration will enable the `bootJar` task (which generates the fat jar) and disable the `jar` task (which generates the plain jar).

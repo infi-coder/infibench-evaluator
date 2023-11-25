@@ -1,0 +1,21 @@
+You can use `awk` to extract the language code more reliably. Here's how you can do it:
+
+```bash
+curl -Ls stick-it.app | awk -F 'lang="' '{print $2}' | awk -F '"' '{print $1}'
+```
+
+This command works as follows:
+
+- `curl -Ls stick-it.app` fetches the webpage content.
+- `awk -F 'lang="' '{print $2}'` splits the output by `lang="` and prints the second part. This will give you everything after `lang="`.
+- `awk -F '"' '{print $1}'` splits the output by `"` and prints the first part. This will give you the language code.
+
+This command will work regardless of whether the language code is the third attribute in the `<html>` tag or not.
+
+However, please note that this command assumes that `lang="` appears only once in the HTML document. If it appears more than once, you might get incorrect results. To handle multiple occurrences of `lang="`, you can use `grep` to get the line containing `<html` first:
+
+```bash
+curl -Ls stick-it.app | grep '<html' | awk -F 'lang="' '{print $2}' | awk -F '"' '{print $1}'
+```
+
+This command will only consider the `lang="` in the `<html>` tag.

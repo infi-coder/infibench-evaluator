@@ -1,0 +1,25 @@
+If you are using GitHub Actions, you can use the `actions/setup-java` action to set up the JDK version you need. Here is an example of how you can do this:
+
+```yaml
+name: Java CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Build with Maven
+      run: ./mvnw clean install
+```
+
+In this example, the `actions/setup-java@v1` action is used to set up JDK 1.8. Then, Maven is run with the `./mvnw clean install` command.
+
+If you are using a different CI/CD tool, the process might be slightly different, but the general idea is the same: you need to set up the JDK version you need before running Maven.

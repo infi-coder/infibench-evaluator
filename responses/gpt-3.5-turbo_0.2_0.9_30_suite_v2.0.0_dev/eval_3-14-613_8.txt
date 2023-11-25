@@ -1,0 +1,8 @@
+This error message suggests that the preview code is not associated with any target in the current scheme. You can try the following steps to fix the issue:
+
+1. Make sure that the preview code is included in the same target as the rest of your code.
+2. Check that the target containing the preview code is selected in the scheme editor.
+3. Clean your project and rebuild it.
+4. Try restarting Xcode.
+
+If none of these steps work, you can try creating a new project and copying your code over to see if the issue persists.

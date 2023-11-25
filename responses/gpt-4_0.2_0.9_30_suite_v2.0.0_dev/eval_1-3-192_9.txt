@@ -1,0 +1,17 @@
+Here is a Python function that uses the `re` module to split the input string at either dashes or underscores, then uses the `str.capitalize()` method to capitalize the first letter of each word after the first one. The `str.join()` method is then used to concatenate the words together without spaces.
+
+```python
+import re
+
+def to_camel_case(text):
+    words = re.split('-|_', text)
+    for i in range(1, len(words)):
+        words[i] = words[i].capitalize()
+    return ''.join(words)
+```
+
+This function works by first splitting the input string into a list of words. The `re.split()` function is used with a regular expression that matches either a dash or an underscore, so the string is split at either character.
+
+Then, a for loop is used to iterate over each word in the list, starting from the second word (at index 1). The `str.capitalize()` method is used to capitalize the first letter of each word, and the result is assigned back to the same position in the list.
+
+Finally, the `str.join()` method is used to concatenate all the words in the list together into a single string, without any spaces in between. This is the camel case version of the input string, which is then returned by the function.

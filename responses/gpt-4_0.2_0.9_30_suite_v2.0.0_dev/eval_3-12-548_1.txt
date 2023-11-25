@@ -1,0 +1,14 @@
+Use `WillPopScope` instead of `Navigator.pop(context)` or `Navigator.of(context).pop()`. 
+
+The `WillPopScope` widget intercepts the back button press event and you can decide what to do when the back button is pressed. In your case, you can simply return `false` to disable the back button. Here is an example:
+
+```dart
+return WillPopScope(
+  onWillPop: () async => false,
+  child: Scaffold(
+    // your widget here
+  ),
+);
+```
+
+This will disable the back button when you are on the login page.

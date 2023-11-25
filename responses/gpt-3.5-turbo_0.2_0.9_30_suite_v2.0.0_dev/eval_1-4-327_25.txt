@@ -1,0 +1,7 @@
+To select the second column by name, you can use the indexing operator `[ ]` with the column name enclosed in quotes and preceded by a comma to indicate that you want to select all rows. Here's the code:
+
+```r
+second_col <- d3[, "a.1"]
+```
+
+This will select the second column with name "a.1" and assign it to the variable `second_col`.

@@ -1,0 +1,24 @@
+The error message indicates that Jackson is trying to serialize the `MultipartFile` object, but it can't because `MultipartFile` is not a serializable object. 
+
+To solve this, you need to convert the `MultipartFile` to a `Resource` object before adding it to the `MultiValueMap`. Here is how you can do it:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+// Convert MultipartFile to Resource
+Resource resource = new InputStreamResource(souqBean.getCircularAttachment().getInputStream());
+body.add("circularAttachment", new HttpEntity<>(resource, headers));
+
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<?> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+In this code, `InputStreamResource` is used to convert the `MultipartFile` to a `Resource` object. The `Resource` object is then wrapped in an `HttpEntity` object before being added to the `MultiValueMap`. This way, the `MultipartFile` can be correctly serialized and sent in the HTTP request.

@@ -1,0 +1,21 @@
+I want to use the following code to rename Python Pandas DataFrame columns.
+
+```python
+import pandas as pd
+import numpy as np
+datain = np.loadtxt(datafile)
+df = pd.DataFrame(data = datain, columns = ["t","p","x","y","z"])
+avg = df.groupby(["t"], sort=False)["p"].mean().rename(columns={1:"mean"})
+```
+
+This doesn't work, it tells me `TypeError: rename() got an unexpected keyword argument "columns".` It also doesn't work if I do this,
+
+```python
+avg.rename(columns = {1:"mean"}, inplace=True)
+```
+
+I cannot figure out why, all documentation tells me that my columns call is correct. I just want to rename the blank column created by my "mean" call to have a string index. All examples I've seen follow this format.
+
+Please write a function `renameDataFrame` in Python, which takes a Pandas DataFrame variable `df` as the argument, which contains the columns as the above example and returns the `df` with the "p" column renamed as "mean" and get the average numbers group by "t" column.
+
+Function signature is: `renameDataFrame(df)`

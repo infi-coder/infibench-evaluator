@@ -1,0 +1,43 @@
+To conform to `ShapeStyle`, you need to create a struct that conforms to the `ShapeStyle` protocol and implement the `func _apply(to shape: inout _ShapeStyle_ShapeType)` method. 
+
+Here's how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+
+struct RedShapeStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType) {
+        shape.fill = Color.red
+    }
+}
+```
+
+However, `_ShapeStyle_ShapeType` and `_apply(to:)` are underscored because they are private to SwiftUI's implementation and not intended for direct use. 
+
+Instead, you should use `View` modifiers and SwiftUI's built-in `ShapeStyle` conforming types like `Color` for filling shapes. 
+
+If you want to create a custom `ShapeStyle`, you can do so by creating a struct that conforms to `ShapeStyle` and implements the `makeView(geometry: ShapeRenderingGeometry) -> some View` method:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+
+struct RedShapeStyle: ShapeStyle {
+    func makeView(geometry: ShapeRenderingGeometry) -> some View {
+        Color.red
+    }
+}
+```
+
+But this will also not work because `makeView(geometry:)` is not a part of the `ShapeStyle` protocol. 
+
+In conclusion, SwiftUI does not currently support creating custom `ShapeStyle` conforming types. You should use the built-in types like `Color` and `Gradient` instead.

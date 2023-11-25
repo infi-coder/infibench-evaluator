@@ -1,0 +1,20 @@
+The `[Keyless]` attribute is not part of `System.ComponentModel.DataAnnotations`. It is part of `Microsoft.EntityFrameworkCore` namespace. 
+
+To use it, you need to install the `Microsoft.EntityFrameworkCore.Relational` package and add the following using directive at the top of your file:
+
+```c#
+using Microsoft.EntityFrameworkCore;
+```
+
+Then you can use the `[Keyless]` attribute in your model class like this:
+
+```c#
+[Keyless]
+public class MyKeylessClass
+{
+    public string SomeProperty { get; set; }
+    // other properties...
+}
+```
+
+Remember that the `[Keyless]` attribute is used to specify that the entity type does not have any key, it is typically used for entities that map to views and tables that do not have a primary key.

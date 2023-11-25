@@ -1,0 +1,30 @@
+The error message indicates that Jackson is trying to serialize the `MultipartFile` object, but it can't because `MultipartFile` is not serializable. 
+
+You should convert the `MultipartFile` to `HttpEntity<FileSystemResource>` before sending it. Here is how you can do it:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+// Convert MultipartFile to File
+File convFile = new File(souqBean.getCircularAttachment().getOriginalFilename());
+FileOutputStream fos = new FileOutputStream(convFile);
+fos.write(souqBean.getCircularAttachment().getBytes());
+fos.close();
+
+// Use FileSystemResource to wrap the File
+body.add("circularAttachment", new FileSystemResource(convFile));
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status=response.getBody();
+```
+
+This code first converts the `MultipartFile` to a `File`, then wraps it in a `FileSystemResource` before adding it to the `MultiValueMap`. `FileSystemResource` is serializable and can be used to transfer the file data over the network.
+
+Please note that this code writes the `MultipartFile` to a file on the server's file system. If you don't want to keep this file, you should delete it after the request has been sent.

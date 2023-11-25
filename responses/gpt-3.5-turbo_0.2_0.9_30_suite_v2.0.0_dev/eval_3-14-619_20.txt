@@ -1,0 +1,1 @@
+The issue is that `ContentView_Previews` is using `@State` instead of `@Binding`. Change `@State` to `@Binding` in `ContentView_Previews` and it should work as expected.

@@ -1,0 +1,20 @@
+You can use the `tidyr` package to split the column into separate columns. Here's the code for the `mySplit` function:
+
+```r
+library(tidyr)
+
+mySplit <- function(df) {
+  df_new <- separate(df, col1, into = c("name", "Age", "City"), sep = ",|:")
+  return(df_new)
+}
+```
+
+In this function, we use the `separate` function from the `tidyr` package to split the `col1` column into three separate columns: `name`, `Age`, and `City`. The `into` argument specifies the names of the new columns, and the `sep` argument specifies the separator to use for splitting the original column. We use `|` to specify that either a comma or a colon can be used as a separator.
+
+You can call this function by passing your original data frame `df` as an argument, like this:
+
+```r
+df_new <- mySplit(df)
+```
+
+This will return a new data frame `df_new` with the split columns.

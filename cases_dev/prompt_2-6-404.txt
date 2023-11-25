@@ -1,0 +1,16 @@
+How do I create multiple constructors for a record type in C#?
+I created a record type like this:
+```c#
+public record Person(int Id, string FirstName, string LastName)
+```
+Now I want to introduce another constructor overload with no parameters, how can I do that?
+
+Specifically, pelase don't add other text and repeat the following paragraph with [blank] filled:
+
+You can write the following code to introduce another constructor overload with no parameters:
+```c#
+public record Person(int Id, string FirstName, string LastName){
+[blank]
+}
+```
+Please don't add other text and only give me the code to replace [blank].

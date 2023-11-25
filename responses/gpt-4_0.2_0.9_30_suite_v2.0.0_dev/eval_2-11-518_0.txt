@@ -1,0 +1,17 @@
+The Rule of Five is not outdated, but it's true that modern C++ practices have reduced the need for it in many cases. 
+
+The Rule of Five is particularly important when dealing with raw owning pointers. If your class owns resources (like raw pointers), you need to make sure they are properly copied or moved when your object is copied or moved, and properly deleted when your object is deleted. This is where the Rule of Five comes in.
+
+However, as you've noted, smart pointers (like `std::unique_ptr` and `std::shared_ptr`) can manage resources for you. They automatically delete the resources they own when they are destroyed, and they cannot be copied or moved inappropriately. This means that if your class only contains smart pointers (and other simple types), you don't need to define any special member functions.
+
+But there are still cases where you might need to define these functions:
+
+1. **Performance**: Sometimes, for performance reasons, you might want to use raw pointers and manage memory yourself. In this case, you'll need to follow the Rule of Five.
+
+2. **Legacy code**: If you're working with older code that uses raw pointers, you'll need to follow the Rule of Five.
+
+3. **Advanced resource management**: If you're managing a resource that isn't memory (like a file handle or a network connection), you might need to define these functions to properly manage that resource.
+
+4. **Custom behavior**: If you want copy or move operations to do something non-standard, you'll need to define these functions.
+
+So while it's true that modern C++ practices have reduced the need for the Rule of Five, it's still an important concept to understand and use when necessary.

@@ -1,0 +1,49 @@
+To identify if a div is visible on the viewport, you can use the Intersection Observer API. Here's an example code snippet that you can use:
+
+```javascript
+import React, { useEffect, useRef, useState } from "react";
+
+const ParentComponent = ({ data }) => {
+  const [visibleDivs, setVisibleDivs] = useState([]);
+  const parentRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleIds = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target.id);
+        setVisibleDivs(visibleIds);
+      },
+      { root: null, rootMargin: "0px", threshold: 0.5 }
+    );
+
+    const childNodes = parentRef.current.childNodes;
+    childNodes.forEach((child) => {
+      observer.observe(child);
+    });
+
+    return () => {
+      childNodes.forEach((child) => {
+        observer.unobserve(child);
+      });
+    };
+  }, [data]);
+
+  return (
+    <div id="parent" ref={parentRef}>
+      {data.map((item) => (
+        <div key={item.id} id={item.id}>
+          {item.title}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+In this code, we are using the `IntersectionObserver` API to observe each child node of the parent div. Whenever a child node intersects with the viewport, we add its ID to the `visibleDivs` state. You can then use this state to render any additional UI elements or perform any other actions.
+
+Note that the `IntersectionObserver` API is supported in most modern browsers, but if you need to support older browsers, you may need to use a polyfill. There are several polyfills available on npm, such as `intersection-observer` and `intersection-observer-polyfill`. You can install them using `npm install` and then import them in your code.

@@ -1,0 +1,25 @@
+The `[Keyless]` attribute was introduced in Entity Framework Core 5.0. If you are using an earlier version of Entity Framework Core, you will not have access to this attribute.
+
+To use `[Keyless]`, you need to make sure you are using Entity Framework Core 5.0 or later. You can check the version of Entity Framework Core you are using by looking at the version number of the `Microsoft.EntityFrameworkCore` package in your project's dependencies.
+
+If you are using an earlier version of Entity Framework Core, you can still create keyless entities by creating a class that does not have a primary key property and using the `HasNoKey()` method in your `OnModelCreating` method to configure the entity as keyless. Here is an example:
+
+```c#
+public class MyKeylessClass
+{
+    public string Property1 { get; set; }
+    public int Property2 { get; set; }
+}
+
+public class MyDbContext : DbContext
+{
+    public DbSet<MyKeylessClass> KeylessModel { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<MyKeylessClass>().HasNoKey();
+    }
+}
+```
+
+With this configuration, you can use `FromSqlRaw` to query the `KeylessModel` DbSet without having to define a primary key.

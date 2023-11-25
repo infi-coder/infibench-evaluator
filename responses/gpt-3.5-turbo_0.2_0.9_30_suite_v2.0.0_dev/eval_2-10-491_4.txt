@@ -1,0 +1,28 @@
+One way to express this more idiomatically is to use the `Option::filter()` method, which returns `None` if the inner value does not meet the condition, and otherwise returns the original `Option`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    if foo.filter(|&val| val < 5).is_none() {
+        foo.replace(5);
+    }
+}
+```
+
+Another way to express this is to use the `Option::map()` method to transform the inner value if it meets the condition, and then use the `Option::unwrap_or()` method to provide a default value if the `Option` is `None`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map(|val| if val < 5 { val } else { 5 }).unwrap_or(Some(5));
+}
+```
+
+Finally, you could use the `Option::unwrap_or_else()` method to provide a closure that returns the default value if the `Option` is `None`, or returns the original value if it meets the condition. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.unwrap_or_else(|| Some(5)).filter(|&val| val < 5);
+}
+```

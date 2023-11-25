@@ -1,0 +1,23 @@
+id: 2-8-469
+prompt_path: prompt_2-8-469.txt
+type: code debugging
+lang: go
+grading:
+  blank_filling:
+    template: 'You can rewrite code as follows:
+```go
+syntax="proto3";
+
+package main;
+
+[blank]
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```'
+    escape: " '\"\n`"
+    targets:
+      - content: 'option go_package ='
+        substr_match: True

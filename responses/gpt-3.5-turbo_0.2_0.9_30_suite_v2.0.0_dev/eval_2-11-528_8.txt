@@ -1,0 +1,21 @@
+You can disable the automatic ordering of includes in clang-format by adding the following line to your `.clang-format` file:
+
+```
+SortIncludes: false
+```
+
+This will disable the sorting of includes and preserve the order in which they appear in your code. Note that this may result in warnings or errors from your compiler if the order of includes is not correct for certain libraries or dependencies.
+
+If you want to keep the automatic ordering of includes but customize the order for specific libraries or dependencies, you can use the `IncludeCategories` option in your `.clang-format` file. This allows you to group includes into categories and specify the order in which they should appear. For example:
+
+```
+IncludeCategories:
+  - Regex:           '^(<|")'
+    Priority:        2
+  - Regex:           '^"'
+    Priority:        1
+  - Regex:           '^<'
+    Priority:        3
+```
+
+This will group includes starting with `"` before those starting with `<`, and give priority to system includes (starting with `<`) over local includes (starting with `"`). You can customize this to fit your specific needs.

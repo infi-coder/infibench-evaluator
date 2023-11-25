@@ -1,0 +1,37 @@
+The error message you're seeing, `System.Text.Json.JsonException: '<' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0`, indicates that the response from the server is not valid JSON. This could be due to a number of reasons, but the most common one is that the server is returning HTML instead of JSON, usually in the form of an error page.
+
+Here are some steps to debug and fix the issue:
+
+1. **Check the API endpoint**: Make sure that the API endpoint you're calling (`/api/Employee/Index`) is correct and is configured to return JSON. You can test this by calling the API directly from a browser or using a tool like Postman.
+
+2. **Check the API response**: If the API endpoint is correct, the next step is to check the response that it's returning. You can do this by adding some logging to your API method to output the response before it's returned. If the response is not JSON, you'll need to fix this in your API method.
+
+3. **Check the route in your controller**: In your `EmployeeController`, you have defined the route as `[Route("[controller]")]` and then for the `Index` action method you have defined the route as `[Route("api/Employee/Index")]`. This might be causing the issue. Try changing the route for the `Index` action method to just `[Route("Index")]`.
+
+Here is the corrected code:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    [Route("Index")]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+4. **Use `GetFromJsonAsync`**: In .NET 5.0 and later, the `GetJsonAsync` method is obsolete. Use the `GetFromJsonAsync` method instead. Here is how you can use it:
+
+```csharp
+empList = await Http.GetFromJsonAsync<Employee[]>("api/Employee/Index");
+```
+
+Remember to add `using System.Net.Http.Json;` at the top of your file to use the `GetFromJsonAsync` method.
+
+If you're still having issues after trying these steps, please provide more information about your `EmployeeRepository` and the `Employee` model.

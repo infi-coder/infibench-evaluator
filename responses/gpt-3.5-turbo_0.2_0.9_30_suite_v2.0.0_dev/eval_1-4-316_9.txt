@@ -1,0 +1,100 @@
+To sort a list alphabetically, you can use the `sort()` function in R. However, the `sort()` function only works on atomic vectors, not on lists. To sort a list, you need to first convert it to an atomic vector using the `unlist()` function.
+
+Here's the modified code to sort the list alphabetically:
+
+```r
+# Creating a random vector of letters
+random_text_data = sample(letters, 10)
+random_text_data
+
+# Convert to list
+list_text_data = as.list(random_text_data)
+list_text_data
+
+# Sort list alphabetically
+sorted_data = sort(unlist(list_text_data))
+
+# Convert back to list
+sorted_list_data = as.list(sorted_data)
+sorted_list_data
+```
+
+Output:
+
+```r
+> random_text_data
+ [1] "t" "n" "e" "k" "b" "y" "x" "c" "u" "j"
+> list_text_data
+[[1]]
+[1] "t"
+
+[[2]]
+[1] "n"
+
+[[3]]
+[1] "e"
+
+[[4]]
+[1] "k"
+
+[[5]]
+[1] "b"
+
+[[6]]
+[1] "y"
+
+[[7]]
+[1] "x"
+
+[[8]]
+[1] "c"
+
+[[9]]
+[1] "u"
+
+[[10]]
+[1] "j"
+
+> sorted_list_data
+[[1]]
+[1] "b"
+
+[[2]]
+[1] "c"
+
+[[3]]
+[1] "e"
+
+[[4]]
+[1] "j"
+
+[[5]]
+[1] "k"
+
+[[6]]
+[1] "n"
+
+[[7]]
+[1] "t"
+
+[[8]]
+[1] "u"
+
+[[9]]
+[1] "x"
+
+[[10]]
+[1] "y"
+```
+
+And here's the `mySort()` function:
+
+```r
+mySort <- function(l) {
+  sorted_data = sort(unlist(l))
+  sorted_list_data = as.list(sorted_data)
+  return(sorted_list_data)
+}
+```
+
+You can call this function with your list as the argument to get the sorted list.

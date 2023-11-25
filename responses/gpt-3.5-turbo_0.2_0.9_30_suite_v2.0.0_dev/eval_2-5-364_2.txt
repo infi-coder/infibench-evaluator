@@ -1,0 +1,24 @@
+You can specify the Java version to use with the Maven wrapper by setting the `JAVA_HOME` environment variable. Here's how you can do it:
+
+1. Find the path to the Java installation that works with the Maven task. You can do this by running `mvn -version` and looking for the `Java home` line in the output.
+
+2. Set the `JAVA_HOME` environment variable to the path you found in step 1. You can do this by running the following command in your terminal:
+
+   ```
+   export JAVA_HOME=/path/to/java
+   ```
+
+   Replace `/path/to/java` with the actual path to your Java installation.
+
+3. Run the Maven wrapper command as usual. Maven will use the Java version specified in the `JAVA_HOME` environment variable.
+
+Alternatively, you can also set the `maven.compiler.source` and `maven.compiler.target` properties in your `pom.xml` file to specify the Java version to use for compilation. Here's an example:
+
+```
+<properties>
+  <maven.compiler.source>1.8</maven.compiler.source>
+  <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+```
+
+This will tell Maven to use Java 8 for compilation. Replace `1.8` with the version of Java you want to use.

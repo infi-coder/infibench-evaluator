@@ -1,0 +1,44 @@
+You can use the `react-intersection-observer` npm package to detect if an element is in the viewport. This package uses the Intersection Observer API to tell you when an element enters or leaves the viewport.
+
+First, install the package:
+
+```bash
+npm install react-intersection-observer
+```
+
+Then, you can use the `InView` component from `react-intersection-observer` to wrap each child div. Here's an example:
+
+```javascript
+import React from 'react';
+import { InView } from 'react-intersection-observer';
+
+const ParentComponent = ({ data }) => {
+  return (
+    <div id="parent">
+      {data.map(item => (
+        <InView key={item.id}>
+          {({ inView, ref }) => (
+            <div id={item.id} ref={ref}>
+              {inView ? 'In viewport' : 'Not in viewport'}
+            </div>
+          )}
+        </InView>
+      ))}
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+In this example, `InView` is a component that uses a render prop. It provides an `inView` boolean that is `true` when the element is in the viewport and `false` when it's not. It also provides a `ref` that you should attach to the element you want to observe.
+
+You can also use the `onChange` prop to handle when the element enters or leaves the viewport:
+
+```javascript
+<InView onChange={(inView, entry) => console.log('Inview:', inView)}>
+  <div>...</div>
+</InView>
+```
+
+In this case, `onChange` is a function that is called whenever the element enters or leaves the viewport. It receives the `inView` boolean and the Intersection Observer entry as arguments.

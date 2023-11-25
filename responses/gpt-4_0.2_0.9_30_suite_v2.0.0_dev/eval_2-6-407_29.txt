@@ -1,0 +1,25 @@
+The error message you're seeing is typically caused by the server returning HTML when JSON is expected. This often happens when the server returns an error page.
+
+The first thing you should do is to check the URL you're calling. The URL you're trying to call is "/api/Employee/Index", but based on your controller setup, it should be "/Employee/api/Employee/Index". This is because you've set the route for the controller to "[controller]", which will be replaced by the name of the controller, in this case "Employee".
+
+So, you should change your API call to:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("/Employee/api/Employee/Index");
+```
+
+If this doesn't solve the problem, you should check what the server is actually returning. You can do this by calling the API from a tool like Postman or by adding some logging to your server code.
+
+If the server is returning an error, you'll need to fix that before you can proceed. If the server is returning valid JSON, then the problem is likely in the client code that's trying to parse the JSON.
+
+Also, note that `GetJsonAsync` method is obsolete in .NET 5.0 and later versions. You should use `GetFromJsonAsync` method instead:
+
+```csharp
+empList = await Http.GetFromJsonAsync<Employee[]>("/Employee/api/Employee/Index");
+```
+
+This method is available in `System.Net.Http.Json` namespace, so make sure to include it:
+
+```csharp
+using System.Net.Http.Json;
+```

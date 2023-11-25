@@ -1,0 +1,19 @@
+data.frame with 2 columns with the same name: how to select the second one?
+
+```r
+d1 <- data.frame(a=c(1,2,3))
+d2 <- data.frame(a=c(3,4,5))
+d3 <- cbind(d1,d2)
+```
+
+doesn't return an error, and an inspection of the environment in RStudio displays two columns with the same name.
+
+If I type:
+
+```r
+d3$a
+```
+
+The first column is selected. How to select the second by name?
+
+Suppose you have get the above variable, please just write codes in R to select the second by name of my frame, and assign the value to a variable named `second_col`.

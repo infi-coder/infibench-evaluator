@@ -1,0 +1,40 @@
+The error message you're seeing is because the `to-rgb` function is not available in Sass 3. It's a new function introduced in Sass 4.0.0. 
+
+However, you can still change the Bootstrap's default theme-colors with Sass 3. Here's how you can do it:
+
+```scss
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": #ff0000, // replace with your color
+  "secondary": #6c757d,
+  "success": #198754,
+  "info": #0dcaf0,
+  "warning": #ffc107,
+  "danger": #dc3545,
+  "light": #f8f9fa,
+  "dark": #212529
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In the above code, replace `#ff0000` with your desired color for the primary theme. 
+
+Please note that you need to import the `functions` and `variables` files before you override the `$theme-colors` map. Then, you import the rest of the Bootstrap library. 
+
+Also, if you want to change only one color (for example, primary), you don't need to redefine all the colors. You can do it like this:
+
+```scss
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: map-merge($theme-colors, (
+  "primary": #ff0000 // replace with your color
+));
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In this case, the `map-merge` function will merge your new color into the existing `$theme-colors` map.

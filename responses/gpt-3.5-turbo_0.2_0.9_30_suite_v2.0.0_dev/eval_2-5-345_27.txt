@@ -1,0 +1,8 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven (3.6.3) than the one used by the Spring Boot project (3.8.5). To fix this issue, you can follow these steps:
+
+1. In IntelliJ IDEA, go to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+2. Under "Maven home directory", click "..." and select the directory where Maven 3.8.5 is installed.
+3. Click "OK" to save the changes.
+4. Re-import the Maven project in IntelliJ IDEA.
+
+This should resolve the issue and allow you to work with the Spring Boot project without any errors.

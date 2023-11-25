@@ -1,0 +1,28 @@
+The error message indicates that Jackson is trying to serialize a `ByteArrayInputStream` object, which it doesn't know how to serialize. This is because `MultipartFile` is not serializable, and you cannot directly send it over HTTP as JSON.
+
+Instead of adding the `MultipartFile` directly to the `MultiValueMap`, you should convert it to a `HttpEntity` and then add it to the map. Here's how you can do it:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+// Convert MultipartFile to HttpEntity
+MultipartFile multipartFile = souqBean.getCircularAttachment();
+HttpHeaders partHeaders = new HttpHeaders();
+partHeaders.setContentType(MediaType.valueOf(multipartFile.getContentType()));
+HttpEntity<byte[]> fileEntity = new HttpEntity<>(multipartFile.getBytes(), partHeaders);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+body.add("circularAttachment", fileEntity);
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<?> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+This way, you're sending the file contents as a byte array, which can be serialized and sent over HTTP. On the receiving side, you'll need to reconstruct the file from the byte array.
+
+Please note that `multipartFile.getBytes()` may throw `IOException`, so you should handle it appropriately.

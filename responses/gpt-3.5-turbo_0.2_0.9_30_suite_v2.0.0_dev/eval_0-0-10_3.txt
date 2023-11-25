@@ -1,0 +1,17 @@
+Sure, here are the completed templates for both ways:
+
+Way 1:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').should('have.text', 'Wildness');
+```
+
+Way 2:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').invoke('text').then((text) => {
+    expect(text.trim()).to.equal('Wildness');
+});
+``` 
+
+Note that in Way 2, we use `.then()` to access the text returned by `.invoke('text')`. We then use `expect()` to assert that the text is equal to `'Wildness'`.

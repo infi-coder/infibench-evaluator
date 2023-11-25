@@ -1,0 +1,19 @@
+TailwindCSS is a utility-first CSS framework, which means that it provides pre-defined classes that you can use to style your HTML elements. In this case, you can use the `child` selector provided by TailwindCSS to target the direct children of a `div` element with a specific class.
+
+Here's an example of how you can use the `child` selector to target the direct children of a `div` element with the class `section`:
+
+```html
+<div class="section">
+  <div class="child">Child 1</div>
+  <div class="child">Child 2</div>
+</div>
+```
+
+```css
+/* Using the child selector */
+.section > .child {
+  /* Styles for direct children of .section */
+}
+```
+
+In the example above, the `>` symbol is used to target the direct children of the `div` element with the class `section`. The `.child` class is used to style the direct children of the `div` element with the class `section`.

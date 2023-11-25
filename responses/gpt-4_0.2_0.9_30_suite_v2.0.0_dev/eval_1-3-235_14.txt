@@ -1,0 +1,11 @@
+The error you're seeing is because the 'year' column contains floating point numbers represented as strings (e.g., '2021.0'). The `int()` function in Python can't directly convert these to integers, because it doesn't know how to handle the decimal point.
+
+To fix this, you can first convert the strings to floats, and then convert the floats to integers. Here's how you can modify your function to do this:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].astype(float).astype(int)
+    return data_h_df
+```
+
+This function first converts the 'year' column to floats, then to integers. This handles the decimal point in the strings, and should prevent the `ValueError` you were seeing.

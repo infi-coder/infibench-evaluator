@@ -1,0 +1,33 @@
+To identify if a div is visible on the viewport on scroll, you can use the Intersection Observer API. Here's how you can implement it:
+
+1. Install the `react-intersection-observer` package from npm using the following command:
+
+   ```
+   npm install react-intersection-observer
+   ```
+
+2. Import the `IntersectionObserver` component from the package:
+
+   ```javascript
+   import { IntersectionObserver } from 'react-intersection-observer';
+   ```
+
+3. Wrap your `div` elements inside the `IntersectionObserver` component and pass a callback function to be executed when the element is visible on the viewport:
+
+   ```javascript
+   <div id="parent">
+     {data.map(item => (
+       <IntersectionObserver onChange={isVisible => {
+         if (isVisible) {
+           console.log(`Element with ID ${item.id} is visible on the viewport`);
+         }
+       }}>
+         <div id={item.id}>{item.title}</div>
+       </IntersectionObserver>
+     ))}
+   </div>
+   ```
+
+   In the above code, the `onChange` callback function is executed when the element is visible on the viewport. You can replace the `console.log` statement with your own logic to handle the visibility of the element.
+
+   Note that the `IntersectionObserver` component accepts several props that you can use to customize its behavior. You can refer to the package documentation for more information.

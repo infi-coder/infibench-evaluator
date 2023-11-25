@@ -1,0 +1,33 @@
+The `FormatException` is thrown when the JSON string is not properly formatted. In your case, it seems that the response body is not a valid JSON string.
+
+To solve this issue, you can add some error handling to your code to check if the response body is a valid JSON string before decoding it. Here's an example:
+
+```dart
+Future<String> iniciarSesion() async{
+  var usuario = textUsuario.text;
+  var password = textPassword.text;
+  var nombreUsuario;
+  var url ="http://192.168.1.37/usuario.php";
+
+  //Metodo post
+  var response = await http.post(
+      url,
+      headers:{ "Accept": "application/json" } ,
+      body: { "usuario": '$usuario',"password": '$password'},
+      encoding: Encoding.getByName("utf-8")
+  );
+
+  if (response.statusCode == 200) {
+    try {
+      List data = json.decode(response.body);
+      // Do something with the decoded data
+    } catch (e) {
+      print('Error decoding JSON: $e');
+    }
+  } else {
+    print('Request failed with status: ${response.statusCode}.');
+  }
+}
+```
+
+In this example, we added a try-catch block to catch any exceptions thrown when decoding the JSON string. If an exception is caught, we print an error message to the console. Additionally, we added some error handling to check if the response status code is 200 (OK). If the status code is not 200, we print an error message to the console.

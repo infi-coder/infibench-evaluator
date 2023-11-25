@@ -1,0 +1,39 @@
+# Corresponding to post https://stackoverflow.com/questions/72083468
+id: 0-0-27
+# for case self identificaton
+
+prompt_path: prompt_0-0-27.txt
+# relative path to the prompt text
+
+type: non-code debugging
+# type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  keywords:
+    - content:
+        content: apollo.*client
+        regex: true
+      to_lower: true
+    - content:
+        or:
+          - content: "3.5.10"
+          - content: "3.6"
+          - content: "3.7"

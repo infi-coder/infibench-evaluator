@@ -1,0 +1,8 @@
+On windows you might need to start the ssh agent like this
+
+# start the ssh-agent in the background
+$ eval $(ssh-agent -s)
+> Agent pid 59566
+Add your SSH private key to the ssh-agent. If you created your key with a different name, or if you are adding an existing key that has a different name, replace id_rsa in the command with the name of your private key file.
+
+$ ssh-add <path/to/key>

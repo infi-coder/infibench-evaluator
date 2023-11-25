@@ -1,0 +1,13 @@
+You can use `awk` to extract the language code from the HTML tag. Here's how you can do it:
+
+```bash
+curl -Ls stick-it.app | grep -o 'lang="[a-zA-Z-]*"' | cut -d'"' -f2
+```
+
+Here's what this does:
+
+- `curl -Ls stick-it.app` fetches the HTML of the page.
+- `grep -o 'lang="[a-zA-Z-]*"'` extracts the `lang` attribute from the HTML. The `-o` option tells `grep` to only output the parts of the line that match the pattern.
+- `cut -d'"' -f2` splits the output on the `"` character and selects the second field, which is the language code.
+
+This command will work regardless of where the `lang` attribute is in the `<html>` tag, and it will correctly handle language codes that include a hyphen.

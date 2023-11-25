@@ -1,0 +1,42 @@
+Yes, we can achieve this using pandas' `groupby`, `cumsum`, and `fillna` functions. Here's the `aggregation` function that does this:
+
+```python
+def aggregation(df):
+    # Convert 'value' column to numeric
+    df['value'] = pd.to_numeric(df['value'], errors='coerce')
+    
+    # Group by 'exchange' and forward-fill 'type' column
+    df['type'] = df.groupby('exchange')['type'].fillna(method='ffill')
+    
+    # Group by 'exchange' and 'type', and calculate cumulative sum of 'value'
+    df['balance'] = df.groupby(['exchange', 'type'])['value'].cumsum()
+    
+    # Fill NaN values in 'balance' column with 0
+    df['balance'] = df['balance'].fillna(0)
+    
+    return df
+```
+
+Here's how you can use this function:
+
+```python
+import pandas as pd
+
+df=pd.DataFrame()
+df['exchange'] = [1, 1, 1, 2, 3]
+df['type'] = ['deposit', 'deposit', 'trade', 'deposit', 'deposit']
+df['value'] = [10, 10, '30', '40', '100]
+
+df = aggregation(df)
+print(df)
+```
+
+Output:
+```
+   exchange     type value  balance
+0         1  deposit    10     10.0
+1         1  deposit    10     20.0
+2         1    trade    30     20.0
+3         2  deposit    40     40.0
+4         3  deposit   100    100.0
+```

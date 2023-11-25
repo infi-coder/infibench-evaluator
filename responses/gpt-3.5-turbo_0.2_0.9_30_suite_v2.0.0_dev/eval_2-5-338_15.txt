@@ -1,0 +1,46 @@
+The error message suggests that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `CommonsMultipartFile` class contains a `DiskFileItem` object, which in turn contains an `InputStream` object. The `InputStream` object cannot be serialized directly, so you need to configure the `RestTemplate` to use a `ByteArrayResource` instead.
+
+To do this, you can create a custom `HttpMessageConverter` that handles `MultipartFile` objects and converts them to `ByteArrayResource` objects. Here is an example:
+
+```java
+public class MultipartByteArrayHttpMessageConverter extends AbstractHttpMessageConverter<MultipartFile> {
+
+    public MultipartByteArrayHttpMessageConverter() {
+        super(MediaType.MULTIPART_FORM_DATA);
+    }
+
+    @Override
+    protected boolean supports(Class<?> clazz) {
+        return MultipartFile.class.isAssignableFrom(clazz);
+    }
+
+    @Override
+    protected MultipartFile readInternal(Class<? extends MultipartFile> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
+        throw new UnsupportedOperationException("Reading MultipartFiles is not supported");
+    }
+
+    @Override
+    protected void writeInternal(MultipartFile file, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
+        ByteArrayResource resource = new ByteArrayResource(file.getBytes()) {
+            @Override
+            public String getFilename() {
+                return file.getOriginalFilename();
+            }
+        };
+        HttpHeaders headers = outputMessage.getHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        headers.setContentDispositionFormData(file.getName(), file.getOriginalFilename());
+        headers.setContentLength(resource.contentLength());
+        StreamUtils.copy(resource.getInputStream(), outputMessage.getBody());
+    }
+}
+```
+
+Then, you can add this converter to your `RestTemplate`:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.getMessageConverters().add(new MultipartByteArrayHttpMessageConverter());
+```
+
+With this configuration, the `RestTemplate` will convert the `MultipartFile` to a `ByteArrayResource` before sending the request, and the microservice should be able to handle it correctly.

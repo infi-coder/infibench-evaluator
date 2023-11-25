@@ -1,0 +1,11 @@
+How to check if a Box is a null pointer in Rust?
+I want to implement a stack using pointers or something. How can I check if a Box is a null pointer? This is as far as I went:
+```rust
+struct Node {
+    value: i32,
+    next: Box<Node>,
+}
+
+struct Stack {
+    top: Box<Node>,
+}

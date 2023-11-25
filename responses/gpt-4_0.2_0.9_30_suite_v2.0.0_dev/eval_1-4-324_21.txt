@@ -1,0 +1,31 @@
+Here is a function `mySplit` that will split the column `col1` in your dataframe `df` into separate columns:
+
+```r
+mySplit <- function(df) {
+  # Split the column on comma
+  split_col <- strsplit(df$col1, ",")
+  
+  # Initialize an empty data frame
+  new_df <- data.frame()
+  
+  # Loop over each row
+  for (i in 1:length(split_col)) {
+    # Split each element on colon
+    split_row <- strsplit(split_col[[i]], ":")
+    
+    # Convert the list to a data frame
+    row_df <- as.data.frame(t(unlist(split_row[2])))
+    colnames(row_df) <- unlist(split_row[1])
+    
+    # Bind the row to the new data frame
+    new_df <- rbind(new_df, row_df)
+  }
+  
+  # Return the new data frame
+  return(new_df)
+}
+```
+
+This function works by first splitting the `col1` column on commas, which separates the different key-value pairs. Then, for each row, it splits the key-value pairs on colons to separate the keys and values. It then converts the list of keys and values to a data frame and binds it to the new data frame.
+
+Please note that this function assumes that the keys (i.e., "name", "Age", "City") are the same for all rows and are in the same order. If this is not the case, you may need to modify the function to handle different keys or different orders.

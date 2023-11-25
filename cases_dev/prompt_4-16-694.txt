@@ -1,0 +1,20 @@
+Need to grep a specific string using curl
+
+I am trying to get language code from pages by curl
+I wrote below and work...
+```
+curl -Ls yahoo.com | grep "lang=" | head -1 | cut -d ' ' -f 3 | cut -d"\"" -f 2
+```
+
+but sometimes code is different like
+```
+curl -Ls stick-it.app | grep "lang=" | head -1 | cut -d ' ' -f 3 | cut -d"\"" -f 2
+```
+
+they wrote like
+```
+<html dir="rtl" lang="he-IL">
+```
+
+I just need to get `he-IL`
+If is there any other way, I would appreciate it...

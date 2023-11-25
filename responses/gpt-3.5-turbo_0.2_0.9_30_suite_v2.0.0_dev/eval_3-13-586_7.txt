@@ -1,0 +1,17 @@
+The error message indicates that you need to specify either `FLAG_IMMUTABLE` or `FLAG_MUTABLE` when creating a `PendingIntent`. You can fix the error by adding the `FLAG_IMMUTABLE` flag to the `PendingIntent` creation code in your `MediaService` class.
+
+Here's an example of how to modify the code to add the `FLAG_IMMUTABLE` flag:
+
+```
+if (mbrComponent != null && mbrIntent == null) {
+  // construct a PendingIntent for the media button
+  Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+  // the associated intent will be handled by the component being registered
+  mediaButtonIntent.setComponent(mbrComponent);
+  mbrIntent = PendingIntent.getBroadcast(context,
+    0/* requestCode, ignored */, mediaButtonIntent,
+    PendingIntent.FLAG_IMMUTABLE);
+}
+```
+
+Note that you should use `FLAG_IMMUTABLE` instead of `FLAG_MUTABLE` unless you have a specific reason to use the mutable flag.

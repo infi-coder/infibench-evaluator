@@ -1,0 +1,23 @@
+It seems that the issue might be related to the way you are exposing the port in Docker. When you run the `docker-compose` command, you are publishing the port `8080` from the container to the host machine, but you are also exposing the same port in the container. This can cause conflicts and prevent the port from being accessible from outside the container.
+
+To fix this, you can remove the `ports` section from your `docker-compose.yml` file and only use the `--publish` option when running the `docker-compose` command. This will publish the port from the container to the host machine without exposing it in the container.
+
+Here's the updated `docker-compose.yml` file:
+
+```yaml
+version: '3.7'
+
+services:
+  app:
+    image: myapp
+    build: .
+    container_name: myapp
+```
+
+And the updated `docker-compose` command:
+
+```bash
+docker-compose run --publish 8080:8080 --rm app bash
+```
+
+With these changes, you should be able to access the Vite server running inside the container at `localhost:8080` on your host machine.

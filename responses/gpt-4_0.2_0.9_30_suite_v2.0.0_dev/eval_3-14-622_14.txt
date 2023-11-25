@@ -1,0 +1,23 @@
+To conform to `ShapeStyle`, you need to create a struct that implements the `ShapeStyle` protocol. The protocol requires a `_apply` method that takes a `CGContext`, a `CGRect`, and a `ColorScheme`. Here's how you can do it:
+
+```swift
+struct RedShapeStyle: ShapeStyle {
+    func _apply(to context: CGContext, filling rect: CGRect, with colorScheme: ColorScheme) {
+        context.setFillColor(UIColor.red.cgColor)
+        context.fill(rect)
+    }
+}
+```
+
+Then you can use `RedShapeStyle` in your `MyContentView`:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+```
+
+This will fill your circle with red color.

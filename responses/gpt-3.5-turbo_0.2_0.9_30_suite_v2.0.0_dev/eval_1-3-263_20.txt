@@ -1,0 +1,5 @@
+The "f" in `print(f"...")` is used to format a string in Python. This is called an f-string or formatted string literal. 
+
+In the example you provided, the curly braces `{}` are used to insert the value of the variable inside the string. The `f` before the string indicates that it is a formatted string literal, and the expression inside the curly braces will be evaluated and inserted into the string.
+
+For example, in the first `print` statement, the value of `args.input_directory` will be inserted into the string at the location of `{args.input_directory}`. This makes it easier to print out variables in a string without having to concatenate strings and variables using the `+` operator.

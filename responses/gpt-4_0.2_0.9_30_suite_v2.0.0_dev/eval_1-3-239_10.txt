@@ -1,0 +1,18 @@
+Sure, here is a bash script that will install a specific version of Python using Homebrew:
+
+```bash
+#!/bin/bash
+
+# Unlink the current python version
+brew unlink python
+
+# Install the required python version
+brew install python@3.6
+
+# Link the installed python version
+brew link --force python@3.6
+```
+
+Please note that this script assumes that you have Homebrew installed and that you have the necessary permissions to install software. 
+
+Also, please note that the `--force` flag in the `brew link` command is necessary because Homebrew does not, by default, link keg-only packages like `python@3.6`. The `--force` flag overrides this behavior.

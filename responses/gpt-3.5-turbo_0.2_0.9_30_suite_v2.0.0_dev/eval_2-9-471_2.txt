@@ -1,0 +1,39 @@
+To import images in a React component with TypeScript, you need to do the following:
+
+1. Create a `.d.ts` file with the same name as the image file you want to import. For example, if your image is named `image.jpg`, create a file named `image.d.ts`. Inside this file, add the following code:
+
+```typescript
+declare module '*.jpg' {
+  const value: any;
+  export default value;
+}
+```
+
+This tells TypeScript that any file with a `.jpg` extension can be imported as a module.
+
+2. In your component file, import the image like this:
+
+```typescript
+import * as React from 'react';
+import image from '../assets/image.jpg';
+
+const Box = props => {
+  return <img src={image} alt="My Image" />;
+};
+
+export default Box;
+```
+
+Note that you don't need to use the `* as` syntax when importing the image. You can simply use `import image from '../assets/image.jpg';`.
+
+3. Make sure that the `.d.ts` file is included in your `tsconfig.json` file. You can do this by adding the following line to your `tsconfig.json` file:
+
+```json
+{
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"]
+}
+```
+
+This tells TypeScript to include all `.d.ts` files in the `src` directory.
+
+If you're still getting the error `Cannot find module`, try renaming your `.d.ts` file to something other than `index.d.ts`. TypeScript is ignoring `index.d.ts` because it assumes that it is generated from `index.tsx`, which is more likely to be up to date. Name your `.d.ts` file something else, e.g., `declaration.d.ts`.

@@ -1,0 +1,34 @@
+The reason you're seeing log 2 before log 1 is because the `onItemSelected` function is an asynchronous callback. It only gets called when an item is selected in the spinner, which is likely to happen after your function has already returned `itemSelected`.
+
+The `setupListWithAdapter` function does not wait for an item to be selected before it returns. It sets up the adapter, sets the `onItemSelectedListener`, and then immediately returns `itemSelected` (which is an empty string at this point).
+
+If you want to perform an action with the selected item, you should do it inside the `onItemSelected` callback. If you need to return the selected item from the function, you can't do it directly because of the asynchronous nature of the callback. You could, however, use a higher-order function or a callback function to achieve this.
+
+Here's an example of how you could do it with a callback:
+
+```kotlin
+fun Spinner.setupListWithAdapter(list: MutableList<String>, callback: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+            callback(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+}
+```
+
+Then you can use it like this:
+
+```kotlin
+mySpinner.setupListWithAdapter(myList) { selectedItem ->
+    // Do something with selectedItem
+}
+```
+
+In this example, the `callback` function is called with the selected item as soon as an item is selected.

@@ -1,0 +1,29 @@
+The error you're getting is because you're trying to override the `$theme-colors` map after it's already been defined in the Bootstrap's `_variables.scss` file. You should define your custom colors before importing Bootstrap's SCSS files.
+
+Here's how you can do it:
+
+```scss
+// Define your custom colors
+$theme-colors: (
+  "primary": #your-color-here
+);
+
+// Import Bootstrap's SCSS
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Replace `#your-color-here` with the color you want to use for the primary color.
+
+Also, make sure you're using a valid color value. It can be a named color (like `red`), a hexadecimal color (like `#ff0000`), an RGB color (like `rgb(255, 0, 0)`), or an HSL color (like `hsl(0, 100%, 50%)`).
+
+If you want to override more colors, you can do so by adding more entries to the `$theme-colors` map. For example:
+
+```scss
+$theme-colors: (
+  "primary": #your-primary-color,
+  "secondary": #your-secondary-color,
+  // Add more colors as needed
+);
+```
+
+Replace `#your-primary-color`, `#your-secondary-color`, etc., with the colors you want to use.

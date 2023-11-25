@@ -1,0 +1,25 @@
+The error you're encountering is due to the fact that MacOS Catalina only supports 64-bit applications, and the version of pdftk you're trying to use is likely a 32-bit application. 
+
+Here is a workaround to get pdftk working on MacOS Catalina:
+
+1. Uninstall the current version of pdftk if it's installed.
+
+```bash
+brew uninstall --ignore-dependencies pdftk
+```
+
+2. Install pdftk-java which is a rewrite of pdftk in Java.
+
+```bash
+brew install pdftk-java
+```
+
+3. Create a symbolic link to use pdftk command as usual.
+
+```bash
+ln -s /usr/local/bin/pdftk-java /usr/local/bin/pdftk
+```
+
+Now you should be able to use pdftk command as usual. 
+
+Please note that pdftk-java might not support all the features of the original pdftk. If you encounter any issues, you might want to consider using other PDF manipulation tools or libraries that are compatible with 64-bit MacOS.

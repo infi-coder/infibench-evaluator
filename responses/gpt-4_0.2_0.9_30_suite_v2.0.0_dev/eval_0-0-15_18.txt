@@ -1,0 +1,13 @@
+Sure, here is the revised version of your code snippet:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {someMethod: () => {}};
+  });
+});
+```
+
+In this revised version, we are mocking the entire `API` class and its constructor. This way, when you call `new API()`, it will return the mocked implementation of the class.

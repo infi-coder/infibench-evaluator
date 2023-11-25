@@ -1,0 +1,9 @@
+The issue is that the command substitution `$(echo {} | sed 's/\?.*//g')` is evaluated before `find` starts its execution, so it doesn't replace `{}` with the actual file name. 
+
+You can use a bash loop to solve this:
+
+```bash
+find . -type f -name '*\?*' | while read -r file; do mv "$file" "${file%%\?*}"; done
+```
+
+This command will find all files with a `?` in their name, then for each file, it will remove the `?` and everything after it. The `${file%%\?*}` syntax is a parameter expansion in bash that removes the longest match of `?\?*` from the end of the `file` variable.

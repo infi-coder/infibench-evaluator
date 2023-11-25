@@ -1,0 +1,15 @@
+You can use the `source` command to reload your `.bash_profile` without closing and reopening your terminal. Here's how:
+
+```bash
+source ~/.bash_profile
+```
+
+This command will read and execute commands from the filename argument in the current shell context. If you made changes to your `.bash_profile`, it will apply those changes to your current terminal session.
+
+Alternatively, you can use the `.` (dot) command which is equivalent to `source`:
+
+```bash
+. ~/.bash_profile
+```
+
+Both commands will reload your `.bash_profile` and apply any changes you made.

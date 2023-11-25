@@ -1,0 +1,10 @@
+id: 2-7-436
+prompt_path: prompt_2-7-436.txt
+type: non-code debugging
+lang: php
+grading:
+  keywords:
+    - content:
+        or:
+          - 'update'
+          - '8.0'

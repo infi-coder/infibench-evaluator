@@ -1,0 +1,32 @@
+In addition to adding the `springdoc-openapi-ui` dependency, you also need to configure it in your Spring Boot application.
+
+You can do this by creating a configuration class that extends `WebMvcConfigurationSupport` and overrides the `addResourceHandlers` method to add the Swagger UI resources to the classpath.
+
+Here's an example:
+
+```java
+@Configuration
+public class SwaggerUIConfiguration extends WebMvcConfigurationSupport {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/swagger-ui/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/")
+                .resourceChain(false);
+    }
+}
+```
+
+This configuration will add the Swagger UI resources to the classpath and map them to the `/swagger-ui` endpoint.
+
+Make sure to also annotate your main application class with `@EnableSwagger2WebMvc` or `@EnableOpenApi` depending on the version of Springdoc you are using.
+
+```java
+@SpringBootApplication
+@EnableSwagger2WebMvc // or @EnableOpenApi
+public class MyApplication {
+    // ...
+}
+```
+
+After that, you should be able to access the Swagger UI at `http://localhost:8080/swagger-ui/index.html`.

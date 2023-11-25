@@ -1,0 +1,17 @@
+After bundle update my Rails app fails to boot with:
+Expected to find a manifest file in `app/assets/config/manifest.js` (Sprockets::Railtie::ManifestNeededError).
+How to solve this error?
+Specifically, please don't add other text and repeat the following paragraph with [blank] filled:
+
+Step1. Create the [blank] file
+```
+$ mkdir -p app/assets/config 
+$ touch app/assets/config/[blank]
+```
+Step2. Then copy and paste the following into the file you just created:
+```
+//= link_tree ../images
+//= link_directory ../javascripts .js
+//= link_directory ../stylesheets .css
+```
+Those commenty things //= are called [blank].

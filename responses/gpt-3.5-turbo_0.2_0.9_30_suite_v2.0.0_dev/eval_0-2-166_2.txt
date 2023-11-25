@@ -1,0 +1,21 @@
+TailwindCSS is a utility-first CSS framework, which means it provides utility classes that can be used to style HTML elements. To access the direct children of a div with class "section" using TailwindCSS, you can use the `child` selector.
+
+Here's an example:
+
+```html
+<div class="section">
+  <div class="child">Child 1</div>
+  <div class="child">Child 2</div>
+  <div class="child">Child 3</div>
+</div>
+```
+
+To style the direct children of the div with class "section", you can use the following TailwindCSS classes:
+
+```css
+.section > .child {
+  /* Your styles here */
+}
+```
+
+This will apply the styles to all direct children of the div with class "section" that have the class "child".

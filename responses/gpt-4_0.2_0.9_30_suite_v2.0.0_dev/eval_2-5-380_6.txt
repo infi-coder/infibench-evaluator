@@ -1,0 +1,49 @@
+The issue you're facing might be due to the change in the Swagger UI URL. In the latest versions of Springdoc, the Swagger UI is no longer available at `/swagger-ui.html`. Instead, it's available at `/swagger-ui/`.
+
+So, try accessing Swagger UI at `http://localhost:8080/swagger-ui/`.
+
+If you still face issues, make sure you have the following:
+
+1. Check if you have the `@SpringBootApplication` annotation in your main class. This annotation is responsible for enabling component scanning, auto-configuration, and property support.
+
+2. Make sure you have the following dependency for OpenAPI 3 support:
+
+    ```xml
+    <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-ui</artifactId>
+        <version>1.6.11</version>
+    </dependency>
+    ```
+
+3. If you're using Spring Security, you might need to permit all access to the Swagger UI URL in your security configuration:
+
+    ```java
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers("/swagger-ui/**").permitAll()
+            .anyRequest().authenticated();
+    }
+    ```
+
+4. If you're running your application in a servlet container, make sure you have the following dependency:
+
+    ```xml
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-tomcat</artifactId>
+    </dependency>
+    ```
+
+5. If you're using Spring MVC instead of Spring WebFlux, you might need to add the following dependency:
+
+    ```xml
+    <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-webmvc-core</artifactId>
+        <version>1.6.11</version>
+    </dependency>
+    ```
+
+6. If none of the above solutions work, try to debug your application and check the logs for any errors or warnings related to Springdoc or Swagger UI.

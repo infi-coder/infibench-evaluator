@@ -1,0 +1,11 @@
+Sure, the problem with your code is that you cannot use the same key for two different types in TypeScript. You can solve this by creating two separate types and then merging them using the `&` operator. Here is how you can do it:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit]: number;
+} & {
+  [key in color]: boolean;
+}
+```
+
+This will create a type `FruitsAndColors` where each fruit is associated with a number and each color is associated with a boolean.

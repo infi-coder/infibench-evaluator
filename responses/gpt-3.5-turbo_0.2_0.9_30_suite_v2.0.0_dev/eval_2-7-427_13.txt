@@ -1,0 +1,3 @@
+For the first question, the issue could be related to the session driver configuration on the host domain. Make sure that the session driver is set to the same value as the one used locally. Also, check if there are any differences in the server configuration that could be affecting the session management.
+
+For the second question, the error message suggests that the SSL version used by the server is not compatible with the one used by the client. Try changing the encryption method to 'tls' instead of 'ssl' in the .env file and the mail.php configuration file. Also, make sure that the port number is correct for the SMTP server. If the issue persists, contact the email provider to confirm the correct settings for connecting to their SMTP server.

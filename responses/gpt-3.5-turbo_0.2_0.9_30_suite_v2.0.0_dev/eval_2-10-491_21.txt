@@ -1,0 +1,44 @@
+One way to express this more idiomatically is to use the `and_then` method on `Option`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.and_then(|foo_val| {
+        if foo_val < 5 {
+            Some(5)
+        } else {
+            None
+        }
+    });
+}
+```
+
+This code does the same thing as your original code, but it's a bit more concise and easier to read. The `and_then` method takes a closure that returns an `Option`, and if the original `Option` is `Some`, it calls the closure with the inner value and returns the result. If the original `Option` is `None`, it just returns `None`.
+
+Another way to express this is to use the `map_or` method on `Option`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map_or(Some(5), |foo_val| {
+        if foo_val < 5 {
+            Some(5)
+        } else {
+            None
+        }
+    });
+}
+```
+
+This code also does the same thing as your original code, but it's a bit more concise and easier to read. The `map_or` method takes two arguments: a default value to use if the original `Option` is `None`, and a closure that takes the inner value of the `Option` and returns a new `Option`. If the original `Option` is `Some`, it calls the closure with the inner value and returns the result. If the original `Option` is `None`, it just returns the default value.
+
+Finally, you could use the `unwrap_or_else` method on `Option`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = Some(5).filter(|&val| foo.map_or(true, |foo_val| foo_val < val));
+}
+```
+
+This code also does the same thing as your original code, but it's a bit more concise and easier to read. The `filter` method takes a closure that returns a boolean, and if the original `Option` is `Some`, it calls the closure with the inner value and returns the original `Option` if the closure returns `true`, or `None` if the

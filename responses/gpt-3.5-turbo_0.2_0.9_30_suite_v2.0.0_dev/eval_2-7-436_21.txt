@@ -1,0 +1,11 @@
+The error message suggests that the version of PHP you are using is not compatible with Laravel 9. Laravel 9 requires PHP 8.0 or higher.
+
+You can check the version of PHP installed on your system by running the following command in your terminal:
+
+```bash
+php -v
+```
+
+If your PHP version is lower than 8.0, you will need to upgrade it before you can install Laravel 9. You can follow the instructions on the official PHP website to download and install the latest version of PHP for your operating system.
+
+Once you have upgraded your PHP version, you can try running the `composer create-project` command again to install Laravel 9.

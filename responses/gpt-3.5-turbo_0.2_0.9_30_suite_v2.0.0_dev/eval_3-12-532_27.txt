@@ -1,0 +1,41 @@
+The error message suggests that the response from the server is not in valid JSON format. Here are a few things you can try to solve the `FormatException`:
+
+1. Check the response from the server: You can print the response body to the console to see if it is in valid JSON format. If it is not, you may need to modify your PHP script to return valid JSON.
+
+2. Check the encoding of the response: Make sure that the encoding of the response matches the encoding specified in the `http.post` call. In this case, the encoding is set to `utf-8`, so make sure that the response is also encoded in `utf-8`.
+
+3. Check for any extra characters in the response: Sometimes, there may be extra characters (such as whitespace or newlines) in the response that can cause the `FormatException`. You can try trimming the response before decoding it to remove any extra characters.
+
+Here is an updated version of your code that includes error handling and logging to help you debug the issue:
+
+```dart
+Future<String> iniciarSesion() async {
+  var usuario = textUsuario.text;
+  var password = textPassword.text;
+  var nombreUsuario;
+  var url = "http://192.168.1.37/usuario.php";
+
+  //Metodo post
+  var response = await http.post(
+    url,
+    headers: {"Accept": "application/json"},
+    body: {"usuario": '$usuario', "password": '$password'},
+    encoding: Encoding.getByName("utf-8"),
+  );
+
+  if (response.statusCode != 200) {
+    throw Exception('Failed to load data');
+  }
+
+  try {
+    List data = json.decode(response.body.trim());
+    // Process the data here
+  } catch (e) {
+    print('Error decoding JSON: $e');
+    print('Response body: ${response.body}');
+    throw e;
+  }
+}
+``` 
+
+This code will throw an exception if the response status code is not 200, and it will log any errors that occur during JSON decoding.

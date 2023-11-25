@@ -1,0 +1,42 @@
+Sure, you can achieve this using the `groupby` and `cumsum` functions provided by pandas. Here is the function you requested:
+
+```python
+def aggregation(df):
+    # Convert the 'value' column to integer type
+    df['value'] = df['value'].astype(int)
+
+    # Create a new column 'balance' which is the cumulative sum of 'value' where 'type' is 'deposit'
+    df['balance'] = df.loc[df['type'] == 'deposit'].groupby('exchange')['value'].cumsum()
+
+    # Forward fill the 'balance' column
+    df['balance'] = df['balance'].ffill()
+
+    return df
+```
+
+This function first converts the 'value' column to integer type. Then it creates a new column 'balance' which is the cumulative sum of 'value' where 'type' is 'deposit', grouped by 'exchange'. Finally, it forward fills the 'balance' column to fill in the NaN values.
+
+You can use this function like this:
+
+```python
+import pandas as pd
+
+df=pd.DataFrame()
+df['exchange'] = [1, 1, 1, 2, 3]
+df['type'] = ['deposit', 'deposit', 'trade', 'deposit', 'deposit']
+df['value'] = [10, 10, '30', '40', '100']
+
+df = aggregation(df)
+print(df)
+```
+
+This will print:
+
+```python
+   exchange     type  value  balance
+0         1  deposit     10     10.0
+1         1  deposit     10     20.0
+2         1    trade     30     20.0
+3         2  deposit     40     40.0
+4         3  deposit    100    100.0
+```

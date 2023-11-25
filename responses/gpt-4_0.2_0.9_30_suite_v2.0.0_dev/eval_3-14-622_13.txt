@@ -1,0 +1,19 @@
+To conform to `ShapeStyle` protocol, you need to implement a method that provides a `Shader` when given a `Rect` and a `ColorScheme`. Here's how you can do it:
+
+```swift
+struct RedShapeStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType, context: inout _ShapeStyle_Context) {
+    }
+}
+
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+```
+
+In the above code, `RedShapeStyle` is a struct that conforms to `ShapeStyle` protocol. The `_apply(to:context:)` method is a requirement of the `ShapeStyle` protocol. 
+
+Please note that the `ShapeStyle` protocol is not officially documented by Apple and its usage might change in future versions of SwiftUI.

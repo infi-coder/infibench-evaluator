@@ -1,0 +1,25 @@
+You need to call the `toast` method with the `show` argument on your toast element to make it appear. Here's how you can do it:
+
+```javascript
+$('.toast').toast('show');
+```
+
+This line of code uses jQuery to select the element with the class `toast` and calls the `toast` method with the `show` argument to display the toast.
+
+Please ensure that you have included the necessary Bootstrap and jQuery scripts in your HTML file. Bootstrap's toast component requires jQuery to function properly.
+
+Here's an example of how to include them:
+
+```html
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+```
+
+Please note that the toast will not automatically dismiss itself. If you want it to hide after a certain period, you can set the `autohide` attribute to `true` and use the `delay` attribute to specify the delay in milliseconds. For example:
+
+```html
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="5000">
+```
+
+This will automatically hide the toast after 5 seconds.

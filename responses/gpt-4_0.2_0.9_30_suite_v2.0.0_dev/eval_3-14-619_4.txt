@@ -1,0 +1,21 @@
+Your code seems fine, but the issue might be that you're trying to observe the changes in `ContentView` while you're changing the state in `ContentView_Previews`. 
+
+The `@Binding` property wrapper is used to create a two-way binding to a mutable state. When you change `isSelected` in `ContentView`, it should also change `selected` in `ContentView_Previews` and vice versa.
+
+However, the SwiftUI preview doesn't automatically refresh when the state changes. You need to manually trigger a refresh of the preview to see the changes.
+
+If you want to see the changes in real time, you should test your code in a live app environment, such as a simulator or a real device. 
+
+Here is an example of how you can test your code:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+```
+
+In this example, `ParentView` owns the state and passes the binding to `ContentView`. When you toggle `isSelected` in `ContentView`, it will also update `isSelected` in `ParentView`.

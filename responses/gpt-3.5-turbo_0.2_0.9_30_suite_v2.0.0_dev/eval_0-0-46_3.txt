@@ -1,0 +1,14 @@
+The error message you are seeing indicates that ESLint is unable to find the `tsconfig.json` file. This is because the `tsconfig.json` file is not in the root directory of your project, but rather in the `src` directory.
+
+To fix this issue, you need to update the `parserOptions.project` property in your `.eslintrc.js` file to point to the correct location of the `tsconfig.json` file. You can do this by modifying the `parserOptions` section of your `.eslintrc.js` file as follows:
+
+```javascript
+parserOptions: {
+  project: "./src/tsconfig.json",
+  sourceType: "module",
+},
+```
+
+This assumes that your `tsconfig.json` file is located in the `src` directory of your project. If it is located in a different directory, you will need to update the path accordingly.
+
+Once you have made this change, save the file and restart VSCode. The error message should disappear, and you should no longer see red lines in your `.ts` files.

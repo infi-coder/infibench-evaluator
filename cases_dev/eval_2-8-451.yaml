@@ -1,0 +1,7 @@
+id: 2-8-451
+prompt_path: prompt_2-8-451.txt
+type: knowledge question-answering
+lang: go
+grading:
+  keywords:
+    - 'go mod download'

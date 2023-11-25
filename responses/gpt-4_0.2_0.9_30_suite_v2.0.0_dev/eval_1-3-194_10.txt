@@ -1,0 +1,24 @@
+You can use the `openpyxl` library to write data into an Excel file. If you don't have it installed, you can install it using pip:
+
+```bash
+pip install openpyxl
+```
+
+Here is the function `writeToExcel`:
+
+```python
+from openpyxl import Workbook
+
+def writeExcel():
+    new_list = [["first", "second"], ["third", "fourth"]]
+    wb = Workbook()
+    ws = wb.active
+
+    for i in range(len(new_list)):
+        for j in range(len(new_list[i])):
+            ws.cell(row=i+1, column=j+1, value=new_list[i][j])
+
+    wb.save("data.xlsx")
+```
+
+This function creates a new Excel file named "data.xlsx" and writes the `new_list` into the file. The `ws.cell` method is used to write data into a specific cell. The `row` and `column` parameters are 1-indexed, so we add 1 to the indices of the list.

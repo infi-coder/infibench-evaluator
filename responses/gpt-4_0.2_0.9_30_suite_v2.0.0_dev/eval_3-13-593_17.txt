@@ -1,0 +1,62 @@
+To add Jetpack Compose to your existing project, follow these steps:
+
+1. Update your project-level `build.gradle` file:
+
+```gradle
+buildscript {
+    ext {
+        compose_version = '1.0.5' // Check the latest version on the Jetpack Compose website
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4" // Check the latest version on the Android Studio website
+    }
+}
+```
+
+2. Update your module-level `build.gradle` file:
+
+```gradle
+android {
+    compileSdk 31 // Check the latest version
+
+    defaultConfig {
+        minSdk 21 // Minimum SDK version for Jetpack Compose
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.31' // Check the latest version on the Kotlin website
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.31" // Check the latest version on the Kotlin website
+    implementation "androidx.core:core-ktx:1.7.0" // Check the latest version on the AndroidX website
+    implementation "androidx.appcompat:appcompat:1.4.0" // Check the latest version on the AndroidX website
+    implementation "com.google.android.material:material:1.4.0" // Check the latest version on the Material Design website
+
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0" // Check the latest version on the AndroidX website
+    implementation "androidx.activity:activity-compose:1.4.0" // Check the latest version on the AndroidX website
+}
+```
+
+3. Sync your project with Gradle files.
+
+4. Now you can start using Jetpack Compose in your project.

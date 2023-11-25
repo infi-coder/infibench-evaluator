@@ -1,0 +1,37 @@
+This error is due to a compatibility issue between the IntelliJ IDEA and the Maven version that comes with the Spring Boot 2.7.0 project. The Maven version 3.8.5 is not yet fully supported by IntelliJ IDEA.
+
+To resolve this issue, you can downgrade the Maven version to 3.8.4 or earlier, which is compatible with IntelliJ IDEA. 
+
+Here are the steps to change the Maven version:
+
+1. Navigate to the `pom.xml` file in your project.
+
+2. Look for the `maven-wrapper` plugin. It should look something like this:
+
+    ```xml
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-wrapper-plugin</artifactId>
+        <version>1.2</version>
+        <configuration>
+            <maven>3.8.5</maven>
+        </configuration>
+    </plugin>
+    ```
+
+3. Change the version in the `<maven>` tag to `3.8.4` or earlier. For example:
+
+    ```xml
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-wrapper-plugin</artifactId>
+        <version>1.2</version>
+        <configuration>
+            <maven>3.8.4</maven>
+        </configuration>
+    </plugin>
+    ```
+
+4. Save the changes and re-import the project in IntelliJ IDEA.
+
+This should resolve the issue. If the problem persists, consider updating your IntelliJ IDEA to the latest version or contacting JetBrains support for further assistance.

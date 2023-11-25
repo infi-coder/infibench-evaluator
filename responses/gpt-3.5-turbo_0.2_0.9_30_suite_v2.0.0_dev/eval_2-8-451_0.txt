@@ -1,0 +1,27 @@
+Yes, Go modules (formerly known as vgo) also supports a similar approach to what you described. You can use a separate Docker build stage to install dependencies and then copy the vendor directory to the final build stage. This can significantly speed up rebuilds since the dependencies are cached in the vendor directory.
+
+Here's an example Dockerfile that demonstrates this approach:
+
+```
+# First stage: Install dependencies
+FROM golang:1.11-alpine AS build-env
+ADD go.mod go.sum /go/src/myapp/
+WORKDIR /go/src/myapp
+RUN go mod download
+
+# Second stage: Build the binary
+FROM golang:1.11-alpine
+ADD . /go/src/myapp/
+WORKDIR /go/src/myapp
+COPY --from=build-env /go/src/myapp/vendor /go/src/myapp/vendor
+RUN go build -o myapp
+
+# Final stage: Run the binary
+FROM alpine
+COPY --from=builder /go/src/myapp/myapp /usr/local/bin/
+CMD ["myapp"]
+```
+
+In the first stage, we copy the `go.mod` and `go.sum` files and run `go mod download` to install the dependencies. Then, in the second stage, we copy the entire application code and the vendor directory from the first stage. Finally, we build the binary and copy it to the final stage.
+
+Note that this approach assumes that you're using Go modules to manage your dependencies and that you have a `go.mod` file in your project root.

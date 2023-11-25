@@ -1,0 +1,9 @@
+The issue is that the `$(echo {} | sed 's/\?.*//g')` part of your command is evaluated before the `find` command is run, so it doesn't have the correct context. 
+
+You can use a bash loop to solve this:
+
+```bash
+find . -type f -name '*\?*' | while read -r file; do mv "$file" "${file%%\?*}"; done
+```
+
+This command uses `find` to locate the files, then pipes the output into a `while` loop. The `read -r file` part reads each line of the `find` output into a variable named `file`. The `mv "$file" "${file%%\?*}"` part renames the file, removing everything from the `?` onwards. The `${file%%\?*}` is a parameter expansion in bash which removes the longest match of `\?*` from the end of the string.

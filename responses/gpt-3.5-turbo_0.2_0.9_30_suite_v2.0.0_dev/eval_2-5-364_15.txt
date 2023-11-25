@@ -1,0 +1,25 @@
+You can specify the Java version to use with the Maven wrapper by setting the `JAVA_HOME` environment variable to the path of the desired JDK installation. 
+
+To do this, follow these steps:
+
+1. Locate the path of the JDK installation that works with the Maven task. This can typically be found in the `JAVA_HOME` environment variable on the machine where the Maven task is running.
+
+2. Set the `JAVA_HOME` environment variable to the path of the JDK installation. You can do this by running the following command in your terminal or command prompt:
+
+   ```
+   export JAVA_HOME=/path/to/jdk
+   ```
+
+   Replace `/path/to/jdk` with the actual path to the JDK installation.
+
+3. Run the Maven wrapper command as usual. It should now use the specified JDK version.
+
+Alternatively, you can also specify the `JAVA_HOME` environment variable directly in the Maven wrapper command by adding the `-Dmaven.compiler.fork=true -Dmaven.compiler.executable=/path/to/jdk/bin/javac` options. 
+
+For example:
+
+```
+./mvnw -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/path/to/jdk/bin/javac clean install
+```
+
+Replace `/path/to/jdk` with the actual path to the JDK installation.

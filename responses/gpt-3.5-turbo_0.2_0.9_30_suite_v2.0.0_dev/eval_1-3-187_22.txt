@@ -1,0 +1,28 @@
+You can use list slicing and list comprehension to achieve this. Here's the implementation of the `ReplaceElementsByIndex` function:
+
+```python
+def ReplaceElementsByIndex(rest, b, last):
+    # Replace the first 4 elements in b with the elements in rest
+    b[:4] = rest
+    
+    # Replace the elements in last according to the matches with b to get the rest elements
+    replaced_last = [rest[b.index(i)] if i in b else i for i in last]
+    
+    return replaced_last
+```
+
+Here's how you can use this function:
+
+```python
+rest=[5, 7, 11, 4]
+b=[21, 22, 33, 31, 23, 15, 19, 13, 6]
+last=[33, 19, 40, 21, 31, 22, 6, 15, 13, 23]
+
+replaced_last = ReplaceElementsByIndex(rest, b, last)
+print(replaced_last)
+```
+
+Output:
+```
+[11, 19, 40, 5, 4, 7, 6, 15, 13, 23]
+```

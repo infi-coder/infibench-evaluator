@@ -1,0 +1,24 @@
+You can achieve this by first creating a dictionary that maps the elements in `b` to the elements in `rest`. Then, you can iterate over the `last` list and replace each element with its corresponding value in the dictionary if it exists. Here's how you can implement this in Python:
+
+```python
+def ReplaceElementsByIndex(rest, b, last):
+    # Create a dictionary that maps the first 4 elements in b to the elements in rest
+    dict_map = {b[i]: rest[i] for i in range(4)}
+    
+    # Replace elements in last according to the dictionary
+    last = [dict_map.get(i, i) for i in last]
+    
+    return last
+```
+
+This function works by using a dictionary comprehension to create a dictionary where the keys are the first 4 elements in `b` and the values are the corresponding elements in `rest`. The `get` method of the dictionary is then used to replace each element in `last` with its corresponding value in the dictionary if it exists, otherwise the original element is kept.
+
+Here's how you can use this function with your example:
+
+```python
+rest=[5, 7, 11, 4]
+b=[21, 22, 33, 31, 23, 15, 19, 13, 6]
+last=[33, 19, 40, 21, 31, 22, 6, 15, 13, 23]
+
+print(ReplaceElementsByIndex(rest, b, last))  # Output: [11, 19, 40, 5, 4, 7, 6, 15, 13, 23]
+```

@@ -1,0 +1,25 @@
+Yes, you can disable the generation of the `*-plain.jar` file in Spring Boot 2.5.0 with Gradle by configuring the bootJar task in your `build.gradle` file. 
+
+Here's how you can do it:
+
+```groovy
+bootJar {
+    enabled = false
+}
+```
+
+This will disable the `bootJar` task, which is responsible for generating the `*-plain.jar` file. 
+
+However, please note that this will also disable the generation of the executable jar file (`myprogram-0.0.1.jar`). If you still want to generate the executable jar file, you can use the `jar` task instead:
+
+```groovy
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+```
+
+This will only generate the `myprogram-0.0.1.jar` file and not the `myprogram-0.0.1-plain.jar` file.

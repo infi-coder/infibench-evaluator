@@ -1,0 +1,11 @@
+The error you're seeing is because the 'year' column contains float values (like '2021.0') represented as strings. The `int()` function in Python doesn't handle this well, because it doesn't know how to convert the fractional part ('.0') into an integer. 
+
+You can solve this by first converting the strings to floats, and then converting the floats to integers. Here is the function `transformation` that does this:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].astype(float).astype(int)
+    return data_h_df
+```
+
+This function first converts the 'year' column to float, which handles the '.0' part correctly, and then converts the float to int, which discards the fractional part.

@@ -1,0 +1,9 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven (3.6.3) than the one used by the Spring Boot project (3.8.5). The `NoSuchMethodError` exception is thrown because the constructor for `DefaultModelValidator` has changed between these two versions of Maven.
+
+To fix this issue, you can configure IntelliJ IDEA to use the same version of Maven as the Spring Boot project. Here are the steps to do this:
+
+1. Open the Maven settings in IntelliJ IDEA by going to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+2. In the "Maven home directory" field, enter the path to the Maven installation used by the Spring Boot project. This should be the same path as the `MAVEN_HOME` environment variable used by the project.
+3. Click "OK" to save the settings.
+
+After configuring IntelliJ IDEA to use the same version of Maven as the Spring Boot project, you should be able to import the project without encountering the `NoSuchMethodError` exception.

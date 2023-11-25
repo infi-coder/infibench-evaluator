@@ -1,0 +1,27 @@
+Sure, here is a generator function that should do what you're asking for:
+
+```javascript
+function* iterLeafNodes(strHTML, format = []) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strHTML, "text/html");
+  const body = doc.body;
+
+  function* iterNodes(node, format = []) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.textContent.trim() !== '') {
+        yield { text: node.textContent, format };
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      for (const child of node.childNodes) {
+        yield* iterNodes(child, [...format, node.tagName.toLowerCase()]);
+      }
+    }
+  }
+
+  for (const child of body.childNodes) {
+    yield* iterNodes(child);
+  }
+}
+```
+
+This function uses a recursive approach to traverse the DOM tree and yield the text nodes along with their formatting. The formatting is accumulated as the function descends into the tree, and is passed along to the recursive calls.

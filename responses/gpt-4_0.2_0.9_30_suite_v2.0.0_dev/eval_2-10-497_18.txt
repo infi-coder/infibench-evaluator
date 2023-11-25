@@ -1,0 +1,45 @@
+In Rust, you don't have null pointers like in C or C++. Instead, you have the `Option` type, which can be `Some` or `None`. `None` is used to represent the absence of a value, similar to how you might use a null pointer in other languages.
+
+Here's how you can modify your code to use `Option`:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+```
+
+In this code, `Option<Box<Node>>` means that `next` and `top` can either be `Some(Box<Node>)` (i.e., they have a value) or `None` (i.e., they don't have a value).
+
+To check if `top` is `None`, you can use the `is_none` method:
+
+```rust
+if stack.top.is_none() {
+    // top is None
+}
+```
+
+And to check if `top` is `Some`, you can use the `is_some` method:
+
+```rust
+if stack.top.is_some() {
+    // top is Some
+}
+```
+
+You can also use pattern matching to handle `Some` and `None` cases:
+
+```rust
+match stack.top {
+    Some(node) => {
+        // top is Some
+    },
+    None => {
+        // top is None
+    },
+}
+```

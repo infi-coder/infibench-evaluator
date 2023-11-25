@@ -1,0 +1,27 @@
+The error message is indicating that you cannot use the `Gender` property as an index because it is already configured as a navigation property. To solve this problem, you can create a separate property for the `Gender` name and use that property for indexing. Here's an example:
+
+```c#
+public class User
+{
+    [Key, Required]
+    public int Id { get; set; }
+    public int GenderId { get; set; }
+    public virtual Gender Gender { get; set; }
+    public string GenderName { get; set; } // Add this property
+}
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderName); // Use GenderName property for indexing
+    }
+}
+```
+
+Now you can use the `GenderName` property for indexing instead of the `Gender` navigation property.

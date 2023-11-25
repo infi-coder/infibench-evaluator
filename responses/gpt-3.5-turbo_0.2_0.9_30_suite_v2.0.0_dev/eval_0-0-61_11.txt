@@ -1,0 +1,53 @@
+To change the background color of the root element dynamically with React, you can use the `ThemeProvider` component provided by Material-UI. 
+
+First, you need to create your light and dark themes using the `createMuiTheme` function from Material-UI. For example:
+
+```jsx
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const lightTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#2196f3',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+  },
+});
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    primary: {
+      main: '#90caf9',
+    },
+    secondary: {
+      main: '#f48fb1',
+    },
+  },
+});
+```
+
+Then, you can wrap your app with the `ThemeProvider` component and pass the current theme as a prop. For example:
+
+```jsx
+import { ThemeProvider } from '@material-ui/core/styles';
+
+function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const theme = isDarkMode ? darkTheme : lightTheme;
+
+  return (
+    <ThemeProvider theme={theme}>
+      <div>
+        {/* your app content */}
+      </div>
+    </ThemeProvider>
+  );
+}
+```
+
+Now, when you change the `isDarkMode` state, the theme will be updated and the background color of the root element will change accordingly.

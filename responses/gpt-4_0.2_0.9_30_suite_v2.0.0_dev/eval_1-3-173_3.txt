@@ -1,0 +1,20 @@
+Sure, you can use the `calendar` module in Python to check if a year is a leap year or not. Here is a function that does that:
+
+```python
+import calendar
+
+def DaysInYear(year):
+    if calendar.isleap(year):
+        return 366
+    else:
+        return 365
+```
+
+You can use this function in your pandas dataframe like this:
+
+```python
+df['year'] = pd.DatetimeIndex(df['date']).year
+df['days_in_year'] = df['year'].apply(DaysInYear)
+```
+
+In this code, `df['date']` is your column with dates. The `pd.DatetimeIndex(df['date']).year` part extracts the year from your dates, and the `apply` function applies the `DaysInYear` function to each year in your dataframe.

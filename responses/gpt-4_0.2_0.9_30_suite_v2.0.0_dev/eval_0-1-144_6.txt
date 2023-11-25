@@ -1,0 +1,17 @@
+You can change the color of the accordion arrow by targeting the `::after` pseudo-element of the `.accordion-button` class. This pseudo-element is used to create the arrow. Here is the CSS code:
+
+```css
+.accordion-button:not(.collapsed)::after {
+    /* This is the arrow when the accordion is expanded */
+    color: green;
+}
+
+.accordion-button.collapsed::after {
+    /* This is the arrow when the accordion is collapsed */
+    color: green;
+}
+```
+
+You can add this CSS code to your CSS file or inside a `<style>` tag in your HTML file. This will change the color of the arrow to green both when the accordion is expanded and when it is collapsed.
+
+Please note that this code assumes that you are using the default Bootstrap 5 accordion. If you have customized the accordion or are using a different version of Bootstrap, the code might need to be adjusted.

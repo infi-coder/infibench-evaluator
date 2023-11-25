@@ -1,0 +1,11 @@
+This error is caused by a bug in rust-analyzer, which is a language server for Rust that provides IDE-like features such as code completion and error highlighting. The error message is indicating that rust-analyzer is having trouble resolving the `format_args` macro, which is used internally by the `pad_str` function.
+
+Unfortunately, there is not much you can do to fix this error directly. However, you can try a few workarounds:
+
+1. Ignore the error: If your code compiles and runs correctly, you can safely ignore the error from rust-analyzer. This is not ideal, but it won't affect the functionality of your code.
+
+2. Use a different IDE or editor: If you are using rust-analyzer with an IDE or editor, you can try using a different IDE or editor that supports Rust. For example, you can try using Visual Studio Code with the Rust extension, which has good support for Rust and is widely used by Rust developers.
+
+3. Update rust-analyzer: If you are using an older version of rust-analyzer, you can try updating to the latest version to see if the error has been fixed. You can update rust-analyzer by running `rustup update` and then restarting your IDE or editor.
+
+In any case, it's always a good idea to report the error to the rust-analyzer team so that they can investigate and fix the issue.

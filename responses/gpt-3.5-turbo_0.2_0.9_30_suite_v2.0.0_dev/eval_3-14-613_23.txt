@@ -1,0 +1,7 @@
+This error message usually occurs when the preview target is not set up correctly. Try the following steps:
+
+1. Make sure the preview target is selected in the scheme menu (next to the run button).
+2. Clean the project (Shift + Command + K) and rebuild it (Command + B).
+3. If the issue persists, try deleting the DerivedData folder (~/Library/Developer/Xcode/DerivedData) and rebuilding the project.
+
+If none of these steps work, you may need to create a new project and copy your code over.

@@ -1,0 +1,30 @@
+The error message suggests that Jackson (the JSON serialization library used by Spring) is unable to serialize the `MultipartFile` object because it contains a `ByteArrayInputStream` object, which cannot be serialized by default. 
+
+To solve this, you can configure Jackson to ignore the `ByteArrayInputStream` property by adding the following annotation to your `MultipartFile` class:
+
+```java
+@JsonIgnoreProperties(value = {"inputStream"})
+public class MyMultipartFile implements MultipartFile {
+    // ...
+}
+```
+
+This will tell Jackson to ignore the `inputStream` property when serializing the `MultipartFile` object.
+
+Alternatively, you can try using a different serialization format, such as `application/x-www-form-urlencoded`, which does not require serialization of binary data. To do this, you can modify your code as follows:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+MultiValueMap<String, String> body= new LinkedMultiValueMap<>();
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<?> entity = new HttpEntity<MultiValueMap<String, String>>(body,headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status=response.getBody();
+```
+
+Note that in this case, you will need to modify your microservice to accept `application/x-www-form-urlencoded` data instead of `multipart/form-data`.

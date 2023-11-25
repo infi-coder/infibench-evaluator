@@ -1,0 +1,22 @@
+The error message suggests that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `MultipartFile` object contains a `ByteArrayInputStream` object, which cannot be serialized by the default Jackson serializer.
+
+To solve this issue, you can configure the `RestTemplate` to use a different serializer that can handle the `MultipartFile` object. One option is to use the `MappingJackson2HttpMessageConverter` with a custom `ObjectMapper` that is configured to handle `MultipartFile` objects.
+
+Here's an example of how to configure the `RestTemplate` with a custom `ObjectMapper`:
+
+```java
+// Create a custom ObjectMapper that can handle MultipartFile objects
+ObjectMapper objectMapper = new ObjectMapper();
+objectMapper.registerModule(new MultiPartModule());
+
+// Create a MappingJackson2HttpMessageConverter with the custom ObjectMapper
+MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+converter.setObjectMapper(objectMapper);
+
+// Create a RestTemplate with the custom converter
+RestTemplate restTemplate = new RestTemplate(Collections.singletonList(converter));
+```
+
+Note that in this example, we're using the `MultiPartModule` from the `jackson-datatype-jaxrs` library to handle `MultipartFile` objects. You'll need to add this library to your project's dependencies.
+
+With this configuration, the `RestTemplate` should be able to serialize and deserialize `MultipartFile` objects correctly.

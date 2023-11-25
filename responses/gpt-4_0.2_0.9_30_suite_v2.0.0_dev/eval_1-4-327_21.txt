@@ -1,0 +1,15 @@
+In R, when you bind two data frames with the same column names using `cbind()`, the column names of the resulting data frame are made unique by adding a suffix. 
+
+In your case, the column names of `d3` would be `a` and `a.1`. So, to select the second column, you can use `d3$a.1`.
+
+Here is the code:
+
+```r
+second_col <- d3$a.1
+```
+
+Please note that this behavior may depend on the version of R and the packages you have loaded. If `d3$a.1` does not work, you can select the second column by its index like this:
+
+```r
+second_col <- d3[,2]
+```

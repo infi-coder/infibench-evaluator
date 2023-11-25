@@ -1,0 +1,32 @@
+You can get the current scroll position of a SwiftUI ScrollView by using the `ScrollViewReader` and `GeometryReader` together. Here's an example:
+
+```swift
+struct ContentView: View {
+    @State private var scrollPosition: CGFloat = 0
+    
+    var body: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(spacing: 20) {
+                    ForEach(1...50, id: \.self) { index in
+                        Text("Item \(index)")
+                            .frame(width: 300, height: 50)
+                            .background(Color.gray)
+                    }
+                }
+                .background(GeometryReader { geometry in
+                    Color.clear.onAppear {
+                        self.scrollPosition = geometry.frame(in: .global).minY
+                    }
+                })
+            }
+            .onAppear {
+                proxy.scrollTo(25)
+            }
+        }
+        .overlay(Text("Current Scroll Position: \(scrollPosition)"))
+    }
+}
+```
+
+In this example, we're using a `GeometryReader` to get the frame of the `ScrollView` and calculate its `minY` position in the global coordinate space. We're then setting this value to a `@State` variable called `scrollPosition`. Finally, we're overlaying a `Text` view to display the current scroll position.

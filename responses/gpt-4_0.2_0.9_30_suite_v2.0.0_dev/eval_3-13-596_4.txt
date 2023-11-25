@@ -1,0 +1,11 @@
+The `myprogram-0.0.1-plain.jar` file is generated due to the `jar` task in Spring Boot 2.5.0. If you want to disable this, you can modify your `build.gradle` file to disable the `bootJar` task's `enabled` property.
+
+Here is how you can do it:
+
+```groovy
+bootJar {
+    enabled = false
+}
+```
+
+Add this to your `build.gradle` file. After this change, Gradle will not generate the `myprogram-0.0.1-plain.jar` file.

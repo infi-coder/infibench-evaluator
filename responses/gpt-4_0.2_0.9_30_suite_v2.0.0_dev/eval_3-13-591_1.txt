@@ -1,0 +1,33 @@
+The problem you're facing is due to the asynchronous nature of the `onItemSelectedListener`. The `onItemSelected` function is not immediately called when you set the listener. It's called later when an item is actually selected in the spinner. 
+
+However, your function `setupListWithAdapter` doesn't wait for `onItemSelected` to be called. It continues executing and returns `itemSelected` immediately, which at this point is still an empty string. That's why you're seeing log 2 before log 1, and why you're getting an empty value when you use this function in your fragment.
+
+To solve this, you could use a callback function to get the selected item. Here's an example:
+
+```kotlin
+fun Spinner.setupListWithAdapter(list: MutableList<String>, callback: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+            callback(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+}
+```
+
+Now, you can use this function in your fragment like this:
+
+```kotlin
+spinner.setupListWithAdapter(list) { selectedItem ->
+    // Do something with selectedItem
+    Log.e("categoryLog","Selected item: " + selectedItem)
+}
+```
+
+This way, you're passing a function (the callback) to `setupListWithAdapter`, and this function is called with the selected item as soon as an item is selected in the spinner.

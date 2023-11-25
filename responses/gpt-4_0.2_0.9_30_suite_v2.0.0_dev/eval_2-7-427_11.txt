@@ -1,0 +1,25 @@
+## CSRF Token Mismatch
+
+The CSRF token mismatch issue could be due to a couple of reasons:
+
+1. **Domain Configuration**: Ensure that your domain is correctly configured to point to the `public` directory of your Laravel application. Incorrect domain configuration can cause issues with session handling.
+
+2. **Cookie Domain**: Check your `config/session.php` file and ensure that the `domain` configuration is correctly set. If your application is on a subdomain, you should set the `domain` configuration to your root domain (e.g., `.yourdomain.com`).
+
+3. **Session Driver**: If you're using a different session driver on your production server, ensure that it's correctly configured. For example, if you're using the `redis` or `database` session driver, ensure that Redis or your database is correctly set up and accessible.
+
+4. **HTTPS**: If your production server is using HTTPS, ensure that the `secure` option in your `config/session.php` file is set to `true`. This is because cookies will not be sent over an insecure connection when this option is set to `true`.
+
+## Email Sending Issue
+
+The error message you're seeing is related to the SSL protocol version being used. It seems like the mail server you're trying to connect to is using a different SSL protocol version than your application is expecting.
+
+Here are a few things you can try:
+
+1. **Change Encryption Type**: Try changing `MAIL_ENCRYPTION` in your `.env` file from `ssl` to `tls`. Some servers use the newer TLS protocol instead of SSL.
+
+2. **Change Port Number**: The port number you're using (587) is typically used with the `tls` encryption. If you're using `ssl` encryption, try changing the `MAIL_PORT` to 465.
+
+3. **Disable Encryption**: As a last resort, you can try disabling encryption altogether to see if that resolves the issue. However, this is not recommended for production environments as it can expose sensitive information.
+
+Remember to clear your config cache (`php artisan config:cache`) after making changes to your `.env` file.

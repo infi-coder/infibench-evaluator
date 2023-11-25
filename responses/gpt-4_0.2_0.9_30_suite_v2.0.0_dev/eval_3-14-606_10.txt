@@ -1,0 +1,13 @@
+It seems like there's a misunderstanding here. iOS does not have a "Developer Mode" that can be enabled or disabled like Android. If you're trying to run a provisioned testing build, you need to make sure that the device is properly provisioned for development.
+
+Here are the steps to provision your device for development:
+
+1. Connect your device to your Mac.
+2. Open Xcode.
+3. Go to `Window` -> `Devices and Simulators`.
+4. In the opened window, select your device from the list on the left.
+5. If necessary, click on `Use for Development`.
+
+If you're trying to install an app that's been sent to you for testing, you should be using TestFlight. The developer should send you an invitation to join their TestFlight testers, and you'll be able to install and run the app from there.
+
+If you're seeing a message about "Developer Mode", it might be related to a specific app or setting within that app, not iOS itself. You should contact the developer or consult the app's documentation for more information.

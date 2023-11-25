@@ -1,0 +1,35 @@
+It sounds like you might be trying to use a CSS preprocessor like Sass or Less. These preprocessors allow you to write CSS in a more efficient way by using variables, nesting, and other features.
+
+In Sass, for example, you can use the `&` symbol to reference the parent selector. So if you have a class called "button" and you want to style a hover state, you can write:
+
+```
+.button {
+  background-color: blue;
+
+  &:hover {
+    background-color: red;
+  }
+}
+```
+
+This will compile to:
+
+```
+.button {
+  background-color: blue;
+}
+
+.button:hover {
+  background-color: red;
+}
+```
+
+If you're not using a preprocessor and you're just trying to write regular CSS, you can still use the `.` to select a class. For example:
+
+```
+.my-class {
+  background-color: blue;
+}
+```
+
+This will select any element with the class "my-class" and apply a blue background color.

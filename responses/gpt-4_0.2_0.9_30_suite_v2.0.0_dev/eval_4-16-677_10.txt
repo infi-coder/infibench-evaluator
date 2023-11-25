@@ -1,0 +1,21 @@
+The issue is that you're using single quotes around your variable `$searchT` in the `grep` command. Single quotes in bash will prevent variable expansion, meaning `$searchT` is being treated as a literal string, not a variable. 
+
+You should use double quotes instead. Here is the corrected script:
+
+```bash
+#!/bin/bash
+read -p "enter search term here: " searchT
+
+if [[ $(cat test.txt | grep -wi "$searchT") ]]; then     
+    echo "$(cat test.txt | grep "$searchT" | wc -l) number of matches found"
+    echo $(cat test.txt | grep "$searchT")
+
+else 
+    echo "no match found"    
+
+fi
+
+exit 0
+```
+
+This script will read a search term from the user, search for it in `test.txt` (case-insensitive), and if it finds a match, it will print the number of matches and the matching lines. If it doesn't find a match, it will print "no match found".

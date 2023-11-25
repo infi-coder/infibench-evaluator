@@ -1,0 +1,19 @@
+The warning message you're seeing is due to Elasticsearch 7.13.1 not having its built-in security features enabled. This is not an error, but a warning from Elasticsearch about potential security risks.
+
+If you want to enable the built-in security features, you can follow the instructions in the link provided in the warning message: https://www.elastic.co/guide/en/elasticsearch/reference/7.13/security-minimal-setup.html
+
+However, if you're running Elasticsearch locally for development purposes, it's usually not necessary to enable these security features. If you want to suppress this warning, you can do so by setting the `xpack.security.enabled` setting to `false` in your `elasticsearch.yml` configuration file.
+
+Here's how to do it:
+
+1. Open the `elasticsearch.yml` file. This file is typically located in the `/etc/elasticsearch` or `/usr/local/etc/elasticsearch` directory, depending on how you installed Elasticsearch.
+
+2. Add the following line to the file:
+
+    ```yml
+    xpack.security.enabled: false
+    ```
+
+3. Save the file and restart Elasticsearch.
+
+Please note that this will only suppress the warning, and will not enable the security features. If you're running Elasticsearch in a production environment, it's strongly recommended to enable these features to protect your data.

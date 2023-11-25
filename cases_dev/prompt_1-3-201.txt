@@ -1,0 +1,17 @@
+i have two files, and i want to run both. The first one is basically asking down the prices of stocks and writes them to a database, and the second one using python dash to create a webpage. This webpage is showing the data in real time from the database which is constantly refreshes. I tried to use threading but it does not work, because the two files basically function as two infinite while loop. How should i solve this problem? The two functions im having problem with are `dataMiningScript= fd.financeData(database,1600)` and `if name == "main": app.run_server(debug=True)`
+
+```python
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+database=db.dataBase()
+homepage=hp.homepage(database)
+homepage.timeUpdateCallback(app)
+homepage.gaugeRefreshCallback(app)
+dataMiningScript= fd.financeData(database,1600)
+
+app.layout = homepage.layoutMaker()
+
+
+
+if __name__ == "__main__":
+   app.run_server(debug=True)
+```

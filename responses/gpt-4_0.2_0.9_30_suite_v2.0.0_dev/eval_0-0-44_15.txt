@@ -1,0 +1,24 @@
+To create an index in Mongoose schema using Nest.js, you can use the `@Prop` decorator with the `index` option set to `true` as you did in your first example. However, you need to ensure that the indexing operation is completed before you start using your model. 
+
+This can be done by calling the `ensureIndexes()` function on the model. This function forces the creation of indexes defined in your schema.
+
+Here is how you can do it:
+
+```javascript
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+@Injectable()
+export class MyService implements OnModuleInit {
+  constructor(@InjectModel('Schema') private readonly myModel: Model<Schema>) {}
+
+  async onModuleInit(): Promise<void> {
+    await this.myModel.init();
+  }
+}
+```
+
+In the above code, `onModuleInit()` lifecycle event is used to ensure that the indexes are created before the application starts.
+
+Also, make sure that you have connected to your MongoDB instance correctly and have the necessary permissions to create indexes. If there are any errors during the index creation, Mongoose should log them.

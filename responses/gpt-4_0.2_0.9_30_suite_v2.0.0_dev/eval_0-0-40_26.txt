@@ -1,0 +1,39 @@
+The problem you're experiencing is due to the fact that WSL2 is trying to use the Windows version of `npm` instead of the Linux version. This is because the Windows directories are in your PATH variable.
+
+To solve this, you need to make sure that the Linux directories are prioritized in your PATH variable. You can do this by editing your `.bashrc` or `.bash_profile` file.
+
+Here are the steps to do this:
+
+1. Open your `.bashrc` file:
+
+```bash
+nano ~/.bashrc
+```
+
+2. Add the following line at the end of the file:
+
+```bash
+export PATH="$HOME/.npm-global/bin:$PATH"
+```
+
+3. Save and close the file by pressing `Ctrl + X`, then `Y`, then `Enter`.
+
+4. Reload the `.bashrc` file:
+
+```bash
+source ~/.bashrc
+```
+
+5. Now, you should be able to use `npm` without any issues. You can check the version of `npm` by running:
+
+```bash
+npm -v
+```
+
+If you still face the same issue, you can try to reinstall `npm` using the following command:
+
+```bash
+sudo apt-get install -y npm
+```
+
+Then check the version of `npm` again.

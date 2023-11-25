@@ -1,0 +1,21 @@
+It seems that you are trying to fetch data from a GraphQL API provided by Apollo Sandbox. However, the provided URI in your code is not working. 
+
+You can try replacing the URI with a working one. For example, you can use the following URI:
+
+```
+https://48p1r2roz4.sse.codesandbox.io/graphql
+```
+
+Also, make sure that you have a stable internet connection and that the GraphQL API is up and running. 
+
+If the issue persists, you can try adding the `fetchPolicy` option to your `useQuery` hook and set it to `network-only`. This will force the query to always fetch data from the network and ignore any cached data. 
+
+Here's how you can add the `fetchPolicy` option:
+
+```javascript
+const { loading, error, data } = useQuery(EXCHANGE_RATES, {
+  fetchPolicy: 'network-only',
+});
+```
+
+I hope this helps!

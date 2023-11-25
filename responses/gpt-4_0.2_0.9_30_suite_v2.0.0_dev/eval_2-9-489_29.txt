@@ -1,0 +1,45 @@
+The warning message you're seeing is because Elasticsearch 7.13.1 has built-in security features that are not enabled by default. This is not an error, but a warning that your Elasticsearch cluster could be accessible to anyone without authentication.
+
+To resolve this, you need to enable Elasticsearch's built-in security features. Here are the steps to do this:
+
+1. Open the Elasticsearch configuration file (`elasticsearch.yml`). The location of this file depends on your installation. For Homebrew on macOS, it's typically located at `/usr/local/etc/elasticsearch/elasticsearch.yml`.
+
+2. Add the following lines to the `elasticsearch.yml` file:
+
+```yaml
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+```
+
+3. Save the file and restart Elasticsearch.
+
+If you're using Homebrew, you can restart Elasticsearch with the following command:
+
+```bash
+brew services restart elasticsearch
+```
+
+4. After restarting Elasticsearch, you need to set up passwords for the built-in users. Run the following command:
+
+```bash
+bin/elasticsearch-setup-passwords auto
+```
+
+This command will generate random passwords for the built-in users (including `elastic`, `kibana_system`, `logstash_system`, etc.). Make sure to note these passwords down as you'll need them to connect to Elasticsearch.
+
+5. Update your Rails app to use the `elastic` user and its password. In your `config/initializers/searchkick.rb` file (or wherever you've configured Searchkick), update the `Searchkick.client` configuration:
+
+```ruby
+Searchkick.client = Elasticsearch::Client.new(
+  hosts: ["localhost:9200"],
+  http_auth: "elastic:PASSWORD"
+)
+```
+
+Replace `PASSWORD` with the password generated for the `elastic` user.
+
+6. Restart your Rails app.
+
+Please note that enabling security will also enable Transport Layer Security (TLS) for the transport networking layer. If you want to disable TLS (not recommended for production), you can set `xpack.security.transport.ssl.enabled` to `false`. However, this will make your Elasticsearch data transport susceptible to eavesdropping.
+
+Also, the `elasticsearch-setup-passwords` command is available only if you've installed Elasticsearch from the tar.gz or .zip archives. If you've installed Elasticsearch with Homebrew, Docker, or any other package manager, you might need to use a different method to set up passwords. Please refer to the [Elasticsearch documentation

@@ -1,0 +1,35 @@
+This warning message is related to Elasticsearch security features that are not enabled by default. To fix this, you need to enable Elasticsearch security features by following the steps below:
+
+1. Open the Elasticsearch configuration file located at `config/elasticsearch.yml` in your Rails app.
+
+2. Add the following lines to the end of the file:
+
+   ```
+   xpack.security.enabled: true
+   xpack.security.transport.ssl.enabled: true
+   xpack.security.transport.ssl.verification_mode: certificate
+   ```
+
+3. Save the file and restart Elasticsearch.
+
+   If you're using Homebrew, you can restart Elasticsearch by running the following command:
+
+   ```
+   brew services restart elasticsearch-full
+   ```
+
+   If you're not using Homebrew, you can restart Elasticsearch by running the following command:
+
+   ```
+   sudo service elasticsearch restart
+   ```
+
+4. Verify that Elasticsearch security features are enabled by running the following command:
+
+   ```
+   curl -u elastic 'http://localhost:9200/_xpack/security/_authenticate?pretty'
+   ```
+
+   If Elasticsearch security features are enabled, you should see a response that includes the word "authenticated".
+
+That should fix the Elasticsearch warning message.

@@ -1,0 +1,60 @@
+You can create a factory method that returns a `ServiceBusSender` instance for a given queue name. Here's an example:
+
+```c#
+public interface IServiceBusSenderFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+}
+
+public class ServiceBusSenderFactory : IServiceBusSenderFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusSenderFactory(ServiceBusClient serviceBusClient)
+    {
+        _serviceBusClient = serviceBusClient;
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+}
+```
+
+Then, you can register the `IServiceBusSenderFactory` as a singleton:
+
+```c#
+_services.AddSingleton<IServiceBusSenderFactory, ServiceBusSenderFactory>();
+```
+
+Finally, you can inject the `IServiceBusSenderFactory` into your `CarReservationMessagingService` and use it to create a `ServiceBusSender` instance for the appropriate queue:
+
+```c#
+private readonly IServiceBusSenderFactory _serviceBusSenderFactory;
+
+public CarReservationMessagingService(IServiceBusSenderFactory serviceBusSenderFactory)
+{
+    _serviceBusSenderFactory = serviceBusSenderFactory ?? throw new ArgumentNullException(nameof(serviceBusSenderFactory));
+}
+
+public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation, string queueName)
+{
+    var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+    {
+        Id = Guid.NewGuid().ToString(),
+        CarId = carReservation.CarId,
+        CustomerId = carReservation.CustomerId,
+        RentFrom = carReservation.RentFrom,
+        RentTo = carReservation.RentTo
+    };
+
+    var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+    ServiceBusMessage message = new ServiceBusMessage(serializedMessage);
+
+    var sender = _serviceBusSenderFactory.CreateSender(queueName);
+    await sender.SendMessageAsync(message);
+}
+```
+
+You can then call the `PublishNewCarReservationMessageAsync` method with the appropriate queue name to send messages to different queues.

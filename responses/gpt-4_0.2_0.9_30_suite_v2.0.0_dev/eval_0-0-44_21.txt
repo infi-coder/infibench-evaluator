@@ -1,0 +1,39 @@
+In Mongoose, you can create an index on a field in the schema by using the `@Prop` decorator with the `index` or `unique` option. However, Mongoose will not automatically build indexes defined in your schema. You need to manually trigger the building of indexes using the `Model.ensureIndexes()` function.
+
+In Nest.js, you can do this in the `onModuleInit` lifecycle hook in your service or module. Here is an example:
+
+```javascript
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+@Injectable()
+export class MyService implements OnModuleInit {
+  constructor(@InjectModel(Schema.name) private readonly myModel: Model<Schema>) {}
+
+  async onModuleInit() {
+    await this.myModel.init();
+  }
+}
+```
+
+In this example, `myModel.init()` will return a promise that will be resolved when all the indexes in your schema have been built. If there is an error, the promise will be rejected.
+
+If you want to ensure that indexes are built before your application starts, you can use the `onApplicationBootstrap` lifecycle hook instead of `onModuleInit`.
+
+```javascript
+import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+@Injectable()
+export class MyService implements OnApplicationBootstrap {
+  constructor(@InjectModel(Schema.name) private readonly myModel: Model<Schema>) {}
+
+  async onApplicationBootstrap() {
+    await this.myModel.init();
+  }
+}
+```
+
+In this case, if there is an error building the indexes, your application will not start.

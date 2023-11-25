@@ -1,0 +1,38 @@
+Yes, it is possible to get the current scroll position of a SwiftUI ScrollView using the `ScrollViewProxy`. You can use the `contentOffset` method of the `ScrollViewProxy` to get the current scroll position. Here's an example:
+
+```swift
+struct ContentView: View {
+    @State private var scrollPosition: CGFloat = 0
+    
+    var body: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(spacing: 20) {
+                    ForEach(0..<50) { index in
+                        Text("Item \(index)")
+                            .frame(width: 200, height: 50)
+                            .background(Color.gray)
+                    }
+                }
+                .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
+                    scrollPosition = value
+                }
+            }
+            .onAppear {
+                // Scroll to a specific item
+                proxy.scrollTo(25)
+            }
+        }
+    }
+}
+
+struct ScrollViewOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+```
+
+In this example, we're using a `PreferenceKey` to get the scroll offset and update the `scrollPosition` state variable. We're also using the `onAppear` modifier to scroll to a specific item when the view appears.

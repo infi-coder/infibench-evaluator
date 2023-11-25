@@ -1,0 +1,35 @@
+Here's a possible implementation of the `generateRandomString` function in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the allowed characters
+    allowed_chars = string.ascii_letters + string.digits
+    
+    # Generate a random string of length 9
+    random_string = ''.join(random.choice(allowed_chars) for i in range(9))
+    
+    # Insert the "NAA3U" substring at a random position
+    random_position = random.randint(0, 12)
+    random_string = random_string[:random_position] + "NAA3U" + random_string[random_position+5:]
+    
+    # Generate a random 3-digit number
+    random_number = random.randint(0, 999)
+    
+    # Format the final string with the random number
+    final_string = f"{random_string}{random_number:03}"
+    
+    return final_string
+```
+
+Here's how the function works:
+
+1. We first define the allowed characters as all the letters (lowercase and uppercase) and digits.
+2. We generate a random string of length 9 using the `random.choice` function to pick a random character from the allowed characters for each position in the string.
+3. We insert the "NAA3U" substring at a random position in the string using string slicing.
+4. We generate a random 3-digit number using the `random.randint` function.
+5. We format the final string by concatenating the random string and the random number using f-strings.
+
+Note that this implementation assumes that the "NAA3U" substring can appear at any position in the final string (except for the last 3 characters, which are reserved for the random number). If you need to enforce a specific position for the substring, you'll need to modify the implementation accordingly.

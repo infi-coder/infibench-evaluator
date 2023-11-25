@@ -1,0 +1,33 @@
+It seems that the issue is related to the network connection. The `uri` you are using in `ApolloClient` is not working. 
+
+You can try changing the `uri` to a working GraphQL endpoint. For example, you can use the following `uri`:
+
+```
+https://countries.trevorblades.com/
+```
+
+This is a public GraphQL API that provides information about countries. You can test it by running the following query in your browser:
+
+```
+https://countries.trevorblades.com/graphql
+```
+
+```
+query {
+  countries {
+    code
+    name
+    native
+    emoji
+    currency
+    languages {
+      code
+      name
+    }
+  }
+}
+```
+
+If the query returns data, then you can use this `uri` in your `ApolloClient` configuration. 
+
+Also, make sure that your device or emulator is connected to the internet.

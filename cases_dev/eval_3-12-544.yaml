@@ -1,0 +1,14 @@
+# Corresponding to post https://stackoverflow.com/questions/67692095
+id: 3-12-544
+# for case self identificaton
+
+prompt_path: prompt_3-12-544.txt
+type: code debugging
+
+lang: dart
+full_score: 1.0
+null_score: 0.0
+
+grading:
+  keywords:
+    - "Hive.initFlutter()"

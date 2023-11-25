@@ -1,0 +1,30 @@
+The error message you're seeing is typically associated with an issue in the JSON parsing process. The `<` character is not a valid start of a JSON value, which suggests that the response from the server is not a valid JSON.
+
+The issue might be due to the route configuration in your `EmployeeController`. You have defined the route as `[Route("api/Employee/Index")]` on your `Index()` action method, but you also have `[Route("[controller]")]` at the controller level. This might result in a route like `/Employee/api/Employee/Index` instead of `/api/Employee/Index`.
+
+Try changing your route configuration to the following:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+In this configuration, `[controller]` will be replaced by the name of the controller class minus the "Controller" suffix, resulting in `api/Employee`. The `HttpGet` attribute without any parameters means that this action will respond to the GET HTTP verb at the base route of the controller, which is `api/Employee`.
+
+Then, in your Blazor code, you can call the API like this:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("api/Employee");
+```
+
+If the issue persists, it would be helpful to check the actual response from the server. You can do this by inspecting the network traffic in your browser's developer tools, or by using a tool like Postman to send a request to your API. This will help you determine if the issue is with the server response or the client-side parsing.

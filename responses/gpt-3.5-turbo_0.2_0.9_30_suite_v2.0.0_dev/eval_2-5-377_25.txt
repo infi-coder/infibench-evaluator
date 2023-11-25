@@ -1,0 +1,30 @@
+The issue with your code is that you are trying to format a `LocalDate` object using a `DateFormat` object that expects a `Date` object. You need to convert the `LocalDate` object to a `Date` object before formatting it.
+
+Here is an updated version of your code that should work:
+
+```java
+import java.time.*;
+import java.time.format.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(generateRandomDateAndTimeInString());
+    }
+
+    public static String generateRandomDateAndTimeInString() {
+        LocalDateTime dateTime = LocalDateTime.now().minus(Duration.ofDays((new Random().nextInt(365 * 70))));
+        System.out.println("date and time :: " + dateTime.toString());
+        return formatDate(dateTime);
+    }
+
+    public static String formatDate(LocalDateTime dateTime){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        return dateTime.format(formatter);
+    }
+}
+```
+
+This code uses `LocalDateTime` instead of `LocalDate` to include the time. It also uses `DateTimeFormatter` instead of `DateFormat` to format the date and time.
+
+Note that the output of `generateRandomDateAndTimeInString()` will be a random date and time in the past, formatted as `"yyyy-MM-dd'T'HH:mm:ss'Z'"`.

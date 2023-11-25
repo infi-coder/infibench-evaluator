@@ -1,0 +1,38 @@
+The error message indicates that you are trying to create a PendingIntent without specifying either `FLAG_IMMUTABLE` or `FLAG_MUTABLE`. This is a requirement when targeting Android 12 (API level 31) and above.
+
+The issue is that the `MediaSessionCompat` class is trying to create a PendingIntent without specifying these flags. This is a known issue and has been reported to Google's issue tracker.
+
+As a workaround, you can create a PendingIntent yourself and pass it to the `MediaSessionCompat` constructor. Here's an example:
+
+```kotlin
+val mediaButtonReceiver = ComponentName(this, MediaButtonReceiver::class.java)
+val mediaButtonIntent = Intent(Intent.ACTION_MEDIA_BUTTON)
+mediaButtonIntent.component = mediaButtonReceiver
+
+val pendingIntentFlags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    PendingIntent.FLAG_MUTABLE
+} else {
+    0
+}
+
+val mbrIntent = PendingIntent.getBroadcast(
+    this,
+    0,
+    mediaButtonIntent,
+    pendingIntentFlags
+)
+
+mediaSession = MediaSessionCompat(
+    this,
+    TAG,
+    mediaButtonReceiver,
+    mbrIntent
+).apply {
+    setCallback(mediaSessionCallback)
+    isActive = true
+}
+```
+
+In this code, we are creating a PendingIntent with the `FLAG_MUTABLE` flag if the Android version is S or above. We then pass this PendingIntent to the `MediaSessionCompat` constructor.
+
+Please note that this is a workaround and the issue should be fixed in a future version of the AndroidX Media library.

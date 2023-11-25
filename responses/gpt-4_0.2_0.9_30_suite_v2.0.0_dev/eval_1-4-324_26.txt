@@ -1,0 +1,53 @@
+Here is a function `mySplit` that uses the `strsplit` function to split the strings in the column `col1` of the data frame `df`:
+
+```r
+mySplit <- function(df) {
+  # Split the strings in the column 'col1' by comma
+  split_list <- strsplit(df$col1, split = ",")
+  
+  # Initialize an empty data frame to store the results
+  result <- data.frame()
+  
+  # Loop over the list of split strings
+  for (i in 1:length(split_list)) {
+    # Split each string by colon
+    split_colon <- strsplit(split_list[[i]], split = ":")
+    
+    # Convert the split strings to a data frame
+    df_temp <- data.frame(matrix(unlist(split_colon), ncol = 2, byrow = TRUE))
+    
+    # Set the column names of the data frame
+    colnames(df_temp) <- c("key", "value")
+    
+    # Transpose the data frame and set the column names
+    df_temp <- setNames(data.frame(t(df_temp$value)), df_temp$key)
+    
+    # Append the data frame to the result
+    result <- rbind(result, df_temp)
+  }
+  
+  # Return the result
+  return(result)
+}
+```
+
+You can use this function to split the column `col1` of your data frame `df` into separate columns:
+
+```r
+# Create a data frame
+df <- data.frame(col1 = c("name:Michael,Age:31,City:NYC", "name:Tom,Age:25,City:NA"))
+
+# Split the column 'col1' into separate columns
+df_split <- mySplit(df)
+
+# Print the result
+print(df_split)
+```
+
+This will output:
+
+```r
+     name Age City
+1 Michael  31  NYC
+2     Tom  25   NA
+```

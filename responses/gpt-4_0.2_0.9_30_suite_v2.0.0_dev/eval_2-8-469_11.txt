@@ -1,0 +1,20 @@
+The error message is indicating that the `go_package` option is missing in your `.proto` file. This option is used to specify the package name for the generated Go code. 
+
+You can fix the error by adding the `go_package` option to your `.proto` file like this:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "main";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+In this case, the `go_package` option is set to "main". You should replace "main" with the actual package name you want to use.
+
+After making this change, you should be able to generate the Go code using the `protoc` command you provided.

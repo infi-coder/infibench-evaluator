@@ -1,0 +1,27 @@
+The issue here is that you're trying to use `@Binding` in a place where you should be using `@State`. The `@Binding` property wrapper is used when you want to create a two-way binding to a value that is owned by a parent view. In your case, `isSelected` is owned by `ContentView`, so it should be marked with `@State`.
+
+Here's the corrected code:
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+```
+
+In this code, `isSelected` is a source of truth that is private to `ContentView`, and it is marked with `@State` to indicate that changes to this value should cause the view to be re-rendered.

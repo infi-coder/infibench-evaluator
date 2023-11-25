@@ -1,0 +1,12 @@
+This error can occur when the SwiftUI Preview isn't associated with a target. Here's how you can fix it:
+
+1. Click on the file that contains your `ContentView_Previews`.
+2. In the File Inspector (the first tab in the right sidebar), under "Target Membership", make sure your app's target is checked.
+
+If the target is already checked:
+
+1. Uncheck the target, then re-check it.
+2. Clean the build folder (Product > Clean Build Folder).
+3. Try to run the preview again.
+
+If the problem persists, try restarting Xcode or your computer. If none of these steps work, it might be a bug with Xcode 12.3. You could try updating to a newer version of Xcode if available.

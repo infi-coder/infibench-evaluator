@@ -1,0 +1,5 @@
+It sounds like you are trying to use Emmet, a plugin that allows you to write shorthand code and expand it into HTML/CSS. To use Emmet, you need to make sure it is installed in your code editor and that it is enabled. 
+
+Once you have Emmet enabled, you can use shorthand syntax to write HTML and CSS more quickly. For example, to create a div with a class of "container", you can type `div.container` and then press the "Tab" key. This will expand into `<div class="container"></div>`.
+
+If you are still having trouble, make sure you are typing the shorthand syntax correctly and that you are pressing the "Tab" key to expand it. You can also check the Emmet documentation for more information on how to use it.

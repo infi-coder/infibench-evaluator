@@ -1,0 +1,43 @@
+You can use the `react-intersection-observer` npm package to detect if an element is in the viewport or not. 
+
+First, install the package:
+
+```bash
+npm install react-intersection-observer
+```
+
+Then, you can use the `useInView` hook from the package to track the visibility of each div. Here is an example:
+
+```jsx
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+
+const MyComponent = ({ data }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Change this to true if you want the event to trigger only once
+  });
+
+  return (
+    <div id="parent">
+      {data.map((item) => {
+        const [ref, inView] = useInView({
+          triggerOnce: false,
+        });
+
+        return (
+          <div ref={ref} id={item.id}>
+            {inView ? 'In viewport' : 'Not in viewport'}
+            {item.title}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default MyComponent;
+```
+
+In this example, `useInView` returns a `ref` that you attach to the div you want to observe. It also returns `inView`, a boolean that is `true` when the div is in the viewport and `false` otherwise.
+
+Please note that the Intersection Observer API is not supported in all browsers. You can check the current browser compatibility on the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#browser_compatibility). If you need to support a browser that doesn't have native support, you can use a polyfill. The `react-intersection-observer` library recommends the [w3c Intersection Observer polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill).

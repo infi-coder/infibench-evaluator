@@ -1,0 +1,18 @@
+The issue might be that `ContentView` is not being updated when `isSelected` changes. Try wrapping the `Text` view in a `VStack` and adding a `Spacer` to fill the remaining space. This should force the view to redraw when `isSelected` changes. Here's the modified code:
+
+```
+struct ContentView: View {
+    @Binding var isSelected: Bool
+
+    var body: some View {
+        VStack {
+            Button(action: {
+                self.isSelected.toggle()
+            }) {
+                Text(isSelected ? "Selected" : "Not Selected")
+            }
+            Spacer()
+        }
+    }
+}
+```

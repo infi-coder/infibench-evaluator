@@ -1,0 +1,49 @@
+The `ext-zip` package is not a regular package that can be installed via Composer. It is actually a PHP extension that needs to be installed on your server.
+
+To install the `ext-zip` extension, you need to follow these steps:
+
+1. Check if the `zip` extension is already installed on your server by running the following command in your terminal:
+
+   ```
+   php -m | grep zip
+   ```
+
+   If the `zip` extension is already installed, you should see `zip` in the output.
+
+2. If the `zip` extension is not installed, you need to install it. The steps to install the extension depend on your operating system and the web server you are using. Here are some examples:
+
+   - On Ubuntu with Apache:
+
+     ```
+     sudo apt-get install php-zip
+     sudo service apache2 restart
+     ```
+
+   - On CentOS with Apache:
+
+     ```
+     sudo yum install php-zip
+     sudo service httpd restart
+     ```
+
+   - On macOS with Apache:
+
+     ```
+     brew install php
+     brew install php-zip
+     sudo apachectl restart
+     ```
+
+   - On Windows with XAMPP:
+
+     ```
+     Open the XAMPP Control Panel
+     Click on the "Config" button for Apache
+     Click on the "PHP (php.ini)" option
+     Uncomment the line ";extension=zip" by removing the semicolon at the beginning
+     Save the file and restart Apache
+     ```
+
+3. After installing the `zip` extension, you can try running the `composer require ext-zip` command again. It should work now.
+
+Note: If you are using a different web server or operating system, you may need to adjust the installation steps accordingly.

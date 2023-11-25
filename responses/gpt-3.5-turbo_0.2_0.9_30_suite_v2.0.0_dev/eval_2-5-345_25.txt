@@ -1,0 +1,8 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven than the one used to generate the project. To fix this issue, you can follow these steps:
+
+1. Open the Maven settings in IntelliJ IDEA by going to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+2. Click on the "Maven home directory" field and select the directory where your Maven 3.8.5 installation is located.
+3. Click "OK" to save the changes.
+4. Re-import the Maven project by going to File > New > Project from Existing Sources and selecting the pom.xml file of your project.
+
+This should resolve the issue and allow you to work with the project in IntelliJ IDEA.

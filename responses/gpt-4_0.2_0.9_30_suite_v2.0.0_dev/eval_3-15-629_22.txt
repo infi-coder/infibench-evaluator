@@ -1,0 +1,13 @@
+You can use the `MSForms.DataObject` to interact with the clipboard. This object is part of the Microsoft Forms 2.0 Object Library. Here is a simple example:
+
+```vba
+Dim MyData As DataObject
+
+Set MyData = New DataObject
+MyData.SetText "Your text to be copied"
+MyData.PutInClipboard
+```
+
+This will copy the text "Your text to be copied" to the clipboard. You can replace the string with any variable or value you want to copy.
+
+If you get an error about `DataObject` being undefined, you may need to set a reference to the Microsoft Forms 2.0 Object Library. You can do this in the VBA editor by going to Tools -> References, and then checking the box for Microsoft Forms 2.0 Object Library.

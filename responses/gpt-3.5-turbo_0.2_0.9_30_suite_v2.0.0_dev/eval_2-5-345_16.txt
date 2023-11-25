@@ -1,0 +1,11 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven than the one used to generate the project. To fix this issue, you can try the following steps:
+
+1. Open the Maven settings in IntelliJ IDEA by going to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+
+2. In the Maven settings, make sure that the "Maven home directory" points to the same version of Maven that was used to generate the project.
+
+3. If the Maven home directory is correct, try clearing the IntelliJ IDEA cache by going to File > Invalidate Caches / Restart.
+
+4. If the issue still persists, try updating the Maven version used by IntelliJ IDEA to match the version used to generate the project. You can do this by going to File > Settings > Build, Execution, Deployment > Build Tools > Maven and selecting the "Use plugin registry" option. Then, click the "Update" button to update the Maven version.
+
+5. If none of the above steps work, you can try regenerating the project using an older version of Spring Boot that is compatible with the version of Maven used by IntelliJ IDEA.

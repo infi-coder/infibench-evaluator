@@ -1,0 +1,3 @@
+Developer mode is not a feature that can be enabled on iOS 16.0. It is possible that the alert you received is related to the provisioning profile used to sign the app. 
+
+To resolve this issue, you may need to check the provisioning profile used to sign the app and ensure that it is valid and up-to-date. You can also try re-installing the app or contacting the developer for further assistance.

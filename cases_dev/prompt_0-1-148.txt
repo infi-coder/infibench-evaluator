@@ -1,0 +1,15 @@
+I recently started to give tailwind.css a try in my Nuxt project. Here is my code:
+
+```html
+  <ul>
+    <li
+      v-for="(item, index) in items"
+      :key="`item-${index}`"
+      class="border-solid border-b border-black"
+    >
+      Item
+    </li>
+  </ul>
+```
+
+I want to add a border-bottom to all of the <li> except the last one. I know Tailwind has first & last pseudo-class variant. What should I do? Could you help me to output a revised code to realize this style?

@@ -1,0 +1,7 @@
+The problem is that the `$(echo {} | sed 's/\?.*//g')` part is evaluated before `find` starts executing, so it doesn't have the correct context. You can solve this by wrapping your `mv` command in a bash shell like this:
+
+```bash
+find . -type f -name '*\?*' -exec bash -c 'mv "$0" "$(echo $0 | sed 's/\?.*//g')"' {} \;
+```
+
+This will start a new bash shell for each file found, and within that shell, it will correctly replace the filename.

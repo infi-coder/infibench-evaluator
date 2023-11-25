@@ -1,0 +1,19 @@
+Sure! Here are the completed templates:
+
+Way 1:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').should('have.text', 'Wildness')
+```
+
+Way 2:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').invoke('text').then((text) => {
+    expect(text.trim()).to.equal('Wildness')
+});
+```
+
+In Way 1, we use the `should` command to assert that the selected element has the expected text.
+
+In Way 2, we use the `invoke` command to get the text of the selected element, and then use the `then` command to perform the assertion. We use the `expect` command to assert that the text is equal to `'Wildness'`. Note that we use `trim()` to remove any leading or trailing whitespace from the text.

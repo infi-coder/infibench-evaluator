@@ -1,0 +1,13 @@
+You can specify the path to the Java executable that you want to use by setting the `JAVA_HOME` environment variable. 
+
+To do this, you can follow these steps:
+
+1. Determine the path to the Java executable that you want to use. You can do this by running `java -version` in a terminal or command prompt. The output should include the path to the Java executable.
+
+2. Set the `JAVA_HOME` environment variable to the path of the Java executable. For example, if the path to the Java executable is `/usr/lib/jvm/java-8-openjdk-amd64/bin/java`, you would set `JAVA_HOME` to `/usr/lib/jvm/java-8-openjdk-amd64`.
+
+   On Windows, you can set the environment variable by opening the Start menu, searching for "Environment Variables", and clicking "Edit the system environment variables". Then click the "Environment Variables" button, and under "System Variables", click "New" and enter `JAVA_HOME` as the variable name and the path to the Java executable as the variable value.
+
+3. Run the Maven wrapper again. It should now use the Java executable that you specified in the `JAVA_HOME` environment variable.
+
+Note that setting `JAVA_HOME` will only affect the current terminal or command prompt session. If you want to make this change permanent, you will need to set the environment variable in your system settings.

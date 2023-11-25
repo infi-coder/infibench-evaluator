@@ -1,0 +1,9 @@
+The Rule of 5 is not outdated and is still relevant today. While it is true that implicit constructors and destructors work fine for aggregate data structures, there are cases where user-defined constructors and destructors are necessary.
+
+For example, if a class manages a resource that cannot be handled by a smart pointer, such as a file handle or a network connection, then a user-defined destructor is necessary to properly release that resource. Similarly, if a class has non-copyable or non-movable members, then a user-defined copy constructor, copy assignment operator, move constructor, or move assignment operator may be necessary to properly manage those members.
+
+In addition, there may be cases where a user-defined constructor or destructor is necessary to perform additional initialization or cleanup beyond what is provided by the default constructor or destructor.
+
+While it is true that smart pointers can often be used to manage resources, they are not always the best solution. Smart pointers have overhead and may not be appropriate for certain types of resources or performance-critical code.
+
+In summary, while the Rule of 5 may not be necessary for all classes, it is still an important guideline to follow for classes that manage resources or have non-copyable or non-movable members.

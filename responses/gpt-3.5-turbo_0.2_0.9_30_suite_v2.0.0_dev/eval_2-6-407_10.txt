@@ -1,0 +1,15 @@
+The error message suggests that the response from the server is not in the expected JSON format. It looks like the response starts with a '<' character, which is not valid JSON.
+
+One possible reason for this error is that the server is returning an HTML error page instead of the expected JSON response. To confirm this, you can try accessing the API endpoint directly in your browser and see if it returns a JSON response or an error page.
+
+If the server is returning an error page, you will need to fix the server-side code to return the expected JSON response. If the server is returning a JSON response, you may need to check the serialization settings on the server-side to ensure that the response is being serialized correctly.
+
+Assuming that the server is returning a JSON response, you can try changing the code to use the full URL for the API endpoint instead of the relative path. For example:
+
+```c#
+empList = await Http.GetJsonAsync<Employee[]>("https://localhost:5001/api/Employee/Index");
+```
+
+Replace the URL with the actual URL of your API endpoint. This should ensure that the correct URL is used to access the API endpoint.
+
+If the above suggestions do not solve the issue, please provide more information about the server-side code and the exact error message you are seeing.

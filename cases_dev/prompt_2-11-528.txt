@@ -1,0 +1,3 @@
+In our C++ project, the order of our includes is regularly changed. This is a problem since we are using some third-party libraries which require a specific include order to avoid problems.
+Unfortunately, the order of our includes is regularly changed and I suppose that this is due to clang-format.
+I simply want to completely disable the ordering of includes. How can I do this?

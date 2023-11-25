@@ -1,0 +1,52 @@
+When I try to add a class AppBarDesign which implements appBar flutter is giving the below error:
+error: The argument type 'AppBarDesign' can't be assigned to the parameter type 'PreferredSizeWidget'.
+Code:
+```dart
+    import 'package:flutter/material.dart';
+
+    main() {
+      runApp(new MyApp());
+    }
+
+    class MyApp extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        return MaterialApp(
+          title: 'Rajath\'s design ',
+          debugShowCheckedModeBanner: false,
+          theme: new ThemeData(primarySwatch: Colors.amber),
+          home: new MyHomePage(key, 'App is Fun'),
+        );
+      }
+    }
+
+    class MyHomePage extends StatelessWidget {
+      MyHomePage(Key key, this.title) : super(key: key);
+
+      final title;
+
+      @override
+      Widget build(BuildContext context) {
+        return new Scaffold(
+          appBar: new AppBarDesign(key, title),
+        );
+      }
+    }
+
+    class AppBarDesign extends StatelessWidget {
+      AppBarDesign(Key key, this.title) : super(key: key);
+
+      final title;
+
+      @override
+      Widget build(BuildContext context) {
+        return new AppBar(
+          title: new Text(title),
+        );
+      }
+    }
+```
+How to fix it?
+Specifically, please don't add other text and repeat the following paragraph with [blank] filled:
+
+Either wrap your custom appbar into a [blank] or or implement [blank].

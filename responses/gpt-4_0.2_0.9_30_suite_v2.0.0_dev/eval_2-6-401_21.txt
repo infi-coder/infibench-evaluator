@@ -1,0 +1,61 @@
+You can use the factory pattern to create different instances of `ServiceBusClient` and `ServiceBusSender` with different queue names. Here's an example of how you can do it:
+
+First, create a factory interface and its implementation:
+
+```csharp
+public interface IServiceBusClientFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+}
+
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusClientFactory(string connectionString)
+    {
+        _serviceBusClient = new ServiceBusClient(connectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+}
+```
+
+Then, register the factory in your DI container:
+
+```csharp
+_services.AddSingleton<IServiceBusClientFactory>(sp =>
+{
+    var serviceBusConfiguration = sp.GetRequiredService<IOptions<UserEventConsumerSetting>>().Value;
+    return new ServiceBusClientFactory(serviceBusConfiguration.ServiceBusConnectionString);
+});
+```
+
+Now, you can inject `IServiceBusClientFactory` into your service and create `ServiceBusSender` with different queue names:
+
+```csharp
+public class CarReservationMessagingService
+{
+    private readonly IServiceBusClientFactory _serviceBusClientFactory;
+
+    public CarReservationMessagingService(IServiceBusClientFactory serviceBusClientFactory)
+    {
+        _serviceBusClientFactory = serviceBusClientFactory ?? throw new ArgumentNullException(nameof(serviceBusClientFactory));
+    }
+
+    public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation, string queueName)
+    {
+        var serviceBusSender = _serviceBusClientFactory.CreateSender(queueName);
+
+        // ... rest of your code
+    }
+}
+```
+
+In this way, you can create `ServiceBusSender` for different queues using the same `ServiceBusClient` instance.

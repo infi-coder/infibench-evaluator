@@ -1,0 +1,46 @@
+The error message you're seeing indicates that the response from your API call is not valid JSON. The '<' character is not a valid start of a JSON value, which suggests that the response might be HTML or XML instead of JSON.
+
+The issue might be related to the route of your API. In your `EmployeeController`, you have defined the route as `api/Employee/Index`:
+
+```csharp
+[HttpGet]
+[Route("api/Employee/Index")]
+public IEnumerable<Employee> Index()
+{
+    return objemployee.GetAllEmployees();
+}
+```
+
+However, in your controller attribute, you have also defined a route:
+
+```csharp
+[Route("[controller]")]
+public class EmployeeController : ControllerBase
+```
+
+This might result in a conflict or confusion about the correct route. 
+
+Try changing your `HttpGet` attribute to just `[HttpGet]` and make sure your `Route` attribute in the `EmployeeController` is `[Route("api/[controller]")]`. The final code should look like this:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+Then, in your Blazor component, you should be able to call the API with the following code:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("api/Employee");
+```
+
+This should resolve the issue if it was caused by a routing problem. If the problem persists, it might be due to the data returned by `GetAllEmployees()` not being serializable to JSON, or the server might be configured to return XML instead of JSON. In that case, you would need to check the implementation of `GetAllEmployees()` and your server configuration.

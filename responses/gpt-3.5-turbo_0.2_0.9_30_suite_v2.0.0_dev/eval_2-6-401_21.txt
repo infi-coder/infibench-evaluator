@@ -1,0 +1,48 @@
+You can create a factory method that returns a `ServiceBusSender` instance for a given queue name and use it to register multiple instances of `ServiceBusSender` with different queue names. Here's an example:
+
+```c#
+// Define a factory method that creates a ServiceBusSender instance for a given queue name
+private ServiceBusSender CreateServiceBusSender(IServiceProvider serviceProvider, string queueName)
+{
+    var serviceBusConfiguration = serviceProvider.GetRequiredService<IOptions<UserEventConsumerSetting>>().Value;
+
+    var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+
+    return serviceBusClient.CreateSender(queueName);
+}
+
+// Register multiple instances of ServiceBusSender with different queue names
+_services.AddSingleton(serviceProvider => CreateServiceBusSender(serviceProvider, "queue1"));
+_services.AddSingleton(serviceProvider => CreateServiceBusSender(serviceProvider, "queue2"));
+```
+
+Then, you can inject the `ServiceBusSender` instances into your services and use them as needed:
+
+```c#
+public class MyService
+{
+    private readonly ServiceBusSender _serviceBusSender1;
+    private readonly ServiceBusSender _serviceBusSender2;
+
+    public MyService(ServiceBusSender serviceBusSender1, ServiceBusSender serviceBusSender2)
+    {
+        _serviceBusSender1 = serviceBusSender1 ?? throw new ArgumentNullException(nameof(serviceBusSender1));
+        _serviceBusSender2 = serviceBusSender2 ?? throw new ArgumentNullException(nameof(serviceBusSender2));
+    }
+
+    public async Task SendMessageToQueue1Async(string message)
+    {
+        var serviceBusMessage = new ServiceBusMessage(message);
+        await _serviceBusSender1.SendMessageAsync(serviceBusMessage);
+    }
+
+    public async Task SendMessageToQueue2Async(string message)
+    {
+        var serviceBusMessage = new ServiceBusMessage(message);
+        await _serviceBusSender2.SendMessageAsync(serviceBusMessage);
+    }
+}
+```

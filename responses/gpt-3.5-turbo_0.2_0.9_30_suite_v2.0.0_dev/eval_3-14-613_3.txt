@@ -1,0 +1,8 @@
+This error message is indicating that the preview target is not properly configured in the current scheme. You can try the following steps to fix the issue:
+
+1. Go to the "Product" menu and select "Scheme" -> "Edit Scheme".
+2. Select the "Preview" tab.
+3. Make sure that the "ContentView_Previews" preview is checked under the "Targets" section.
+4. If it is not checked, check it and try running the preview again.
+
+If this does not work, you can try cleaning the project by going to "Product" -> "Clean Build Folder" and then trying the preview again.

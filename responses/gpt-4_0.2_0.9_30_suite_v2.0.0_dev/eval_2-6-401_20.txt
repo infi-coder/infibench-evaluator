@@ -1,0 +1,52 @@
+You can use a factory pattern to create multiple instances of `ServiceBusClient` with different queue names. Here's an example of how you can do it:
+
+First, create a factory interface:
+```c#
+public interface IServiceBusClientFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+}
+```
+
+Then, implement the factory:
+```c#
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusClientFactory(IOptions<UserEventConsumerSetting> serviceBusConfiguration)
+    {
+        _serviceBusClient = new ServiceBusClient(serviceBusConfiguration.Value.ServiceBusConnectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+}
+```
+
+Register the factory in your DI container:
+```c#
+_services.AddSingleton<IServiceBusClientFactory, ServiceBusClientFactory>();
+```
+
+Now you can inject the factory into your service and create senders for different queues:
+```c#
+public class CarReservationMessagingService
+{
+    private readonly ServiceBusSender _serviceBusSender;
+
+    public CarReservationMessagingService(IServiceBusClientFactory serviceBusClientFactory)
+    {
+        _serviceBusSender = serviceBusClientFactory.CreateSender("queueName");
+    }
+
+    // ...
+}
+```
+
+This way, you can create multiple `ServiceBusSender` instances with the same `ServiceBusClient` but different queue names. You just need to pass the queue name when you create the sender.

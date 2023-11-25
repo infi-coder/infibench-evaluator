@@ -1,0 +1,17 @@
+It sounds like you're referring to a feature provided by a tool called Emmet. Emmet is a plugin for many popular text editors that greatly improves HTML & CSS workflow. 
+
+For example, if you type `.classname` and press `Tab`, it will automatically expand to `<div class="classname"></div>`.
+
+Here are some steps to make sure you can use Emmet:
+
+1. **Check your text editor:** Emmet is available for many text editors including VS Code, Sublime Text, Atom, and more. Make sure your text editor supports Emmet.
+
+2. **Install Emmet:** If your text editor supports Emmet, make sure you have it installed. For example, if you're using VS Code, Emmet is built in and you don't need to install anything. If you're using Sublime Text, you'll need to install it via Package Control.
+
+3. **Use Emmet correctly:** Make sure you're using Emmet correctly. You need to type your abbreviation (like `.classname`) and then press `Tab`. If you're pressing another key, it might not work.
+
+4. **Check your file type:** Emmet works based on your file type. If your file is not saved as a `.html` or `.css` file (or another file type that Emmet supports), it might not work.
+
+5. **Check your settings:** If Emmet is not working, there might be a problem with your settings. Check your text editor's settings to make sure Emmet is enabled.
+
+If you've checked all these things and Emmet is still not working, there might be a problem with your text editor or your Emmet installation. In that case, you might want to try reinstalling your text editor or Emmet.

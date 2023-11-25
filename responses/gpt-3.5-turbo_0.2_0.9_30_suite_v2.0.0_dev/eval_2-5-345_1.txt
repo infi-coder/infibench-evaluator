@@ -1,0 +1,8 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven than the one used to generate the project. To fix this issue, you can try the following steps:
+
+1. Go to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+2. Check the "Use plugin registry" option.
+3. In the "User settings file" field, enter the path to the Maven installation used to generate the project. For example, if you used Maven 3.8.5 to generate the project, enter the path to the "settings.xml" file in the Maven installation directory.
+4. Click "OK" to save the settings.
+
+If the above steps do not work, you can try updating the Maven version used by IntelliJ IDEA to match the one used to generate the project. To do this, go to File > Settings > Build, Execution, Deployment > Build Tools > Maven, and select the version of Maven you want to use from the "Maven home directory" dropdown.

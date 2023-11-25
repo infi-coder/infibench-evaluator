@@ -1,0 +1,15 @@
+I have a dataframe with a column named "year" in object format. I want to convert object to int but I have this error :
+
+```bash
+ValueError: invalid literal for int() with base 10: '2021.0'
+```
+
+Here is my code : 
+
+```python
+data_h_df['year'].astype(str).astype(int)
+```
+
+Please write a function `transformation` in Python which takes `data_h_df` as argument and returns `data_h_df` with the "year" column transformed.
+
+The signature of the function is transformation(data_h_df)

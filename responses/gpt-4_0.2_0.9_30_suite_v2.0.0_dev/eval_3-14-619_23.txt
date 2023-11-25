@@ -1,0 +1,15 @@
+Your code seems fine, but the issue might be that you're trying to test the `@Binding` in the `PreviewProvider`. The `PreviewProvider` doesn't support interactivity, so changes to `@Binding` or `@State` variables won't be reflected there.
+
+To test your `ContentView`, you should embed it in another `View` that owns the `@State` variable. Here's an example:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+```
+
+Now, run your app and use `ParentView` instead of `ContentView`. You should see the button text toggle between "Selected" and "Not Selected" when you click it.

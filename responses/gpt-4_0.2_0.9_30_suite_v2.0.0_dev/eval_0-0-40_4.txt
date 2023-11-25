@@ -1,0 +1,27 @@
+The problem you're experiencing is due to the fact that your system is trying to use the npm installed in your Windows system, not the one installed in your WSL2 Ubuntu system.
+
+The error message `-bash: /mnt/c/Program Files/nodejs/npm: /bin/sh^M: bad interpreter: No such file or directory` is because the Windows version of npm is not compatible with the Linux shell.
+
+To solve this issue, you need to change the system PATH in your WSL2 Ubuntu system to prioritize the Linux version of npm over the Windows version.
+
+You can do this by adding the following line to your `.bashrc` or `.zshrc` file:
+
+```bash
+export PATH="/usr/bin:$PATH"
+```
+
+This line will add `/usr/bin` to the beginning of your system PATH, which means that when you type `npm`, the system will first look in `/usr/bin` for the npm executable. Since this is where the Linux version of npm is located, it will be used instead of the Windows version.
+
+After adding this line, you need to source your `.bashrc` or `.zshrc` file for the changes to take effect. You can do this by running one of the following commands:
+
+```bash
+source ~/.bashrc
+```
+
+or
+
+```bash
+source ~/.zshrc
+```
+
+Now, if you run `npm -v`, you should see the version of npm installed in your WSL2 Ubuntu system, not the Windows version.

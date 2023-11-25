@@ -1,0 +1,15 @@
+The problem you're facing is due to a version mismatch between Hibernate Validator and Bean Validation API. The `@NotEmpty` and `@NotBlank` annotations are part of Bean Validation 2.0, which is implemented by Hibernate Validator 6.0. However, your log indicates that Hibernate Validator 5.3.5 is being used, which only supports Bean Validation 1.1.
+
+The version of Hibernate Validator being used is likely being provided by your application server (JBoss in this case), which is overriding the version provided by Spring Boot.
+
+To resolve this issue, you have a few options:
+
+1. **Upgrade your application server to a version that supports Bean Validation 2.0/Hibernate Validator 6.0.** For example, WildFly 13 or later.
+
+2. **Use a standalone servlet container that doesn't provide its own Bean Validation implementation.** For example, you could use Tomcat or Jetty instead of JBoss.
+
+3. **If you can't upgrade or change your server, you could switch to using the validation annotations that are supported by Bean Validation 1.1.** For example, you could use `@NotNull` and `@Size(min=1)` to achieve similar validation to `@NotEmpty`.
+
+4. **Isolate your application from the server's libraries.** This is more complex and may not be possible depending on your server and application, but it would involve configuring your server to use your application's libraries instead of its own for certain tasks. This is typically done through a `jboss-deployment-structure.xml` file in JBoss/WildFly.
+
+Remember to always ensure that your application server and your application's dependencies are compatible to avoid these kinds of issues.

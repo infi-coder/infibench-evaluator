@@ -1,0 +1,15 @@
+Your code is correct, but the problem might be that you're not seeing the changes because you're testing it in the `ContentView_Previews`. The `@State` variable `selected` in `ContentView_Previews` is not persisting its state when the button is clicked.
+
+To see the changes, you need to use your `ContentView` in a parent view that maintains the state of `isSelected`. Here's an example:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+```
+
+Now, use `ParentView` in your app's main entry point or wherever you want to use it. The `isSelected` state will now persist and you'll see the changes when the button is clicked.

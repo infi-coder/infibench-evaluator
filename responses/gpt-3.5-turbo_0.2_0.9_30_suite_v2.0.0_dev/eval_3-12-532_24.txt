@@ -1,0 +1,42 @@
+The `FormatException` is being thrown because the response body is not a valid JSON string. This can happen if the response body is empty or if it contains invalid characters.
+
+To solve this issue, you can add some error handling to your code to check if the response body is empty or if it contains invalid characters before trying to decode it.
+
+Here's an updated version of your code that includes error handling:
+
+```dart
+Future<String> iniciarSesion() async{
+  var usuario = textUsuario.text;
+  var password = textPassword.text;
+  var nombreUsuario;
+  var url ="http://192.168.1.37/usuario.php";
+
+  //Metodo post
+  var response = await http.post(
+    url,
+    headers:{ "Accept": "application/json" } ,
+    body: { "usuario": '$usuario',"password": '$password'},
+    encoding: Encoding.getByName("utf-8")
+  );
+
+  if (response.statusCode == 200) {
+    if (response.body.isEmpty) {
+      throw Exception('Empty response body');
+    }
+    try {
+      List data = json.decode(response.body);
+      // Do something with the decoded data
+    } catch (e) {
+      throw Exception('Invalid JSON format');
+    }
+  } else {
+    throw Exception('Failed to load data');
+  }
+}
+```
+
+In this updated version of your code, we first check if the response status code is 200 (OK). If it is, we then check if the response body is empty. If it is, we throw an exception with a message indicating that the response body is empty.
+
+If the response body is not empty, we then try to decode it as JSON using `json.decode()`. If decoding is successful, we can then do something with the decoded data. If decoding fails, we throw an exception with a message indicating that the JSON format is invalid.
+
+If the response status code is not 200, we throw an exception with a message indicating that the data failed to load.

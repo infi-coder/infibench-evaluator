@@ -1,0 +1,51 @@
+Yes, it is possible to get the current scroll position of a SwiftUI ScrollView using the `ScrollViewProxy` and `contentOffset` method. Here's an example:
+
+```swift
+struct ContentView: View {
+    @State private var scrollOffset: CGPoint = .zero
+    var body: some View {
+        ScrollView {
+            Text("Scroll View Content")
+        }
+        .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
+            self.scrollOffset = value
+        }
+    }
+}
+
+struct ScrollViewOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGPoint = .zero
+    static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {
+        value = nextValue()
+    }
+}
+
+struct ScrollViewReaderExample: View {
+    @State private var scrollOffset: CGPoint = .zero
+    var body: some View {
+        VStack {
+            Button("Get Scroll Offset") {
+                print("Scroll Offset: \(scrollOffset)")
+            }
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(spacing: 20) {
+                        ForEach(0..<50) { index in
+                            Text("Item \(index)")
+                                .frame(height: 50)
+                        }
+                    }
+                    .background(GeometryReader {
+                        Color.clear.preference(key: ScrollViewOffsetPreferenceKey.self, value: proxy.contentOffset)
+                    })
+                }
+            }
+        }
+        .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { value in
+            self.scrollOffset = value
+        }
+    }
+}
+```
+
+In this example, we create a `ScrollViewReader` and a `ScrollView` with some content. We then add a `GeometryReader` to the `ScrollView`'s background to get the `contentOffset` and store it in a preference key. We can then access this preference key using `onPreferenceChange` and update the `scrollOffset` state variable. Finally, we add a button that prints the current `scrollOffset` when tapped.

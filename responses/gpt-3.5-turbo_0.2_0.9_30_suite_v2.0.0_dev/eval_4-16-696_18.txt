@@ -1,0 +1,7 @@
+You can try using the `rename` command instead of `mv` to rename the files. Here's an example command that should work for your case:
+
+```
+find . -type f -name '*\?*' -exec rename 's/\?.*//' {} \;
+```
+
+This command finds all files with a `?` in their name, and renames them by removing the `?` and everything after it. The `rename` command is used to perform the actual renaming.

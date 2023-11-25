@@ -1,0 +1,20 @@
+Sure, you can achieve this using the `groupby`, `apply`, and `cumsum` functions provided by pandas. Here is the function `aggregation`:
+
+```python
+def aggregation(df):
+    # Ensure the 'value' column is numeric
+    df['value'] = pd.to_numeric(df['value'])
+
+    # Create a mask for rows where 'type' is 'deposit'
+    mask = df['type'] == 'deposit'
+
+    # Use groupby and apply to calculate the cumulative sum of 'value' for each 'exchange' where 'type' is 'deposit'
+    df.loc[mask, 'balance'] = df.loc[mask].groupby('exchange')['value'].cumsum()
+
+    # Forward fill the 'balance' column to fill the NaN values
+    df['balance'] = df['balance'].ffill()
+
+    return df
+```
+
+This function first creates a mask for rows where 'type' is 'deposit'. It then uses this mask to select the relevant rows and calculates the cumulative sum of 'value' for each 'exchange'. The result is stored in a new column 'balance'. Finally, it forward fills the 'balance' column to fill the NaN values.

@@ -1,0 +1,2 @@
+I am new to web design and am watching some tutorials on creating some backend for a project.
+I get really tired of writing out manually, but I see youtubers do .classname and then the class with the div appears, but for some reason it isn't working for me?

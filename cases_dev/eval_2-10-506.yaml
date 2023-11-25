@@ -1,0 +1,14 @@
+# Corresponding to post https://stackoverflow.com/questions/58669865
+id: 2-10-506
+
+prompt_path: prompt_2-10-506.txt
+type: knowledge question-answering
+lang: rust
+full_score: 1.0
+null_score: 0.0
+
+grading:
+  keywords:
+    - content: 
+        content: "iter().min()"
+      weight: 1.0

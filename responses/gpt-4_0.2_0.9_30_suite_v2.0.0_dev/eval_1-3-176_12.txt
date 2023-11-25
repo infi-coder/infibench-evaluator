@@ -1,0 +1,15 @@
+The error message indicates that Pillow could not find the headers or library files for zlib, which is a required dependency when compiling Pillow from source. 
+
+However, you are using Python 3.8 and Pillow 6.0.0, which is not compatible. Pillow added support for Python 3.8 in version 6.2.0. So, you should upgrade your Pillow version.
+
+You can try to install a newer version of Pillow using pip:
+
+```bash
+pip install --upgrade Pillow
+```
+
+If you still encounter issues, you might need to install zlib manually. For Windows, you can download precompiled zlib binaries from [here](https://www.zlib.net/). After downloading and extracting the files, you need to add the path of the bin directory to your PATH environment variable.
+
+If you are using a virtual environment in PyCharm, make sure to set the path in the virtual environment's settings, not in your system's environment variables.
+
+After setting up zlib, try installing Pillow again. If you still encounter issues, please provide the full error message for further assistance.

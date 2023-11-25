@@ -1,0 +1,20 @@
+The error message you're seeing is due to the way the command is being interpreted by the command line. The problem is related to the embedded quotes in the command.
+
+Here's a way to solve it:
+
+1. Open the NetBeans IDE.
+2. Go to `Tools > Options > Java > Maven > Execution`.
+3. Uncheck the box that says `Use embedded Maven`.
+4. Specify the path to your local Maven installation in the `Maven Home` field.
+
+This should solve the problem. If you don't have a local Maven installation, you can download it from the [Apache Maven website](https://maven.apache.org/download.cgi).
+
+After downloading and extracting the Maven distribution, you need to add it to your system path:
+
+1. Right-click on `My Computer` and select `Properties`.
+2. Go to `Advanced system settings`.
+3. Click on `Environment Variables`.
+4. In the `System variables` section, find the `Path` variable, select it and click on `Edit`.
+5. In the `Variable value` field, append the path to your Maven `bin` directory. Make sure to separate this value from the existing ones using a semicolon (`;`).
+
+Now, your local Maven installation should be recognized by NetBeans and the build process should work as expected.

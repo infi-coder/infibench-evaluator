@@ -1,0 +1,21 @@
+You can use the `openpyxl` library in Python to write to an Excel file. Here's how you can do it:
+
+```python
+from openpyxl import Workbook
+
+def writeExcel():
+    new_list = [["first", "second"], ["third", "fourth"]]
+
+    # Create a workbook and select the active worksheet
+    wb = Workbook()
+    ws = wb.active
+
+    # Write the data to the worksheet
+    for i in range(len(new_list)):
+        ws.append(new_list[i])
+
+    # Save the workbook
+    wb.save("data.xlsx")
+```
+
+In this function, we first create a new workbook and select the active worksheet. Then, we iterate over the list of lists and append each list to the worksheet. Finally, we save the workbook to a file named "data.xlsx".

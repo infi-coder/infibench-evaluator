@@ -1,0 +1,13 @@
+The error you're experiencing could be due to a number of reasons. Here are a few things you can try:
+
+1. **Check your SeleniumBasic version**: Ensure that you have the latest version of SeleniumBasic installed. You can download it from [here](https://github.com/florentbr/SeleniumBasic/releases).
+
+2. **Check your browser driver**: Selenium requires a driver to interface with the chosen browser. Make sure you have the correct driver for the browser you're using, and that it's up-to-date. For Internet Explorer, you can download the driver from [here](https://www.selenium.dev/downloads/).
+
+3. **Check your browser version**: Ensure that your browser (in this case Internet Explorer) is up-to-date.
+
+4. **Check your SeleniumBasic references in VBA**: In VBA, go to `Tools > References` and make sure that Selenium Type Library is checked.
+
+5. **Try using a different browser**: Internet Explorer is somewhat outdated and might not work properly with Selenium. Try using a more modern browser like Chrome or Firefox.
+
+If none of these solutions work, it would be helpful if you could provide the exact error message you're receiving. This would make it easier to diagnose the problem.

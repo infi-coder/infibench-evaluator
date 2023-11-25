@@ -1,0 +1,20 @@
+It seems like the issue might be related to the way you are running the container. When you run the container with `docker-compose run`, it creates a new container instance every time you run it. This means that any changes you make to the container (such as starting the Vite server) will be lost when the container is stopped.
+
+Instead, you should use `docker-compose up` to start the container. This will create a persistent container instance that you can start and stop as needed. Here's how you can modify your `docker-compose.yml` file to use `docker-compose up`:
+
+```yaml
+version: '3.7'
+
+services:
+  app:
+    image: myapp
+    build: .
+    container_name: myapp
+    ports:
+      - "8080:8080"
+    command: npm run vite # <-- add this line to start the Vite server
+```
+
+With this configuration, you can start the container with `docker-compose up` and it will automatically start the Vite server. You should then be able to access the server at `localhost:8080` from your host machine.
+
+Note that you don't need to run `npm run vite` inside the container – it will be started automatically when you start the container with `docker-compose up`.

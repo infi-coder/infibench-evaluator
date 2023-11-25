@@ -1,0 +1,12 @@
+This error is caused by a bug in rust-analyzer, which is a language server for Rust that provides IDE-like features such as code completion, error highlighting, and refactoring tools. The error message is indicating that rust-analyzer is unable to resolve the `format_args` macro, which is a built-in macro in Rust that is used to format strings.
+
+This error is a known issue with rust-analyzer and is not related to your code. You can safely ignore the error message for now, as it does not affect the functionality of your code or your ability to run tests.
+
+If you want to get rid of the error message, you can try updating rust-analyzer to the latest version or disabling it temporarily. To disable rust-analyzer, you can add the following line to your `Cargo.toml` file:
+
+```toml
+[package.metadata]
+rust-analyzer = false
+```
+
+This will disable rust-analyzer for your project, but you will lose some of the IDE-like features it provides.

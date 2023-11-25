@@ -1,0 +1,25 @@
+Here is a Python function `divideNumber` that divides an even number into N parts, each part being a multiple of 2:
+
+```python
+def divideNumber(num, n):
+    # Calculate the quotient and remainder of the division
+    quotient, remainder = divmod(num, n)
+    
+    # If the quotient is odd, subtract n from the quotient and add it to the remainder
+    if quotient % 2 != 0:
+        quotient -= n
+        remainder += n
+
+    # Create a list with n elements, each being the quotient
+    result = [quotient] * n
+
+    # Distribute the remainder among the elements of the list by adding 2 to each element in succession
+    for i in range(0, remainder, 2):
+        result[i // n] += 2
+
+    return result
+```
+
+This function first calculates the quotient and the remainder of the division of the number by n. If the quotient is odd, it subtracts n from the quotient and adds it to the remainder. Then it creates a list with n elements, each being the quotient. Finally, it distributes the remainder among the elements of the list by adding 2 to each element in succession.
+
+For example, if you call `divideNumber(100, 3)`, it will return `[34, 34, 32]`.

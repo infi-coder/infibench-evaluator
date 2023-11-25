@@ -1,0 +1,39 @@
+Your code seems to be on the right track, but it has a few issues. Here's a corrected version:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    ' Get the query from Sheet6 cell A1
+    Dim query As String
+    query = Sheets("Sheet6").Range("A1").Value
+    
+    ' Get the current sheet name
+    Dim currentSheet As String
+    currentSheet = ActiveSheet.Name
+    
+    ' Create a new ListObject with a Query Table
+    With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=Sheets("target").Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+     
+End Sub
+```
+
+This code will take the query from cell A1 in Sheet6 and use it to create a new QueryTable in the "target" sheet. The query is executed immediately and the results are loaded into the table.
+
+Please note that Power Query is not fully supported in VBA, and this method may not work for all types of queries. Also, you need to make sure that the query text in cell A1 is correct and can be executed without errors.

@@ -1,0 +1,20 @@
+To disable the back button in Flutter when the user has reached the login page after logging out, you can use the WillPopScope widget. This widget allows you to intercept the back button press and handle it in a custom way. 
+
+To use WillPopScope, wrap your login page widget with it and provide a callback function that returns a Future<bool>. In this callback function, you can check if the user is logged in or not. If the user is logged in, return a Future.value(false) to disable the back button. If the user is not logged in, return a Future.value(true) to allow the back button press to be handled normally.
+
+Here's an example:
+
+```
+WillPopScope(
+  onWillPop: () async {
+    if (isLoggedIn) {
+      return Future.value(false); // disable back button
+    } else {
+      return Future.value(true); // allow back button
+    }
+  },
+  child: LoginPage(),
+)
+```
+
+Replace `isLoggedIn` with your own logic for checking if the user is logged in or not.

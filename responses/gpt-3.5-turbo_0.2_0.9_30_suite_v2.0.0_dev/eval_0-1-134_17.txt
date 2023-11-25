@@ -1,0 +1,5 @@
+It sounds like you might be referring to Emmet, a plugin for text editors that allows for faster HTML and CSS coding. 
+
+To use Emmet, you can type a shorthand code and then press the "Tab" key to expand it into the corresponding HTML or CSS code. For example, typing "div.classname" and then pressing "Tab" should expand into `<div class="classname"></div>`.
+
+If this isn't working for you, make sure that you have Emmet installed and enabled in your text editor. The specific steps to do this may vary depending on your editor, but a quick Google search should help you find instructions for your specific editor.

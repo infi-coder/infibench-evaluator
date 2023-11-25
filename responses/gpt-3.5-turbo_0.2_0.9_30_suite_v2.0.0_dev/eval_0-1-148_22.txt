@@ -1,0 +1,17 @@
+Yes, you can use the `first` and `last` pseudo-class variants in Tailwind to achieve this effect. Here's how you can modify your code:
+
+```html
+<ul>
+  <li
+    v-for="(item, index) in items"
+    :key="`item-${index}`"
+    class="border-solid border-b border-black {{ index === items.length - 1 ? '' : 'pb-4' }}"
+  >
+    Item
+  </li>
+</ul>
+```
+
+In the `class` attribute of the `li` element, we're using the `pb-4` class to add a bottom padding to all but the last `li` element. We're also using a ternary operator to conditionally apply this class based on whether the current `li` element is the last one or not.
+
+Note that we're using `items.length - 1` to get the index of the last item in the `items` array. This assumes that `items` is an array and that it has at least one item. If `items` is not an array or it's empty, this code may not work as expected.

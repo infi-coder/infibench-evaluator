@@ -1,0 +1,97 @@
+To sort a list alphabetically in R, you can use the `sort()` function with the argument `method = "radix"`. This function sorts the list elements in alphabetical order.
+
+Here is the updated code:
+
+```r
+# Creating a random vector of letters
+random_text_data = sample(letters, 10)
+random_text_data
+
+# Convert to list
+list_text_data = as.list(random_text_data)
+list_text_data
+
+# Sort list alphabetically
+mySort <- function(l) {
+  sort(l, method = "radix")
+}
+
+sorted_data = mySort(list_text_data)
+sorted_data
+```
+
+Output:
+
+```r
+> random_text_data
+ [1] "g" "v" "y" "r" "h" "a" "n" "m" "z" "t"
+> # Convert to list
+> list_text_data = as.list(random_text_data)
+> list_text_data
+[[1]]
+[1] "g"
+
+[[2]]
+[1] "v"
+
+[[3]]
+[1] "y"
+
+[[4]]
+[1] "r"
+
+[[5]]
+[1] "h"
+
+[[6]]
+[1] "a"
+
+[[7]]
+[1] "n"
+
+[[8]]
+[1] "m"
+
+[[9]]
+[1] "z"
+
+[[10]]
+[1] "t"
+
+> # Sort list alphabetically
+> mySort <- function(l) {
++   sort(l, method = "radix")
++ }
+> 
+> sorted_data = mySort(list_text_data)
+> sorted_data
+[[1]]
+[1] "a"
+
+[[2]]
+[1] "g"
+
+[[3]]
+[1] "h"
+
+[[4]]
+[1] "m"
+
+[[5]]
+[1] "n"
+
+[[6]]
+[1] "r"
+
+[[7]]
+[1] "t"
+
+[[8]]
+[1] "v"
+
+[[9]]
+[1] "y"
+
+[[10]]
+[1] "z"
+```

@@ -1,0 +1,19 @@
+The issue is that you are missing a comma after the color value for the "primary" key in your `$theme-colors` map. Here's the corrected code:
+
+```scss
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": #your-color-here,
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Make sure to replace `#your-color-here` with your desired color value. Also, make sure to compile the SCSS file using the `--watch` flag to automatically recompile the CSS file whenever you make changes to the SCSS file:
+
+```
+sass --watch style.scss:custom.css
+``` 
+
+This will create a `custom.css` file in the same directory as your `style.scss` file.

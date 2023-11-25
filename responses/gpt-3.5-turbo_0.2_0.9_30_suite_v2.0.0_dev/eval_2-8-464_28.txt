@@ -1,0 +1,25 @@
+The error message suggests that the Lambda function is unable to find the executable file `main` in the `/var/task` directory. This is likely because the executable file was not properly packaged in the ZIP file that was uploaded to AWS Lambda.
+
+To properly package the executable file, you can follow these steps:
+
+1. Build the executable file for Linux platform using the following command:
+
+   ```
+   GOOS=linux GOARCH=amd64 go build -o main main.go
+   ```
+
+   This will create a Linux executable file named `main` in the same directory.
+
+2. Create a ZIP file that includes the `main` executable file using the following command:
+
+   ```
+   zip main.zip main
+   ```
+
+   This will create a ZIP file named `main.zip` that includes the `main` executable file.
+
+3. Upload the `main.zip` file to AWS Lambda and set the handler to `main`.
+
+   When you upload the ZIP file to AWS Lambda, make sure to set the handler to `main`. This tells AWS Lambda to look for the `main` executable file in the ZIP file.
+
+After following these steps, you should be able to run the Lambda function without any errors.

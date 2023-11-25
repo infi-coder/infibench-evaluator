@@ -1,0 +1,31 @@
+Sure, here is a Python function that generates a random string that meets your requirements:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Generate a random string of 11 characters without digits
+    letters = string.ascii_letters
+    random_string = ''.join(random.choice(letters) for i in range(11))
+
+    # Generate 3 random digits
+    digits = string.digits
+    random_digits = ''.join(random.choice(digits) for i in range(3))
+
+    # Combine the random string and random digits
+    combined_string = random_string + random_digits
+
+    # Shuffle the combined string
+    shuffled_string = ''.join(random.sample(combined_string, len(combined_string)))
+
+    # Insert the sub-string "NAA3U" at a random position
+    insert_position = random.randint(0, len(shuffled_string))
+    final_string = shuffled_string[:insert_position] + "NAA3U" + shuffled_string[insert_position:]
+
+    return final_string
+```
+
+This function first generates a random string of 11 characters without digits, then generates 3 random digits. It combines these two strings and shuffles them. Finally, it inserts the sub-string "NAA3U" at a random position in the shuffled string.
+
+Please note that the function uses the `random` and `string` modules, so make sure to import them before using the function.

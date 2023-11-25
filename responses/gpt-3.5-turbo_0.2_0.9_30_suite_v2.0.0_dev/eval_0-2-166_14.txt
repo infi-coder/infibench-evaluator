@@ -1,0 +1,36 @@
+TailwindCSS is a utility-first CSS framework, which means it provides pre-defined classes that you can use to style your HTML elements. It doesn't provide a way to select elements using CSS selectors like `div.section > div`.
+
+However, you can use the `@layer` directive in your CSS to define custom styles for your HTML elements. Here's an example of how you can use `@layer` to style the direct children of `div.section`:
+
+```css
+@layer components {
+  div.section > div {
+    /* your styles here */
+  }
+}
+```
+
+You can then use the `@apply` directive to apply these styles to your HTML elements:
+
+```html
+<div class="section">
+  <div class="my-custom-class">...</div>
+  <div class="my-custom-class">...</div>
+</div>
+```
+
+```css
+.my-custom-class {
+  @apply bg-gray-100; /* applies the bg-gray-100 class to the element */
+}
+```
+
+Note that the `@layer` directive is only available in TailwindCSS v2.2.0 and above. If you're using an older version, you can use the `@variants` directive instead:
+
+```css
+@variants responsive {
+  div.section > div {
+    /* your styles here */
+  }
+}
+```

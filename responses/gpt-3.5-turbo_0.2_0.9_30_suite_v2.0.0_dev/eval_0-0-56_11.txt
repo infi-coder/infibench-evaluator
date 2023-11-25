@@ -1,0 +1,11 @@
+It looks like the issue is with the way you are running the container. When you run the container with the `--publish` option, it publishes the container's port to the host machine's port. However, in your case, you are running the container with the `--rm` option, which removes the container when it exits. This means that the container's port is no longer published to the host machine's port.
+
+To fix this issue, you can remove the `--rm` option from the `docker-compose run` command. This will keep the container running even after the command exits, and the container's port will still be published to the host machine's port.
+
+Here's the updated command:
+
+```bash
+docker-compose run --publish 8080:8080 app bash
+```
+
+Also, make sure that you are running the `npm run vite` command inside the container and not on the host machine.

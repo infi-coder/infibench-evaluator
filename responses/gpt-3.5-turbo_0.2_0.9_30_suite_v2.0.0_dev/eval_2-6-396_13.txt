@@ -1,0 +1,11 @@
+The error message is caused by the fact that you are trying to create an index on the `Gender` property of the `User` entity, which is not allowed because `Gender` is a navigation property.
+
+To solve this problem, you can remove the following line from your `OnModelCreating` method:
+
+```c#
+user.HasIndex(x => x.Gender);
+```
+
+This line is not necessary because EF Core will automatically create an index for the foreign key property `GenderId` when you configure the relationship between `User` and `Gender`.
+
+After removing the line, you can run the `dotnet ef add migration User` command again and it should work without any errors.

@@ -1,0 +1,63 @@
+To add Jetpack Compose to an existing Android project, you need to make sure you have the correct versions of the Android Studio and Gradle plugin. As of now, you need Android Studio Arctic Fox or later and Android Gradle plugin version 7.0.0 or later.
+
+Here are the steps:
+
+1. Update your `build.gradle` (Project level) file:
+
+```groovy
+dependencies {
+    classpath "com.android.tools.build:gradle:7.0.0"
+}
+```
+
+2. Update your `gradle-wrapper.properties` file:
+
+```properties
+distributionUrl=https\://services.gradle.org/distributions/gradle-6.7.1-all.zip
+```
+
+3. Update your `build.gradle` (Module: app) file:
+
+```groovy
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        // Enables Jetpack Compose for this module
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.0.5'
+        kotlinCompilerVersion '1.5.10'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.compose.ui:ui:1.0.5'
+    implementation 'androidx.compose.material:material:1.0.5'
+    implementation 'androidx.compose.ui:ui-tooling-preview:1.0.5'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.activity:activity-compose:1.3.1'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+```
+
+4. Sync your project with Gradle files.
+
+5. Now you can start using Jetpack Compose in your project.
+
+Remember to replace the version numbers with the latest ones if they have been updated.

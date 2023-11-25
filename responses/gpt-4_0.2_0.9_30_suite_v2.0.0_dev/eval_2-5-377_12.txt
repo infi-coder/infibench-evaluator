@@ -1,0 +1,33 @@
+The problem you are facing is because you are trying to format a `LocalDate` object using `SimpleDateFormat` which is used for `Date` objects. `LocalDate` does not contain time information, hence you are not seeing any time in your output.
+
+To generate a random date and time, you should use `LocalDateTime` instead of `LocalDate`. Then, to format it, you can use `DateTimeFormatter`.
+
+Here is the corrected code:
+
+```java
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.Period;
+import java.util.Random;
+
+public class Main {
+  public static void main(String[] args) {
+    System.out.println(generateRandomDateAndTimeInString());
+  }
+
+  public static String generateRandomDateAndTimeInString() {
+    LocalDateTime dateTime = LocalDateTime.now().minus(Period.ofDays((new Random().nextInt(365 * 70))));
+    System.out.println("date and time :: " + dateTime.toString());
+    return formatDate(dateTime);
+  }
+
+  public static String formatDate(LocalDateTime dateTime){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    return dateTime.format(formatter);
+  }
+}
+```
+
+This will generate a random date and time, and format it in the `"yyyy-MM-dd'T'HH:mm:ss'Z'"` format.
+
+Please note that the 'Z' in the format stands for the Zulu time zone, which is equivalent to UTC. If you want to include the time zone offset in the formatted string, you should use `ZonedDateTime` instead of `LocalDateTime`.

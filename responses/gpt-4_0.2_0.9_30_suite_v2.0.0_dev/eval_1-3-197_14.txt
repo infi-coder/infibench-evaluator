@@ -1,0 +1,19 @@
+Here is the Python function `fillColumn` which uses the `itertools.cycle` function to repeat the list until it fills all the rows in the DataFrame.
+
+```python
+import pandas as pd
+import itertools
+
+def fillColumn(df, columnName, columnData):
+    df[columnName] = list(itertools.islice(itertools.cycle(columnData), len(df)))
+    return df
+```
+
+You can use this function like this:
+
+```python
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+```
+
+This function will create a new column in the DataFrame with the name specified by `columnName` and fill it with the values from `columnData`, repeating them as necessary until all rows in the DataFrame are filled.

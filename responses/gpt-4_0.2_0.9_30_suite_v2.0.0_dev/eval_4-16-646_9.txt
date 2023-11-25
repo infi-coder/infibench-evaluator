@@ -1,0 +1,33 @@
+The error you're seeing is due to the fact that the pdftk package you're trying to use is not compatible with your version of macOS. This is a common issue on macOS Catalina and later versions because they dropped support for 32-bit applications, and the pdftk package you're trying to use is likely a 32-bit version.
+
+Here's how you can solve this issue:
+
+1. Uninstall the current pdftk package:
+
+```bash
+brew uninstall pdftk
+```
+
+2. Install pdftk-java, which is a reimplementation of pdftk in Java:
+
+```bash
+brew install pdftk-java
+```
+
+3. Create a symbolic link to pdftk-java:
+
+```bash
+ln -s /usr/local/bin/pdftk-java /usr/local/bin/pdftk
+```
+
+Now, you should be able to use pdftk as before. If you get a "permission denied" error when trying to create the symbolic link, you might need to run the command with sudo:
+
+```bash
+sudo ln -s /usr/local/bin/pdftk-java /usr/local/bin/pdftk
+```
+
+Please note that you need to have Java installed on your machine to use pdftk-java. If you don't have it installed, you can install it using brew:
+
+```bash
+brew cask install java
+```

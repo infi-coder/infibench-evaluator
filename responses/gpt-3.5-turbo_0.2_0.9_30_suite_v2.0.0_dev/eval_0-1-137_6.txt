@@ -1,0 +1,27 @@
+The issue is with the format of your `$theme-colors` map. You need to specify the color values in a valid CSS format. Here's an example of how you can define your `$theme-colors` map:
+
+```scss
+$theme-colors: (
+  "primary": #0d6efd,
+  "secondary": #6c757d,
+  "success": #198754,
+  "info": #0dcaf0,
+  "warning": #ffc107,
+  "danger": #dc3545,
+  "light": #f8f9fa,
+  "dark": #212529
+);
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value") !default;
+$theme-colors-contrast: map-loop($theme-colors, color-contrast, "$value") !default;
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In this example, the color values are specified in a valid CSS format (i.e. `#0d6efd` instead of just `0d6efd`). 
+
+Also, make sure to import the necessary Bootstrap functions, variables, and mixins before importing the Bootstrap styles.

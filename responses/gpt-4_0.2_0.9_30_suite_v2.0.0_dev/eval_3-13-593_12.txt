@@ -1,0 +1,62 @@
+To add Jetpack Compose to your existing Android project, follow these steps:
+
+1. **Update Android Studio**: Make sure you're using Android Studio Arctic Fox or later.
+
+2. **Update Gradle**: In your project-level `build.gradle` file, make sure you're using Gradle 7.0.0 or later.
+
+```groovy
+dependencies {
+    classpath 'com.android.tools.build:gradle:7.0.0'
+}
+```
+
+3. **Update Kotlin Plugin**: Also in your project-level `build.gradle` file, make sure you're using Kotlin plugin version 1.5.10 or later.
+
+```groovy
+dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
+}
+```
+
+4. **Enable Jetpack Compose**: In your app-level `build.gradle` file, inside the `android` block, add the following lines to enable Jetpack Compose:
+
+```groovy
+android {
+    ...
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.10'
+    }
+}
+```
+
+Replace `compose_version` with the latest version of Jetpack Compose. As of writing, it's `1.0.1`.
+
+5. **Add Jetpack Compose Dependencies**: Still in your app-level `build.gradle` file, add the following dependencies:
+
+```groovy
+dependencies {
+    implementation 'androidx.compose.ui:ui:compose_version'
+    implementation 'androidx.compose.material:material:compose_version'
+    implementation 'androidx.compose.ui:ui-tooling:compose_version'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.activity:activity-compose:1.3.1'
+}
+```
+
+Again, replace `compose_version` with the latest version of Jetpack Compose.
+
+6. **Sync your project**: Click on `Sync Now` in the top right corner of the screen.
+
+Now you're ready to start using Jetpack Compose in your existing Android project.

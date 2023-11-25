@@ -1,0 +1,27 @@
+Sure, here is the implementation of the function:
+
+```javascript
+function* iterLeafNodes(strhtml, format=[]) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strhtml, 'text/html');
+  const stack = [{node: doc.body, format}];
+
+  while (stack.length > 0) {
+    const {node, format} = stack.pop();
+
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.textContent.trim() !== '') {
+        yield {text: node.textContent, format};
+      }
+    } else {
+      for (let i = node.childNodes.length - 1; i >= 0; i--) {
+        const child = node.childNodes[i];
+        const newFormat = child.nodeType === Node.ELEMENT_NODE ? [...format, child.tagName.toLowerCase()] : format;
+        stack.push({node: child, format: newFormat});
+      }
+    }
+  }
+}
+```
+
+This function uses a depth-first search to traverse the DOM tree. It maintains a stack of nodes to visit, along with the current format for each node. When it encounters a text node, it yields an object with the text and the current format. When it encounters an element node, it adds all of its children to the stack, along with the updated format.

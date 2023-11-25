@@ -1,0 +1,1 @@
+The issue might be because you are using `@Binding` in `ContentView`, but you are initializing it with a `@State` variable in `ContentView_Previews`. Instead, you should initialize `selected` with a `@Binding` variable in a parent view and pass it down to `ContentView`. This way, changes to the `@Binding` variable will be reflected in the view.

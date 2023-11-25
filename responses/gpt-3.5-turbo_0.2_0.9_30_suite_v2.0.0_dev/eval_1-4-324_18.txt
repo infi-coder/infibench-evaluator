@@ -1,0 +1,17 @@
+You can use the `tidyr` package to split the column into separate columns. Here's the `mySplit` function that should achieve the desired result:
+
+```r
+library(tidyr)
+
+mySplit <- function(df) {
+  df_split <- separate(df, col1, into = c("name", "Age", "City"), sep = ",")
+  df_split$name <- gsub("name:", "", df_split$name)
+  df_split$Age <- gsub("Age:", "", df_split$Age)
+  df_split$City <- gsub("City:", "", df_split$City)
+  return(df_split)
+}
+```
+
+Here, we first use the `separate` function to split the `col1` into three separate columns based on the comma separator. We also specify the column names for the new columns using the `into` argument. 
+
+However, the resulting columns will still have the original column names as prefixes. So, we use `gsub` function to remove the prefixes from each column. Finally, we return the resulting data frame.

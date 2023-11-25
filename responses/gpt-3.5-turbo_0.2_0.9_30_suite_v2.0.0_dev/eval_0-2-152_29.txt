@@ -1,0 +1,16 @@
+You need to use the `toast()` method to show the toast. Here's an example:
+
+```javascript
+$('.toast').toast('show');
+```
+
+This will show the toast with the default animation. You can also customize the animation by passing an object with options to the `toast()` method. For example:
+
+```javascript
+$('.toast').toast({
+  animation: true,
+  delay: 5000
+}).toast('show');
+```
+
+This will show the toast with a fade animation and a delay of 5 seconds before it disappears.

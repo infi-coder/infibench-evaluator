@@ -1,0 +1,63 @@
+You can use the factory pattern to create multiple instances of `ServiceBusClient` with different queue names. Here's how you can do it:
+
+First, create a factory interface:
+```c#
+public interface IServiceBusClientFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+    ServiceBusReceiver CreateReceiver(string queueName);
+}
+```
+
+Then, implement the factory:
+```c#
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusClientFactory(IOptions<UserEventConsumerSetting> options)
+    {
+        var serviceBusConfiguration = options.Value;
+
+        _serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+
+    public ServiceBusReceiver CreateReceiver(string queueName)
+    {
+        return _serviceBusClient.CreateReceiver(queueName, new ServiceBusReceiverOptions
+        {
+            ReceiveMode = ServiceBusReceiveMode.PeekLock
+        });
+    }
+}
+```
+
+Register the factory in your DI container:
+```c#
+_services.AddSingleton<IServiceBusClientFactory, ServiceBusClientFactory>();
+```
+
+Now, you can inject the factory where you need it and create `ServiceBusSender` or `ServiceBusReceiver` for different queues:
+```c#
+public class CarReservationMessagingService
+{
+    private readonly ServiceBusSender _serviceBusSender;
+
+    public CarReservationMessagingService(IServiceBusClientFactory serviceBusClientFactory)
+    {
+        _serviceBusSender = serviceBusClientFactory.CreateSender("yourQueueName");
+    }
+
+    // ...
+}
+```
+
+This way, you can create multiple `ServiceBusSender` or `ServiceBusReceiver` instances with different queue names using the same `ServiceBusClient`.

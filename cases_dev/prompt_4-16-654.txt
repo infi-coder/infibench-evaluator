@@ -1,0 +1,3 @@
+How can I add an already generated SSH key to git bash?
+
+I have an SSH key saved in `D:/keys folder`. I want to add it to my git bash. All the tutorials I found is how to generate SSH key using gitbash and load it to github/gitlab. I generated my SSH key using puttygen. Now I want to add it to my git bash so that I can clone a repository from remote. How can I do that?

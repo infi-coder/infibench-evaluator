@@ -1,0 +1,9 @@
+The error message suggests that the response from the server is not in the expected JSON format. It looks like the response starts with a '<' character, which is not valid JSON.
+
+One possible reason for this error is that the server is returning an HTML error page instead of the expected JSON response. To confirm this, you can try accessing the API endpoint directly in your browser and see if it returns a JSON response or an error page.
+
+If the server is indeed returning an error page, you need to fix the server-side code to return the expected JSON response. If you are not sure how to do this, you can consult the documentation for your server-side framework or seek help from a more experienced developer.
+
+If the server is returning a valid JSON response, you may need to adjust the client-side code to handle the response correctly. For example, you may need to specify the correct content type in the HTTP request or adjust the JSON parsing code to handle the specific format of the response.
+
+Without more information about the specific error and the server-side code, it is difficult to provide a more specific solution.

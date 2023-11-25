@@ -1,0 +1,40 @@
+The error message suggests that the response from the server is not in the expected JSON format. It looks like the response starts with a '<' character, which is not valid JSON.
+
+One possible cause of this issue is that the server is returning an HTML error page instead of the expected JSON response. To confirm this, you can try accessing the API endpoint directly in a browser or using a tool like Postman to see the actual response.
+
+If the server is indeed returning an HTML error page, you need to fix the server-side code to return the expected JSON response. If you don't have control over the server-side code, you can try to handle the error on the client-side by checking the response status code and displaying an appropriate error message.
+
+Here's an example of how to handle the error on the client-side:
+
+```c#
+try
+{
+    empList = await Http.GetJsonAsync<Employee[]>("/api/Employee/Index");
+}
+catch (System.Net.Http.HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+{
+    // Handle 404 error
+    errorMessage = "API endpoint not found";
+}
+catch (System.Net.Http.HttpRequestException ex)
+{
+    // Handle other HTTP errors
+    errorMessage = $"HTTP error: {ex.StatusCode}";
+}
+catch (System.Exception ex)
+{
+    // Handle other exceptions
+    errorMessage = ex.Message;
+}
+```
+
+This code tries to get the JSON response from the API endpoint and catches any exceptions that may occur. If the exception is an HTTP error with a status code of 404 (Not Found), it sets the error message to "API endpoint not found". If the exception is any other HTTP error, it sets the error message to "HTTP error: {status code}". If the exception is any other type of exception, it sets the error message to the exception message.
+
+You can then display the error message in your Blazor component using a conditional statement:
+
+```html
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p>@errorMessage</p>
+}
+```

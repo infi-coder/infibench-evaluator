@@ -1,0 +1,21 @@
+I am trying to get the application documents directory using the path_provider package in flutter.
+Here's my code:
+```dart
+void main() async {
+  final appDocsDir = await getApplicationDocumentsDirectory(); //error is on this line
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+I am getting this error:
+```
+E/flutter (18811): [ERROR:flutter/lib/ui/ui_dart_state.cc(199)] Unhandled Exception: Null check operator used on a null value
+E/flutter (18811): #0      MethodChannel.binaryMessenger (package:flutter/src/services/platform_channel.dart:142:86)
+E/flutter (18811): #1      MethodChannel._invokeMethod (package:flutter/src/services/platform_channel.dart:148:36)
+E/flutter (18811): #2      MethodChannel.invokeMethod (package:flutter/src/services/platform_channel.dart:331:12)
+E/flutter (18811): #3      MethodChannelPathProvider.getApplicationDocumentsPath (package:path_provider_platform_interface/src/method_channel_path_provider.dart:50:10)
+E/flutter (18811): #4      getApplicationDocumentsDirectory (package:path_provider/path_provider.dart:138:40)
+E/flutter (18811): #5      main (package:my_app/main.dart:9:28)
+...
+```
+How can I fix this?

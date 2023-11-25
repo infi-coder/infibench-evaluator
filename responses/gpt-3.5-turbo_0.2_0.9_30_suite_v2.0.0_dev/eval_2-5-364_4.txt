@@ -1,0 +1,21 @@
+The Maven wrapper uses the version of Java that is specified in the `JAVA_HOME` environment variable. You can check the version of Java that Maven is using by running the following command in your terminal:
+
+```
+mvnw -version
+```
+
+If the version of Java is not the one you want to use, you can set the `JAVA_HOME` environment variable to the path of the desired Java installation. For example, if you want to use Java 11, you can set `JAVA_HOME` to the path of your Java 11 installation:
+
+```
+export JAVA_HOME=/path/to/java/11
+```
+
+You can add this line to your shell profile (e.g. `.bashrc` or `.zshrc`) to make it persistent across terminal sessions.
+
+Once you have set the `JAVA_HOME` environment variable, you can run the Maven wrapper as usual:
+
+```
+./mvnw clean install
+``` 
+
+This should use the version of Java that you have specified in `JAVA_HOME`.

@@ -1,0 +1,9 @@
+You need to add two things to your `~/.zshenv`. First, add the rbenv initialization itself by adding the following line at the beginning of the file:
+```
+eval "$(rbenv init -)"
+```
+Second, add the ruby path by adding the following line after the rbenv initialization:
+```
+export PATH="$HOME/.rbenv/shims:${PATH}"
+```
+You might also run the `rbenv doctor` command to check your installation.

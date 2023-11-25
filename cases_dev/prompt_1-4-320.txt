@@ -1,0 +1,27 @@
+remove Rows with complete set of NA
+
+I have a dataset and I would like to delete the rows that have a complete set of NAs in columns 456:555, I want to keep those with some NAs but I need to delete those with a complete set of NAs
+
+I have tried
+
+```r
+final[complete.cases(final[ , 456:555]),]
+```
+
+but this doesn't work. It says
+
+```r
+Error in help.search(c("[", "final", "complete.cases(final[, c(456:555)])",  : argument ‘pattern’ must be a single character string
+```
+
+then I think this probably would work:
+
+```r
+data[rowSums(is.na(data)) != ncol(data),]
+```
+
+but I don't know where to include `456:555` there
+
+Can you write a code in R to help me successfully process the columns `456:555` of `final`? You need to set the new value into `final`.
+
+You only need to write code, without any extra comments.

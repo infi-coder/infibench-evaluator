@@ -1,0 +1,38 @@
+You can use the `MultiProvider` widget to provide multiple providers to a widget. Here's an example of how you can use it:
+
+```dart
+MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (context) => Class1()),
+    ChangeNotifierProvider(create: (context) => Class2()),
+    ChangeNotifierProvider(create: (context) => Class3()),
+    ChangeNotifierProvider(create: (context) => Class4()),
+  ],
+  child: CurvedNavigationBarWidget(),
+)
+```
+
+In your `CurvedNavigationBarWidget`, you can use the `Consumer` widget to listen to changes in your classes. Here's an example:
+
+```dart
+class CurvedNavigationBarWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer4<Class1, Class2, Class3, Class4>(
+      builder: (context, class1, class2, class3, class4, child) {
+        // Your widget code here
+      },
+    );
+  }
+}
+```
+
+In the builder function, `class1`, `class2`, `class3`, and `class4` are instances of your classes that you can use to get the data you need. The `child` parameter is a widget that doesn't rebuild when the provider updates. You can ignore it if you don't need it.
+
+Remember to import the provider package at the top of your file:
+
+```dart
+import 'package:provider/provider.dart';
+```
+
+Also, make sure that your classes `Class1`, `Class2`, `Class3`, and `Class4` extend `ChangeNotifier` and notify listeners when necessary.

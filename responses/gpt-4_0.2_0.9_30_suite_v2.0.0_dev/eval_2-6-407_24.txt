@@ -1,0 +1,32 @@
+The error message you're seeing indicates that the JSON deserializer is trying to parse a response that doesn't start with a valid JSON character. The '<' character at the start of the response suggests that the server might be returning HTML instead of JSON, possibly an error page.
+
+The issue might be due to the route configuration in your `EmployeeController`. You've decorated the `EmployeeController` class with `[Route("[controller]")]` and the `Index` method with `[Route("api/Employee/Index")]`. This could be causing a conflict or confusion in the routing.
+
+Try changing your `EmployeeController` to the following:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+This sets the route for all actions in the `EmployeeController` to start with "api/Employee". The `HttpGet` attribute without any parameters means that the `Index` action corresponds to a GET request to "api/Employee".
+
+Then, in your Blazor code, you can call the API like this:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("api/Employee");
+```
+
+This should correctly call the `Index` action in your `EmployeeController` and return the list of employees as JSON.
+
+If you're still having issues, it might be helpful to use a tool like Postman to test your API and ensure it's returning the expected JSON data.

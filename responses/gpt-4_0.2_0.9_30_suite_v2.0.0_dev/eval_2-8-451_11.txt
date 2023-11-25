@@ -1,0 +1,41 @@
+Yes, Go modules support this kind of workflow. Here's how you can do it:
+
+1. Copy your `go.mod` and `go.sum` files into the Docker image.
+
+```Dockerfile
+FROM golang:1.11
+
+WORKDIR /app
+
+# Copy go mod and sum files 
+COPY go.mod go.sum ./
+```
+
+2. Download the dependencies. This will be cached if your `go.mod` and `go.sum` files do not change.
+
+```Dockerfile
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed 
+RUN go mod download
+```
+
+3. Copy the rest of your code and build your application. This will not invalidate the Docker cache from the previous steps unless your `go.mod` or `go.sum` files change.
+
+```Dockerfile
+# Copy the source from the current directory to the Working Directory inside the container 
+COPY . .
+
+# Build the Go app
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+```
+
+4. Finally, you can specify the command to run your application.
+
+```Dockerfile
+# This container exposes port 8080 to the outside world
+EXPOSE 8080
+
+# Run the binary program produced by `go install`
+CMD ["./main"]
+```
+
+This way, Docker will cache the layer with your downloaded dependencies separately from your code, which can speed up your builds if your dependencies don't change often.

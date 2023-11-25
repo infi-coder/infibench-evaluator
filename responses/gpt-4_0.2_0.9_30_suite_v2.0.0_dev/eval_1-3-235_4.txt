@@ -1,0 +1,9 @@
+The error you're getting is because the `int()` function in Python doesn't handle floating point numbers represented as strings. You need to first convert the string to a float, then convert the float to an integer. Here is the function you need:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].astype(float).astype(int)
+    return data_h_df
+```
+
+This function first converts the 'year' column to float using `astype(float)`, then converts the float to int using `astype(int)`. This should solve your problem.

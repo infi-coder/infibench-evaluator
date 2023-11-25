@@ -1,0 +1,13 @@
+id: 2-6-388
+prompt_path: prompt_2-6-388.txt
+type: code debugging
+lang: c#
+grading:
+  keywords:
+    - content:
+        or:
+          - content:
+              content: 'Not supported'
+          - content:
+              content: 'HasNoKey()'
+      to_lower: true

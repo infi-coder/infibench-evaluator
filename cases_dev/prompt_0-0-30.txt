@@ -1,0 +1,10 @@
+I have a React app, and I want to start writing unit tests with Enzyme. Enzyme's documentation discusses versions of React up to 16. Here is the import code:
+
+```javascript
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
+```
+
+But my app uses React version 17.0.1. What enzyme adapter is there for React 17? Could you adapt the above code snippet to make the enzyme adaptor work with React 17?

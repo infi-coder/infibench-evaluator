@@ -1,0 +1,17 @@
+You can use the `ActiveWorkbook.Path` property in VBA to get the local path of the workbook. This will return the local path where the workbook is stored, even if it's synced with OneDrive or SharePoint.
+
+Here is a simple example:
+
+```vba
+Sub GetWorkbookPath()
+    Dim path As String
+    path = ActiveWorkbook.Path
+    MsgBox path
+End Sub
+```
+
+This will display a message box with the local path of the active workbook.
+
+However, please note that this will only work if the workbook is opened from the local synced folder. If the workbook is opened directly from the web (SharePoint or OneDrive), it will not return the local path.
+
+As for creating folders and files on SharePoint using VBA, it's a bit more complicated due to the online nature of SharePoint. You might need to use SharePoint's REST API or WebDAV, which would require additional setup and permissions.

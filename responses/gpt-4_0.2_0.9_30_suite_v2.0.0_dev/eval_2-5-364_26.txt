@@ -1,0 +1,32 @@
+The Java version used by Maven can be controlled by setting the `JAVA_HOME` environment variable. If you're using a build system like Jenkins or a CI/CD system like GitHub Actions or GitLab CI/CD, you can set this environment variable in the job configuration.
+
+Here's an example of how you might do this in a GitHub Actions workflow:
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+    - name: Check out code
+      uses: actions/checkout@v2
+    - name: Build with Maven
+      run: ./mvnw clean install
+```
+
+In this example, the `actions/setup-java@v2` action is used to set up JDK 11, and then the `JAVA_HOME` environment variable is automatically set to the JDK 11 installation directory. The Maven Wrapper (`./mvnw`) will then use this JDK to run Maven.
+
+If you're running this on a local machine, you can set the `JAVA_HOME` environment variable in your shell before running the Maven Wrapper. Here's how you might do this in a bash shell:
+
+```bash
+export JAVA_HOME=/path/to/your/jdk
+./mvnw clean install
+```
+
+Replace `/path/to/your/jdk` with the actual path to your JDK installation.
+
+Remember that the Maven Wrapper (`mvnw`) will use the version of Java pointed to by the `JAVA_HOME` environment variable, so make sure this is set to a version of Java that is compatible with your Maven project.

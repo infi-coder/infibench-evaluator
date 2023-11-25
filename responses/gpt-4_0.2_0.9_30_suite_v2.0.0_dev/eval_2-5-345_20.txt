@@ -1,0 +1,17 @@
+This error is caused by the incompatibility between the Maven version (3.8.5) used by the Spring Boot 2.7 project and the Maven version supported by your IntelliJ IDEA.
+
+The error message `java.lang.NoSuchMethodError: org.apache.maven.model.validation.DefaultModelValidator: method 'void <init>()' not found` indicates that IntelliJ is trying to use a method in the `DefaultModelValidator` class that doesn't exist in the Maven version you're using.
+
+To resolve this issue, you have two options:
+
+1. **Downgrade the Maven version in your project**: You can change the Maven version in your project to a version that is compatible with your IntelliJ IDEA. You can do this by modifying the `pom.xml` file in your project. Here is an example of how to do it:
+
+```xml
+<properties>
+    <maven.version>3.8.1</maven.version>
+</properties>
+```
+
+2. **Upgrade your IntelliJ IDEA**: If you don't want to change the Maven version in your project, you can upgrade your IntelliJ IDEA to a version that supports Maven 3.8.5. You can do this by going to `Help > Check for Updates...` in your IntelliJ IDEA.
+
+Remember to re-import your project after making these changes.

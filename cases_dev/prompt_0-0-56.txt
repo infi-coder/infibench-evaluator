@@ -1,0 +1,84 @@
+I have a Vue-cli app that I'm trying to convert to vite. I am using Docker to run the server. I looked at a couple tutorials and got vite to run in development mode without errors. However, the browser can't access the port. That is, when I'm on my macbook's command line (outside of Docker) I can't curl it:
+
+```bash
+$ curl localhost:8080
+curl: (52) Empty reply from server
+```
+
+If I try localhost:8081 I get Failed to connect. In addition, if I run the webpack dev server it works normally so I know that my container's port is exposed.
+
+Also, if I run curl in the same virtual machine that is running the vite server it works, so I know that vite is working.
+
+Here are the details:
+
+In package.json:
+
+```json
+...
+"dev": "vue-cli-service serve",
+"vite": "vite",
+...
+```
+
+vite.config.ts file:
+
+```typescript
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+    resolve: { alias: { '@': '/src' } },
+    plugins: [vue()],
+    server: {
+        port: 8080
+    }
+})
+```
+
+The command that starts the container:
+
+```bash
+docker-compose run --publish 8080:8080 --rm app bash
+```
+
+The docker-compose.yml file:
+
+```yaml
+version: '3.7'
+
+services:
+  app:
+    image: myapp
+    build: .
+    container_name: myapp
+    ports:
+      - "8080:8080"
+```
+
+The Dockerfile:
+
+```
+FROM node:16.10.0
+
+RUN npm install -g npm@8.1.3
+RUN npm install -g @vue/cli@4.5.15
+
+RUN mkdir /srv/app && chown node:node /srv/app
+
+USER node
+
+WORKDIR /srv/app
+```
+
+The command that I run inside the docker container for vite:
+
+```
+npm run vite
+```
+
+The command that I run inside the docker container for vue-cli:
+
+```
+npm run dev
+```

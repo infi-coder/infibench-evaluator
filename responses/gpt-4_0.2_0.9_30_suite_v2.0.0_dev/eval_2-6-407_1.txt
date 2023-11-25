@@ -1,0 +1,29 @@
+The error message you're seeing is usually due to the server returning HTML when JSON is expected. This can happen if the server returns an error page or if the requested URL is not correct.
+
+In your case, the issue might be with the route attribute in your controller. You have defined the route as `[Route("[controller]")]` and then again as `[Route("api/Employee/Index")]` for the `Index` method. This might be causing the issue.
+
+Try changing your controller to:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+    
+    [HttpGet]
+    [Route("Index")]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+And then in your Blazor code, you can call the API like this:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("api/Employee/Index");
+```
+
+This should solve the issue. If it doesn't, you might want to check the network tab in your browser's developer tools to see what the server is actually returning when you make the request.

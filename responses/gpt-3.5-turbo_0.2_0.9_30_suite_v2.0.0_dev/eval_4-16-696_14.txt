@@ -1,0 +1,9 @@
+Your `sed` command is not correctly removing the `?` and everything after it. Instead of `s/\?.*//g`, try using `s/\?.*$//g`. This should remove the `?` and everything after it. 
+
+Also, the `mv` command is not necessary if you are using the `-exec` option with `find`. You can simply use `rename` command to rename the files. Here's the updated command:
+
+```
+find . -type f -name '*\?*' -exec rename 's/\?.*$//' {} \;
+``` 
+
+This should remove the `?` and everything after it from all the file names that contain `?`.

@@ -1,0 +1,33 @@
+The error message you're seeing indicates that Go is unable to find the specified version of the `github.ibm.com/kms/key-protect-client` module. This could be due to a few reasons:
+
+1. **Network issues**: Ensure that computer B has a stable internet connection and can access `github.ibm.com`.
+
+2. **Authentication issues**: As the repository is private, you need to authenticate before accessing it. You mentioned that your GitHub credentials give you access to these repos, but you need to make sure that Go is using these credentials when fetching modules. You can do this by setting the `GOPRIVATE` environment variable to tell Go to use direct downloads for your private modules:
+
+    ```bash
+    export GOPRIVATE=github.ibm.com
+    ```
+
+    Alternatively, you can use the `.netrc` file to provide credentials for `go get`:
+
+    ```bash
+    machine github.ibm.com
+    login yourusername
+    password yourpassword
+    ```
+
+    Replace `yourusername` and `yourpassword` with your actual GitHub username and password (or token). The `.netrc` file should be located in your home directory.
+
+3. **Version issues**: Ensure that the specified version (`v0.1.5`) of the `github.ibm.com/kms/key-protect-client` module actually exists. If not, you need to update your `go.mod` file with a valid version.
+
+4. **Proxy issues**: If you're using a Go module proxy (like `https://proxy.golang.org`), it might not have access to private modules. You can bypass the proxy for your private modules by setting the `GOPRIVATE` environment variable as described above.
+
+5. **Cache issues**: Try clearing your Go module cache with `go clean -modcache` and then run `go build` again.
+
+To debug this further, you can use the `-x` flag with `go get` to see the exact commands that Go is executing. This might give you more information about what's going wrong:
+
+```bash
+go get -x github.ibm.com/kms/key-protect-client@v0.1.5
+```
+
+Remember to replace `github.ibm.com/kms/key-protect-client@v0.1.5` with the actual module path and version you're trying to fetch.

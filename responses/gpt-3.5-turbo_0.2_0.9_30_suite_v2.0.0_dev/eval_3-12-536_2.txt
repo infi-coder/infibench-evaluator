@@ -1,0 +1,16 @@
+You can use `ElevatedButton`, `TextButton` and `OutlinedButton` that are not deprecated button themes.
+You can change the `shape` property which placed in the `ButtonStyle` property. Set the `shape` property to `RoundedRectangleBorder` and set the `borderRadius` property to the desired value. Here's an example:
+
+```
+ElevatedButton(
+  onPressed: () {},
+  child: Text('Button'),
+  style: ButtonStyle(
+    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18.0),
+      ),
+    ),
+  ),
+),
+```

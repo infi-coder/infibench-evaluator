@@ -1,0 +1,17 @@
+Yes, you can use the `first` and `last` pseudo-class variants in Tailwind to achieve this. Here's the revised code:
+
+```html
+<ul>
+  <li
+    v-for="(item, index) in items"
+    :key="`item-${index}`"
+    class="border-solid border-b border-black {{ index === items.length - 1 ? '' : 'pb-4' }}"
+  >
+    Item
+  </li>
+</ul>
+```
+
+In the above code, we are using the `pb-4` class to add a bottom padding to all the `li` elements except the last one. We are checking if the current `index` is the last index in the `items` array using the `items.length - 1` condition. If it is the last index, we are not adding any padding. We are using the string interpolation syntax to conditionally add the `pb-4` class.
+
+Note: You can adjust the padding value as per your requirement.

@@ -1,0 +1,9 @@
+You should use `@Configuration` when you want to define beans explicitly in the code. This is typically done when the bean is not a component that can be scanned or when you want to create a bean with more complex configuration that cannot be expressed with simple autowiring.
+
+On the other hand, `@Service`, `@Controller`, and `@Component` are stereotypes that allow Spring to automatically detect and wire beans using classpath scanning. 
+
+- `@Service` is used with service classes.
+- `@Controller` is used with Spring MVC controller classes.
+- `@Component` is a generic stereotype for any Spring-managed component.
+
+So, if you have a class that you want Spring to manage as a bean and it fits into one of these categories, you can use the corresponding stereotype annotation. If not, or if you need more complex configuration, use `@Configuration`.

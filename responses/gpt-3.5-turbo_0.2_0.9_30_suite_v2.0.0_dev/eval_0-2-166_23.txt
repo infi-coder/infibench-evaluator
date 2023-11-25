@@ -1,0 +1,35 @@
+TailwindCSS is a utility-first CSS framework, which means it provides pre-defined classes that you can use to style your HTML elements. It doesn't provide a way to select direct children of an element like the CSS selector `div.section > div`. However, you can achieve the same result by using the `first-child` and `last-child` pseudo-classes.
+
+For example, if you have the following HTML:
+
+```html
+<div class="section">
+  <div>First child</div>
+  <div>Second child</div>
+  <div>Third child</div>
+</div>
+```
+
+You can use the `first-child` and `last-child` classes to style the first and last child elements respectively:
+
+```html
+<div class="section">
+  <div class="first-child">First child</div>
+  <div>Second child</div>
+  <div class="last-child">Third child</div>
+</div>
+```
+
+And then define the styles for these classes in your TailwindCSS configuration:
+
+```css
+.first-child {
+  margin-top: 0;
+}
+
+.last-child {
+  margin-bottom: 0;
+}
+```
+
+This will give you the same result as using the CSS selector `div.section > div`.

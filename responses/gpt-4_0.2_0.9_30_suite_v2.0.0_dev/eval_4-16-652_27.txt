@@ -1,0 +1,25 @@
+AWS CLI uses a pager program to handle its output. By default, it uses the `less` program. The pager is activated when the output of a command is too long to fit in one screen. 
+
+Starting from AWS CLI version 2, the output is paged by default. If you want to disable this behavior, you can do so by setting the `AWS_PAGER` environment variable to an empty string. 
+
+You can do this in your current shell session:
+
+```bash
+export AWS_PAGER=""
+```
+
+Or you can add the above line to your shell's profile file (like `~/.bashrc` or `~/.bash_profile` for bash) to make it permanent.
+
+After setting `AWS_PAGER` to an empty string, the output of AWS CLI commands will be printed directly to the terminal, and you won't see the pager anymore.
+
+So, your script would look like this:
+
+```bash
+export AWS_PAGER=""
+
+for x in 1 2 3; do 
+  aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo; 
+done
+```
+
+This will prevent the pager from being used, and the output will be directly printed to the terminal.

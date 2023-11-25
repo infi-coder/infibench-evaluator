@@ -1,0 +1,26 @@
+The error message is indicating that the protobuf compiler (protoc) cannot determine the Go import path for your protobuf file. This is because starting from version 1.4.0, the Go protobuf compiler requires you to specify the `go_package` option in your .proto files.
+
+You can fix this by adding a `go_package` option to your .proto file. This option should be a full import path (relative to $GOPATH/src or go.mod file) where the generated Go file will be placed.
+
+Here's how you can modify your .proto file:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "github.com/yourusername/yourrepository";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+Replace `"github.com/yourusername/yourrepository"` with the actual path where you want the generated Go files to be placed.
+
+After this, you should be able to generate the Go code with the same command:
+
+```bash
+protoc --go_out=. simple.proto
+```

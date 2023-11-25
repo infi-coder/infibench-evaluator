@@ -1,0 +1,31 @@
+You can fill in the blanks in your JavaScript code as follows:
+
+```javascript
+document.getElementById('check').onclick = function() {
+  let allAreFilled = true;
+  document.getElementById("myForm").querySelectorAll('input,textarea,select').forEach(function(i) {
+    if (!allAreFilled) return;
+    if (i.type === "radio") {
+      let radioValueCheck = false;
+      document.getElementById("myForm").querySelectorAll(`input[name=${i.name}]`).forEach(function(r) {
+        if (r.checked) radioValueCheck = true;
+      })
+      allAreFilled = radioValueCheck;
+      return;
+    }
+    if (!i.value) { allAreFilled = false;  return; }
+  })
+  if (!allAreFilled) {
+    alert('Fill all the fields');
+  }
+};
+```
+
+Here's what the code does:
+
+1. It attaches an `onclick` event handler to the button with the id `check`.
+2. When the button is clicked, it sets a variable `allAreFilled` to `true`.
+3. It then selects all `input`, `textarea`, and `select` elements within the `div` with the id `myForm`.
+4. For each of these elements, it checks if the element is a radio button. If it is, it checks if any of the radio buttons with the same name are checked. If none are checked, it sets `allAreFilled` to `false`.
+5. If the element is not a radio button, it checks if the element has a value. If it doesn't, it sets `allAreFilled` to `false`.
+6. After checking all the elements, if `allAreFilled` is still `true`, it does nothing. If `allAreFilled` is `false`, it alerts the user to fill all the fields.

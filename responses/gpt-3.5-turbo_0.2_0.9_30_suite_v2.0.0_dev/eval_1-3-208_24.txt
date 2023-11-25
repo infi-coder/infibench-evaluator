@@ -1,0 +1,31 @@
+The issue with your code is that you are checking if the entire input string is in the `correct` string, which is not what you want. Instead, you should check if all characters in the input string are in the `correct` string.
+
+Here's the corrected code:
+
+```python
+import string
+
+def checkString(text):
+    correct = string.ascii_letters + string.digits
+    return all(char in correct for char in text)
+
+# Example usage:
+text = input("Enter: ")
+if checkString(text):
+    print("Success")
+else:
+    print("Failure")
+```
+
+In this code, the `checkString` function takes a string `text` as input and returns `True` if all characters in the string are alphanumeric (i.e., in the `correct` string), and `False` otherwise.
+
+You can call this function with any string as input, like this:
+
+```python
+if checkString("abc123"):
+    print("Success")
+else:
+    print("Failure")
+```
+
+This will print "Success" because the string "abc123" contains only alphanumeric characters.

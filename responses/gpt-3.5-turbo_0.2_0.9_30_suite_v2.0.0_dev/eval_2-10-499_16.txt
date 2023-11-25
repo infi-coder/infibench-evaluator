@@ -1,0 +1,27 @@
+You can set the `conn` field to an empty `TcpStream` value using the `Default` trait. Here's how you can modify your code to achieve this:
+```rust
+use std::net::TcpStream;
+
+pub struct FistClient {
+    addr: String,
+    conn: TcpStream,
+}
+
+impl FistClient {
+    pub fn new(ip: &str, port: &str) -> Self {
+        FistClient {
+            addr: String::from(ip) + ":" + &String::from(port),
+            conn: TcpStream::default(),
+        }
+    }
+
+    pub fn connect(&mut self, ip: &str, port: &str) {
+        let res = TcpStream::connect(&self.addr);
+        match res {
+            Ok(c) => self.conn = c,
+            Err(_) => panic!(),
+        }
+    }
+}
+```
+In this modified code, the `conn` field is initialized with the default value of `TcpStream` using the `Default` trait. The `Default` trait is automatically implemented for types that have a sensible default value. In the case of `TcpStream`, the default value is an empty stream.

@@ -1,0 +1,13 @@
+Here's the Python code to solve the problem:
+
+```python
+def to_camel_case(text):
+    if not text:
+        return ""
+    words = re.split(r'[-_]', text)
+    return words[0] + ''.join(word.capitalize() for word in words[1:])
+```
+
+Here, we first check if the input string is empty or not. If it is empty, we return an empty string. Otherwise, we split the string into words using the regular expression `[-_]` which matches either a dash or an underscore. We then capitalize the first letter of each word except the first one and join them together to form the camel case string.
+
+You will also need to import the `re` module at the beginning of your code to use regular expressions.

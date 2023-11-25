@@ -1,0 +1,48 @@
+Yes, there are more idiomatic ways to express the same logic in Rust. Here are a few alternatives:
+
+1. **Using `if let` with `else`**:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    if let Some(foo_val) = foo {
+        if foo_val < 5 {
+            // Do nothing
+        } else {
+            foo.replace(5);
+        }
+    } else {
+        foo.replace(5);
+    }
+}
+```
+This version uses `if let` to destructure `foo` if it's `Some`, and then checks the condition. If `foo` is `None`, it goes to the `else` branch.
+
+2. **Using `map_or` method**:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map_or(Some(5), |foo_val| if foo_val < 5 { Some(foo_val) } else { Some(5) });
+}
+```
+The `map_or` method applies a function to the `Some` case, or returns a default (`Some(5)`) in the `None` case.
+
+3. **Using `match` with a tuple**:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    match (foo, foo.filter(|&foo_val| foo_val >= 5)) {
+        (None, _) | (_, None) => { foo.replace(5); }
+        _ => {}
+    }
+}
+```
+This version uses a tuple to match both the original `foo` and the filtered `foo` (where the filter checks the condition). If either is `None`, it replaces `foo` with `5`.
+
+4. **Using `or_else` method**:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.filter(|&foo_val| foo_val < 5).or_else(|| Some(5));
+}
+```
+The `or_else` method returns the `Some` case if it exists and meets the condition, or else it returns a default (`Some(5)`).

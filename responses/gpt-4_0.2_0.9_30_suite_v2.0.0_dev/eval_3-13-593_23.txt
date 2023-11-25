@@ -1,0 +1,69 @@
+To add Jetpack Compose to an existing project, you need to update your project's `build.gradle` files.
+
+1. Update the `build.gradle` file at the project level:
+
+```gradle
+buildscript {
+    ext {
+        compose_version = '1.0.5' // check for the latest version
+    }
+    repositories {
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4" // check for the latest version
+    }
+}
+```
+
+2. Update the `build.gradle` file at the app level:
+
+```gradle
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdk 31 // check for the latest version
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 31 // check for the latest version
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.31' // check for the latest version
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.7.0' // check for the latest version
+    implementation 'androidx.appcompat:appcompat:1.4.1' // check for the latest version
+    implementation 'com.google.android.material:material:1.5.0-alpha05' // check for the latest version
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07" // check for the latest version
+    testImplementation 'junit:junit:4.13.2'
+   

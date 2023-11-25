@@ -1,0 +1,21 @@
+To enable Developer Mode on an iOS device, you need to pair the device with Xcode on your Mac. Here are the steps:
+
+1. Connect your iOS device to your Mac using a USB cable.
+
+2. Open Xcode on your Mac.
+
+3. In Xcode, go to `Window` -> `Devices and Simulators`.
+
+4. In the Devices and Simulators window, you will see your device listed in the left sidebar under "Connected". If you don't see your device, make sure it's connected properly and unlocked.
+
+5. Click on your device in the list, this will open the device's information.
+
+6. Check the box that says `Connect via network`. This allows Xcode to communicate with your device over your local network when it's not connected via USB.
+
+7. Now, you should see a "Use for Development" button. Click on it. If you don't see this button, try disconnecting and reconnecting your device, or restarting Xcode.
+
+8. If prompted, enter your Apple ID and password that you use for your developer account.
+
+After these steps, your device should be in Developer Mode and you should be able to run your provisioned testing build.
+
+Please note that you need to have the latest version of Xcode that supports iOS 16.0, and your Mac and iOS device should be on the same local network.

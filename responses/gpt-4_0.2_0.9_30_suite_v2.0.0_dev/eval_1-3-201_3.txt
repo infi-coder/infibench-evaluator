@@ -1,0 +1,33 @@
+You can use Python's multiprocessing module to run these two tasks concurrently. Here's how you can modify your code:
+
+```python
+from multiprocessing import Process
+
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+database=db.dataBase()
+homepage=hp.homepage(database)
+homepage.timeUpdateCallback(app)
+homepage.gaugeRefreshCallback(app)
+dataMiningScript= fd.financeData(database,1600)
+
+app.layout = homepage.layoutMaker()
+
+def run_dash():
+    app.run_server(debug=True)
+
+def run_data_mining():
+    while True:
+        dataMiningScript.run()  # Assuming run() is the method that starts the data mining
+
+if __name__ == "__main__":
+    # Create process for dash
+    Process(target=run_dash).start()
+    # Create process for data mining
+    Process(target=run_data_mining).start()
+```
+
+This will create two separate processes, one for running the Dash server and another for running the data mining script. Both will run independently of each other.
+
+Please note that you need to replace `dataMiningScript.run()` with the actual method that starts the data mining in your `financeData` class.
+
+Also, be aware that multiprocessing has its own set of challenges, especially when it comes to sharing data between processes. If your `financeData` class needs to share data with the Dash app, you might need to use a multiprocessing-safe data structure or use a database as an intermediary.

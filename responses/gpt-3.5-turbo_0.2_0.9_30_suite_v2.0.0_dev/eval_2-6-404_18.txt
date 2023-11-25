@@ -1,0 +1,6 @@
+You can use the `this` keyword to call the existing constructor and provide default values for the parameters like this:
+```c#
+public Person() : this(default, default, default)
+{
+}
+```

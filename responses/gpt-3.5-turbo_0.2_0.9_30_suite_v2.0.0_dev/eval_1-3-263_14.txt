@@ -1,0 +1,19 @@
+The "f" in `print(f"...")` is used to format the string. It is called an f-string or formatted string literal. 
+
+In the example you provided, the curly braces `{}` are used to insert the values of the variables `args.input_directory` and `args.output_directory` into the string. The values are inserted into the string at runtime, making it easier to read and write code that involves string formatting.
+
+For example, instead of writing:
+
+```python
+print("Input directory: " + args.input_directory)
+print("Output directory: " + args.output_directory)
+```
+
+You can use f-strings to make the code more concise and easier to read:
+
+```python
+print(f"Input directory: {args.input_directory}")
+print(f"Output directory: {args.output_directory}")
+```
+
+The values inside the curly braces can also be expressions, making it even more powerful.

@@ -1,0 +1,38 @@
+In Rust, the concept of null pointers doesn't exist in the same way as in languages like C or C++. Instead, Rust uses the `Option` type to represent the possibility of absence. `Option` is an enum that can be either `Some(T)` or `None`.
+
+You can use `Option<Box<Node>>` to represent a nullable `Box<Node>`. Here's how you can modify your code:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+```
+
+In this code, `None` represents a null pointer. You can check if a `Box<Node>` is null by checking if it's `None`:
+
+```rust
+if let Some(node) = &stack.top {
+    // stack.top is not null
+} else {
+    // stack.top is null
+}
+```
+
+Or you can use the `is_none` or `is_some` methods:
+
+```rust
+if stack.top.is_none() {
+    // stack.top is null
+}
+
+if stack.top.is_some() {
+    // stack.top is not null
+}
+```
+
+Note that in Rust, it's idiomatic to use `Option` and other types that enforce null safety, rather than dealing with raw pointers directly. This helps prevent null pointer dereference and other common bugs.

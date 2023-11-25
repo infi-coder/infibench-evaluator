@@ -1,0 +1,32 @@
+The error message indicates that Jackson is trying to serialize a `java.io.ByteArrayInputStream` object, which it doesn't know how to serialize. This is happening because you're trying to send a `MultipartFile` object directly, which is not serializable.
+
+Instead of sending the `MultipartFile` directly, you should convert it to a `FileSystemResource` or `ByteArrayResource` which can be serialized and sent over HTTP.
+
+Here is an example of how you can do this:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+// Convert MultipartFile to ByteArrayResource for serialization
+MultipartFile multipartFile = souqBean.getCircularAttachment();
+ByteArrayResource resource = new ByteArrayResource(multipartFile.getBytes()) {
+    @Override
+    public String getFilename() {
+        return multipartFile.getOriginalFilename();
+    }
+};
+
+body.add("circularAttachment", resource);
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<?> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+In this code, we're converting the `MultipartFile` to a `ByteArrayResource` before adding it to the `MultiValueMap`. The `ByteArrayResource` is serializable and can be sent over HTTP. Note that we're also overriding the `getFilename` method to return the original filename of the `MultipartFile`, as this information is not preserved when the file is converted to a byte array.

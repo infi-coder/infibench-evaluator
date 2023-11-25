@@ -1,0 +1,13 @@
+The error message you're seeing is related to the SSL connection to the SMTP server. It seems like the SSL version being used to establish the connection is not compatible with the one used by the SMTP server.
+
+Here are a few things you can try:
+
+1. **Change the encryption method**: In your `.env` file, you have `MAIL_ENCRYPTION=ssl`. Try changing it to `MAIL_ENCRYPTION=tls`. Also, make sure to update the `encryption` in your `mail.php` to `env('MAIL_ENCRYPTION', 'tls')`.
+
+2. **Change the port number**: The port number you're using (587) is typically used for TLS. If you're using SSL, the port number should be 465. So, if you stick with SSL, change `MAIL_PORT=587` to `MAIL_PORT=465` in your `.env` file.
+
+3. **Check with the email provider**: If the above steps don't work, you should check with the email provider (propnex.sg) to see if they have specific settings or requirements for connecting to their SMTP server.
+
+Remember, after making changes to your `.env` file, you should clear the config cache by running `php artisan config:cache` in your terminal.
+
+Also, ensure that your server has the necessary OpenSSL PHP extension enabled, as it's required for the `mail` function to work properly.

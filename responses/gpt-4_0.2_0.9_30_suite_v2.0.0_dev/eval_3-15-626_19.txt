@@ -1,0 +1,42 @@
+Your VBA code is almost correct, but there are a few issues that need to be addressed. 
+
+First, you are trying to assign a value to `query` and `currentSheet` without declaring them as variables. 
+
+Second, you are trying to use `query.Name` but `query` is a string, not an object, so it doesn't have a `Name` property.
+
+Here's the corrected code:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    Dim query As String
+    Dim currentSheet As String
+    
+    ' Assign the query string and the current sheet name
+    query = Sheets("Sheet6").Range("A1").Value
+    currentSheet = ActiveSheet.Name
+    
+    ' Create a new ListObject with a QueryTable
+    With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=Sheets("target").Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+     
+End Sub
+```
+
+This code will create a new QueryTable in the "target" sheet, using the query string from cell A1 of "Sheet6". The QueryTable will automatically refresh when you run the macro.

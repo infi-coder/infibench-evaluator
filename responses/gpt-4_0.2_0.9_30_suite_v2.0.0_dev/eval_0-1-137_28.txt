@@ -1,0 +1,19 @@
+The error you're getting is because you're trying to overwrite the `$theme-colors` map after it's already been used in the Bootstrap's `_variables.scss` file. 
+
+You should define your custom colors before importing the Bootstrap's `_variables.scss` file. Also, you should import `_functions.scss` before defining your custom colors because it contains the `map-loop` function which is used in `_variables.scss`.
+
+Here is the revised code:
+
+```scss
+@import "../../node_modules/bootstrap/scss/functions";
+$theme-colors: (
+  "primary": #your-color,
+  // Add other colors if needed
+);
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Replace `#your-color` with the color you want to use for the `primary` color. If you want to change other colors, you can add them to the `$theme-colors` map.
+
+Please note that you need to have the correct path to the Bootstrap's SCSS files in your `node_modules` directory. If the path is incorrect, you will get a file not found error.

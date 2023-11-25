@@ -1,0 +1,21 @@
+The error message indicates that the headers or library files for zlib are missing, which is a required dependency for Pillow. You can try installing zlib by running the following command in your command prompt:
+
+```bash
+pip install zlib
+```
+
+If that doesn't work, you can try installing Pillow using pre-built binaries instead of building from source. You can download the appropriate binary for your system from the Pillow website (https://pypi.org/project/Pillow/#files) and install it using pip. For example, if you're using Python 3.8 on Windows 64-bit, you can download the file named `Pillow-6.0.0-cp38-cp38-win_amd64.whl` and install it using the following command:
+
+```bash
+pip install Pillow-6.0.0-cp38-cp38-win_amd64.whl
+```
+
+Alternatively, you can try installing Pillow using conda instead of pip. You can create a new conda environment and install Pillow using the following commands:
+
+```bash
+conda create --name myenv
+conda activate myenv
+conda install pillow
+```
+
+Replace `myenv` with the name of your environment.

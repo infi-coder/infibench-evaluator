@@ -1,0 +1,22 @@
+The error message is indicating that the `go_package` option is missing in your proto file. This option is used to specify the package name for the generated Go code. You can add it to your proto file like this:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "main";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+Here, `go_package` is set to "main". You should replace "main" with the actual Go package name you want to use.
+
+After adding the `go_package` option, you should be able to generate the Go code with the `protoc` command you provided:
+
+```bash
+protoc --go_out=. simple.proto
+```

@@ -1,0 +1,16 @@
+Automation Error when running Selenium VBA on Excel 2019
+
+I  was running the following code without a problem on a machine with excel 2013.  We recently upgraded to Excel 2019 and the  macro  now returns an  error. I noticed that the error seems to be in the  section , it looks like it's not 'registering' the reference.  I have reinstalled the Selenium add-in , re-pointed the reference,  tried different browsers ( chrome, edge etc)  but to no avail .
+```
+Dim driver As New WebDriver
+Dim keyObj As Selenium.keys
+Dim IE As Object
+
+Set keyObj = New Selenium.keys
+
+driver.Start "ie"
+driver.Window.Maximize
+driver.Get "https://www.google.com/"
+```
+
+Any suggestions/ ideas would be much appreciated.

@@ -1,0 +1,23 @@
+Either wrap your custom appbar into a `PreferredSize` widget or implement `PreferredSizeWidget`. 
+
+To fix the error, you can modify your `AppBarDesign` class to implement `PreferredSizeWidget` like this:
+
+```dart
+class AppBarDesign extends StatelessWidget implements PreferredSizeWidget {
+  AppBarDesign(Key key, this.title) : super(key: key);
+
+  final title;
+
+  @override
+  Widget build(BuildContext context) {
+    return new AppBar(
+      title: new Text(title),
+    );
+  }
+
+  @override
+  Size get preferredSize => new Size.fromHeight(kToolbarHeight);
+}
+```
+
+This will allow your custom app bar to be used as the `appBar` property of the `Scaffold`.

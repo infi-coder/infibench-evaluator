@@ -1,0 +1,19 @@
+For the first issue, the "CSRF token mismatch" error could be caused by a few things. Here are some possible solutions:
+
+1. Make sure that the domain name in your .env file matches the domain name of your hosted application. If they don't match, the session cookie may not be set properly.
+
+2. Check if your hosting provider has any security features that could be interfering with the session cookie. For example, some hosting providers may block third-party cookies by default.
+
+3. Try clearing your browser cache and cookies, then reload the page and see if the error persists.
+
+4. Check if there are any conflicting middleware or packages that could be interfering with the session.
+
+As for the second issue, the error message "SSL operation failed with code 1. OpenSSL Error messages: error:1408F10B:SSL routines:ssl3_get_record:wrong version number" suggests that the SSL version being used is not supported by the server. Here are some possible solutions:
+
+1. Try changing the encryption type in your .env file to "tls" instead of "ssl".
+
+2. Check with your client if they support SSL encryption and if so, which version they support.
+
+3. Try using a different email service provider that supports the SSL version being used by the server.
+
+4. Check if there are any firewalls or security settings on your server that could be blocking the connection.

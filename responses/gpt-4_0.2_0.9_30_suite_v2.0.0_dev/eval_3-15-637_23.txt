@@ -1,0 +1,23 @@
+The error you're experiencing might be due to several reasons. Here are a few things you could try:
+
+1. **Check your SeleniumBasic version**: Ensure you're using the latest version of SeleniumBasic. You can download it from [here](https://github.com/florentbr/SeleniumBasic/releases). After installing, don't forget to add the reference to your VBA project (VBE > Tools > References > Selenium Type Library).
+
+2. **Check your Internet Explorer Driver**: Since you're using Internet Explorer as your browser, make sure you have the correct version of IEDriverServer.exe. You can download it from the [Selenium website](https://www.selenium.dev/downloads/). The version of IEDriverServer should match the version of your Internet Explorer.
+
+3. **Check your Internet Explorer settings**: Selenium requires certain settings to be enabled in Internet Explorer. Go to Internet Options > Security Tab, and ensure that "Enable Protected Mode" is either checked or unchecked for all zones (Internet, Local intranet, Trusted sites, Restricted sites). The setting (checked or unchecked) should be the same for all zones.
+
+4. **Check your code**: Your code seems to be missing the `.Create` method for the WebDriver object. Try modifying your code as follows:
+
+```vba
+Dim driver As New Selenium.WebDriver
+Dim keyObj As Selenium.keys
+
+Set keyObj = New Selenium.keys
+
+driver.Start "ie", "https://www.google.com/"
+driver.Window.Maximize
+```
+
+5. **Try a different browser**: If none of the above solutions work, try using a different browser like Chrome or Firefox to see if the problem is specific to Internet Explorer.
+
+Remember to save and restart Excel after making these changes. If the problem persists, please provide the exact error message you're receiving for more specific help.

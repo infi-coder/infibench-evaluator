@@ -1,0 +1,1 @@
+@Configuration should be used when you need to define beans that require complex initialization or when you need to define beans that depend on other beans. @Service, @Controller, and @Component should be used for defining beans that represent services, controllers, or general components in your application.

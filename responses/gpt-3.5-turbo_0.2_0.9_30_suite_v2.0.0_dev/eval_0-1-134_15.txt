@@ -1,0 +1,5 @@
+It sounds like you may be referring to Emmet, a plugin for text editors that allows for faster HTML and CSS coding. With Emmet, you can use shorthand syntax to quickly generate HTML and CSS code. 
+
+To use Emmet, you can type out the shorthand syntax and then press the "Tab" key. For example, to create a div with a class of "classname", you can type "div.classname" and then press "Tab". This will generate the HTML code for a div with the class "classname".
+
+If this isn't working for you, make sure that you have Emmet installed and enabled in your text editor. The specific steps for enabling Emmet will depend on your text editor, so you may need to refer to the documentation or do a quick online search to find instructions.

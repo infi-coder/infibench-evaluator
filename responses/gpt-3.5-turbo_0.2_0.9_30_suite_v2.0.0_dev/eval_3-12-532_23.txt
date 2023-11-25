@@ -1,0 +1,13 @@
+The `FormatException` error occurs when the JSON string is not properly formatted. In your case, the error is occurring at the first character of the JSON string, which means that the response body is not a valid JSON string.
+
+To solve this issue, you can try the following steps:
+
+1. Check the response body: You can print the response body to the console to see what is being returned by the PHP file. Make sure that the response body is a valid JSON string.
+
+2. Check the content type: Make sure that the content type of the response is set to `application/json`. You can check this by printing the headers of the response to the console.
+
+3. Check the encoding: Make sure that the encoding of the response is set to `utf-8`. You can check this by looking at the `encoding` property of the `http.Response` object.
+
+4. Check the PHP file: Make sure that the PHP file is returning a valid JSON string. You can test the PHP file by calling it directly in your web browser and checking the output.
+
+If none of these steps solve the issue, you may need to provide more information about your PHP file and the response it is returning.

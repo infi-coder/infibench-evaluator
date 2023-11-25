@@ -1,0 +1,43 @@
+The error message you're seeing suggests that Go is unable to find the specific revision of the `key-protect-client` module in your private repository. This could be due to a few reasons:
+
+1. **Network Issues:** There might be network issues preventing Go from accessing the repository. You can check your network connection and try again.
+
+2. **Authentication Issues:** Even though you have access to the repository, Go might not be using the correct credentials. You can check if your `git` credentials are correctly configured in your environment. 
+
+3. **Incorrect Version Tag:** The version `v0.1.5` might not exist in your `key-protect-client` repository. You can check the repository to ensure that the tag exists.
+
+To debug this issue, you can try the following steps:
+
+1. **Check the Network Connection:** Try to clone the repository manually using `git` to see if there are any network issues.
+
+```bash
+git clone https://github.ibm.com/kms/key-protect-client.git
+```
+
+2. **Check the Git Credentials:** Ensure that your `git` credentials are correctly configured. You can do this by trying to clone another private repository. If you're unable to clone, you might need to reconfigure your `git` credentials.
+
+3. **Check the Version Tag:** Navigate to your `key-protect-client` repository and check if the tag `v0.1.5` exists. If it doesn't, you'll need to create it or use a different version in your `go.mod` file.
+
+4. **Clear the Go Module Cache:** Sometimes, the Go module cache might cause issues. You can clear it using the following command:
+
+```bash
+go clean -modcache
+```
+
+5. **Enable Go Module Debugging:** You can enable debugging for Go modules by setting the `GODEBUG` environment variable. This will print additional information that might help you identify the issue.
+
+```bash
+export GODEBUG=mod=debug
+go build
+```
+
+Remember to unset the `GODEBUG` variable once you're done debugging.
+
+```bash
+unset GODEBUG
+```
+
+6. **Check GOPRIVATE or GONOPROXY:** If your module is in a private repository, you might need to configure the `GOPRIVATE` or `GONOPROXY` environment variables to tell Go to not use the proxy for your module.
+
+```bash
+export GOPRIVATE=github.ibm

@@ -1,0 +1,18 @@
+```javascript
+import { useRouter } from "next/router";
+
+export default function Component(){
+    const router = useRouter();
+
+    const reloadPage = () => {
+        router.replace(router.asPath);
+    }
+
+    return (
+        <div>
+            {/* Your component code here */}
+            <button onClick={reloadPage}>Reload Page</button>
+        </div>
+    );
+}
+```

@@ -1,0 +1,15 @@
+The `Get-Service` cmdlet in PowerShell does not provide a way to get the detailed "Description" of the service. This is because the "Description" is not a property of the ServiceController object that `Get-Service` returns.
+
+However, you can use the `Get-WmiObject` cmdlet to get the "Description" of the service. Here's how you can do it:
+
+```powershell
+Get-WmiObject -Class Win32_Service | Select-Object Name, DisplayName, Description | Out-GridView
+```
+
+This command gets all services (`Get-WmiObject -Class Win32_Service`), selects the Name, DisplayName, and Description properties (`Select-Object Name, DisplayName, Description`), and then displays the results in a grid view (`Out-GridView`).
+
+Please note that `Get-WmiObject` cmdlet is being deprecated in favor of `Get-CimInstance` cmdlet in PowerShell 3.0 and later versions. So, if you are using PowerShell 3.0 or later, you should use `Get-CimInstance` instead:
+
+```powershell
+Get-CimInstance -ClassName Win32_Service | Select-Object Name, DisplayName, Description | Out-GridView
+```

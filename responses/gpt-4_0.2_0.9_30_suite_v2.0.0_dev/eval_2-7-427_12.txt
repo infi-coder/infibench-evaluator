@@ -1,0 +1,19 @@
+The error message you're seeing is related to the SSL/TLS version or encryption method used by your mail server. The error `ssl3_get_record:wrong version number` suggests that the client (your Laravel application) and the server (mail.propnex.sg) are not agreeing on the SSL/TLS version to use.
+
+Here are a few things you can try to resolve this issue:
+
+1. **Change the MAIL_ENCRYPTION setting:** The `MAIL_ENCRYPTION` setting in your `.env` file is currently set to `ssl`. Try changing this to `tls`. If that doesn't work, you could try setting it to `null` to disable encryption (although this is not recommended for security reasons).
+
+    ```
+    MAIL_ENCRYPTION=tls
+    ```
+
+2. **Change the MAIL_PORT setting:** The `MAIL_PORT` setting in your `.env` file is currently set to `587`, which is typically used for TLS. If changing the `MAIL_ENCRYPTION` setting to `tls` doesn't work, you could try changing the `MAIL_PORT` to `465`, which is typically used for SSL.
+
+    ```
+    MAIL_PORT=465
+    ```
+
+3. **Contact the mail server administrator:** If neither of the above solutions work, you may need to contact the administrator of the mail server (mail.propnex.sg) to find out which SSL/TLS versions and encryption methods are supported. They may be able to provide you with the correct settings to use in your Laravel application.
+
+Remember to clear the configuration cache using `php artisan config:cache` after making changes to your `.env` file.

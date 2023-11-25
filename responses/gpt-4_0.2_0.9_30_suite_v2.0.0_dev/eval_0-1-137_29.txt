@@ -1,0 +1,26 @@
+The error you're getting is because you're trying to import the Bootstrap variables before you've defined your own. This means that when you try to compile your SCSS, it's using the default Bootstrap variables, not your custom ones.
+
+You should define your custom variables before importing the Bootstrap SCSS files. Also, you should use `!default` keyword to set a default value for a Sass variable. This will set the variable's value only if it hasn't been set already.
+
+Here's how you can do it:
+
+```scss
+// Define your custom colors
+$theme-colors: (
+  "primary": #your-color-here,
+  "secondary": #your-color-here,
+  "success": #your-color-here,
+  "info": #your-color-here,
+  "warning": #your-color-here,
+  "danger": #your-color-here,
+  "light": #your-color-here,
+  "dark": #your-color-here
+) !default;
+
+// Then import Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Replace `#your-color-here` with the color values you want to use. This will override the default Bootstrap colors with your own.
+
+Also, please note that you need to have the correct path to the `bootstrap.scss` file. The path I've used is just an example, and it might be different in your project.

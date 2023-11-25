@@ -1,0 +1,24 @@
+The Maven Wrapper is a shell script called `mvnw` (or `mvnw.cmd` on Windows) that automatically downloads and installs the correct version of Maven for your project. It's a great way to ensure that everyone on your team is using the same version of Maven.
+
+However, the Maven Wrapper doesn't control the version of Java that's used to run Maven. That's determined by the `JAVA_HOME` environment variable, or if `JAVA_HOME` isn't set, then whichever `java` command is on the system path.
+
+If you're having trouble with Maven using the wrong version of Java, here are a few things you can try:
+
+1. **Set the `JAVA_HOME` environment variable.** This should point to the root directory of your JDK installation. For example, if you installed the JDK to `C:\Program Files\Java\jdk1.8.0_181`, then you would set `JAVA_HOME` to that path.
+
+2. **Update the system path.** If `JAVA_HOME` isn't set, then Maven will use whichever `java` command is on the system path. You can change the order of directories on the path so that the correct `java` command is found first.
+
+3. **Specify the Java version in your `pom.xml`.** You can tell Maven to use a specific version of Java by adding a `<properties>` section to your `pom.xml`:
+
+    ```xml
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    ```
+
+    Replace `1.8` with the version of Java you want to use.
+
+4. **Use the `toolchains.xml` file.** Maven can use a `toolchains.xml` file to select the JDK. This is a more advanced option and is usually only necessary if you need to build your project with multiple versions of Java.
+
+Remember, the Maven Wrapper and the `JAVA_HOME` environment variable are two separate things. The Maven Wrapper controls the version of Maven, while `JAVA_HOME` controls the version of Java.

@@ -1,0 +1,43 @@
+You can create a factory method that creates and returns a `ServiceBusSender` instance for a given queue name. Then, you can register this factory method as a singleton service in the dependency injection container. Here's an example:
+
+```c#
+// Define a factory method that creates a ServiceBusSender instance for a given queue name
+private ServiceBusSender CreateServiceBusSender(string queueName)
+{
+    var serviceBusConfiguration = _configuration.GetSection("ServiceBus").Get<ServiceBusConfiguration>();
+    var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+    return serviceBusClient.CreateSender(queueName);
+}
+
+// Register the factory method as a singleton service for each queue name
+_services.AddSingleton<Func<string, ServiceBusSender>>(serviceProvider => queueName => serviceProvider.GetService<ServiceBusSenderFactory>().CreateServiceBusSender(queueName));
+
+// Register a named ServiceBusSender instance for each queue name
+foreach (var queueName in new[] { "queue1", "queue2", "queue3" })
+{
+    _services.AddSingleton(serviceProvider => serviceProvider.GetService<Func<string, ServiceBusSender>>()(queueName)).Named<ServiceBusSender>(queueName);
+}
+```
+
+Now, you can inject a named `ServiceBusSender` instance into your service constructor and use it to send messages to the corresponding queue:
+
+```c#
+public class MyService
+{
+    private readonly ServiceBusSender _serviceBusSender;
+
+    public MyService([Named("queue1")] ServiceBusSender serviceBusSender)
+    {
+        _serviceBusSender = serviceBusSender;
+    }
+
+    public async Task SendMessageAsync(string message)
+    {
+        var serviceBusMessage = new ServiceBusMessage(message);
+        await _serviceBusSender.SendMessageAsync(serviceBusMessage);
+    }
+}
+```

@@ -1,0 +1,49 @@
+In Rust, the `Box<T>` type is a smart pointer that points to data on the heap. Unlike raw pointers in C or C++, `Box<T>` is guaranteed to point to a valid object, or in other words, it can't be null. This is one of the ways Rust ensures memory safety.
+
+However, you can use `Option<Box<T>>` to represent a nullable `Box<T>`. The `Option<T>` type is an enum that can be either `Some(T)` or `None`, where `None` represents the absence of a value.
+
+Here's how you can modify your `Node` and `Stack` structs to use `Option<Box<Node>>`:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+```
+
+Now, you can check if `top` is `None` (or "null") like this:
+
+```rust
+if let Some(node) = &stack.top {
+    // `top` is not null, do something with `node`
+} else {
+    // `top` is null
+}
+```
+
+Or like this:
+
+```rust
+match &stack.top {
+    Some(node) => {
+        // `top` is not null, do something with `node`
+    },
+    None => {
+        // `top` is null
+    }
+}
+```
+
+Or even like this:
+
+```rust
+if stack.top.is_none() {
+    // `top` is null
+}
+```
+
+Remember, in Rust, you usually don't need to deal with null pointers thanks to the type system and the `Option<T>` type.

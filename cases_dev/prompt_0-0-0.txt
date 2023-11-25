@@ -1,0 +1,11 @@
+In Javascript, given a key-value object where each entry has a `price` field, how to extract the keys and `price` field values and dump into two arraries respectively?
+Specfically, could you help me to write a function `keys_and_prices(raw_obj)`? It should return an array of two elements, where the first element corresponds to the key array and the second element corresponds to the price array.
+
+A running example:
+
+```javascript
+var itemsToBuy = { milk: { quantity : 5, price: 20 }, bread: { quantity : 2, price: 15 }, potato: { quantity : 3, price: 10 } }
+let ret = keys_and_prices(itemsToBuy)
+assert(ret[0] == ["milk", "bread", "potato"])
+assert(ret[1] == [20, 15, 10])
+```

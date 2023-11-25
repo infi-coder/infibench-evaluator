@@ -1,0 +1,24 @@
+It seems like the Dockerfile is unable to find the `app` module. You can try changing the `COPY` command in your Dockerfile to:
+
+```
+COPY ./fastapi/app /app
+```
+
+This will copy the `app` module from the `fastapi` directory to the `/app` directory in the Docker container.
+
+Your revised Dockerfile should look like this:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt /
+RUN pip install --requirement /requirements.txt
+
+COPY ./fastapi/app /app
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+After making this change, rebuild your Docker image and try running the `docker-compose up -d` command again.

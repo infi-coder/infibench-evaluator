@@ -1,0 +1,7 @@
+```c++
+vector<pair<int, int>> origin_to_goal(vector<int> origin) {
+    vector<pair<int, int>> goal;
+    transform(origin.begin(), origin.end(), origin.begin() + 1, back_inserter(goal), [](int a, int b) { return make_pair(a, b); });
+    return goal;
+}
+```

@@ -1,0 +1,13 @@
+You can disable the ordering of includes in clang-format by setting the `SortIncludes` option to `false` in your `.clang-format` configuration file.
+
+Here is an example of how to do it:
+
+```yaml
+---
+Language:        Cpp
+# BasedOnStyle:  Google
+SortIncludes:    false
+...
+```
+
+This configuration will prevent clang-format from sorting your `#include` directives.

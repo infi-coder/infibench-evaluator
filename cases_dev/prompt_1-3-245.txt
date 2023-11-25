@@ -1,0 +1,37 @@
+ModuleNotFoundError: No module named 'app' fastapi docker
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt /
+RUN pip install --requirement /requirements.txt
+
+COPY ./app /app
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+when i used
+
+```bash
+docker-compose up -d
+ModuleNotFoundError: No module named 'app'
+```
+
+the folders in Fastapi framework:
+
+fastapi
+
+    app
+
+      -main.py
+
+      `language_detector.py`
+      
+Dockerfile
+
+docker-compose
+
+How to revise my Dockerfile?

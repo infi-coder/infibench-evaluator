@@ -1,0 +1,9 @@
+Do not run any commands in subshells, it slows your script a lot. You can do everything in the current shell.
+
+while IFS== read k v ; do
+    if [[ $k == name ]] ; then
+        name=$v
+    elif [[ $k == value ]] ; then
+        printf '%s=%s\n' "$name" "$v"
+    fi
+done

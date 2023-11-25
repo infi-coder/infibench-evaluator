@@ -1,0 +1,25 @@
+The error message you're seeing is due to a change in Android 12 (API level 31) that requires you to specify one of `FLAG_IMMUTABLE` or `FLAG_MUTABLE` when creating a `PendingIntent`.
+
+The `MediaSessionCompat` class in the AndroidX Media library creates a `PendingIntent` internally, and it seems like it's not setting one of these flags. This is likely a bug in the library.
+
+While the library's code does have a TODO comment about using `FLAG_MUTABLE` for Android S and later, it seems like this hasn't been implemented yet.
+
+As a workaround, you can try downgrading your target SDK version to 30 until the library is updated to handle this requirement. You can do this by changing the `targetSdkVersion` in your app's `build.gradle` file:
+
+```gradle
+android {
+    compileSdkVersion 31
+    defaultConfig {
+        applicationId "com.example.myapp"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+    }
+    ...
+}
+```
+
+This will allow your app to still compile against the latest Android SDK, but it won't be subject to the behavior changes in Android 12, including the requirement to specify `FLAG_IMMUTABLE` or `FLAG_MUTABLE` when creating a `PendingIntent`.
+
+Remember to monitor updates to the AndroidX Media library and update your `targetSdkVersion` to 31 once the library is updated to handle this requirement.

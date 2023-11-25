@@ -1,0 +1,32 @@
+You can use multiprocessing to run both scripts simultaneously. Here's an example of how you can modify your code to achieve this:
+
+```python
+import multiprocessing
+
+def run_data_mining(database):
+    dataMiningScript = fd.financeData(database, 1600)
+    dataMiningScript.run()
+
+if __name__ == "__main__":
+    database = db.dataBase()
+    homepage = hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+
+    # Start the data mining script in a separate process
+    data_mining_process = multiprocessing.Process(target=run_data_mining, args=(database,))
+    data_mining_process.start()
+
+    # Run the web server in the main process
+    app.layout = homepage.layoutMaker()
+    app.run_server(debug=True)
+
+    # Wait for the data mining process to finish
+    data_mining_process.join()
+```
+
+In this modified code, the `run_data_mining` function is defined to run the data mining script. It takes the database as an argument and creates an instance of the `financeData` class to run the script. The `run` method of the `financeData` class should contain the infinite loop that continuously updates the database.
+
+In the `if __name__ == "__main__":` block, we start the `run_data_mining` function in a separate process using the `multiprocessing.Process` class. This allows the data mining script to run simultaneously with the web server.
+
+After starting the data mining process, we run the web server in the main process as usual. Once the web server is stopped, we wait for the data mining process to finish using the `join` method. This ensures that the data mining script is properly terminated before the program exits.

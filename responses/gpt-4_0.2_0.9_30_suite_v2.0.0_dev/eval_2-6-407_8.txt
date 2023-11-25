@@ -1,0 +1,33 @@
+The error message you're seeing is typically due to the server returning HTML when JSON is expected. This can happen if the server returns an error page or if the URL is incorrect.
+
+First, make sure that your API is working correctly. You can test it by navigating to the URL in a web browser or using a tool like Postman. The URL should return JSON data.
+
+Second, check your routing. In your `EmployeeController`, you have defined the route as `api/Employee/Index`. However, the `[Route("[controller]")]` attribute at the top of your controller will also add "Employee" to the route. This means that the actual URL for your `Index` method is `/Employee/api/Employee/Index`.
+
+To fix this, you can change the route for your `Index` method to just `[Route("Index")]`. This will make the URL `/Employee/Index`, which matches the URL you're using in your Blazor code.
+
+Here's the corrected code:
+
+```csharp
+[ApiController]
+[Route("[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+    
+    [HttpGet]
+    [Route("Index")]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+Then, in your Blazor code, you can call the API like this:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("/Employee/Index");
+```
+
+If you're still having issues, make sure that your `Employee` class matches the JSON structure that's being returned by the API. If they don't match, you'll get a deserialization error when trying to convert the JSON to an `Employee` object.

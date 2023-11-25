@@ -1,0 +1,17 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven than the one used to generate the project. To fix this error, you can try the following steps:
+
+1. In IntelliJ IDEA, go to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+2. Check the "Override" checkbox next to "Maven home directory" and select the directory where your Maven 3.8.5 installation is located.
+3. Click "OK" to save the changes.
+4. Re-import the Maven project in IntelliJ IDEA.
+
+If the above steps do not work, you can try deleting the `.idea` directory and re-importing the project. To do this, follow these steps:
+
+1. Close IntelliJ IDEA.
+2. Delete the `.idea` directory in the root directory of your project.
+3. Open IntelliJ IDEA and select "Import Project".
+4. Select the root directory of your project and click "OK".
+5. Select "Import project from external model" and select "Maven".
+6. Click "Next" and then "Finish" to import the project.
+
+This should fix the error and allow you to work with the project in IntelliJ IDEA.

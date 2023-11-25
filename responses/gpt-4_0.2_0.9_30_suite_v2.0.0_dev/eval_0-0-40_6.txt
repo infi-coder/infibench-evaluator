@@ -1,0 +1,21 @@
+The error message you're seeing is due to a conflict between the Node.js and npm installations on your Windows system and the ones in your WSL2 Ubuntu environment. 
+
+When you run `npm -v`, the system is trying to execute the npm script located at `/mnt/c/Program Files/nodejs/npm`, which is actually the Windows version of npm. This script has Windows-style line endings (CRLF), which is not compatible with Unix-style line endings (LF) expected in the Ubuntu environment, hence the `bad interpreter: No such file or directory` error.
+
+To resolve this issue, you need to make sure that the Ubuntu environment is using its own versions of Node.js and npm, not the ones installed on Windows. Here's how you can do this:
+
+1. Open your `.bashrc` file in a text editor. You can do this by running the command `nano ~/.bashrc`.
+
+2. Add these lines at the end of the file:
+
+    ```bash
+    export PATH=/usr/bin:$PATH
+    ```
+
+    This line will ensure that the system looks for executables in `/usr/bin` before it looks in `/mnt/c/Program Files/nodejs`, which is where the Windows versions of Node.js and npm are located.
+
+3. Save the file and exit the text editor.
+
+4. Run the command `source ~/.bashrc` to apply the changes.
+
+Now, when you run `node -v` and `npm -v`, you should see the versions installed in your Ubuntu environment.

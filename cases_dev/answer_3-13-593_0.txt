@@ -1,0 +1,11 @@
+Jetpack compose requires a minSdkVersion of at least 21. So add/update the following in your app/build.gradle file
+android{
+   //...
+   defaultConfig {
+      minSdkVersion 21
+      targetSdkVersion 29
+      //...
+   }
+  //...
+ }
+Also you need to use Android studio (from canary channel) in order to use jetpack-compose with the latest features.

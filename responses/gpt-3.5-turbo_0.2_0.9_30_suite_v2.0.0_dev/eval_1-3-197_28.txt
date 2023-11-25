@@ -1,0 +1,38 @@
+Here's the solution in Python:
+
+```python
+import pandas as pd
+
+def fillColumn(df, columnName, columnData):
+    # Repeat the list to match the length of the dataframe
+    repeated_list = columnData * (len(df) // len(columnData)) + columnData[:len(df) % len(columnData)]
+    
+    # Assign the repeated list to the new column
+    df[columnName] = repeated_list
+    
+    return df
+```
+
+This function takes a DataFrame `df`, a string `columnName` for the new column name, and a list `columnData` containing the string data to be filled in the new column. 
+
+The function first repeats the list `columnData` to match the length of the DataFrame `df`. It then assigns the repeated list to the new column `columnName` in the DataFrame `df`. Finally, it returns the updated DataFrame.
+
+You can call this function like this:
+
+```python
+my_list = ['abc','def','hig']
+df = pd.DataFrame({'col1': [1, 2, 3, 4, 5]})
+df = fillColumn(df, 'names', my_list)
+print(df)
+```
+
+This will output:
+
+```
+   col1 names
+0     1   abc
+1     2   def
+2     3   hig
+3     4   abc
+4     5   def
+```

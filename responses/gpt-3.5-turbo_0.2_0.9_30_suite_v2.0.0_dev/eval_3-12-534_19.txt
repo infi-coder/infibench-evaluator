@@ -1,0 +1,49 @@
+To use multiple Consumers for a single widget in Flutter Provider, you can wrap each item in the CurvedNavigationBar with a Consumer widget that listens to its corresponding ChangeNotifier.
+
+Here's an example code snippet:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'first_notifier.dart';
+import 'second_notifier.dart';
+import 'third_notifier.dart';
+import 'fourth_notifier.dart';
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Consumer<FirstNotifier>(
+            builder: (context, firstNotifier, child) {
+              return Text('First item count: ${firstNotifier.count}');
+            },
+          ),
+          Consumer<SecondNotifier>(
+            builder: (context, secondNotifier, child) {
+              return Text('Second item count: ${secondNotifier.count}');
+            },
+          ),
+          Consumer<ThirdNotifier>(
+            builder: (context, thirdNotifier, child) {
+              return Text('Third item count: ${thirdNotifier.count}');
+            },
+          ),
+          Consumer<FourthNotifier>(
+            builder: (context, fourthNotifier, child) {
+              return Text('Fourth item count: ${fourthNotifier.count}');
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+In this example, we have four different ChangeNotifier classes: `FirstNotifier`, `SecondNotifier`, `ThirdNotifier`, and `FourthNotifier`. We wrap each of them with a `Consumer` widget that listens to their respective `count` properties.
+
+By doing this, each `Consumer` widget will only rebuild when its corresponding `ChangeNotifier` is updated, which helps to optimize performance.

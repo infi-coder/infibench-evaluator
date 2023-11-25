@@ -1,0 +1,29 @@
+The issue here is that you're trying to use a `@Binding` in a place where you should be using `@State`. 
+
+`@Binding` is used when you want to create a two-way connection between a view and its underlying model. In your case, you're trying to change the state of a view from within the same view, which is a perfect use case for `@State`.
+
+Here's your corrected code:
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+```
+
+In this corrected code, `@State` is used instead of `@Binding` and `isSelected` is initialized with a default value of `false`.

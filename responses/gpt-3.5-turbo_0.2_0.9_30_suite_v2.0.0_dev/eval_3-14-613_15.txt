@@ -1,0 +1,1 @@
+It seems like the preview is not associated with any target in the current scheme. Try adding the file containing the preview to the target by selecting the file in the Project navigator, then selecting the target membership checkbox in the File inspector. If that doesn't work, try cleaning the build folder by going to Product > Clean Build Folder and then rebuilding the project.

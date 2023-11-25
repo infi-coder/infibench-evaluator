@@ -1,0 +1,35 @@
+Here is a Python function that generates a random string of 16 characters with the substring "NAA3U" and exactly 3 digits:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the characters to choose from
+    chars = string.ascii_letters  # a-z and A-Z
+
+    # Generate two random strings of letters
+    str1 = ''.join(random.choice(chars) for _ in range(5))
+    str2 = ''.join(random.choice(chars) for _ in range(3))
+
+    # Generate a random digit
+    digit1 = str(random.randint(0, 9))
+    digit2 = str(random.randint(0, 9))
+
+    # Combine the strings and digits in a random order
+    code = [str1, 'NAA3U', digit1, str2, digit2]
+    random.shuffle(code)
+
+    # Join the parts into a single string
+    return ''.join(code)
+
+# Test the function
+for _ in range(10):
+    print(generateRandomString())
+```
+
+This function first generates two random strings of letters and two random digits. Then it combines these parts with the substring "NAA3U" in a random order. The result is a random string of 16 characters with the substring "NAA3U" and exactly 3 digits.
+
+Please note that the function uses the `random` module to generate random letters and digits, and to shuffle the order of the parts. The `string` module is used to define the characters to choose from.
+
+The function is tested by generating and printing 10 random strings.

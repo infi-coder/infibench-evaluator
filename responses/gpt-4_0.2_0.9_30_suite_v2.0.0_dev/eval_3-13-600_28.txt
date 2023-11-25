@@ -1,0 +1,17 @@
+You can disable the swipe animation in ViewPager2 by setting the `ViewPager2.PageTransformer` to null and using a custom `ViewPager2.OnPageChangeCallback` to disable the scroll animation.
+
+Here is an example:
+
+```java
+viewPager2.setPageTransformer(null);
+viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+    @Override
+    public void onPageSelected(int position) {
+        viewPager2.unregisterOnPageChangeCallback(this);
+        viewPager2.setCurrentItem(position, false);
+        viewPager2.registerOnPageChangeCallback(this);
+    }
+});
+```
+
+In this code, when a new page is selected, the callback is unregistered, the new page is set without animation, and then the callback is registered again.

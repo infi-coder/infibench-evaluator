@@ -1,0 +1,29 @@
+The error you're getting is because you're trying to redefine the `$theme-colors` map after it's already been defined in the Bootstrap's `_variables.scss` file. 
+
+You should define your custom colors before importing Bootstrap's main SCSS file. Here's how you can do it:
+
+```scss
+// Import Bootstrap's functions first
+@import "../../node_modules/bootstrap/scss/functions";
+
+// Define your custom colors
+$theme-colors: (
+  "primary": #your-color,
+  "secondary": #your-color,
+  "success": #your-color,
+  "info": #your-color,
+  "warning": #your-color,
+  "danger": #your-color,
+  "light": #your-color,
+  "dark": #your-color
+);
+
+// Then import the rest of Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Replace `#your-color` with the actual color values you want to use. 
+
+This way, when Bootstrap's `_variables.scss` file is imported (which is done inside the `bootstrap.scss` file), it will see that `$theme-colors` is already defined and it won't redefine it. 
+
+Also, make sure you're using a version of Sass that is compatible with Bootstrap 5.1.0. Bootstrap 5 requires Dart Sass 1.33.0 or later, or LibSass 3.5.0 or later. The Sass 3 you're using might be an older version.

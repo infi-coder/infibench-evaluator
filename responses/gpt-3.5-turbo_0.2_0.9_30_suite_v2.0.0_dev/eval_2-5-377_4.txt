@@ -1,0 +1,28 @@
+The issue with your code is that you are using `LocalDate` instead of `LocalDateTime`. `LocalDate` only represents a date without time information, while `LocalDateTime` represents a date and time.
+
+Here is the updated code that should work for you:
+
+```java
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
+
+public class Main {
+  public static void main(String[] args) {
+    System.out.println(generateRandomDateAndTimeInString());
+  }
+
+  public static String generateRandomDateAndTimeInString() {
+    LocalDateTime dateTime = LocalDateTime.now().minusDays(new Random().nextInt(365 * 70));
+    System.out.println("date and time :: " + dateTime.toString());
+    return formatDate(dateTime) ;
+  }
+
+  public static String formatDate(LocalDateTime dateTime){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    return dateTime.format(formatter);
+  }
+}
+```
+
+This code uses `LocalDateTime` instead of `LocalDate`, and also uses `DateTimeFormatter` instead of `DateFormat` to format the date and time. The output should now include the time as well.

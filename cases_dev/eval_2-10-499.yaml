@@ -1,0 +1,29 @@
+# Corresponding to post https://stackoverflow.com/questions/57962168
+id: 2-10-499
+prompt_path: prompt_2-10-499.txt
+type: knowledge question-answering
+lang: rust
+
+grading:
+  max_score: 3.0
+  min_score: 0.0
+  keywords:
+    - content: 
+        and:
+          - content: 
+              or:
+                - "never"
+                - content: 
+                    content: "No[^A-Za-z0-9_]"
+                    regex: true
+                    to_lower: true
+          - content: 
+              content: "NULL"
+              to_lower: true
+      weight: 1.0
+    - content: 
+        content: "Option"
+        to_lower: true
+    - content: 
+        content: "return result"
+        to_lower: true

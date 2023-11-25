@@ -1,0 +1,14 @@
+The error you're encountering is due to the fact that you're trying to access platform-specific code before the `WidgetsFlutterBinding` is initialized. This is necessary because it connects the Flutter framework to the Flutter engine.
+
+You can fix this by ensuring that `WidgetsFlutterBinding` is initialized before calling `getApplicationDocumentsDirectory()`. Here's how you can modify your code:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Add this line
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+
+The `WidgetsFlutterBinding.ensureInitialized()` method initializes the binding to the framework. It's typically called in the `main()` function and must be called before any interaction with the framework occurs.

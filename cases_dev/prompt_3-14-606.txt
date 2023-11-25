@@ -1,0 +1,6 @@
+How to enable developer mode on iOS 16.0?
+
+I got an alert when tried to open one provisioned testing build on iOS 16.0.
+Alert says -
+> "Your App" required Developer Mode to run. Until Developer Mode has been
+enabled this app will not be available for use.

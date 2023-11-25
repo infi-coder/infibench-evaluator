@@ -1,0 +1,21 @@
+The `f` in `print(f"...")` is used to denote a formatted string literal, also known as an f-string. This was introduced in Python 3.6.
+
+F-strings provide a concise and convenient way to embed expressions inside string literals for formatting. The expressions will be replaced by their values when the string is evaluated.
+
+In your example:
+
+```python
+print(f"Input directory: {args.input_directory}")
+print(f"Output directory: {args.output_directory}")
+```
+
+The `{args.input_directory}` and `{args.output_directory}` inside the f-string are expressions that get evaluated and their results are inserted into the string. 
+
+So if `args.input_directory` is `/home/user/input` and `args.output_directory` is `/home/user/output`, the printed strings will be:
+
+```
+Input directory: /home/user/input
+Output directory: /home/user/output
+```
+
+This is a very handy feature in Python for string formatting.

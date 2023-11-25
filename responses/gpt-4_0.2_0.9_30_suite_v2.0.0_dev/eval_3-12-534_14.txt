@@ -1,0 +1,35 @@
+You can use the `MultiProvider` widget to provide multiple providers to a single widget. Here's an example:
+
+```dart
+MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (_) => Provider1()),
+    ChangeNotifierProvider(create: (_) => Provider2()),
+    ChangeNotifierProvider(create: (_) => Provider3()),
+    ChangeNotifierProvider(create: (_) => Provider4()),
+  ],
+  child: CurvedNavigationBar(
+    // Your code here
+  ),
+)
+```
+
+Then, you can use the `Consumer` widget to listen to changes in your providers. If you want to listen to all of them at once, you can nest `Consumer` widgets like this:
+
+```dart
+Consumer<Provider1>(
+  builder: (context, provider1, child) => 
+    Consumer<Provider2>(
+      builder: (context, provider2, child) => 
+        Consumer<Provider3>(
+          builder: (context, provider3, child) => 
+            Consumer<Provider4>(
+              builder: (context, provider4, child) => 
+                // Your widget here
+            ),
+        ),
+    ),
+)
+```
+
+In the builder function, you can use the providers to build your widget based on their current state.

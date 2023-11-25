@@ -1,0 +1,13 @@
+Sure, you're getting this error because you're returning an object instead of a class. Here's how you can fix it:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {someMethod: () => {}};
+  });
+});
+```
+
+In this code, `jest.fn().mockImplementation()` is used to mock the class constructor. It returns a new object every time it's called (which is what a constructor does).

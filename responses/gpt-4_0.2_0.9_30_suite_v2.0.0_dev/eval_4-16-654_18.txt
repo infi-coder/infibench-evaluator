@@ -1,0 +1,20 @@
+You can add your SSH key to Git Bash using the `ssh-add` command. Here are the steps:
+
+1. Open Git Bash.
+
+2. Navigate to the directory where your private key is located. In your case, it would be `D:/keys folder`.
+
+   ```bash
+   cd /d/keys\ folder
+   ```
+
+3. Add your private key to the ssh-agent. Replace `id_rsa` with your private key file name.
+
+   ```bash
+   eval $(ssh-agent -s)
+   ssh-add ./id_rsa
+   ```
+
+Please note that `ssh-add` command adds private key identities to the authentication agent. You need to replace `id_rsa` with your actual private key file name.
+
+Also, if your key was generated with PuttyGen, it might not be in the correct format for `ssh-add`. You might need to convert it to the OpenSSH format using PuttyGen before you can add it to the ssh-agent.

@@ -1,0 +1,16 @@
+The issue seems to be with the `uri` you are using in your `ApolloClient`. The `uri` you are using (`https://48p1r2roz4.sse.codesandbox.io`) is a sample GraphQL server provided by Apollo, and it may not be working properly at the moment.
+
+You should replace the `uri` with the endpoint of your own GraphQL server. If you don't have a GraphQL server, you can create one using services like Apollo Server, Hasura, or AWS AppSync.
+
+Once you have your own GraphQL server, replace the `uri` in your `ApolloClient` with the endpoint of your server, like this:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'https://your-graphql-server-endpoint.com/graphql',
+    cache: new InMemoryCache(),
+});
+```
+
+Make sure to replace `https://your-graphql-server-endpoint.com/graphql` with the actual endpoint of your GraphQL server.
+
+Also, make sure that your GraphQL server is properly configured and running. You can test your GraphQL server using tools like GraphiQL or GraphQL Playground.

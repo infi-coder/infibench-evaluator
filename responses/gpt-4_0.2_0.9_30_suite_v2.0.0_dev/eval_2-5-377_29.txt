@@ -1,0 +1,31 @@
+The issue you're experiencing is because you're trying to format a `LocalDate` object using `SimpleDateFormat` which expects a `Date` object. 
+
+To solve this, you should use `LocalDateTime` instead of `LocalDate` to include the time as well. Then, you can use `DateTimeFormatter` to format your `LocalDateTime` object.
+
+Here is the corrected code:
+
+```java
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.Period;
+import java.util.Random;
+
+public class Main {
+  public static void main(String[] args) {
+    System.out.println(generateRandomDateAndTimeInString());
+  }
+
+  public static String generateRandomDateAndTimeInString() {
+    LocalDateTime dateTime = LocalDateTime.now().minus(Period.ofDays((new Random().nextInt(365 * 70))));
+    System.out.println("date and time :: " + dateTime.toString());
+    return formatDate(dateTime);
+  }
+
+  public static String formatDate(LocalDateTime dateTime){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    return dateTime.format(formatter);
+  }
+}
+```
+
+Please note that the `'Z'` in the pattern stands for the Zulu time zone (which is equivalent to UTC). If you want to convert the time to UTC before formatting, you should use `ZonedDateTime` or `OffsetDateTime` instead of `LocalDateTime`.

@@ -1,0 +1,29 @@
+Here is a Python function that generates a 16 character code that includes the substring "NAA3U" and exactly 3 digits. The function uses the `random` module to generate random characters and digits.
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the characters and digits
+    chars = string.ascii_letters
+    digits = string.digits
+
+    # Generate a random string of 11 characters (16 - length of "NAA3U")
+    random_chars = ''.join(random.choice(chars) for _ in range(8))  # 8 random letters
+    random_digits = ''.join(random.choice(digits) for _ in range(3))  # 3 random digits
+
+    # Combine the random characters, "NAA3U", and random digits
+    code = random_chars + "NAA3U" + random_digits
+
+    # Shuffle the characters in the code
+    code = list(code)
+    random.shuffle(code)
+    code = ''.join(code)
+
+    return code
+```
+
+This function first generates a random string of 11 characters (16 - length of "NAA3U") that includes 8 random letters and 3 random digits. Then, it combines these random characters with "NAA3U". Finally, it shuffles the characters in the code to ensure randomness.
+
+Please note that the substring "NAA3U" may not always be contiguous in the final code due to the shuffling. If you want "NAA3U" to always be contiguous, you would need to insert it at a random position in the string of 11 random characters instead of shuffling all characters.

@@ -1,0 +1,25 @@
+One solution to this problem is to use multiprocessing instead of threading. Multiprocessing allows you to run multiple processes simultaneously, which can be useful for running two infinite while loops at the same time.
+
+Here's an example of how you can modify your code to use multiprocessing:
+
+```python
+import multiprocessing
+
+if __name__ == "__main__":
+    database = db.dataBase()
+    homepage = hp.homepage(database)
+    dataMiningScript = fd.financeData(database, 1600)
+
+    app_process = multiprocessing.Process(target=app.run_server, kwargs={"debug": True})
+    app_process.start()
+
+    while True:
+        # Run your data mining script here
+        dataMiningScript.run()
+
+    app_process.join()
+```
+
+In this example, we create a new process for running the Dash app using `multiprocessing.Process`. We then start the process using `app_process.start()`. After that, we run an infinite loop to continuously run your data mining script. Finally, we join the app process using `app_process.join()` to ensure that it is properly terminated when the script exits.
+
+Note that you may need to modify your data mining script to run in a loop and periodically sleep to avoid consuming too much CPU time.

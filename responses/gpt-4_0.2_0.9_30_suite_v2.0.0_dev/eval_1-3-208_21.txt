@@ -1,0 +1,13 @@
+Sure, I understand your requirement. You want to check if all characters in the input string are either a letter (a-z or A-Z) or a digit (0-9). The issue with your current code is that it checks if the entire input string is found in the `correct` string, not if each individual character is.
+
+Here is the corrected function:
+
+```python
+import string
+
+def checkString(text):
+    correct = set(string.ascii_letters + string.digits)
+    return set(text).issubset(correct)
+```
+
+This function works by converting both the `text` and `correct` strings to sets of characters, and then checks if all characters in `text` are also in `correct` using the `issubset` method. This will return `True` if all characters in `text` are letters or digits, and `False` otherwise.

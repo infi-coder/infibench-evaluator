@@ -1,0 +1,22 @@
+In Tailwind CSS, you don't directly select elements like you do in traditional CSS. Instead, you apply utility classes directly to the elements you want to style. 
+
+So, if you want to style direct children of a div with class "section", you would need to apply the classes directly to those child divs in your HTML.
+
+Here's an example:
+
+```html
+<div class="section">
+  <div class="bg-blue-500 text-white"> <!-- Tailwind CSS classes applied here -->
+    <!-- Content -->
+  </div>
+  <div class="p-4"> <!-- Tailwind CSS classes applied here -->
+    <!-- Content -->
+  </div>
+</div>
+```
+
+In this example, `bg-blue-500` and `text-white` are Tailwind CSS utility classes applied to the first child div, and `p-4` is applied to the second child div.
+
+If you want to apply the same styles to all direct children of `.section`, you would have to apply the same classes to each child div individually. 
+
+If you need to apply styles based on structure (like selecting only direct children), you may need to use traditional CSS in addition to Tailwind. Tailwind doesn't replace the need for traditional CSS, but rather complements it.

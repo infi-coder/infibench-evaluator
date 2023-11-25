@@ -1,0 +1,28 @@
+The Maven Wrapper is a shell script called `mvnw` (or `mvnw.cmd` on Windows) that automatically detects and downloads the necessary Maven version to your project. It also allows you to specify the Java version in the `maven-wrapper.properties` file.
+
+However, the Maven Wrapper doesn't manage the Java version. It's the responsibility of your environment to have the correct Java version installed and configured. 
+
+If you're using a CI/CD tool like Jenkins or GitHub Actions, they usually provide a way to specify the Java version. For example, in GitHub Actions, you can use the `setup-java` action:
+
+```yaml
+steps:
+- uses: actions/checkout@v2
+- name: Set up JDK 11
+  uses: actions/setup-java@v2
+  with:
+    java-version: '11'
+    distribution: 'adopt'
+- name: Build with Maven
+  run: ./mvnw clean install
+```
+
+If you're running the Maven Wrapper on your local machine, you need to ensure that the `JAVA_HOME` environment variable points to the correct Java version. You can do this on a per-session basis in your terminal:
+
+```bash
+export JAVA_HOME=/path/to/your/jdk
+./mvnw clean install
+```
+
+Or you can set `JAVA_HOME` permanently in your shell profile file (like `~/.bashrc` or `~/.zshrc`).
+
+If you need to switch between different Java versions frequently, you might find SDKMAN! useful. It's a tool that allows you to manage multiple versions of various software development kits, including Java and Maven. You can install it from https://sdkman.io/.

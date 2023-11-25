@@ -1,0 +1,40 @@
+You can use Python's `multiprocessing` module to run these two infinite loops concurrently. Here's how you can modify your code to use `multiprocessing`:
+
+```python
+import multiprocessing
+from dash import Dash
+import dash_bootstrap_components as dbc
+import db
+import hp
+import fd
+
+def run_dash():
+    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database=db.dataBase()
+    homepage=hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+    app.run_server(debug=True)
+
+def run_data_mining():
+    database=db.dataBase()
+    dataMiningScript= fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    # Create processes
+    p1 = multiprocessing.Process(target=run_dash)
+    p2 = multiprocessing.Process(target=run_data_mining)
+
+    # Start processes
+    p1.start()
+    p2.start()
+
+    # Join processes
+    p1.join()
+    p2.join()
+```
+
+In this code, `run_dash` and `run_data_mining` are two separate functions that will be run in separate processes. The `multiprocessing.Process` class is used to create a new process for each function, and the `start` method is used to start each process. The `join` method is used to ensure that the main process waits for both of these processes to complete before it exits.
+
+Please note that `multiprocessing` creates separate processes, not threads. This means that each process will have its own Python interpreter and memory space. Therefore, if you need to share data between these processes, you'll need to use a multiprocessing-safe data structure, such as a `multiprocessing.Queue` or `multiprocessing.Value`. In your case, you might need to ensure that your `database` object can be safely shared between processes.

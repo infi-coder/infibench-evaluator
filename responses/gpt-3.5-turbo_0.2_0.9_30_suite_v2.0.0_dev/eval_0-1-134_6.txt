@@ -1,0 +1,13 @@
+It sounds like you might be trying to use a CSS preprocessor like Sass or Less. These preprocessors allow you to write CSS in a more efficient and organized way, using variables, mixins, and other features that are not available in regular CSS.
+
+If you're using a preprocessor, you'll need to compile your code into regular CSS before it can be used in a web page. This can be done using a command-line tool or a build system like Gulp or Grunt.
+
+If you're not using a preprocessor and you're still having trouble with the `.classname` syntax, make sure you're using it correctly. In CSS, the `.` character is used to select elements by class name. For example, if you have a `div` element with a class of `my-class`, you can style it like this:
+
+```
+.my-class {
+  background-color: red;
+}
+```
+
+This will set the background color of all elements with the class `my-class` to red. Make sure you're using the correct class name and that it's spelled correctly.

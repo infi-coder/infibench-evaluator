@@ -1,0 +1,11 @@
+In TypeScript, you can define the type of an object directly in the function parameter like this:
+
+```typescript
+bagTotal = (products: {name: string, price: number, description: string}[]) => {
+ // function does stuff
+}
+```
+
+The `{name: string, price: number, description: string}[]` part is defining an array of objects, where each object has a `name` property of type `string`, a `price` property of type `number`, and a `description` property of type `string`.
+
+This way, TypeScript will enforce that the `products` parameter is an array of objects with the specified properties and types.

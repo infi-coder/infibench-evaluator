@@ -1,0 +1,38 @@
+The code you've posted is correct, but the problem might be that you're trying to observe the change in `ContentView` itself. `@Binding` doesn't cause the view to refresh, it just provides a reference to a value that's owned by another view.
+
+In your case, `ContentView` doesn't own `isSelected`, it's just a reference to `selected` owned by `ContentView_Previews`. So, when `isSelected` changes, `ContentView` doesn't know it needs to redraw itself.
+
+If you want to observe the change in `isSelected` and redraw the view, you should use `@State` instead of `@Binding`. But remember, `@State` should be used for simple properties that store temporary, view-specific data, and the view should be the source of truth for that data.
+
+If you want to use `@Binding`, you should observe the change in the parent view that owns the data. In your case, you should observe the change in `ContentView_Previews`.
+
+Here's an example:
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    @Binding var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    @State static var selected: Bool = false
+
+    static var previews: some View {
+        ContentView(isSelected: $selected)
+            .onReceive([self.selected].publisher.first()) { _ in
+                print("Value changed")
+            }
+    }
+}
+```
+
+In this example, `ContentView_Previews` observes the change in `selected` and prints "Value changed" when it changes.

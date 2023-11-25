@@ -1,0 +1,41 @@
+It seems like the go module system is unable to find the required module in the module cache or in the remote repository. Here are some steps you can take to debug this issue:
+
+1. Check if the required module is present in the module cache on computer B. You can find the module cache location by running the following command:
+
+   ```bash
+   go env GOMODCACHE
+   ```
+
+   If the module is not present in the cache, try running the following command to download the module:
+
+   ```bash
+   go get github.ibm.com/kms/key-protect-client@v0.1.5
+   ```
+
+   This will download the module and its dependencies to the module cache.
+
+2. If the module is present in the cache, check if the module version is correct. You can do this by running the following command:
+
+   ```bash
+   go list -m github.ibm.com/kms/key-protect-client
+   ```
+
+   This will show the version of the module that is currently in use. If the version is incorrect, you can try updating the module version in your go.mod file and running `go mod tidy` to update the module cache.
+
+3. If the module is not present in the cache and the `go get` command fails to download it, check if you have the necessary permissions to access the module. You can try running the following command to authenticate with your Github account:
+
+   ```bash
+   go env -w GOPRIVATE=github.ibm.com
+   ```
+
+   This will tell the go module system to treat all modules in the `github.ibm.com` domain as private and use your Github credentials to authenticate.
+
+4. If none of the above steps work, you can try running the `go build` command with the `-x` flag to get more verbose output. This will show you the exact commands that the go module system is running to download and build the module.
+
+   ```bash
+   go build -x
+   ```
+
+   This can help you identify any errors or issues that are preventing the module from being downloaded or built.
+
+I hope this helps you debug the issue and get your program running on computer B.

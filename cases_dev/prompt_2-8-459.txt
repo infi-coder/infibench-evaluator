@@ -1,0 +1,13 @@
+I developed a repo on computer A and created a go.mod/go.sum that I checked in.
+
+I pull that repo with the go.mod/go.sum files on computer B, but when I try to build the program, the module constraints can't be satisfied.
+
+```bash
+$ go build
+go: finding github.ibm.com/kms/key-protect-client v0.1.5
+go: finding golang.org/x/tools v0.0.0-20180221164845-07fd8470d635
+go: github.ibm.com/kms/key-protect-client@v0.1.5: unknown revision v0.1.5
+go: error loading module requirements
+```
+The repo that is failing is a private repo, and for some reason it doesn't get downloaded to the module cache. On another computer, the dependencies are downloaded and the build succeeds. I am building another private repo in that same domain, so I know that my github credentials give me access to these repos. But for some reason, the go module system can't get to the dependent repo.
+I cannot find more information how to debug this.

@@ -1,0 +1,44 @@
+You can use Python's multiprocessing module to run these two tasks concurrently. Here's a simple example of how you can do it:
+
+```python
+from multiprocessing import Process
+import dash
+import db
+import hp
+import fd
+import dbc
+
+def run_dash():
+    app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    database=db.dataBase()
+    homepage=hp.homepage(database)
+    homepage.timeUpdateCallback(app)
+    homepage.gaugeRefreshCallback(app)
+    app.layout = homepage.layoutMaker()
+
+    if __name__ == "__main__":
+        app.run_server(debug=True)
+
+def run_data_mining():
+    database=db.dataBase()
+    dataMiningScript= fd.financeData(database,1600)
+
+if __name__ == "__main__":
+    # Create two processes
+    p1 = Process(target=run_dash)
+    p2 = Process(target=run_data_mining)
+
+    # Start both processes
+    p1.start()
+    p2.start()
+
+    # Wait for both processes to finish
+    p1.join()
+    p2.join()
+```
+
+In this example, `run_dash` and `run_data_mining` are two separate functions that are run in their own processes. The `multiprocessing.Process` class is used to create a new process for each function, and the `start` method is used to start each process. The `join` method is used to wait for each process to finish before the main program exits.
+
+Please note that you need to make sure that both scripts can run independently and do not rely on shared state, as multiprocessing does not share memory. If you need to share state between processes, you might need to use a multiprocessing-safe data structure like a `multiprocessing.Queue` or `multiprocessing.Manager`.
+
+Also, be aware that the Dash server is running in debug mode, which means it will restart every time a file changes. If your data mining script is changing files that the Dash app is using, this could cause the Dash app to restart frequently. You might want to turn off debug mode in production.

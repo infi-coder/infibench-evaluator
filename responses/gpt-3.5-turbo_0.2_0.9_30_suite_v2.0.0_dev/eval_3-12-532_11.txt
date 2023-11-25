@@ -1,0 +1,33 @@
+The `FormatException` is thrown when the JSON string returned by the PHP file is not in the correct format. To solve this issue, you can try the following steps:
+
+1. Check the response from the PHP file using a tool like Postman or Insomnia to ensure that it is returning valid JSON.
+
+2. Make sure that the response from the PHP file is not empty. If it is empty, then the `json.decode()` method will throw a `FormatException`.
+
+3. If the response is valid JSON and not empty, then try using the `try-catch` block to catch the `FormatException` and handle it appropriately. For example, you can display an error message to the user or log the error for debugging purposes.
+
+Here is an updated version of your code with the `try-catch` block:
+
+```dart
+Future<String> iniciarSesion() async{
+  var usuario = textUsuario.text;
+  var password = textPassword.text;
+  var nombreUsuario;
+  var url ="http://192.168.1.37/usuario.php";
+
+  //Metodo post
+  var response = await http.post(
+      url,
+      headers:{ "Accept": "application/json" } ,
+      body: { "usuario": '$usuario',"password": '$password'},
+      encoding: Encoding.getByName("utf-8")
+  );
+  try {
+    List data = json.decode(response.body);
+    // Handle the decoded data here
+  } catch (e) {
+    print('Error decoding JSON: $e');
+    // Handle the error here
+  }
+}
+```

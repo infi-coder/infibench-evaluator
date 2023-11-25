@@ -1,0 +1,10 @@
+The error message indicates that Jackson, the JSON serialization library used by Spring, cannot serialize the `ByteArrayInputStream` class, which is part of the `MultipartFile` object. To solve this, you can configure the `RestTemplate` to use a different message converter that can handle multipart requests.
+
+Here's an example of how to configure the `RestTemplate` to use the `FormHttpMessageConverter` instead of the default `MappingJackson2HttpMessageConverter`:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
+```
+
+This should allow you to send the `MultipartFile` object as part of a multipart request without encountering the serialization error.

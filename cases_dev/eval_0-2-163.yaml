@@ -1,0 +1,71 @@
+# Corresponding to post https://stackoverflow.com/questions/57087145
+id: 0-2-163
+# for case self identificaton
+
+prompt_path: prompt_0-2-163.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: html
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  blank_filling:
+    template: >
+      ```javascript
+      document.getElementById(__blank__).onclick = function() {
+        let allAreFilled = true;
+        document.getElementById("myForm").__blank__(__blank__).forEach(function(i) {
+          if (!allAreFilled) return;
+          if (i.type === "radio") {
+            let radioValueCheck = false;
+            document.getElementById("myForm").__blank__(`[__blank__=${i.name}]`).forEach(function(r) {
+              if (r.checked) radioValueCheck = true;
+            })
+            allAreFilled = radioValueCheck;
+            return;
+          }
+          if (!i.value) { allAreFilled = false;  return; }
+        })
+        if (!allAreFilled) {
+          alert('Fill all the fields');
+        }
+      };
+      ```
+    
+    blank_str: "__blank__"
+    # [optional] how blanks are represented in the template
+
+    escape: " '\"\n`"
+    # [optional] list of characters to be pre-filtered for model responses for blanks, default: " '"·"
+
+    targets: 
+        # list gold answers for blanks sequentially
+        - check
+        - querySelectorAll
+        - "[required]"
+        - querySelectorAll
+        - name
+        # - ...
+        # - content: ...
+        #   weight: 1.0
+        #   # [optional] customized blank weight 
+        #   to_lower: false
+        #   # [optional] whether to be case-sensitive (default is sensitive, set to true will apply lower() then match)

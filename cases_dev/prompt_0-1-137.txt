@@ -1,0 +1,30 @@
+I want to change bootstrap's default theme-colors with SASS, the problem is when I change a color and compile, it gives me invalid CSS value error.
+
+I'm using bootstrap 5.1.0 and sass 3.
+
+This is my scss file:
+
+```scss
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+"primary": //some color here,
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+This is the error I get in terminal:
+
+```text
+PS F:\Coding\projects\sepehr\client\src\styles> sass style.scss custom.css
+Error: ("primary": #0d6efd, "secondary": #6c757d, "success": #198754, "info": #0dcaf0, 
+"warning": #ffc107, "danger": #dc3545, "light": #f8f9fa, "dark": #212529) isn't a valid 
+CSS value.
+   ╷
+94 │ $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value") !default;
+   │                             ^^^^^^^^^^^^^
+   ╵
+```
+
+Could you tell me how to fix it? Please provide me a revised code if possible.

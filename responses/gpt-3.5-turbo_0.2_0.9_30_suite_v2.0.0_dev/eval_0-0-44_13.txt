@@ -1,0 +1,33 @@
+To create an index on a property in Mongoose schema using Nest.js, you can use the `@Schema()` decorator and pass an options object to it with the `timestamps` and `indexes` properties. The `indexes` property should be an array of objects, where each object represents an index to be created. Here's an example:
+
+```javascript
+@Schema({
+  timestamps: true,
+  indexes: [{ name: 1 }]
+})
+export class MySchema extends Document {
+  @Prop()
+  name: string;
+
+  @Prop()
+  age: number;
+}
+```
+
+In this example, an index is created on the `name` property with the ascending order. You can also create a compound index by specifying multiple properties in the object:
+
+```javascript
+@Schema({
+  timestamps: true,
+  indexes: [{ name: 1, age: -1 }]
+})
+export class MySchema extends Document {
+  @Prop()
+  name: string;
+
+  @Prop()
+  age: number;
+}
+```
+
+In this example, a compound index is created on the `name` and `age` properties, with the `name` property in ascending order and the `age` property in descending order.

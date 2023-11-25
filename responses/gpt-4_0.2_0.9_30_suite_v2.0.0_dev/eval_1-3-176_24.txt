@@ -1,0 +1,25 @@
+The error message indicates that the Pillow library is trying to compile from source and is missing the zlib dependency. However, the Pillow library should have precompiled binaries available for Python on Windows.
+
+Here are a few things you can try:
+
+1. **Upgrade pip, setuptools, and wheel**: Sometimes, these packages become outdated and cause issues when trying to install other packages. You can upgrade them using the following commands:
+
+    ```bash
+    pip install --upgrade pip setuptools wheel
+    ```
+
+2. **Install a precompiled binary**: If the above step doesn't work, you can try installing a precompiled binary of Pillow. The Unofficial Windows Binaries for Python Extension Packages provides precompiled binaries for many Python packages. You can download the appropriate `.whl` file for your Python version and architecture from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pillow) and then install it using pip:
+
+    ```bash
+    pip install /path/to/your/downloaded/file.whl
+    ```
+
+3. **Install an older version of Pillow**: If none of the above solutions work, you can try installing an older version of Pillow that might be more compatible with your system. For example, to install Pillow version 5.4.1, you can use the following command:
+
+    ```bash
+    pip install Pillow==5.4.1
+    ```
+
+4. **Check your Python version**: The error message also mentions that Pillow does not yet support Python 3.8. If you're using Python 3.8, you might consider downgrading to an earlier version of Python.
+
+Remember to replace `/path/to/your/downloaded/file.whl` with the actual path where you downloaded the `.whl` file.

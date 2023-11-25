@@ -1,0 +1,7 @@
+The error message suggests that there is an issue with the quotes in the command. You can try escaping the quotes in the command by adding a backslash before each quote. Here's an example of how you can modify the command:
+
+```
+cd C:\projects\open; "JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5" cmd /c "\"\"C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd\" -DskipTests=true -Dmaven.ext.class.path=\\\"C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar\\\" -Dfile.encoding=UTF-8 clean install\""
+```
+
+In this modified command, the quotes around the `maven.ext.class.path` parameter are escaped with a backslash. This should resolve the issue with the embedded quotes and allow the command to run successfully.

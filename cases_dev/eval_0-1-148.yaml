@@ -1,0 +1,35 @@
+# Corresponding to post https://stackoverflow.com/questions/61455473
+id: 0-1-148
+# for case self identificaton
+
+prompt_path: prompt_0-1-148.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: css
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  keywords:
+    - last:border-b-0
+    - content:
+        content: '<li([\s\S]*)v-for="\(item, index\) in items"([\s\S]*):key="`item-\$\{index\}`"'
+        cond: 'context[-1].startswith("match")'
+        regex: true

@@ -1,0 +1,34 @@
+You can use the `group_split` function from `dplyr` to split the tibble into a list of tibbles based on the unique values of `list_names`. Then, you can use `map` function from `purrr` to extract the `list_values` column from each tibble and convert it to a character vector. Finally, you can use `set_names` function from `purrr` to set the names of the list elements to the unique values of `list_names`. Here's the code:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>%
+    group_split(list_names) %>%
+    map(~ pull(.x, list_values)) %>%
+    set_names(unique(my_data$list_names))
+}
+```
+
+You can test the function with the provided `my_data` tibble:
+
+```r
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+                  list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+```
+
+This should output:
+
+```r
+$Ford
+[1] "Ranger"   "F150"     "Explorer"
+
+$Chevy
+[1] "Equinox"
+
+$Dodge
+[1] "Caravan" "Ram"
+```

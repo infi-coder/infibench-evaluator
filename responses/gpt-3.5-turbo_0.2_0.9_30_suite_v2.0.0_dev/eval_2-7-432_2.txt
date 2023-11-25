@@ -1,0 +1,21 @@
+The error message "419 Page Expired" occurs when the CSRF token expires. This is a security feature in Laravel to prevent cross-site request forgery attacks. 
+
+To avoid this error message, you can add a check in your logout function to see if the user is already logged out. If the user is already logged out, then you can redirect them to the login page instead of trying to logout again.
+
+Here's an example of how you can modify the default logout function in Laravel:
+
+```php
+public function logout(Request $request)
+{
+    if (Auth::check()) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+    }
+    return redirect('/login');
+}
+```
+
+This code checks if the user is already logged out using the `Auth::check()` function. If the user is logged in, it logs them out and invalidates the session. If the user is already logged out, it simply redirects them to the login page. 
+
+By doing this, you can avoid the "419 Page Expired" error message and ensure that the user is always redirected to the login page after clicking the logout button.

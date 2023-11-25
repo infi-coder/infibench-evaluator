@@ -1,0 +1,15 @@
+Here is the implementation of the function `my_2d_array`:
+
+```c++
+std::vector<std::string> my_2d_array(int N, int M) {
+    std::vector<std::string> A(N*M);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            A[i*M+j] = std::to_string(i) + std::to_string(j);
+        }
+    }
+    return A;
+}
+```
+
+This function creates a 1D vector `A` of size `N*M` and fills it with strings representing the positions of the elements in a 2D array of size `N*M`. The position of each element is represented as a string of two digits, where the first digit is the row index and the second digit is the column index. The function returns the filled vector `A`.

@@ -1,0 +1,19 @@
+The error message indicates that when creating a PendingIntent, you need to specify one of the flags FLAG_IMMUTABLE or FLAG_MUTABLE. As the error message suggests, you can use FLAG_IMMUTABLE unless you need the PendingIntent to be mutable for some specific functionality.
+
+In your case, you can modify the code that creates the PendingIntent to include the FLAG_IMMUTABLE flag. You can do this by replacing the line:
+
+```
+mbrIntent = PendingIntent.getBroadcast(context,
+    0/* requestCode, ignored */, mediaButtonIntent,
+    PENDING_INTENT_FLAG_MUTABLE);
+```
+
+with:
+
+```
+mbrIntent = PendingIntent.getBroadcast(context,
+    0/* requestCode, ignored */, mediaButtonIntent,
+    PendingIntent.FLAG_IMMUTABLE);
+```
+
+This should resolve the issue and allow your application to target Android SDK 31.

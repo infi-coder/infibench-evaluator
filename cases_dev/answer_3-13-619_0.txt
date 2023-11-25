@@ -1,0 +1,32 @@
+You have not misunderstood anything. A View using a @Binding will update when the underlying @State change, but the @State must be defined within the view hierarchy. (Else you could bind to a publisher)
+
+Below, I have changed the name of your ContentView to OriginalContentView and then I have defined the @State in the new ContentView that contains your original content view.
+
+import SwiftUI
+
+struct OriginalContentView: View {
+    @Binding var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+
+struct ContentView: View {
+    @State private var selected = false
+
+    var body: some View {
+       OriginalContentView(isSelected: $selected)
+    }
+}
+
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }

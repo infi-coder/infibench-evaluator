@@ -1,0 +1,39 @@
+The issue you're facing might be due to a variety of reasons. Here are a few things you can check:
+
+1. **Network Connection**: Ensure that your device/emulator has a proper internet connection. The Apollo Client fetches data from the server, so a stable internet connection is required.
+
+2. **Server Status**: Check if the server at 'https://48p1r2roz4.sse.codesandbox.io' is up and running. You can use tools like Postman or GraphQL Playground to test the server.
+
+3. **CORS Policy**: If you're running the server locally, make sure it's configured to allow requests from the client's origin. This is a common issue that can cause requests to hang or fail.
+
+4. **Query**: Ensure that the query you're sending is correct. In your case, the query seems fine if the server is set up to handle it.
+
+5. **Apollo Client Version**: There might be compatibility issues with the version of Apollo Client you're using. Try downgrading or upgrading the version.
+
+6. **React Native Version**: Ensure that your React Native version is compatible with the Apollo Client version you're using.
+
+If none of the above solutions work, you can try to debug the issue by logging the error message. Modify your code as follows:
+
+```javascript
+const TestScreen = () => {
+    const { loading, error, data } = useQuery(EXCHANGE_RATES);
+
+    console.log(loading, error, data); 
+
+    if (loading) return <Text>Loading...</Text>;
+    if (error) {
+        console.log(error.message);
+        return <Text>Error :(</Text>;
+    }
+
+    return data.rates.map(({ currency, rate }) => (
+        <View key={currency}>
+            <Text>
+                {currency}: {rate}
+            </Text>
+        </View>
+    ));
+};
+```
+
+This will print the error message to the console, which can provide more insight into what's going wrong.

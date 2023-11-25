@@ -1,0 +1,61 @@
+The `ext-zip` package is not a regular package that can be installed via Composer. It is actually a PHP extension that needs to be installed on your server or local machine.
+
+To install the `ext-zip` extension, you need to follow these steps:
+
+1. Find out which version of PHP you are using. You can do this by running the following command in your terminal:
+
+   ```
+   php -v
+   ```
+
+2. Once you know which version of PHP you are using, you need to install the `zip` extension for that version of PHP. You can do this by running one of the following commands:
+
+   For PHP 7.4:
+
+   ```
+   sudo apt-get install php7.4-zip
+   ```
+
+   For PHP 7.3:
+
+   ```
+   sudo apt-get install php7.3-zip
+   ```
+
+   For PHP 7.2:
+
+   ```
+   sudo apt-get install php7.2-zip
+   ```
+
+   For PHP 7.1:
+
+   ```
+   sudo apt-get install php7.1-zip
+   ```
+
+   For PHP 7.0:
+
+   ```
+   sudo apt-get install php7.0-zip
+   ```
+
+   For PHP 5:
+
+   ```
+   sudo apt-get install php5-zip
+   ```
+
+3. Once the installation is complete, restart your web server or PHP-FPM service:
+
+   ```
+   sudo service apache2 restart
+   ```
+
+   or
+
+   ```
+   sudo service php-fpm restart
+   ```
+
+After completing these steps, you should be able to use the `zip` extension in your PHP code.

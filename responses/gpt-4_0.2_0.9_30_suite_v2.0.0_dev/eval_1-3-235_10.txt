@@ -1,0 +1,11 @@
+The error message indicates that there are some values in the "year" column that are not integers but floating point numbers represented as strings (e.g., '2021.0'). The `int()` function cannot convert these directly to integers. 
+
+You can first convert the column to float using `astype(float)`, then convert the float to int using `astype(int)`. Here is the function:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].astype(float).astype(int)
+    return data_h_df
+```
+
+This function will convert the "year" column to float first, then to int. This should handle the '2021.0' like strings correctly.

@@ -1,0 +1,40 @@
+It seems like the response from the server is not in the expected JSON format, which is causing the `System.Text.Json.JsonException`. 
+
+To troubleshoot this issue, you can try the following steps:
+
+1. Check the response from the server using a tool like Postman or Fiddler. Make sure that the response is in the expected JSON format.
+
+2. If the response is not in the expected format, you may need to modify your API controller to return the data in the correct format.
+
+3. If the response is in the correct format, you can try using a different method to deserialize the JSON. For example, you can try using the `Newtonsoft.Json` library instead of `System.Text.Json`.
+
+Here's an example of how you can modify your code to use `Newtonsoft.Json`:
+
+1. Install the `Microsoft.AspNetCore.Blazor.HttpClient` and `Newtonsoft.Json` packages.
+
+2. Modify your code to use `HttpClient` and `Newtonsoft.Json`:
+
+```c#
+using Newtonsoft.Json;
+
+...
+
+private HttpClient httpClient;
+
+...
+
+protected override async Task OnInitializedAsync()
+{
+    httpClient = new HttpClient();
+
+    var response = await httpClient.GetAsync("/api/Employee/Index");
+
+    if (response.IsSuccessStatusCode)
+    {
+        var json = await response.Content.ReadAsStringAsync();
+        var empList = JsonConvert.DeserializeObject<Employee[]>(json);
+    }
+}
+```
+
+This code uses `HttpClient` to make the request to the server and `JsonConvert.DeserializeObject` to deserialize the JSON response.

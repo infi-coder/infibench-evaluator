@@ -1,0 +1,13 @@
+It seems like the go module system is unable to download the required module from the private repository. Here are some steps you can take to debug this issue:
+
+1. Check if you have the correct permissions to access the private repository. You can try cloning the repository manually using the same credentials that you are using for the go module system.
+
+2. Check if the module is available in the remote repository. You can try accessing the module URL directly in your browser or using `go list -m -versions <module>` command to see if the module is available.
+
+3. Check if the module is cached on your computer. You can try running `go clean -modcache` to clear the module cache and then try building the program again.
+
+4. Check if the module is listed in the `go.mod` file with the correct version. You can try running `go mod tidy` to update the `go.mod` file with the correct dependencies.
+
+5. Check if the module is using the correct proxy settings. You can try setting the `GOPRIVATE` environment variable to include the private repository domain and setting the `GOPROXY` environment variable to the correct proxy URL.
+
+If none of these steps work, you can try enabling verbose output by running `go build -v` to get more information about the error.

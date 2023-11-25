@@ -1,0 +1,17 @@
+The issue might be related to the URL you are trying to access. For Springdoc (OpenAPI 3.0), the Swagger UI is not available at `localhost:8080/swagger-ui.html` as it was with Swagger 2. Instead, you should be able to access it at `localhost:8080/swagger-ui/index.html` or `localhost:8080/swagger-ui/`.
+
+If you still can't access the Swagger UI, you might want to check the following:
+
+1. **Springdoc version**: Make sure you are using the latest version of Springdoc. You can check the latest version on the [Maven Repository](https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui).
+
+2. **Spring Boot version**: Springdoc OpenAPI 3.0 is compatible with Spring Boot 2.x. If you are using Spring Boot 1.x, you might need to upgrade.
+
+3. **Configuration**: Check if you have any configuration that might be interfering with Springdoc. For example, if you have a `@Configuration` class that extends `WebMvcConfigurerAdapter` or implements `WebMvcConfigurer`, make sure you are not overriding any settings that might affect Springdoc.
+
+4. **Security**: If you have Spring Security in your project, make sure you have configured it to allow access to the Swagger UI.
+
+5. **Check logs**: Check your application logs for any errors or warnings related to Springdoc.
+
+6. **Check API Docs**: Try accessing the raw API docs at `localhost:8080/v3/api-docs`. If this works, then the issue is likely with the Swagger UI specifically, not Springdoc as a whole.
+
+If none of these suggestions help, please provide more details about your setup (e.g., Spring Boot version, other dependencies, any relevant configuration) so we can give a more specific answer.

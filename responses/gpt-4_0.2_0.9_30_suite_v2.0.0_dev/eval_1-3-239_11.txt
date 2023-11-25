@@ -1,0 +1,16 @@
+Sure, here is a bash script that will install Python 3.6.5 using Homebrew:
+
+```bash
+#!/bin/bash
+
+# Unlink the current python version
+brew unlink python
+
+# Install Python 3.6.5
+brew install python@3.6
+
+# Link Python 3.6.5
+brew link python@3.6
+```
+
+Please note that this script assumes that you have Homebrew installed and that you have the necessary permissions to install software on your system. If you encounter any issues, you may need to run the commands with `sudo`.

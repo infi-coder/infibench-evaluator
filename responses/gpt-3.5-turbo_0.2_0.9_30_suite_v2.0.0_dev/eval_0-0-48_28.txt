@@ -1,0 +1,11 @@
+Sure! The correct definition of `FruitsAndColors` would be:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit]: number;
+} & {
+  [key in color]: boolean;
+}
+```
+
+This uses the intersection operator (`&`) to combine two separate mapped types, one for the fruits and one for the colors.

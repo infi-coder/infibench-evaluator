@@ -1,0 +1,40 @@
+I have a DataFrame like this:
+
+```python
+import pandas as pd
+
+df=pd.DataFrame()
+df['exchange'] = [1, 1, 1, 2, 3]
+df['type'] = ['deposit', 'deposit', 'trade', 'deposit', 'deposit']
+df['value'] = [10, 10, '30', '40', '100']
+```
+
+which looks like:
+
+```python
+    exchange     type       value
+ 0  1            deposit    10
+ 1  1            deposit    10
+ 2  1            trade      30
+ 3  2            deposit    40
+ 4  3            deposit    100
+```
+
+I want to add the elements in the "value" column where "type"='deposit' based on the "exchange" and forward-fill to get something like this:
+
+```python
+    exchange     type       value   balance
+ 0  1            deposit    10      10
+ 1  1            deposit    10      20
+ 2  1            trade      30      20
+ 3  2            deposit    40      40
+ 4  3            deposit    100     100
+```
+
+where "balance" is the sum of deposits filtered by "exchange".
+
+Is there a way to do this pythonically without for loops/if statements?
+
+Please write a function `aggregation` in Python, which takes a DataFrame variable `df` with the above columns as arguments and returns `df` after achieving the above requirement.
+
+Function signature is: `aggregation(df)`

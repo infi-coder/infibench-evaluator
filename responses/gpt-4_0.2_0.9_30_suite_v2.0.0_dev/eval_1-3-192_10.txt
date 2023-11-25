@@ -1,0 +1,21 @@
+Here is the Python function `to_camel_case` that converts dash/underscore delimited words into camel casing:
+
+```python
+def to_camel_case(text):
+    if not text:
+        return ''
+    else:
+        words = text.replace('-', '_').split('_')
+        return words[0] + ''.join(word.title() for word in words[1:])
+```
+
+This function works by first checking if the input `text` is empty. If it is, it returns an empty string. If it's not, it replaces all dashes with underscores and splits the string into a list of words. It then returns the first word in the list concatenated with the rest of the words, each of which has been converted to title case (i.e., the first letter is capitalized and the rest are lowercase). This results in a camel case string.
+
+Let's test this function with the provided test cases:
+
+```python
+print(to_camel_case(''))  # Should print ''
+print(to_camel_case("the_stealth_warrior"))  # Should print 'theStealthWarrior'
+print(to_camel_case("The-Stealth-Warrior"))  # Should print 'TheStealthWarrior'
+print(to_camel_case("A-B-C"))  # Should print 'ABC'
+```

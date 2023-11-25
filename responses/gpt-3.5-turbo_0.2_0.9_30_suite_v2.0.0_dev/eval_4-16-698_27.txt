@@ -1,0 +1,9 @@
+You can use the following command to restart your current terminal session without closing the window on MacOS:
+
+```
+source ~/.bash_profile
+```
+
+This command will reload your updated `.bash_profile` file and apply any changes you made to it. It's equivalent to logging out and logging back in again, but without actually closing the terminal window.
+
+Alternatively, you can use the `exec zsh` command to switch to the Zsh shell, which is the default shell on MacOS. This will also restart your terminal session without closing the window.

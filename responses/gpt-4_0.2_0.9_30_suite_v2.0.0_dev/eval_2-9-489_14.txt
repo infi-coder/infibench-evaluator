@@ -1,0 +1,49 @@
+The warning message you're seeing is because your Elasticsearch server does not have security features enabled. This means that anyone can access your Elasticsearch server without any authentication.
+
+To fix this, you need to enable the built-in security features of Elasticsearch. Here are the steps to do it:
+
+1. Open your `elasticsearch.yml` file. This file is usually located in the `config` directory of your Elasticsearch installation.
+
+2. Add the following lines to the file:
+
+```yaml
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+```
+
+3. Save the file and restart your Elasticsearch server.
+
+Please note that enabling security will require you to use a username and password when accessing your Elasticsearch server. The default username is `elastic`. To set the password, you can use the `elasticsearch-setup-passwords` command-line tool that comes with Elasticsearch.
+
+Here is how you can use it:
+
+1. Open a terminal.
+
+2. Navigate to your Elasticsearch installation directory.
+
+3. Run the following command:
+
+```bash
+bin/elasticsearch-setup-passwords interactive
+```
+
+4. Follow the prompts to set the passwords for the built-in users.
+
+After doing these steps, your Elasticsearch server should now have security features enabled.
+
+If you're using Searchkick in your Rails app, you'll also need to update your configuration to include the username and password. Here is an example:
+
+```ruby
+Searchkick.client = Elasticsearch::Client.new(
+  hosts: ["localhost:9200"],
+  transport_options: {
+    request: { timeout: 5 }
+  },
+  user: "elastic", # replace with the actual username
+  password: "password" # replace with the actual password
+)
+```
+
+Remember to replace `"elastic"` and `"password"` with the actual username and password you set.
+
+Also, keep in mind that enabling security on your Elasticsearch server is a good practice for production environments. However, for development or testing environments, it might be easier to disable security to avoid dealing with authentication.

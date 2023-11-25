@@ -1,0 +1,17 @@
+The `f` in `print(f"...")` is used for f-string formatting in Python. It's a way to embed expressions inside string literals, using curly braces `{}`. The expressions will be replaced with their values. The letter "f" also indicates that these strings are of type `f-string`.
+
+In your example:
+
+```python
+print(f"Input directory: {args.input_directory}")
+print(f"Output directory: {args.output_directory}")
+```
+
+The `{args.input_directory}` and `{args.output_directory}` inside the f-strings are expressions that get evaluated and their results are inserted into the string. If `args.input_directory` is `/home/user/input` and `args.output_directory` is `/home/user/output`, the output will be:
+
+```
+Input directory: /home/user/input
+Output directory: /home/user/output
+```
+
+This is a very handy feature in Python 3.6 and later, as it makes formatting strings much easier and more readable.

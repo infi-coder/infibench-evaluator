@@ -1,0 +1,9 @@
+Sure! The code you provided is almost correct. The only issue is that you cannot have two index signatures in the same type. To fix this, you can use the union operator `|` to combine the two index signatures into one:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit | color]: key extends fruit ? number : boolean
+}
+```
+
+This code creates an index signature for each key in the union of `fruit` and `color`. If the key extends `fruit`, then the value type is `number`, otherwise it is `boolean`.

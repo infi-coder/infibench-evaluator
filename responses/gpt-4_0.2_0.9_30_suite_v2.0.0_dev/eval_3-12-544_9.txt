@@ -1,0 +1,37 @@
+The error you're encountering is due to the fact that you're trying to use Flutter's engine before it's fully initialized. The `getApplicationDocumentsDirectory()` function relies on Flutter's engine to communicate with the platform, and this engine isn't available until `runApp()` has been called.
+
+To fix this, you should move your asynchronous code into the `initState()` method of your widget. Here's an example:
+
+```dart
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    initHive();
+  }
+
+  Future<void> initHive() async {
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    Hive.init(appDocsDir.path);
+    // Do other initialization tasks here
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      // Your app's code here
+    );
+  }
+}
+```
+
+In this example, the `initHive()` function is called from `initState()`, which is the first method called when the widget is inserted into the tree. This ensures that Hive is initialized as soon as possible, but not before Flutter's engine is ready.

@@ -1,0 +1,17 @@
+Here is a Python function that uses the `re` module to replace underscores and dashes with spaces, then uses the `title` method to capitalize the first letter of each word. The `replace` method is then used to remove the spaces.
+
+```python
+import re
+
+def to_camel_case(text):
+    if not text:
+        return ''
+    else:
+        str1 = re.sub('[_-]', ' ', text).title().replace(' ', '')
+        if text[0].islower():
+            return str1[0].lower() + str1[1:]
+        else:
+            return str1
+```
+
+This function works by first checking if the input string is empty. If it is, it returns an empty string. If it's not, it replaces all underscores and dashes with spaces, capitalizes the first letter of each word, and then removes the spaces. If the first character of the original string was lowercase, it changes the first character of the resulting string to lowercase. Otherwise, it returns the resulting string as is.

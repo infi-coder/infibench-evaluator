@@ -1,0 +1,13 @@
+This error message usually occurs when you are trying to run a binary that is not compatible with your CPU architecture. In this case, it seems like you are trying to run a 32-bit version of pdftk on a 64-bit CPU architecture.
+
+Unfortunately, pdftk is no longer supported on macOS Catalina and later versions because it is a 32-bit application and Catalina only supports 64-bit applications. However, there are some workarounds that you can try:
+
+1. Use an older version of macOS that supports 32-bit applications.
+
+2. Use an alternative PDF tool that is compatible with macOS Catalina, such as PDFsam or Adobe Acrobat.
+
+3. Use a virtual machine or container to run an older version of macOS that supports pdftk.
+
+4. Compile pdftk from source code on your machine. This requires some technical knowledge and may not be feasible for everyone.
+
+I hope this helps!

@@ -1,0 +1,29 @@
+SwiftUI @Binding update doesn't refresh view
+
+I feel like I'm missing something very basic, but this example SwiftUI code will not modify the view (despite the Binding updating) when the button is clicked
+
+```
+swift
+import SwiftUI
+
+struct ContentView: View {
+    @Binding var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    @State static var selected: Bool = false
+
+    static var previews: some View {
+        ContentView(isSelected: $selected)
+    }
+}
+```
+

@@ -1,0 +1,54 @@
+Yes, there are a few more idiomatic ways to express the same logic in Rust. Here are some alternatives:
+
+1. Using `if let` with a condition:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    if let Some(foo_val) = foo {
+        if foo_val < 5 {
+            foo.replace(5);
+        }
+    } else {
+        foo.replace(5);
+    }
+}
+```
+2. Using `match` with a tuple:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    match (foo, foo.map(|foo_val| foo_val < 5)) {
+        (Some(_), Some(true)) | (None, _) => { foo.replace(5); }
+        _ => {}
+    }
+}
+```
+3. Using `if let` with `or_else`:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    if let Some(foo_val) = foo {
+        if foo_val < 5 {
+            foo = Some(5);
+        }
+    } else {
+        foo = Some(5);
+    }
+}
+```
+4. Using `map_or`:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = Some(foo.map_or(5, |foo_val| if foo_val < 5 { 5 } else { foo_val }));
+}
+```
+5. Using `unwrap_or`:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    let foo_val = foo.unwrap_or(5);
+    foo = Some(if foo_val < 5 { 5 } else { foo_val });
+}
+```
+All these alternatives are more idiomatic ways to express the same logic in Rust. They are more concise and easier to read.

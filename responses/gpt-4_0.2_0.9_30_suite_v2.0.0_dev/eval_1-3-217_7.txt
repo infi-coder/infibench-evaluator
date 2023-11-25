@@ -1,0 +1,14 @@
+Here is a function `addTensor` that does what you want. It first unsqueezes `d` to have an extra dimension, then concatenates `inps` and `d` along that new dimension.
+
+```python
+import torch
+
+def addTensor(inps, d):
+    # Unsqueeze d to have an extra dimension
+    d = d.unsqueeze(2)
+    # Concatenate inps and d along the new dimension
+    result = torch.cat((inps, d), dim=2)
+    return result
+```
+
+This function works by first adding an extra dimension to `d` using the `unsqueeze` method. This makes `d` have the same number of dimensions as `inps`. Then it concatenates `inps` and `d` along the new dimension using the `cat` function. The `dim=2` argument specifies that the concatenation should happen along the third dimension (since PyTorch uses 0-based indexing). The result is a new tensor that has the same size as `inps` in the first two dimensions, but has size 2 in the third dimension.

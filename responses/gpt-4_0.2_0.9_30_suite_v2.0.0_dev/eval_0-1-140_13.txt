@@ -1,0 +1,16 @@
+Font Awesome 5 has made some changes in the way it's used compared to Font Awesome 4. The `font-family` is now separated into three different families: `Font Awesome 5 Free`, `Font Awesome 5 Brands`, and `Font Awesome 5 Pro`. The `content` values have also been changed for some icons.
+
+The `f107` content value corresponds to the `angle-down` icon. In Font Awesome 5, this icon is part of the `Font Awesome 5 Free` family and the `content` value is `f107` as well.
+
+Here is how you can modify your CSS to work with Font Awesome 5:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900; /* Use 900 for solid, 400 for regular, and 300 for light */
+}
+```
+
+Remember to include the `font-weight` property. The `font-weight` determines whether the icon is solid (`900`), regular (`400`), or light (`300`). The `angle-down` icon is available in the solid style, so `font-weight` is set to `900`.

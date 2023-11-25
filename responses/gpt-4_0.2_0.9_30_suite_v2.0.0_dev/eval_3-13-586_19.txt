@@ -1,0 +1,39 @@
+The error message you're seeing is due to a change in Android 12 (API level 31) that requires you to specify whether a `PendingIntent` is mutable or immutable when you create it. This is a new requirement in Android 12 and later.
+
+The `MediaSessionCompat` class in the AndroidX Media library creates a `PendingIntent` internally, and it seems like it's not setting the required flag. This is likely a bug in the library.
+
+However, you can work around this issue by setting a Media Button Receiver in your manifest file. This will cause `MediaSessionCompat` to use a different code path that doesn't trigger the issue.
+
+Here's how you can do it:
+
+1. Define a `BroadcastReceiver` in your app that will handle media button events. This can be an empty implementation if you don't actually need to handle these events.
+
+```kotlin
+class MediaButtonReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+        // Handle media button event here if needed
+    }
+}
+```
+
+2. Register this receiver in your manifest file:
+
+```xml
+<receiver android:name=".MediaButtonReceiver">
+    <intent-filter>
+        <action android:name="android.intent.action.MEDIA_BUTTON" />
+    </intent-filter>
+</receiver>
+```
+
+3. When creating your `MediaSessionCompat` instance, set the media button receiver to the one you just defined:
+
+```kotlin
+val mediaButtonReceiver = ComponentName(this, MediaButtonReceiver::class.java)
+mediaSession = MediaSessionCompat(this, TAG, mediaButtonReceiver, null).apply {
+    setCallback(mediaSessionCallback)
+    isActive = true
+}
+```
+
+This should prevent the `IllegalArgumentException` from being thrown. However, please note that this is a workaround and the underlying issue should be fixed in a future version of the AndroidX Media library.

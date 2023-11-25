@@ -1,0 +1,46 @@
+It seems like you're facing a version conflict issue. The `@NotEmpty` and `@NotBlank` annotations are part of the Bean Validation 2.0 specification, which is implemented by Hibernate Validator 6.0.0.Final and later versions. 
+
+However, the log message indicates that Hibernate Validator 5.3.5.Final is being used, which only supports Bean Validation 1.1 and therefore does not recognize these annotations.
+
+The version of Hibernate Validator is likely being overridden by another dependency in your project or by the application server (JBoss). 
+
+To resolve this issue, you can try the following steps:
+
+1. **Exclude the Hibernate Validator from Spring Boot Starter Web**
+
+   Add an exclusion for Hibernate Validator in the `spring-boot-starter-web` dependency:
+
+   ```xml
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-web</artifactId>
+       <exclusions>
+           <exclusion>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-tomcat</artifactId>
+           </exclusion>
+           <exclusion>
+               <groupId>org.hibernate.validator</groupId>
+               <artifactId>hibernate-validator</artifactId>
+           </exclusion>
+       </exclusions>
+   </dependency>
+   ```
+
+2. **Add Hibernate Validator 6.0.11.Final as a dependency**
+
+   Explicitly add the correct version of Hibernate Validator to your `pom.xml`:
+
+   ```xml
+   <dependency>
+       <groupId>org.hibernate.validator</groupId>
+       <artifactId>hibernate-validator</artifactId>
+       <version>6.0.11.Final</version>
+   </dependency>
+   ```
+
+3. **Check your application server**
+
+   If the above steps do not resolve the issue, check your application server. It might be providing an older version of Hibernate Validator. If this is the case, you'll need to configure your server to use the newer version. 
+
+Remember to clean and rebuild your project after making these changes.

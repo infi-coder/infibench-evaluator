@@ -1,0 +1,25 @@
+Sure, you can define an array of objects in TypeScript by first defining the type of the object and then specifying that the function parameter is an array of that type. Here is how you can do it:
+
+```typescript
+type Product = {
+  name: string;
+  price: number;
+  description: string;
+};
+
+const bagTotal = (products: Product[]) => {
+  // function does stuff
+}
+```
+
+In this code, `Product` is a type that represents an object with `name`, `price`, and `description` properties. The `Product[]` type represents an array of `Product` objects. 
+
+If you want to define the type inline without creating a separate type, you can do it like this:
+
+```typescript
+const bagTotal = (products: {name: string, price: number, description: string}[]) => {
+  // function does stuff
+}
+```
+
+In this case, `{name: string, price: number, description: string}[]` is an array of objects, each with `name`, `price`, and `description` properties.

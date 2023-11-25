@@ -1,0 +1,8 @@
+id: 2-5-338
+prompt_path: prompt_2-5-338.txt
+type: code debugging
+lang: java
+grading:
+  keywords:
+    - content: 'getBytes()'
+      weight: 1

@@ -1,0 +1,26 @@
+If you're using a build system like Jenkins or Azure DevOps, you can specify the Java version in the build configuration. However, if you're running Maven locally and want to use a specific version of Java, you can do so by setting the `JAVA_HOME` environment variable.
+
+Here's how you can do it:
+
+1. Find out where the desired Java version is installed on your system. For example, it might be in a directory like `/usr/lib/jvm/java-11-openjdk-amd64`.
+
+2. Set the `JAVA_HOME` environment variable to point to this directory. You can do this in a terminal with the `export` command:
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+```
+
+3. Now, when you run Maven, it should use the specified Java version. You can check this by running `mvn -version`.
+
+Please note that this change is temporary and only applies to the current terminal session. If you want to make it permanent, you can add the `export` command to your shell profile file (like `~/.bashrc` or `~/.bash_profile` for Bash, or `~/.zshrc` for Zsh).
+
+If you're using Windows, you can set the `JAVA_HOME` environment variable in the System Properties. Here's how:
+
+1. Right-click on 'Computer' and select 'Properties'.
+2. Click on 'Advanced system settings'.
+3. Click on 'Environment Variables'.
+4. Click on 'New' under 'System variables'.
+5. Enter `JAVA_HOME` as the variable name and the path to your Java installation as the variable value.
+6. Click 'OK' and restart your system.
+
+Now, when you run Maven, it should use the specified Java version. You can check this by running `mvn -version` in a command prompt.

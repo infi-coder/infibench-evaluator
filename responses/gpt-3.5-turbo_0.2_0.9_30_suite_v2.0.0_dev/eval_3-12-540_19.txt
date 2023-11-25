@@ -1,0 +1,29 @@
+Yes, in Flutter you can use the `VerticalDivider` widget to draw vertical lines between components. 
+
+Here's an example:
+
+```
+Row(
+  children: <Widget>[
+    Expanded(
+      child: Container(
+        height: 100,
+        color: Colors.blue,
+      ),
+    ),
+    VerticalDivider(
+      color: Colors.grey,
+      thickness: 1,
+      width: 20,
+    ),
+    Expanded(
+      child: Container(
+        height: 100,
+        color: Colors.green,
+      ),
+    ),
+  ],
+)
+```
+
+This code will create a `Row` with two `Container` widgets separated by a vertical line. The `VerticalDivider` widget is used to draw the line, and you can customize its color, thickness, and width.

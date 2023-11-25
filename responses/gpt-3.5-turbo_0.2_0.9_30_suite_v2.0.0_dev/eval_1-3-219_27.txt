@@ -1,0 +1,13 @@
+Here are some steps you can try to solve the issue:
+
+1. Make sure that the Jupyter extension is installed in VS Code. You can check this by going to the Extensions tab and searching for "Jupyter".
+
+2. Check if the Jupyter notebook is working outside of VS Code. Open the Anaconda prompt and type `jupyter notebook`. If it opens successfully, then the issue might be with VS Code.
+
+3. Try changing the kernel for the Jupyter notebook. In VS Code, open the command palette (Ctrl+Shift+P) and search for "Select Kernel". Choose a different kernel and see if it works.
+
+4. Try updating the Jupyter package. In the Anaconda prompt, type `conda update jupyter`. This will update the Jupyter package to the latest version.
+
+5. Try resetting the VS Code settings. Open the command palette and search for "Preferences: Open User Settings". Click on the "Open Settings (JSON)" button on the top right corner. Delete all the contents of the file and save it. Then restart VS Code and try again.
+
+Hopefully, one of these steps will solve the issue.

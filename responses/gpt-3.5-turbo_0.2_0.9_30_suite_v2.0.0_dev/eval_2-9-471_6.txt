@@ -1,0 +1,43 @@
+It seems like you have created the `.d.ts` file in the wrong location. Instead of creating it at the root level, you should create it inside the `assets` folder. Here's how you can fix it:
+
+1. Move the `index.d.ts` file from the root level to the `assets` folder.
+
+2. Inside `index.d.ts`, add the following code:
+
+```typescript
+declare module '*.jpg' {
+  const value: any;
+  export default value;
+}
+```
+
+This code tells TypeScript that any file with a `.jpg` extension should be treated as a module, and that the default export of that module is of type `any`.
+
+3. Update `tsconfig.json` to include the `assets` folder in the `include` array:
+
+```json
+{
+  "compilerOptions": {
+    // ...
+  },
+  "include": [
+    "src",
+    "src/assets"
+  ]
+}
+```
+
+4. Finally, update your import statement in `App.tsx` to use the `require` function instead of the `import` statement:
+
+```typescript
+import * as React from 'react';
+
+const Box = props => {
+  const img = require('../assets/image.jpg');
+  // do things...
+}
+
+export default Box;
+```
+
+This should fix the error and allow you to import the image in your React component. Note that you can still use the `import` statement if you configure Parcel to handle image imports, but that's outside the scope of this answer.

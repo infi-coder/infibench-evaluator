@@ -1,0 +1,13 @@
+The Rule of Five is not outdated, but it's true that modern C++ practices can reduce the need for it.
+
+The Rule of Five is a guideline that helps to prevent resource leaks and subtle bugs. It's particularly relevant when dealing with raw pointers, as you need to manually manage the memory they point to. If you don't define all five of these special member functions, the compiler will generate them for you, but the default versions often won't do what you want in the case of raw pointers.
+
+However, modern C++ encourages the use of smart pointers, such as `std::unique_ptr` and `std::shared_ptr`, which automatically manage memory. When you use these, you often don't need to define a destructor, copy constructor, copy assignment operator, move constructor, or move assignment operator, because the default ones will do the right thing.
+
+That said, there are still cases where you might need to define these functions. For example:
+
+- You might want to control copying and moving for reasons other than memory management. For example, you might want to prevent copying entirely (in which case you would delete the copy constructor and copy assignment operator), or you might want to implement some kind of copy-on-write behavior.
+- You might be managing a resource other than memory, such as a file handle or a network connection, that requires special handling on copy or move.
+- You might need to interact with C-style code that uses raw pointers, in which case you might need to manage memory manually.
+
+So while it's true that modern C++ practices can reduce the need for the Rule of Five, it's still a useful guideline to know and understand.

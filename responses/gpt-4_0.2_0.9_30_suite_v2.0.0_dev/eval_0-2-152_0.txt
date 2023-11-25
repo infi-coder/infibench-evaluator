@@ -1,0 +1,28 @@
+You need to call the `toast` method on the selected element to show the toast. Here is how you can do it:
+
+```javascript
+$('.toast').toast('show');
+```
+
+This will show the toast when the page loads. If you want to show the toast on a specific event, like a button click, you can do something like this:
+
+```javascript
+$('#myButton').click(function() {
+  $('.toast').toast('show');
+});
+```
+
+This will show the toast when the element with the id `myButton` is clicked.
+
+Also, make sure you have included the necessary Bootstrap CSS and JS files in your HTML file. The toast component requires the Bootstrap's JavaScript and jQuery. If you haven't included them, add these lines in your HTML file:
+
+```html
+<!-- CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+```
+
+Remember to replace the version numbers with the version you are using.

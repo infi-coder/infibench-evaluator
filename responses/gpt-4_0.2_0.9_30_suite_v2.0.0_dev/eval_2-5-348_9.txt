@@ -1,0 +1,24 @@
+The error message you're seeing is due to the way Java handles quotes in command line arguments. The issue is that Java is not correctly escaping the quotes around the argument for the `-Dmaven.ext.class.path` option.
+
+Here's a workaround that might help:
+
+1. Open the `mvn.cmd` file located at `C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\`.
+
+2. Look for the line where `MAVEN_CMD_LINE_ARGS` is set. It should look something like this:
+
+    ```
+    set MAVEN_CMD_LINE_ARGS=%*
+    ```
+
+3. Replace that line with the following two lines:
+
+    ```
+    set MAVEN_CMD_LINE_ARGS=%1 %2 %3 %4 %5 %6 %7 %8 %9
+    set MAVEN_CMD_LINE_ARGS=%MAVEN_CMD_LINE_ARGS:""=\"%
+    ```
+
+4. Save and close the `mvn.cmd` file.
+
+This workaround modifies the `mvn.cmd` script to replace any double quotes in the command line arguments with escaped quotes. This should prevent the `Malformed argument has embedded quote` error.
+
+Please note that this is a workaround and might not work in all cases, especially if your command line arguments contain more than nine items. A more robust solution would be to modify your build process to avoid the need for quotes in command line arguments, or to use a different method to set the class path.

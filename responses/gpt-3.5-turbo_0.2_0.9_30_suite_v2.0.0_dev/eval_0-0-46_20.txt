@@ -1,0 +1,46 @@
+The error message you are seeing is related to ESLint, which is a tool used to analyze and enforce coding standards in your codebase. It seems that ESLint is unable to find your `tsconfig.json` file, which is used to configure the TypeScript compiler.
+
+To fix this issue, you need to update your `.eslintrc.js` file to specify the correct path to your `tsconfig.json` file. In your current configuration, the `project` property is set to `"tsconfig.json"`, which assumes that the file is located in the same directory as your `.eslintrc.js` file.
+
+Since your `tsconfig.json` file is located in the root directory of your project, you need to update the `project` property in your `.eslintrc.js` file to reflect this. You can do this by changing the value of the `project` property to `"./tsconfig.json"`.
+
+Here's what your updated `.eslintrc.js` file should look like:
+
+```javascript
+module.exports = {
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+  },
+  extends: [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+  ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "./tsconfig.json",
+    sourceType: "module",
+  },
+  plugins: [
+    "@typescript-eslint",
+    "import",
+  ],
+  rules: {
+    "@typescript-eslint/adjacent-overload-signatures": "error",
+    "@typescript-eslint/no-empty-function": "error",
+    "@typescript-eslint/no-empty-interface": "warn",
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/no-namespace": "error",
+    "@typescript-eslint/no-unnecessary-type-assertion": "error",
+    "@typescript-eslint/prefer-for-of": "warn",
+    "@typescript-eslint/triple-slash-reference": "error",
+    "@typescript-eslint/unified-signatures": "warn",
+    "comma-dangle": "warn",
+    "constructor-super": "error",
+    eqeqeq: ["warn", "always"],
+    "import/no-deprecated": "warn",
+    "import/no-extraneous-dependencies": "error",
+    "import/no-unassigned-import": "warn",
+    "no-cond-assign": "error",

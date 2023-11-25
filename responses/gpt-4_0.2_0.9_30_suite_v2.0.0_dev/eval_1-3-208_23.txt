@@ -1,0 +1,23 @@
+Sure, I can help with that. The problem with your code is that you're checking if the entire input string is in the `correct` string, not if each individual character is in the `correct` string. Here's how you can modify your function to check each character:
+
+```python
+import string
+
+def checkString(text):
+    correct = set(string.ascii_letters + string.digits)
+    return all(char in correct for char in text)
+```
+
+This function works by first creating a set of all the correct characters. Then, it uses the `all` function to check if every character in the `text` string is in the `correct` set. If any character is not in the `correct` set, `all` will return `False`. If all characters are in the `correct` set, `all` will return `True`.
+
+Here's how you can use this function:
+
+```python
+text = input("Enter: ")
+if checkString(text):
+    print("Success")
+else:
+    print("Failure")
+```
+
+This will print "Success" if all characters in the input string are either a letter or a digit, and "Failure" otherwise.

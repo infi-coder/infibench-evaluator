@@ -1,0 +1,25 @@
+The error message suggests that the response from the server is not in the expected JSON format. It looks like the response starts with a '<' character, which indicates that it might be an HTML error page instead of a JSON response.
+
+To fix this issue, you can try the following steps:
+
+1. Check the URL of the API endpoint. Make sure it is correct and matches the route defined in the controller.
+
+2. Check the response from the server using a tool like Postman or Fiddler. Make sure it is a valid JSON response and not an HTML error page.
+
+3. If the response is an HTML error page, check the server logs to see if there are any errors or exceptions that might be causing the issue.
+
+4. If everything looks correct on the server side, try adding a try-catch block around the `Http.GetJsonAsync` call and log any exceptions that are thrown. This might give you more information about the issue.
+
+5. Finally, you can try using a different HTTP client library like `System.Net.Http.HttpClient` to make the API call and see if that works. Here's an example:
+
+```c#
+using System.Net.Http;
+using System.Text.Json;
+
+var httpClient = new HttpClient();
+var response = await httpClient.GetAsync("/api/Employee/Index");
+var content = await response.Content.ReadAsStringAsync();
+var empList = JsonSerializer.Deserialize<Employee[]>(content);
+```
+
+This code uses `HttpClient` to make the API call and `JsonSerializer` to deserialize the JSON response. You can replace the `Http.GetJsonAsync` call with this code and see if it works.

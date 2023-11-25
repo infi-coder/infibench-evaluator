@@ -1,0 +1,9 @@
+Instead of using `grep` and `cut` to extract the language code, you can use `awk` to directly extract the value of the `lang` attribute from the HTML. Here's an example command that should work for both cases:
+
+```
+curl -Ls yahoo.com | awk -F 'lang="' '/lang=/{print $2}' | cut -d '"' -f 1
+```
+
+This command uses `awk` to find the first occurrence of `lang="` in the HTML and prints everything after it. Then, it uses `cut` to remove the closing quote and everything after it, leaving only the language code.
+
+You can replace `yahoo.com` with any other URL you want to extract the language code from.

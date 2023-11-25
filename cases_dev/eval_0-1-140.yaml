@@ -1,0 +1,42 @@
+# Corresponding to post https://stackoverflow.com/questions/47788847
+id: 0-1-140
+# for case self identificaton
+
+prompt_path: prompt_0-1-140.txt
+# relative path to the prompt text
+
+type: code debugging
+# type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: css
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  keywords:
+    - content: "\\f007"
+      weight: 2.0
+    - content: "Font Awesome\\ 5 Free"
+      weight: 2.0
+    - content: "font-weight: 900"
+    # - content: ...
+    #   weight: 1.0
+    #   # [optional] customized keyword weight 
+    #   to_lower: false
+    #   # [optional] whether to be case-sensitive (default is sensitive, set to true will apply lower() then match)
+    #   neg: false
+    #   # [optional] if neg=true, match means subtracting the score (use for common wrong answers)

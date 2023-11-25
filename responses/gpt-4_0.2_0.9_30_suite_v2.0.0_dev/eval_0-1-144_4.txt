@@ -1,0 +1,25 @@
+You can change the color of the accordion arrow by targeting the `::after` pseudo-element of the `.accordion-button` class. The arrow is created using a CSS `background-image`, so you can override it with your own SVG image or use a Unicode character as an arrow.
+
+Here's an example of how you can do it using a Unicode character:
+
+```css
+.accordion-button:not(.collapsed)::after {
+    /* Unicode character for "down arrow" */
+    content: "\25BC";
+    color: green;
+    /* Remove the default background-image */
+    background-image: none;
+}
+
+.accordion-button.collapsed::after {
+    /* Unicode character for "right arrow" */
+    content: "\25B6";
+    color: green;
+    /* Remove the default background-image */
+    background-image: none;
+}
+```
+
+This will change the arrow to a green color. The `:not(.collapsed)::after` selector targets the arrow when the accordion is open (showing the down arrow), and the `.collapsed::after` selector targets the arrow when the accordion is closed (showing the right arrow).
+
+Please note that the Unicode characters used here are just examples. You can use any other characters that suit your needs.

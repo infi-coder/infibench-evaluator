@@ -1,0 +1,27 @@
+It seems like there might be some confusion. iOS doesn't have a specific "Developer Mode" like Android. However, you can enable developer options after you've connected your device to your computer and opened Xcode.
+
+Here's how you can do it:
+
+1. Install the latest version of Xcode on your Mac. You can download it from the Mac App Store.
+
+2. Connect your iOS device to your Mac using a USB cable.
+
+3. Open Xcode.
+
+4. Go to `Window` -> `Devices and Simulators`.
+
+5. In the left pane of the `Devices and Simulators` window, select your device.
+
+After doing this, the Developer options will be available in the `Settings` app on your iOS device. You can find it at `Settings` -> `Developer`.
+
+If you're trying to install an app that's been signed with a developer or enterprise certificate and you're getting this error, it's likely that you need to trust the developer or enterprise certificate on your device. Here's how you can do that:
+
+1. Go to `Settings` -> `General` -> `Profiles` or `Profiles & Device Management`. You should see a profile for the developer under the `Developer App` section.
+
+2. Tap the developer's name under the `Enterprise App` heading to establish trust for this developer.
+
+3. Then you'll see a prompt to confirm your choice. After you trust this profile, you can manually install other apps from the same developer and open them immediately. This developer remains trusted until you use the `Delete App` button to remove all apps from the developer.
+
+4. Go back to the Home screen and open the app. The untrusted developer error should no longer appear unless you reset your device.
+
+Please note that these instructions can change slightly between different iOS versions. If you can't find the options, please search for the updated instructions for your specific iOS version.

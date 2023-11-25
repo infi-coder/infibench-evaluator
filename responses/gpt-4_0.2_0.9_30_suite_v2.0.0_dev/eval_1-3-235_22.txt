@@ -1,0 +1,11 @@
+The error you're seeing is because the `astype(int)` function is trying to convert the string '2021.0' to an integer, which it can't do because '2021.0' is not a valid integer. 
+
+You can solve this by first converting the 'year' column to float, and then to int. Here is the function:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].astype(float).astype(int)
+    return data_h_df
+```
+
+This function first converts the 'year' column to float, which can handle decimal points, and then to int, which removes the decimal point.

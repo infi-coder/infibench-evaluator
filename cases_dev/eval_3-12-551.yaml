@@ -1,0 +1,19 @@
+# Corresponding to post https://stackoverflow.com/questions/52678469
+id: 3-12-551
+prompt_path: prompt_3-12-551.txt
+type: code debugging
+
+lang: dart
+
+grading:
+  max_score: 2.0
+  min_score: 0.0
+  blank_filling:
+    template: "Either wrap your custom appbar into a [blank] or or implement [blank]."
+    blank_str: "[blank]"
+
+    targets: 
+        - content: "PreferredSize"
+          to_lower: true
+        - content: "PreferredSizeWidget"
+          to_lower: true

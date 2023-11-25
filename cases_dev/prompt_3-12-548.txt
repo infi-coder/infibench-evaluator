@@ -1,0 +1,5 @@
+What is the right way to disable back button in flutter when one has reached the login page after logging out?
+What I know so far is the use of Navigator.pop(context) or Navigator.of(context).pop() to move back to a previous page. But this isn't fitting in the use case I have mentioned.
+Specifically, please don't add other text and repeat the following paragraph with [blank] filled:
+
+Use [blank] instead of [blank].

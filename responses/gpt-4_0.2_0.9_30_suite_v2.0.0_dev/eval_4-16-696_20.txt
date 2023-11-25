@@ -1,0 +1,9 @@
+The issue here is that the `$(echo {} | sed 's/\?.*//g')` part of your command is evaluated before the `find` command is executed. This means that `{}` is empty and the `mv` command is trying to move the file to the same location.
+
+You can solve this by using a shell script inside the `-exec` part of the `find` command. Here's an example:
+
+```bash
+find . -type f -name '*\?*' -exec bash -c 'mv "$0" "${0%%\?*}"' {} \;
+```
+
+This command will find all files (`-type f`) in the current directory (`.`) and its subdirectories that have a question mark in their name (`-name '*\?*'`). For each file found, it will execute a small bash script (`-exec bash -c '...' {} \;`) that moves the file to a new name without the question mark and everything after it (`mv "$0" "${0%%\?*}"`). The `$0` inside the bash script is replaced by the `{}` of the `find` command, which represents the current file.

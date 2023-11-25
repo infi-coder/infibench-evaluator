@@ -1,0 +1,39 @@
+In Rust, a `Box` cannot be null. Instead, you can use an `Option<Box<Node>>` to represent a nullable pointer. Here's an example implementation of a stack using `Option<Box<Node>>`:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+
+impl Stack {
+    fn push(&mut self, value: i32) {
+        let new_node = Box::new(Node {
+            value: value,
+            next: self.top.take(),
+        });
+        self.top = Some(new_node);
+    }
+
+    fn pop(&mut self) -> Option<i32> {
+        self.top.take().map(|node| {
+            self.top = node.next;
+            node.value
+        })
+    }
+
+    fn is_empty(&self) -> bool {
+        self.top.is_none()
+    }
+}
+```
+
+In this implementation, `self.top` is an `Option<Box<Node>>` that starts out as `None` to represent an empty stack. When pushing a value onto the stack, we create a new `Box<Node>` and set its `next` field to the current top of the stack (which may be `None` if the stack is empty). We then set `self.top` to `Some(new_node)` to make the new node the top of the stack.
+
+When popping a value from the stack, we use the `take()` method to replace `self.top` with `None` temporarily, so that we can take ownership of the `Box<Node>` and extract its `value` field. We then set `self.top` to the `next` field of the popped node (which may be `None` if the stack only had one element). Finally, we return the `value` field wrapped in an `Option` to indicate whether the stack was empty or not.
+
+The `is_empty()` method simply checks if `self.top` is `None`.

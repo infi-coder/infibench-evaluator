@@ -1,0 +1,38 @@
+The error message suggests that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `MultipartFile` object contains a `ByteArrayInputStream` object, which cannot be serialized by the default Jackson serializer.
+
+To solve this issue, you can add the `jackson-datatype-jdk8` and `jackson-datatype-jsr310` dependencies to your project. These dependencies provide serializers and deserializers for Java 8 and Java Date/Time classes, including `ByteArrayInputStream`.
+
+Add the following dependencies to your `pom.xml` file:
+
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.datatype</groupId>
+    <artifactId>jackson-datatype-jdk8</artifactId>
+    <version>${jackson.version}</version>
+</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.datatype</groupId>
+    <artifactId>jackson-datatype-jsr310</artifactId>
+    <version>${jackson.version}</version>
+</dependency>
+```
+
+Then, configure your `ObjectMapper` to use these modules:
+
+```java
+ObjectMapper mapper = new ObjectMapper();
+mapper.registerModule(new Jdk8Module());
+mapper.registerModule(new JavaTimeModule());
+```
+
+Finally, set the `ObjectMapper` in your `RestTemplate`:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.getMessageConverters().stream()
+    .filter(converter -> converter instanceof MappingJackson2HttpMessageConverter)
+    .map(converter -> (MappingJackson2HttpMessageConverter) converter)
+    .forEach(converter -> converter.setObjectMapper(mapper));
+```
+
+This should solve the issue and allow you to pass the `MultipartFile` object to your microservice.

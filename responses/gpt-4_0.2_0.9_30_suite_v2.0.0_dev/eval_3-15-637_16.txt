@@ -1,0 +1,30 @@
+The error you're encountering might be due to a few reasons. Here are some possible solutions:
+
+1. **Check SeleniumBasic and Browser Driver Version**: Ensure that you have the latest version of SeleniumBasic installed. Also, make sure that the browser driver (e.g., ChromeDriver for Google Chrome) is compatible with the version of the browser installed on your machine.
+
+2. **Check SeleniumBasic Reference**: In VBA, go to `Tools > References` and make sure that Selenium Type Library is checked.
+
+3. **Reinstall SeleniumBasic**: Uninstall SeleniumBasic, restart your machine, and then reinstall SeleniumBasic.
+
+4. **Check Internet Explorer Settings**: Since you're using Internet Explorer in your code, ensure that the Protected Mode settings are the same for all zones. Go to `Internet Options > Security tab` and either check or uncheck the `Enable Protected Mode` option for all zones.
+
+5. **Try Using a Different Browser**: If none of the above solutions work, try using a different browser. For example, you can replace `"ie"` with `"chrome"` to use Google Chrome instead of Internet Explorer.
+
+Here's how you can do it:
+
+```vba
+Dim driver As New WebDriver
+Dim keyObj As Selenium.keys
+
+Set keyObj = New Selenium.keys
+
+driver.Start "chrome"
+driver.Window.Maximize
+driver.Get "https://www.google.com/"
+```
+
+Remember to have the corresponding browser driver (e.g., ChromeDriver for Google Chrome) in your system PATH.
+
+6. **Check Excel Trust Center Settings**: Go to `File > Options > Trust Center > Trust Center Settings > Macro Settings` and ensure that `Trust access to the VBA project object model` is checked.
+
+If none of these solutions work, please provide the exact error message you're encountering for further assistance.

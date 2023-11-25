@@ -1,0 +1,18 @@
+You can optimize your bash script by using awk, which is a powerful text processing tool. Here's an optimized version of your script:
+
+```bash
+awk -F'=' '
+  /^name/ { if (name && value) print name "=" value; name=$2; value="" }
+  /^value/ { value=$2 }
+  END { if (name && value) print name "=" value }
+' input.txt > output.txt
+```
+
+This script works as follows:
+
+- `-F'='` sets the field separator to `=`.
+- `/^name/` matches lines that start with `name`. If a previous `name` and `value` pair exists, it prints them. Then it sets `name` to the second field of the current line and resets `value`.
+- `/^value/` matches lines that start with `value` and sets `value` to the second field of the current line.
+- `END` is a special pattern that matches the end of the input. If a `name` and `value` pair exists at the end of the input, it prints them.
+
+This script should be significantly faster than your original script because it processes the input line by line and doesn't use any external commands in a loop.

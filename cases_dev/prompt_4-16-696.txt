@@ -1,0 +1,13 @@
+How to remove question mark and the rest from file names?
+
+I have grabbed a whole website template using . It created many asset files in different subdirectories where filenames contain question marks, `./fonts/fontawesome-webfont.woff?v=4.5.0` for example. I need to truncate `?` and the rest from these filenames. I tried this command:
+```
+find . -type f -name '*\?*' -exec mv "{}" "$(echo {} | sed 's/\?.*//g')" \;
+```
+
+But it does not work; nothing is replaced/removed, it shows this error:
+```
+mv: './fonts/fontawesome-webfont.woff?v=4.5.0' and './fonts/fontawesome-webfont.woff?v=4.5.0' are the same file
+```
+
+I have these type of filenames in different directories, so I tried `find` command. What am I missing here ?

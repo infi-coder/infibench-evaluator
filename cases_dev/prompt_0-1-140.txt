@@ -1,0 +1,11 @@
+I integrated Font Awesome 5 in a project with bootstrap 4. When I recall a font via CSS it does not work. with Font Awesome 4 the code was as follows:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "FontAwesome";
+}
+```
+
+How to change the code to make it work with Font Awesome 5?

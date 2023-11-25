@@ -1,0 +1,9 @@
+The Rule of Five is not outdated, but its use has been reduced due to the introduction of smart pointers in C++11. 
+
+The Rule of Five is still important in cases where you are managing resources that aren't memory, or when you're doing something unusual with memory management. For example, if you're writing a class that wraps a file handle or a network socket, you'll need to define all five of these functions to handle the resource correctly.
+
+Smart pointers, like `std::unique_ptr` and `std::shared_ptr`, handle their own memory and copy/move semantics, which means you don't need to define these functions for classes that only use smart pointers. However, not all resource management can be or should be handled with smart pointers. 
+
+For example, if you're dealing with a C library that requires you to call a function to free a resource, you can't use a smart pointer to manage that resource. In this case, you would need to follow the Rule of Five.
+
+So, while smart pointers can reduce the need for user-defined constructors, destructors, and assignment operators, they don't eliminate the need entirely. The Rule of Five is still relevant and important to understand for modern C++ programming.

@@ -1,0 +1,29 @@
+The error message you're seeing indicates that Go is unable to find the specific version of the module you're trying to import. This could be due to a number of reasons, including network issues, incorrect configuration, or the specified version not being available.
+
+Here are some steps you can take to debug this issue:
+
+1. **Check your network connection**: Ensure that you have a stable internet connection and that you're able to reach the GitHub server.
+
+2. **Check your GitHub credentials**: Make sure that your GitHub credentials on computer B are correct and that they have the necessary permissions to access the private repository. You can do this by trying to clone the repository manually using `git clone`.
+
+3. **Check the module version**: Make sure that the version of the module you're trying to import (v0.1.5 in this case) actually exists in the repository. You can do this by visiting the repository on GitHub and checking the list of tags.
+
+4. **Check your Go configuration**: Go uses the `GOPROXY` environment variable to determine where to download modules from. If this is set to `direct`, Go will try to download modules directly from their source, which may not work for private repositories. Try setting `GOPROXY` to `https://proxy.golang.org` or to a private module proxy if you have one.
+
+5. **Use `go get` to download the module**: You can try to manually download the module using the `go get` command. This might give you more detailed error messages that can help you debug the issue.
+
+6. **Enable Go module debugging**: You can enable debugging for Go modules by setting the `GODEBUG` environment variable to `mod=2`. This will print detailed debug information when you run `go build` or `go get`.
+
+Here's how you can set the `GODEBUG` environment variable:
+
+```bash
+export GODEBUG=mod=2
+```
+
+And here's how you can use `go get` to download the module:
+
+```bash
+go get github.ibm.com/kms/key-protect-client@v0.1.5
+```
+
+Remember to replace `github.ibm.com/kms/key-protect-client@v0.1.5` with the actual path to your module.

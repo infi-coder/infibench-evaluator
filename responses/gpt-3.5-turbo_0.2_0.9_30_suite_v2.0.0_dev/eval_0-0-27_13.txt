@@ -1,0 +1,12 @@
+It seems like the issue might be with the `uri` you are using in your `ApolloClient`. The `uri` you are using is provided by the ApolloClient documentation as an example, but it might not be working at the moment.
+
+You can try using a different `uri` for your GraphQL endpoint. You can use a public GraphQL API like the one provided by SpaceX:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'https://api.spacex.land/graphql/',
+    cache: new InMemoryCache(),
+});
+```
+
+Replace the `uri` in your `ApolloClient` with the above code and try running your app again. It should fetch data successfully.

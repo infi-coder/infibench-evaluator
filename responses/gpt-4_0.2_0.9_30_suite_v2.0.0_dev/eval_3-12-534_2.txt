@@ -1,0 +1,49 @@
+You can use multiple `Consumer` widgets for a single widget in Flutter Provider. Each `Consumer` widget will listen to a different `ChangeNotifier`.
+
+Here is an example of how you can do this:
+
+```dart
+Consumer<FirstChangeNotifier>(
+  builder: (context, firstChangeNotifier, child) {
+    return Consumer<SecondChangeNotifier>(
+      builder: (context, secondChangeNotifier, child) {
+        return Consumer<ThirdChangeNotifier>(
+          builder: (context, thirdChangeNotifier, child) {
+            return Consumer<FourthChangeNotifier>(
+              builder: (context, fourthChangeNotifier, child) {
+                return CurvedNavigationBar(
+                  // Use the values from the ChangeNotifiers here
+                  // For example:
+                  index: firstChangeNotifier.currentIndex,
+                  items: <Widget>[
+                    Icon(Icons.add, size: 30),
+                    Icon(Icons.list, size: 30),
+                    Icon(Icons.compare_arrows, size: 30),
+                    Icon(Icons.call_split, size: 30),
+                  ],
+                  onTap: (index) {
+                    // Handle your onTap here
+                    // For example:
+                    firstChangeNotifier.updateIndex(index);
+                    secondChangeNotifier.updateSomething();
+                    thirdChangeNotifier.updateSomethingElse();
+                    fourthChangeNotifier.updateYetAnotherThing();
+                  },
+                );
+              },
+            );
+          },
+        );
+      },
+    );
+  },
+)
+```
+
+In this example, `FirstChangeNotifier`, `SecondChangeNotifier`, `ThirdChangeNotifier`, and `FourthChangeNotifier` are your classes that extend `ChangeNotifier`.
+
+Each `Consumer` widget listens to a different `ChangeNotifier` and rebuilds whenever that `ChangeNotifier` changes.
+
+The `builder` function of each `Consumer` widget receives three arguments: `context`, the `ChangeNotifier` it is listening to, and `child`. You can use the `ChangeNotifier` to get the current state and use it to build your widget.
+
+In the `onTap` function of `CurvedNavigationBar`, you can call methods on your `ChangeNotifier`s to update their state. This will cause the `Consumer` widgets to rebuild and update the UI.

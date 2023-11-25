@@ -1,0 +1,15 @@
+To define an array of objects with a specific structure, you can use an interface or a type alias. Here's an example using an interface:
+
+```typescript
+interface Product {
+  name: string;
+  price: number;
+  description: string;
+}
+
+const bagTotal = (products: Product[]) => {
+  // function does stuff
+}
+```
+
+In this example, we define an interface called `Product` that specifies the structure of each object in the array. Then, we use `Product[]` to define the type of the `products` parameter in the `bagTotal` function.

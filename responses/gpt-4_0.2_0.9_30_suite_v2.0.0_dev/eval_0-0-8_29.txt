@@ -1,0 +1,18 @@
+Sure, here is a recursive function that will search through the nested JSON object tree and return the object with the matching `id`.
+
+```javascript
+function findObject(id, root_node) {
+    if (root_node.id === id) {
+        return root_node;
+    } else if (root_node.child) {
+        var result = null;
+        for (var i = 0; result == null && i < root_node.child.length; i++) {
+            result = findObject(id, root_node.child[i]);
+        }
+        return result;
+    }
+    return null;
+}
+```
+
+This function works by checking if the `id` of the current node matches the `id` you're looking for. If it does, it returns that node. If not, it recursively searches through each of the child nodes. If a match is found in a subtree, it is returned. If no match is found, the function returns `null`.

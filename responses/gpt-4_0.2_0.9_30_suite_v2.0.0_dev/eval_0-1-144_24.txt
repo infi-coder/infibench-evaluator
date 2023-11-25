@@ -1,0 +1,30 @@
+You can change the color of the accordion arrow by using CSS pseudo-elements. The accordion arrow is not an actual element but a background image. You can override this with your own CSS.
+
+Here is an example of how to do it:
+
+```css
+.accordion-button::after {
+    /* Auto width (based on the font's aspect value) */
+    width: 1em;
+    /* The height is used to calculate the aspect value for the font size */
+    height: 1em;
+    /* The background of the pseudo-element */
+    background-image: url(data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20fill='green'%3E%3Cpath%20fill-rule='evenodd'%20d='M1.646%204.646a.5.5%200%200%201%20.708%200L8%2010.293l5.646-5.647a.5.5%200%200%201%20.708.708l-6%206a.5.5%200%200%201-.708%200l-6-6a.5.5%200%200%201%200-.708z'/%3E%3C/svg%3E);
+    /* The background is centered and scaled to fit the content box */
+    background-repeat: no-repeat;
+    background-size: 1em 1em;
+    background-position: center;
+    /* The pseudo-element is placed in the content box */
+    content: "";
+    /* The pseudo-element is placed on top of the content */
+    position: absolute;
+    /* The pseudo-element is centered vertically */
+    top: 50%;
+    /* The pseudo-element is placed at the end of the line */
+    right: 0.75em;
+    /* The pseudo-element is moved up by half its height to center it */
+    transform: translateY(-50%);
+}
+```
+
+This CSS code changes the color of the arrow to green. You can replace 'green' with any color you want.

@@ -1,0 +1,49 @@
+To add Jetpack Compose to your existing Android project, follow these steps:
+
+1. Update your `build.gradle` (Project level) file:
+
+```groovy
+buildscript {
+    ext {
+        compose_version = '1.0.5' // Check the latest version
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4" // Check the compatible version
+    }
+}
+```
+
+2. Update your `build.gradle` (Module level) file:
+
+```groovy
+android {
+    compileSdk 31 // Check the compatible version
+
+    defaultConfig {
+        minSdk 21 // Minimum SDK for Jetpack Compose
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.31' // Check the compatible version
+    }
+}
+
+dependencies {
+    implementation 'androidx.compose.ui:ui:1.0.5' // Check the latest version
+    implementation 'androidx.compose.material:material:1.0.5' // Check the latest version
+    implementation 'androidx.compose.ui:ui-tooling:1.0.5' // Check the latest version
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.activity:activity-compose:1.3.1'
+}
+```
+
+3. Sync your project with Gradle files.
+
+4. Now, you can start using Jetpack Compose in your existing project.
+
+Remember to replace the version numbers with the latest or compatible versions. You can check the latest versions on the [Jetpack Compose Setup page](https://developer.android.com/jetpack/compose/setup).

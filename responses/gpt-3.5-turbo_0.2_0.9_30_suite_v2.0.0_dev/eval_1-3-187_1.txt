@@ -1,0 +1,27 @@
+You can use the following function to replace the elements in `b` with the elements in `rest` and then replace the matching elements in `last` with the corresponding elements from `rest`:
+
+```python
+def ReplaceElementsByIndex(rest, b, last):
+    for i in range(len(rest)):
+        b[i] = rest[i]
+        for j in range(len(last)):
+            if last[j] == b[i]:
+                last[j] = rest[i]
+    return last
+```
+
+Here's how you can use this function with your example lists:
+
+```python
+rest = [5, 7, 11, 4]
+b = [21, 22, 33, 31, 23, 15, 19, 13, 6]
+last = [33, 19, 40, 21, 31, 22, 6, 15, 13, 23]
+
+new_last = ReplaceElementsByIndex(rest, b, last)
+print(new_last)
+```
+
+Output:
+```
+[11, 19, 40, 5, 4, 7, 6, 15, 13, 23]
+```

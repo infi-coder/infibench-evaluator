@@ -1,0 +1,58 @@
+You can inject multiple `ServiceBusClient` instances by using named options. Named options allow you to configure and retrieve named options that can be used to configure different instances of the same service type.
+
+Here's an example of how you can do this:
+
+1. Define your settings:
+
+```c#
+public class ServiceBusSettings
+{
+    public string ConnectionString { get; set; }
+    public string QueueName { get; set; }
+}
+```
+
+2. Configure your settings in `Startup.cs`:
+
+```c#
+services.Configure<ServiceBusSettings>("ServiceBus1", Configuration.GetSection("ServiceBus1"));
+services.Configure<ServiceBusSettings>("ServiceBus2", Configuration.GetSection("ServiceBus2"));
+```
+
+3. Register your `ServiceBusClient` instances:
+
+```c#
+services.AddSingleton<ServiceBusClient>(provider =>
+{
+    var options = provider.GetRequiredService<IOptionsSnapshot<ServiceBusSettings>>();
+    var settings = options.Get("ServiceBus1");
+    return new ServiceBusClient(settings.ConnectionString);
+});
+
+services.AddSingleton<ServiceBusClient>(provider =>
+{
+    var options = provider.GetRequiredService<IOptionsSnapshot<ServiceBusSettings>>();
+    var settings = options.Get("ServiceBus2");
+    return new ServiceBusClient(settings.ConnectionString);
+});
+```
+
+4. Inject your `ServiceBusClient` instances:
+
+```c#
+public class MyService
+{
+    private readonly ServiceBusClient _serviceBusClient1;
+    private readonly ServiceBusClient _serviceBusClient2;
+
+    public MyService(IEnumerable<ServiceBusClient> serviceBusClients)
+    {
+        _serviceBusClient1 = serviceBusClients.First();
+        _serviceBusClient2 = serviceBusClients.Last();
+    }
+}
+```
+
+In this example, `ServiceBus1` and `ServiceBus2` are the names of the configurations for the two `ServiceBusClient` instances. You can replace these with the actual names of your configurations.
+
+Please note that this approach assumes that you have two `ServiceBusClient` instances. If you have more than two, you might want to consider using a dictionary or a similar data structure to store and retrieve your `ServiceBusClient` instances.

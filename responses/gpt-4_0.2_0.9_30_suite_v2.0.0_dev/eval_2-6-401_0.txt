@@ -1,0 +1,54 @@
+You can use the factory pattern to create multiple instances of `ServiceBusClient` with different queue names. Here's how you can do it:
+
+First, create a factory that will be responsible for creating `ServiceBusClient` instances:
+
+```csharp
+public interface IServiceBusClientFactory
+{
+    ServiceBusClient Create(string queueName);
+}
+
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly UserEventConsumerSetting _settings;
+
+    public ServiceBusClientFactory(IOptions<UserEventConsumerSetting> options)
+    {
+        _settings = options.Value;
+    }
+
+    public ServiceBusClient Create(string queueName)
+    {
+        var client = new ServiceBusClient(_settings.ServiceBusConnectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+
+        return client.CreateSender(queueName);
+    }
+}
+```
+
+Then, register this factory in your DI container:
+
+```csharp
+_services.AddSingleton<IServiceBusClientFactory, ServiceBusClientFactory>();
+```
+
+Now, you can inject `IServiceBusClientFactory` into your services and create `ServiceBusClient` instances with different queue names:
+
+```csharp
+public class CarReservationMessagingService
+{
+    private readonly ServiceBusSender _serviceBusSender;
+
+    public CarReservationMessagingService(IServiceBusClientFactory factory)
+    {
+        _serviceBusSender = factory.Create("queueName");
+    }
+
+    // ...
+}
+```
+
+This way, you can create as many `ServiceBusClient` instances as you need, each with its own queue name.

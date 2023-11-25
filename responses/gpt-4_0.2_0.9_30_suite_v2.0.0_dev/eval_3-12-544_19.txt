@@ -1,0 +1,16 @@
+The error you're encountering is due to the fact that you're trying to use Flutter's engine before it's fully initialized. The `getApplicationDocumentsDirectory()` function requires Flutter's engine to be ready, as it needs to communicate with the platform side.
+
+To fix this, you need to ensure that the engine is ready before calling `getApplicationDocumentsDirectory()`. You can do this by running your code inside `WidgetsFlutterBinding.ensureInitialized()`.
+
+Here's how you can modify your code:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+
+`WidgetsFlutterBinding.ensureInitialized()` ensures that the Flutter engine is properly initialized before you try to use any platform channels (which is what `getApplicationDocumentsDirectory()` does under the hood).

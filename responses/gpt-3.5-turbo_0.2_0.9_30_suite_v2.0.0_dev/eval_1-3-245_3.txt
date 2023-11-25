@@ -1,0 +1,18 @@
+It seems that the Dockerfile is unable to find the `app` module. You can try modifying the `COPY` command in the Dockerfile to include the parent directory of the `app` module. Here's an updated Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt /
+RUN pip install --requirement /requirements.txt
+
+COPY . /app
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+In this updated Dockerfile, we are copying the entire directory (including the `app` directory) into the `/app` directory in the container. This should ensure that the `app` module is available to the Docker container.
+
+Also, make sure that your `docker-compose.yml` file is in the same directory as the Dockerfile and the `app` directory.

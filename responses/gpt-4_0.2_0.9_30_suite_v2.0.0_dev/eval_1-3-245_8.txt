@@ -1,0 +1,40 @@
+The error you're getting is because Python cannot find the module 'app'. This is likely due to the way you're structuring your directories and how you're copying files in your Dockerfile.
+
+Here's how you can revise your Dockerfile:
+
+```Dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.8
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Add the current directory contents into the container at /app
+ADD . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
+
+# Run app.py when the container launches
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0", "--port", "8000"]
+```
+
+This Dockerfile will add the entire current directory (including your app folder and its contents) into the /app directory in the Docker container. It then installs the necessary Python packages and runs your FastAPI application.
+
+Please make sure that your `requirements.txt` file is in the same directory as your Dockerfile and it includes all the necessary packages for your application including `fastapi` and `uvicorn`.
+
+Also, ensure that your `docker-compose.yml` file is correctly set up to build the Dockerfile and run the container. Here's a basic example:
+
+```yaml
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+```
+
+This `docker-compose.yml` file will build the Dockerfile in the current directory and map the container's port 8000 to your machine's port 8000.

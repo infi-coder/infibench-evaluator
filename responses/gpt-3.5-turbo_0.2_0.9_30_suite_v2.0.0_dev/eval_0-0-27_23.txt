@@ -1,0 +1,14 @@
+It seems like the issue is with the `uri` you are using in your `ApolloClient`. The `uri` you are using is for a demo server provided by Apollo, which may not be working properly at the moment. 
+
+You should replace the `uri` with the endpoint of your GraphQL server. You can check if your GraphQL server is working properly by using a tool like GraphiQL or GraphQL Playground. Once you have confirmed that your server is working properly, replace the `uri` in your `ApolloClient` with the endpoint of your server.
+
+For example, if your GraphQL server is running at `http://localhost:4000/graphql`, you would replace the `uri` in your `ApolloClient` with:
+
+```
+const apolloClient = new ApolloClient({
+    uri: 'http://localhost:4000/graphql',
+    cache: new InMemoryCache(),
+});
+```
+
+Make sure to replace `http://localhost:4000/graphql` with the actual endpoint of your GraphQL server.

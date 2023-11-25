@@ -1,0 +1,23 @@
+The error message indicates that the headers or library files for zlib are missing, which is a required dependency for Pillow. You can try installing zlib first and then install Pillow again. Here are the steps to install zlib on Windows:
+
+1. Download the pre-built binary for zlib from the GnuWin32 project: http://gnuwin32.sourceforge.net/packages/zlib.htm
+
+2. Extract the downloaded file to a folder on your computer, for example, `C:\zlib`.
+
+3. Add the `bin` folder of the extracted zlib to your system's PATH environment variable. To do this, follow these steps:
+
+   a. Open the Start menu and search for "Environment Variables".
+   
+   b. Click on "Edit the system environment variables".
+   
+   c. Click on the "Environment Variables" button.
+   
+   d. Under "System Variables", scroll down and find the "Path" variable, then click "Edit".
+   
+   e. Click "New" and add the path to the `bin` folder of the extracted zlib, for example, `C:\zlib\bin`.
+   
+   f. Click "OK" to close all the windows.
+
+4. Open a new command prompt and run `pip install pillow` again.
+
+If the above steps do not work, you can try installing Pillow using a pre-built binary. You can download the appropriate binary for your Python version and operating system from the official Pillow website: https://pillow.readthedocs.io/en/stable/installation.html#binary-installation-on-windows.

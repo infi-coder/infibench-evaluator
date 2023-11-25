@@ -1,0 +1,39 @@
+How to automate a power query in VBA?
+
+I have data in sheet 1. Normally I go to power query and do my transformations, then close, and load to an existing sheet 2.
+I would like to automate this using VBA, where I can just run my power query automatically and populate the transformation to sheet 2.
+Macro recorder doesn't seem to allow me to record the steps. And there isn't much online about doing this.
+Trying some simpler code:
+```
+vba
+Sub LoadToWorksheetOnly()
+
+'Sub LoadToWorksheetOnly(query As WorkbookQuery, currentSheet As Worksheet)
+    ' The usual VBA code to create ListObject with a Query Table
+    ' The interface is not new, but looks how simple is the conneciton string of Power Query:
+    ' "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query.Name
+     
+    query = Sheets("Sheet6").Range("A1").value 'here is where my query from power query is. I put the text from power query avanced editor in another sheet cell.
+    currentSheet = ActiveSheet.Name
+    With ActiveSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query.Name _
+        , Destination:=Sheets("target").Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query.Name & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+     
+End Sub
+```
+

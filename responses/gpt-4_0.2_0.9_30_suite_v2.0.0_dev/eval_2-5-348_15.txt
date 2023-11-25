@@ -1,0 +1,19 @@
+The error message you're seeing is due to a known issue with the way Java handles command line arguments that contain spaces. The issue is that Java is trying to split the command line arguments by spaces, but it's getting confused by the spaces in your file paths.
+
+Here's a workaround that you can try:
+
+1. Open the `mvn.cmd` file in a text editor. This file is located at `C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\mvn.cmd`.
+
+2. Find the line that starts with `set MAVEN_CMD_LINE_ARGS=`.
+
+3. Replace that line with the following:
+
+    ```cmd
+    set "MAVEN_CMD_LINE_ARGS=%*"
+    ```
+
+4. Save the file and try to build your project again.
+
+This change tells the script to treat all of the command line arguments as a single string, which should prevent Java from getting confused by the spaces in your file paths.
+
+If this doesn't work, another option is to move your project to a directory that doesn't contain any spaces in its path. For example, you could move it to `C:\projects\open` instead of `C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin`. This isn't an ideal solution, but it might be a good temporary workaround until you can find a better fix.

@@ -1,0 +1,13 @@
+Tailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs. It doesn't provide a direct way to target child elements like you would in traditional CSS with the `>` selector.
+
+However, you can still achieve this by using JavaScript (or jQuery) along with Tailwind CSS classes. Here's an example using vanilla JavaScript:
+
+```javascript
+document.querySelectorAll('div.section > div').forEach((element) => {
+  element.classList.add('your-tailwind-classes');
+});
+```
+
+In this example, replace `'your-tailwind-classes'` with the Tailwind CSS classes you want to apply to the direct children of `div.section`.
+
+Remember, Tailwind CSS is not a replacement for CSS, but a tool to help you write CSS more efficiently. For complex selectors, you should still use traditional CSS.

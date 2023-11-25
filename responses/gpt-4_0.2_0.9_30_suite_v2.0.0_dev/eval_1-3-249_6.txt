@@ -1,0 +1,27 @@
+Here is a Python function that generates a 16 character code according to your requirements:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the characters to use
+    chars = string.ascii_letters
+
+    # Generate two random strings of letters of length 6 (16 - 5 - 3 - 2)
+    part1 = ''.join(random.choice(chars) for _ in range(6))
+    part2 = ''.join(random.choice(chars) for _ in range(6))
+
+    # Generate a random string of digits of length 3
+    digits = ''.join(random.choice(string.digits) for _ in range(3))
+
+    # Combine the parts in a random order
+    code = [part1, "NAA3U", part2, digits]
+    random.shuffle(code)
+
+    return ''.join(code)
+```
+
+This function first generates two random strings of letters of length 6. Then it generates a random string of digits of length 3. It combines these parts with the string "NAA3U" in a random order to create the final code.
+
+Please note that the function uses the `random` module to generate random strings and to shuffle the order of the parts. The `string` module is used to get a string of all ASCII letters and digits.

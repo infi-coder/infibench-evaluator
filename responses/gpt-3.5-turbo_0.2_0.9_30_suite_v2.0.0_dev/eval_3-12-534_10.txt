@@ -1,0 +1,76 @@
+To listen to multiple ChangeNotifier classes in a single widget, you can use the `MultiProvider` widget provided by the Flutter Provider package. 
+
+Here's an example of how you can use `MultiProvider` to listen to 4 different ChangeNotifier classes in a single widget:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:my_app/first_notifier.dart';
+import 'package:my_app/second_notifier.dart';
+import 'package:my_app/third_notifier.dart';
+import 'package:my_app/fourth_notifier.dart';
+
+import 'package:my_app/my_widget.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FirstNotifier()),
+        ChangeNotifierProvider(create: (_) => SecondNotifier()),
+        ChangeNotifierProvider(create: (_) => ThirdNotifier()),
+        ChangeNotifierProvider(create: (_) => FourthNotifier()),
+      ],
+      child: MaterialApp(
+        title: 'My App',
+        home: MyWidget(),
+      ),
+    );
+  }
+}
+```
+
+In the above code, we have created 4 different ChangeNotifier classes: `FirstNotifier`, `SecondNotifier`, `ThirdNotifier`, and `FourthNotifier`. We have then used `MultiProvider` to create instances of these notifiers and provide them to the widget tree.
+
+Now, in our `MyWidget` widget, we can listen to these notifiers using the `Provider.of` method like this:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:my_app/first_notifier.dart';
+import 'package:my_app/second_notifier.dart';
+import 'package:my_app/third_notifier.dart';
+import 'package:my_app/fourth_notifier.dart';
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              Provider.of<FirstNotifier>(context).value.toString(),
+            ),
+            Text(
+              Provider.of<SecondNotifier>(context).value.toString(),
+            ),
+            Text(
+              Provider.of<ThirdNotifier>(context).value.toString(),
+            ),
+            Text(
+              Provider.of<FourthNotifier>(context).value.toString(),
+            ),
+          ],
+        ),
+      ),
+    );
+ 

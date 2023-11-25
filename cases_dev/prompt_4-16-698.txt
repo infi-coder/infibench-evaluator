@@ -1,0 +1,4 @@
+Restart terminal without closing on MacOS
+
+How to restart my current MacOS terminal session without closing the window?
+In Linux I use `exec bash` but it does not work in this environment. I made a few changes to the `.bash_profile` (prompt, alias etc) I would like to see without closing it and opening again.

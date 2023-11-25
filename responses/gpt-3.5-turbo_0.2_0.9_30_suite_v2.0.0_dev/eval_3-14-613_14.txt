@@ -1,0 +1,1 @@
+This error message suggests that the preview target is not included in the current scheme. To fix this, go to the scheme editor (Product > Scheme > Edit Scheme) and make sure that the preview target is selected in the "Build" section. If it's not listed, click the "+" button and add it to the scheme. Then try running the preview again.

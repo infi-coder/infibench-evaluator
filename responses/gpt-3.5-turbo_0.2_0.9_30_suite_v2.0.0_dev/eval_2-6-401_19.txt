@@ -1,0 +1,70 @@
+You can register multiple instances of `ServiceBusClient` with different queue names using named options. Here's an example:
+
+1. Define a class to hold the configuration options for each queue:
+```c#
+public class ServiceBusQueueOptions
+{
+    public string ConnectionString { get; set; }
+    public string QueueName { get; set; }
+}
+```
+
+2. Register the options for each queue using named options:
+```c#
+services.Configure<ServiceBusQueueOptions>("Queue1", Configuration.GetSection("Queue1"));
+services.Configure<ServiceBusQueueOptions>("Queue2", Configuration.GetSection("Queue2"));
+```
+
+3. Register the `ServiceBusClient` instances for each queue using the named options:
+```c#
+services.AddSingleton<ServiceBusClient>(serviceProvider =>
+{
+    var options = serviceProvider.GetRequiredService<IOptions<ServiceBusQueueOptions>>().Value;
+    return new ServiceBusClient(options.ConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+});
+
+services.AddSingleton(serviceProvider =>
+{
+    var client = serviceProvider.GetRequiredService<ServiceBusClient>();
+    var options = serviceProvider.GetRequiredService<IOptions<ServiceBusQueueOptions>>().Value;
+    return client.CreateSender(options.QueueName);
+});
+
+services.AddSingleton(serviceProvider =>
+{
+    var client = serviceProvider.GetRequiredService<ServiceBusClient>();
+    var options = serviceProvider.GetRequiredService<IOptions<ServiceBusQueueOptions>>().Value;
+    return client.CreateReceiver(options.QueueName, new ServiceBusReceiverOptions
+    {
+        ReceiveMode = ServiceBusReceiveMode.PeekLock
+    });
+});
+```
+
+4. Use the `ServiceBusSender` and `ServiceBusReceiver` instances for each queue by injecting them with the corresponding named options:
+```c#
+public class MyService
+{
+    private readonly ServiceBusSender _sender1;
+    private readonly ServiceBusReceiver _receiver1;
+    private readonly ServiceBusSender _sender2;
+    private readonly ServiceBusReceiver _receiver2;
+
+    public MyService(
+        IOptions<ServiceBusQueueOptions> options1,
+        ServiceBusSender sender1,
+        ServiceBusReceiver receiver1,
+        IOptions<ServiceBusQueueOptions> options2,
+        ServiceBusSender sender2,
+        ServiceBusReceiver receiver2)
+    {
+        _sender1 = sender1;
+        _receiver1 = receiver1;
+        _sender2 = sender2;
+        _receiver2 = receiver2;
+    }
+
+    public async Task SendMessageAsync(string message

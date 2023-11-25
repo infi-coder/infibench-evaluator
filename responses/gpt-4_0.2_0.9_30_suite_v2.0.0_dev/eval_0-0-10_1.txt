@@ -1,0 +1,19 @@
+Sure, here is the completed Javascript template:
+
+Way 1:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').should('have.text', "Wildness")
+```
+
+Way 2:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').invoke('text').then((text) => {
+    expect(text.trim()).to.equal('Wildness')
+});
+```
+
+In the first way, we are using the `should` function to assert that the text of the element with class `WildnessText-kRKTej` is "Wildness".
+
+In the second way, we are using the `invoke` function to get the text of the element, and then using the `then` function to assert that the trimmed text is "Wildness". The `expect` function is used to make the assertion.

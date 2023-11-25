@@ -1,0 +1,5 @@
+The Rule of 5 is not outdated, as there are still situations where you may need to define these special member functions. While it is true that implicit constructors and destructors work fine for aggregate data structures, there are situations where you may need to manage resources manually, such as when dealing with dynamic memory allocation or file I/O.
+
+Smart pointers can certainly help manage resources, but they are not always a perfect solution. For example, if you need to manage a resource that is not memory-based, such as a network connection or a file handle, a smart pointer may not be appropriate. Additionally, there may be situations where you need more fine-grained control over the resource management than a smart pointer can provide.
+
+In summary, while smart pointers can be a useful tool for managing resources, there are still situations where you may need to define your own constructors and destructors. The Rule of 5 is still a useful guideline to follow in these situations.

@@ -1,0 +1,25 @@
+If you're using a CI/CD tool like Jenkins or GitHub Actions, you can specify the Java version in your pipeline configuration. However, if you want to use a specific Java version with Maven Wrapper locally, you can do so by setting the `JAVA_HOME` environment variable.
+
+Here's how you can do it:
+
+1. Find out where your desired Java version is installed. This is usually in a directory like `/usr/lib/jvm/java-11-openjdk-amd64/` on Linux or `C:\Program Files\Java\jdk-11.0.1` on Windows.
+
+2. Set the `JAVA_HOME` environment variable to point to this directory. 
+
+On Linux or Mac, you can do this in your shell:
+
+```bash
+export JAVA_HOME=/path/to/your/jdk
+```
+
+On Windows, you can do this in the command prompt:
+
+```cmd
+set JAVA_HOME=C:\path\to\your\jdk
+```
+
+3. Now, when you run the Maven Wrapper with `./mvnw` or `mvnw.cmd`, it should use the specified Java version.
+
+Remember, this change is temporary and only for the current terminal session. If you want to make it permanent, you need to add the `export JAVA_HOME=...` line to your shell profile file (like `~/.bashrc` or `~/.zshrc` on Linux/Mac), or set the environment variable in the System Properties on Windows.
+
+If you're using a tool like Jenkins, you can set the `JAVA_HOME` environment variable in the build environment configuration. For GitHub Actions, you can use the `setup-java` action to specify the Java version.

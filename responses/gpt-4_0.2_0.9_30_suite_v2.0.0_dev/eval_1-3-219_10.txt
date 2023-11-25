@@ -1,0 +1,31 @@
+This issue might be due to a variety of reasons. Here are some steps you can try to resolve this issue:
+
+1. **Update your packages**: Make sure your `ipykernel`, `ipython`, `jupyter_client`, `jupyter_core`, `traitlets`, `tornado` packages are up to date. You can update them using the following command:
+
+    ```bash
+    conda activate da38
+    pip install --upgrade ipykernel ipython jupyter_client jupyter_core traitlets tornado
+    ```
+
+2. **Check your Python interpreter**: Make sure you have selected the correct Python interpreter in VS Code. You can do this by clicking on the Python version in the bottom left of the status bar, or by using the `Python: Select Interpreter` command from the Command Palette (`Ctrl+Shift+P`).
+
+3. **Check your Jupyter server**: Try to start a Jupyter server manually from the command line in your `da38` environment and see if it works. If it doesn't, the problem might be with your Jupyter installation.
+
+    ```bash
+    conda activate da38
+    jupyter notebook
+    ```
+
+4. **Reinstall Jupyter**: If the above steps don't work, try reinstalling Jupyter in your `da38` environment.
+
+    ```bash
+    conda activate da38
+    pip uninstall jupyter
+    pip install jupyter
+    ```
+
+5. **Check your VS Code settings**: Make sure the `python.dataScience.jupyterServerURI` setting in VS Code is set to `"local"` (the default). If it's set to a specific URI, VS Code might be trying to connect to a Jupyter server that doesn't exist.
+
+6. **Check your firewall settings**: If you're using a firewall, it might be blocking the connection to the Jupyter server. Try disabling the firewall temporarily and see if it works.
+
+If none of the above steps work, please provide more information about your setup (e.g., the output of `jupyter --version` and `python --version`, any error messages you see in the Jupyter server logs, etc.) so we can help you better.

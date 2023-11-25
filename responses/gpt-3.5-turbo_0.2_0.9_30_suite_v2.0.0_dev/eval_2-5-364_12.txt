@@ -1,0 +1,19 @@
+If you want to use the same version of Java that is used by the Maven task, you can specify the `JAVA_HOME` environment variable to point to the location of the JDK that Maven is using.
+
+To find out which version of Java Maven is using, you can run the following command in your terminal:
+
+```
+mvn -version
+```
+
+This will display the version of Maven and the version of Java that it is using.
+
+Once you know the location of the JDK that Maven is using, you can set the `JAVA_HOME` environment variable to that location. For example, if Maven is using JDK version 1.8.0_181 and it is installed in the `/usr/lib/jvm/java-8-openjdk-amd64` directory, you can set the `JAVA_HOME` environment variable like this:
+
+```
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+```
+
+You can add this line to your shell profile (e.g. `.bashrc` or `.zshrc`) to make it persistent across terminal sessions.
+
+After setting the `JAVA_HOME` environment variable, you should be able to run the Maven wrapper using the same version of Java that Maven is using.

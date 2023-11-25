@@ -1,0 +1,12 @@
+The `rename()` function is used to rename the labels of DataFrame. However, in your case, you are trying to rename the Series object returned by the `mean()` function, not a DataFrame. The Series object doesn't have a `columns` attribute, hence the error.
+
+Here is the correct way to do it:
+
+```python
+def renameDataFrame(df):
+    avg = df.groupby(["t"], sort=False)["p"].mean().reset_index()
+    avg = avg.rename(columns = {"p":"mean"})
+    return avg
+```
+
+In this function, `df.groupby(["t"], sort=False)["p"].mean()` will return a Series with the mean of "p" for each group of "t". The `reset_index()` function is used to convert the Series to a DataFrame and reset the index. Then, `rename(columns = {"p":"mean"})` is used to rename the column "p" to "mean".

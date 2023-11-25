@@ -1,0 +1,29 @@
+Sure, here is a function `mySplit` that uses the `strsplit` function to split the strings and then `sapply` to apply the function to each element of the list. The `do.call` function is used to combine the results into a data frame.
+
+```r
+mySplit <- function(df) {
+  # Split the strings by comma
+  split_comma <- strsplit(df$col1, ",")
+  
+  # Split the resulting strings by colon
+  split_colon <- lapply(split_comma, function(x) strsplit(x, ":"))
+  
+  # Extract the values
+  values <- lapply(split_colon, function(x) sapply(x, function(y) y[2]))
+  
+  # Combine the values into a data frame
+  df_new <- do.call(rbind, values)
+  
+  # Set the column names
+  colnames(df_new) <- c("name", "Age", "City")
+  
+  # Convert the data frame to the correct types
+  df_new$Age <- as.numeric(df_new$Age)
+  
+  return(df_new)
+}
+```
+
+This function assumes that the input data frame has a column named `col1` and that each string in this column is formatted as `"name:Name,Age:Age,City:City"`. If the format of the strings is different, the function may need to be adjusted. 
+
+Also, note that this function converts the `Age` column to numeric. If the `Age` values are not numeric, this line should be removed or adjusted.

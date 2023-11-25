@@ -1,0 +1,33 @@
+Here is the Python function `to_camel_case` that converts dash/underscore delimited words into camel casing:
+
+```python
+def to_camel_case(text):
+    if not text:
+        return ''
+    else:
+        words = re.split('-|_', text)
+        return words[0] + ''.join(word.capitalize() for word in words[1:])
+```
+
+This function works as follows:
+
+1. If the input string `text` is empty, it returns an empty string.
+2. If the input string `text` is not empty, it splits the string into words at each dash or underscore.
+3. It then returns a string that consists of the first word and the rest of the words with their first letter capitalized.
+
+The `re.split` function is used to split the string at each dash or underscore. The `join` function is used to concatenate the words into a string, with each word except the first one capitalized.
+
+Please note that you need to import the `re` module for regular expressions to use the `re.split` function. So, the complete code with import statement would be:
+
+```python
+import re
+
+def to_camel_case(text):
+    if not text:
+        return ''
+    else:
+        words = re.split('-|_', text)
+        return words[0] + ''.join(word.capitalize() for word in words[1:])
+```
+
+This function should pass all the test cases provided in the question.

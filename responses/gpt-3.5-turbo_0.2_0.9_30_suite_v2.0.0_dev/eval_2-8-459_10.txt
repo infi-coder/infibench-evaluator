@@ -1,0 +1,17 @@
+It seems like the go module system is unable to download the required dependency from the private repository. Here are a few things you can try to debug this issue:
+
+1. Check if the private repository is accessible from computer B: Make sure that you can access the private repository from computer B. You can try cloning the repository manually and see if it works.
+
+2. Check if the credentials are set up correctly: Make sure that the credentials for accessing the private repository are set up correctly on computer B. You can check the `~/.gitconfig` file to see if the credentials are set up correctly.
+
+3. Check if the module cache is corrupted: Try clearing the module cache on computer B and then try building the program again. You can clear the module cache by running the following command:
+
+   ```bash
+   $ go clean -modcache
+   ```
+
+4. Check if the module version is correct: Make sure that the version of the dependency specified in the `go.mod` file is correct. You can try updating the version to the latest version and see if it works.
+
+5. Check if the module proxy is set up correctly: Make sure that the module proxy is set up correctly on computer B. You can check the `GOPROXY` environment variable to see if it is set up correctly.
+
+Hopefully, one of these steps will help you debug the issue and get the program to build successfully.

@@ -1,0 +1,14 @@
+The error you're encountering is because you're trying to access platform-specific code before `runApp()` is called. The `WidgetsFlutterBinding.ensureInitialized()` method must be called first in order to initialize the binding, which is required for using platform channels.
+
+Here's how you can fix your code:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // add this line
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+
+This ensures that the widget binding is initialized before you try to use the `getApplicationDocumentsDirectory()` method.

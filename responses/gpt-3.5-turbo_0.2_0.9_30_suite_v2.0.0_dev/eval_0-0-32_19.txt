@@ -1,0 +1,51 @@
+To identify if a div is visible on the viewport, you can use the Intersection Observer API. Here's an example implementation:
+
+```javascript
+import React, { useRef, useEffect, useState } from "react";
+
+const ParentComponent = ({ data }) => {
+  const parentRef = useRef(null);
+  const [visibleDivs, setVisibleDivs] = useState([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleIds = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target.id);
+        setVisibleDivs(visibleIds);
+      },
+      { rootMargin: "0px", threshold: 1 }
+    );
+
+    const childNodes = parentRef.current.childNodes;
+    childNodes.forEach((child) => observer.observe(child));
+
+    return () => {
+      childNodes.forEach((child) => observer.unobserve(child));
+    };
+  }, [data]);
+
+  return (
+    <div id="parent" ref={parentRef}>
+      {data.map((item) => (
+        <div key={item.id} id={item.id}>
+          {item.title}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+In this example, we're using the `IntersectionObserver` API to observe each child node of the `#parent` div. When a child node intersects with the viewport, we add its `id` to the `visibleDivs` state. We're also using the `useRef` hook to get a reference to the `#parent` div, and the `useEffect` hook to set up and clean up the `IntersectionObserver`.
+
+To use this component, you can simply pass in your `data` array as a prop:
+
+```javascript
+<ParentComponent data={data} />
+```
+
+This implementation assumes that the `data` array is static and doesn't change during runtime. If your `data` array changes, you'll need to update the `IntersectionObserver` accordingly.

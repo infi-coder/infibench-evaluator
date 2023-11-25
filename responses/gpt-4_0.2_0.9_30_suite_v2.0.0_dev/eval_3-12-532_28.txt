@@ -1,0 +1,47 @@
+The `FormatException: Unexpected character (at character 1)` error usually occurs when you are trying to parse a JSON from a response that is not actually JSON. 
+
+Here are some steps to debug and solve this issue:
+
+1. **Check the response**: Print the response body before trying to decode it to make sure it's valid JSON. You can do this by adding `print('Response body: ${response.body}');` before `json.decode(response.body);`.
+
+2. **Check the server-side script**: Make sure that your PHP script is correctly outputting JSON. You can do this by running the script independently and checking the output.
+
+3. **Check the content type of the response**: Make sure that the server is sending the response with the correct content type of `application/json`. You can do this by checking `response.headers['content-type']`.
+
+4. **Check for BOM**: If your JSON starts with a Byte Order Mark (BOM), it can cause this error. You can remove it before parsing the JSON.
+
+5. **Check for non-200 HTTP status codes**: If the server responds with a non-200 HTTP status code, `response.body` may not contain valid JSON. You can check the status code with `response.statusCode`.
+
+Here is how you can implement these checks:
+
+```dart
+Future<String> iniciarSesion() async{
+  var usuario = textUsuario.text;
+  var password = textPassword.text;
+  var nombreUsuario;
+  var url ="http://192.168.1.37/usuario.php";
+
+  //Metodo post
+  var response = await http.post(
+      url,
+      headers:{ "Accept": "application/json" } ,
+      body: { "usuario": '$usuario',"password": '$password'},
+      encoding: Encoding.getByName("utf-8")
+  );
+
+  print('Response status: ${response.statusCode}');
+  print('Response body: ${response.body}');
+  print('Response headers: ${response.headers}');
+
+  if (response.statusCode == 200) {
+    String body = response.body;
+    if (body.startsWith('\ufeff')) {
+      body = body.substring(1);
+    }
+    List data = json.decode(body);
+  } else {
+    print('Unexpected status code: ${response.statusCode}.');
+  }
+}
+```
+Remember to import the `dart:convert` package to use `json.decode`.

@@ -1,0 +1,16 @@
+As of Enzyme version 3.11.0, there is a new adapter available for React 17 called `@wojtekmaj/enzyme-adapter-react-17`. You can install it by running:
+
+```
+npm install --save-dev @wojtekmaj/enzyme-adapter-react-17
+```
+
+Then, you can update your import code to:
+
+```javascript
+import Enzyme from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+
+Enzyme.configure({ adapter: new Adapter() });
+```
+
+This should make Enzyme work with your React 17 app.

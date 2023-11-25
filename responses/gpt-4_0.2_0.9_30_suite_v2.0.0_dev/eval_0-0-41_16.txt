@@ -1,0 +1,22 @@
+The `navigator.geolocation` object is available in most modern browsers, so the `else` block in your code will not be executed unless the browser does not support the Geolocation API at all. 
+
+However, the user can still deny the permission to access their location. This will not cause an error, but the callback function you pass to `getCurrentPosition` will not be called. 
+
+To handle this, you can pass a second callback function to `getCurrentPosition` which will be called in case of an error. Here's how you can modify your code:
+
+```javascript
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+        position => {
+            console.log("Location accessed");
+        },
+        error => {
+            console.log("User not allowed");
+        }
+    );
+} else {
+    console.log("Geolocation is not supported by this browser.");
+}
+```
+
+In this code, if the user denies the permission to access their location, the second callback function will be called and "User not allowed" will be logged to the console. If the browser does not support the Geolocation API at all, "Geolocation is not supported by this browser." will be logged.

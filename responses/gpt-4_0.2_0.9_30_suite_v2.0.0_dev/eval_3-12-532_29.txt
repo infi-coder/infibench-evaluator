@@ -1,0 +1,29 @@
+The error message suggests that the response you're getting from your server is not a valid JSON string. This could be due to a number of reasons:
+
+1. The server might not be returning a JSON response at all. It could be returning HTML or plain text, for example. You can check this by printing out the response body before trying to decode it:
+
+    ```dart
+    print('Response body: ${response.body}');
+    ```
+
+2. There might be some invisible characters at the start of the response that are causing the JSON decoding to fail. This could be due to a BOM (Byte Order Mark) or some other invisible character. You can try removing these before decoding the JSON:
+
+    ```dart
+    String responseBody = response.body;
+    if (responseBody.codeUnitAt(0) == 65279) {
+      responseBody = responseBody.substring(1);
+    }
+    List data = json.decode(responseBody);
+    ```
+
+3. The server might be returning a JSON error message, which is not the same as a successful JSON response. You should check the status code of the response to make sure it's 200 (OK):
+
+    ```dart
+    if (response.statusCode == 200) {
+      List data = json.decode(response.body);
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+    ```
+
+4. If none of the above solutions work, there might be an issue with the server-side PHP code. You should check the PHP code to make sure it's correctly generating a JSON response.

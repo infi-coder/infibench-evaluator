@@ -1,0 +1,20 @@
+The alert you're seeing is likely related to the fact that the app you're trying to open is a developer-signed app, not a standard App Store app. To run such apps, you need to trust the developer on your device. Here's how you can do that:
+
+1. Go to **Settings** on your iOS device.
+2. Scroll down and tap on **General**.
+3. Scroll down to **Device Management** or **Profiles & Device Management**.
+4. Under the "Developer App" section, tap on the developer's name.
+5. Then tap on **Trust "[Developer Name]"**.
+6. In the pop-up prompt, confirm by tapping **Trust**.
+
+Please note that you should only trust apps from developers you know and trust.
+
+However, if you're trying to enable the actual "Developer Mode" for more advanced development-related tasks, you need to connect your device to a Mac and use Xcode. Here's how:
+
+1. Install **Xcode** from the Mac App Store.
+2. Connect your iOS device to your Mac using a USB cable.
+3. Open **Xcode** and go to **Window** > **Devices and Simulators**.
+4. Select your device from the list in the left sidebar.
+5. Check the box that says "Show as run destination".
+
+Please note that enabling Developer Mode in this way is typically only necessary for developers who need to run and test apps directly on a device. If you're not a developer, you likely don't need to enable Developer Mode.

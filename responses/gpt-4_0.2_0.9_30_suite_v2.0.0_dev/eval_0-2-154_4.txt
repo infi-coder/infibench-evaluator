@@ -1,0 +1,33 @@
+Sure, here is a generator function that should do the job:
+
+```javascript
+function* iterLeafNodes(strhtml, format=[]) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strhtml, "text/html");
+  const walk = function* (node, format) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      yield { text: node.nodeValue, format };
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const newFormat = [...format];
+      if (node.nodeName !== "P") {
+        newFormat.push(node.nodeName.toLowerCase());
+      }
+      for (const child of node.childNodes) {
+        yield* walk(child, newFormat);
+      }
+    }
+  };
+  for (const child of doc.body.childNodes) {
+    yield* walk(child, format);
+  }
+}
+```
+
+You can then use it like this:
+
+```javascript
+const strHTML = "<p>Hello World</p><p>I am a text with <strong>bold</strong> word</p><p><strong>I am bold text with nested <em>italic</em> Word.</strong></p>";
+let result = [...iterLeafNodes(strHTML)];
+```
+
+This function uses a recursive generator to walk the DOM tree. It checks the type of each node and if it's a text node, it yields an object with the text and the current format. If it's an element node, it adds the node name to the format (if it's not a paragraph) and then recursively walks the child nodes.

@@ -1,0 +1,10 @@
+This error message suggests that the preview target is not included in the current scheme. You can try the following steps to fix the issue:
+
+1. Open the project settings by clicking on the project name in the Project navigator.
+2. Select the scheme you are using for previewing.
+3. Click on "Edit Scheme".
+4. Select "Build" in the left-hand menu.
+5. Make sure that the preview target is checked under "Build" and "Run".
+6. Click "Close" to save the changes.
+
+If the preview target is already included in the scheme, you can try cleaning the build folder by going to "Product" in the menu bar and selecting "Clean Build Folder". Then try running the preview again.

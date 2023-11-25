@@ -1,0 +1,50 @@
+Yes, there are more idiomatic ways to express this in Rust. Here are a few alternatives:
+
+1. **Using `if let` with a condition:**
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        if let Some(foo_val) = foo {
+            if foo_val < 5 {
+                foo.replace(5);
+            }
+        } else {
+            foo.replace(5);
+        }
+    }
+    ```
+    This is more idiomatic because it uses `if let` to destructure the `Option` and then checks the condition. If the condition is not met, or if the `Option` was `None`, it replaces the value.
+
+2. **Using `map_or`:**
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        foo = foo.map_or(Some(5), |foo_val| if foo_val < 5 { Some(5) } else { Some(foo_val) });
+    }
+    ```
+    This is more idiomatic because it uses `map_or` to handle both the `None` case and the `Some` case at once. If the `Option` is `None`, it returns `Some(5)`. If the `Option` is `Some(foo_val)`, it checks the condition and returns `Some(5)` if the condition is met, or `Some(foo_val)` otherwise.
+
+3. **Using `unwrap_or_else`:**
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        foo = Some(foo.unwrap_or_else(|| 5).max(5));
+    }
+    ```
+    This is more idiomatic because it uses `unwrap_or_else` to handle the `None` case and `max` to handle the `Some` case. If the `Option` is `None`, it returns `5`. If the `Option` is `Some(foo_val)`, it returns the maximum of `foo_val` and `5`.
+
+4. **Using `match` with a guard:**
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        match foo {
+            Some(foo_val) if foo_val >= 5 => {},
+            _ => { foo = Some(5); }
+        }
+    }
+    ```
+    This is similar to your original code, but uses a guard in the

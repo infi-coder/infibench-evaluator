@@ -1,0 +1,29 @@
+The error you're seeing is because `pdftk` is not supported on macOS Catalina (10.15) and later versions. This is because Apple dropped support for 32-bit applications starting from Catalina, and `pdftk` is a 32-bit application.
+
+However, there's a workaround to this problem. You can use `pdftk-java`, which is a port of `pdftk` to Java. Here's how you can install it:
+
+1. First, you need to install Homebrew if you haven't already. Open Terminal and paste the following command:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+2. Once Homebrew is installed, you can install `pdftk-java` using the following command:
+
+```bash
+brew install pdftk-java
+```
+
+3. Now, you need to create a symbolic link to `pdftk-java` so that you can use it as `pdftk`. Run the following command:
+
+```bash
+echo 'alias pdftk="/usr/local/bin/pdftk-java"' >> ~/.zshrc
+```
+
+4. Finally, you need to apply the changes to your current shell session:
+
+```bash
+source ~/.zshrc
+```
+
+Now, you should be able to use `pdftk` as usual.

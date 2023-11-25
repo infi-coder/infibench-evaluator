@@ -1,0 +1,19 @@
+The error message `404 Not Found: aws-sdk-js@latest` suggests that npm is unable to find the package `aws-sdk-js` in the npm registry. 
+
+This is likely because there is no package named `aws-sdk-js` in the npm registry. The correct package name for the AWS SDK for JavaScript in Node.js is `aws-sdk`.
+
+You should replace `aws-sdk-js` with `aws-sdk` in your `package.json` file or in your `npm install` command.
+
+So, instead of running:
+
+```bash
+npm install aws-sdk-js
+```
+
+You should run:
+
+```bash
+npm install aws-sdk
+```
+
+This will install the AWS SDK for JavaScript in Node.js and should resolve your issue.

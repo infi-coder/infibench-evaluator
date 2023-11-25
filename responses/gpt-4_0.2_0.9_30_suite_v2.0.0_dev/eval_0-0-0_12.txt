@@ -1,0 +1,20 @@
+Sure, you can use `Object.keys()` to get the keys of the object and `Array.map()` to extract the prices. Here is the function you need:
+
+```javascript
+function keys_and_prices(raw_obj) {
+    let keys = Object.keys(raw_obj);
+    let prices = keys.map(key => raw_obj[key].price);
+    return [keys, prices];
+}
+```
+
+This function first gets the keys of the input object and stores them in the `keys` array. Then it maps over the keys and for each key, it retrieves the `price` field from the corresponding object in `raw_obj`. The result is stored in the `prices` array. Finally, it returns an array containing `keys` and `prices` as its elements.
+
+Please note that the `assert` function in your example is not a built-in JavaScript function. If you want to check the equality of arrays, you can use `JSON.stringify()` to convert them into strings and then compare the strings:
+
+```javascript
+var itemsToBuy = { milk: { quantity : 5, price: 20 }, bread: { quantity : 2, price: 15 }, potato: { quantity : 3, price: 10 } }
+let ret = keys_and_prices(itemsToBuy)
+console.assert(JSON.stringify(ret[0]) === JSON.stringify(["milk", "bread", "potato"]))
+console.assert(JSON.stringify(ret[1]) === JSON.stringify([20, 15, 10]))
+```

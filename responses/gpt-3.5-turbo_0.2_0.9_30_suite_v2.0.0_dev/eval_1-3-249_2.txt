@@ -1,0 +1,23 @@
+Sure, here's a possible implementation using the `random` module in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the possible characters for the code
+    chars = string.ascii_letters + string.digits
+    
+    # Generate a random code that contains "NAA3U" and 3 digits
+    while True:
+        code = ''.join(random.choice(chars) for _ in range(11))
+        if 'NAA3U' in code and sum(c.isdigit() for c in code) == 3:
+            break
+    
+    # Add 5 more random characters to the code
+    code += ''.join(random.choice(chars) for _ in range(5))
+    
+    return code
+```
+
+This function generates a random code of length 16 that satisfies all the requirements you specified. The `while` loop keeps generating random codes until one is found that contains "NAA3U" and exactly 3 digits. The `sum(c.isdigit() for c in code)` expression counts the number of digits in the code. Finally, the function adds 5 more random characters to the code to reach the desired length of 16.

@@ -1,0 +1,27 @@
+The error message indicates that the JSON decoding failed due to an unexpected character at the beginning of the input string. This usually happens when the response from the server is not a valid JSON string.
+
+Here are a few steps you can take to debug and solve this issue:
+
+1. **Check the response from the server**: Print the response body before trying to decode it. This will help you understand what you're trying to parse.
+
+```dart
+print('Response body: ${response.body}');
+```
+
+2. **Check the server-side script**: Make sure that the PHP script is correctly outputting a JSON string. You can use `json_encode()` in PHP to convert an array or object into a JSON string.
+
+3. **Check for BOM or whitespace**: The error can also occur if there's a Byte Order Mark (BOM) or whitespace before the actual JSON content. Make sure your PHP script doesn't output anything before the JSON string.
+
+4. **Check the content type**: Ensure that the server is sending the response with the correct `Content-Type` header. It should be `application/json`.
+
+5. **Handle the error**: You can use a try-catch block to handle the `FormatException` and print more detailed information about the error.
+
+```dart
+try {
+  List data = json.decode(response.body);
+} catch (e) {
+  print('Error: $e');
+}
+```
+
+Remember, the issue is not in your Dart code but in the response you're getting from the server. You need to ensure that the server sends a valid JSON string.

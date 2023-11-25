@@ -1,0 +1,24 @@
+The error you're getting is because you're trying to import the Bootstrap variables file before you declare your custom `$theme-colors` map. The variables file already contains a `$theme-colors` map, and when you try to declare it again, it's causing a conflict.
+
+To fix this, you need to declare your custom `$theme-colors` map before importing the Bootstrap SCSS files. Here is how you can do it:
+
+```scss
+// Define your custom colors
+$theme-colors: (
+  "primary": #your-color, // replace #your-color with your desired color
+  "secondary": #6c757d,
+  "success": #198754,
+  "info": #0dcaf0,
+  "warning": #ffc107,
+  "danger": #dc3545,
+  "light": #f8f9fa,
+  "dark": #212529
+);
+
+// Then import Bootstrap's main SCSS file
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In this code, you're defining your custom `$theme-colors` map first, and then importing Bootstrap's main SCSS file. This way, your custom colors will be used instead of the default ones.
+
+Also, make sure you replace `#your-color` with the actual color you want to use for the "primary" color.

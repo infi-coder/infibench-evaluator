@@ -1,0 +1,20 @@
+This error is caused by an incompatibility between the version of Maven bundled with IntelliJ IDEA and the version of Maven used in the project. 
+
+The error message `java.lang.NoSuchMethodError: org.apache.maven.model.validation.DefaultModelValidator: method 'void <init>()' not found` indicates that IntelliJ IDEA is trying to use a method in the `DefaultModelValidator` class that doesn't exist in the version of Maven used in the project.
+
+To solve this issue, you can try the following steps:
+
+1. Update IntelliJ IDEA to the latest version. JetBrains regularly releases updates that include bug fixes and compatibility improvements.
+
+2. Configure IntelliJ IDEA to use the same version of Maven as your project. You can do this in the "Maven" settings:
+
+   - Go to "File" > "Settings" (or "Preferences" on macOS).
+   - In the settings dialog, go to "Build, Execution, Deployment" > "Build Tools" > "Maven".
+   - In the "Maven home directory" field, enter the path to the Maven installation that matches the version used in your project.
+
+3. If the above steps don't solve the issue, you can try to invalidate the caches and restart IntelliJ IDEA:
+
+   - Go to "File" > "Invalidate Caches / Restart...".
+   - In the dialog that opens, click on "Invalidate and Restart".
+
+Remember to always backup your work before performing these operations.

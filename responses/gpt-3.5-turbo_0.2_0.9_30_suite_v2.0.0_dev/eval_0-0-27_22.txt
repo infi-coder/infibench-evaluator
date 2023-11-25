@@ -1,0 +1,14 @@
+It looks like the issue might be related to the URI you're using for your Apollo Client. The URI you're using (`https://48p1r2roz4.sse.codesandbox.io`) is a public test API provided by Apollo, and it might not be working properly at the moment.
+
+To test if this is the issue, you can try using a different GraphQL API, such as the one provided by SpaceX:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'https://api.spacex.land/graphql/',
+    cache: new InMemoryCache(),
+});
+```
+
+If this works, then the issue is likely with the test API you were using before. If it doesn't work, then there might be another issue with your code or setup.
+
+Also, make sure that your device or emulator has an active internet connection, as the Apollo Client needs to make a network request to fetch data.

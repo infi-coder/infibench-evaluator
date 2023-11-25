@@ -1,0 +1,21 @@
+The error message `Parsing error: Cannot read file '.../tsconfig.json'.eslint` indicates that ESLint is having trouble reading your `tsconfig.json` file. This is likely due to the `project` property in your `.eslintrc.js` file.
+
+In your `.eslintrc.js` file, you have the following line:
+
+```javascript
+project: "tsconfig.json",
+```
+
+This tells ESLint to look for the `tsconfig.json` file in the same directory as the `.eslintrc.js` file. If your `tsconfig.json` file is not in the same directory, you'll need to provide the correct relative path.
+
+For example, if your `tsconfig.json` file is in the root directory of your project, and your `.eslintrc.js` file is in a subdirectory, you would need to change the line to:
+
+```javascript
+project: "../tsconfig.json",
+```
+
+If your `tsconfig.json` file is in a different directory, adjust the path accordingly.
+
+If the `tsconfig.json` file is in the same directory as the `.eslintrc.js` file and you're still having issues, there might be a problem with the `tsconfig.json` file itself. Make sure it's valid JSON and doesn't contain any syntax errors. You can use a JSON validator tool to check this.
+
+Also, ensure that the `include` property in your `tsconfig.json` file is correctly set. It should point to the directory where your TypeScript files are located. In your case, it's set to `"src"`, which means TypeScript will only compile files in the `src` directory. If your TypeScript files are in a different directory, you'll need to update this property.

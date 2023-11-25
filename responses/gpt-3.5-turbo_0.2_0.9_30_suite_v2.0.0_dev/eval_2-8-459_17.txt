@@ -1,0 +1,35 @@
+It seems like the module `github.ibm.com/kms/key-protect-client` cannot be found in the module cache on computer B. Here are some steps you can take to debug this issue:
+
+1. Check that the module cache is set up correctly on computer B. You can do this by running the following command:
+
+   ```bash
+   go env GOMODCACHE
+   ```
+
+   This should output the path to the module cache directory. Make sure that this directory exists and has the correct permissions.
+
+2. Check that the module `github.ibm.com/kms/key-protect-client` is actually available on the internet. You can do this by running the following command:
+
+   ```bash
+   go list -m github.ibm.com/kms/key-protect-client@v0.1.5
+   ```
+
+   This should output information about the module, including its version `v0.1.5`. If this command fails, it means that the module cannot be found on the internet.
+
+3. Check that your GitHub credentials are set up correctly on computer B. You can do this by running the following command:
+
+   ```bash
+   git config --global credential.helper
+   ```
+
+   This should output the name of the credential helper that is being used to authenticate with GitHub. Make sure that this credential helper is set up correctly and has the correct credentials.
+
+4. If none of the above steps work, you can try to force the module to be downloaded by running the following command:
+
+   ```bash
+   go get -u github.ibm.com/kms/key-protect-client@v0.1.5
+   ```
+
+   This will force the module to be downloaded and added to the module cache. After running this command, try building your program again.
+
+I hope this helps you debug the issue. Let me know if you have any further questions!

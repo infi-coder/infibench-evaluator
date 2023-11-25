@@ -1,0 +1,22 @@
+There could be several reasons why you're unable to start a Jupyter notebook in VS Code. Here are some steps you can take to troubleshoot and resolve the issue:
+
+1. **Check your Python interpreter:** Make sure you have the correct Python interpreter selected for your workspace. You can do this by clicking on the Python version in the bottom left corner of the VS Code window and selecting the interpreter that corresponds to your 'da38' environment.
+
+2. **Reinstall Jupyter:** It's possible that your Jupyter installation has become corrupted. You can try reinstalling it in your 'da38' environment with the following commands:
+
+    ```bash
+    conda activate da38
+    conda install jupyter
+    ```
+
+3. **Check your Jupyter server logs:** If you're still having trouble, you can check the Jupyter server logs for any error messages. You can do this by running the following command in your 'da38' environment:
+
+    ```bash
+    jupyter notebook --debug
+    ```
+
+4. **Update VS Code and Python extension:** Make sure you're running the latest version of VS Code and the Python extension. You can update VS Code by clicking on the gear icon in the bottom left corner of the window and selecting 'Check for Updates'. You can update the Python extension by clicking on the Extensions icon in the Activity Bar on the side of the window, finding the Python extension in the list, and clicking 'Update'.
+
+5. **Check your firewall settings:** If you're still having trouble, it's possible that your firewall is blocking the connection to the Jupyter server. You can check your firewall settings to make sure that VS Code and Jupyter are allowed through.
+
+If none of these steps resolve the issue, please provide more information about your setup and the exact error messages you're seeing so we can better assist you.

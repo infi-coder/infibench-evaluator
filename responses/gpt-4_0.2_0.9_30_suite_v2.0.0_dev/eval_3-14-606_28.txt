@@ -1,0 +1,15 @@
+It seems like there's a misunderstanding here. iOS doesn't have a "Developer Mode" like Android does. If you're trying to install a provisioned testing build, it means that the device needs to be registered as a development device in your Apple Developer account.
+
+Here are the steps to do that:
+
+1. Connect your device to your Mac.
+2. Open Xcode.
+3. Go to `Window` -> `Devices and Simulators`.
+4. In the opened window, select your device from the left panel.
+5. Check the `Use for Development` box.
+
+If you're trying to install an app that's been sent to you for testing, the person or company that sent it to you will need to add your device's UDID to their list of test devices in their Apple Developer account.
+
+If you're trying to install an app from a source outside the App Store, you'll need to sideload it. This is a more complex process that involves signing the app with your own Apple Developer account and then installing it via Xcode or a third-party tool like Cydia Impactor.
+
+Please note that sideloading can potentially expose your device to security risks, and it's not recommended unless you fully trust the source of the app and understand the implications.

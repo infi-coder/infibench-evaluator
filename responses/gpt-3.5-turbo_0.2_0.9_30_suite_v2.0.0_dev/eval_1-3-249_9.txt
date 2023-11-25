@@ -1,0 +1,27 @@
+Sure, here's a possible implementation of the `generateRandomString` function in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    lettersAndDigits = string.ascii_letters + string.digits
+    while True:
+        randomString = ''.join(random.choices(lettersAndDigits, k=13))
+        if 'NAA3U' in randomString:
+            digitsCount = sum(c.isdigit() for c in randomString)
+            if digitsCount == 3:
+                return randomString
+```
+
+This function first defines a string `lettersAndDigits` that contains all the possible characters that can appear in the random string. It then enters an infinite loop that generates a random string of length 13 using the `random.choices` function from the `random` module. The `k` parameter specifies the length of the resulting string.
+
+The loop checks if the generated string contains the required sub-string "NAA3U" using the `in` operator. If it does, it counts the number of digits in the string using a generator expression and the `sum` function. If the count is exactly 3, the function returns the random string.
+
+Note that this implementation uses the `random.choices` function, which is available in Python 3.6 and later. If you're using an earlier version of Python, you can use the `random.sample` function instead:
+
+```python
+randomString = ''.join(random.sample(lettersAndDigits, k=13))
+```
+
+This function call generates a random sample of `k` characters from the `lettersAndDigits` string without replacement.

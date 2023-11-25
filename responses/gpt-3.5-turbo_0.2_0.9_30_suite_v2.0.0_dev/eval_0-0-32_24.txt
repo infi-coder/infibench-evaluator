@@ -1,0 +1,47 @@
+To identify if a div is visible on the viewport on scroll, you can use the `Intersection Observer API`. This API allows you to observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+
+Here's an example of how you can use the `Intersection Observer API` to get the list of divs inside `#parent` which are visible on the viewport on scroll:
+
+```javascript
+import React, { useEffect, useRef, useState } from "react";
+
+const ParentComponent = ({ data }) => {
+  const [visibleDivs, setVisibleDivs] = useState([]);
+  const parentRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleIds = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target.id);
+        setVisibleDivs(visibleIds);
+      },
+      { root: null, rootMargin: "0px", threshold: 0.5 }
+    );
+
+    const childNodes = parentRef.current.childNodes;
+    childNodes.forEach((child) => observer.observe(child));
+
+    return () => observer.disconnect();
+  }, [data]);
+
+  return (
+    <div id="parent" ref={parentRef}>
+      {data.map((item) => (
+        <div key={item.id} id={item.id}>
+          {item.title}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+In this example, we are using the `Intersection Observer API` to observe changes in the intersection of each child element of `#parent` with the viewport. When an element intersects with the viewport, we add its `id` to the `visibleDivs` state.
+
+Note that we are using the `useRef` hook to get a reference to the `#parent` element, and the `useEffect` hook to create and clean up the `IntersectionObserver` instance.
+
+Also, note that we are using the `key` prop in the child `div` elements to avoid React warnings.

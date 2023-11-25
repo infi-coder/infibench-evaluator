@@ -1,0 +1,13 @@
+This error is related to the compatibility issue between IntelliJ IDEA and the Maven version. The Maven version (3.8.5) that comes with Spring Boot 2.7 is not fully compatible with some versions of IntelliJ IDEA.
+
+Here are a few solutions you can try:
+
+1. **Update IntelliJ IDEA**: Make sure you are using the latest version of IntelliJ IDEA. JetBrains usually releases updates to their IDEs to ensure compatibility with the latest versions of build tools like Maven.
+
+2. **Downgrade Maven version**: If updating IntelliJ IDEA is not an option, you can downgrade the Maven version to a version that is compatible with your IntelliJ IDEA version. You can do this by modifying the `pom.xml` file in your project and specifying the Maven version there.
+
+3. **Use IntelliJ IDEA's bundled Maven**: IntelliJ IDEA comes with a bundled Maven version that is guaranteed to be compatible with it. You can switch to using this version by going to `Settings` -> `Build, Execution, Deployment` -> `Build Tools` -> `Maven` and then selecting the `Bundled (Maven 3)` option in the `Maven home directory` dropdown.
+
+4. **Disable the Maven extension in IntelliJ IDEA**: If none of the above solutions work, you can try disabling the Maven extension in IntelliJ IDEA. Go to `Settings` -> `Plugins` and disable the `Maven Integration` plugin. Please note that this will disable all Maven-related features in IntelliJ IDEA.
+
+Remember to restart IntelliJ IDEA after making these changes to ensure they take effect.

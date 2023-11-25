@@ -1,0 +1,51 @@
+You can register multiple instances of `ServiceBusClient` with different queue names using named options. Here's an example:
+
+1. First, define a class to hold the configuration options for each queue:
+```c#
+public class ServiceBusQueueOptions
+{
+    public string ConnectionString { get; set; }
+    public string QueueName { get; set; }
+}
+```
+
+2. In your `Startup.cs` file, register the options and the `ServiceBusClient` instances using named options:
+```c#
+// Register the options for each queue
+services.Configure<ServiceBusQueueOptions>("Queue1", Configuration.GetSection("Queue1"));
+services.Configure<ServiceBusQueueOptions>("Queue2", Configuration.GetSection("Queue2"));
+
+// Register the ServiceBusClient instances using named options
+services.AddSingleton<IServiceBusClient>(serviceProvider =>
+{
+    var options = serviceProvider.GetRequiredService<IOptions<ServiceBusQueueOptions>>().Value;
+    var client = new ServiceBusClient(options.ConnectionString);
+    return client.CreateSender(options.QueueName);
+}).Named<IServiceBusClient>("Queue1");
+
+services.AddSingleton<IServiceBusClient>(serviceProvider =>
+{
+    var options = serviceProvider.GetRequiredService<IOptions<ServiceBusQueueOptions>>().Get("Queue2");
+    var client = new ServiceBusClient(options.ConnectionString);
+    return client.CreateSender(options.QueueName);
+}).Named<IServiceBusClient>("Queue2");
+```
+
+3. Inject the `IServiceBusClient` instances into your classes using the `Named` method:
+```c#
+public class MyService
+{
+    private readonly IServiceBusClient _queue1Client;
+    private readonly IServiceBusClient _queue2Client;
+
+    public MyService([Named("Queue1")] IServiceBusClient queue1Client, [Named("Queue2")] IServiceBusClient queue2Client)
+    {
+        _queue1Client = queue1Client;
+        _queue2Client = queue2Client;
+    }
+
+    // Use the clients as needed
+}
+```
+
+Note that in this example, we're using `IServiceBusClient` instead of `ServiceBusSender` or `ServiceBusReceiver`. This is because we want to be able to register both senders and receivers using the same named options. You can cast the `IServiceBusClient` instances to the appropriate type (`ServiceBusSender` or `ServiceBusReceiver`) when you use them in your code.

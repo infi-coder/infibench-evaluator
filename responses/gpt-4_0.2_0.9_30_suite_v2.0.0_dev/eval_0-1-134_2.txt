@@ -1,0 +1,18 @@
+It sounds like you're referring to a feature provided by a tool called Emmet. Emmet is a plugin for many popular text editors that greatly improves HTML & CSS workflow. 
+
+For example, in HTML, if you type `.classname` and press `Tab`, it will automatically expand to `<div class="classname"></div>`. 
+
+If this isn't working for you, it's possible that either:
+
+1. You're not using a text editor that supports Emmet, or
+2. Emmet is not installed or enabled in your text editor.
+
+If you're using a text editor like Visual Studio Code, Emmet is built-in and enabled by default. If you're using a different text editor, you may need to install it separately.
+
+Here's how you can check if Emmet is working in Visual Studio Code:
+
+1. Open a new `.html` file.
+2. Type `!` and then press `Tab`. This should expand to a basic HTML boilerplate.
+3. If it doesn't, Emmet may not be working correctly.
+
+If you're using a different text editor, you may need to look up specific instructions on how to install or enable Emmet.

@@ -1,0 +1,20 @@
+Sure, here is a function that does exactly that:
+
+```javascript
+function keys_and_prices(raw_obj) {
+    let keys = Object.keys(raw_obj);
+    let prices = keys.map(key => raw_obj[key].price);
+    return [keys, prices];
+}
+```
+
+This function first uses `Object.keys()` to get an array of keys from the input object. Then it uses `Array.prototype.map()` to create a new array of prices, where each price corresponds to the `price` field of the object associated with each key. Finally, it returns an array containing the keys array and the prices array.
+
+Please note that the `assert` function in your example is not a built-in JavaScript function. If you want to compare arrays, you should use a function like `JSON.stringify()` to convert them to strings first. Here is the corrected test:
+
+```javascript
+var itemsToBuy = { milk: { quantity : 5, price: 20 }, bread: { quantity : 2, price: 15 }, potato: { quantity : 3, price: 10 } }
+let ret = keys_and_prices(itemsToBuy)
+console.assert(JSON.stringify(ret[0]) === JSON.stringify(["milk", "bread", "potato"]))
+console.assert(JSON.stringify(ret[1]) === JSON.stringify([20, 15, 10]))
+```

@@ -1,0 +1,17 @@
+The Rule of Five is not outdated, but its usage has been reduced due to the advent of smart pointers in modern C++. 
+
+You're correct that many resource-managing classes can be converted into aggregate data structures using smart pointers, which automatically manage the resource's lifetime. This can eliminate the need for a user-defined destructor, copy constructor, copy assignment operator, move constructor, or move assignment operator.
+
+However, there are still cases where the Rule of Five is relevant:
+
+1. **Performance**: Sometimes, for performance reasons, you might want to manage memory yourself, especially in systems programming or game development where every cycle counts. In these cases, you would need to follow the Rule of Five.
+
+2. **Legacy Code**: If you're working with legacy code that doesn't use smart pointers, you'll need to follow the Rule of Five.
+
+3. **Non-memory resources**: The Rule of Five also applies to managing resources other than memory, like file handles, network sockets, database connections, etc. These resources can't be managed with smart pointers.
+
+4. **Customized Copying Behavior**: If you need to define a specific copying behavior that differs from the default one, you'll need to provide your own copy constructor and copy assignment operator.
+
+5. **Ownership Semantics**: Smart pointers are great for single ownership semantics (`std::unique_ptr`) or shared ownership semantics (`std::shared_ptr`). But if you need weak ownership or other complex ownership semantics, you might need to manage resources manually.
+
+In conclusion, while smart pointers have reduced the need for the Rule of Five, there are still cases where it's necessary. It's not outdated, but its usage is more specialized in modern C++.

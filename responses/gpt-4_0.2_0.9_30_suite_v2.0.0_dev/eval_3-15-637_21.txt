@@ -1,0 +1,26 @@
+The error you're experiencing could be due to a number of reasons. Here are a few things you could try:
+
+1. **Check SeleniumBasic and Browser Drivers**: Make sure you have the latest version of SeleniumBasic installed. You can download it from [here](https://github.com/florentbr/SeleniumBasic/releases). Also, ensure that the browser drivers (like ChromeDriver for Google Chrome) are up-to-date and compatible with the version of the browser you're using.
+
+2. **Check References**: In VBA, go to `Tools -> References` and make sure that Selenium Type Library is checked. If it's not, scroll through the list to find it and check it.
+
+3. **Check Excel Version**: There might be compatibility issues with Excel 2019. Try running the code on a machine with an older version of Excel to see if the problem persists.
+
+4. **Check Internet Explorer**: You're using Internet Explorer as the browser in your code. Make sure that IE is installed and updated on your machine. Also, consider switching to a more modern browser like Chrome or Firefox, as IE is no longer being updated by Microsoft.
+
+5. **Code Adjustment**: Try to declare and set your WebDriver object like this:
+
+```vba
+Dim driver As WebDriver
+Set driver = New WebDriver
+```
+
+Instead of:
+
+```vba
+Dim driver As New WebDriver
+```
+
+This is because the `As New` construct has some peculiarities in VBA that can sometimes cause issues.
+
+If none of the above solutions work, please provide the exact error message you're getting for more specific help.

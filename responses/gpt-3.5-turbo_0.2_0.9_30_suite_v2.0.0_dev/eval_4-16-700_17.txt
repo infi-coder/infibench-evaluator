@@ -1,0 +1,9 @@
+You can use awk to achieve the same result in a more efficient way. Here's an example command:
+
+```
+awk -F= '/name/{name=$2} /value/{if(name){print name "=" $2; name=""}}' input.txt > output.txt
+```
+
+This command sets the field separator to "=" and then uses two patterns to match lines starting with "name" and "value". When a "name" line is matched, it saves the name value in a variable. When a "value" line is matched, it checks if the name variable is set (meaning it has a previous "name" value), and if so, it prints the name and value separated by "=".
+
+This should be much faster than your original solution.

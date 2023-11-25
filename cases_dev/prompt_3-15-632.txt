@@ -1,0 +1,106 @@
+Extract data from Text File into Excel in vba
+
+I need to extract data from text file into Excel file. I once asked at [Vbscript extract data from Text File into Excel](https://stackoverflow.com/questions/66252338/vbscript-extract-data-from-text-file-into-excel)
+But after trying for few weeks and still no success so I use vba instead.
+Here what i have:
+```
+vba
+Sub ExtractData()
+
+Dim filename As String, nextrow As Long, MyFolder As String
+Dim MyFile As String, text As String, textline As String, filedate As String
+Dim filenum As Integer
+Dim idx%
+
+MyFolder = "D:\Automation\VSWR\"
+MyFile = Dir(MyFolder & "VSWR W51.txt")
+
+nextrow = ActiveSheet.Cells(Rows.Count, "A").End(xlUp).Row + 1
+
+Cells(1, 1).Value = "eNodeBName"
+Cells(1, 2).Value = "Time"
+Cells(1, 3).Value = "MML SN"
+Cells(1, 4).Value = "MML Command"
+Cells(1, 5).Value = "Retcode"
+Cells(1, 6).Value = "Explain_info"
+Cells(1, 7).Value = "Cabinet No."
+Cells(1, 8).Value = "Subrack No."
+Cells(1, 9).Value = "Slot No."
+Cells(1, 10).Value = "TX Channel No."
+Cells(1, 11).Value = "VSWR(0.01)"
+'Columns(1).EntireColumn.AutoFit
+
+Do While MyFile <> ""
+
+Open (MyFolder & MyFile) For Input As #1
+
+    Do Until EOF(1)
+        Line Input #1, textline 'read a line
+        
+        idx = InStr(textline, "NE")
+        If idx > 0 Then
+            'ActiveSheet.Cells(nextrow, "A").Value = Mid(textline, idx + 5)
+            ActiveSheet.Cells(nextrow, "A").Value = Mid(textline, filenum + 5)
+        End If
+
+        idx = InStr(textline, "Report")
+        If idx > 0 Then
+            ActiveSheet.Cells(nextrow, "B").Value = Right(textline, filenum + 19)
+        End If
+        
+        idx = InStr(textline, "O&M")
+        If idx > 0 Then
+            ActiveSheet.Cells(nextrow, "C").Value = ("O&M" & Mid(textline, filenum + 4))
+        End If
+        
+        
+        idx = InStr(textline, "MML Session")
+        If idx > 0 Then
+            ActiveSheet.Cells(nextrow, "D").Value = "DSP VSWR:;"
+        End If
+        
+        
+        idx = InStr(textline, "RETCODE")
+        If idx > 0 Then
+            ActiveSheet.Cells(nextrow, "E").Value = "0"
+        End If
+           
+        idx = InStr(textline, "RETCODE")
+        If idx > 0 Then
+            ActiveSheet.Cells(nextrow, "F").Value = Mid(textline, filenum + 12)
+
+            'nextrow = nextrow + 1 'now move to next row
+        End If
+                 
+        idx = InStr(textline, "Cabinet No.")
+        If idx > 0 Then
+        
+            Line Input #1, textline
+            Line Input #1, textline
+            ActiveSheet.Cells(nextrow, "G").Value = Mid(textline, filenum + 1)
+            
+            nextrow = nextrow + 1 'now move to next row
+        End If
+    Loop  
+Close #1
+MyFile = Dir()
+
+Loop
+End Sub
+```
+
+Almost successful but the only problem is i can't seem to figure out how to make this line split the data into 5 separate columns.
+```
+vba
+idx = InStr(textline, "Cabinet No.")
+If idx > 0 Then
+        
+Line Input #1, textline
+Line Input #1, textline
+ActiveSheet.Cells(nextrow, "G").Value = Mid(textline, filenum + 1)
+            
+nextrow = nextrow + 1 'now move to next row
+End If`
+```
+
+Thanks in advance and really appreciate.

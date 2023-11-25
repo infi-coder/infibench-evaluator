@@ -1,0 +1,17 @@
+The code you've provided is correct, but the issue might be that you're not using `ContentView` correctly in your parent view. 
+
+The `@Binding` property wrapper is used to create a two-way connection between a property that stores data, and a view that displays and changes the data. 
+
+Here's an example of how you might use `ContentView` in a parent view:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+```
+
+In this example, `ParentView` has a `@State` property `isSelected` that it passes to `ContentView`. When `isSelected` changes in `ContentView`, the view will update because `@State` properties automatically refresh the view when they change.

@@ -1,0 +1,7 @@
+The issue is that the command substitution `$(echo {} | sed 's/\?.*//g')` is evaluated before `find` starts executing, so it doesn't have the expected effect. You can use a bash loop to achieve this:
+
+```bash
+find . -type f -name '*\?*' | while read -r file; do mv "$file" "${file%%\?*}"; done
+```
+
+This command uses `find` to locate the files, then pipes the filenames to a `while` loop. Inside the loop, `mv` renames each file, and `${file%%\?*}` removes the `?` and everything after it from the filename.

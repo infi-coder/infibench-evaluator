@@ -1,0 +1,15 @@
+Sure, you can use the `last:` variant provided by Tailwind CSS to target the last element in a list. Here's how you can modify your code:
+
+```html
+  <ul>
+    <li
+      v-for="(item, index) in items"
+      :key="`item-${index}`"
+      :class="{ 'border-b border-black border-solid': index !== items.length - 1 }"
+    >
+      Item
+    </li>
+  </ul>
+```
+
+In this code, we're using Vue's dynamic class binding (`:class`) to conditionally apply the border-bottom class. The condition `index !== items.length - 1` checks if the current item is not the last one in the list. If it's not, the border-bottom class is applied.

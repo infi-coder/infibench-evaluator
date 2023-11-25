@@ -1,0 +1,31 @@
+The error message indicates that Jackson (the JSON serializer/deserializer used by Spring) cannot serialize the `ByteArrayInputStream` object that is part of the `MultipartFile` object. 
+
+To solve this, you can configure the `RestTemplate` to use a different message converter that can handle multipart requests. One option is to use the `org.springframework.http.converter.FormHttpMessageConverter` which can handle multipart/form-data requests. 
+
+To do this, you can create a new `RestTemplate` instance and add the `FormHttpMessageConverter` to its list of message converters, as follows:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+
+// Add FormHttpMessageConverter to handle multipart/form-data requests
+restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
+
+// Create the request body
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+body.add("circularAttachment", souqBean.getCircularAttachment()); //MultipartFile
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+// Create the request headers
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+// Create the request entity
+HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+// Send the request
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", requestEntity, Boolean.class);
+Boolean status = response.getBody();
+```
+
+Note that the `FormHttpMessageConverter` can handle other types of form data as well, such as URL-encoded form data. If you need to handle other types of form data, you can add additional message converters to the `RestTemplate` instance.

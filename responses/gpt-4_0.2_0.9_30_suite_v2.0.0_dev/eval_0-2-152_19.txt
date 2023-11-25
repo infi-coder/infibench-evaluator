@@ -1,0 +1,17 @@
+To show the toast, you need to call the `toast` method with the `show` argument on the toast element. Here is how you can do it:
+
+```javascript
+$('.toast').toast('show');
+```
+
+This line of code will show all the toasts on the page. If you want to show a specific toast, you should give it an id or a specific class and select it using that.
+
+Also, make sure that you have included the Bootstrap JS file in your HTML file, and that you're running this code after the DOM is fully loaded. You can ensure this by wrapping your code inside a `$(document).ready()` function like this:
+
+```javascript
+$(document).ready(function(){
+    $('.toast').toast('show');
+});
+```
+
+This will ensure that the toast is shown as soon as the page is loaded.

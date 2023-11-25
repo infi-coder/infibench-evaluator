@@ -1,0 +1,14 @@
+You need to add two things to your `~/.zshenv`. First `rbenv` itself and second the ruby `version`. 
+
+To add `rbenv`, you can run the following command:
+```
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshenv
+```
+
+To add the ruby version, you can run the following command:
+```
+echo 'global 3.0.0' >> ~/.rbenv/version
+```
+Note: Replace `3.0.0` with the version of Ruby you want to use.
+
+You might also run the `rbenv doctor` command to check your installation.

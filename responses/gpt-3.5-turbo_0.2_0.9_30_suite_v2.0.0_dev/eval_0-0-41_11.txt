@@ -1,0 +1,15 @@
+Your code looks correct. However, if the location is not available, the `getCurrentPosition` function will not be called, and therefore the `console.log("User not allowed")` will not be executed. To fix this, you can add an error callback function to the `getCurrentPosition` function that will be called if there is an error getting the location. Here's the revised code:
+
+```javascript
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+        console.log("Location accessed");
+    }, error => {
+        console.log("User not allowed");
+    });
+} else {
+    console.log("User not allowed")
+}
+```
+
+With this code, if the location is not available, the error callback function will be called and the message "User not allowed" will be logged to the console.

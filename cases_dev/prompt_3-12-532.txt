@@ -1,0 +1,23 @@
+Here is my dart function:
+```dart
+Future<String> iniciarSesion() async{
+var usuario = textUsuario.text;
+var password = textPassword.text;
+var nombreUsuario;
+var url ="http://192.168.1.37/usuario.php";
+
+//Metodo post
+var response = await http.post(
+    url,
+    headers:{ "Accept": "application/json" } ,
+    body: { "usuario": '$usuario',"password": '$password'},
+    encoding: Encoding.getByName("utf-8")
+);
+  List data = json.decode(response.body);
+}
+```
+In flutter, i use a php file which returns a json response from a db query, but when i try to decode json i getting this error:
+```
+ERROR:flutter/lib/ui/ui_dart_state.cc(148)] Unhandled Exception: FormatException: Unexpected character (at character 1)
+```
+How to solve the FormatException?

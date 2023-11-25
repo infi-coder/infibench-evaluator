@@ -1,0 +1,45 @@
+To identify if a div is visible on the viewport, you can use the Intersection Observer API. Here's an example of how you can use it:
+
+```javascript
+import React, { useRef, useEffect, useState } from "react";
+
+const Component = ({ data }) => {
+  const parentRef = useRef(null);
+  const [visibleDivs, setVisibleDivs] = useState([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleIds = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target.id);
+        setVisibleDivs(visibleIds);
+      },
+      { rootMargin: "0px", threshold: 1 }
+    );
+
+    const childDivs = parentRef.current.querySelectorAll("div");
+    childDivs.forEach((div) => observer.observe(div));
+
+    return () => observer.disconnect();
+  }, [data]);
+
+  return (
+    <div id="parent" ref={parentRef}>
+      {data.map((item) => (
+        <div key={item.id} id={item.id}>
+          {item.title}
+        </div>
+      ))}
+    </div>
+  );
+};
+```
+
+In this example, we create a new `IntersectionObserver` instance and pass a callback function that will be called whenever a div intersects with the viewport. We set the `rootMargin` to `0px` and the `threshold` to `1` to trigger the callback when the entire div is visible on the viewport.
+
+We then use the `useRef` hook to get a reference to the parent div and use the `querySelectorAll` method to get all the child divs. We then loop through each child div and call the `observe` method of the `IntersectionObserver` instance to start observing the div.
+
+In the callback function, we filter the entries to get only the ones that are intersecting and map them to get their ids. We then set the state of `visibleDivs` to the array of visible div ids.
+
+Now, you can use the `visibleDivs` state to render only the visible divs or do any other logic that you need.

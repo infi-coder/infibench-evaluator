@@ -1,0 +1,70 @@
+You can use the factory pattern to create multiple instances of `ServiceBusClient` with different queue names. Here's an example of how you can do it:
+
+First, define an interface for your factory:
+
+```c#
+public interface IServiceBusClientFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+    ServiceBusReceiver CreateReceiver(string queueName);
+}
+```
+
+Then, implement this interface:
+
+```c#
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusClientFactory(string connectionString)
+    {
+        _serviceBusClient = new ServiceBusClient(connectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+
+    public ServiceBusReceiver CreateReceiver(string queueName)
+    {
+        return _serviceBusClient.CreateReceiver(queueName, new ServiceBusReceiverOptions
+        {
+            ReceiveMode = ServiceBusReceiveMode.PeekLock
+        });
+    }
+}
+```
+
+Now, you can register your factory in your DI container:
+
+```c#
+_services.AddSingleton<IServiceBusClientFactory>(implementationFactory =>
+{
+    var serviceBusConfiguration = implementationFactory.GetRequiredService<Microsoft.Extensions.Options.IOptions<UserEventConsumerSetting>>().Value;
+    return new ServiceBusClientFactory(serviceBusConfiguration.ServiceBusConnectionString);
+});
+```
+
+Finally, you can inject your factory and create `ServiceBusSender` or `ServiceBusReceiver` instances with different queue names:
+
+```c#
+private readonly ServiceBusSender _serviceBusSender;
+
+public CarReservationMessagingService(IServiceBusClientFactory serviceBusClientFactory)
+{
+    _serviceBusSender = serviceBusClientFactory.CreateSender("queueName");
+}
+
+public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation)
+{
+    // ...
+    await _serviceBusSender.SendMessageAsync(message);
+}
+```
+
+This way, you can create multiple `ServiceBusSender` or `ServiceBusReceiver` instances with different queue names using the same `ServiceBusClient` instance.

@@ -1,0 +1,28 @@
+Sure! Here's the revised code:
+
+```javascript
+const { MongoClient } = require('mongodb');
+const MongoStore = require('connect-mongo').default;
+
+...
+
+const client = new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+client.connect((err) => {
+  if (err) {
+    console.error('Failed to connect to MongoDB:', err);
+    process.exit(1);
+  }
+
+  const db = client.db();
+
+  app.use(session({
+    secret: 'story book',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ client, dbName: db.databaseName })
+  }));
+});
+```
+
+Note that `connect-mongo` v4 requires a `MongoClient` instance instead of a `mongoose` connection. We create a new `MongoClient` instance using the `MONGODB_URI` environment variable and pass it to `MongoStore.create()`. We also need to specify the name of the database using the `dbName` option. Finally, we wrap the `app.use()` call in a `client.connect()` callback to ensure that the session store is only used after the database connection has been established.

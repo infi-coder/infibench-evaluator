@@ -1,0 +1,11 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven (3.6.3) which is not compatible with the newer version of Spring Boot (2.7). To fix this issue, you need to update the Maven version used by IntelliJ IDEA to 3.8.3 or higher.
+
+Here are the steps to update Maven in IntelliJ IDEA:
+
+1. Open IntelliJ IDEA and go to Preferences (on Mac) or Settings (on Windows/Linux).
+2. In the search bar, type "Maven".
+3. Click on "Maven" under "Build, Execution, Deployment".
+4. In the "Maven home directory" field, enter the path to the directory where Maven 3.8.3 or higher is installed.
+5. Click "OK" to save the changes.
+
+After updating Maven, you should be able to import the Spring Boot project without any issues.

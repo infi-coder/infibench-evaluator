@@ -1,0 +1,39 @@
+# Corresponding to post https://stackoverflow.com/questions/60982439
+id: 1-3-225
+# for case self identificaton
+
+prompt_path: prompt_1-3-225.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: python
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+
+  unit_test:
+
+    # lang: ...
+    # [optional] overwrite the root lang field and decide how to execute the code
+
+    tests:
+        - path: test/test_1-3-225.py
+          only_longest: true
+        # - content: str
+        #   # source code in string

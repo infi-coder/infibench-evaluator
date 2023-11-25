@@ -1,0 +1,21 @@
+The error message you're seeing suggests that there's a problem with the way the command is formatted. Specifically, it's complaining about an "embedded quote" in the command.
+
+The issue is likely due to the way the command is being passed to the `cmd` program. The command string is enclosed in double quotes, but it also contains double quotes around the paths to the `mvn.cmd` file and the `netbeans-eventspy.jar` file. This can confuse the command interpreter, as it's not clear where the command string starts and ends.
+
+To fix this issue, you can try escaping the inner quotes with a backslash (`\`). Here's how you can do it:
+
+```bash
+cd C:\projects\open; "JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5" cmd /c "\"\"C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd\" -DskipTests=true -Dmaven.ext.class.path=\"C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar\" -Dfile.encoding=UTF-8 clean install\""
+```
+
+If this doesn't work, another option is to simplify the command by removing unnecessary quotes or moving the quoted strings to separate variables. For example:
+
+```bash
+set JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5
+set MAVEN_CMD=C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd
+set MAVEN_CLASSPATH=C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar
+cd C:\projects\open
+cmd /c ""%MAVEN_CMD%" -DskipTests=true -Dmaven.ext.class.path="%MAVEN_CLASSPATH%" -Dfile.encoding=UTF-8 clean install"
+```
+
+This version of the command sets the `JAVA_HOME`, `MAVEN_CMD`, and `MAVEN_CLASSPATH` variables before running the `mvn.cmd` command. This makes the command line simpler and easier to read, and it avoids the issue with the embedded quotes.

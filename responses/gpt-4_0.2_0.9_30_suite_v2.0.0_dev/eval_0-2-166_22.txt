@@ -1,0 +1,33 @@
+Tailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs. It doesn't directly support child or descendant selectors like traditional CSS. 
+
+However, you can use JavaScript or jQuery to select direct children of a div with class "section". Here's an example using jQuery:
+
+```javascript
+$(".section > div").each(function() {
+  // your code here
+});
+```
+
+If you want to apply Tailwind CSS styles to these children, you can do so within the function:
+
+```javascript
+$(".section > div").each(function() {
+  $(this).addClass('your-tailwind-classes');
+});
+```
+
+Remember to replace `'your-tailwind-classes'` with the actual Tailwind CSS classes you want to apply.
+
+Alternatively, you can create a custom CSS class in your stylesheet and use Tailwind's `@apply` directive to apply a set of styles, then use JavaScript or jQuery to add this class to the direct children:
+
+```css
+.yourClass {
+  @apply your-tailwind-classes;
+}
+```
+
+```javascript
+$(".section > div").addClass('yourClass');
+```
+
+Again, replace `'your-tailwind-classes'` and `'yourClass'` with your actual class names.

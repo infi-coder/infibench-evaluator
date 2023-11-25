@@ -1,0 +1,17 @@
+Unfortunately, Excel VBA does not have built-in support for interacting with SharePoint or OneDrive URLs directly. 
+
+However, you can use the `Environ` function to get the local path of the OneDrive folder. This function returns the string associated with an operating system environment variable. For OneDrive, you can use the "OneDrive" or "OneDriveCommercial" environment variables. Here's a simple example:
+
+```vba
+Sub GetOneDrivePath()
+    Dim OneDrivePath As String
+    OneDrivePath = Environ("OneDrive")
+    MsgBox OneDrivePath
+End Sub
+```
+
+This will return the root path of the OneDrive folder. If the users sync the SharePoint folder to a specific location within their OneDrive, you would have to append that to the OneDrivePath.
+
+Please note that this method will only work if the users have synced their SharePoint/OneDrive folders to their local machine. If they haven't, you might need to instruct them to do so, or handle the situation in your code.
+
+As for the "Open File Location" button, it seems that Excel does not expose this functionality to VBA. The button probably uses some internal Excel functions to determine the file location, which are not accessible from VBA.

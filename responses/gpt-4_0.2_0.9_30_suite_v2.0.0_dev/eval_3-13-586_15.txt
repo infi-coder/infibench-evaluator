@@ -1,0 +1,15 @@
+The error you're seeing is due to changes in Android 12 (API level 31) regarding `PendingIntent` mutability. Starting from this version, you must explicitly specify whether a `PendingIntent` is mutable or immutable when you create it.
+
+The error message suggests that you should use `FLAG_IMMUTABLE` unless you need the `PendingIntent` to be mutable for specific functionality, such as inline replies or bubbles.
+
+The problem is that `MediaSessionCompat` in the AndroidX Media library version 1.4.0 is not yet fully compatible with Android 12. As you can see in the code snippet you posted, it tries to use a mutable `PendingIntent` if the build version codename is "S", but it seems this is not working correctly.
+
+To fix this issue, you can try the following steps:
+
+1. Make sure you're using the latest version of the AndroidX Media library. At the time of writing, it's 1.4.3. You can check the latest version [here](https://developer.android.com/jetpack/androidx/releases/media).
+
+2. If updating the library doesn't solve the problem, you can try to downgrade your `targetSdkVersion` to 30 as a temporary workaround until the AndroidX Media library is fully compatible with Android 12.
+
+3. Keep an eye on the issue tracker for the AndroidX Media library. This is a known issue and the Android team is working on a fix. You can follow the progress [here](https://issuetracker.google.com/issues/192358058).
+
+Remember that downgrading the `targetSdkVersion` is only a temporary solution. You should plan to target the latest Android version as soon as the issue is resolved to take advantage of the latest features and security improvements.

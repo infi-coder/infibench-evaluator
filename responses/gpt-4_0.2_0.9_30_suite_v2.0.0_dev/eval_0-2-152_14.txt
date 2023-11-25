@@ -1,0 +1,23 @@
+To show the toast, you need to call the `toast` method with the `show` argument on the toast element. Here's how you can modify your JavaScript code:
+
+```javascript
+$('.toast').toast('show');
+```
+
+This will make the toast visible on the page. 
+
+Remember to include the necessary Bootstrap JS and CSS files in your HTML file. Also, make sure that you've included jQuery before Bootstrap's JavaScript, as Bootstrap's JavaScript depends on jQuery.
+
+Here's an example of how you can include these files from a CDN:
+
+```html
+<!-- CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+```
+
+Please replace the version numbers with the ones you are using.

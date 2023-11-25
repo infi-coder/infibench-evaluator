@@ -1,0 +1,21 @@
+The error you're encountering is due to the fact that AWS Lambda expects a Linux executable, but you're building your Go application on a Windows machine, which produces a Windows executable. 
+
+To solve this issue, you need to cross-compile your Go code for Linux. You can do this by setting the `GOOS` and `GOARCH` environment variables before building your Go application.
+
+Here's how you can do it:
+
+```bash
+SET GOOS=linux
+SET GOARCH=amd64
+go build main.go
+```
+
+This will produce a Linux executable named `main` which you can then zip and upload to AWS Lambda.
+
+Also, make sure that the generated binary file has execution permissions. If not, you can add them using the `chmod` command in Linux or using Git Bash in Windows:
+
+```bash
+chmod +x main
+```
+
+After these steps, you should be able to execute your Lambda function without encountering the `fork/exec /var/task/main: no such file or directory` error.

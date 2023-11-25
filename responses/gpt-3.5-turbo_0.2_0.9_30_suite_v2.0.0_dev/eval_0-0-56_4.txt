@@ -1,0 +1,30 @@
+It seems like the issue is with the port binding in Docker. When you run the Vite server inside the Docker container, it is bound to the container's network interface, not the host's network interface. Therefore, when you try to access it from your host machine, it fails because the port is not exposed to the host.
+
+To fix this, you need to bind the Vite server to the host's network interface. You can do this by changing the `server.port` configuration in your `vite.config.ts` file to `0.0.0.0:8080`:
+
+```typescript
+export default defineConfig({
+    // ...
+    server: {
+        port: '0.0.0.0:8080'
+    }
+})
+```
+
+This will bind the Vite server to all available network interfaces, including the host's interface.
+
+Next, you need to update your `docker-compose.yml` file to bind the container's port to the host's port:
+
+```yaml
+version: '3.7'
+
+services:
+  app:
+    image: myapp
+    build: .
+    container_name: myapp
+    ports:
+      - "8080:8080"
+```
+
+With these changes, you should be able to access the Vite server from your host machine using `localhost:8080`.

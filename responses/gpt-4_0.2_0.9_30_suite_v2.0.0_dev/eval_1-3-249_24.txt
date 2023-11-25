@@ -1,0 +1,31 @@
+Here is a Python function that generates a 16 character code according to your requirements:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Generate a string of 11 random characters (letters and digits)
+    random_string = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(11))
+    
+    # Ensure that the string contains exactly 3 digits
+    digit_count = sum(c.isdigit() for c in random_string)
+    while digit_count != 3:
+        if digit_count < 3:
+            # Replace a random non-digit character with a digit
+            non_digit_indices = [i for i, c in enumerate(random_string) if not c.isdigit()]
+            random_string = random_string[:random.choice(non_digit_indices)] + random.choice(string.digits) + random_string[random.choice(non_digit_indices)+1:]
+        else:
+            # Replace a random digit with a non-digit character
+            digit_indices = [i for i, c in enumerate(random_string) if c.isdigit()]
+            random_string = random_string[:random.choice(digit_indices)] + random.choice(string.ascii_letters) + random_string[random.choice(digit_indices)+1:]
+        digit_count = sum(c.isdigit() for c in random_string)
+    
+    # Insert the sub-string "NAA3U" at a random position
+    insert_position = random.randint(0, 11)
+    final_string = random_string[:insert_position] + "NAA3U" + random_string[insert_position:]
+    
+    return final_string
+```
+
+This function first generates a string of 11 random characters (letters and digits). It then checks the number of digits in the string. If there are less than 3 digits, it replaces a random non-digit character with a digit. If there are more than 3 digits, it replaces a random digit with a non-digit character. This process continues until the string contains exactly 3 digits. Finally, it inserts the sub-string "NAA3U" at a random position in the string.

@@ -1,0 +1,23 @@
+Here are a few things you can try to solve the issue:
+
+1. Make sure that the correct Python interpreter is selected in VS Code. You can check this by clicking on the bottom left corner of the VS Code window where it says "Python 3.x.x" and selecting the correct interpreter.
+
+2. Try installing the ipykernel package in your base environment instead of your virtual environment. You can do this by running the following command in your Anaconda prompt:
+
+   ```
+   conda install ipykernel
+   ```
+
+3. Try launching Jupyter notebook outside of VS Code to see if it works. You can do this by opening your Anaconda prompt and running the following command:
+
+   ```
+   jupyter notebook
+   ```
+
+   If Jupyter notebook launches successfully, then the issue may be with VS Code.
+
+4. Try updating the Python extension in VS Code to the latest version. You can do this by going to the Extensions tab in VS Code and searching for "Python". Then click on "Update" if an update is available.
+
+5. If none of the above solutions work, try uninstalling and reinstalling both VS Code and Anaconda. Make sure to completely remove all files and folders related to both programs before reinstalling.
+
+Hopefully, one of these solutions will help you resolve the issue.

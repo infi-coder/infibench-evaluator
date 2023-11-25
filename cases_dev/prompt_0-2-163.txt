@@ -1,0 +1,43 @@
+I have some form fields that are dynamically generated form the database. There are inputs, checkboxes, radio buttons, textarea's, and select's. How can I check in native JS if all the required fields in div `myForm` are filled?
+
+Here is an example definition of `myForm`:
+
+```html
+<div id="myForm">
+  <input type="text" name="dff[]" placeholder="Name" required>
+  <input type="text" name="dff[]" placeholder="Date of Birth">
+  <input type="text" name="dff[]" placeholder="Email" required>
+  <input type="radio" name="gender" value="Male" required>
+  <input type="radio" name="gender" value="Female" required>
+  <select name="pet" required>
+    <option value="">Select a pet</option>
+    <option value="dog">Dog</option>
+    <option value="cat">Cat</option>
+    <option value="bird">Bird</option>
+  </select>
+</div>
+<button id="check">Check</button>
+```
+
+Specifically, please don't add other text and repeat the following code with __blank__ filled:
+
+```javascript
+document.getElementById(__blank__).onclick = function() {
+  let allAreFilled = true;
+  document.getElementById("myForm").__blank__(__blank__).forEach(function(i) {
+    if (!allAreFilled) return;
+    if (i.type === "radio") {
+      let radioValueCheck = false;
+      document.getElementById("myForm").__blank__(`[__blank__=${i.name}]`).forEach(function(r) {
+        if (r.checked) radioValueCheck = true;
+      })
+      allAreFilled = radioValueCheck;
+      return;
+    }
+    if (!i.value) { allAreFilled = false;  return; }
+  })
+  if (!allAreFilled) {
+    alert('Fill all the fields');
+  }
+};
+```

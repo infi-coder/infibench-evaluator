@@ -1,0 +1,19 @@
+Here's the `fillColumn` function in Python:
+
+```python
+def fillColumn(df, columnName, columnData):
+    # Repeat the list to match the length of the dataframe
+    repeatedData = columnData * (len(df) // len(columnData)) + columnData[:len(df) % len(columnData)]
+    # Assign the repeated list to the new column
+    df[columnName] = repeatedData
+    return df
+```
+
+Here's how you can use the function:
+
+```python
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+```
+
+This will fill the 'names' column in the DataFrame `df` with the values in `my_list`, repeating the list as necessary to fill all rows.

@@ -1,0 +1,23 @@
+There are a few things you can check to troubleshoot this issue:
+
+1. Make sure that the `@EnableSwagger2WebMvc` annotation is present in your Spring Boot application configuration class.
+
+2. Check that the `@ComponentScan` annotation in your application configuration class includes the package where your Swagger configuration class is located.
+
+3. Verify that the `springdoc.swagger-ui.path` property is set correctly in your `application.properties` or `application.yml` file. By default, it should be set to `/swagger-ui.html`.
+
+4. Check that the `@OpenAPIDefinition` annotation is present in your Swagger configuration class, and that it includes the correct information about your API.
+
+5. Verify that the `@Bean` annotation is present in your Swagger configuration class, and that it creates a `Docket` bean with the correct configuration.
+
+If none of these steps solve the issue, you can try adding the following dependency to your `pom.xml` file:
+
+```xml
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>swagger-ui</artifactId>
+    <version>3.52.0</version>
+</dependency>
+```
+
+This will include the Swagger UI files in your application, and you can access it at `localhost:8080/webjars/swagger-ui/index.html`.

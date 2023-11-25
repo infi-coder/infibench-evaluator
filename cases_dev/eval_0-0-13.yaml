@@ -1,0 +1,62 @@
+# Corresponding to post https://stackoverflow.com/questions/59813926
+id: 0-0-13
+# for case self identificaton
+
+prompt_path: prompt_0-0-13.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  blank_filling:
+    template: "```javascript\n
+const [allValues, setAllValues] = useState({\n
+   mobile: '',\n
+   username: '',\n
+   email: '',\n
+   password: '',\n
+   confirmPassword: ''\n
+});\n
+const changeHandler = e => ***blank***\n
+// end filling\n
+return (\n
+   <input type=\"text\"\n
+       className=\"form-control\"\n
+       id=\"mobile\"\n
+       name=\"mobile\"\n
+       placeholder=\"Enter a valid mobile number\"\n
+       onChange={changeHandler}\n
+   />\n
+   // ...\n
+)\n
+```"
+    
+    blank_str: "***blank***"
+    # [optional] how blanks are represented in the template
+
+    escape: " '\"\n`{ };"
+    # [optional] list of characters to be pre-filtered for model responses for blanks, default: " '"·"
+
+    targets: 
+        # list gold answers for blanks sequentially
+        - content: 
+          - "setAllValues({...allValues, [e.target.name]: e.target.value})"

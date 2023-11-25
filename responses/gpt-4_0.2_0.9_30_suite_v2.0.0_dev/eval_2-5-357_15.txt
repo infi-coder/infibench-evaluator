@@ -1,0 +1,10 @@
+Yes, you are correct. Since Spring 4.3, if a class which is annotated with `@Component` or `@Service` or `@Repository` has a single constructor, the `@Autowired` annotation on that constructor is no longer necessary and the IoC container automatically uses that constructor for dependency injection. 
+
+However, if there are multiple constructors, then we need to use `@Autowired` to tell Spring which constructor to use.
+
+The reason why some people still use `@Autowired` on the constructor could be:
+
+1. They are working with a version of Spring Framework that is older than 4.3.
+2. They want to make the injection point explicit.
+3. It's a habit or a coding standard in their team.
+4. For educational purposes, to make it clear to learners that dependency injection is happening at that point.

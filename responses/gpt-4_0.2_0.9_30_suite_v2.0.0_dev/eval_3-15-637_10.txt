@@ -1,0 +1,23 @@
+The error you're experiencing might be due to several reasons. Here are some possible solutions:
+
+1. **Check SeleniumBasic version**: Ensure that you have the latest version of SeleniumBasic installed. You can download it from the [official SeleniumBasic GitHub repository](https://github.com/florentbr/SeleniumBasic/releases).
+
+2. **Check WebDriver**: Make sure you have the correct WebDriver for the browser you're trying to automate. For Internet Explorer, you need the IEDriverServer. You can download it from the [Selenium official website](https://www.selenium.dev/downloads/). After downloading, you should place the WebDriver in a directory that's included in your system's PATH, or you can directly specify the path to the WebDriver in your VBA code like this:
+    ```vba
+    driver.SetProperty "webdriver.ie.driver", "C:\path\to\your\IEDriverServer.exe"
+    driver.Start "ie"
+    ```
+
+3. **Check Internet Explorer settings**: If you're using Internet Explorer, you need to set the "Enable Protected Mode" option to the same value (either checked or unchecked) for all zones. You can find this option in Internet Options -> Security.
+
+4. **Check Excel References**: In VBA Editor, go to Tools -> References and make sure that Selenium Type Library is checked.
+
+5. **Check Excel Trust Center Settings**: In Excel, go to File -> Options -> Trust Center -> Trust Center Settings -> Macro Settings and ensure that "Trust access to the VBA project object model" is checked.
+
+6. **Try using Early Binding**: Instead of using `Dim driver As New WebDriver`, try using early binding:
+    ```vba
+    Dim driver As Selenium.WebDriver
+    Set driver = New Selenium.WebDriver
+    ```
+
+If none of these solutions work, please provide the exact error message you're getting for more specific help.

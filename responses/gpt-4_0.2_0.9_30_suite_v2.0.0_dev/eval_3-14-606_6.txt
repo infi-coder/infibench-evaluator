@@ -1,0 +1,21 @@
+The alert you're seeing is likely due to the fact that the app you're trying to open is a developer-signed app. These apps require the device to be in developer mode in order to run. However, unlike Android, iOS doesn't have a specific "Developer Mode" that can be enabled. Instead, you need to trust the developer certificate on your device.
+
+Here are the steps to trust the developer certificate:
+
+1. Go to `Settings` on your iOS device.
+2. Scroll down and tap on `General`.
+3. Scroll down to `Device Management` or `Profiles & Device Management`.
+4. Under the `DEVELOPER APP` section, you should see the developer profile. Tap on it.
+5. Tap on `Trust "<Developer>"`.
+6. You'll see a prompt to confirm your decision, tap on `Trust` to confirm.
+
+After these steps, you should be able to open the app. If you still can't open the app, it's possible that the app was signed with a certificate that's no longer valid. In this case, you'll need to contact the developer or your organization's IT department for help.
+
+If you're a developer and you're trying to run your own app on your device, you'll need to install the app via Xcode. Here's how:
+
+1. Connect your device to your Mac.
+2. Open Xcode and select your project.
+3. In the top left of the Xcode window, select your device from the list of available devices.
+4. Click the `Run` button or press `Cmd + R` to build and run your app.
+
+If you're still having trouble, make sure that you have the latest version of Xcode and that your device is running a version of iOS that's supported by your version of Xcode.

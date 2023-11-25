@@ -1,0 +1,37 @@
+Here is a function `mySplit` that will do the job:
+
+```r
+mySplit <- function(df) {
+  # Split the string by comma
+  split_comma <- strsplit(df$col1, split = ",")
+  
+  # Split the resulting strings by colon
+  split_colon <- lapply(split_comma, function(x) strsplit(x, split = ":"))
+  
+  # Convert the list to a data frame
+  df_new <- do.call(rbind, lapply(split_colon, function(x) setNames(sapply(x, `[`, 2), sapply(x, `[`, 1))))
+  
+  # Convert all columns to character
+  df_new[] <- lapply(df_new, as.character)
+  
+  return(df_new)
+}
+```
+
+You can use this function as follows:
+
+```r
+df <- data.frame(col1 = c("name:Michael,Age:31,City:NYC", "name:Tom,Age:25,City:NA"), stringsAsFactors = FALSE)
+df_new <- mySplit(df)
+print(df_new)
+```
+
+This will print:
+
+```r
+     name Age City
+1 Michael  31  NYC
+2     Tom  25   NA
+```
+
+This function works by first splitting the string by comma, then splitting the resulting strings by colon. The resulting list is then converted to a data frame. Finally, all columns are converted to character.

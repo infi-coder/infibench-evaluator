@@ -1,0 +1,36 @@
+Yes, Go 1.11 with module support (vgo) does allow you to take advantage of Docker's layer caching. Here's how you can do it:
+
+1. Copy your `go.mod` and `go.sum` files into the Docker container.
+2. Run `go mod download`. This will download all the dependencies specified in your `go.mod` and `go.sum` files.
+3. Copy the rest of your application code into the Docker container.
+4. Build your application.
+
+Here's a sample Dockerfile that demonstrates this:
+
+```Dockerfile
+# Start from the latest golang base image
+FROM golang:latest
+
+# Set the Current Working Directory inside the container
+WORKDIR /app
+
+# Copy go mod and sum files 
+COPY go.mod go.sum ./
+
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed 
+RUN go mod download
+
+# Copy the source from the current directory to the Working Directory inside the container 
+COPY . .
+
+# Build the Go app
+RUN go build -o main .
+
+# Expose port 8080 to the outside world
+EXPOSE 8080
+
+# Command to run the executable
+CMD ["./main"]
+```
+
+In this Dockerfile, the `go mod download` command is run only when the `go.mod` and `go.sum` files change. This means that Docker can cache the layer with the downloaded dependencies, making subsequent builds faster.

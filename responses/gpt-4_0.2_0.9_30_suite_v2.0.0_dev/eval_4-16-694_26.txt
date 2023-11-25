@@ -1,0 +1,13 @@
+You can use `awk` to extract the language code. Here's how you can modify your command:
+
+```bash
+curl -Ls stick-it.app | grep -o 'lang="[a-zA-Z-]*"' | head -1 | awk -F'"' '{print $2}'
+```
+
+Here's what's happening in this command:
+
+- `grep -o 'lang="[a-zA-Z-]*"'` : This will output only the matched string. The regular expression `lang="[a-zA-Z-]*"` matches the `lang` attribute and its value.
+- `head -1` : This will output the first match.
+- `awk -F'"' '{print $2}'` : This uses `awk` to split the string by the delimiter `"`, and then prints the second field, which is the language code.
+
+This command should work regardless of whether the language code is in the format `en-US` or `he-IL`.

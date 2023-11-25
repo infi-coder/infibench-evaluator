@@ -1,0 +1,18 @@
+When you create a `.d.ts` file, TypeScript assumes that it is generated from a corresponding `.ts` or `.tsx` file. In your case, TypeScript is ignoring `index.d.ts` because it assumes that it is generated from `index.tsx`, which is more likely to be up to date. 
+
+To fix this, you can rename `index.d.ts` to something else, e.g., `declaration.d.ts`. Then, you can add `"include": ["./src/declaration.d.ts"]` to `tsconfig.json`. 
+
+After that, you should be able to import the image in your component like this:
+
+```
+import * as React from 'react';
+import image from '../assets/image.jpg';
+
+const Box = props => {
+  // do things...
+}
+
+export default Box;
+```
+
+Note that you don't need to use `* as` when importing the image. Also, you should use `import image from` instead of `import * as image from`.

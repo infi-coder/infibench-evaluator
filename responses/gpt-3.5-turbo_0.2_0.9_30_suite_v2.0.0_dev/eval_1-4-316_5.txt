@@ -1,0 +1,54 @@
+To sort a list alphabetically, you can use the `sort` function with the argument `method = "radix"`. Here is the updated code:
+
+```r
+# Creating a random vector of letters
+random_text_data = sample(letters, 10)
+random_text_data
+
+# Convert to list
+list_text_data = as.list(random_text_data)
+list_text_data
+
+# Sort list alphabetically
+mySort <- function(l) {
+  sort(l, method = "radix")
+}
+
+sorted_data = mySort(list_text_data)
+sorted_data
+```
+
+In the console, you will get the sorted list:
+
+```r
+> sorted_data
+[[1]]
+[1] "b"
+
+[[2]]
+[1] "d"
+
+[[3]]
+[1] "e"
+
+[[4]]
+[1] "f"
+
+[[5]]
+[1] "h"
+
+[[6]]
+[1] "i"
+
+[[7]]
+[1] "m"
+
+[[8]]
+[1] "q"
+
+[[9]]
+[1] "y"
+
+[[10]]
+[1] "z"
+```

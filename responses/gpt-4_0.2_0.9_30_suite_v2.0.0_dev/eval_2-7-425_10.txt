@@ -1,0 +1,32 @@
+You can use the `now()` function provided by Laravel to get the current date and time. Here is how you can modify your function:
+
+```php
+function insert(Request $req)
+{
+    $name = $req->input('name');
+    $address = $req->input('address');
+    $data = array("name" => $name, "address" => $address, "created_at" => now(), "updated_at" => now());
+    DB::table('student')->insert($data);
+    echo "Record inserted successfully.<br/>";
+    return redirect('/');
+}
+```
+
+The `now()` function will return the current date and time in the format required by your MySQL database.
+
+However, if you are using Laravel's Eloquent ORM to manage your database operations, you don't need to manually set the `created_at` and `updated_at` fields. Laravel will automatically manage these fields for you. Here is how you can do it:
+
+```php
+function insert(Request $req)
+{
+    $student = new Student;
+    $student->name = $req->input('name');
+    $student->address = $req->input('address');
+    $student->save();
+
+    echo "Record inserted successfully.<br/>";
+    return redirect('/');
+}
+```
+
+In this case, make sure your `Student` model extends the `Model` class provided by Laravel and you have `$timestamps = true;` in your `Student` model.

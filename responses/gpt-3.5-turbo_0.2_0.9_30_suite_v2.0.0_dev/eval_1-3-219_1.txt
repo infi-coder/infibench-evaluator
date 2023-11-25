@@ -1,0 +1,11 @@
+There are a few things you can try to solve this issue:
+
+1. Make sure that the Jupyter extension is installed in VS Code. You can check this by going to the Extensions tab on the left-hand side of the VS Code window and searching for "Jupyter".
+
+2. Check that the correct Python interpreter is selected in VS Code. You can do this by clicking on the bottom left-hand corner of the VS Code window where it says "Python 3.x.x" and selecting the correct interpreter.
+
+3. Try running Jupyter notebook outside of VS Code to see if it works there. Open a command prompt or terminal window and activate your virtual environment by running `conda activate da38`. Then run `jupyter notebook` and see if it launches successfully.
+
+4. If none of the above solutions work, you can try uninstalling and reinstalling both VS Code and Miniconda. Make sure to completely remove all files associated with both programs before reinstalling.
+
+Hopefully one of these solutions will work for you.

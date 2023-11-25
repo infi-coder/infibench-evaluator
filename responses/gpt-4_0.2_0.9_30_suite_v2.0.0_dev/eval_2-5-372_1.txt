@@ -1,0 +1,13 @@
+It seems like you're facing a version conflict between Hibernate Validator versions. The `@NotEmpty` and `@NotBlank` annotations are part of Hibernate Validator 6.x, but the logs show that Hibernate Validator 5.3.5.Final-redhat-2 is being used.
+
+The Hibernate Validator version used is likely determined by your application server (JBoss in your case). If the server provides a version of Hibernate Validator, it will be used instead of the one pulled in by your Maven dependencies.
+
+To resolve this issue, you could try one of the following solutions:
+
+1. **Upgrade your application server**: If possible, upgrade your application server to a version that includes Hibernate Validator 6.x.
+
+2. **Exclude the Hibernate Validator provided by the server**: Some servers allow you to exclude certain provided libraries. If JBoss allows this, you could exclude its version of Hibernate Validator so that the version pulled in by your Maven dependencies is used.
+
+3. **Use validation annotations from Hibernate Validator 5.x**: If you can't upgrade your server or exclude its version of Hibernate Validator, you could use the validation annotations provided by Hibernate Validator 5.x. For example, instead of `@NotEmpty` and `@NotBlank`, you could use `@NotNull` and `@Size(min=1)`.
+
+Remember to always check the compatibility of your libraries with your application server to avoid similar issues in the future.

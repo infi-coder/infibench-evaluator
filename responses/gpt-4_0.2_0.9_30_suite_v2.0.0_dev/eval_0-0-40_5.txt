@@ -1,0 +1,22 @@
+The error message you're seeing is due to a conflict between the Node.js/npm installed in your WSL2 Ubuntu and the Node.js/npm installed in your Windows system. The `whereis` command shows that there are two installations of Node.js/npm: one in `/usr/bin` (WSL2 Ubuntu) and another in `/mnt/c/Program Files/nodejs` (Windows).
+
+When you run `npm -v`, the shell is trying to execute the Windows version of npm (`/mnt/c/Program Files/nodejs/npm`), but it can't because the Windows version of npm is a Windows executable and not a Linux executable.
+
+To resolve this issue, you need to remove the Windows PATH from the WSL2 Ubuntu PATH. You can do this by editing the `.bashrc` or `.bash_profile` file in your home directory.
+
+Here are the steps:
+
+1. Open the `.bashrc` file in a text editor. If you're using the nano editor, you can do this by running the command `nano ~/.bashrc`.
+
+2. Add the following lines at the end of the file:
+
+    ```bash
+    # remove Windows paths
+    export PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+    ```
+
+3. Save the changes and exit the editor. If you're using nano, you can do this by pressing `Ctrl + X`, then `Y`, then `Enter`.
+
+4. Apply the changes by running the command `source ~/.bashrc`.
+
+Now, when you run `npm -v`, the shell should execute the npm installed in your WSL2 Ubuntu, not the one installed in Windows.

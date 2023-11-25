@@ -1,0 +1,12 @@
+You can disable the swipe animation in ViewPager2 by setting a new `RecyclerView.ItemAnimator` to null. Here is how you can do it:
+
+```java
+ViewPager2 viewPager2 = findViewById(R.id.viewPager2);
+viewPager2.setUserInputEnabled(false); // disable user swipes
+viewPager2.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+
+RecyclerView recyclerView = (RecyclerView) viewPager2.getChildAt(0);
+recyclerView.setItemAnimator(null);
+```
+
+This will disable the swipe animation when you programmatically set the current item in the ViewPager2.

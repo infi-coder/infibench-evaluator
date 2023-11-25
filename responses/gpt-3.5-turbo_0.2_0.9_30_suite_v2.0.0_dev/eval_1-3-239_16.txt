@@ -1,0 +1,7 @@
+Here's the bash script to install Python 3.6.5 using brew:
+
+```
+brew install python@3.6
+```
+
+This will install Python 3.6.5 and link it as the default Python 3 version.

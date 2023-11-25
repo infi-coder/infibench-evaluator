@@ -1,0 +1,10 @@
+The issue might be that the `ContentView` is not being updated when the `isSelected` variable changes. Try wrapping the `Text` view in a `VStack` and adding a `Spacer` to force the view to update:
+
+```
+var body: some View {
+    VStack {
+        Text(isSelected ? "Selected" : "Not Selected")
+        Spacer()
+    }
+}
+```

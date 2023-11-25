@@ -1,0 +1,19 @@
+The issue with your code is that you are checking if the entire input string is present in the `correct` string, which is not what you want. Instead, you should check if all characters in the input string are present in the `correct` string.
+
+Here's the corrected code:
+
+```python
+import string
+
+def checkString(text):
+    correct = string.ascii_letters + string.digits
+    return all(char in correct for char in text)
+
+# Example usage
+print(checkString("abc123"))  # True
+print(checkString("abc!123"))  # False
+```
+
+In this code, we use the `all` function to check if all characters in the input string are present in the `correct` string. The `all` function returns `True` if all elements of the iterable are true (or if the iterable is empty), and `False` otherwise.
+
+We use a generator expression to iterate over all characters in the input string and check if each character is present in the `correct` string. The `char in correct` expression returns `True` if the character is present in the `correct` string, and `False` otherwise. The `all` function then checks if all these expressions are true.

@@ -1,0 +1,5 @@
+It seems like the package `aws-sdk-js` is not found in the npm registry. This can happen if the package was removed or renamed. You can try to search for the package in the npm registry to see if it still exists.
+
+If the package is still available, you can try to clear the npm cache and then run `npm install` again. To clear the cache, run `npm cache clean --force`.
+
+If the package is no longer available, you can try to find an alternative package that provides similar functionality.

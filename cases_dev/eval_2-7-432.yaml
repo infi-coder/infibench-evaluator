@@ -1,0 +1,9 @@
+id: 2-7-432
+prompt_path: prompt_2-7-432.txt
+type: code completion
+lang: php
+grading:
+  keywords:
+    - 'redirect'
+    - 'route'
+    - 'login'

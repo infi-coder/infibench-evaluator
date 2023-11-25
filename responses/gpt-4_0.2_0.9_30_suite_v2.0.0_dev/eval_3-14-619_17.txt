@@ -1,0 +1,19 @@
+The code you provided seems correct. The problem might be related to where and how you're using `ContentView`. 
+
+In SwiftUI, `@Binding` is used to create a two-way connection between a property that stores data, and a view that displays and changes the data. 
+
+In your case, `ContentView` expects a `Binding<Bool>` as an input. When you use `ContentView`, you should provide a `@State` variable from the parent view. 
+
+Here's an example:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+```
+
+In this example, `ParentView` is the owner of the `@State` and `ContentView` has a `@Binding` to that state. When `isSelected` changes in `ContentView`, the view will update accordingly.

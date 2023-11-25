@@ -1,0 +1,17 @@
+The error you're seeing is likely an issue with the rust-analyzer itself, not your code. Rust-analyzer is a language server that provides IDE-like features for Rust. Sometimes, it might have trouble resolving certain macros or other constructs, especially in more complex or less common scenarios.
+
+The `$crate::format_args` is a macro used internally by Rust for formatting strings. It's not something you're using directly in your code, but it's used by the `assert_eq!` macro in your test.
+
+If your code is compiling and running correctly with `cargo run` and `cargo test`, then it's likely that your code is fine and the issue is with rust-analyzer.
+
+Here are a few things you could try to resolve this issue:
+
+1. **Update rust-analyzer:** If you're using an older version of rust-analyzer, updating to the latest version might resolve the issue.
+
+2. **Restart your editor:** Sometimes, simply restarting your editor can resolve temporary issues with rust-analyzer.
+
+3. **Check your rust-analyzer settings:** Make sure that rust-analyzer is correctly configured for your project. For example, if you're using VS Code, you can check the settings by opening the command palette (Ctrl+Shift+P or Cmd+Shift+P on macOS) and typing "Open Settings (JSON)". Look for the "rust-analyzer" section and make sure everything is set up correctly.
+
+4. **Rebuild your project:** Try running `cargo clean` and then `cargo build` to rebuild your project. This can sometimes help if rust-analyzer is having trouble with stale or corrupted build data.
+
+If none of these steps help, you might want to consider reporting the issue to the rust-analyzer team. They might be able to provide more specific guidance or fix the issue in a future update.

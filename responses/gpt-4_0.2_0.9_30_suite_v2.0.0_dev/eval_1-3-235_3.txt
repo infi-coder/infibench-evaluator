@@ -1,0 +1,9 @@
+The error is because the string '2021.0' contains a decimal point and it can't be directly converted to an integer. You can first convert the column to float, and then to int. Here is the function:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].astype(float).astype(int)
+    return data_h_df
+```
+
+This function will first convert the 'year' column to float, which will handle the decimal point, and then convert it to int, which will remove the decimal part.

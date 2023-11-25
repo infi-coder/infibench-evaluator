@@ -1,0 +1,22 @@
+The error message suggests that the response from the server is not in the expected JSON format. It seems like the response is starting with a '<' character, which is not valid JSON.
+
+One possible reason for this error could be that the server is returning an HTML error page instead of the expected JSON response. To confirm this, you can try accessing the API endpoint directly in the browser and see if it returns the expected JSON response.
+
+If the API endpoint is returning the expected JSON response, then you can try modifying the client-side code to handle the response properly. One way to do this is to use the `HttpResponseMessage` class instead of the `GetJsonAsync` method. Here's an example:
+
+```c#
+var response = await Http.GetAsync("/api/Employee/Index");
+if (response.IsSuccessStatusCode)
+{
+    var empList = await response.Content.ReadFromJsonAsync<Employee[]>();
+    // do something with empList
+}
+else
+{
+    // handle error
+}
+```
+
+This code first sends a GET request to the API endpoint and checks if the response is successful. If the response is successful, it reads the JSON content from the response using the `ReadFromJsonAsync` method and deserializes it into an array of `Employee` objects. If the response is not successful, it handles the error appropriately.
+
+You can also try adding the `[HttpGet]` attribute to the `Index` method in the `EmployeeController` class to make sure that the method is accessible via HTTP GET requests.

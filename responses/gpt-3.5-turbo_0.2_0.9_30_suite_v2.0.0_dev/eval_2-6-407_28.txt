@@ -1,0 +1,13 @@
+The error message suggests that the response from the server is not in the expected JSON format. It looks like the response starts with a '<' character, which indicates that it might be an HTML error page instead of a JSON response.
+
+One possible reason for this issue is that the URL used to call the API is incorrect. In your code, you are using the URL "/api/Employee/Index" to call the API, but in your controller, you have specified the route as "[Route("Employee")]". This means that the correct URL to call the API would be "/Employee/Index".
+
+Try changing the URL in your code to "/Employee/Index" and see if that resolves the issue. Here's the updated code:
+
+```c#
+empList = await Http.GetJsonAsync<Employee[]>("/Employee/Index");
+```
+
+If that doesn't work, you can try debugging the API controller to see if it's returning the expected JSON response. You can do this by setting a breakpoint in the "Index" method and inspecting the returned data.
+
+If the API controller is returning the expected JSON response, then the issue might be with the client-side code. In that case, you can try using a tool like Fiddler to inspect the HTTP traffic and see if the response from the server is in the expected format.

@@ -1,0 +1,33 @@
+TailwindCSS is a utility-first CSS framework that provides pre-defined classes for common CSS properties. To select the direct children of a div with class "section" using TailwindCSS, you can use the `>` selector in combination with the `@apply` directive.
+
+Here's an example:
+
+```html
+<div class="section">
+  <div class="child">Child 1</div>
+  <div class="child">Child 2</div>
+</div>
+```
+
+```css
+.section > .child {
+  /* Your CSS styles here */
+}
+```
+
+Using TailwindCSS, you can define a custom class that applies the `>` selector and your desired styles using the `@apply` directive:
+
+```html
+<div class="section">
+  <div class="child direct-child">Child 1</div>
+  <div class="child direct-child">Child 2</div>
+</div>
+```
+
+```css
+.direct-child {
+  @apply !text-red-500 !font-bold;
+}
+```
+
+In this example, the `direct-child` class applies the `>` selector and the `text-red-500` and `font-bold` styles from TailwindCSS. You can customize the styles to fit your needs.

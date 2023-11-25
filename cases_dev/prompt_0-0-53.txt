@@ -1,0 +1,63 @@
+I am running through a react file upload tutorial and I would like to make it so when a user clicks the upload message the browser will prompt them saying "Your file is being uploaded". For some reason when I use the following code, if you navigate to the web page the code in the function runs once, and then again on click. Could you help me to fix it?
+
+```javascript
+import React, { Component } from 'react'
+import { Alert } from 'react-alert'
+
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      imageURL: '',
+    };
+
+    this.handleUploadImage = this.handleUploadImage.bind(this);
+  }
+
+  handleUploadImage(ev) {
+    ev.preventDefault();
+
+    const data = new FormData();
+    data.append('file', this.uploadInput.files[0]);
+    data.append('filename', this.fileName.value);
+
+    fetch('http://localhost:8000/upload', {
+      method: 'POST',
+      body: data,
+    }).then((response) => {
+      response.json().then((body) => {
+        this.setState({ imageURL: `http://localhost:8000/${body.file}` });
+      });
+    });
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleUploadImage}>
+        <div>
+          <input ref={(ref) => { this.uploadInput = ref; }} type="file" />
+        </div>
+        <div>
+          <input ref={(ref) => { this.fileName = ref; }} type="text" placeholder="Enter the desired name of file" />
+        </div>
+        <br />
+        <div>
+          <button onclick="myFunction()">Upload</button>
+              <script>
+              function myFunction() {
+                  alert("Your file is being uploaded!")
+              }
+              </script>
+
+        </div>
+        <img src={this.state.imageURL} alt="img" />
+      </form>
+    );
+  }
+}
+
+export default Main;
+```
+
+Please output the revised version of the above code. Try to be brief.

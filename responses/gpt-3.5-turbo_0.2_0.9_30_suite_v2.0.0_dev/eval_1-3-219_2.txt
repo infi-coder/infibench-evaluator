@@ -1,0 +1,11 @@
+Here are some steps you can try to solve the issue:
+
+1. Make sure that you have the latest version of the Python extension installed in VS Code. You can check for updates by going to the Extensions view (Ctrl+Shift+X) and searching for "Python".
+
+2. Check that the correct Python interpreter is selected in VS Code. You can do this by opening the Command Palette (Ctrl+Shift+P) and searching for "Python: Select Interpreter". Make sure that the interpreter for your "da38" environment is selected.
+
+3. Try launching Jupyter Notebook from the command line to see if it works outside of VS Code. Open a terminal and activate your "da38" environment, then run the command `jupyter notebook`. If it works, try launching it again from within VS Code.
+
+4. If none of the above steps work, try uninstalling and reinstalling the ipykernel package in your "da38" environment. You can do this by running the command `conda uninstall ipykernel` followed by `conda install ipykernel`.
+
+Hopefully one of these steps will solve the issue and allow you to launch Jupyter Notebook from within VS Code.

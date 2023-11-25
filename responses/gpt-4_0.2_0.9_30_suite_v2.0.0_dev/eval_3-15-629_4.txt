@@ -1,0 +1,19 @@
+You can use the `MSForms.DataObject` to interact with the clipboard. Here's a simple function that you can use to set the clipboard text:
+
+```vba
+Sub CopyTextToClipboard(sText As String)
+    Dim DataObj As MSForms.DataObject
+    Set DataObj = New MSForms.DataObject
+    DataObj.SetText sText
+    DataObj.PutInClipboard
+    Set DataObj = Nothing
+End Sub
+```
+
+You can call this function with the text you want to copy to the clipboard:
+
+```vba
+Call CopyTextToClipboard(Me.NodeKey.Value)
+```
+
+Note: This requires a reference to the Microsoft Forms 2.0 Object Library. You can add this in the VBA editor under Tools -> References -> Microsoft Forms 2.0 Object Library.

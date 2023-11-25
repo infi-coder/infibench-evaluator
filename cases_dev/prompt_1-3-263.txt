@@ -1,0 +1,8 @@
+I am reading through a python script that takes an input of XML files and outputs an XML file. However, I do not understand the printing syntax. Can someone please explain what "f" in `print(f"...")`` does?
+
+```python
+args = parser.parser_args()
+
+print(f"Input directory: {args.input_directory}")
+print(f"Output directory: {args.output_directory}")
+```

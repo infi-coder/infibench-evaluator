@@ -1,0 +1,14 @@
+This issue might be due to the SwiftUI Preview not being associated with a target. Here's how to fix it:
+
+1. Click on the SwiftUI file that contains your preview.
+2. In the File Inspector (the first tab in the right sidebar), check if any targets are selected under "Target Membership". If not, select your app's target.
+
+If the issue persists, try these steps:
+
+1. Clean your build folder (Product > Clean Build Folder).
+2. Quit Xcode.
+3. Delete derived data. You can find the location of your derived data folder in Xcode's preferences (Preferences > Locations > Derived Data). Click on the arrow to open the folder in Finder, then move it to the trash.
+4. Restart your computer.
+5. Open your project in Xcode and try running the preview again.
+
+If none of these steps work, it might be a bug in Xcode. Consider reporting it to Apple via their Feedback Assistant.

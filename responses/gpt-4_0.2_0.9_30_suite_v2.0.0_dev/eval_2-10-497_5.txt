@@ -1,0 +1,38 @@
+In Rust, the concept of null pointers doesn't exist in the same way as in languages like C or C++. Instead, Rust uses the `Option` type to represent a value that could be something (`Some`) or nothing (`None`).
+
+So, if you want to create a stack where each node may or may not have a next node, you should use `Option<Box<Node>>` instead of `Box<Node>`. Similarly, the top of the stack may or may not exist, so it should also be an `Option<Box<Node>>`.
+
+Here's how you can modify your code:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+```
+
+Now, you can check if the top of the stack is `None` (equivalent to null in other languages) like this:
+
+```rust
+if let Some(top_node) = &stack.top {
+    // top_node is not null, do something with it
+} else {
+    // top_node is null
+}
+```
+
+Or you can use the `is_none()` or `is_some()` methods:
+
+```rust
+if stack.top.is_none() {
+    // top is null
+} else {
+    // top is not null
+}
+```
+
+Remember that in Rust, you don't have to manually deallocate memory. When the `Box<Node>` goes out of scope, its destructor is called and the memory is freed.

@@ -1,0 +1,17 @@
+It seems like the issue is with the way you are starting the Vite server inside the Docker container. By default, Vite binds to `localhost` which means it can only be accessed from within the container itself. To make it accessible from outside the container, you need to bind it to `0.0.0.0` which will make it accessible from any IP address.
+
+To do this, you need to modify the `server.host` option in your `vite.config.ts` file:
+
+```typescript
+export default defineConfig({
+  // ...
+  server: {
+    port: 8080,
+    host: '0.0.0.0'
+  }
+})
+```
+
+With this configuration, Vite will bind to `0.0.0.0` which will allow it to be accessible from outside the container.
+
+After making this change, you can rebuild your Docker image and run the container again. Then try accessing it from your host machine using `localhost:8080` and it should work.

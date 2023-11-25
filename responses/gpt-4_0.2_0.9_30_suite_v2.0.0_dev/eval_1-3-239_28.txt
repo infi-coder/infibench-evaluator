@@ -1,0 +1,16 @@
+Sure, here is a bash script that will install the specific version of Python you want using Homebrew:
+
+```bash
+#!/bin/bash
+brew install python@3.6
+echo 'export PATH="/usr/local/opt/python@3.6/bin:$PATH"' >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+This script does the following:
+
+1. Installs Python 3.6 using Homebrew.
+2. Adds the path of this Python version to your PATH environment variable in your bash profile.
+3. Sources your bash profile to apply the changes.
+
+Please note that this script assumes that you are using bash as your shell. If you are using a different shell (like zsh), you would need to modify the script to update the appropriate profile file (like ~/.zshrc for zsh).

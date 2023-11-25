@@ -1,0 +1,14 @@
+```javascript
+import { useRouter } from "next/router";
+
+export default function Component(){
+    const router = useRouter();
+
+    const reloadData = async () => {
+        router.replace(router.asPath);
+    }
+
+    reloadData();
+}
+```
+In the above code, `router.replace(router.asPath)` will trigger a client-side reload in Next.js. The `router.asPath` gives the path of the current page. When you replace the current path with the same path, it triggers a client-side reload.

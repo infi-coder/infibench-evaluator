@@ -1,0 +1,19 @@
+I'm trying to create a function that turns text into pig Latin: simple text transformation that modifies each word moving the first character to the end and appending "ay" to the end. But all I get is an empty list.
+
+My python code:
+
+```python
+def pig_latin(text):
+  say = ""
+  words = text.split()
+  for word in words:
+    endString = str(word[1]).upper()+str(word[2:])
+    them = endString, str(word[0:1]).lower(), 'ay'
+    word = ''.join(them)
+    return word
+
+print(pig_latin("hello how are you")) # Should be "ellohay owhay reaay ouyay"
+print(pig_latin("programming in python is fun")) # Should be "rogrammingpay niay ythonpay siay unfay"
+```
+
+Please generate the function pig_latin in Python by revising my code. You need only generate the function, without any comments or testing codes.

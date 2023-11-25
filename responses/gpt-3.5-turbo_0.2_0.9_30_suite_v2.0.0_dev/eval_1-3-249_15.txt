@@ -1,0 +1,27 @@
+Sure, here's a possible implementation using the `random` module in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the possible characters
+    chars = string.ascii_letters + string.digits
+    
+    # Generate a random string of length 9
+    random_string = ''.join(random.choice(chars) for _ in range(9))
+    
+    # Insert the sub-string "NAA3U" at a random position
+    random_position = random.randint(0, 12)
+    random_string = random_string[:random_position] + "NAA3U" + random_string[random_position+5:]
+    
+    # Generate a random 3-digit number
+    random_number = random.randint(100, 999)
+    
+    # Replace the first 3 letters with the random number
+    random_string = str(random_number) + random_string[3:]
+    
+    return random_string
+```
+
+This function generates a random string of length 9, inserts the sub-string "NAA3U" at a random position, generates a random 3-digit number, and replaces the first 3 letters with the random number. The resulting string satisfies all the requirements you specified.

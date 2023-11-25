@@ -1,0 +1,69 @@
+To listen to multiple ChangeNotifier classes in a single widget, you can use the `MultiProvider` widget provided by the flutter `provider` package.
+
+Here's an example of how you can use `MultiProvider` to listen to multiple ChangeNotifier classes in a single widget:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:my_app/providers/provider1.dart';
+import 'package:my_app/providers/provider2.dart';
+import 'package:my_app/providers/provider3.dart';
+import 'package:my_app/providers/provider4.dart';
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Provider1>(create: (_) => Provider1()),
+        ChangeNotifierProvider<Provider2>(create: (_) => Provider2()),
+        ChangeNotifierProvider<Provider3>(create: (_) => Provider3()),
+        ChangeNotifierProvider<Provider4>(create: (_) => Provider4()),
+      ],
+      child: CurvedNavigationBarWidget(),
+    );
+  }
+}
+
+class CurvedNavigationBarWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Consumer<Provider1>(
+              builder: (context, provider1, _) {
+                // Use provider1 data here
+                return Text(provider1.data);
+              },
+            ),
+            Consumer<Provider2>(
+              builder: (context, provider2, _) {
+                // Use provider2 data here
+                return Text(provider2.data);
+              },
+            ),
+            Consumer<Provider3>(
+              builder: (context, provider3, _) {
+                // Use provider3 data here
+                return Text(provider3.data);
+              },
+            ),
+            Consumer<Provider4>(
+              builder: (context, provider4, _) {
+                // Use provider4 data here
+                return Text(provider4.data);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+In this example, we have used `MultiProvider` to provide instances of `Provider1`, `Provider2`, `Provider3`, and `Provider4` to the `CurvedNavigationBarWidget`. Then, we have used `Consumer` widgets to listen to changes in each of these providers and update the UI accordingly.

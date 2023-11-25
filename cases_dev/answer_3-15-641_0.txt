@@ -1,0 +1,160 @@
+Option Explicit
+Private Const ONEDRIVE_TENANTS_REGISTRY_FOLDER As String = "Software\Microsoft\OneDrive\Accounts\Business1\Tenants\"
+Private Const ONEDRIVE_TOTAL_VERSIONS As Long = 3
+Private Const ONEDRIVE_PATH_SLASHES As Long = 4
+Const HKEY_CURRENT_USER = &H80000001
+Public Function GetLocalWorkbookName(ByVal fullName As String, Optional ByVal PathOnly As Boolean = False) As String
+    ' Credits: https://stackoverflow.com/a/57040668/1521579
+    'returns local wb path or empty string if local path not found
+
+    Dim localFolders As Collection
+    Dim localFolder As Variant
+
+    Dim evalPath As String
+    Dim result As String
+
+    Dim isOneDrivePath As Boolean
+
+    'Check if it looks like a OneDrive location
+    isOneDrivePath = InStr(1, fullName, "https://", vbTextCompare) > 0
+
+    If isOneDrivePath = False Then
+        result = fullName
+    Else
+        Set localFolders = GetLocalFolders
+
+        evalPath = RemoveTopFoldersByQty(fullName, ONEDRIVE_PATH_SLASHES)
+        For Each localFolder In localFolders
+            result = GetFilePathByRootFolder(localFolder, evalPath)
+            If result <> vbNullString Then Exit For
+        Next localFolder
+    End If
+    If PathOnly Then
+        GetLocalWorkbookName = RemoveFileNameFromPath(result)
+    Else
+        GetLocalWorkbookName = result
+    End If
+
+End Function
+Public Function GetLocalFolders() As Collection
+
+    Dim tempCollection As Collection
+    Dim tenantFolders As Variant
+    Dim localFolders As Variant
+
+    Dim tenantCounter As Long
+
+    Set tempCollection = New Collection
+
+    ' Look in onedrive for business tenant's folders
+    tenantFolders = GetRegistrySubKeys(ONEDRIVE_TENANTS_REGISTRY_FOLDER)
+
+    For tenantCounter = 0 To UBound(tenantFolders)
+        localFolders = GetRegistryValues(ONEDRIVE_TENANTS_REGISTRY_FOLDER & "\" & tenantFolders(tenantCounter) & "\")
+        AddArrayItemsToCollection tempCollection, localFolders
+    Next tenantCounter
+
+    ' Add the onedrive consumer folder
+    tempCollection.Add Environ$("OneDriveConsumer")
+
+    Set GetLocalFolders = tempCollection
+
+End Function
+Public Function RemoveTopFolderFromPath(ByVal ShortName As String) As String
+    RemoveTopFolderFromPath = Mid$(ShortName, InStr(ShortName, "\") + 1)
+End Function
+
+Public Function RemoveTopFoldersByQty(ByVal FullPath As String, ByVal FolderQty As Long) As String
+    Dim counter As Long
+    Dim evalPath As String
+    evalPath = Replace(FullPath, "/", "\")
+    For counter = 1 To FolderQty
+        evalPath = RemoveTopFolderFromPath(evalPath)
+    Next counter
+    RemoveTopFoldersByQty = evalPath
+End Function
+
+Public Function RemoveFileNameFromPath(ByVal ShortName As String) As String
+    RemoveFileNameFromPath = Mid$(ShortName, 1, Len(ShortName) - InStr(StrReverse(ShortName), "\"))
+End Function
+
+Public Function GetFilePathByRootFolder(ByVal RootFolder As String, ByVal SearchPath As String) As String
+    Dim result As String
+    Dim evalPath As String
+    Dim testFilePath As String
+
+    Dim oneDrivePathFound As Boolean
+
+    evalPath = IIf(InStr(SearchPath, "\") = 0, "\", vbNullString) & SearchPath
+
+    Do While evalPath Like "*\*"
+        testFilePath = RootFolder & IIf(Left$(evalPath, 1) <> "\", "\", vbNullString) & evalPath
+        If Not (Dir(testFilePath)) = vbNullString Then
+            oneDrivePathFound = True
+            Exit Do
+        End If
+        'remove top folder in path
+        evalPath = RemoveTopFolderFromPath(evalPath)
+    Loop
+
+    If oneDrivePathFound = True Then
+        result = testFilePath
+    Else
+        result = vbNullString
+    End If
+
+    GetFilePathByRootFolder = result
+
+End Function
+Public Function GetRegistrySubKeys(ByVal pathToFolder As String) As Variant
+' Credits: https://stackoverflow.com/a/8667984/1521579
+    Dim registryObject As Object
+    Dim computerID As String
+    Dim subkeys() As Variant
+    'Dim key As Variant
+
+    computerID = "."
+    Set registryObject = GetObject("winmgmts:{impersonationLevel=impersonate}!\\" & _
+    computerID & "\root\default:StdRegProv")
+
+    registryObject.EnumKey HKEY_CURRENT_USER, pathToFolder, subkeys
+    GetRegistrySubKeys = subkeys
+    'For Each key In subKeys
+    '    Debug.Print key
+    'Next
+End Function
+
+Public Function GetRegistryValues(ByVal pathToFolder As String) As Variant
+' Credits: https://stackoverflow.com/a/8667984/1521579
+    Dim registryObject As Object
+    Dim computerID As String
+    Dim values() As Variant
+    Dim valuesTypes() As Variant
+    'Dim value As Variant
+
+
+    computerID = "."
+    Set registryObject = GetObject("winmgmts:{impersonationLevel=impersonate}!\\" & _
+    computerID & "\root\default:StdRegProv")
+
+    registryObject.EnumValues HKEY_CURRENT_USER, pathToFolder, values, valuesTypes
+    GetRegistryValues = values
+    'For Each value In values
+    '    Debug.Print value
+    'Next
+End Function
+
+
+
+Public Sub AddArrayItemsToCollection(ByVal evalCollection As Collection, ByVal evalArray As Variant)
+
+    Dim item As Variant
+
+    For Each item In evalArray
+        evalCollection.Add item
+    Next item
+
+End Sub
+And call it like this:
+
+? GetLocalWorkbookName(ThisWorkbook.fullName, true)

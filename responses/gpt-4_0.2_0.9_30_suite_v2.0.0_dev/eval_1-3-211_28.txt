@@ -1,0 +1,23 @@
+You can use the `groupby` method in pandas to group by 'exchange' and 'type', and then use `cumsum` to get the cumulative sum of the 'value' column. After that, you can use `fillna` method to forward fill the NaN values. Here is the function:
+
+```python
+def aggregation(df):
+    # Ensure 'value' column is numeric
+    df['value'] = pd.to_numeric(df['value'], errors='coerce')
+
+    # Create a mask for 'type' == 'deposit'
+    mask = df['type'] == 'deposit'
+
+    # Calculate the cumulative sum for 'value' where 'type' == 'deposit', grouped by 'exchange'
+    df.loc[mask, 'balance'] = df.loc[mask].groupby('exchange')['value'].cumsum()
+
+    # Forward fill the 'balance' column
+    df['balance'] = df.groupby('exchange')['balance'].ffill()
+
+    # Fill remaining NaN values with 0
+    df['balance'] = df['balance'].fillna(0)
+
+    return df
+```
+
+This function first converts the 'value' column to numeric type. Then it creates a mask for rows where 'type' is 'deposit'. It then calculates the cumulative sum of 'value' for these rows, grouped by 'exchange'. It then forward fills the 'balance' column within each 'exchange' group. Finally, it fills any remaining NaN values in the 'balance' column with 0.

@@ -1,0 +1,5 @@
+If the data directory doesn't exist under (storage/framework/cache/data), then you will have this error.
+
+This data directory doesn't exist by default on a fresh/new installation.
+
+Creating the data directory manually at (storage/framework/cache) should fix this issue.

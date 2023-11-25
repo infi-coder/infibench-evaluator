@@ -1,0 +1,13 @@
+Developer mode on iOS 16.0 is not a feature that can be enabled or disabled. It is possible that the alert you received is related to the app's provisioning profile or the device's settings.
+
+Here are some steps you can try:
+
+1. Check if the device is registered as a development device in the Apple Developer portal. If not, register the device and create a new provisioning profile for the app.
+
+2. Install the provisioning profile on the device. You can do this by downloading the profile from the Apple Developer portal and installing it via Xcode or by sending it to the device via email or a file-sharing app.
+
+3. Check if the device's settings allow for the installation of apps from unknown sources. If not, enable this setting by going to Settings > General > Profiles & Device Management and selecting the profile for the app.
+
+4. If the app was installed via a third-party app store or a jailbreak, it may require developer mode to run. In this case, you may need to reinstall the app from a trusted source or restore the device to its original settings.
+
+If none of these steps work, you may need to contact the app developer or Apple support for further assistance.

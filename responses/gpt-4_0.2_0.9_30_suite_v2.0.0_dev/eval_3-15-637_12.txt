@@ -1,0 +1,21 @@
+The error you're experiencing might be due to a few reasons. Here are some suggestions to troubleshoot:
+
+1. **Check SeleniumBasic version**: Ensure that you have the latest version of SeleniumBasic installed. You can download it from [here](https://github.com/florentbr/SeleniumBasic/releases).
+
+2. **Check Browser Drivers**: Make sure that the browser drivers (e.g., ChromeDriver for Google Chrome, IEDriver for Internet Explorer) are up-to-date and compatible with the version of the browser you're using. You can download the latest browser drivers from the Selenium [website](https://www.selenium.dev/downloads/).
+
+3. **Check References**: In VBA, go to `Tools > References` and ensure that `Selenium Type Library` is checked.
+
+4. **Check Internet Explorer Settings**: Since you're using Internet Explorer as your browser, ensure that the `Enable Protected Mode` setting is the same for all zones in the Internet Options. To do this, go to `Internet Options > Security tab` and check the status of `Enable Protected Mode` for Internet, Local intranet, Trusted sites, and Restricted sites.
+
+5. **Code Modification**: Try to modify your code as follows:
+
+```vba
+Dim driver As WebDriver
+Set driver = New WebDriver
+
+driver.Start "ie", "https://www.google.com"
+driver.Window.Maximize
+```
+
+If none of the above suggestions work, please provide the exact error message you're receiving for further assistance.

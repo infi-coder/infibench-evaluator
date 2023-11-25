@@ -1,0 +1,21 @@
+The issue is that the command substitution `$(echo {} | sed 's/\?.*//g')` is evaluated before the `find` command is run, so it doesn't have the expected effect. You can solve this by using a shell script or a shell function for the `-exec` option of `find`.
+
+Here is a solution using a shell script:
+
+```bash
+find . -type f -name '*\?*' | while read -r file; do
+    mv -- "$file" "${file%%\?*}"
+done
+```
+
+This script uses the `%%\?*` parameter expansion to remove the `?` and everything after it from the filename. The `--` argument is used to signify the end of options, which allows filenames that start with a `-` to be handled correctly.
+
+This script will fail if there are any filenames that contain newlines. If you need to handle such filenames, you can use a `-print0`/`-0` loop:
+
+```bash
+find . -type f -name '*\?*' -print0 | while IFS= read -r -d '' file; do
+    mv -- "$file" "${file%%\?*}"
+done
+```
+
+This version of the script will work with any filename, including filenames that contain newlines or other unusual characters.

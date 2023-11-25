@@ -1,0 +1,13 @@
+You can optimize your task by using `awk` which is a powerful tool for text processing in Unix/Linux. Here is a more efficient solution:
+
+```bash
+awk -F'=' '/^name/ {name=$2} /^value/ {print name"="$2}' input.txt > output.txt
+```
+
+This `awk` command works as follows:
+
+- `-F'='` sets the field separator to `=`.
+- `/^name/ {name=$2}` if the line starts with `name`, it saves the second field (i.e., the value after `=`) in the variable `name`.
+- `/^value/ {print name"="$2}` if the line starts with `value`, it prints the previously saved `name` and the current value.
+
+This command will process your file line by line, so it should be significantly faster than your original script. It will overwrite `output.txt` each time it's run. If you want to append to `output.txt`, use `>>` instead of `>`.

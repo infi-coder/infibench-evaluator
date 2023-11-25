@@ -1,0 +1,28 @@
+The error message suggests that the response from the server is not in the expected JSON format. It seems like the response is an HTML page instead of a JSON object.
+
+To fix this issue, you can try the following steps:
+
+1. Check the URL of the API endpoint. Make sure it is correct and matches the route defined in the controller.
+
+2. Check the response from the server using a tool like Postman or Fiddler. Make sure the response is in the expected JSON format.
+
+3. If the response is not in the expected format, check the server-side code to ensure that it is returning the correct data in the correct format.
+
+4. If the server-side code is correct, check the network traffic to see if there are any issues with the request or response.
+
+5. If all else fails, try using a different HTTP client library or a different approach to fetch the data from the server.
+
+Here's an example of how you can rewrite the code to use the `HttpClient` class instead of the `Http` helper:
+
+```c#
+@inject HttpClient httpClient
+
+...
+
+protected override async Task OnInitializedAsync()
+{
+    empList = await httpClient.GetFromJsonAsync<Employee[]>("/api/Employee/Index");
+}
+```
+
+This code assumes that you have added the `System.Net.Http.Json` package to your project.

@@ -1,0 +1,24 @@
+Here is the JavaScript code with the blanks filled:
+
+```javascript
+document.getElementById('check').onclick = function() {
+  let allAreFilled = true;
+  document.getElementById("myForm").querySelectorAll('input,textarea,select').forEach(function(i) {
+    if (!allAreFilled) return;
+    if (i.type === "radio") {
+      let radioValueCheck = false;
+      document.getElementById("myForm").querySelectorAll(`input[name=${i.name}]`).forEach(function(r) {
+        if (r.checked) radioValueCheck = true;
+      })
+      allAreFilled = radioValueCheck;
+      return;
+    }
+    if (!i.value) { allAreFilled = false;  return; }
+  })
+  if (!allAreFilled) {
+    alert('Fill all the fields');
+  }
+};
+```
+
+This code works by adding an onclick event to the button with id 'check'. When this button is clicked, it checks all the input, textarea, and select elements within the div with id 'myForm'. If any of these elements are of type 'radio', it checks if any of the radio buttons with the same name are checked. If none are checked, it sets `allAreFilled` to false. If any of the other elements do not have a value, it also sets `allAreFilled` to false. If `allAreFilled` is false after checking all the elements, it alerts 'Fill all the fields'.

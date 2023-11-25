@@ -1,0 +1,15 @@
+You can modify your `grep` command to search for `lang=` followed by either a single or double quote, like this:
+
+```
+curl -Ls yahoo.com | grep -oP 'lang=[\'"][^\'"]+[\'"]' | cut -d"\"" -f 2
+```
+
+This will match `lang=` followed by either a single or double quote, then any non-quote characters until the next quote. The `-o` option tells `grep` to only output the matched portion of the line, and the `-P` option enables Perl-compatible regular expressions, which allows us to use the `+` quantifier to match one or more characters.
+
+Alternatively, you can use `sed` to extract the language code:
+
+```
+curl -Ls yahoo.com | sed -n 's/.*lang="\([^"]*\)".*/\1/p'
+```
+
+This command uses `sed` to search for the `lang` attribute and extract its value using a regular expression. The `-n` option tells `sed` not to print anything by default, and the `s` command performs a search-and-replace operation. The regular expression matches the entire line and captures the value of the `lang` attribute using parentheses. The replacement string `\1` outputs the captured value. The `p` flag at the end of the command tells `sed` to print the result only for lines that match the regular expression.

@@ -1,0 +1,19 @@
+Yes, Tailwind CSS has a `last` pseudo-class variant that can be used to target the last element in a list. You can use it to remove the border from the last `li` element.
+
+Here's the revised code:
+
+```html
+<ul>
+  <li
+    v-for="(item, index) in items"
+    :key="`item-${index}`"
+    class="border-solid border-b border-black {{ index === items.length - 1 ? '' : 'pb-4' }}"
+  >
+    Item
+  </li>
+</ul>
+```
+
+In this code, we're using the `pb-4` utility class to add a bottom padding to all `li` elements except the last one. We're also using the `last` pseudo-class variant to remove the border from the last `li` element.
+
+Note that we're using the ternary operator to conditionally apply the `pb-4` class based on whether the current `li` element is the last one or not.

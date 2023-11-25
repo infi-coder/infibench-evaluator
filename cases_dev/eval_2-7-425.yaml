@@ -1,0 +1,7 @@
+id: 2-7-425
+prompt_path: prompt_2-7-425.txt
+type: code completion
+lang: php
+grading:
+  keywords:
+    - 'now()'

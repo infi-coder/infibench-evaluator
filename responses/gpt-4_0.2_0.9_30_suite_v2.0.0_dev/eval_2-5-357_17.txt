@@ -1,0 +1,5 @@
+The `@Autowired` annotation is not required for constructor injection from Spring 4.3 onwards, if the target bean only defines one constructor. Spring automatically uses that constructor for dependency injection.
+
+However, if there are multiple constructors, Spring doesn't know which one to use, so you need to add `@Autowired` to the constructor you want Spring to use for dependency injection.
+
+People might still use `@Autowired` on constructors out of habit, for explicitness, or because they're working in a codebase that also needs to be compatible with older versions of Spring.

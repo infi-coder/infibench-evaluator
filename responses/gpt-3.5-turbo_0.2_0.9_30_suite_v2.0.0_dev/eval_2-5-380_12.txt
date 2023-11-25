@@ -1,0 +1,35 @@
+There are a few things you can check to troubleshoot this issue:
+
+1. Make sure that the Spring Boot application is running on port 8080. If it's running on a different port, you'll need to adjust the URL accordingly.
+
+2. Check that the `@EnableSwagger2` annotation is present in your Spring Boot application. This annotation is required to enable Swagger support.
+
+3. Verify that the `springdoc.swagger-ui.path` property is set correctly in your application.properties or application.yml file. By default, the path should be `/swagger-ui.html`.
+
+4. Check that the `@ComponentScan` annotation is scanning the package where your Swagger configuration is located. If your Swagger configuration is in a different package than your Spring Boot application, you'll need to specify the package to scan.
+
+5. Verify that the `@Configuration` annotation is present in your Swagger configuration class.
+
+6. Make sure that the `@EnableWebMvc` annotation is not present in your Swagger configuration class. This annotation can interfere with the Swagger UI.
+
+If none of these steps resolve the issue, you can try adding the following configuration to your Swagger configuration class:
+
+```java
+@Configuration
+public class SwaggerConfig {
+
+    @Bean
+    public WebMvcConfigurer webMvcConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                registry.addResourceHandler("/swagger-ui/**")
+                        .addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/")
+                        .resourceChain(false);
+            }
+        };
+    }
+}
+```
+
+This will configure Spring MVC to serve the Swagger UI resources from the `springfox-swagger-ui` webjar.

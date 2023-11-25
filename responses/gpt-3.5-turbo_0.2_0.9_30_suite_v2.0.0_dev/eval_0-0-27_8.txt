@@ -1,0 +1,9 @@
+It seems like you are trying to fetch data from a GraphQL API that is not working properly. The `uri` you are using in your `ApolloClient` configuration is not responding, which is causing the `useQuery` hook to hang at the `loading` state.
+
+You can try using a different GraphQL API to test your code. Here are a few options:
+
+- [GraphQL Pokemon API](https://graphql-pokemon2.vercel.app/)
+- [GraphQL Star Wars API](https://swapi-graphql.netlify.app/.netlify/functions/index)
+- [GraphQL Rick and Morty API](https://rickandmortyapi.com/graphql)
+
+Replace the `uri` in your `ApolloClient` configuration with one of the above APIs and see if it works. If it does, then the issue was with the original API you were using.

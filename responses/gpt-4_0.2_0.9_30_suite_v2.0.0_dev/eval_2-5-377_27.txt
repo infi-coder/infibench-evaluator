@@ -1,0 +1,31 @@
+The error you're seeing is because `SimpleDateFormat` expects a `Date` object, not a `LocalDate` object. 
+
+Also, `LocalDate` only contains date information (year, month, day), not time. If you want to include time, you should use `LocalDateTime`.
+
+Here's how you can modify your code:
+
+```java
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(generateRandomDateAndTimeInString());
+    }
+
+    public static String generateRandomDateAndTimeInString() {
+        LocalDateTime dateTime = LocalDateTime.now().minusDays(new Random().nextInt(365 * 70));
+        System.out.println("date and time :: " + dateTime.toString());
+        return formatDate(dateTime);
+    }
+
+    public static String formatDate(LocalDateTime dateTime){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        return dateTime.atZone(ZoneOffset.UTC).format(formatter);
+    }
+}
+```
+
+In this code, `LocalDateTime.now().minusDays(new Random().nextInt(365 * 70))` generates a random date and time in the past 70 years. `DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")` is used to format the date and time. `dateTime.atZone(ZoneOffset.UTC).format(formatter)` converts the `LocalDateTime` to a `ZonedDateTime` at UTC, and then formats it to a string.

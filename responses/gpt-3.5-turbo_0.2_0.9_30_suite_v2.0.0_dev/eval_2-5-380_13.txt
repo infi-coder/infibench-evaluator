@@ -1,0 +1,33 @@
+To use Swagger UI with Spring Boot, you need to make sure that you have the following:
+
+1. The `@EnableSwagger2` annotation on your main Spring Boot application class. This annotation enables Swagger support in your application.
+
+2. The `@Configuration` annotation on a separate class that extends `WebMvcConfigurationSupport`. This class is responsible for configuring the Swagger UI resources.
+
+Here's an example of how your code should look like:
+
+```java
+@SpringBootApplication
+@EnableSwagger2
+public class MyApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApplication.class, args);
+    }
+}
+
+@Configuration
+public class SwaggerConfig extends WebMvcConfigurationSupport {
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+}
+```
+
+Make sure that you have the correct version of the `springdoc-openapi-ui` dependency in your `pom.xml` file. You can check the latest version on the [Maven Repository](https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui).
+
+If you still encounter issues, try clearing your browser cache or using a different browser.

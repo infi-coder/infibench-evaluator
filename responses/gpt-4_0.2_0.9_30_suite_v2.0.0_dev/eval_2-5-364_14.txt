@@ -1,0 +1,33 @@
+The Java version used by Maven can be specified in several ways. If you are using the Maven Wrapper (`mvnw` or `mvnw.cmd`), you can specify the Java version in the `maven-wrapper.properties` file located in the `.mvn` directory of your project. 
+
+Here is an example of how to specify the Java version:
+
+```properties
+# maven-wrapper.properties
+distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.zip
+wrapperUrl=https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/0.5.6/maven-wrapper-0.5.6.jar
+# Specify the Java version here
+javaHome=/path/to/your/jdk
+```
+
+Replace `/path/to/your/jdk` with the actual path to your JDK.
+
+If you are running Maven from the command line, you can specify the Java version by setting the `JAVA_HOME` environment variable. Here is how you can do it:
+
+- On Linux or macOS:
+
+  ```bash
+  export JAVA_HOME=/path/to/your/jdk
+  ```
+
+- On Windows:
+
+  ```cmd
+  set JAVA_HOME=C:\path\to\your\jdk
+  ```
+
+Replace `/path/to/your/jdk` or `C:\path\to\your\jdk` with the actual path to your JDK.
+
+Please note that the path should point to the JDK directory, not the `bin` directory inside the JDK directory. For example, if the `java` executable is located at `/usr/lib/jvm/java-11-openjdk-amd64/bin/java`, the `JAVA_HOME` should be `/usr/lib/jvm/java-11-openjdk-amd64`.
+
+If you are running Maven from an IDE, you can specify the Java version in the IDE settings. The exact steps depend on the IDE you are using. For example, in IntelliJ IDEA, you can specify the Java version in the "Project Structure" dialog (`File` -> `Project Structure` -> `Project` -> `Project SDK`).

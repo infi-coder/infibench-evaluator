@@ -1,0 +1,46 @@
+You can use the `MultiProvider` widget to provide multiple instances of different `ChangeNotifier` classes to your widget tree. Here's an example of how you can use it to listen to multiple `ChangeNotifier` classes in a single widget:
+
+```dart
+return MultiProvider(
+  providers: [
+    ChangeNotifierProvider<FirstNotifier>(create: (_) => FirstNotifier()),
+    ChangeNotifierProvider<SecondNotifier>(create: (_) => SecondNotifier()),
+    ChangeNotifierProvider<ThirdNotifier>(create: (_) => ThirdNotifier()),
+    ChangeNotifierProvider<FourthNotifier>(create: (_) => FourthNotifier()),
+  ],
+  child: MaterialApp(
+    home: Scaffold(
+      body: Consumer4<FirstNotifier, SecondNotifier, ThirdNotifier, FourthNotifier>(
+        builder: (_, first, second, third, fourth, child) {
+          return CurvedNavigationBar(
+            items: [
+              // use the values from the notifiers here
+            ],
+            // set the initial index based on the values from the notifiers
+            index: first.selectedIndex,
+            onTap: (index) {
+              // update the selected index in the appropriate notifier
+              switch (index) {
+                case 0:
+                  first.selectedIndex = index;
+                  break;
+                case 1:
+                  second.selectedIndex = index;
+                  break;
+                case 2:
+                  third.selectedIndex = index;
+                  break;
+                case 3:
+                  fourth.selectedIndex = index;
+                  break;
+              }
+            },
+          );
+        },
+      ),
+    ),
+  ),
+);
+```
+
+In this example, we're using `MultiProvider` to provide instances of `FirstNotifier`, `SecondNotifier`, `ThirdNotifier`, and `FourthNotifier` to our widget tree. Then, we're using `Consumer4` to listen to changes in all four notifiers at once. In the builder function, we can access the values of each notifier and use them to build our `CurvedNavigationBar`. We're also setting the initial index of the `CurvedNavigationBar` based on the value of `selectedIndex` in the `FirstNotifier`. Finally, we're updating the appropriate `selectedIndex` value in the corresponding notifier when the user taps on an item in the `CurvedNavigationBar`.

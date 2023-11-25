@@ -1,0 +1,21 @@
+You need to conform `RedView` to `ShapeStyle` instead of `View`. Here's how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+
+struct RedShapeStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType) {
+    }
+    
+    func _makeView(geometry: _GraphValue<_ShapeStyle_ShapeType>, inputs: _ViewInputs) -> _ViewOutputs {
+        return Color.red._makeView(geometry: geometry, inputs: inputs)
+    }
+}
+```
+
+In this code, `RedShapeStyle` conforms to `ShapeStyle` and uses `Color.red` to create the view. Now you can use `RedShapeStyle` to fill your shapes.

@@ -1,0 +1,52 @@
+The error message indicates that the Lambda function is unable to find the executable file `main` in the `/var/task` directory. This is likely because the file was not properly included in the ZIP file that was uploaded to AWS Lambda.
+
+Here are some steps you can follow to ensure that the executable file is included in the ZIP file:
+
+1. Open a command prompt or terminal window and navigate to the directory where your `main.exe` file is located.
+2. Create a new directory named `bin` in the same directory as `main.exe`.
+3. Move `main.exe` into the `bin` directory.
+4. Create a new ZIP file that includes the `bin` directory and its contents. You can do this by right-clicking on the `bin` directory and selecting "Send to" -> "Compressed (zipped) folder" (on Windows) or by running the following command in a terminal window:
+
+   ```
+   zip -r main.zip bin/
+   ```
+
+5. Upload the `main.zip` file to AWS Lambda and test the function again.
+
+Your updated code should look like this:
+
+```go
+package main
+
+import (
+    "fmt"
+
+    "github.com/aws/aws-lambda-go/lambda"
+)
+
+// Request represents the requested object
+type Request struct {
+    ID    int    `json:"ID"`
+    Value string `json:"Value"`
+}
+
+// Response represents the Response object
+type Response struct {
+    Message string `json:"Message"`
+    Ok      bool   `json:"Ok"`
+}
+
+// Handler represents the Handler of lambda
+func Handler(request Request) (Response, error) {
+    return Response{
+        Message: fmt.Sprint("Process Request Id %f", request.ID),
+        Ok:      true,
+    }, nil
+}
+
+func main() {
+    lambda.Start(Handler)
+}
+```
+
+I hope this helps! Let me know if you have any further questions.

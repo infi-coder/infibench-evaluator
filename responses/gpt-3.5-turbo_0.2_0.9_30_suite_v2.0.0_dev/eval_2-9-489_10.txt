@@ -1,0 +1,12 @@
+This warning is related to Elasticsearch's built-in security features that are not enabled by default. To fix this, you need to enable security in Elasticsearch. Here are the steps:
+
+1. Open the Elasticsearch configuration file. On a Rails app, this file is usually located at `config/elasticsearch.yml`.
+
+2. Add the following lines to the file:
+```
+xpack.security.enabled: true
+```
+
+3. Save the file and restart Elasticsearch.
+
+After restarting Elasticsearch, the warning should disappear. However, enabling security in Elasticsearch requires additional configuration, such as setting up authentication and authorization. You can refer to the Elasticsearch documentation for more information on how to set up security: https://www.elastic.co/guide/en/elasticsearch/reference/7.13/security-minimal-setup.html

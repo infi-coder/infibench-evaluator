@@ -1,0 +1,21 @@
+The error message indicates that you're trying to install Pillow on Python 3.8, and Pillow does not yet support Python 3.8. The error also indicates that the zlib library, a required dependency for Pillow, could not be found.
+
+Here are a few things you can try:
+
+1. **Downgrade Python:** As the error message suggests, Pillow does not yet support Python 3.8. You could try downgrading to an earlier version of Python that is supported by Pillow.
+
+2. **Install zlib:** The error message also indicates that the zlib library could not be found. You could try installing zlib manually. However, this can be quite complex on Windows.
+
+3. **Use a precompiled binary:** Instead of trying to compile Pillow from source, you could try installing a precompiled binary. You can find precompiled binaries for Pillow [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pillow). Download the appropriate .whl file for your Python version and architecture (cp38 for Python 3.8, win32 for 32-bit Python, amd64 for 64-bit Python), then install it using pip:
+
+    ```bash
+    pip install pillow_file_downloaded.whl
+    ```
+
+4. **Upgrade Pillow:** The version of Pillow you're trying to install (6.0.0) does not support Python 3.8. However, newer versions of Pillow do. Try upgrading Pillow to the latest version:
+
+    ```bash
+    pip install --upgrade pillow
+    ```
+
+Remember to activate your virtual environment before running these commands.

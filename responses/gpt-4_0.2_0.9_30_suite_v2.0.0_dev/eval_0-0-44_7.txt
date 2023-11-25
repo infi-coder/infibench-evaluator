@@ -1,0 +1,41 @@
+To create an index in Mongoose schema using Nest.js, you should use the `@Index()` decorator from the `@nestjs/mongoose` package. 
+
+Here is how you can do it:
+
+```javascript
+import { Prop, Schema, SchemaFactory, Index } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema()
+@Index({ type: 1 }) // This is where you define your index
+export class MySchema extends Document {
+
+  @Prop()
+  _id: string;
+
+  @Prop({required: true})
+  type: string;
+
+  @Prop()
+  creationDate: string;
+
+  @Prop()
+  name: string;
+}
+
+export const MySchemaModel = SchemaFactory.createForClass(MySchema);
+```
+
+In the above code, `@Index({ type: 1 })` creates an ascending index on the `type` field.
+
+Remember, Mongoose will not automatically create indexes for you. You must manually call `ensureIndexes()` in your code. This is because index creation can cause a significant performance impact. Mongoose wants to make sure you have control over when your indexes are created. 
+
+You can call `ensureIndexes()` after you've defined your schema:
+
+```javascript
+MySchemaModel.ensureIndexes(function(err) {
+  if (err) return handleError(err);
+});
+```
+
+Also, note that indexes are created in the background by default for MongoDB versions >= 2.6.0. That means MongoDB will not block other database activities while creating an index (see [MongoDB docs](https://docs.mongodb.com/manual/core/index-creation/#background-construction)).

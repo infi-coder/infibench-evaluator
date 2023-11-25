@@ -1,0 +1,20 @@
+Sure, you can use the `calendar` module in Python to check if a year is a leap year or not. Here is a function that does this:
+
+```python
+import calendar
+
+def DaysInYear(year):
+    if calendar.isleap(year):
+        return 366
+    else:
+        return 365
+```
+
+You can use this function like this:
+
+```python
+print(DaysInYear(2020))  # Output: 366
+print(DaysInYear(2019))  # Output: 365
+```
+
+This function works by checking if the year is a leap year using the `calendar.isleap()` function. If it is a leap year, it returns 366, otherwise it returns 365.

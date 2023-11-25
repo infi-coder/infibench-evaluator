@@ -1,0 +1,55 @@
+To identify if a div is visible on the viewport, you can use the Intersection Observer API. Here's how you can use it in your React code:
+
+1. Install the `react-intersection-observer` package from npm:
+
+   ```
+   npm install react-intersection-observer
+   ```
+
+2. Import the `IntersectionObserver` component from the package:
+
+   ```javascript
+   import { IntersectionObserver } from 'react-intersection-observer';
+   ```
+
+3. Wrap your `div` elements with the `IntersectionObserver` component:
+
+   ```javascript
+   <div id="parent">
+     {data.map(item => (
+       <IntersectionObserver>
+         {({ inView, ref }) => (
+           <div id={item.id} ref={ref}>
+             {data.title}
+           </div>
+         )}
+       </IntersectionObserver>
+     ))}
+   </div>
+   ```
+
+4. In the `IntersectionObserver` component, you can access the `inView` property to check if the element is visible on the viewport. You can also use the `ref` property to get a reference to the element and perform any other actions on it.
+
+   ```javascript
+   <IntersectionObserver>
+     {({ inView, ref }) => (
+       <div id={item.id} ref={ref}>
+         {data.title}
+       </div>
+     )}
+   </IntersectionObserver>
+   ```
+
+   You can also pass additional options to the `IntersectionObserver` component, such as the `threshold` property to specify the percentage of the element that needs to be visible before it is considered in view.
+
+   ```javascript
+   <IntersectionObserver threshold={0.5}>
+     {({ inView, ref }) => (
+       <div id={item.id} ref={ref}>
+         {data.title}
+       </div>
+     )}
+   </IntersectionObserver>
+   ```
+
+   This will trigger the `inView` property when at least 50% of the element is visible on the viewport.

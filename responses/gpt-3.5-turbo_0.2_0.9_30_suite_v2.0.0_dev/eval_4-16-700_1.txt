@@ -1,0 +1,7 @@
+You can try using awk to achieve the same result more efficiently. Here's an example command that should work for your data file:
+
+```
+awk -F= '/name/ {name=$2} /value/ {if (name) print name "=" $2; name=""}' input.txt > output.txt
+```
+
+This command uses the "=" character as the field separator (-F=) and looks for lines containing "name" or "value". When it finds a line containing "name", it saves the name value in a variable. When it finds a line containing "value", it prints the name and value together, separated by "=", and resets the name variable. This should be much faster than your original solution.

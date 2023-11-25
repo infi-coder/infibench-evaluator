@@ -1,0 +1,41 @@
+The error message indicates that ESLint is unable to find the `tsconfig.json` file. This is because the `tsconfig.json` file is located in the root directory of the project, while the `.eslintrc.js` file is located in the `src` directory.
+
+To fix this issue, you need to update the `parserOptions.project` property in the `.eslintrc.js` file to point to the correct location of the `tsconfig.json` file. You can do this by updating the property to `"../tsconfig.json"`.
+
+Here's the updated `.eslintrc.js` file:
+
+```javascript
+module.exports = {
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+  },
+  extends: [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+  ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "../tsconfig.json", // updated path to tsconfig.json
+    sourceType: "module",
+  },
+  plugins: [
+    "@typescript-eslint",
+    "import",
+  ],
+  rules: {
+    // your rules here
+  },
+  settings: {
+    jsdoc: {
+      tagNamePreference: {
+        returns: "return",
+      },
+    },
+  },
+};
+```
+
+After making this change, the error should disappear.

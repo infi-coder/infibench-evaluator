@@ -1,0 +1,14 @@
+It seems like the issue is with the `uri` you are using for your Apollo Client. The `uri` you are using (`https://48p1r2roz4.sse.codesandbox.io`) is a demo server provided by Apollo Client, and it may not be working properly at the moment.
+
+You should replace the `uri` with the actual GraphQL endpoint that you want to query. For example, if you have a GraphQL server running at `http://localhost:4000/graphql`, you should use:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'http://localhost:4000/graphql',
+    cache: new InMemoryCache(),
+});
+```
+
+Make sure to replace `http://localhost:4000/graphql` with the actual endpoint of your GraphQL server.
+
+Also, make sure that your GraphQL server is running and accessible from your React Native app. You can test your GraphQL server using a tool like GraphiQL or GraphQL Playground.

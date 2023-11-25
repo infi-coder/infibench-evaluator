@@ -1,0 +1,21 @@
+If you want to use a specific version of Java with Maven, you can set the `JAVA_HOME` environment variable to point to the desired Java installation directory. 
+
+However, if you're using the Maven Wrapper (`mvnw` or `mvnw.cmd`), it will automatically use the version of Java specified in the `.mvn/jvm.config` file if it exists. If this file doesn't exist, it will use the Java version available in the `JAVA_HOME` environment variable.
+
+Here's how you can specify the Java version in the `.mvn/jvm.config` file:
+
+1. Create a `.mvn` directory in the root directory of your project (if it doesn't exist already).
+2. Inside the `.mvn` directory, create a file named `jvm.config`.
+3. In the `jvm.config` file, specify the Java version like this:
+
+```markdown
+-jdk-home /path/to/your/jdk
+```
+
+Replace `/path/to/your/jdk` with the actual path to your JDK installation.
+
+Please note that the `.mvn/jvm.config` file is specific to the Maven Wrapper and won't affect other Maven tasks.
+
+If you're using a continuous integration (CI) system, you might need to configure the Java version in the CI system's settings. For example, in Jenkins, you can specify the JDK in the "Global Tool Configuration" section. In GitHub Actions, you can use the `actions/setup-java` action to specify the Java version.
+
+If you're still having issues, please provide more details about your setup (e.g., operating system, Maven version, Java version, CI system) and the exact error message you're getting.

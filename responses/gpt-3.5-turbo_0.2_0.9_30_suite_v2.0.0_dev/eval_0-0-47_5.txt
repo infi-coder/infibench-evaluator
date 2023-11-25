@@ -1,0 +1,15 @@
+You can define an interface for the object type and use it in the function parameter like this:
+
+```typescript
+interface Product {
+  name: string;
+  price: number;
+  description: string;
+}
+
+const bagTotal = (products: Product[]) => {
+  // function does stuff
+}
+```
+
+This defines an interface `Product` with the required properties `name`, `price`, and `description`. Then, the `bagTotal` function takes an array of objects of type `Product` as its parameter. This way, you can ensure that the objects passed to the function have the required properties and types.

@@ -1,0 +1,65 @@
+You can use the `react-intersection-observer` npm package to detect if an element is in the viewport. The Intersection Observer API provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+
+First, install the package using npm:
+
+```bash
+npm install react-intersection-observer
+```
+
+Then, you can use the `useInView` hook from the package in your component:
+
+```jsx
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+
+const MyComponent = () => {
+    const [ref, inView] = useInView({
+        triggerOnce: false, // Change this to true if you want the event to be triggered only once
+    });
+
+    return (
+        <div id="parent">
+            {data.map(item => {
+                return (
+                    <div ref={ref} id={item.id}>
+                        {inView ? 'In viewport' : 'Not in viewport'}
+                    </div>
+                );
+            })}
+        </div>
+    );
+};
+
+export default MyComponent;
+```
+
+In this code, `useInView` returns a `ref` that you can attach to the divs. The `inView` variable will be `true` if the div is in the viewport and `false` otherwise. You can use this variable to conditionally render different content based on whether the div is in the viewport.
+
+Please note that this will only work if all the divs are the same size. If they are different sizes, you will need to create a new `ref` for each div. You can do this by mapping over your data and creating a new `ref` for each item:
+
+```jsx
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+
+const MyComponent = () => {
+    return (
+        <div id="parent">
+            {data.map(item => {
+                const [ref, inView] = useInView({
+                    triggerOnce: false, // Change this to true if you want the event to be triggered only once
+                });
+
+                return (
+                    <div ref={ref} id={item.id}>
+                        {inView ? 'In viewport' : 'Not in viewport'}
+                    </div>
+                );
+            })}
+        </div>
+    );
+};
+
+export default MyComponent;
+```
+
+In this code, each div has its own `ref` and `in

@@ -1,0 +1,73 @@
+You can use named options to configure multiple instances of `ServiceBusClient` with different queue names but the same connection string. Here's an example:
+
+1. Define a class to hold the configuration options for each queue:
+```c#
+public class ServiceBusQueueOptions
+{
+    public string QueueName { get; set; }
+}
+```
+
+2. Register the options for each queue in `Startup.cs`:
+```c#
+services.Configure<ServiceBusQueueOptions>("Queue1", options =>
+{
+    options.QueueName = "queue1";
+});
+
+services.Configure<ServiceBusQueueOptions>("Queue2", options =>
+{
+    options.QueueName = "queue2";
+});
+```
+
+3. Register the `ServiceBusClient` instances using the named options:
+```c#
+services.AddSingleton<IServiceBusClient>(serviceProvider =>
+{
+    var options = serviceProvider.GetRequiredService<IOptions<ServiceBusQueueOptions>>();
+    var connectionString = Configuration.GetConnectionString("ServiceBus");
+
+    var client = new ServiceBusClient(connectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+
+    return client.CreateSender(options.Value.QueueName);
+}).AddScoped<IServiceBusSender>("Queue1", serviceProvider =>
+{
+    var options = serviceProvider.GetRequiredService<IOptions<ServiceBusQueueOptions>>("Queue1");
+    var client = serviceProvider.GetRequiredService<IServiceBusClient>();
+    return client.CreateSender(options.Value.QueueName);
+}).AddScoped<IServiceBusSender>("Queue2", serviceProvider =>
+{
+    var options = serviceProvider.GetRequiredService<IOptions<ServiceBusQueueOptions>>("Queue2");
+    var client = serviceProvider.GetRequiredService<IServiceBusClient>();
+    return client.CreateSender(options.Value.QueueName);
+});
+```
+
+4. Inject the `IServiceBusSender` instances into your services using the named options:
+```c#
+public class MyService
+{
+    private readonly IServiceBusSender _sender1;
+    private readonly IServiceBusSender _sender2;
+
+    public MyService(
+        [Named("Queue1")] IServiceBusSender sender1,
+        [Named("Queue2")] IServiceBusSender sender2)
+    {
+        _sender1 = sender1;
+        _sender2 = sender2;
+    }
+
+    public async Task SendMessageAsync(string message)
+    {
+        await _sender1.SendMessageAsync(new ServiceBusMessage(message));
+        await _sender2.SendMessageAsync(new ServiceBusMessage(message));
+    }
+}
+```
+
+In this example, we register a singleton `IServiceBus

@@ -1,0 +1,1 @@
+You need to add two things to your `.zshenv` file. First `PATH` itself and second the ruby `shims` directory. You might also run the `rbenv doctor` to check your installation.

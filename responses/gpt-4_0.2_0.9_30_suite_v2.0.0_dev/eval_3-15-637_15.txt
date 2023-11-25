@@ -1,0 +1,27 @@
+The error you're encountering might be due to several reasons. Here are a few things you can try:
+
+1. **Check SeleniumBasic version**: Ensure that you have the latest version of SeleniumBasic installed. You can download it from [here](https://github.com/florentbr/SeleniumBasic/releases).
+
+2. **Check WebDriver**: Make sure that the WebDriver for the browser you're using (in this case, Internet Explorer) is installed and updated. You can download the Internet Explorer Driver Server from [here](https://www.selenium.dev/downloads/).
+
+3. **Check References**: In VBA, go to `Tools > References` and make sure that Selenium Type Library is checked.
+
+4. **Use CreateObject**: Instead of using `New WebDriver`, try using `CreateObject` to create the WebDriver instance. This can sometimes solve issues related to object creation. Here's how you can do it:
+
+```vba
+Dim driver As Object
+Set driver = CreateObject("Selenium.ChromeDriver")
+```
+
+5. **Check Internet Explorer settings**: Since you're using Internet Explorer, you need to set the Protected Mode settings for each zone to be the same value. The value can be on or off, as long as it is the same for every zone. To set the Protected Mode settings, choose "Internet Options..." from the Tools menu in IE, then select the Security tab.
+
+6. **Try a different browser**: If none of the above solutions work, try using a different browser. For example, you can try using Chrome instead of Internet Explorer:
+
+```vba
+Dim driver As New ChromeDriver
+driver.Get "https://www.google.com/"
+```
+
+Remember to download and install the ChromeDriver if you haven't done so already. You can download it from [here](https://sites.google.com/a/chromium.org/chromedriver/downloads).
+
+If none of these solutions work, please provide more details about the error message you're receiving.

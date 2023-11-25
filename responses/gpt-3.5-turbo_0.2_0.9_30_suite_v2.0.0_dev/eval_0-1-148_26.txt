@@ -1,0 +1,17 @@
+Yes, you can use the `first` and `not` pseudo-class variants in Tailwind to achieve this effect. Here's the revised code:
+
+```html
+<ul>
+  <li
+    v-for="(item, index) in items"
+    :key="`item-${index}`"
+    class="border-solid border-b border-black {{ index === items.length - 1 ? '' : 'pb-2' }} {{ index === 0 ? 'pt-2' : '' }}"
+  >
+    Item
+  </li>
+</ul>
+```
+
+In this code, we're using the `pb-2` class to add a bottom padding to all but the last `li` element, and the `pt-2` class to add a top padding to the first `li` element. We're also using the `not` pseudo-class variant to exclude the last `li` element from the border-bottom style.
+
+Note that we're using the `{{ }}` syntax to conditionally apply the `pb-2` and `pt-2` classes based on the index of the `li` element. We're also using the ternary operator (`? :`) to conditionally apply an empty string (`''`) when we don't want to apply a class.

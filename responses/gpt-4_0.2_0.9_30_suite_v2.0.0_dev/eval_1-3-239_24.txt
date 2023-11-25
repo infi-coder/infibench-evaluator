@@ -1,0 +1,16 @@
+Sure, here is a simple bash script to install a specific version of Python using Homebrew:
+
+```bash
+#!/bin/bash
+
+# Unlink the current python version
+brew unlink python
+
+# Install the specific python version
+brew install python@3.6
+
+# Link the installed python version
+brew link --force python@3.6
+```
+
+Please note that this script will install Python 3.6, not specifically 3.6.5. Homebrew does not support installing minor versions of packages. If you need a specific minor version, you would need to use a different tool, such as pyenv.

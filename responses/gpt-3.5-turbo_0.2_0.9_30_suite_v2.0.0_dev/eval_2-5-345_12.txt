@@ -1,0 +1,19 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven than the one used by the Spring Boot project. To fix this issue, you can try the following steps:
+
+1. Go to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+2. Check the "Use plugin registry" option.
+3. In the "User settings file" field, specify the path to your Maven installation's settings.xml file.
+4. Click "OK" to save the changes.
+
+If the above steps do not work, you can try updating the Maven version used by IntelliJ IDEA. To do this, follow these steps:
+
+1. Go to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+2. In the "Maven home directory" field, specify the path to your updated Maven installation.
+3. Click "OK" to save the changes.
+
+If you still encounter the error after trying the above steps, you can try deleting the IntelliJ IDEA system cache and restarting IntelliJ IDEA. To do this, follow these steps:
+
+1. Go to File > Invalidate Caches / Restart.
+2. Click "Invalidate and Restart" to delete the system cache and restart IntelliJ IDEA.
+
+Hopefully, one of these solutions will fix the error you are encountering.

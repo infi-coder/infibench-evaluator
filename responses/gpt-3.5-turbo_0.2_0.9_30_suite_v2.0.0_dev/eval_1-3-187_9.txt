@@ -1,0 +1,26 @@
+You can use the following function to replace the elements in `b` with the elements in `rest` and then replace the corresponding elements in `last` with the updated `b` list:
+
+```python
+def ReplaceElementsByIndex(rest, b, last):
+    b[:len(rest)] = rest
+    for i in range(len(last)):
+        if last[i] in b:
+            last[i] = b[b.index(last[i])]
+    return last
+```
+
+Here's how it works:
+
+- `b[:len(rest)] = rest` replaces the first `len(rest)` elements in `b` with the elements in `rest`.
+- Then, for each element in `last`, if it is in `b`, we replace it with the corresponding element in `b`.
+
+Here's how you can use the function:
+
+```python
+rest = [5, 7, 11, 4]
+b = [21, 22, 33, 31, 23, 15, 19, 13, 6]
+last = [33, 19, 40, 21, 31, 22, 6, 15, 13, 23]
+
+result = ReplaceElementsByIndex(rest, b, last)
+print(result)  # Output: [11, 19, 40, 5, 4, 7, 6, 15, 13, 23]
+```

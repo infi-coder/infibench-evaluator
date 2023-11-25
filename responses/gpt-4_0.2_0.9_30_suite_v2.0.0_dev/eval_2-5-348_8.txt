@@ -1,0 +1,29 @@
+The error message you're seeing is due to the way Java handles quotes in command line arguments. The `ProcessBuilder` class, which is used to create and manage processes, has a specific way of handling quotes that can cause issues like the one you're seeing.
+
+One way to solve this problem is to avoid using quotes in your command line arguments. Instead, use the `ProcessBuilder` class's methods to set the command and its arguments. Here's an example of how you can do this:
+
+```java
+ProcessBuilder pb = new ProcessBuilder(
+    "cmd",
+    "/c",
+    "C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd",
+    "-DskipTests=true",
+    "-Dmaven.ext.class.path=C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar",
+    "-Dfile.encoding=UTF-8",
+    "clean",
+    "install"
+);
+pb.directory(new File("C:\\projects\\open"));
+Process p = pb.start();
+```
+
+This code creates a new `ProcessBuilder` object and sets the command and its arguments using the `ProcessBuilder` constructor. It then sets the working directory using the `directory` method, and finally starts the process using the `start` method.
+
+Note that this code does not include the `JAVA_HOME` environment variable. If you need to set this variable, you can do so using the `environment` method of the `ProcessBuilder` class:
+
+```java
+Map<String, String> env = pb.environment();
+env.put("JAVA_HOME", "C:\\Program Files\\Java\\jdk-11.0.5");
+```
+
+This code gets the current environment variables, adds the `JAVA_HOME` variable, and then sets the environment variables for the process.

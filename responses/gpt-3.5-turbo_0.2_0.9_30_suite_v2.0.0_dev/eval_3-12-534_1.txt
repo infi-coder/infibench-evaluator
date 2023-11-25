@@ -1,0 +1,56 @@
+You can use the `MultiProvider` widget to provide multiple instances of `ChangeNotifierProvider` to your widget tree. Here's an example of how you can use it to listen to multiple change notifiers in a single widget:
+
+```dart
+MultiProvider(
+  providers: [
+    ChangeNotifierProvider<Item1Notifier>(create: (_) => Item1Notifier()),
+    ChangeNotifierProvider<Item2Notifier>(create: (_) => Item2Notifier()),
+    ChangeNotifierProvider<Item3Notifier>(create: (_) => Item3Notifier()),
+    ChangeNotifierProvider<Item4Notifier>(create: (_) => Item4Notifier()),
+  ],
+  child: MyWidget(),
+)
+```
+
+In this example, we are creating four instances of `ChangeNotifierProvider`, one for each item in the `CurvedNavigationBar`. Each provider is responsible for providing the corresponding `ChangeNotifier` instance to its descendants.
+
+Now, in your `MyWidget` widget, you can use the `Consumer` widget from the `provider` package to listen to changes in each of the `ChangeNotifier` instances:
+
+```dart
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Consumer<Item1Notifier>(
+              builder: (context, item1Notifier, _) {
+                // Use item1Notifier to build your UI
+              },
+            ),
+            Consumer<Item2Notifier>(
+              builder: (context, item2Notifier, _) {
+                // Use item2Notifier to build your UI
+              },
+            ),
+            Consumer<Item3Notifier>(
+              builder: (context, item3Notifier, _) {
+                // Use item3Notifier to build your UI
+              },
+            ),
+            Consumer<Item4Notifier>(
+              builder: (context, item4Notifier, _) {
+                // Use item4Notifier to build your UI
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+In this example, we are using the `Consumer` widget to listen to changes in each of the `ChangeNotifier` instances. The `builder` function is called whenever any of the `ChangeNotifier` instances change, and you can use the corresponding `Notifier` instance to build your UI.

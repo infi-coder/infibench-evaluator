@@ -1,0 +1,39 @@
+The problem you're facing is due to the version of Hibernate Validator. The `@NotEmpty` and `@NotBlank` annotations are part of the Bean Validation 2.0 specification, which is implemented by Hibernate Validator 6.0.0.Final and later versions.
+
+However, your logs show that Hibernate Validator 5.3.5.Final-redhat-2 is being used, which does not support these annotations. This version is likely being provided by your application server (JBoss).
+
+To solve this issue, you can try the following:
+
+1. **Exclude the Hibernate Validator provided by JBoss**: You can do this by creating a `jboss-deployment-structure.xml` file in your `src/main/webapp/WEB-INF/` directory with the following content:
+
+```xml
+<jboss-deployment-structure>
+    <deployment>
+        <exclusions>
+            <module name="org.hibernate.validator" />
+        </exclusions>
+    </deployment>
+</jboss-deployment-structure>
+```
+
+2. **Include Hibernate Validator 6.0.11.Final in your `pom.xml`**: Add the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.0.11.Final</version>
+</dependency>
+```
+
+3. **Include the validation API 2.0.1.Final in your `pom.xml`**: Add the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>javax.validation</groupId>
+    <artifactId>validation-api</artifactId>
+    <version>2.0.1.Final</version>
+</dependency>
+```
+
+After making these changes, rebuild your project and redeploy it to JBoss. The `@NotEmpty` and `@NotBlank` annotations should now work as expected.

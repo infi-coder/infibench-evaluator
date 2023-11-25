@@ -1,0 +1,15 @@
+Sure, here is your revised code:
+
+```javascript
+const MongoStore = require('connect-mongo');
+
+...
+
+app.use(session({
+    secret: 'story book',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+}))
+```
+The `connect-mongo` package has changed its API in version 4. Now, instead of calling it as a function with the `session` argument, you just require it directly. The `create` method is used to create a new store, and the `mongooseConnection` option has been replaced with `mongoUrl`.

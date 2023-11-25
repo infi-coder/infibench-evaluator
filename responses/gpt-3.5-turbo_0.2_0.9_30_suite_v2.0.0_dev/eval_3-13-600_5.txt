@@ -1,0 +1,12 @@
+You can disable the animation in ViewPager2 by calling `setPageTransformer()` method on the ViewPager2 instance and passing in a `PageTransformer` that does not apply any animation. Here's an example:
+
+```
+viewPager2.setPageTransformer(new ViewPager2.PageTransformer() {
+    @Override
+    public void transformPage(@NonNull View page, float position) {
+        // Do nothing, no animation
+    }
+});
+```
+
+This will disable the animation when the user clicks on a tab in the TabLayout.

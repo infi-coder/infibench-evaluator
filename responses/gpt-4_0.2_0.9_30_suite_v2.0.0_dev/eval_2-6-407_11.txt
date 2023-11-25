@@ -1,0 +1,41 @@
+The error message you're seeing is usually due to the server returning HTML instead of JSON. This often happens when the server returns an error page.
+
+The first thing to check is the URL you're using to call the API. In your API controller, you've defined the route as `api/Employee/Index`, but you've also added a `[Route("[controller]")]` attribute to the controller. This means the actual URL to call the API should be `/Employee/api/Employee/Index`.
+
+However, it's more common to define the route directly on the controller, like this:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+Then you can call the API with this URL: `/api/Employee`.
+
+If the URL is correct, the next thing to check is the data returned by `GetAllEmployees()`. Make sure it's returning a list of `Employee` objects and not an error or something else.
+
+You can also try to call the API directly in your browser or using a tool like Postman to see what it returns.
+
+Finally, note that `GetJsonAsync` is now obsolete. You should use `GetFromJsonAsync` instead:
+
+```csharp
+empList = await Http.GetFromJsonAsync<Employee[]>("/api/Employee");
+```
+
+This method is available in .NET 5.0 and later. If you're using an older version, you can use `GetAsync` and `ReadFromJsonAsync`:
+
+```csharp
+var response = await Http.GetAsync("/api/Employee");
+empList = await response.Content.ReadFromJsonAsync<Employee[]>();
+```
+
+This will also give you a chance to check the status code of the response and handle errors appropriately.

@@ -1,0 +1,14 @@
+You can use `awk` to extract the language code. Here's how you can modify your command:
+
+```bash
+curl -Ls stick-it.app | grep -o 'lang="[a-zA-Z-]*"' | head -1 | awk -F'"' '{print $2}'
+```
+
+This command does the following:
+
+- `curl -Ls stick-it.app` fetches the content of the page.
+- `grep -o 'lang="[a-zA-Z-]*"'` extracts the `lang` attribute value. The `-o` option tells `grep` to print only the matched parts of a matching line. The regular expression `'lang="[a-zA-Z-]*"'` matches the `lang` attribute and its value.
+- `head -1` gets the first match.
+- `awk -F'"' '{print $2}'` splits the line by the `"` character and prints the second field, which is the language code.
+
+This command should work for any page and any language code format.

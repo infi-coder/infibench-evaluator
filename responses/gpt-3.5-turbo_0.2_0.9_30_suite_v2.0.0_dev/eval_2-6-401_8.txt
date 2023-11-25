@@ -1,0 +1,54 @@
+You can create a factory method that creates and returns a `ServiceBusSender` instance for a specific queue name. Here's an example:
+
+```c#
+public class ServiceBusSenderFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusSenderFactory(ServiceBusClient serviceBusClient)
+    {
+        _serviceBusClient = serviceBusClient;
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+}
+```
+
+Then, you can register the `ServiceBusSenderFactory` as a singleton and inject it into your `CarReservationMessagingService`:
+
+```c#
+_services.AddSingleton<ServiceBusSenderFactory>(implementationFactory =>
+{
+    var serviceBusConfiguration = implementationFactory.GetRequiredService<Microsoft.Extensions.Options.IOptions<UserEventConsumerSetting>>().Value;
+
+    var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+
+    return new ServiceBusSenderFactory(serviceBusClient);
+});
+
+_services.AddTransient<CarReservationMessagingService>(implementationFactory =>
+{
+    var serviceBusSenderFactory = implementationFactory.GetRequiredService<ServiceBusSenderFactory>();
+
+    var carReservationMessagingService = new CarReservationMessagingService(serviceBusSenderFactory.CreateSender("queue1"));
+
+    return carReservationMessagingService;
+});
+
+_services.AddTransient<CarReservationMessagingService>(implementationFactory =>
+{
+    var serviceBusSenderFactory = implementationFactory.GetRequiredService<ServiceBusSenderFactory>();
+
+    var carReservationMessagingService = new CarReservationMessagingService(serviceBusSenderFactory.CreateSender("queue2"));
+
+    return carReservationMessagingService;
+});
+```
+
+In the above example, we register two instances of `CarReservationMessagingService`, each with a different `ServiceBusSender` instance created by the `ServiceBusSenderFactory`. You can create as many instances as you need, each with a different queue name.

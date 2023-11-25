@@ -1,0 +1,36 @@
+The issue seems to be related to the response format of the API call. The error message indicates that the response starts with a '<' character, which suggests that the response is not in JSON format.
+
+To fix this issue, you can try the following steps:
+
+1. Check the API endpoint to ensure that it is returning the data in the expected format (JSON in this case). You can use a tool like Postman to test the API endpoint and see the response.
+
+2. If the API endpoint is returning the data in the expected format, then you can try to modify the code to handle the response format correctly. One way to do this is to use the `HttpResponseMessage` class instead of the `GetJsonAsync` method. Here's an example:
+
+```c#
+var response = await Http.GetAsync("/api/Employee/Index");
+if (response.IsSuccessStatusCode)
+{
+    var json = await response.Content.ReadAsStringAsync();
+    empList = JsonSerializer.Deserialize<Employee[]>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+}
+else
+{
+    // handle error
+}
+```
+
+This code sends a GET request to the API endpoint and reads the response as a string. Then, it deserializes the JSON string into an array of `Employee` objects using the `JsonSerializer` class. The `PropertyNameCaseInsensitive` option is set to true to ignore the case of property names in the JSON string.
+
+3. If the API endpoint is not returning the data in the expected format, then you need to modify the API code to return the data in the correct format. You can use the `JsonResult` class to return JSON data from the API endpoint. Here's an example:
+
+```c#
+[HttpGet]
+[Route("api/Employee/Index")]
+public IActionResult Index()
+{
+    var employees = objemployee.GetAllEmployees();
+    return new JsonResult(employees);
+}
+```
+
+This code returns the `employees` array as JSON data using the `JsonResult` class. The `JsonResult` class automatically serializes the data into JSON format.

@@ -1,0 +1,22 @@
+You can use the `pip` module in Python to check if a package is at its latest version. Here's an implementation of the `checkVersion` function:
+
+```python
+import pip
+
+def checkVersion(pkgName):
+    # Get the package information
+    package_info = pip.get_installed_distributions()
+    # Loop through the packages and check if the package is installed
+    for package in package_info:
+        if package.project_name.lower() == pkgName.lower():
+            # Check if the package is up-to-date
+            latest_version = pip.get_latest_version(pkgName)
+            if package.version == latest_version:
+                return True
+            else:
+                return False
+    # If the package is not installed, return False
+    return False
+```
+
+This function first gets the list of installed packages using `pip.get_installed_distributions()`. It then loops through the packages to check if the specified package is installed. If the package is installed, it checks if it is up-to-date by comparing the installed version with the latest version using `pip.get_latest_version()`. If the package is up-to-date, it returns `True`, otherwise it returns `False`. If the package is not installed, it returns `False`.

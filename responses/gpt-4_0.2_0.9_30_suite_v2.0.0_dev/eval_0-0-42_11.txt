@@ -1,0 +1,15 @@
+Sure, here is the revised code for `connect-mongo` v4:
+
+```javascript
+const MongoStore = require('connect-mongo');
+
+...
+
+app.use(session({
+    secret: 'story book',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+}))
+```
+Please note that in `connect-mongo` v4, you don't need to pass the `mongooseConnection` option. Instead, you can directly pass the MongoDB connection string to the `mongoUrl` option.

@@ -1,0 +1,15 @@
+The problem is that the command substitution `$(echo {} | sed 's/\?.*//g')` is evaluated before the `find` command is run, so it doesn't have the expected effect. You can solve this by running a shell for each file found, like this:
+
+```bash
+find . -type f -name '*\?*' -exec sh -c '
+  for file do
+    mv -- "$file" "${file%%\?*}"
+  done
+' sh {} +
+```
+
+This command will find all files (`-type f`) in the current directory (`.`) and its subdirectories that have a question mark in their name (`-name '*\?*'`). For each file found, it runs a shell (`sh -c`) that executes a loop. In the loop, it renames the file (`mv -- "$file" "${file%%\?*}"`), removing the question mark and everything after it from the name. The `--` in the `mv` command is used to prevent filenames starting with `-` from being interpreted as options.
+
+The `${file%%\?*}` syntax is a parameter expansion that removes the longest match of `\?*` from the end of `$file`. The `\?*` pattern matches a question mark followed by any number of any characters, so this effectively removes the question mark and everything after it.
+
+The `sh {} +` at the end of the `find` command runs the shell with the names of the files found as arguments, which are accessed in the loop as `$file`. The `+` makes `find` pass as many file names as possible to each invocation of the shell, which is more efficient than running a separate shell for each file.

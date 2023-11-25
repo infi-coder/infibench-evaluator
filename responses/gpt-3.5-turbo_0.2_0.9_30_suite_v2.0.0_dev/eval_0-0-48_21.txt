@@ -1,0 +1,11 @@
+Sure! The code you provided is almost correct, but you need to use the `|` operator instead of `,` to combine the two mapped types. Here's the corrected code:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit]: number;
+} | {
+  [key in color]: boolean;
+}
+```
+
+This defines a union type that can either have a numeric property for each fruit or a boolean property for each color.

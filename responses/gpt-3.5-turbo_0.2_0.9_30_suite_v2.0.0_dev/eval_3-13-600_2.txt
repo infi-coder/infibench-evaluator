@@ -1,0 +1,7 @@
+You can disable the animation when changing pages in ViewPager2 by setting the `offscreenPageLimit` to 0. This will cause the ViewPager2 to destroy the previous fragment and immediately show the new fragment without any animation. Here's an example:
+
+```
+viewPager2.offscreenPageLimit = 0
+```
+
+Note that setting the `offscreenPageLimit` to 0 may cause some performance issues if you have a large number of fragments in your ViewPager2. In that case, you may want to set it to a higher value to improve performance.

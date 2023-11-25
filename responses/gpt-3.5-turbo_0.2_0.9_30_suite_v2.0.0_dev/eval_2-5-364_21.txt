@@ -1,0 +1,15 @@
+You can specify the Java version to use with the Maven wrapper by setting the `JAVA_HOME` environment variable before running the wrapper command. 
+
+For example, if you want to use Java 8, you can set the `JAVA_HOME` variable to the path of your Java 8 installation:
+
+```
+export JAVA_HOME=/path/to/java8
+```
+
+Then, you can run the Maven wrapper command as usual:
+
+```
+./mvnw clean install
+```
+
+This should use the specified Java version instead of the default one.

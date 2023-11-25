@@ -1,0 +1,20 @@
+In addition to adding the `springdoc-openapi-ui` dependency, you also need to configure Spring Boot to use it.
+
+You can do this by adding the `@EnableSwagger2WebMvc` annotation to your Spring Boot application class. This annotation enables Swagger support for Spring MVC web applications.
+
+Here's an example:
+
+```java
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+
+}
+```
+
+Make sure to replace `SwaggerConfig` with the name of your configuration class.
+
+Also, make sure that your application is running on port 8080. If it's running on a different port, you'll need to update the URL accordingly.

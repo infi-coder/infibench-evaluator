@@ -1,0 +1,18 @@
+Your code looks correct. However, it is possible that the user has denied permission to access their location. In this case, the `getCurrentPosition` method will not execute the success callback function and will instead execute the error callback function. You can add an error callback function to handle this case:
+
+```javascript
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+        position => {
+            console.log("Location accessed");
+        },
+        error => {
+            console.log("User not allowed");
+        }
+    );
+} else {
+    console.log("Geolocation is not supported by this browser.");
+}
+```
+
+This code will log "User not allowed" if the user denies permission to access their location, and "Geolocation is not supported by this browser." if the browser does not support geolocation.

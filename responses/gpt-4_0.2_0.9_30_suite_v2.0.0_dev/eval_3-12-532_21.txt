@@ -1,0 +1,36 @@
+The error message you're seeing is typically thrown when `json.decode` is trying to parse a string that isn't valid JSON. This could be due to a number of reasons:
+
+1. The server might not be returning a JSON response. You can check this by printing out the response body before trying to decode it. If it's not JSON, you'll need to fix this on the server side.
+
+2. There might be some invisible character at the start of the response that's causing the parsing to fail. This could be a byte order mark (BOM) or some other non-printable character. You can try trimming the response body before decoding it to remove any leading or trailing whitespace.
+
+3. The JSON might be valid, but not in the format you're expecting. For example, you might be expecting an array but getting an object, or vice versa. Again, printing out the response body can help diagnose this.
+
+Here's how you can modify your code to help diagnose the problem:
+
+```dart
+Future<String> iniciarSesion() async {
+  var usuario = textUsuario.text;
+  var password = textPassword.text;
+  var nombreUsuario;
+  var url ="http://192.168.1.37/usuario.php";
+
+  //Metodo post
+  var response = await http.post(
+      url,
+      headers:{ "Accept": "application/json" } ,
+      body: { "usuario": '$usuario',"password": '$password'},
+      encoding: Encoding.getByName("utf-8")
+  );
+
+  print('Response body: ${response.body}');
+
+  try {
+    List data = json.decode(response.body);
+  } catch (e) {
+    print('Error decoding JSON: $e');
+  }
+}
+```
+
+This will print out the response body and the error message if decoding fails, which should help you figure out what's going wrong.

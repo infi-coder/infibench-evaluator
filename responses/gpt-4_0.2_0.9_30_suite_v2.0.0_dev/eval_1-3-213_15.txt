@@ -1,0 +1,18 @@
+Sure, here is a function that removes timezone information from a pandas DataFrame. This function assumes that your datetime column is named "time". If it's not, please replace "time" with the actual name of your datetime column.
+
+```python
+def removeTimezone(df):
+    df['time'] = df['time'].dt.tz_convert(None)
+    return df
+```
+
+This function uses the `tz_convert` method of pandas Series to convert the timezone-aware datetime objects to timezone-naive ones. The argument `None` means that it will remove the timezone information.
+
+You can use this function in your code like this:
+
+```python
+df = removeTimezone(df)
+df.to_excel(writer, header = True, index = True)
+```
+
+This should solve your problem. If it doesn't, please let me know.

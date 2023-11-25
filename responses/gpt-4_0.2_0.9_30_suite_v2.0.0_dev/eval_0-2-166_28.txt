@@ -1,0 +1,23 @@
+Tailwind CSS is a utility-first CSS framework that doesn't provide a direct way to target child elements like you would in traditional CSS. It doesn't support selectors like `div.section > div` because it's not a preprocessor like SASS or Less, but rather a utility class generator.
+
+However, you can still apply Tailwind CSS classes to your child elements directly in your HTML:
+
+```html
+<div class="section">
+  <div class="bg-red-500"> <!-- Tailwind CSS classes here -->
+    <!-- Content -->
+  </div>
+</div>
+```
+
+If you need to apply styles based on parent-child relationships, you might need to use JavaScript or a JavaScript framework like React, Vue, or Angular to conditionally apply classes.
+
+Alternatively, you can use `@apply` directive in your CSS file to apply a set of styles to a specific selector:
+
+```css
+div.section > div {
+  @apply bg-red-500; /* Tailwind CSS classes here */
+}
+```
+
+Remember that this requires enabling the `@apply` directive in your Tailwind CSS configuration, and it also requires a build process that supports PostCSS.

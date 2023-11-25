@@ -1,0 +1,13 @@
+This issue might be caused by several reasons, but here are a few steps you can try to solve it:
+
+1. **Check your Python Interpreter**: Make sure that the Python interpreter you're using in VS Code is the one from your conda environment. You can check this by clicking on the Python version in the bottom left of the status bar in VS Code. This will show a list of available interpreters, and you can select the one from your conda environment.
+
+2. **Reinstall Jupyter**: Try reinstalling Jupyter in your conda environment. You can do this by activating your conda environment in the terminal and then running `conda install jupyter`.
+
+3. **Check your Jupyter Server**: VS Code uses the Jupyter server to run notebooks. If there's an issue with the server, it might prevent notebooks from running. You can check the Jupyter server logs in VS Code by opening the command palette (`Ctrl+Shift+P`), and then selecting `Jupyter: Show Jupyter Output`.
+
+4. **Update VS Code and Extensions**: Make sure that you're using the latest version of VS Code and the Python extension. You can check for updates by opening the command palette (`Ctrl+Shift+P`), and then selecting `Check for Updates...`.
+
+5. **Check your Firewall Settings**: If you're using a firewall, it might be blocking the connection to the Jupyter server. You can try disabling the firewall temporarily to see if that's the issue.
+
+If none of these steps work, you might want to consider submitting an issue on the [VS Code GitHub page](https://github.com/microsoft/vscode/issues) or the [Python extension GitHub page](https://github.com/microsoft/vscode-python/issues). Include the error message and any relevant details about your setup.

@@ -1,0 +1,41 @@
+In Rust, you can set a field in a struct with an empty value by using the `Default` trait. The `Default` trait provides a default value for a type, which can be used to initialize fields in a struct.
+
+To use the `Default` trait, you need to implement it for your struct. Here's an example implementation for your `FistClient` struct:
+
+```rust
+use std::net::TcpStream;
+
+pub struct FistClient {
+    addr: String,
+    conn: TcpStream,
+}
+
+impl Default for FistClient {
+    fn default() -> Self {
+        FistClient {
+            addr: String::new(),
+            conn: TcpStream::default(),
+        }
+    }
+}
+
+impl FistClient {
+    pub fn new(ip: &str, port: &str) -> Self {
+        let mut client = FistClient::default();
+        client.addr = String::from(ip) + ":" + &String::from(port);
+        client
+    }
+
+    pub fn connect(&mut self, ip: &str, port: &str) {
+        let res = TcpStream::connect(&self.addr);
+        match res {
+            Ok(c) => self.conn = c,
+            Err(_) => panic!(),
+        }
+    }
+}
+```
+
+In this implementation, we've added a `default` method to the `FistClient` struct that returns a new instance of the struct with default values for the `addr` and `conn` fields. We've also updated the `new` method to create a new instance of the struct using the `default` method and then set the `addr` field to the provided IP and port.
+
+Now, when you create a new instance of the `FistClient` struct using the `new` method, the `conn` field will be initialized with the default value provided by the `Default` trait.

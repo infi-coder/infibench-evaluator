@@ -1,0 +1,18 @@
+You can use the `pkg_resources` module to get the installed version of a package, and the `pip` module to get the latest version available on PyPI. Here is a function that does this:
+
+```python
+import pkg_resources
+import xmlrpc.client
+
+def checkVersion(pkgName):
+    pypi = xmlrpc.client.ServerProxy('https://pypi.python.org/pypi')
+    available = pypi.package_releases(pkgName)
+    if not available:  # package not found
+        return False
+    installed_version = pkg_resources.get_distribution(pkgName).version
+    return installed_version == available[0]
+```
+
+This function first connects to PyPI and gets the list of available versions for the package. If the package is not found, it returns `False`. Then it gets the installed version of the package using `pkg_resources.get_distribution()`. Finally, it compares the installed version with the latest available version and returns `True` if they are the same, and `False` otherwise.
+
+Please note that this function assumes that the package is already installed. If the package is not installed, `pkg_resources.get_distribution()` will raise a `DistributionNotFound` exception. You may want to add error handling code to deal with this case.

@@ -1,0 +1,1 @@
+Here is the link to the package that you can use: https://www.npmjs.com/package/ng-intl-tel-input.

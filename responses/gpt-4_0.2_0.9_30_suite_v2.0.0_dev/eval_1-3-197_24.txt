@@ -1,0 +1,21 @@
+You can achieve this by using the cycle function from the itertools module in Python. The cycle function returns an iterator that produces elements from the iterable inputs sequentially and when the input iterable is exhausted, it starts again from the beginning.
+
+Here is the function `fillColumn`:
+
+```python
+import pandas as pd
+from itertools import cycle
+
+def fillColumn(df, columnName, columnData):
+    df[columnName] = [next(cycle(columnData)) for _ in df.index]
+    return df
+```
+
+You can use this function as follows:
+
+```python
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+```
+
+This will fill the 'names' column of the dataframe df with the values in my_list in a cyclic manner.

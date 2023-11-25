@@ -1,0 +1,32 @@
+The error you're getting is because you're trying to import the Bootstrap variables file before you declare your own custom variables. In SASS, the last declaration of a variable is the one that is used. So, you should declare your custom variables before importing the Bootstrap files.
+
+Also, you're trying to overwrite the `$theme-colors` map entirely. If you want to change only the `primary` color and keep the rest of the colors as they are, you should use the `map-merge` function.
+
+Here's how you can do it:
+
+```scss
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: map-merge($theme-colors, (
+  "primary": #your-color-here
+));
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Replace `#your-color-here` with the color you want to use for the `primary` color.
+
+This code first imports the Bootstrap functions and variables, then it changes the `primary` color in the `$theme-colors` map, and finally it imports the rest of the Bootstrap files. This way, when the Bootstrap files are imported, the `primary` color has already been changed to your custom color.
+
+If you want to change multiple colors, you can do it like this:
+
+```scss
+$theme-colors: map-merge($theme-colors, (
+  "primary": #your-primary-color,
+  "secondary": #your-secondary-color,
+  // add more colors here if needed
+));
+```
+
+Just replace `#your-primary-color` and `#your-secondary-color` with the colors you want to use.

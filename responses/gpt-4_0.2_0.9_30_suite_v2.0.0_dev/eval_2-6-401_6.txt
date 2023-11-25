@@ -1,0 +1,70 @@
+You can use the factory pattern to create multiple instances of `ServiceBusClient` and `ServiceBusSender`. Here's an example of how you can do it:
+
+First, create a factory interface:
+
+```csharp
+public interface IServiceBusClientFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+}
+```
+
+Then, implement this interface:
+
+```csharp
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly string _connectionString;
+
+    public ServiceBusClientFactory(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        var client = new ServiceBusClient(_connectionString);
+        return client.CreateSender(queueName);
+    }
+}
+```
+
+Register this factory in your DI container:
+
+```csharp
+_services.AddSingleton<IServiceBusClientFactory>(new ServiceBusClientFactory("your_connection_string"));
+```
+
+Then, you can inject this factory into your service and use it to create `ServiceBusSender` instances:
+
+```csharp
+public class CarReservationMessagingService
+{
+    private readonly IServiceBusClientFactory _serviceBusClientFactory;
+
+    public CarReservationMessagingService(IServiceBusClientFactory serviceBusClientFactory)
+    {
+        _serviceBusClientFactory = serviceBusClientFactory;
+    }
+
+    public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation, string queueName)
+    {
+        var serviceBusSender = _serviceBusClientFactory.CreateSender(queueName);
+
+        var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+        {
+            Id = Guid.NewGuid().ToString(),
+            CarId = carReservation.CarId,
+            CustomerId = carReservation.CustomerId,
+            RentFrom = carReservation.RentFrom,
+            RentTo = carReservation.RentTo
+        };
+
+        var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+        ServiceBusMessage message = new ServiceBusMessage(serializedMessage);
+        await serviceBusSender.SendMessageAsync(message);
+    }
+}
+```
+
+In this way, you can create `ServiceBusSender` instances for different queues as needed.

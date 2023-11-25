@@ -1,0 +1,15 @@
+You can optimize your task by using `awk` command in bash. `awk` is a powerful tool for processing or analyzing text files, especially useful when you need to process data based on its structure or the relations between parts of the data.
+
+Here is an optimized version of your task using `awk`:
+
+```bash
+awk -F'=' '/^name/{n=$2;next} /^value/{print n"="$2}' input.txt > output.txt
+```
+
+Explanation:
+
+- `-F'='` sets the field separator to `=`.
+- `/^name/{n=$2;next}` if the line starts with `name`, it saves the value (right side of `=`) to variable `n` and skips to the next line.
+- `/^value/{print n"="$2}` if the line starts with `value`, it prints the previously saved name and the current value.
+
+This should be significantly faster than your original script.

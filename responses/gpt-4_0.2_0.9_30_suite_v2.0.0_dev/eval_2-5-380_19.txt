@@ -1,0 +1,41 @@
+The issue you're facing might be due to the change in the default URL for Swagger UI. In the latest versions of Springdoc, the Swagger UI is not available at `/swagger-ui.html` anymore. Instead, it is available at `/swagger-ui/index.html`.
+
+So, try accessing Swagger UI at `http://localhost:8080/swagger-ui/index.html`.
+
+If you want to customize the Swagger UI path, you can add the following property to your `application.properties` or `application.yml` file:
+
+```properties
+springdoc.swagger-ui.path=/swagger-ui.html
+```
+
+This will make Swagger UI available at `http://localhost:8080/swagger-ui.html`.
+
+Also, make sure that you have the necessary configuration in your main application class to enable Swagger documentation. Here is a basic example:
+
+```java
+import org.springdoc.core.GroupedOpenApi;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class OpenApiConfiguration {
+
+    @Bean
+    public GroupedOpenApi publicApi() {
+        return GroupedOpenApi.builder()
+                .group("public")
+                .pathsToMatch("/public/**")
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi privateApi() {
+        return GroupedOpenApi.builder()
+                .group("private")
+                .pathsToMatch("/private/**")
+                .build();
+    }
+}
+```
+
+This configuration will generate two separate Swagger documentations for the public and private APIs of your application.

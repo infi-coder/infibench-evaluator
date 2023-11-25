@@ -1,0 +1,32 @@
+The error message suggests that the response from the server is not in the expected JSON format. It seems like the response is an HTML page instead of JSON data.
+
+To fix this issue, you can try the following steps:
+
+1. Check if the API endpoint is returning the expected JSON data. You can test the API endpoint using a tool like Postman or curl.
+
+2. Make sure that the URL used in the `Http.GetJsonAsync` method is correct and matches the API endpoint URL.
+
+3. Check if there are any errors in the browser console or network tab that might give more information about the issue.
+
+4. If the API endpoint is returning HTML instead of JSON, you need to fix the API endpoint to return JSON data. You can do this by returning a `JsonResult` from the API endpoint instead of an `IEnumerable<Employee>`.
+
+Here's an example of how you can modify the API endpoint to return JSON data:
+
+```c#
+[ApiController]
+[Route("[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    [Route("api/Employee/Index")]
+    public IActionResult Index()
+    {
+        var employees = objemployee.GetAllEmployees();
+        return new JsonResult(employees);
+    }
+}
+```
+
+With this modification, the API endpoint will return JSON data instead of an HTML page.

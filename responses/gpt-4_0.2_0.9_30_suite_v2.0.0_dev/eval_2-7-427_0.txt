@@ -1,0 +1,21 @@
+The error message you're seeing is related to the SSL/TLS version that's being used to establish the connection. The error message `ssl3_get_record:wrong version number` means that the client and server couldn't agree on a protocol version to use.
+
+Here are a few things you can try:
+
+1. **Change the MAIL_ENCRYPTION to tls**: The mail server may not support SSL, or it may be using a different version of SSL that your Laravel application doesn't support. Try changing the `MAIL_ENCRYPTION` setting in your `.env` file to `tls` and see if that resolves the issue.
+
+```markdown
+MAIL_ENCRYPTION=tls
+```
+
+2. **Check the port number**: The standard port for SSL connections is 465, and for TLS connections, it's 587. Make sure you're using the correct port number for the type of encryption you're using.
+
+3. **Contact the mail server administrator**: If changing the encryption type and port number doesn't resolve the issue, you may need to contact the administrator of the mail server. They may be able to provide you with the correct settings to use, or they may need to make changes on their end to allow your application to connect.
+
+4. **Disable encryption**: If all else fails and you're sure that the mail server is secure, you could try disabling encryption altogether. This should be a last resort, as it could potentially expose sensitive information.
+
+```markdown
+MAIL_ENCRYPTION=null
+```
+
+Remember to run `php artisan config:cache` after making changes to your `.env` file to clear the configuration cache and ensure that your changes take effect.

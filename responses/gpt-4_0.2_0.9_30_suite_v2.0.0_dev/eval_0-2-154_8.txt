@@ -1,0 +1,24 @@
+Sure, here is a generator function that will iterate over the leaf nodes of the HTML string and yield the desired objects:
+
+```javascript
+function* iterLeafNodes(strHTML, format=[]) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strHTML, 'text/html');
+  const walk = function* (node, format) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.textContent.trim() !== '') {
+        yield { text: node.textContent, format };
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      for (let child of node.childNodes) {
+        yield* walk(child, format.concat(node.tagName.toLowerCase()));
+      }
+    }
+  };
+  for (let child of doc.body.childNodes) {
+    yield* walk(child, format);
+  }
+}
+```
+
+This function uses the `DOMParser` to parse the HTML string into a DOM tree. It then uses a recursive generator function `walk` to traverse the tree in depth-first order. For each text node it encounters, it yields an object with the text content and the current format. For each element node, it recursively walks its child nodes, appending the tag name to the format.

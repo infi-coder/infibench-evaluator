@@ -1,0 +1,7 @@
+To select the second column of a data frame with duplicate column names, you can use the `[[` operator with the column index number. In this case, since we want the second column, we can use `[[2]]`. Here's the code:
+
+```r
+second_col <- d3[[2]]
+```
+
+This will select the second column of `d3` by index and assign it to the variable `second_col`.

@@ -1,0 +1,18 @@
+The error you're seeing is because you're trying to access platform-specific functionality before `runApp()` is called, which means Flutter hasn't finished initializing the platform channels yet.
+
+To fix this, you should move your platform-specific code inside the `main()` function to a `WidgetsFlutterBinding.ensureInitialized()` callback. This ensures that the Flutter engine is properly initialized before you try to use platform channels.
+
+Here's how you can modify your code:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  
+  runApp(MyApp());
+}
+```
+
+In this code, `WidgetsFlutterBinding.ensureInitialized()` is called before any platform-specific code. This ensures that the Flutter engine is fully initialized before you try to use platform channels, which prevents the error you were seeing.

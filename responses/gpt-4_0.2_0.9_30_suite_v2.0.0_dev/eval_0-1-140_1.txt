@@ -1,0 +1,18 @@
+In Font Awesome 5, the font family names have been updated to be more specific. The new font family names are `Font Awesome 5 Free`, `Font Awesome 5 Brands`, and `Font Awesome 5 Pro`. 
+
+Also, the `content` property value has been changed for some icons. For the `fa-angle-down` icon (which corresponds to the unicode `\f107`), the unicode is still the same.
+
+Here is how you can update your CSS to work with Font Awesome 5:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900; /* Add this line */
+}
+```
+
+Please note that you need to add `font-weight: 900;` because Font Awesome 5 uses different font weights to distinguish between solid (`font-weight: 900;`), regular (`font-weight: 400;`), and light (`font-weight: 300;`) icons in the Free version. The Brands version always uses `font-weight: 400;`.
+
+If the icon still doesn't show up, it might be because the unicode for the icon has changed in Font Awesome 5. You can look up the correct unicode in the [Font Awesome 5 Icons List](https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free).

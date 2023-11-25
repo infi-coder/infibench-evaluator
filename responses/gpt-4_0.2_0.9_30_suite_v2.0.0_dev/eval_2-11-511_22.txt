@@ -1,0 +1,15 @@
+Here is the implementation of the function `my_2d_array`:
+
+```c++
+std::vector<std::string> my_2d_array(int N, int M) {
+    std::vector<std::string> A(N * M);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            A[i*M+j] = std::to_string(i) + std::to_string(j);
+        }
+    }
+    return A;
+}
+```
+
+This function initializes a vector `A` of size `N*M`. It then loops over the range of `N` and `M` and for each pair `(i, j)`, it converts `i` and `j` to strings and concatenates them. The result is stored in the corresponding position in the vector `A`. Finally, the function returns the vector `A`.

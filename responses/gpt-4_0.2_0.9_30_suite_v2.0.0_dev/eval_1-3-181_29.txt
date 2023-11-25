@@ -1,0 +1,16 @@
+Sure, you can use the `numpy.amax` function to find the maximum value along a specific axis. In your case, you want to find the maximum value of the third column (index 2) for each 2D array in your 3D array. Here is the function you need:
+
+```python
+import numpy as np
+
+def getMax(matrix):
+    # Select the third column from each 2D array and find the max value
+    max_values = np.amax(matrix[:,:,2], axis=1)
+    # Reshape the result to a 2D array
+    max_values = max_values.reshape(-1, 1)
+    return max_values
+```
+
+This function works by first selecting the third column from each 2D array in the 3D array with `matrix[:,:,2]`. Then, it finds the maximum value along the first axis (the rows) with `np.amax(..., axis=1)`. Finally, it reshapes the result to a 2D array with `reshape(-1, 1)`. 
+
+The `-1` in `reshape` means "infer this dimension from the other dimensions" - this makes the function work regardless of how many 2D arrays your 3D array contains. The `1` means that we want the result to have one column.

@@ -1,0 +1,24 @@
+To create an index in Mongoose, you can use the `@Prop` decorator with the `index` option set to `true` as you have done. However, Mongoose will not automatically build indexes defined in your schema. You need to manually tell Mongoose to build the indexes for your model using the `Model.init()` function.
+
+Here's how you can do it:
+
+```javascript
+import { Injectable, OnModuleInit } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+@Injectable()
+export class YourService implements OnModuleInit {
+  constructor(@InjectModel(Schema.name) private schemaModel: Model<Schema>) {}
+
+  async onModuleInit(): Promise<void> {
+    await this.schemaModel.init();
+  }
+}
+```
+
+In the above code, `YourService` implements `OnModuleInit` which is a lifecycle hook that is called once the host module's dependencies have been resolved. Inside the `onModuleInit` method, we call `this.schemaModel.init()`. This tells Mongoose to build the indexes for your model.
+
+Remember to replace `YourService` and `Schema` with your actual service and schema names.
+
+Also, make sure that the MongoDB user has the necessary permissions to create indexes. If the user doesn't have the necessary permissions, you will not be able to create indexes.

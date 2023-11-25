@@ -1,0 +1,9 @@
+You can disable the swipe animation in ViewPager2 by using a custom `ViewPager2.PageTransformer`. Here is an example:
+
+```kotlin
+viewPager2.setPageTransformer { page, position ->
+    page.translationX = -position * page.width
+}
+```
+
+This will instantly switch to the next page without any animation.

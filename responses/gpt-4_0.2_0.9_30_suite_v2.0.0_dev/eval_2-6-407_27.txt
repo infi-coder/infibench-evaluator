@@ -1,0 +1,36 @@
+The error message you're seeing indicates that the server is returning a response that cannot be parsed as JSON. The '<' character at the start of the response suggests that you might be getting an HTML error page instead of the expected JSON response.
+
+Here are a few things you can check:
+
+1. **Check the API endpoint:** Make sure that the API endpoint you're trying to reach is correct. In your case, you're trying to reach "/api/Employee/Index". However, your controller is decorated with the `[Route("[controller]")]` attribute, which means that the route to your controller is "/Employee", not "/api/Employee". So, you should either change the route in your Blazor code to "/Employee/Index" or change the route in your controller to "[Route("api/[controller]")]".
+
+2. **Check the HTTP verb:** Make sure you're using the correct HTTP verb. In your case, you're using a GET request, which seems to be correct because your API method is decorated with the `[HttpGet]` attribute.
+
+3. **Check the server response:** If the API endpoint and HTTP verb are correct, you should check the response from the server. You can do this by using a tool like Postman to send a request to your API and see what it returns. If it returns an HTML error page, the error message on that page might give you a clue about what's going wrong.
+
+4. **Check the data returned by the API:** If the server response is indeed JSON, make sure that it matches the structure of your `Employee` class. If it doesn't, you'll need to either change your `Employee` class or change the data returned by the API.
+
+Here is how you can modify your code:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+    [HttpGet]
+    [Route("Index")]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+And in your Blazor code:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("api/Employee/Index");
+```
+
+This should solve the issue you're facing. If it doesn't, please provide more details about your `Employee` class and the data returned by the `GetAllEmployees` method.

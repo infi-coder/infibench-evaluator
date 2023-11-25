@@ -1,0 +1,11 @@
+Sure, the problem with your code is that you are trying to use the same key for two different types of properties. You can solve this by creating two separate types and then merging them using the `&` operator. Here is the corrected code:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit]: number;
+} & {
+  [key in color]: boolean;
+}
+```
+
+This will create a type `FruitsAndColors` that has a numeric property for each fruit and a boolean property for each color.

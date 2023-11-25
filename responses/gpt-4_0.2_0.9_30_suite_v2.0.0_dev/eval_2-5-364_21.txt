@@ -1,0 +1,21 @@
+The Maven Wrapper is a shell script used to automatically download and install the correct version of Maven for your project. It's a good way to ensure that everyone working on your project is using the same version of Maven.
+
+The Maven Wrapper uses the JAVA_HOME environment variable to determine which version of Java to use. If you're having trouble with the Maven Wrapper using an older version of Java, it's likely because your JAVA_HOME environment variable is pointing to an older version of Java.
+
+You can check the current value of your JAVA_HOME environment variable by opening a terminal and typing:
+
+```bash
+echo $JAVA_HOME
+```
+
+To change the value of the JAVA_HOME environment variable, you can use the export command in your terminal. For example, if you have Java 11 installed and you want to use it with the Maven Wrapper, you might use a command like this:
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+```
+
+This command will only change the value of the JAVA_HOME environment variable for your current terminal session. If you want to change it permanently, you'll need to add the export command to your shell's startup script (like .bashrc or .bash_profile for Bash, or .zshrc for Zsh).
+
+If you're using a continuous integration (CI) system, you might need to configure the CI system to set the JAVA_HOME environment variable. The exact steps to do this will depend on which CI system you're using.
+
+If you want to use the same JDK that works with Maven task, you need to find out its path and set it as JAVA_HOME. You can usually find the path to the JDK in the configuration settings of your IDE or build tool.

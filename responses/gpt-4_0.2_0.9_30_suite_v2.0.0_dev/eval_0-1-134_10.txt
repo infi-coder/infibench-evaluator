@@ -1,0 +1,25 @@
+It sounds like you're referring to a feature provided by a package called Emmet. Emmet is a set of plug-ins for text editors that allow for high-speed coding and editing in HTML, XML, CSS, and other web development languages.
+
+The feature you're describing, where you can type `.classname` and then hit tab to automatically generate a div with that class, is a part of Emmet's abbreviation system.
+
+For example, if you type:
+
+```
+.classname
+```
+
+And then hit the `Tab` key, it will automatically expand to:
+
+```html
+<div class="classname"></div>
+```
+
+If you're not able to use this feature, it could be because:
+
+1. You don't have Emmet installed. Emmet comes pre-installed with some text editors (like VS Code), but not all. If you're using a text editor that doesn't come with Emmet, you'll need to install it manually.
+
+2. You're not in an HTML file. Emmet's abbreviation system only works in files that it recognizes as HTML. Make sure that the file you're working in is saved with an `.html` extension.
+
+3. Your text editor isn't in "auto complete" mode. Some text editors have a mode that needs to be enabled for Emmet to work.
+
+If you're still having trouble, I'd recommend checking the documentation for your specific text editor to see how to enable Emmet.

@@ -1,0 +1,43 @@
+The error message suggests that Python cannot find the module named 'app'. This could be due to the structure of your project or the way you're setting up your Dockerfile.
+
+Here's a revised version of your Dockerfile:
+
+```Dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.8
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
+
+# Run the command to start uvicorn
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0", "--port", "8000"]
+```
+
+This Dockerfile assumes that your `requirements.txt` is in the same directory as your Dockerfile. If it's not, you'll need to adjust the `COPY` command accordingly.
+
+Also, make sure that your `main.py` file is inside the `app` directory and that it's importing the `app` object correctly. If your `main.py` file is in the root directory, you should change the CMD line to `CMD ["uvicorn", "main:app", "--host=0.0.0.0", "--port", "8000"]`.
+
+Finally, make sure that your `docker-compose.yml` file is correctly configured. Here's a basic example:
+
+```yaml
+version: '3'
+services:
+  web:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+```
+
+This `docker-compose.yml` file will start a service named `web` that builds from your Dockerfile and runs the specified command. It also maps your current directory to `/app` in the container and forwards the exposed port 8000 to the same port on your host machine.

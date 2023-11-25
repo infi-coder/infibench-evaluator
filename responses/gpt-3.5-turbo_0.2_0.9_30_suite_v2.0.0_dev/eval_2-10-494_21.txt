@@ -1,0 +1,5 @@
+This error is caused by a known issue with rust-analyzer, where it sometimes fails to resolve macros correctly. In this case, it is failing to resolve the `format_args` macro, which is used internally by the `pad_str` function.
+
+Fortunately, this error does not affect the correctness of your code or your ability to run tests. If you want to get rid of the error in rust-analyzer, you can try updating your dependencies to the latest versions, as this issue has been fixed in some recent releases.
+
+If updating your dependencies does not fix the issue, you can try disabling the `rust-analyzer` extension in your editor, or using a different editor that does not have this issue.

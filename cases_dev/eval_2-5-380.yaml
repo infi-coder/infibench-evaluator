@@ -1,0 +1,8 @@
+id: 2-5-380
+prompt_path: prompt_2-5-380.txt
+type: non-code debugging
+lang: java
+grading:
+  keywords:
+    - 'org.springdoc'
+    - 'springdoc-openapi-starter-webmvc-ui'

@@ -1,0 +1,9 @@
+You can use the `--output` option to specify the output format as `text` and then pipe the output to `/dev/null` to discard it. This will prevent the interactive pager from opening up and allow the `for` loop to continue without interruption. Here's an updated version of your script:
+
+```
+for x in 1 2 3; do 
+  aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo --output text > /dev/null; 
+done
+```
+
+This will send the output to `/dev/null` instead of displaying it on the command line.

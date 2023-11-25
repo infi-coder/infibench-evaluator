@@ -1,0 +1,54 @@
+You can use the factory pattern to create different instances of `ServiceBusClient` and `ServiceBusSender` with different queue names. Here's an example of how you can do it:
+
+First, define a factory interface:
+```c#
+public interface IServiceBusClientFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+}
+```
+
+Then, implement the factory:
+```c#
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly string _connectionString;
+
+    public ServiceBusClientFactory(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        var client = new ServiceBusClient(_connectionString);
+        return client.CreateSender(queueName);
+    }
+}
+```
+
+Register the factory in your DI container:
+```c#
+_services.AddSingleton<IServiceBusClientFactory>(sp =>
+{
+    var serviceBusConfiguration = sp.GetRequiredService<IOptions<UserEventConsumerSetting>>().Value;
+    return new ServiceBusClientFactory(serviceBusConfiguration.ServiceBusConnectionString);
+});
+```
+
+Now, you can inject the factory into your service and create senders for different queues:
+```c#
+public class CarReservationMessagingService
+{
+    private readonly ServiceBusSender _serviceBusSender;
+
+    public CarReservationMessagingService(IServiceBusClientFactory serviceBusClientFactory)
+    {
+        _serviceBusSender = serviceBusClientFactory.CreateSender("queueName");
+    }
+
+    // ...
+}
+```
+
+This way, you can create as many `ServiceBusSender` instances as you need, each with a different queue name. You just need to pass the queue name to the `CreateSender` method of the factory.

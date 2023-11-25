@@ -1,0 +1,11 @@
+With Font Awesome 5, you need to change the font-family to `"Font Awesome 5 Free"` or `"Font Awesome 5 Brands"` depending on the type of icon you are using. Here's an example of how to update your code:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+}
+```
+
+Make sure that you have included the Font Awesome 5 CSS file in your project and that the font files are in the correct directory.

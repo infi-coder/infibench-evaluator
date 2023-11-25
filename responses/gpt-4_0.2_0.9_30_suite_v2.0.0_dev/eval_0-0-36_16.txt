@@ -1,0 +1,14 @@
+```javascript
+import { useRouter } from "next/router";
+
+export default function Component(){
+    const router = useRouter();
+
+    const reloadPage = () => {
+        router.replace(router.asPath);
+    }
+
+    // Call reloadPage function wherever you need to reload the page
+}
+```
+In the above code, `router.replace(router.asPath)` will replace the current page in the history with the new one, and it will trigger a client-side reload.

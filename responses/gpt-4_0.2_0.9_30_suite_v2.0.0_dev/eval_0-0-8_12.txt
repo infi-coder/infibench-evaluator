@@ -1,0 +1,18 @@
+Sure, here is a recursive function in JavaScript that will traverse the nested object tree and return the object with the specified `id`.
+
+```javascript
+function findObject(id, root_node) {
+    if (root_node.id === id) {
+        return root_node;
+    } else if (root_node.child) {
+        var result = null;
+        for (var i = 0; result == null && i < root_node.child.length; i++) {
+            result = findObject(id, root_node.child[i]);
+        }
+        return result;
+    }
+    return null;
+}
+```
+
+This function works by first checking if the `id` of the `root_node` matches the `id` we are looking for. If it does, it returns the `root_node`. If it doesn't, it recursively calls `findObject` on each of the children of the `root_node` until it finds the object with the matching `id` or it has checked all of the children. If it doesn't find a match, it returns `null`.

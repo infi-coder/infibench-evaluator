@@ -1,0 +1,29 @@
+Here is a Python function that divides an even number into N parts, each part being a multiple of 2. It first divides the number into equal parts and then distributes the remainder by adding 2 to each part in succession.
+
+```python
+def divideNumber(num, n):
+    # Calculate the quotient and remainder
+    quotient, remainder = divmod(num, n)
+    
+    # Make sure the quotient is a multiple of 2
+    if quotient % 2 != 0:
+        quotient -= 1
+        remainder += n
+
+    # Create the initial list of equal parts
+    parts = [quotient] * n
+
+    # Distribute the remainder by adding 2 to each part in succession
+    for i in range(0, remainder, 2):
+        parts[i % n] += 2
+
+    return parts
+```
+
+You can test this function with your example:
+
+```python
+print(divideNumber(100, 3))  # Output: [34, 34, 32]
+```
+
+This function works by first dividing the number into equal parts that are multiples of 2. If the quotient is not a multiple of 2, it subtracts 1 from the quotient and adds the number of parts to the remainder. This ensures that the remainder is always even, so it can be distributed by adding 2 to each part in succession. The remainder is distributed by looping over the range from 0 to the remainder with a step of 2, and adding 2 to the part at the index corresponding to the current value in the range modulo the number of parts. This ensures that the remainder is distributed evenly among the parts.

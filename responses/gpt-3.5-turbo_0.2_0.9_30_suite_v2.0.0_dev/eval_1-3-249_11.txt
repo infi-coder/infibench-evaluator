@@ -1,0 +1,31 @@
+Here's a possible implementation:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the allowed characters
+    allowed_chars = string.ascii_letters + string.digits
+    
+    # Generate a random string of length 9
+    random_string = ''.join(random.choice(allowed_chars) for i in range(9))
+    
+    # Insert the "NAA3U" substring at a random position
+    pos = random.randint(0, 12)
+    random_string = random_string[:pos] + "NAA3U" + random_string[pos:]
+    
+    # Generate a random 3-digit number
+    random_number = random.randint(100, 999)
+    
+    # Replace the first occurrence of "000" with the random number
+    random_string = random_string.replace("000", str(random_number), 1)
+    
+    # Add random characters to reach the desired length of 16
+    while len(random_string) < 16:
+        random_string += random.choice(allowed_chars)
+    
+    return random_string
+```
+
+This function first generates a random string of length 9, then inserts the "NAA3U" substring at a random position. It then generates a random 3-digit number and replaces the first occurrence of "000" in the string with this number. Finally, it adds random characters to reach the desired length of 16.

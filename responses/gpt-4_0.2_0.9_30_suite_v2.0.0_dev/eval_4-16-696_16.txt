@@ -1,0 +1,9 @@
+The problem is that the command substitution `$(echo {} | sed 's/\?.*//g')` is evaluated before `find` starts executing, so it doesn't have the expected effect. 
+
+You can use a small bash script in the `-exec` part of the `find` command to fix this:
+
+```bash
+find . -type f -name '*\?*' -print0 | while IFS= read -r -d '' file; do mv "$file" "${file%%\?*}"; done
+```
+
+This command will find all files with a question mark in their name, and for each file, it will remove the question mark and everything after it. The `-print0` and `-d ''` parts ensure that the command works correctly even with file names that contain spaces or other special characters.

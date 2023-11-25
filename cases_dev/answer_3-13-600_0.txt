@@ -1,0 +1,8 @@
+TabLayoutMediator is what you need. Just set smoothScroll to false.
+
+public TabLayoutMediator(
+  @NonNull TabLayout tabLayout,
+  @NonNull ViewPager2 viewPager,
+  boolean autoRefresh,
+  boolean smoothScroll,
+  @NonNull TabConfigurationStrategy tabConfigurationStrategy)

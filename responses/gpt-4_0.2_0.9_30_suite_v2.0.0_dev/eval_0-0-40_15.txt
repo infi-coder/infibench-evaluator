@@ -1,0 +1,31 @@
+The error message you're seeing is due to a conflict between the Windows and Linux versions of Node.js and npm. The Windows Subsystem for Linux (WSL) is trying to use the Windows version of npm, but it's incompatible with the Linux environment.
+
+To solve this problem, you need to make sure that the Linux version of Node.js and npm are being used instead of the Windows version. You can do this by modifying your PATH environment variable in your bash profile file.
+
+Here are the steps:
+
+1. Open your bash profile file in a text editor. If you're using bash, this file will be `~/.bashrc`. If you're using zsh, it will be `~/.zshrc`. You can use nano or vim to edit these files. For example:
+
+    ```bash
+    nano ~/.bashrc
+    ```
+
+2. Add the following line to the end of the file:
+
+    ```bash
+    export PATH="/usr/bin:$PATH"
+    ```
+
+    This line will prioritize the `/usr/bin` directory, which is where the Linux versions of Node.js and npm are located, over other directories in the PATH.
+
+3. Save the file and exit the editor. If you're using nano, you can do this by pressing `Ctrl + X`, then `Y`, then `Enter`.
+
+4. Reload your bash profile file to apply the changes:
+
+    ```bash
+    source ~/.bashrc
+    ```
+
+    If you're using zsh, replace `.bashrc` with `.zshrc`.
+
+5. Now, when you run `node -v` and `npm -v`, you should see the versions of Node.js and npm that you installed in the Linux environment.

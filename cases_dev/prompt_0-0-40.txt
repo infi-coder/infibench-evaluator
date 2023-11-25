@@ -1,0 +1,23 @@
+I am using WSL2: Ubuntu 20.04 in my Windows 10 operating system. I have installed `nodejs` using the command `sudo apt-get install -y nodejs` when I do `node -v` command I get `v12.18.3`.
+
+```
+mrd@DESKTOP-2EO5K4H:/mnt/c/Users/musfi$ node -v
+v12.18.3
+```
+
+but when I do `npm -v` command I get this below command
+
+```
+mrd@DESKTOP-2EO5K4H:/mnt/c/Users/musfi$ npm -v
+-bash: /mnt/c/Program Files/nodejs/npm: /bin/sh^M: bad interpreter: No such file or directory
+```
+
+I also do `whereis` command. Hope this will help to find solution.
+ 
+```
+mrd@DESKTOP-2EO5K4H:/mnt/c/Users/musfi$ whereis node
+node: /usr/bin/node /usr/include/node /mnt/c/Program Files/nodejs/node.exe /usr/share/man/man1/node.1.gz
+
+mrd@DESKTOP-2EO5K4H:/mnt/c/Users/musfi$ whereis npm
+npm: /usr/bin/npm /mnt/c/Program Files/nodejs/npm /mnt/c/Program Files/nodejs/npm.cmd /usr/share/man/man1/npm.1
+```

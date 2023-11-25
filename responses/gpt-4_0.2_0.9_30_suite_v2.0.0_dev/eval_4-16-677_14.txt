@@ -1,0 +1,19 @@
+The issue you're facing is due to the use of single quotes around the variable `$searchT` in your `grep` command. In bash, single quotes preserve the literal value of all characters within the quotes. This means that your variable `$searchT` is not being expanded to its value, but is instead being treated as the literal string `$searchT`.
+
+To fix this, you should use double quotes around your variable. Here's the corrected script:
+
+```bash
+#!/bin/bash
+read -p "enter search term here: " searchT
+
+if [[ $(grep -wi "$searchT" test.txt) ]]; then     
+    echo "$(grep -wi "$searchT" test.txt | wc -l) number of matches found"
+    echo $(grep -wi "$searchT" test.txt)
+else 
+    echo "no match found"    
+fi
+
+exit 0
+```
+
+In this script, I've also removed the unnecessary use of `cat` before `grep`. The `grep` command can read files directly, so there's no need to use `cat` to pass the file content to `grep`. This is a common misuse of `cat` known as [Useless Use of Cat](http://porkmail.org/era/unix/award.html#cat) (UUoC).

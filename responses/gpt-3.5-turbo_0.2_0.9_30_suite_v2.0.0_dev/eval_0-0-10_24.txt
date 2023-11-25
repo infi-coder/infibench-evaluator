@@ -1,0 +1,17 @@
+Here are the completed Javascript templates for both ways:
+
+Way 1:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').should('have.text', 'Wildness')
+```
+
+Way 2:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').invoke('text').then((text) => {
+    expect(text.trim()).equal('Wildness')
+});
+``` 
+
+Note that in Way 2, we use the `then()` method to access the text returned by `invoke('text')`. We then use `expect()` to make the assertion.

@@ -1,0 +1,16 @@
+It seems like there's some confusion here. There's no specific "Developer Mode" to enable on iOS like there is on some other platforms. However, if you're trying to run a provisioned testing build, you'll need to have the device registered with your Apple Developer account and the app properly signed.
+
+Here are the general steps to run a provisioned testing build on an iOS device:
+
+1. Register for an Apple Developer account if you haven't already.
+2. Register your iOS device with your Apple Developer account.
+3. In Xcode, go to the "Accounts" preference pane and add your Apple Developer account.
+4. In the main project window, select your app from the list of targets.
+5. In the "Signing & Capabilities" tab, select your Apple Developer account from the "Team" dropdown under the "Signing" section.
+6. Connect your iOS device to your Mac.
+7. Select your iOS device from the list of run destinations.
+8. Click the "Run" button or press `Cmd + R` to build and run your app.
+
+If you're still having trouble, the issue might be with the provisioning profile used to sign the app. Make sure the provisioning profile includes the UDID of your device and that the app's bundle ID matches the one specified in the provisioning profile.
+
+If you're not the developer of the app, you'll need to get a new build of the app that's been properly signed with a provisioning profile that includes your device.

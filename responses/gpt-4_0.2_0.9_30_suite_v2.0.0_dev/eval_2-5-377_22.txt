@@ -1,0 +1,30 @@
+The problem you're facing is because you're trying to format a `LocalDate` object which only contains date information (year, month, day) and does not contain time information (hour, minute, second). The format you're trying to use `"yyyy-MM-dd'T'HH:mm:ss'Z'"` requires both date and time information. 
+
+To solve this, you should use `ZonedDateTime` or `LocalDateTime` instead of `LocalDate`. Here is an example using `ZonedDateTime`:
+
+```java
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(generateRandomDateAndTimeInString());
+    }
+
+    public static String generateRandomDateAndTimeInString() {
+        ZonedDateTime dateTime = ZonedDateTime.now().minus(Period.ofDays((new Random().nextInt(365 * 70))));
+        System.out.println("date and time :: " + dateTime.toString());
+        return formatDate(dateTime);
+    }
+
+    public static String formatDate(ZonedDateTime dateTime){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        return dateTime.format(formatter);
+    }
+}
+```
+
+In this code, `ZonedDateTime.now().minus(Period.ofDays((new Random().nextInt(365 * 70))))` generates a random date and time in the past 70 years. `DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")` is used to format the `ZonedDateTime` object to the desired format.
+
+Also, note that the 'Z' in the format stands for the Zulu timezone (which is the same as UTC). If you want to use the system's current default timezone, you can replace `'Z'` with `'X'` in the format string. If you want the date-time to be in UTC, you can convert the `ZonedDateTime` to UTC using `dateTime.withZoneSameInstant(ZoneOffset.UTC)`.

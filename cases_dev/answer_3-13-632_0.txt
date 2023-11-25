@@ -1,0 +1,110 @@
+Text to Excel
+Note that this will generate over 125.000 lines for the file you provided. Make sure you don't exceed the 1048576 Excel rows limit. Currently, it takes about 6 seconds for the file provided on my machine.
+The Code
+
+Option Explicit
+
+Sub ExtractData()
+
+    Const FolderPath = "D:\Automation\VSWR\"
+    Const FilePattern As String = "*.txt" ' or rather "VSWR W5*.txt"
+    Const dName As String = "Sheet1"
+    Const dCol As String = "A"
+
+    Dim wb As Workbook: Set wb = ThisWorkbook
+
+    Application.ScreenUpdating = False
+
+    Dim dCell As Range
+    With wb.Worksheets(dName)
+        ' Write headers.
+        .Cells(1, 1).Value = "eNodeBName"
+        .Cells(1, 2).Value = "Time"
+        .Cells(1, 3).Value = "MML SN"
+        .Cells(1, 4).Value = "MML Command"
+        .Cells(1, 5).Value = "Retcode"
+        .Cells(1, 6).Value = "Explain_info"
+        .Cells(1, 7).Value = "Cabinet No."
+        .Cells(1, 8).Value = "Subrack No."
+        .Cells(1, 9).Value = "Slot No."
+        .Cells(1, 10).Value = "TX Channel No."
+        .Cells(1, 11).Value = "VSWR(0.01)"
+        ' Determine next available cell.
+        Set dCell = .Cells(.Rows.count, dCol).End(xlUp).Offset(1)
+    End With
+
+    Dim FileNum As Long: FileNum = FreeFile
+    Dim FileName As String: FileName = Dir(FolderPath & FilePattern)
+    Dim RowLabels(6) As Variant
+    Dim Data() As Variant
+    Dim Result As Variant
+    Dim r As Long
+    Dim c As Long
+    Dim TextLine As String
+
+    Do While FileName <> ""
+
+        Open (FolderPath & FileName) For Input As FileNum
+
+            Do Until EOF(FileNum)
+
+                Line Input #FileNum, TextLine 'read a line
+
+                If InStr(TextLine, "NE : ") = 1 Then
+                    RowLabels(1) = Mid(TextLine, 5)
+                ElseIf InStr(TextLine, "Report : +++    ") = 1 Then
+                    RowLabels(2) = Right(TextLine, 19)
+                ElseIf InStr(TextLine, "O&M    ") = 1 Then
+                    RowLabels(3) = ("O&M " & Mid(TextLine, 8))
+                ElseIf InStr(TextLine, "MML Session") > 0 Then
+                    RowLabels(4) = "DSP VSWR:;"
+                ElseIf InStr(TextLine, "RETCODE = ") = 1 Then
+                    RowLabels(5) = "0"
+                    RowLabels(6) = Mid(TextLine, 12)
+                ElseIf InStr(TextLine, "Cabinet No.  Subrack No.  Slot No." _
+                    & "  TX Channel No.  VSWR(0.01)") = 1 Then
+                    Line Input #FileNum, TextLine
+                    c = 0
+                    Do
+                        Line Input #FileNum, TextLine
+                        Select Case True
+                        Case InStr(TextLine, "(Number of results = ") = 1
+                            Exit Do
+                        Case Len(TextLine) = 0
+                        Case Else
+                            c = c + 1
+                            ReDim Preserve Data(7 To 11, 1 To c)
+                            Data(7, c) = Trim(Mid(TextLine, 1, 11))
+                            Data(8, c) = Trim(Mid(TextLine, 12, 13))
+                            Data(9, c) = Trim(Mid(TextLine, 25, 10))
+                            Data(10, c) = Trim(Mid(TextLine, 35, 16))
+                            Data(11, c) = Trim(Mid(TextLine, 51))
+                        End Select
+                    Loop
+                    ReDim Result(1 To c, 1 To 11)
+                    For r = 1 To c
+                        For c = 1 To 6
+                            Result(r, c) = RowLabels(c)
+                        Next c
+                        For c = 7 To 11
+                            Result(r, c) = Data(c, r)
+                        Next c
+                    Next r
+                    dCell.Resize(r - 1, 11).Value = Result
+                    Set dCell = dCell.Offset(r - 1)
+                End If
+
+            Loop
+
+        Close FileNum
+        FileName = Dir()
+
+    Loop
+
+    With dCell.Worksheet
+        .UsedRange.EntireColumn.AutoFit
+    End With
+
+    Application.ScreenUpdating = True
+
+End Sub

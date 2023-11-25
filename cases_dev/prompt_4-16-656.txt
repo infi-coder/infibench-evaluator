@@ -1,0 +1,8 @@
+Powershell Get-Service detailed "DESCRIPTION" of the Windows Service
+
+Is there a way to get the detailed "DESCRIPTION" of the Service? The below cmdlet can provide all of the properties of Windows Service including display name but it is not getting the "Description"
+
+```
+Get-Service | select -Property * | Out-GridView
+```
+

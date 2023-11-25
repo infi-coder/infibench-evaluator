@@ -1,0 +1,22 @@
+You can use the `pip` package to check the latest version of a package and compare it with the installed version. Here's a function `checkVersion` that takes the package name as an argument and returns a boolean indicating whether the package is up-to-date or not:
+
+```python
+import pip
+
+def checkVersion(pkgName):
+    # Get the latest version of the package from PyPI
+    latest_version = str(pip.get_installed_distributions()[0]).split(' ')[1]
+    # Get the installed version of the package
+    installed_version = str(pip.get_installed_distributions(local_only=True)[0]).split(' ')[1]
+    # Compare the versions and return True if the package is up-to-date
+    return latest_version == installed_version
+```
+
+You can call this function with the package name as an argument to check if it's up-to-date or not. For example:
+
+```python
+if checkVersion('gekko'):
+    print('gekko is up-to-date')
+else:
+    print('gekko is not up-to-date')
+```

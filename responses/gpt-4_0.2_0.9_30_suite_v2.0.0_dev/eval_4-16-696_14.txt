@@ -1,0 +1,7 @@
+The problem is that the shell evaluates `$(echo {} | sed 's/\?.*//g')` before `find` is executed, so it doesn't replace `{}` with the actual filename. You need to use a shell command for each file found by `find`. Here's how you can do it:
+
+```bash
+find . -type f -name '*\?*' -print0 | while IFS= read -r -d '' file; do mv "$file" "${file%%\?*}"; done
+```
+
+This command will find all files with a question mark in the name, and for each file, it will remove the question mark and everything after it. The `-print0` and `-d ''` options are used to correctly handle filenames with spaces or special characters.

@@ -1,0 +1,39 @@
+It looks like you are exposing the correct port in your Dockerfile and docker-compose.yml file, so the issue might be with the way you are running the container.
+
+When you run the container with `docker-compose run`, it creates a new container instance each time, which means that any changes you make to the container (such as starting the vite server) will not persist.
+
+Instead, you should use `docker-compose up` to start the container and keep it running in the background. This will allow you to start the vite server inside the container and access it from your host machine.
+
+Here's how you can modify your Dockerfile and docker-compose.yml file to use `docker-compose up`:
+
+Dockerfile:
+
+```
+FROM node:16.10.0
+
+RUN npm install -g npm@8.1.3
+RUN npm install -g @vue/cli@4.5.15
+
+RUN mkdir /srv/app && chown node:node /srv/app
+
+USER node
+
+WORKDIR /srv/app
+
+CMD ["npm", "run", "vite"]
+```
+
+docker-compose.yml:
+
+```yaml
+version: '3.7'
+
+services:
+  app:
+    build: .
+    container_name: myapp
+    ports:
+      - "8080:8080"
+```
+
+With these changes, you can start the container with `docker-compose up` and it will automatically start the vite server inside the container. You should be able to access the server at `localhost:8080` on your host machine.

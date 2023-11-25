@@ -1,0 +1,7 @@
+To select the second column by name, you can use the index of the column name. In this case, since there are two columns with the same name, you can use the `which()` function to get the index of the second occurrence of the column name:
+
+```r
+second_col <- d3[, which(names(d3) == "a")[2]]
+```
+
+This code first uses `names(d3) == "a"` to get a logical vector indicating which column names are equal to "a". Then, `which()` is used to get the index of the second occurrence of "a". Finally, the second column is selected using the index.

@@ -1,0 +1,28 @@
+You can use the Windows API to get the local path of the OneDrive folder. Here's some sample code:
+
+```
+Private Declare Function SHGetKnownFolderPath Lib "shell32.dll" (ByRef rfid As Any, ByVal dwFlags As Long, ByVal hToken As Long, ByRef pszPath As Any) As Long
+
+Private Const FOLDERID_SkyDrive = "{A52BBA46-E9E1-435f-B3D9-28DAA648C0F6}"
+Private Const FOLDERID_SkyDrivePro = "{8E74D236-7F35-4720-B138-1FED0B85EA75}"
+
+Public Function GetOneDriveLocalPath() As String
+    Dim path As String
+    Dim hr As Long
+    
+    hr = SHGetKnownFolderPath(FOLDERID_SkyDrive, 0, 0, path)
+    If hr <> 0 Then
+        hr = SHGetKnownFolderPath(FOLDERID_SkyDrivePro, 0, 0, path)
+    End If
+    
+    If hr = 0 Then
+        GetOneDriveLocalPath = path
+    Else
+        GetOneDriveLocalPath = ""
+    End If
+End Function
+```
+
+This code uses the `SHGetKnownFolderPath` function from the Windows API to get the local path of the OneDrive folder. It first tries to get the path for personal OneDrive (`FOLDERID_SkyDrive`), and if that fails, it tries to get the path for OneDrive for Business (`FOLDERID_SkyDrivePro`). If both fail, it returns an empty string.
+
+You can call this function from your macro to get the local path of the OneDrive folder, and then use that path to create folders and files as needed.

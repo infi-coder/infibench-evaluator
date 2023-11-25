@@ -1,0 +1,24 @@
+# Corresponding to post https://stackoverflow.com/questions/65223576
+id: 2-10-494
+prompt_path: prompt_2-10-494.txt
+
+type: code debugging
+lang: rust
+
+grading:
+  max_score: 3.0
+  min_score: 0.0
+  keywords:
+    - content: 
+        and:
+          - "bug"
+          - "rust-analyzer"
+      weight: 1.0
+    - content: 
+        or:
+          - "settings"
+          - "settings.json"
+      weight: 1.0
+    - content:
+        content: "rust-analyzer.diagnostics.disabled"
+      weight: 1.0

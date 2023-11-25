@@ -1,0 +1,26 @@
+Sure, here is the implementation of the function:
+
+```javascript
+function* iterLeafNodes(strHTML, format=[]) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strHTML, "text/html");
+  const body = doc.body;
+
+  function* walk(node, format=[]) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      yield { text: node.textContent, format };
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      format = [...format, node.tagName.toLowerCase()];
+      for (let child of node.childNodes) {
+        yield* walk(child, format);
+      }
+    }
+  }
+
+  for (let child of body.childNodes) {
+    yield* walk(child);
+  }
+}
+```
+
+This function uses a generator function `walk` to traverse the DOM tree recursively. It checks if the current node is a text node or an element node. If it's a text node, it yields an object with the text content and the current format. If it's an element node, it adds the tag name to the format and continues the traversal with the child nodes. The outer loop in `iterLeafNodes` starts the traversal for each child node of the body.

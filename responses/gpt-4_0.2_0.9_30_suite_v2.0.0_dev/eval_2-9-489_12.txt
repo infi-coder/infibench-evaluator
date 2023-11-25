@@ -1,0 +1,32 @@
+The warning message you're seeing is due to a change in Elasticsearch 7.13.1. In this version, Elasticsearch has started to warn users when its built-in security features are not enabled. 
+
+If you're using Elasticsearch for development purposes and your Elasticsearch instance is not exposed to the internet, this warning might not be a big issue. However, if you want to get rid of the warning or if your Elasticsearch instance is exposed to the internet, you should enable the built-in security features.
+
+Here are the steps to enable Elasticsearch's built-in security features:
+
+1. Open your `elasticsearch.yml` configuration file. The location of this file depends on your installation method and operating system. On macOS, it's typically located in `/usr/local/etc/elasticsearch/` if you installed Elasticsearch with Homebrew.
+
+2. Add the following lines to the `elasticsearch.yml` file:
+
+    ```yaml
+    xpack.security.enabled: true
+    xpack.security.transport.ssl.enabled: true
+    ```
+
+3. Save and close the file.
+
+4. Restart Elasticsearch.
+
+Please note that enabling security will require you to authenticate your requests to Elasticsearch. The default username is `elastic` and the password is `changeme`. You should change this password immediately using the Change Password API or by using the `elasticsearch-setup-passwords` command.
+
+If you're using Searchkick, you'll need to add the username and password to your Elasticsearch URL. Here's an example:
+
+```ruby
+Searchkick.client = Elasticsearch::Client.new(
+  urls: ["http://elastic:changeme@localhost:9200"],
+  retry_on_failure: true,
+  transport_options: {request: {timeout: 250}}
+)
+```
+
+Remember to replace `changeme` with your actual password.

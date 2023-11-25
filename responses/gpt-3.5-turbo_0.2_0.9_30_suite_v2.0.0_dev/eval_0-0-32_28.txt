@@ -1,0 +1,45 @@
+To identify if a div is visible on the viewport, you can use the Intersection Observer API. Here is an example code snippet that you can use:
+
+```javascript
+import React, { useEffect, useRef, useState } from "react";
+
+const ParentComponent = ({ data }) => {
+  const [visibleDivs, setVisibleDivs] = useState([]);
+  const parentRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleIds = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target.id);
+        setVisibleDivs(visibleIds);
+      },
+      { rootMargin: "0px", threshold: 0.5 }
+    );
+
+    const childNodes = parentRef.current.childNodes;
+    childNodes.forEach((child) => observer.observe(child));
+
+    return () => {
+      childNodes.forEach((child) => observer.unobserve(child));
+    };
+  }, [data]);
+
+  return (
+    <div id="parent" ref={parentRef}>
+      {data.map((item) => (
+        <div key={item.id} id={item.id}>
+          {item.title}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+In this code, we are using the `IntersectionObserver` API to observe the child nodes of the `#parent` div. Whenever a child node intersects with the viewport, we add its `id` to the `visibleDivs` state. You can then use this state to render the visible divs in your component.
+
+Note that we are also using the `useRef` hook to get a reference to the `#parent` div, and the `useEffect` hook to set up and clean up the `IntersectionObserver`. Also, we are using the `key` prop in the child divs to avoid React warnings.

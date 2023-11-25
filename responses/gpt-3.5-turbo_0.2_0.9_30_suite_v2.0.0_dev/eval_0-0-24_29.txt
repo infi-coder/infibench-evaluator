@@ -1,0 +1,1 @@
+You only need to modify the `baseUrl` property in your `tsconfig.json` file --- If you want the base directory to be your root directory you would set `baseUrl` to `.` or `src` if you want it to be your source directory.

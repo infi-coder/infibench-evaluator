@@ -1,0 +1,7 @@
+The `myprogram-0.0.1-plain.jar` is generated due to the `jar` task in Gradle. If you want to disable it, you can add the following line to your `build.gradle`:
+
+```groovy
+tasks.jar.enabled = false
+```
+
+This will disable the default `jar` task and only the Spring Boot fat jar will be generated. Please note that this will work as long as you don't have any other tasks depending on the `jar` task.

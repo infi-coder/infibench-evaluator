@@ -1,0 +1,29 @@
+The error you're seeing is because the `pdftk` binary you're trying to use is not compatible with the architecture of your Mac's CPU. This is a common issue on Macs with the Catalina OS and later, as they dropped support for 32-bit applications.
+
+Here's a solution using Homebrew:
+
+1. Uninstall the current `pdftk`:
+
+    ```bash
+    brew uninstall pdftk
+    ```
+
+2. Tap the cask for `pdftk-java`:
+
+    ```bash
+    brew tap spl/pdftk
+    ```
+
+3. Install `pdftk-java`:
+
+    ```bash
+    brew install pdftk-java
+    ```
+
+Now, you should be able to use `pdftk` as before. Note that `pdftk-java` is a version of `pdftk` ported to work with Java, so it should be compatible with your Mac's CPU.
+
+If you don't have Homebrew installed, you can install it with the following command:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```

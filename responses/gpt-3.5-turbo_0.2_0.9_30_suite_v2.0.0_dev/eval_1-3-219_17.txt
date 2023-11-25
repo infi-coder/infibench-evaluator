@@ -1,0 +1,13 @@
+Here are a few things you can try to solve the issue:
+
+1. Make sure that the Jupyter package is installed in your virtual environment. You can do this by activating the environment in the terminal and running `conda install jupyter`.
+
+2. Check if the Jupyter server is running. You can do this by opening a terminal and running `jupyter notebook`. If the server is not running, you can start it by running the same command.
+
+3. Try changing the Python interpreter used by VS Code. You can do this by clicking on the Python version in the bottom left corner of the VS Code window and selecting a different interpreter.
+
+4. Try resetting the VS Code settings to their default values. You can do this by opening the Command Palette (Ctrl+Shift+P) and selecting "Preferences: Open User Settings". Then, click the "..." button in the top right corner and select "Reset Settings".
+
+5. Try uninstalling and reinstalling the Python extension for VS Code.
+
+Hopefully one of these solutions will help you resolve the issue.

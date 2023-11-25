@@ -1,0 +1,16 @@
+The error you're seeing is because you're trying to access platform channels before `runApp()` is called, and Flutter is not fully initialized at this point.
+
+To fix this, you need to ensure that your Flutter engine is fully initialized before you try to access the platform channels. You can do this by wrapping your code inside the `WidgetsFlutterBinding.ensureInitialized()` method.
+
+Here's how you can modify your code:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+
+The `WidgetsFlutterBinding.ensureInitialized()` method initializes the binding to the Flutter engine, which is necessary before you can use any plugins.

@@ -1,0 +1,20 @@
+The code you've provided is correct in terms of `@Binding` usage. However, the issue might be related to where and how you're using `ContentView`.
+
+`@Binding` is a way to create a two-way connection between a component and a state. When you create a `ContentView` instance, you need to pass a `@State` variable to it. The `ContentView` will then update this state when the button is clicked.
+
+Here's an example of how you might use `ContentView`:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        VStack {
+            ContentView(isSelected: $isSelected)
+            Text("Is selected: \(isSelected.description)")
+        }
+    }
+}
+```
+
+In this example, `ParentView` has a `@State` variable `isSelected` which is passed to `ContentView` as a `@Binding`. When `ContentView` updates `isSelected`, `ParentView` will also update because `isSelected` is marked with `@State`.

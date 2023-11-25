@@ -1,0 +1,72 @@
+You can create a factory method that returns a `ServiceBusSender` instance for a specific queue name and register it as a scoped service. Then, you can inject the factory and use it to create `ServiceBusSender` instances with different queue names.
+
+Here's an example implementation:
+
+```c#
+public interface IServiceBusSenderFactory
+{
+    ServiceBusSender CreateSender(string queueName);
+}
+
+public class ServiceBusSenderFactory : IServiceBusSenderFactory
+{
+    private readonly ServiceBusClient _serviceBusClient;
+
+    public ServiceBusSenderFactory(ServiceBusClient serviceBusClient)
+    {
+        _serviceBusClient = serviceBusClient;
+    }
+
+    public ServiceBusSender CreateSender(string queueName)
+    {
+        return _serviceBusClient.CreateSender(queueName);
+    }
+}
+```
+
+You can register the factory as a scoped service:
+
+```c#
+_services.AddScoped<IServiceBusSenderFactory, ServiceBusSenderFactory>();
+```
+
+Then, in your `CarReservationMessagingService`, you can inject the factory and use it to create `ServiceBusSender` instances with different queue names:
+
+```c#
+public class CarReservationMessagingService
+{
+    private readonly IServiceBusSenderFactory _serviceBusSenderFactory;
+
+    public CarReservationMessagingService(IServiceBusSenderFactory serviceBusSenderFactory)
+    {
+        _serviceBusSenderFactory = serviceBusSenderFactory ?? throw new ArgumentNullException(nameof(serviceBusSenderFactory));
+    }
+
+    public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation, string queueName)
+    {
+        var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+        {
+            Id = Guid.NewGuid().ToString(),
+            CarId = carReservation.CarId,
+            CustomerId = carReservation.CustomerId,
+            RentFrom = carReservation.RentFrom,
+            RentTo = carReservation.RentTo
+        };
+
+        var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+        ServiceBusMessage message = new ServiceBusMessage(serializedMessage);
+
+        var sender = _serviceBusSenderFactory.CreateSender(queueName);
+        await sender.SendMessageAsync(message);
+    }
+}
+```
+
+You can then use the `CarReservationMessagingService` to publish messages to different queues:
+
+```c#
+var messagingService = serviceProvider.GetService<CarReservationMessagingService>();
+
+await messagingService.PublishNewCarReservationMessageAsync(carReservation, "queue1");
+await messagingService.PublishNewCarReservationMessageAsync(carReservation, "queue2");
+```

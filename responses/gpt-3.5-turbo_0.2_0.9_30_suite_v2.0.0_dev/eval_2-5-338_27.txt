@@ -1,0 +1,29 @@
+The error message suggests that Jackson, the JSON serialization library used by Spring, is unable to serialize the `MultipartFile` object. This is because `MultipartFile` is not a simple Java object, but rather a complex object that contains binary data (the file contents) and metadata (such as the file name and content type).
+
+To solve this issue, you can configure your `RestTemplate` to use a `ByteArrayResourceHttpMessageConverter` instead of the default `MappingJackson2HttpMessageConverter`. This converter is able to handle `ByteArrayResource` objects, which can be used to represent the binary data of the `MultipartFile`.
+
+Here's an updated version of your code that uses the `ByteArrayResourceHttpMessageConverter`:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+body.add("circularAttachment", new ByteArrayResource(souqBean.getCircularAttachment().getBytes()) {
+    @Override
+    public String getFilename() {
+        return souqBean.getCircularAttachment().getOriginalFilename();
+    }
+});
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+Note that we're creating a new `ByteArrayResource` object from the `MultipartFile` contents, and overriding the `getFilename()` method to return the original file name. This is necessary because the `ByteArrayResource` constructor doesn't take a file name parameter.
+
+Also, we're using the `HttpEntity` constructor that takes a generic type parameter, which allows us to avoid the unchecked cast when calling `postForEntity()`.

@@ -1,0 +1,39 @@
+In Rust, you don't have null pointers like in C or C++. Instead, Rust has the `Option` type for optional values. `Option` is an enum that can be either `Some(value)` or `None`.
+
+If you want to implement a stack using pointers, you can use `Option<Box<Node>>` for the `next` field in `Node` and the `top` field in `Stack`. Here's how you can do it:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+```
+
+Now, you can check if `top` is `None` (which would be equivalent to a null pointer in other languages) like this:
+
+```rust
+if self.top.is_none() {
+    // top is None
+} else {
+    // top is Some
+}
+```
+
+Or you can use pattern matching:
+
+```rust
+match self.top {
+    None => {
+        // top is None
+    }
+    Some(_) => {
+        // top is Some
+    }
+}
+```
+
+In Rust, you don't have to worry about null pointer dereference because the language forces you to handle the `None` case. This is one of the ways Rust provides memory safety.

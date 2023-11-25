@@ -1,0 +1,28 @@
+The error message you're seeing is because the `MultipartFile` cannot be serialized directly. Instead, you need to convert the `MultipartFile` to a `HttpEntity` with `Resource` type. Here's how you can do it:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+HttpHeaders partHeaders = new HttpHeaders();
+partHeaders.setContentType(MediaType.parseMediaType(souqBean.getCircularAttachment().getContentType()));
+partHeaders.setContentDispositionFormData("circularAttachment", souqBean.getCircularAttachment().getOriginalFilename());
+
+// wrap the file into a HttpEntity
+HttpEntity<byte[]> fileEntity = new HttpEntity<>(souqBean.getCircularAttachment().getBytes(), partHeaders);
+body.add("circularAttachment", fileEntity);
+
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+This code creates a new `HttpEntity` for the `MultipartFile` and adds it to the `MultiValueMap` body. The `HttpEntity` for the file includes the file's bytes and a `HttpHeaders` object that contains the file's content type and content disposition.
+
+Please note that `souqBean.getCircularAttachment().getBytes()` may throw `IOException`, so you need to handle it properly.

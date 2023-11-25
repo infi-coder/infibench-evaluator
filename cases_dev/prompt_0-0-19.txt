@@ -1,0 +1,46 @@
+I have a Node.js application. When I try to run npm install it hangs with this:
+
+```
+loadIdealTree:loadAllDepsIntoIdealTree: sill install loadIdealTree
+```
+
+`npm install --verbose` gives me some extra info:
+
+```
+npm info it worked if it ends with ok
+npm verb cli [ '/usr/local/bin/node',
+npm verb cli   '/usr/local/bin/npm',
+npm verb cli   'install',
+npm verb cli   '--verbose',
+npm verb cli   'aws-sdk-js' ]
+npm info using npm@5.8.0
+npm info using node@v8.9.2
+npm verb npm-session ea38310110279de7
+npm http fetch GET 404 https://registry.npmjs.org/aws-sdk-js 2211ms
+npm verb stack Error: 404 Not Found: aws-sdk-js@latest
+npm verb stack     at fetch.then.res (/usr/local/lib/node_modules/npm/node_modules/pacote/lib/fetchers/registry/fetch.js:42:19)
+npm verb stack     at tryCatcher (/usr/local/lib/node_modules/npm/node_modules/bluebird/js/release/util.js:16:23)
+npm verb stack     at Promise._settlePromiseFromHandler (/usr/local/lib/node_modules/npm/node_modules/bluebird/js/release/promise.js:512:31)
+npm verb stack     at Promise._settlePromise (/usr/local/lib/node_modules/npm/node_modules/bluebird/js/release/promise.js:569:18)
+npm verb stack     at Promise._settlePromise0 (/usr/local/lib/node_modules/npm/node_modules/bluebird/js/release/promise.js:614:10)
+npm verb stack     at Promise._settlePromises (/usr/local/lib/node_modules/npm/node_modules/bluebird/js/release/promise.js:693:18)
+npm verb stack     at Async._drainQueue (/usr/local/lib/node_modules/npm/node_modules/bluebird/js/release/async.js:133:16)
+npm verb stack     at Async._drainQueues (/usr/local/lib/node_modules/npm/node_modules/bluebird/js/release/async.js:143:10)
+npm verb stack     at Immediate.Async.drainQueues (/usr/local/lib/node_modules/npm/node_modules/bluebird/js/release/async.js:17:14)
+npm verb stack     at runCallback (timers.js:789:20)
+npm verb stack     at tryOnImmediate (timers.js:751:5)
+npm verb stack     at processImmediate [as _immediateCallback] (timers.js:722:5)
+npm verb cwd /Users/me/git/aws-sdk-js-perf
+npm verb Darwin 17.5.0
+npm verb argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "--verbose" "aws-sdk-js"
+npm verb node v8.9.2
+npm verb npm  v5.8.0
+npm ERR! code E404
+npm ERR! 404 Not Found: aws-sdk-js@latest
+npm verb exit [ 1, true ]
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/me/.npm/_logs/2018-05-24T10_30_55_688Z-debug.log
+```
+
+Do you know what might be wrong?

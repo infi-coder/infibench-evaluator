@@ -1,0 +1,33 @@
+Here is a Python function that generates a random string according to your requirements:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the characters to choose from
+    chars = string.ascii_letters  # a-z and A-Z
+    
+    # Generate two random strings of letters with lengths 5 and 6
+    str1 = ''.join(random.choice(chars) for _ in range(5))
+    str2 = ''.join(random.choice(chars) for _ in range(6))
+    
+    # Generate a random string of 3 digits
+    digits = ''.join(random.choice(string.digits) for _ in range(3))
+    
+    # Combine the strings and the substring "NAA3U" in a random order
+    code = [str1, "NAA3U", str2, digits]
+    random.shuffle(code)
+    
+    # Return the final string
+    return ''.join(code)
+
+# Test the function
+print(generateRandomString())
+```
+
+This function first generates two random strings of letters with lengths 5 and 6. Then it generates a random string of 3 digits. It combines these strings and the substring "NAA3U" in a random order to get the final 16-character string.
+
+Please note that the random.shuffle() function is used to shuffle the order of the strings. This means that the substring "NAA3U" and the digits can appear anywhere in the final string.
+
+Also note that the string.ascii_letters constant contains all the ASCII letters (both lowercase and uppercase), and the string.digits constant contains all the digits from 0 to 9.

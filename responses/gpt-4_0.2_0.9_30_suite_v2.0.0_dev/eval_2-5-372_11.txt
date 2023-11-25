@@ -1,0 +1,23 @@
+It seems like you are facing a version conflict issue. The error message indicates that Hibernate Validator 5.3.5.Final-redhat-2 is being used, but the `@NotEmpty` and `@NotBlank` annotations are part of the Bean Validation 2.0 specification, which is supported starting from Hibernate Validator 6.0.0.Final.
+
+Spring Boot 2.0.4.RELEASE should already include Hibernate Validator 6.0.11.Final, which supports Bean Validation 2.0. However, it seems that JBoss is loading an older version of Hibernate Validator.
+
+To resolve this issue, you can try the following steps:
+
+1. Check if JBoss is bundling an older version of Hibernate Validator. If it is, try to upgrade it or remove it if possible.
+
+2. If you cannot upgrade or remove the Hibernate Validator bundled with JBoss, you can try to isolate your application from the server's libraries. In JBoss, this can be done by jboss-deployment-structure.xml file. Here is an example:
+
+```xml
+<jboss-deployment-structure>
+    <deployment>
+        <exclusions>
+            <module name="org.hibernate.validator" />
+        </exclusions>
+    </deployment>
+</jboss-deployment-structure>
+```
+
+This file should be placed in the `WEB-INF` directory of your WAR file. This tells JBoss not to use its bundled Hibernate Validator for your application.
+
+3. If none of the above solutions work, you might consider downgrading your validation annotations to match the Hibernate Validator version that JBoss is using. For example, you can use `@NotNull` and `@Size(min=1)` instead of `@NotEmpty` or `@NotBlank`. This is not an ideal solution because it does not fully utilize the Bean Validation 2.0 specification, but it might be a practical workaround if you cannot upgrade or isolate the Hibernate Validator in JBoss.

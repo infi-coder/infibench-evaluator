@@ -1,0 +1,21 @@
+This error occurs because pdftk is a 32-bit application and Catalina only supports 64-bit applications. Here are a few solutions you can try:
+
+1. Use an alternative PDF tool: Since pdftk is no longer supported on Catalina, you can use an alternative PDF tool such as PDFsam or Adobe Acrobat.
+
+2. Use a virtual machine: You can use a virtual machine like VirtualBox to run an older version of MacOS that supports 32-bit applications and then install pdftk on that virtual machine.
+
+3. Use Homebrew: You can install pdftk using Homebrew which is a package manager for MacOS. First, install Homebrew by running the following command in your terminal:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+Once Homebrew is installed, run the following command to install pdftk:
+
+```
+brew install https://raw.githubusercontent.com/turforlag/homebrew-cervezas/master/pdftk.rb
+```
+
+This will install a modified version of pdftk that works on Catalina.
+
+I hope one of these solutions works for you!

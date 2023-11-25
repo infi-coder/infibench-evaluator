@@ -1,0 +1,17 @@
+Sure, you can achieve this by using the `groupby`, `apply`, and `cumsum` functions in pandas. Here is the function:
+
+```python
+def aggregation(df):
+    # Convert the 'value' column to numeric
+    df['value'] = pd.to_numeric(df['value'])
+
+    # Create a new column 'balance' where 'type' is 'deposit', otherwise NaN
+    df['balance'] = df['value'].where(df['type'] == 'deposit')
+
+    # Group by 'exchange' and apply cumulative sum, forward filling NaN values
+    df['balance'] = df.groupby('exchange')['balance'].apply(lambda x: x.cumsum().ffill())
+
+    return df
+```
+
+This function first converts the 'value' column to numeric, then creates a new column 'balance' where 'type' is 'deposit', otherwise NaN. It then groups by 'exchange' and applies a cumulative sum to 'balance', forward filling NaN values. The modified DataFrame is then returned.

@@ -1,0 +1,15 @@
+The Rule of 5 is not necessarily outdated, but its usage has been reduced due to the introduction of smart pointers and other features in modern C++. 
+
+You're correct that smart pointers can often eliminate the need for manual memory management in many cases. However, there are still scenarios where you might need to define these special member functions:
+
+1. **Performance**: Sometimes, for performance reasons, you might want to avoid the overhead of a smart pointer and manage memory directly. In such cases, you need to follow the Rule of 5.
+
+2. **Resource Management**: The Rule of 5 is not only about memory management. It's about managing resources in general. These resources could be file handles, network sockets, database connections, etc. Smart pointers can't manage these resources automatically.
+
+3. **Legacy Code**: If you're working with legacy code that doesn't use smart pointers, you'll need to follow the Rule of 5.
+
+4. **Custom Behavior**: If you want to provide custom behavior for copy/move operations, you'll need to define these functions.
+
+5. **Polymorphic Classes**: If you're designing a base class intended for polymorphic use, you'll often need to declare a virtual destructor. This triggers the Rule of 5.
+
+So, while smart pointers and other modern C++ features have reduced the need for the Rule of 5, there are still cases where it's necessary. The Rule of 0 (which advocates for using smart pointers, RAII, etc. to avoid having to write these special member functions) is a good guideline to follow, but it's not always applicable.

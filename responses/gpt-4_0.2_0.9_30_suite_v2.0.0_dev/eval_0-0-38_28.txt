@@ -1,0 +1,13 @@
+Sure, here is the revised code:
+
+```javascript
+this.repository.getById(Ids).subscribe((response) => {
+  console.log(response);
+  this.newIds = response.map((id) => {
+    return id;
+  });
+  console.log(this.newIds);
+});
+```
+
+In this revised code, the `console.log(this.newIds);` is moved inside the subscribe block. This ensures that it will only be executed after the response is received and processed.

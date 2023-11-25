@@ -1,0 +1,23 @@
+One way to express this more idiomatically is to use the `Option::filter()` method, which returns the original `Option` if the inner value meets the condition, or `None` otherwise. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.filter(|&val| val < 5).map(|_| 5);
+}
+```
+
+This code first checks if the inner value of `foo` is less than 5 using the `filter()` method. If the condition is not met, `filter()` returns `None`. If the condition is met, `filter()` returns the original `Option`. Then, the `map()` method is used to replace the inner value with 5 if the `Option` is not `None`.
+
+Another way to express this is to use the `Option::and_then()` method, which applies a function to the inner value if it exists, and returns `None` otherwise. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.and_then(|val| if val < 5 { Some(val) } else { None }).map(|_| 5);
+}
+```
+
+This code first checks if the inner value of `foo` is less than 5 using the `and_then()` method. If the condition is not met, `and_then()` returns `None`. If the condition is met, `and_then()` returns the result of the closure wrapped in `Some`. Then, the `map()` method is used to replace the inner value with 5 if the `Option` is not `None`.
+
+Both of these approaches are more concise and expressive than the original `match` statement.

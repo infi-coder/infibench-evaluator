@@ -1,0 +1,11 @@
+This error message suggests that the preview code is not associated with any target in the current scheme. You can try the following steps to fix the issue:
+
+1. Make sure that the preview code is included in the target you are building. You can check this by selecting the file in the Project navigator and checking the Target Membership section in the File inspector.
+
+2. Clean the build folder by selecting Product > Clean Build Folder from the menu bar.
+
+3. Quit Xcode and delete the DerivedData folder. You can find the location of this folder in Xcode preferences under Locations > Derived Data.
+
+4. Restart Xcode and try building and running the project again.
+
+If none of these steps work, you can try creating a new project and copying the code over to see if the issue persists.

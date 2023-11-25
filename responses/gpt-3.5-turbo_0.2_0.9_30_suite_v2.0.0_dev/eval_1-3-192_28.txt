@@ -1,0 +1,11 @@
+Here's the Python code for the `to_camel_case` function that meets the requirements of the Codewars problem:
+
+```python
+def to_camel_case(text):
+    if not text:
+        return ""
+    words = re.split(r'[-_]', text)
+    return words[0] + ''.join(word.capitalize() for word in words[1:])
+```
+
+This function first checks if the input string is empty, and if so, returns an empty string. Then, it splits the string into words using a regular expression that matches either a dash or an underscore as the delimiter. Finally, it concatenates the words together, capitalizing the first letter of each word after the first one.

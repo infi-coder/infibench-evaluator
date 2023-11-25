@@ -1,0 +1,7 @@
+You need to use the `toast` method provided by Bootstrap to show the toast. You can modify your JavaScript code as follows:
+
+```javascript
+$('.toast').toast('show');
+```
+
+This will trigger the `show` method on the `.toast` element and display the toast message. Make sure to include the necessary Bootstrap JavaScript files and jQuery library in your HTML file.

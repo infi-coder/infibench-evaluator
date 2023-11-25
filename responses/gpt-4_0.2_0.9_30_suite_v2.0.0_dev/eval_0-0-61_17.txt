@@ -1,0 +1,42 @@
+You should use the `CssBaseline` component from Material-UI. This component is a modern alternative to CSS resets. It provides an elegant way to set global and dynamic styles in your application.
+
+Here's an example of how you can use it:
+
+```jsx
+import React from 'react';
+import { ThemeProvider, createMuiTheme, CssBaseline } from '@material-ui/core';
+
+const lightTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+    // your palette here
+  },
+});
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    // your palette here
+  },
+});
+
+export default function App() {
+  const [darkMode, setDarkMode] = React.useState(false);
+
+  const theme = darkMode ? darkTheme : lightTheme;
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* your other components */}
+    </ThemeProvider>
+  );
+}
+```
+
+In this example, `CssBaseline` does two things:
+
+1. It normalizes the styles across different browsers (like a CSS reset).
+2. It sets the background color of the page to match the Material-UI theme.
+
+When you switch between the light and dark themes, the background color of the page will change accordingly.

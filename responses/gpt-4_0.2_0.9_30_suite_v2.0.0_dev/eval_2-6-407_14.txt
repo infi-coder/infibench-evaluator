@@ -1,0 +1,34 @@
+The error message you're seeing, `System.Text.Json.JsonException: '<' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0`, indicates that the response from your API call is not a valid JSON. This could be due to a few reasons:
+
+1. The API endpoint is not returning a JSON response.
+2. The API endpoint is not found, and the server is returning an HTML error page.
+3. There is a network error, and the request is not reaching the API at all.
+
+Given your code, the issue might be with the routing of your API endpoint. You have defined the route as `api/Employee/Index` in your `EmployeeController`. However, you have also defined a route at the controller level as `[Route("[controller]")]`. This means that the actual route to your `Index` action might be `Employee/api/Employee/Index`.
+
+Try changing your API call to:
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("/Employee/api/Employee/Index");
+```
+If this doesn't work, you might want to simplify your routing. You can remove the `api/Employee/Index` route and just use the action method name as the route. Here's how you can do it:
+
+```csharp
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+And then in your Blazor code, you can call the API like this:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("api/Employee");
+```
+This should solve your issue if it's related to routing. If you're still having problems, I'd recommend checking the network tab in your browser's developer tools to see the actual response from the server when you make the API call.

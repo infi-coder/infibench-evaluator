@@ -1,0 +1,7 @@
+Here is the bash script to install Python 3.6.5 using brew:
+
+```
+brew install python@3.6
+```
+
+This will install Python 3.6.5 as a separate package, without affecting your existing Python 3.7.0 installation. You can then use the command `python3.6` to run Python 3.6.5 specifically.

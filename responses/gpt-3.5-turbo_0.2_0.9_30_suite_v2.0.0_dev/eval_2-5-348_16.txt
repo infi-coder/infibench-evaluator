@@ -1,0 +1,23 @@
+The error message suggests that there is an issue with the path to the `mvn.cmd` file. Specifically, it seems that the path contains embedded quotes that are causing the command to fail.
+
+One solution is to use the short name for the "Program Files" directory, which does not contain spaces or quotes. You can find the short name by running the following command in a command prompt:
+
+```
+dir /x "C:\Program Files"
+```
+
+This should output a list of directories, including the short name for "Program Files". For example, on my system, the short name is "PROGRA~1".
+
+With the short name, you can modify the command to use the short name instead of the full path:
+
+```
+cd C:\projects\open; "JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5" cmd /c "\"\"C:\\PROGRA~1\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd\" -DskipTests=true -Dmaven.ext.class.path=\"C:\\PROGRA~1\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar\" -Dfile.encoding=UTF-8 clean install\""
+```
+
+Alternatively, you can try enclosing the entire command in single quotes instead of double quotes:
+
+```
+cd C:\projects\open; "JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5" cmd /c "'C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd' -DskipTests=true -Dmaven.ext.class.path='C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar' -Dfile.encoding=UTF-8 clean install"
+```
+
+This should avoid any issues with embedded quotes in the command.

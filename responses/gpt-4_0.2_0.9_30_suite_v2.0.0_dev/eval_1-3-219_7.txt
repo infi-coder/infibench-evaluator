@@ -1,0 +1,15 @@
+The issue you're facing might be due to several reasons. Here are some steps you can follow to troubleshoot and solve your problem:
+
+1. **Check Python and Jupyter installations**: Make sure that Python and Jupyter are correctly installed in your environment. You can check this by activating your environment and running `python --version` and `jupyter --version` in your terminal.
+
+2. **Check if ipykernel is installed**: The ipykernel package allows Jupyter to create Python kernels, and it's necessary for Jupyter to work correctly. You can check if it's installed by activating your environment and running `pip show ipykernel` in your terminal. If it's not installed, you can install it with `pip install ipykernel`.
+
+3. **Set Python interpreter in VS Code**: Make sure that the Python interpreter set in VS Code is the one from your environment. You can set it by clicking on the Python version in the bottom left corner of VS Code and selecting the interpreter from your environment.
+
+4. **Check VS Code settings**: In VS Code settings (`File > Preferences > Settings`), make sure that the `Jupyter: Use Default Config For Jupyter` option is checked.
+
+5. **Reinstall Python extension**: If none of the above works, try reinstalling the Python extension in VS Code.
+
+6. **Check for errors in the Jupyter server logs**: If you're still having issues, check the Jupyter server logs for any error messages. You can access the logs by clicking on the `Jupyter` tab in the `Output` panel (`View > Output`).
+
+If you're still having issues after trying these steps, please provide more information about your setup and the exact error messages you're seeing.

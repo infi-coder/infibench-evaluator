@@ -1,0 +1,24 @@
+The error message you're seeing is due to the way the command is being interpreted by the command line. The command line is having trouble understanding the command because of the embedded quotes.
+
+Here's a possible solution:
+
+1. Open the `mvn.cmd` file in a text editor. This file is located at `C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\mvn.cmd`.
+
+2. Look for a line that looks like this:
+
+   ```
+   set MAVEN_CMD_LINE_ARGS=%*
+   ```
+
+3. Replace that line with the following two lines:
+
+   ```
+   set MAVEN_CMD_LINE_ARGS=%1 %2 %3 %4 %5 %6 %7 %8 %9
+   set MAVEN_CMD_LINE_ARGS=%MAVEN_CMD_LINE_ARGS: = %
+   ```
+
+4. Save and close the `mvn.cmd` file.
+
+5. Try to build your project again.
+
+This change tells the command line to interpret each argument separately, which should prevent the error you're seeing.

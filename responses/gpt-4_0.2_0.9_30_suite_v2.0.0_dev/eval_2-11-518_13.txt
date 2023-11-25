@@ -1,0 +1,17 @@
+The Rule of Five is not outdated, but its usage has been reduced due to the introduction of smart pointers and other features in modern C++. 
+
+Smart pointers, like `std::unique_ptr` and `std::shared_ptr`, indeed help manage resources and can eliminate the need for custom destructors, copy constructors, and assignment operators in many cases. They handle the ownership and life-cycle of the resources, which can prevent memory leaks and other common issues.
+
+However, there are still cases where you might need to define these special member functions:
+
+1. **Performance considerations**: Sometimes, for performance reasons, you might want to define your own move constructor and move assignment operator to avoid the overhead of certain operations that the compiler-generated versions would perform.
+
+2. **Deep copy semantics**: If your class contains raw pointers and you want to have deep copy semantics, you will need to define your own copy constructor and copy assignment operator.
+
+3. **Resource types not handled by smart pointers**: If your class manages a resource that isn't memory (like a file handle or a network socket), you can't use a smart pointer to manage it, and you'll need to define your own destructor and possibly copy/move operations.
+
+4. **Ownership semantics**: If your class has unique ownership semantics that can't be expressed with the standard library smart pointers, you might need to define these special member functions.
+
+5. **Compatibility with legacy code**: If you're working with older code that doesn't use smart pointers, you might need to define these special member functions.
+
+So while smart pointers and other modern C++ features can reduce the need for the Rule of Five, there are still cases where it's necessary. It's also worth noting that the Rule of Zero (which states that you should strive to have zero explicit resource management, i.e., no user-defined destructor, copy/move constructor, or copy/move assignment operator) is a good guideline to follow when possible.

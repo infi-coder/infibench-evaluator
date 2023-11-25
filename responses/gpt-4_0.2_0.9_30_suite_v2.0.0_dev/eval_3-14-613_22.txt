@@ -1,0 +1,13 @@
+This issue can occur due to several reasons. Here are some steps you can try to resolve it:
+
+1. **Clean Build Folder**: Go to `Product` -> `Clean Build Folder` or use the shortcut `Shift + Command + K`.
+
+2. **Delete Derived Data**: Go to `Window` -> `Projects` -> `Derived Data` -> `Delete...`.
+
+3. **Check Target Membership**: Make sure your SwiftUI file is a member of the target. You can check this by selecting the file in the Project Navigator and checking the `Target Membership` section in the File Inspector.
+
+4. **Check Scheme**: Make sure the correct target is selected in the scheme. You can check this by clicking on the scheme in the toolbar and selecting `Edit Scheme...`. Under `Run`, make sure the correct target is selected.
+
+5. **Restart Xcode**: Sometimes, simply restarting Xcode can resolve the issue.
+
+If none of the above steps work, you may need to create a new project and move your files over. This is a last resort and should only be done if all other steps fail.

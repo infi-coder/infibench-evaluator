@@ -1,0 +1,17 @@
+Sure, you can achieve this using the `groupby` and `cumsum` functions from pandas. Here is the function `aggregation`:
+
+```python
+def aggregation(df):
+    # Ensure 'value' column is numeric
+    df['value'] = pd.to_numeric(df['value'])
+
+    # Create a copy of 'value' where 'type' is not 'deposit', and replace non-deposit values with 0
+    df['balance'] = df['value'].where(df['type'] == 'deposit', 0)
+
+    # Group by 'exchange' and calculate the cumulative sum of 'balance'
+    df['balance'] = df.groupby('exchange')['balance'].cumsum()
+
+    return df
+```
+
+This function first ensures that the 'value' column is numeric. Then it creates a new column 'balance' where it copies the 'value' column but replaces all values where 'type' is not 'deposit' with 0. Then it groups the DataFrame by 'exchange' and calculates the cumulative sum of 'balance' within each group. The result is a new DataFrame where 'balance' is the cumulative sum of 'value' where 'type' is 'deposit', grouped by 'exchange'.

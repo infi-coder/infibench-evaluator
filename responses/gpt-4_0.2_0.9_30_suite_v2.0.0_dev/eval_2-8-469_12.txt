@@ -1,0 +1,24 @@
+You need to specify a `go_package` option in your `.proto` file. This option should be a full import path (which will be used if you're importing this package from other Go code), or a relative path (which will be used if you're not).
+
+Here's how you can modify your `.proto` file:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = ".;main";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+In this case, `.` tells `protoc` to generate the Go code in the current directory, and `main` is the package name.
+
+After this change, you should be able to generate the Go code with the same command:
+
+```bash
+protoc --go_out=. simple.proto
+```

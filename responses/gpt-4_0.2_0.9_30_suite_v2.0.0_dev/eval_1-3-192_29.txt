@@ -1,0 +1,32 @@
+Here is a Python function that uses the `re` module to replace underscores and dashes with a space, then uses the `title` string method to capitalize the first letter of each word, and finally removes all spaces:
+
+```python
+import re
+
+def to_camel_case(text):
+    # Replace underscores and dashes with a space
+    text = re.sub(r'[_-]', ' ', text)
+    # Capitalize the first letter of each word and remove spaces
+    text = ''.join(word[0].upper() + word[1:] for word in text.split())
+    return text
+```
+
+However, this function always capitalizes the first letter of the first word, which is not what the problem statement asks for. To fix this, we can add a condition that checks if the first letter of the original string was capitalized, and if not, we convert the first letter of the result to lowercase:
+
+```python
+import re
+
+def to_camel_case(text):
+    if text == '':
+        return ''
+    # Replace underscores and dashes with a space
+    text = re.sub(r'[_-]', ' ', text)
+    # Capitalize the first letter of each word and remove spaces
+    text = ''.join(word[0].upper() + word[1:] for word in text.split())
+    # If the first letter of the original string was not capitalized, convert the first letter of the result to lowercase
+    if not text[0].isupper():
+        text = text[0].lower() + text[1:]
+    return text
+```
+
+This function should now work as expected for the given test cases.

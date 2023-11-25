@@ -1,0 +1,26 @@
+To conform to `ShapeStyle` protocol, you need to implement a method that returns a `Shader`. Here's how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedStyle())
+    }
+}
+
+struct RedStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType) {
+        // Implement this method
+    }
+    
+    func _makeView(geometry: _GraphValue<_ShapeStyle_ShapeType>, inputs: _ViewInputs) -> _ViewOutputs {
+        // Implement this method
+    }
+}
+```
+
+However, the methods `_apply(to:)` and `_makeView(geometry:inputs:)` are underscored, which means they are private to SwiftUI and not meant to be used directly. 
+
+The `ShapeStyle` protocol is not really designed to be conformed to by developers. Instead, you should use one of the provided types that conform to `ShapeStyle`, such as `Color`, `Gradient`, `AngularGradient`, or `RadialGradient`.
+
+If you want to create a custom fill, you should create a custom `View` that draws itself using SwiftUI's drawing primitives, not by trying to conform to `ShapeStyle`.

@@ -1,0 +1,7 @@
+This error message is related to the `console` crate, which uses the `format_args!` macro internally. Rust-analyzer is having trouble resolving this macro, which is causing the error message.
+
+This error message is a known issue with rust-analyzer, and it can sometimes occur even when there are no actual errors in your code. In this case, since your code compiles and passes tests without any issues, it's likely that there is no actual problem with your code.
+
+To work around this issue, you can try updating your rust-analyzer version to the latest release. You can also try restarting your editor or rebuilding your project to see if that resolves the error message.
+
+If none of these solutions work, you can try ignoring the error message or disabling the rust-analyzer extension in your editor. However, keep in mind that this may cause other issues to go unnoticed, so it's generally best to try to resolve the error message if possible.

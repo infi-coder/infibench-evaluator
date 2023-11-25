@@ -1,0 +1,28 @@
+You can solve this problem by first dividing the number into `n` parts and then distributing the remainder among the parts. Here is the Python function `divideNumber` which does exactly that:
+
+```python
+def divideNumber(num, n):
+    # Calculate the quotient and remainder
+    quotient, remainder = divmod(num, n)
+    
+    # Create a list with 'n' parts each of size 'quotient'
+    parts = [quotient] * n
+    
+    # Distribute the remainder among the parts
+    for i in range(remainder // 2):
+        parts[i] += 2
+    
+    return parts
+```
+
+This function first calculates the quotient and remainder of `num` divided by `n`. It then creates a list with `n` parts each of size `quotient`. Finally, it distributes the remainder among the parts by adding 2 to each part in succession.
+
+Here is how you can use this function:
+
+```python
+num = 100
+n = 3
+print(divideNumber(num, n))  # Output: [34, 34, 32]
+```
+
+This will divide the number 100 into 3 parts each of which is a multiple of 2.

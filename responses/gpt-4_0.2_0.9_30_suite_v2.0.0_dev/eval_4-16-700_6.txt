@@ -1,0 +1,14 @@
+You can optimize your task by using `awk` which is a powerful text processing tool in Unix/Linux. Here is a more efficient way to do it:
+
+```bash
+awk -F'=' '/^name/{if (name) print name"="value; name=$2; next} /^value/{value=$2} END{print name"="value}' input.txt > output.txt
+```
+
+This `awk` command works as follows:
+
+- `-F'='` sets the field separator to `=`.
+- `/^name/` matches lines that start with `name`. If a `name` has been previously stored, it prints the `name=value` pair. Then it stores the current `name` and skips to the next line.
+- `/^value/` matches lines that start with `value` and stores the `value`.
+- `END{print name"="value}` prints the last `name=value` pair after processing all lines.
+
+This command will be significantly faster than your original script because it processes the file line by line without storing the entire file in memory and without using external commands in a loop.

@@ -1,0 +1,18 @@
+To conform to the `ShapeStyle` protocol, you need to define a `fill` method that takes a `ContentShape` and a `View` as parameters. Here's an example:
+
+```
+struct RedView: ShapeStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Color.red
+    }
+}
+
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedView())
+    }
+}
+```
+
+In this example, `RedView` conforms to `ShapeStyle` by implementing the `makeBody` method. The `makeBody` method returns a `View` that will be used to fill the shape. In this case, it returns a `Color` view with the color red.

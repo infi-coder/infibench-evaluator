@@ -1,0 +1,34 @@
+To use Swagger UI with Spring Boot, you need to configure it in your application. Here are the steps to follow:
+
+1. Add the `springdoc-openapi-ui` dependency to your `pom.xml` file as you already did.
+
+2. Create a configuration class that extends `WebMvcConfigurationSupport` and add the following code:
+
+```java
+@Configuration
+public class SwaggerConfig extends WebMvcConfigurationSupport {
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .components(new Components())
+                .info(new Info().title("Your API Title").description(
+                        "Your API Description").version("1.0.0"));
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+}
+```
+
+This code creates a `customOpenAPI` bean that defines the title, description, and version of your API. It also adds resource handlers for Swagger UI and its dependencies.
+
+3. Run your Spring Boot application and navigate to `http://localhost:8080/swagger-ui.html`. You should now see the Swagger UI interface.
+
+If you still encounter issues, make sure that your application is running on port 8080 and that there are no conflicting dependencies or configurations.

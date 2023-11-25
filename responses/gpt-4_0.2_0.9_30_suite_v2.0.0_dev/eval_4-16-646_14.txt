@@ -1,0 +1,39 @@
+The error message `bad CPU type in executable` usually means that the executable file you're trying to run is not compatible with the architecture of your CPU. This is a common issue on MacOS Catalina because it dropped support for 32-bit applications.
+
+The `pdftk` tool is a 32-bit application, so it won't run on MacOS Catalina or later versions. However, there is a workaround for this issue. You can use `pdftk-java`, which is a port of pdftk to java.
+
+Here are the steps to install `pdftk-java` on MacOS Catalina:
+
+1. First, you need to install Homebrew if you haven't already. Open Terminal and paste the following command:
+
+```markdown
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+2. Once Homebrew is installed, you can install `pdftk-java` by running:
+
+```markdown
+brew install pdftk-java
+```
+
+3. After the installation, you can use `pdftk-java` just like `pdftk`. However, you need to type `pdftk-java` instead of `pdftk` in your commands.
+
+For example, if you previously used a command like this:
+
+```markdown
+pdftk input.pdf output output.pdf
+```
+
+You should now use:
+
+```markdown
+pdftk-java input.pdf output output.pdf
+```
+
+If you want to keep using `pdftk` instead of `pdftk-java` for your commands, you can create a symbolic link:
+
+```markdown
+ln -s /usr/local/bin/pdftk-java /usr/local/bin/pdftk
+```
+
+Now, you can use `pdftk` in your commands as before.

@@ -1,0 +1,1 @@
+I want to access the direct children of div with class "section". I know with css we can do: div.section > div. But how to do this using tailwindcss?

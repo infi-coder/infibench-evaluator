@@ -1,0 +1,28 @@
+The Java version that Maven uses is determined by the `JAVA_HOME` environment variable. If you want to use a different version of Java, you need to change the `JAVA_HOME` variable to point to the desired Java version.
+
+Here's how you can do it:
+
+1. Find out where the desired Java version is installed. If you're using a Unix-based system (like Linux or MacOS), you can usually find this in `/usr/lib/jvm`. On Windows, it might be in `C:\Program Files\Java`.
+
+2. Set the `JAVA_HOME` environment variable to point to the desired Java version. Here's how you can do it:
+
+    - On Unix-based systems, add the following line to your `.bashrc` or `.bash_profile` file (replace `/path/to/java` with the actual path):
+
+        ```bash
+        export JAVA_HOME=/path/to/java
+        ```
+
+        Then, run `source ~/.bashrc` or `source ~/.bash_profile` to apply the changes.
+
+    - On Windows, you can set the `JAVA_HOME` variable in the System Properties. Here's how:
+
+        1. Right-click on 'Computer' and select 'Properties'.
+        2. Select 'Advanced system settings'.
+        3. In the 'System Properties' window, select 'Environment Variables'.
+        4. Click 'New' under 'System variables'.
+        5. Enter `JAVA_HOME` as the variable name and the path to Java as the variable value.
+        6. Click 'OK' and restart your computer.
+
+3. Verify that Maven is using the correct Java version by running `mvn -v`. The output should show the Java version that you set.
+
+Remember that the Maven Wrapper (`mvnw`) will use the Java version specified in the `.mvn/jvm.config` file if it exists. If you want to use a different Java version, you need to change this file. If the file doesn't exist, the wrapper will use the Java version specified by the `JAVA_HOME` environment variable.

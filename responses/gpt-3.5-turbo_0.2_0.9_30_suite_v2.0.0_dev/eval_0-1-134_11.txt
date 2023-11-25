@@ -1,0 +1,19 @@
+It sounds like you are trying to use a CSS preprocessor like Sass or Less. These preprocessors allow you to write CSS in a more efficient and organized way by using variables, mixins, and other features.
+
+To use a preprocessor, you need to install it and then compile your code into regular CSS that the browser can understand. You can use a tool like Gulp or Webpack to automate this process.
+
+If you are not using a preprocessor and are just trying to add a class to an HTML element, you can do so by adding the class attribute to the element and giving it a value of the class name you want to use. For example:
+
+```
+<div class="my-class">This element has the class "my-class"</div>
+```
+
+Then in your CSS file, you can target that class like this:
+
+```
+.my-class {
+  /* CSS styles go here */
+}
+```
+
+Make sure that your CSS file is linked to your HTML file using the `<link>` tag in the `<head>` section of your HTML file.

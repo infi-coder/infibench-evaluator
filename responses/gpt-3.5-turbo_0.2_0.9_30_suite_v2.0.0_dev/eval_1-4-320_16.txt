@@ -1,0 +1,3 @@
+```r
+final <- final[rowSums(is.na(final[, 456:555])) != ncol(final[, 456:555]),]
+```

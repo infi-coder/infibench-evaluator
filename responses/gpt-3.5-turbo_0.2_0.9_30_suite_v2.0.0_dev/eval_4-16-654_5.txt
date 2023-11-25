@@ -1,0 +1,9 @@
+You can add your existing SSH key to Git Bash by following these steps:
+
+1. Open Git Bash and navigate to your home directory by typing `cd ~` and pressing Enter.
+2. Create a new directory called `.ssh` by typing `mkdir .ssh` and pressing Enter.
+3. Copy your SSH key file from `D:/keys` to the `.ssh` directory by typing `cp D:/keys/id_rsa .ssh/` and pressing Enter. Replace `id_rsa` with the name of your SSH key file if it's different.
+4. Set the correct permissions for your SSH key file by typing `chmod 600 .ssh/id_rsa` and pressing Enter.
+5. Test your SSH connection by typing `ssh -T git@github.com` (replace `github.com` with the hostname of your Git server) and pressing Enter. If everything is set up correctly, you should see a message that says "Hi username! You've successfully authenticated, but GitHub does not provide shell access."
+
+That's it! You should now be able to clone repositories using SSH from your Git Bash.

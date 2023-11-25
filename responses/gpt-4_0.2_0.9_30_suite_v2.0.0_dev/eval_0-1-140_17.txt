@@ -1,0 +1,22 @@
+Font Awesome 5 has made some changes to how it's used compared to Font Awesome 4. The `font-family` is no longer just "FontAwesome", it's now separated into different styles: "Font Awesome 5 Free", "Font Awesome 5 Brands", and "Font Awesome 5 Pro". The content codes have also changed.
+
+Here's how you can update your CSS for Font Awesome 5:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f105";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+```
+
+In this example, I've used the `font-family` "Font Awesome 5 Free" and the `font-weight` 900 because the arrow you're trying to use is in the solid style set. The content code for the arrow has also changed to "\f105". 
+
+Remember to include the correct Font Awesome 5 CSS file in your project:
+
+```html
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+```
+
+This link includes all styles: solid, regular, and brands. If you're using the Pro version, make sure to include the Pro CSS file instead.

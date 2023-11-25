@@ -1,0 +1,34 @@
+In Rust, you don't have null pointers like in C or C++. Instead, you have the `Option` type, which can be `Some` or `None`. You can use `Option<Box<Node>>` to represent a nullable box. Here's how you can modify your code:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+```
+
+In this case, `None` is equivalent to a null pointer, and `Some` is equivalent to a non-null pointer. You can check if a box is null by checking if the `Option` is `None`:
+
+```rust
+if let Some(node) = &stack.top {
+    // The box is not null, and `node` is a reference to the box.
+} else {
+    // The box is null.
+}
+```
+
+Or you can use the `is_none` or `is_some` method:
+
+```rust
+if stack.top.is_none() {
+    // The box is null.
+} else {
+    // The box is not null.
+}
+```
+
+Remember that in Rust, you don't need to manually deallocate the memory of a `Box` when you're done with it. The memory is automatically deallocated when the `Box` goes out of scope.

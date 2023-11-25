@@ -1,0 +1,20 @@
+The error message is indicating that you cannot create an index on a navigation property. In your case, you are trying to create an index on the `Gender` navigation property of the `User` entity.
+
+To solve this problem, you can create an index on the `GenderId` property instead. Here's how you can modify your `OnModelCreating` method:
+
+```c#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+
+        user.HasIndex(x => x.GenderId);
+    });
+}
+```
+
+This will create an index on the `GenderId` property of the `User` entity, which should solve the problem.

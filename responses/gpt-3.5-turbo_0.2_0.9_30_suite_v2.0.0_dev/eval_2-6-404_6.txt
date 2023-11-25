@@ -1,0 +1,6 @@
+You can use the `this` keyword to call the constructor with parameters and provide default values for them, like this:
+```c#
+public record Person(int Id, string FirstName, string LastName){
+    public Person() : this(0, "", "") {}
+}
+```

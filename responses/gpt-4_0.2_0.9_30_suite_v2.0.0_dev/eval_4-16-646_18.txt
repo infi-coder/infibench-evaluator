@@ -1,0 +1,29 @@
+The error message `bad CPU type in executable` usually means that the binary you're trying to run is not compatible with the architecture of your CPU. This is a common issue on MacOS Catalina because it dropped support for 32-bit applications.
+
+`pdftk` is one of the applications that has not been updated to 64-bit and therefore it does not work on MacOS Catalina or later versions.
+
+Here are some alternatives to `pdftk` that you can use:
+
+1. **PDFtk Server**: This is a command-line tool that is a part of the PDFtk toolkit. It is a simple tool that allows you to merge PDF documents, split PDF pages into new documents, rotate PDF pages, decrypt and encrypt, update metadata, apply watermarks, and much more.
+
+    To install PDFtk Server, you can use Homebrew:
+
+    ```bash
+    brew install pdftk-java
+    ```
+
+    After installing, you can use `pdftk-java` instead of `pdftk`.
+
+2. **QPDF**: This is a command-line program that does structural, content-preserving transformations on PDF files. It could have been called something like pdf-to-pdf. It also provides many useful capabilities to developers of PDF-producing software or for people who just want to look at the innards of a PDF file to learn more about how they work.
+
+    To install QPDF, you can use Homebrew:
+
+    ```bash
+    brew install qpdf
+    ```
+
+3. **PDFsam**: PDF Split and Merge is a very simple, easy to use, free, open source utility to split and merge pdf files. It has a simple graphical interface to let the user choose pdf files, split or merge them.
+
+    To install PDFsam, you can download it from the official website: https://pdfsam.org/downloads/
+
+Remember to replace `pdftk` with the alternative you choose in your scripts or commands.

@@ -1,0 +1,17 @@
+The error message you're seeing is related to the SSL/TLS version being used to establish a connection with the SMTP server. It seems like the version being used by your Laravel application is not compatible with the one used by the SMTP server.
+
+Here are a few things you can try:
+
+1. **Change the MAIL_ENCRYPTION setting**: The error message suggests that there's a problem with the SSL version. You can try changing the `MAIL_ENCRYPTION` setting in your `.env` file from `ssl` to `tls`. This will use a different protocol to establish the connection.
+
+```markdown
+MAIL_ENCRYPTION=tls
+```
+
+2. **Check the port number**: The standard port for SSL connections is 465, and for TLS it's 587. You might want to confirm with your client if you're using the correct port number.
+
+3. **Check the OpenSSL version**: The error message also suggests that there might be a problem with the OpenSSL version. You can check the version of OpenSSL installed on your server by running `openssl version` in the terminal. If it's outdated, you might want to consider updating it.
+
+4. **Contact the email server provider**: If none of the above solutions work, you might want to contact the provider of the SMTP server (in this case, propnex.sg). They might be able to provide you with the correct settings or diagnose the issue from their end.
+
+Remember to clear the configuration cache (`php artisan config:clear`) after making changes to your `.env` file.

@@ -1,0 +1,34 @@
+In Rust, `Box<T>` is a smart pointer that points to data on the heap. It cannot be null. If you want to have a nullable pointer, you should use `Option<Box<T>>` instead. When the `Option` is `None`, it represents a null pointer. When it is `Some(box)`, it contains a valid `Box`.
+
+Here is how you can modify your code:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+```
+
+You can check if the `Box<Node>` is null by checking if the `Option` is `None`:
+
+```rust
+if let Some(node) = &stack.top {
+    // The Box<Node> is not null, and `node` is a reference to the Box<Node>.
+} else {
+    // The Box<Node> is null.
+}
+```
+
+Or you can use the `is_none` or `is_some` methods:
+
+```rust
+if stack.top.is_none() {
+    // The Box<Node> is null.
+} else {
+    // The Box<Node> is not null.
+}
+```

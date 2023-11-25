@@ -1,0 +1,13 @@
+The "f" in `print(f"...")` stands for "formatted string literals" in Python. It is a way to embed expressions inside string literals, using curly braces `{}`. 
+
+In your example, the expressions inside the curly braces are `args.input_directory` and `args.output_directory`. These expressions are evaluated and their values are inserted into the string at runtime. This makes it easier to create dynamic strings that include variables or other expressions.
+
+For example, instead of concatenating strings and variables using the `+` operator, you can use formatted string literals like this:
+
+```python
+name = "Alice"
+age = 30
+print(f"My name is {name} and I am {age} years old.")
+```
+
+This will output: `My name is Alice and I am 30 years old.`

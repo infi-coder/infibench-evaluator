@@ -1,0 +1,33 @@
+The issue you're experiencing is due to the asynchronous nature of the `onItemSelectedListener`. The `onItemSelected` function is not immediately called when you set the listener, it is called later when an item is actually selected. This is why you see the log "2" before "1".
+
+The `setupListWithAdapter` function returns `itemSelected` immediately after setting the listener, at which point `itemSelected` is still an empty string. The `onItemSelected` function updates `itemSelected` later when an item is selected, but this does not affect the value that was already returned by `setupListWithAdapter`.
+
+To solve this, you can use a higher-order function or a callback function to handle the selected item. Here is an example:
+
+```kotlin
+fun Spinner.setupListWithAdapter(list: MutableList<String>, onItemSelected: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+            onItemSelected(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+}
+```
+
+Then you can use this function like this:
+
+```kotlin
+spinner.setupListWithAdapter(list) { selectedItem ->
+    // Do something with selectedItem
+    Log.e("categoryLog","2 : " + selectedItem)
+}
+```
+
+In this way, you can handle the selected item in the callback function when an item is actually selected.

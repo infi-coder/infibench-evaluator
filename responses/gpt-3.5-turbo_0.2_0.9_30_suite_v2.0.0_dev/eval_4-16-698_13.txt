@@ -1,0 +1,15 @@
+You can try running the following command in your current terminal session:
+
+```
+source ~/.bash_profile
+```
+
+This will reload your updated `.bash_profile` file and apply any changes you made to it. 
+
+Alternatively, you can also try running:
+
+```
+exec $SHELL
+```
+
+This will replace your current shell process with a new one, effectively restarting your terminal session.

@@ -1,0 +1,1 @@
+Either wrap your custom appbar into a `PreferredSize` widget or implement `PreferredSizeWidget`.

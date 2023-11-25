@@ -1,0 +1,29 @@
+AWS CLI version 2 introduced automatic paging for commands that return multiple pages of output. However, this feature can be disabled by setting the `AWS_PAGER` environment variable to an empty string.
+
+You can disable the pager for a single command by prefixing your command with `AWS_PAGER=""`. Here's how you can modify your bash script:
+
+```bash
+for x in 1 2 3; do 
+  AWS_PAGER="" aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo; 
+done
+```
+
+If you want to disable the pager for all AWS CLI commands in your current shell session, you can export the `AWS_PAGER` variable:
+
+```bash
+export AWS_PAGER=""
+```
+
+To disable the pager permanently, you can add the export command to your shell's profile script (e.g., `~/.bashrc` or `~/.bash_profile` for bash, `~/.zshrc` for zsh):
+
+```bash
+echo 'export AWS_PAGER=""' >> ~/.bashrc
+```
+
+Then, source the profile script to apply the changes:
+
+```bash
+source ~/.bashrc
+```
+
+This will prevent the AWS CLI from opening an interactive pager for command output.

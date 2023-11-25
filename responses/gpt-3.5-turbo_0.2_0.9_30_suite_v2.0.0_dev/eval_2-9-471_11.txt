@@ -1,0 +1,36 @@
+To import images in a React component with TypeScript and Parcel, you need to do the following:
+
+1. Create a `.d.ts` file with the same name as the image file, in the same directory as the image. For example, if your image is named `image.jpg`, create a file named `image.d.ts`.
+2. In the `.d.ts` file, declare a module with the same name as the image file, and export a string with the path to the image. For example:
+
+```
+declare module '*.jpg' {
+  const value: string;
+  export default value;
+}
+```
+
+3. In your component file, import the image using the path to the `.d.ts` file, not the path to the image itself. For example:
+
+```
+import * as React from 'react';
+import image from '../assets/image.jpg';
+
+const Box = props => {
+  // do things...
+}
+
+export default Box;
+```
+
+4. Make sure that the `.d.ts` file is included in your TypeScript configuration. In your `tsconfig.json` file, add the following line to the `"include"` array:
+
+```
+"include": [
+  "src/**/*.ts",
+  "src/**/*.tsx",
+  "src/**/*.d.ts"
+]
+```
+
+Note that the `.d.ts` file should not have the same name as your entry point file (`index.tsx` in your case), as TypeScript will ignore it and assume that it is generated from the entry point file. If you named your `.d.ts` file `index.d.ts`, rename it to something else (e.g. `image.d.ts`).

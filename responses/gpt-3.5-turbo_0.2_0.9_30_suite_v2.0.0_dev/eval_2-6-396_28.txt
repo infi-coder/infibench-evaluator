@@ -1,0 +1,11 @@
+The error message is caused by the `user.HasIndex(x => x.Gender);` line in your `OnModelCreating` method. You cannot create an index on a navigation property (`Gender` in this case), only on scalar properties.
+
+To fix the error, remove the `user.HasIndex(x => x.Gender);` line from your `OnModelCreating` method. This will allow you to create the migration successfully.
+
+If you need to create an index on a scalar property, you can do so by adding the following code to your `OnModelCreating` method:
+
+```c#
+user.HasIndex(x => x.PropertyName);
+```
+
+Replace `PropertyName` with the name of the scalar property you want to create an index on.

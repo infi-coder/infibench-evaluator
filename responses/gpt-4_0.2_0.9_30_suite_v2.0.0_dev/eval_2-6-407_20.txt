@@ -1,0 +1,31 @@
+The error message you're seeing is indicating that the response from your API call is not valid JSON. The character '<' is not a valid start of a JSON value.
+
+The problem is likely due to the route configuration in your API controller. You have defined the route for your controller as `"[controller]"` and then for your `HttpGet` method as `"api/Employee/Index"`. This means that the full route to your method would be `"/Employee/api/Employee/Index"`.
+
+To fix this, you should change your route configuration to match the route you're using in your Blazor application. Here's how you can do it:
+
+```c#
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    [Route("Index")]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+Now, the route to your method should be `"/api/Employee/Index"`, which matches the route you're using in your Blazor application.
+
+Also, please note that `GetJsonAsync` method is obsolete since .NET 5.0. You should use `GetFromJsonAsync` instead. Here's how you can do it:
+
+```c#
+empList = await Http.GetFromJsonAsync<Employee[]>("/api/Employee/Index");
+```
+
+Remember to add `using System.Net.Http.Json;` at the top of your file to use `GetFromJsonAsync` method.

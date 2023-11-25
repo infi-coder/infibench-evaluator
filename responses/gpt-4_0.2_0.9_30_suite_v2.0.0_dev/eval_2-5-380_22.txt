@@ -1,0 +1,13 @@
+The issue might be related to the URL you are using to access the Swagger UI. If you are using OpenAPI 3.0 with the Springdoc dependency, the URL for accessing the Swagger UI is different from the one used in Swagger 2.0.
+
+The correct URL should be:
+
+```
+http://localhost:8080/swagger-ui/
+```
+
+Please note that there is no `.html` at the end of the URL. 
+
+Also, make sure that your application is running on port 8080. If it's running on a different port, you need to adjust the URL accordingly.
+
+If the issue persists, please check your Spring Boot configuration and make sure that the Springdoc OpenAPI UI is properly configured.

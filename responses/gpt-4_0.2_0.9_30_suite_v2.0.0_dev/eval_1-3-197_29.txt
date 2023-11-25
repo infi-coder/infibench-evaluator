@@ -1,0 +1,24 @@
+Here is a Python function that uses the `itertools.cycle` function to repeat the list of strings indefinitely. The `zip` function is then used to pair each row in the DataFrame with a string from the list. The `pandas.DataFrame.apply` function is used to apply this pairing to the DataFrame.
+
+```python
+import pandas as pd
+import itertools
+
+def fillColumn(df, columnName, columnData):
+    cycle = itertools.cycle(columnData)
+    df[columnName] = [next(cycle) for _ in df.index]
+    return df
+```
+
+This function creates a new column in the DataFrame and fills it with the strings from the list in a repeating cycle. The `itertools.cycle` function creates an iterator that returns elements from the list indefinitely. When the end of the list is reached, it starts over from the beginning. The `next` function is used to get the next element from the iterator for each row in the DataFrame.
+
+You can use this function like this:
+
+```python
+df = pd.DataFrame()
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+print(df)
+```
+
+This will print a DataFrame where the 'names' column is filled with the strings 'abc', 'def', 'hig' in a repeating cycle.

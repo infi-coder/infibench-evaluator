@@ -1,0 +1,7 @@
+The Rule of 5 is not outdated, as there are still cases where you may need to define one or more of the special member functions. 
+
+While it is true that implicit constructors and destructors work fine for aggregate data structures, there are cases where you may need to manage resources manually. For example, if you are working with a legacy API that requires manual memory management, or if you are implementing a custom data structure that requires more complex resource management.
+
+In addition, while smart pointers can help manage resources, they are not always a perfect solution. There may be cases where you need more fine-grained control over resource management, or where the overhead of using a smart pointer is not acceptable.
+
+So while it is true that you may not always need to define one or more of the special member functions, there are still cases where they are necessary. The Rule of 5 provides a useful guideline for ensuring that your class is properly managing resources and avoiding issues like memory leaks or undefined behavior.

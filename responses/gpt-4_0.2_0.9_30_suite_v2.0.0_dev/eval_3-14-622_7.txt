@@ -1,0 +1,39 @@
+To conform to `ShapeStyle` protocol, you need to implement the `func _apply(to shape: inout _ShapeStyle_ShapeType)` method. Here's how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+
+struct RedShapeStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType) {
+        shape.fill = Color.red._apply(to:)
+    }
+}
+```
+
+However, `_ShapeStyle_ShapeType` and `_apply(to:)` are private APIs and not intended for public use. 
+
+A better way to conform to `ShapeStyle` is to use a `View` that returns a `Color`:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+
+struct RedShapeStyle: ShapeStyle {
+    var body: some View {
+        Color.red
+    }
+}
+```
+
+But this will still not work because `ShapeStyle` is not a protocol that your custom types are supposed to conform to. It's more of a way for SwiftUI to group several types together. 
+
+In your case, you should use `Color.red` directly or create a custom color.

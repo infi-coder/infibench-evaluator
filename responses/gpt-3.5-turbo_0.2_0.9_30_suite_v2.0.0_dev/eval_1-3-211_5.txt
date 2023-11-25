@@ -1,0 +1,36 @@
+Yes, we can achieve this using pandas' `groupby` and `cumsum` functions. Here's the `aggregation` function that should do the job:
+
+```python
+def aggregation(df):
+    # filter rows where type is 'deposit'
+    deposits = df[df['type'] == 'deposit']
+    # group by exchange and forward-fill the values
+    deposits['balance'] = deposits.groupby('exchange')['value'].cumsum()
+    # merge the original dataframe with the deposits dataframe
+    df = pd.merge(df, deposits[['exchange', 'type', 'balance']], on=['exchange', 'type'])
+    return df
+```
+
+This function first filters the rows where `type` is 'deposit'. Then, it groups the resulting dataframe by `exchange` and calculates the cumulative sum of the `value` column using the `cumsum` function. The resulting `balance` column is then merged back into the original dataframe using the `merge` function.
+
+You can call this function with your sample dataframe like this:
+
+```python
+df=pd.DataFrame()
+df['exchange'] = [1, 1, 1, 2, 3]
+df['type'] = ['deposit', 'deposit', 'trade', 'deposit', 'deposit']
+df['value'] = [10, 10, '30', '40', '100]
+
+aggregation(df)
+```
+
+This should return the following output:
+
+```
+   exchange     type value  balance
+0         1  deposit    10       10
+1         1  deposit    10       20
+2         1    trade    30       20
+3         2  deposit    40       40
+4         3  deposit   100      100
+```

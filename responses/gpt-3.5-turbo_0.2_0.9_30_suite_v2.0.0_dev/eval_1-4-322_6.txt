@@ -1,0 +1,13 @@
+You can use `group_split` and `map` functions from the `tidyverse` package to achieve this. Here's the implementation of the `myConvert` function:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>%
+    group_split(list_names) %>%
+    map(~ .x$list_values)
+}
+```
+
+Here, we first split the data into groups based on the `list_names` column using `group_split`. Then, we use `map` to apply a function to each group. In this case, the function simply extracts the `list_values` column from each group. The output is a named list where the names are the unique values of the `list_names` column and the values are the corresponding `list_values` columns.

@@ -1,0 +1,22 @@
+Here is a Python function that uses the `re` module to split the input string at dashes and underscores, then uses the `str.capitalize()` method to capitalize the first letter of each word except the first one, and finally uses the `str.join()` method to join the words back together:
+
+```python
+import re
+
+def to_camel_case(text):
+    words = re.split('-|_', text)
+    return words[0] + ''.join(word.capitalize() for word in words[1:])
+```
+
+This function works by first splitting the input string into a list of words. Then it capitalizes the first letter of each word except the first one. Finally, it joins the words back together into a single string.
+
+Here's how it works on your test cases:
+
+```python
+print(to_camel_case(''))  # returns: ''
+print(to_camel_case("the_stealth_warrior"))  # returns: 'theStealthWarrior'
+print(to_camel_case("The-Stealth-Warrior"))  # returns: 'TheStealthWarrior'
+print(to_camel_case("A-B-C"))  # returns: 'ABC'
+```
+
+This function should work on any string that contains words separated by dashes or underscores. It will correctly handle strings that start with a capitalized word, and it will leave strings that don't contain any dashes or underscores unchanged.

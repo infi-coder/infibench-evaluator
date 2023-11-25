@@ -1,0 +1,9 @@
+In R, when you bind two data frames with the same column names using `cbind()`, it actually modifies the column names to make them unique. The column names of the resulting data frame would be "a" and "a.1". 
+
+So, to select the second column by name, you should use "a.1" instead of "a". Here is how you can do it:
+
+```r
+second_col <- d3$"a.1"
+```
+
+This will select the second column named "a.1" from the data frame `d3` and assign it to the variable `second_col`.

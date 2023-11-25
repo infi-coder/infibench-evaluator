@@ -1,0 +1,13 @@
+The issue might be that the `ContentView` struct is not being updated when the `isSelected` variable changes. Try wrapping the `Text` view in a `VStack` or `Group` to force the view to update. For example:
+
+```
+var body: some View {
+    Button(action: {
+        self.isSelected.toggle()
+    }) {
+        Group {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+```

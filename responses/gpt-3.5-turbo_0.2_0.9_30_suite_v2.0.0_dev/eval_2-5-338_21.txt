@@ -1,0 +1,36 @@
+The error message suggests that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `CommonsMultipartFile` class contains a `DiskFileItem` object, which in turn contains an `InputStream` object. The `InputStream` object cannot be serialized directly, so you need to configure the `RestTemplate` to use a `ByteArrayResource` instead.
+
+To do this, you can create a custom `HttpMessageConverter` that can handle `MultipartFile` objects. Here's an example:
+
+```java
+public class MultipartHttpMessageConverter extends FormHttpMessageConverter {
+
+    public MultipartHttpMessageConverter() {
+        super();
+        addPartConverter(new ByteArrayResourceHttpMessageConverter());
+    }
+
+    private static class ByteArrayResourceHttpMessageConverter extends ByteArrayHttpMessageConverter {
+
+        @Override
+        public boolean canWrite(Class<?> clazz, MediaType mediaType) {
+            return InputStreamResource.class.isAssignableFrom(clazz);
+        }
+
+        @Override
+        protected void writeInternal(byte[] bytes, HttpOutputMessage outputMessage) throws IOException {
+            InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(bytes));
+            super.writeInternal(resource, outputMessage);
+        }
+    }
+}
+```
+
+Then, you can configure the `RestTemplate` to use this custom `HttpMessageConverter`:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.getMessageConverters().add(new MultipartHttpMessageConverter());
+```
+
+With this configuration, the `RestTemplate` will be able to serialize the `MultipartFile` object correctly.

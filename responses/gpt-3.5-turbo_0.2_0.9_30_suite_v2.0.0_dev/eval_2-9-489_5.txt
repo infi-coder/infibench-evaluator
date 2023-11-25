@@ -1,0 +1,11 @@
+This warning is related to Elasticsearch's built-in security features not being enabled. Without authentication, your cluster could be accessible to anyone. 
+
+To fix this, you can enable Elasticsearch security by following the instructions in the link provided in the warning message: https://www.elastic.co/guide/en/elasticsearch/reference/7.13/security-minimal-setup.html.
+
+Alternatively, you can disable Elasticsearch security by adding the following line to your `config/initializers/searchkick.rb` file:
+
+```
+Searchkick.disable_callbacks = true
+```
+
+This will disable Elasticsearch security warnings and callbacks. However, it's not recommended to disable security features in Elasticsearch.

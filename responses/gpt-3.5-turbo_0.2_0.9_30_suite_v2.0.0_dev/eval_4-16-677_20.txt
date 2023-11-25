@@ -1,0 +1,18 @@
+In your `if` statement, you are using single quotes around `$searchT`, which means that the variable will not be expanded. To expand the variable, you can use double quotes instead. Here's the corrected code:
+
+```
+#!/bin/bash
+read -p "enter search term here: " searchT
+
+if [[ $(cat test.txt | grep -wi "$searchT") ]]; then     
+    echo "$(cat test.txt | grep "$searchT" && wc -l) number of matches found"
+    echo $(cat test.txt | grep "$searchT")
+
+else 
+    echo "no match found"    
+fi
+
+exit 0
+```
+
+With this change, the script should now correctly match the search term and run the `if` statement if there is a match.

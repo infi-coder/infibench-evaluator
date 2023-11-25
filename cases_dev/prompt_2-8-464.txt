@@ -1,0 +1,71 @@
+Getting `error fork/exec /var/task/main: no such file or directory` while executing lambda function.
+
+I am using windows platform to run and build code in Go.
+
+I have done following steps to deploy go aws-lambda handler:
+
+1. Written code in go language with VSCode in windows platform
+2. Build project with : go build main.go
+3. Convert main.exe to main.zip
+4. Uploaded main.zip with handler name main aws-lambda fuction using aws console account
+5. Created test event to test lambda function
+6. Got error "fork/exec /var/task/main: no such file or directory while executing lambda function"
+
+```go
+package main
+
+import (
+    "fmt"
+
+    "github.com/aws/aws-lambda-go/lambda"
+)
+
+// Request represents the requested object
+type Request struct {
+    ID    int    `json:"ID"`
+    Value string `json:"Value"`
+}
+
+// Response represents the Response object
+type Response struct {
+    Message string `json:"Message"`
+    Ok      bool   `json:"Ok"`
+}
+
+// Handler represents the Handler of lambda
+func Handler(request Request) (Response, error) {
+    return Response{
+        Message: fmt.Sprint("Process Request Id %f", request.ID),
+        Ok:      true,
+    }, nil
+}
+
+func main() {
+    lambda.Start(Handler)
+}
+```
+
+build command
+
+```
+go build main.go
+```
+
+Detail Error in AWS console
+
+```
+{
+  "errorMessage": "fork/exec /var/task/main: no such file or directory",
+  "errorType": "PathError"
+}
+```
+
+Log Output in AWS console
+
+```
+START RequestId: 9ef206ed-5538-407a-acf0-06673bacf2d7 Version: $LATEST
+fork/exec /var/task/main: no such file or directory: PathError
+null
+END RequestId: 9ef206ed-5538-407a-acf0-06673bacf2d7
+REPORT RequestId: 9ef206ed-5538-407a-acf0-06673bacf2d7  Duration: 0.64 ms   Billed Duration: 100 ms Memory Size: 512 MB Max Memory Used: 31 MB  Init Duration: 1.49 ms
+```

@@ -1,0 +1,27 @@
+# Corresponding to post https://stackoverflow.com/questions/66972195
+id: 2-10-497
+
+prompt_path: prompt_2-10-497.txt
+type: knowledge question-answering
+
+lang: rust
+
+grading:
+  max_score: 2.0
+  min_score: 0.0
+  keywords:
+    - content: 
+        and:
+          - content: 
+              or:
+                - "never"
+                - "not"
+          - content: 
+              content: "NULL"
+              to_lower: true
+      weight: 1.0
+    - content: 
+        or:
+          - "Option<Box<Node>>"
+          - "Option<T>"
+      weight: 1.0

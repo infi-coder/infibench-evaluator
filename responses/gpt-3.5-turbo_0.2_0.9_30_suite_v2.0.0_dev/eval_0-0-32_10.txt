@@ -1,0 +1,51 @@
+To identify if a div is visible on the viewport, you can use the Intersection Observer API. Here's an example code snippet that you can use:
+
+```javascript
+import React, { useRef, useEffect, useState } from "react";
+
+const ParentComponent = ({ data }) => {
+  const parentRef = useRef(null);
+  const [visibleIds, setVisibleIds] = useState([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target.id);
+        setVisibleIds(visible);
+      },
+      { rootMargin: "0px", threshold: 1.0 }
+    );
+
+    const children = parentRef.current.children;
+    for (let i = 0; i < children.length; i++) {
+      observer.observe(children[i]);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [data]);
+
+  return (
+    <div id="parent" ref={parentRef}>
+      {data.map((item) => (
+        <div key={item.id} id={item.id}>
+          {item.title}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+In this code, we use the `useRef` hook to get a reference to the parent div. We also use the `useState` hook to keep track of the visible divs. 
+
+In the `useEffect` hook, we create a new `IntersectionObserver` and observe all the children of the parent div. We set the `rootMargin` to `0px` and the `threshold` to `1.0` to ensure that the div is completely visible on the viewport before it is considered as visible. 
+
+When an intersection occurs, we filter the entries to get only the ones that are intersecting and map them to their respective ids. We then set the visible ids using the `setVisibleIds` function.
+
+Finally, we render the parent div and its children using the `map` function. We pass the `data` array as a prop to the component.

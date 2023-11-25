@@ -1,0 +1,27 @@
+The error message suggests that the response from the server is not in the expected JSON format. It seems that the response starts with a '<' character, which is not valid JSON.
+
+One possible reason for this error is that the server is returning an HTML error page instead of the expected JSON response. This can happen if there is an error in the server-side code or if the URL is incorrect.
+
+To troubleshoot this issue, you can try the following steps:
+
+1. Check the URL: Make sure that the URL used in the `Http.GetJsonAsync` method is correct and matches the route defined in the `EmployeeController` class. In this case, the URL should be `/api/Employee/Index`.
+
+2. Test the API: Use a tool like Postman or curl to test the API and see if it returns the expected JSON response. If the API returns an HTML error page, then there is likely an issue with the server-side code.
+
+3. Check the server-side code: Make sure that the `GetAllEmployees` method in the `EmployeeRepository` class is returning a valid JSON response. You can test this by calling the method directly and inspecting the output.
+
+4. Check the server logs: If the above steps do not help, check the server logs for any errors or warnings related to the API request.
+
+Assuming that the issue is with the server-side code, you can try modifying the `Index` method in the `EmployeeController` class to return a JSON response explicitly:
+
+```c#
+[HttpGet]
+[Route("api/Employee/Index")]
+public IActionResult Index()
+{
+    var employees = objemployee.GetAllEmployees();
+    return new JsonResult(employees);
+}
+```
+
+This should ensure that the response is always in the expected JSON format.

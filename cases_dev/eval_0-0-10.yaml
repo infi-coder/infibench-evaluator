@@ -1,0 +1,49 @@
+# Corresponding to post https://stackoverflow.com/questions/52491253
+id: 0-0-10
+# for case self identificaton
+
+prompt_path: prompt_0-0-10.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  blank_filling:
+    template: "There are two ways. Way 1:
+
+```javascript
+cy.get(\".ibxudA\").find([blank]).should([blank], \"Wildness\")
+```
+
+Way 2:
+
+```javascript
+cy.get(\".ibxudA\").find('.WildnessText-kRKTej').invoke('text').[blank]((text) => {
+    [blank](text.trim()).equal('Wildness')
+});
+```"
+    
+    targets: 
+        - .WildnessText-kRKTej
+        - have.text
+        - then
+        - expect

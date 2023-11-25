@@ -1,0 +1,38 @@
+The problem you're facing is due to the asynchronous nature of the `onItemSelectedListener`. The `onItemSelected` function is not immediately called when you set the listener. It is called later when an item is actually selected in the spinner. 
+
+This is why you're seeing the log "2" before "1". The function `setupListWithAdapter` continues to execute after setting the listener and returns `itemSelected` (which is still an empty string at this point), and only later when you select an item, `onItemSelected` is called and `itemSelected` is updated.
+
+To fix this, you should not return a value from `setupListWithAdapter`. Instead, you should handle the selected item directly inside `onItemSelected`. If you need to use the selected item outside of this function, consider using a callback interface or a shared ViewModel (if you're using MVVM architecture).
+
+Here's an example of how you might use a callback:
+
+```kotlin
+interface OnItemSelectedListener {
+    fun onItemSelected(item: String)
+}
+
+fun Spinner.setupListWithAdapter(list: MutableList<String>, callback: OnItemSelectedListener) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+            callback.onItemSelected(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+}
+```
+
+Then, when you call `setupListWithAdapter`, you provide an instance of `OnItemSelectedListener` where you handle the selected item:
+
+```kotlin
+spinner.setupListWithAdapter(list, object : OnItemSelectedListener {
+    override fun onItemSelected(item: String) {
+        // Handle the selected item here
+    }
+})
+```

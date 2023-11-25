@@ -1,0 +1,28 @@
+Sure, here is a generator function that will iterate over the leaf nodes of the HTML string and yield the desired object structure:
+
+```javascript
+function* iterLeafNodes(strHTML, format=[]) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strHTML, 'text/html');
+  const walk = function* (node, format) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.textContent.trim() !== '') {
+        yield { text: node.textContent, format };
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const newFormat = [...format];
+      if (node.tagName !== 'P') {
+        newFormat.push(node.tagName.toLowerCase());
+      }
+      for (const child of node.childNodes) {
+        yield* walk(child, newFormat);
+      }
+    }
+  };
+  for (const child of doc.body.childNodes) {
+    yield* walk(child, format);
+  }
+}
+```
+
+This function uses a recursive generator function `walk` to traverse the DOM tree. It checks if the current node is a text node, and if so, yields an object with the text content and the current format. If the node is an element node, it adds the tag name to the format (unless it's a paragraph tag), and then recursively walks the child nodes.

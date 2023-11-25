@@ -1,0 +1,35 @@
+# Corresponding to post https://stackoverflow.com/questions/51487818
+id: 3-12-561
+
+prompt_path: prompt_3-12-561.txt
+type: knowledge question-answering
+
+lang: dart
+
+grading:
+  max_score: 4.0
+  min_score: 0.0
+  blank_filling:
+    template: "You can set a timeout on any Future using the [blank] method. This will short-circuit after the given duration has elapsed by throwing a [blank].
+You can also set a timeout on the HttpClient itself using [blank]. This will apply to all requests made by the same client, after the timeout was set. When a request exceeds this timeout, a [blank] is thrown."
+    blank_str: "[blank]"
+
+    targets: 
+        - content:
+            or:
+              - content:
+                content: "Future.timeout"
+                to_lower: true
+              - content:
+                content: "timeout"
+                to_lower: true
+        - "TimeoutException"
+        - content:
+            or:
+              - content:
+                content: "HttpClient.connectionTimeout"
+                to_lower: true
+              - content:
+                content: "connectionTimeout"
+                to_lower: true
+        - "SocketException"

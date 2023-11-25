@@ -1,0 +1,28 @@
+One way to express this more idiomatically is to use the `Option::filter()` method, which returns `None` if the inner value does not meet the condition, and otherwise returns the original `Option`:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo.filter(|&val| val < 5).or_else(|| { foo.replace(5); Some(()) });
+}
+```
+This code first checks if the inner value is less than 5 using `filter()`. If the condition is not met, it returns `None`. Otherwise, it calls `or_else()` with a closure that replaces the inner value with 5 and returns `Some(())`.
+
+Another way to express this is to use `Option::map_or_else()`, which allows you to provide a closure to handle both the `Some` and `None` cases:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo.map_or_else(|| { foo.replace(5); }, |val| if val < 5 { /* do nothing */ });
+}
+```
+This code calls `map_or_else()` with two closures. The first closure is called if `foo` is `None`, and it replaces `foo` with 5. The second closure is called if `foo` is `Some`, and it checks if the inner value is less than 5. If the condition is met, it does nothing.
+
+A third way to express this is to use `Option::and_then()`, which allows you to chain `Option` values together and return `None` if any of them are `None`:
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo.and_then(|val| if val < 5 { None } else { Some(()) }).or_else(|| { foo.replace(5); Some(()) });
+}
+```
+This code calls `and_then()` with a closure that checks if the inner value is less than 5. If the condition is met, it returns `None`. Otherwise, it returns `Some(())`. It then calls `or_else()` with a closure that replaces the inner value with 5 and returns `Some(())`.
+
+All of these approaches are more concise and expressive than the original `match` statement.

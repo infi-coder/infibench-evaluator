@@ -1,0 +1,34 @@
+Sure, here's a possible implementation using the `random` module in Python:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the possible characters for the code
+    chars = string.ascii_letters + string.digits
+    
+    # Generate a random string of length 9
+    random_string = ''.join(random.choice(chars) for _ in range(9))
+    
+    # Insert the sub-string "NAA3U" at a random position
+    position = random.randint(0, 12)
+    random_string = random_string[:position] + "NAA3U" + random_string[position:]
+    
+    # Generate a random string of length 4 consisting of digits only
+    digits_string = ''.join(random.choice(string.digits) for _ in range(3))
+    
+    # Combine the two strings to form the final code
+    code = random_string + digits_string
+    
+    return code
+```
+
+Here's an example of how to use the function:
+
+```python
+code = generateRandomString()
+print(code)
+```
+
+This will output a random code that meets your requirements.

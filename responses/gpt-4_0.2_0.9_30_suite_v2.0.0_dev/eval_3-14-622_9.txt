@@ -1,0 +1,18 @@
+To conform to `ShapeStyle` in SwiftUI, you need to create a struct that conforms to `ShapeStyle` protocol. Here's how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+
+struct RedShapeStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType) {
+        shape.fill(Color.red)
+    }
+}
+```
+
+In the above code, `RedShapeStyle` is a struct that conforms to `ShapeStyle`. The `_apply(to:)` method is used to apply the style to the shape. In this case, it fills the shape with red color.

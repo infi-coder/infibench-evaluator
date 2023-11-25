@@ -1,0 +1,35 @@
+It seems like the module `github.ibm.com/kms/key-protect-client` is not being downloaded to the module cache on computer B. Here are some steps you can take to debug this issue:
+
+1. Check if the module is present in the module cache on computer B. You can do this by running the following command:
+
+   ```bash
+   go list -m github.ibm.com/kms/key-protect-client@v0.1.5
+   ```
+
+   If the module is present in the cache, you should see output like this:
+
+   ```
+   github.ibm.com/kms/key-protect-client v0.1.5
+   ```
+
+   If the module is not present in the cache, you will see an error message.
+
+2. Check if the module is accessible from computer B. You can do this by running the following command:
+
+   ```bash
+   go list -m -versions github.ibm.com/kms/key-protect-client
+   ```
+
+   This will list all the available versions of the module. If you see an error message, it means that the module is not accessible from computer B.
+
+3. Check if there are any network issues on computer B that might be preventing it from accessing the module. You can try pinging the domain `github.ibm.com` from computer B to see if there are any connectivity issues.
+
+4. Check if there are any issues with the authentication credentials on computer B. You can try running the following command to see if the credentials are being used:
+
+   ```bash
+   go env GONOPROXY GONOSUMDB GOPRIVATE
+   ```
+
+   This will list the environment variables that control module fetching behavior. Make sure that the domain `github.ibm.com` is listed in the `GOPRIVATE` variable.
+
+5. If none of the above steps work, you can try running the `go clean -modcache` command on computer B to clear the module cache and force a fresh download of all modules. This might help if there are any issues with the cached modules.

@@ -1,0 +1,26 @@
+Here is a Python function that generates a random string according to your requirements:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Generate a string of 11 random letters
+    letters = ''.join(random.choice(string.ascii_letters) for _ in range(11))
+    
+    # Generate a string of 3 random digits
+    digits = ''.join(random.choice(string.digits) for _ in range(3))
+    
+    # Combine the letters and digits into a 14-character string
+    code = letters + digits
+    
+    # Insert the sub-string "NAA3U" at a random position in the code
+    position = random.randint(0, 10)
+    code = code[:position] + 'NAA3U' + code[position:]
+    
+    return code
+```
+
+This function first generates a string of 11 random letters and a string of 3 random digits. It then combines these into a 14-character string. Finally, it inserts the sub-string "NAA3U" at a random position in the code.
+
+Please note that the function uses the `random.choice` function to select random elements from a sequence, and the `random.randint` function to generate a random integer within a specified range. The `string.ascii_letters` and `string.digits` constants contain all ASCII letters and digits, respectively.

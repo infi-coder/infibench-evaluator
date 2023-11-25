@@ -1,0 +1,38 @@
+The error message you're seeing is typically caused by an HTTP request that is not returning valid JSON. The '<' character at the start of the response suggests that you might be getting an HTML error page instead.
+
+First, ensure that your API is working correctly by testing the endpoint (`/api/Employee/Index`) directly in a browser or using a tool like Postman. If you see an HTML error page, you'll need to fix the error on the server side before you can proceed.
+
+If the API is working correctly, the issue might be with the URL you're using in the Blazor app. The URL `/api/Employee/Index` is relative, and it might not be resolving to the correct location. Try using an absolute URL instead:
+
+```c#
+empList = await Http.GetJsonAsync<Employee[]>("http://localhost:5000/api/Employee/Index");
+```
+
+Replace `http://localhost:5000` with the actual address of your server.
+
+Also, note that the `GetJsonAsync` method is obsolete in .NET 5.0 and later. If you're using .NET 5.0 or later, use `GetFromJsonAsync` instead:
+
+```c#
+empList = await Http.GetFromJsonAsync<Employee[]>("http://localhost:5000/api/Employee/Index");
+```
+
+Finally, your route attribute in the API controller is not correct. You have defined the route as `[Route("[controller]")]` and then again as `[Route("api/Employee/Index")]` for the `Index` action. This would result in a route like `Employee/api/Employee/Index`, which is not what you want. 
+
+You should define the route at the controller level as `[Route("api/[controller]")]` and then just use `[HttpGet]` for the `Index` action:
+
+```c#
+[ApiController]
+[Route("api/[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+This will result in the correct route `api/Employee`.

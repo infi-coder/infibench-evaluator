@@ -1,0 +1,46 @@
+The issue you are facing is related to Laravel's CSRF protection. When you log in, Laravel generates a CSRF token that is stored in the session. This token is used to verify that the form submission is coming from your application and not from a malicious source.
+
+When you log out from one tab, the CSRF token in the session is invalidated, and subsequent requests with that token will fail. However, the other tab still has the old CSRF token in its session, which is now invalid.
+
+To avoid this issue, you can add a middleware that will refresh the CSRF token on every request. This will ensure that the token is always up-to-date and valid.
+
+To do this, you can create a new middleware class by running the following command:
+
+```
+php artisan make:middleware RefreshCsrfToken
+```
+
+Then, open the `app/Http/Middleware/RefreshCsrfToken.php` file and add the following code:
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+class RefreshCsrfToken
+{
+    public function handle($request, Closure $next)
+    {
+        $response = $next($request);
+
+        $response->header('X-CSRF-Token', csrf_token());
+
+        return $response;
+    }
+}
+```
+
+This middleware will add a new `X-CSRF-Token` header to every response, containing the updated CSRF token.
+
+Finally, register the middleware in your `app/Http/Kernel.php` file by adding it to the `$middleware` array:
+
+```php
+protected $middleware = [
+    // ...
+    \App\Http\Middleware\RefreshCsrfToken::class,
+];
+```
+
+With this middleware in place, you should no longer see the "419 Page Expired" error when logging out from multiple tabs.

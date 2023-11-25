@@ -1,0 +1,19 @@
+This method submits a simple HTTP request and calls a success or error callback just fine:
+```
+void _getSimpleReply( String command, callback, errorCallback ) async {
+    try {
+      HttpClientRequest request = await _myClient.get( _serverIPAddress, _serverPort, '/' );
+      HttpClientResponse response = await request.close();
+      response.transform( utf8.decoder ).listen( (onData) { callback( onData ); } );
+    } on SocketException catch( e ) {
+      errorCallback( e.toString() );
+    }
+  }
+```
+If the server isn't running, the Android-app more or less instantly calls the errorCallback.
+On iOS, the errorCallback takes a very long period of time - more than 20 seconds - until any callback gets called.
+May I set for HttpClient() a maximum number of seconds to wait for the server side to return a reply?
+Specifically, please don't add other text and repeat the following paragraph with [blank] filled:
+
+You can set a timeout on any Future using the [blank] method. This will short-circuit after the given duration has elapsed by throwing a [blank].
+You can also set a timeout on the HttpClient itself using [blank]. This will apply to all requests made by the same client, after the timeout was set. When a request exceeds this timeout, a [blank] is thrown.

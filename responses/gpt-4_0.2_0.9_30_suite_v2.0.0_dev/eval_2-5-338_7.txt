@@ -1,0 +1,32 @@
+The error message indicates that Jackson is trying to serialize the `MultipartFile` object to JSON, but it can't because `MultipartFile` is not serializable to JSON. 
+
+When you are sending a file over HTTP, you should not try to serialize it to JSON. Instead, you should send it as binary data. 
+
+The problem in your code is that you are trying to add the `MultipartFile` directly to the `MultiValueMap`. Instead, you should convert it to a `HttpEntity` and then add it to the `MultiValueMap`.
+
+Here is how you can do it:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+// Convert MultipartFile to HttpEntity
+MultipartFile multipartFile = souqBean.getCircularAttachment();
+HttpHeaders partHeaders = new HttpHeaders();
+partHeaders.setContentType(MediaType.valueOf(multipartFile.getContentType()));
+partHeaders.setContentLength(multipartFile.getSize());
+partHeaders.setContentDispositionFormData("circularAttachment", multipartFile.getOriginalFilename());
+HttpEntity<byte[]> fileEntity = new HttpEntity<>(multipartFile.getBytes(), partHeaders);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+body.add("circularAttachment", fileEntity);
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<?> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+This code creates a new `HttpEntity` for the `MultipartFile` and sets the appropriate headers for it. Then it adds this `HttpEntity` to the `MultiValueMap`. This way, the `MultipartFile` will be sent as binary data, not as JSON.

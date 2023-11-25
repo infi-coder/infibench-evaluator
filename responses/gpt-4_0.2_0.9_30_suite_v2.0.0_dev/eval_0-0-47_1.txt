@@ -1,0 +1,15 @@
+Yes, you're on the right track. You just need to define the type for the objects in the array separately. Here's how you can do it:
+
+```typescript
+type Product = {
+  name: string;
+  price: number;
+  description: string;
+};
+
+bagTotal = (products: Product[]) => {
+  // function does stuff
+}
+```
+
+In this case, `Product` is a type that represents an object with `name`, `price`, and `description` properties. `Product[]` is an array of such objects. This way, you can ensure that the `products` parameter of your `bagTotal` function is an array of objects with the correct properties.

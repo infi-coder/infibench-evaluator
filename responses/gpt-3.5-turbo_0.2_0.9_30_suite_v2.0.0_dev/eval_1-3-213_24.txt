@@ -1,0 +1,19 @@
+You can try using the `tz_localize` method to set the timezone to None and then use the `tz_convert` method to convert it to the desired timezone. Here's how you can modify your code:
+
+```python
+df['time'] = df['time'].dt.tz_localize(None).dt.tz_convert('UTC')
+```
+
+This will remove the timezone information from the "time" column and convert it to UTC timezone. You can replace 'UTC' with the desired timezone.
+
+Here's the complete `removeTimezone` function:
+
+```python
+import pandas as pd
+
+def removeTimezone(df):
+    df['time'] = df['time'].dt.tz_localize(None)
+    return df
+```
+
+You can call this function with your DataFrame as the argument and it will return the modified DataFrame with the timezone information removed from the "time" column.

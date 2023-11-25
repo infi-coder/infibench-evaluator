@@ -1,0 +1,17 @@
+Here is a Python function that uses the `re` module to replace underscores and dashes with spaces, splits the string into words, then joins them together in camel case format:
+
+```python
+import re
+
+def to_camel_case(text):
+    words = re.sub('[_-]', ' ', text).split()
+    if not words:
+        return ''
+    return words[0] + ''.join(word.title() for word in words[1:])
+```
+
+This function works by first replacing all underscores and dashes in the input string with spaces using the `re.sub` function. This creates a string where words are separated by spaces. The `split` method is then used to split this string into a list of words.
+
+If the list of words is empty (i.e., the input string was empty), the function returns an empty string.
+
+Otherwise, the function returns a string that is the concatenation of the first word in the list and the rest of the words with their first letter capitalized. This is done using the `title` method, which capitalizes the first letter of a string and makes the rest of the string lowercase. The `join` method is used to concatenate all the words together without spaces, creating a camel case string.

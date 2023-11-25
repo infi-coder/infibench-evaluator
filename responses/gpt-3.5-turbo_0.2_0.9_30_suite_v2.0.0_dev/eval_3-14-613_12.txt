@@ -1,0 +1,14 @@
+This error message suggests that the preview target is not included in the current scheme. You can try the following steps to fix the issue:
+
+1. Go to the project settings and select the scheme that you are using.
+2. Click on "Manage Schemes" and make sure that the preview target is included in the list of targets for the scheme.
+3. If the preview target is not included, click on the "+" button and add it to the list of targets.
+4. Clean and rebuild the project, and try running the preview again.
+
+If this doesn't work, you can also try resetting the Xcode preferences by running the following command in the terminal:
+
+```
+defaults delete com.apple.dt.Xcode
+```
+
+This will reset all Xcode preferences to their default values, which may help resolve the issue.

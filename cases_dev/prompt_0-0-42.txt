@@ -1,0 +1,18 @@
+I would like to upgrade from `connect-mongo` v3 to v4 in my node JS application.
+
+My old code is 
+
+```javascript
+const MongoStore = require('connect-mongo')(session)
+
+...
+
+app.use(session({
+    secret: 'story book',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+}))
+```
+
+The mongoURL is stored in `process.env.MONGODB_URI`. Could you help me to revise the above code? You don't need to output explanation or contextual code.

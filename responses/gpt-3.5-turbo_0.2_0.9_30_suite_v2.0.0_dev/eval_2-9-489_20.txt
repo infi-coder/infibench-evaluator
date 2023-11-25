@@ -1,0 +1,13 @@
+This warning message is related to Elasticsearch's built-in security features that are not enabled by default. To fix this issue, you need to enable Elasticsearch security features by following the steps below:
+
+1. Open the Elasticsearch configuration file located at `config/elasticsearch.yml`.
+
+2. Add the following lines to the file:
+
+```
+xpack.security.enabled: true
+```
+
+3. Save the file and restart Elasticsearch.
+
+After restarting Elasticsearch, the warning message should disappear. If you still see the warning message, you may need to check if there are any other Elasticsearch configuration files that need to be updated.

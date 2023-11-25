@@ -1,0 +1,17 @@
+For the first question, the issue could be related to the session configuration on the host domain. You can try the following steps to resolve the issue:
+
+1. Check if the session driver is set correctly on the host domain. It should be set to the same driver as on your local machine.
+
+2. Check if the session cookie domain is set correctly on the host domain. It should be set to the domain name of your application.
+
+3. Check if the session cookie path is set correctly on the host domain. It should be set to the root path of your application.
+
+4. Check if the session cookie secure flag is set correctly on the host domain. It should be set to true if your application is using HTTPS.
+
+5. Check if the session cookie HTTP only flag is set correctly on the host domain. It should be set to true to prevent cross-site scripting attacks.
+
+For the second question, the error message suggests that the SSL version being used by the server is not compatible with the SSL version being used by the client. You can try changing the encryption method to TLS in your .env file and mail.php configuration file. 
+
+Also, make sure that the port number is correct for the SMTP server. Some SMTP servers use port 465 for SSL encryption and port 587 for TLS encryption. 
+
+If the issue persists, you can try contacting the email service provider to check if there are any specific configurations required for sending emails from their SMTP server.

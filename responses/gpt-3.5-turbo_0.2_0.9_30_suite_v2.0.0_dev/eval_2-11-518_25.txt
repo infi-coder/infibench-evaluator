@@ -1,0 +1,7 @@
+The Rule of 5 is not outdated, as there are still cases where you may need to define these special member functions. 
+
+While it is true that implicit constructors and destructors work fine for aggregate data structures, there are cases where you may need to define your own copy or move constructors/assignment operators. For example, if your class contains a pointer to dynamically allocated memory, you may need to define a copy constructor and copy assignment operator to ensure that the memory is properly managed and not leaked or double-deleted. Similarly, if your class contains a non-copyable or non-movable resource, you may need to define your own copy or move constructors/assignment operators to properly manage that resource.
+
+While smart pointers can help manage resources, they are not always the best solution. Smart pointers can add overhead and complexity to your code, and may not be appropriate for all situations. Additionally, using smart pointers does not necessarily eliminate the need for defining your own copy or move constructors/assignment operators.
+
+In summary, while the Rule of 5 may not apply to all classes, it is still an important concept to understand and apply when necessary.

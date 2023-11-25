@@ -1,0 +1,23 @@
+The error message indicates that the response from the server is not a valid JSON. This could be due to several reasons:
+
+1. The server is not returning a JSON: Check the response from the server to ensure it's returning a valid JSON. You can print the response body before decoding it to check what it contains. 
+
+```dart
+print('Response body: ${response.body}');
+```
+
+2. There is a leading/trailing whitespace: Sometimes, the server might return a JSON with leading or trailing whitespaces which can cause this error. You can try trimming the response before decoding it.
+
+```dart
+List data = json.decode(response.body.trim());
+```
+
+3. The server is returning an error message: If there's an error on the server side, it might return an error message instead of a JSON. Again, printing the response body will help you check this.
+
+4. The server response is not encoded in UTF-8: If the server is returning the response in an encoding other than UTF-8, it can cause this error. You can try setting the `charset` in the `Accept` header to `utf-8`.
+
+```dart
+headers:{ "Accept": "application/json; charset=utf-8" }
+```
+
+If none of these solutions work, you might need to debug the server side code to see what it's returning.

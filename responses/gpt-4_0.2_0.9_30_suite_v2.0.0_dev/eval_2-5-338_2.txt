@@ -1,0 +1,30 @@
+The error message indicates that Jackson is trying to serialize the `MultipartFile` object, but it doesn't know how to serialize the `ByteArrayInputStream` which is part of the `MultipartFile`.
+
+The `MultipartFile` should not be serialized to JSON, but should be sent as binary data. The problem is that you're trying to send a `MultipartFile` as part of a `MultiValueMap<String, Object>`. When the `RestTemplate` tries to convert this map to a HTTP request, it uses Jackson to serialize the `MultipartFile` to JSON, which is not correct.
+
+You should use `HttpEntity<MultiValueMap<String, Object>>` and `org.springframework.core.io.ByteArrayResource` instead of `MultipartFile` directly. Here is an example:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+// Wrap the MultipartFile to ByteArrayResource
+body.add("circularAttachment", new ByteArrayResource(souqBean.getCircularAttachment().getBytes()) {
+    @Override
+    public String getFilename() {
+        return souqBean.getCircularAttachment().getOriginalFilename();
+    }
+});
+
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+This way, the `MultipartFile` will be correctly sent as binary data in the HTTP request.

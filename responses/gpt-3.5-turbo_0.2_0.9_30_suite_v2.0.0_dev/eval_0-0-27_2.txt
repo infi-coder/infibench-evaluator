@@ -1,0 +1,20 @@
+It seems like you are trying to fetch data from a GraphQL API, but the API endpoint you are using (`https://48p1r2roz4.sse.codesandbox.io`) is not responding. This is why the loading state is hanging at `true` and the data is not being fetched.
+
+To fix this issue, you can try using a different GraphQL API endpoint that is currently active and responding to requests. You can find a list of public GraphQL APIs to test with at https://github.com/APIs-guru/graphql-apis.
+
+For example, you can try using the following endpoint instead:
+
+```
+https://countries.trevorblades.com/
+```
+
+This endpoint provides a simple GraphQL API that returns information about countries. You can update the `uri` property of your `ApolloClient` configuration to use this endpoint instead:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'https://countries.trevorblades.com/',
+    cache: new InMemoryCache(),
+});
+```
+
+After making this change, you should be able to fetch data successfully using `useQuery`.

@@ -1,0 +1,64 @@
+You can create a factory method that returns a `ServiceBusSender` instance for a specific queue name, and then register that factory method as a singleton in the dependency injection container. Here's an example:
+
+```c#
+// Define a factory method that creates a ServiceBusSender instance for a specific queue name
+private ServiceBusSender CreateServiceBusSender(string queueName)
+{
+    var serviceBusConfiguration = _configuration.GetSection("ServiceBus").Get<ServiceBusConfiguration>();
+
+    var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+
+    return serviceBusClient.CreateSender(queueName);
+}
+
+// Register the factory method as a singleton for each queue name
+_services.AddSingleton(sp => CreateServiceBusSender("queue1"));
+_services.AddSingleton(sp => CreateServiceBusSender("queue2"));
+```
+
+Then, in your `CarReservationMessagingService` class, you can inject the `ServiceBusSender` instance for a specific queue name like this:
+
+```c#
+public CarReservationMessagingService(ServiceBusSender serviceBusSender)
+{
+    _serviceBusSender = serviceBusSender ?? throw new ArgumentNullException(nameof(serviceBusSender));
+}
+
+public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation)
+{
+    var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+    {
+        Id = Guid.NewGuid().ToString(),
+        CarId = carReservation.CarId,
+        CustomerId = carReservation.CustomerId,
+        RentFrom = carReservation.RentFrom,
+        RentTo = carReservation.RentTo
+    };
+
+    var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+    ServiceBusMessage message = new ServiceBusMessage(serializedMessage);
+    await _serviceBusSender.SendMessageAsync(message);
+}
+```
+
+When you need to send a message to a specific queue, you can simply inject the `ServiceBusSender` instance for that queue name. For example:
+
+```c#
+public class MyController : ControllerBase
+{
+    private readonly ServiceBusSender _queue1Sender;
+    private readonly ServiceBusSender _queue2Sender;
+
+    public MyController(ServiceBusSender queue1Sender, ServiceBusSender queue2Sender)
+    {
+        _queue1Sender = queue1Sender;
+        _queue2Sender = queue2Sender;
+    }
+
+    [HttpPost("queue1")]
+    public async Task<IActionResult> SendMessageToQueue1()
+    {
+        var message = new ServiceBus

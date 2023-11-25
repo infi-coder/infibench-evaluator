@@ -1,0 +1,12 @@
+You can optimize your task by using `awk` command in bash. `awk` is a powerful tool for processing or analyzing text files, especially useful when you deal with data files.
+
+Here is the optimized bash script:
+
+```bash
+awk -F'=' '
+  $1=="name" {name=$2}
+  $1=="value" {print name"="$2}
+' input.txt > output.txt
+```
+
+This script reads the input file line by line. If the line starts with "name", it stores the name. If the line starts with "value", it prints the previously stored name along with the value to the output file. This script is much faster as it doesn't need to spawn extra processes for `grep` and `sed` for each line in the file.

@@ -1,0 +1,23 @@
+One way to express this more idiomatically is to use the `Option::filter()` method, which returns the original `Option` if the predicate is true, or `None` otherwise. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.filter(|&val| val < 5).map(|_| 5);
+}
+```
+
+This code first checks if `foo` contains a value less than 5 using the `filter()` method. If the predicate is true, it returns the original `Option`, otherwise it returns `None`. Then, the `map()` method is used to replace the value with 5 if the `Option` is not `None`.
+
+Another way to express this is to use the `Option::and_then()` method, which applies a function to the inner value of an `Option` if it is not `None`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.and_then(|val| if val < 5 { Some(val) } else { None }).map(|_| 5);
+}
+```
+
+This code first checks if `foo` contains a value less than 5 using the `and_then()` method. If the `Option` is not `None`, it applies the closure to the inner value. If the closure returns `Some(val)`, the original `Option` is returned, otherwise `None` is returned. Then, the `map()` method is used to replace the value with 5 if the `Option` is not `None`.
+
+Both of these approaches are more concise and expressive than the original `match` statement.

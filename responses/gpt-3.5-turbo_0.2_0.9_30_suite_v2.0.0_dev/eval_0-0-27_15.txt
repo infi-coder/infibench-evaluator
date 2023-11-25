@@ -1,0 +1,7 @@
+It seems like the issue is with the `uri` you are using in your `ApolloClient`. The `uri` you are using is a public endpoint provided by Apollo, which may not be working properly or may have some restrictions.
+
+You need to replace the `uri` with the endpoint of your GraphQL server. You can check with your backend team or use a tool like GraphiQL to get the correct endpoint.
+
+For example, if you are using a local GraphQL server, you can use `http://localhost:4000/graphql` as your `uri`.
+
+Once you have updated the `uri`, try running the app again and see if it works.

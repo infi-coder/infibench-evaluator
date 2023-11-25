@@ -1,0 +1,2 @@
+@Component in a java class is to tell to spring: Register me automatically at the startup in your context so any other class could use me using dependency injection: @Autowire
+@Configuration and @Bean are used to add manually a java class to the spring context at the startup. Commonly @Bean is used when you can't annotate a class with some annotation. Sample: Libraries not compatible with spring, old libraries or just any class that requires more than a simple instantation.

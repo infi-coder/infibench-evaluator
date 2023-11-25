@@ -1,0 +1,46 @@
+Your code seems to be on the right track, but there are a few issues that need to be addressed:
+
+1. You are trying to use `query` and `currentSheet` as variables, but you didn't declare them. In VBA, you need to declare variables with `Dim` keyword.
+
+2. You are trying to use `query` as a `WorkbookQuery` object, but you are assigning a string value to it. You need to create a `WorkbookQuery` object and assign it to `query`.
+
+3. You are trying to use `currentSheet` as a `Worksheet` object, but you are assigning a string value to it. You need to get a `Worksheet` object and assign it to `currentSheet`.
+
+Here is a corrected version of your code:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    Dim query As String
+    Dim currentSheet As Worksheet
+
+    ' Get the query from the cell A1 in Sheet6
+    query = Sheets("Sheet6").Range("A1").Value
+
+    ' Get the current active sheet
+    Set currentSheet = ActiveSheet
+
+    ' Create a ListObject with a Query Table
+    With currentSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=Sheets("target").Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+
+End Sub
+```
+
+Please note that this code assumes that you have a valid Power Query in the cell A1 of Sheet6, and that you want to load the result of the query to the cell A1 of the sheet named "target".

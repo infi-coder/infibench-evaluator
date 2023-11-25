@@ -1,0 +1,30 @@
+The issue you're encountering is due to the fact that your system is trying to use the Windows version of npm, which is not compatible with the Linux subsystem. 
+
+You can solve this issue by adding the following lines to your `.bashrc` file:
+
+```bash
+# Add the following lines to your .bashrc file
+export PATH=/usr/bin:$PATH
+```
+
+This will ensure that your system uses the Linux version of npm and node, which are located in `/usr/bin`.
+
+After adding these lines, you need to source your `.bashrc` file for the changes to take effect. You can do this by running the following command:
+
+```bash
+source ~/.bashrc
+```
+
+Now, when you run `npm -v`, it should display the correct version number. If it doesn't, you might need to reinstall npm using the following command:
+
+```bash
+sudo apt-get install -y npm
+```
+
+Then, check the version again:
+
+```bash
+npm -v
+```
+
+This should solve your problem.

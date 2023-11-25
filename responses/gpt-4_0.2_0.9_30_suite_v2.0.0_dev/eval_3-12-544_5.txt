@@ -1,0 +1,16 @@
+The error you're seeing is because you're trying to use async code in your `main` function without marking it as `async`. The `getApplicationDocumentsDirectory()` function is asynchronous, which means it returns a `Future`. You need to wait for this `Future` to complete before you can use its value.
+
+To fix this, you should mark your `main` function as `async` and use the `WidgetsFlutterBinding.ensureInitialized()` function to make sure that the Flutter engine is properly initialized before you try to use the `path_provider` package.
+
+Here's how you can modify your code:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  runApp(MyApp());
+}
+```
+
+The `WidgetsFlutterBinding.ensureInitialized()` function is required because you're calling `await` in your `main` function, and you need to make sure that the Flutter engine is ready before you start waiting for Futures to complete.

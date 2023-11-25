@@ -1,0 +1,13 @@
+Sure, the issue is that you are mocking the class as an object, but then trying to instantiate it as a class. You should mock it as a class instead. Here's how you can do it:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {someMethod: () => {}};
+  });
+});
+```
+
+In this code, `jest.fn().mockImplementation()` is used to mock the class constructor. This way, when you call `new API()`, it will return the mock object `{someMethod: () => {}}`.

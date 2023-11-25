@@ -1,0 +1,35 @@
+AWS CLI version 2 introduced automatic paging for commands that return long outputs. This is why you're seeing the pager. You can disable this feature by setting the AWS_PAGER environment variable to an empty string.
+
+You can do this in your script as follows:
+
+```bash
+for x in 1 2 3; do 
+  AWS_PAGER="" aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo; 
+done
+```
+
+Or you can set it once in your shell session before running the script:
+
+```bash
+export AWS_PAGER=""
+```
+
+Or you can set it permanently for all sessions by adding the above line to your shell's profile script (like `~/.bashrc` or `~/.bash_profile` for bash).
+
+This will disable the pager and the output will be printed directly to the terminal. If you want to redirect the output to a file, you can do so using the standard redirection operators in bash:
+
+```bash
+for x in 1 2 3; do 
+  AWS_PAGER="" aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo > output.txt; 
+done
+```
+
+This will redirect the standard output to a file named `output.txt`. If you want to also redirect the standard error, you can use `&>` instead of `>`:
+
+```bash
+for x in 1 2 3; do 
+  AWS_PAGER="" aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo &> output.txt; 
+done
+```
+
+This will redirect both the standard output and the standard error to the file.

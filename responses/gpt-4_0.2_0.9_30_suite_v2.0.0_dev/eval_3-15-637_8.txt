@@ -1,0 +1,17 @@
+The error you're encountering could be due to a number of reasons. Here are a few things you might want to check:
+
+1. **SeleniumBasic and Browser Driver Compatibility**: Ensure that the SeleniumBasic version you're using is compatible with the browser driver. For example, if you're using Chrome, make sure that the ChromeDriver version is compatible with the version of Chrome installed on your machine.
+
+2. **Excel Trust Center Settings**: Check your Excel Trust Center settings. Make sure that 'Trust access to the VBA project object model' is enabled. You can find this setting in Excel by going to `File > Options > Trust Center > Trust Center Settings > Macro Settings`.
+
+3. **References in VBA**: Check if there are any missing references in your VBA project. Go to `VBA Editor > Tools > References` and ensure that all necessary libraries are checked.
+
+4. **Reinstall SeleniumBasic**: Uninstall and reinstall SeleniumBasic. Sometimes, the installation might not have completed successfully, causing issues.
+
+5. **Code Issue**: There might be an issue with the code itself. Try running a simpler code to see if the issue persists. For example:
+    ```vba
+    Dim bot As New WebDriver
+    bot.Start "chrome", "http://www.google.com"
+    bot.Quit
+    ```
+If none of the above solutions work, it would be helpful if you could provide the exact error message you're receiving. This would make it easier to diagnose the problem.

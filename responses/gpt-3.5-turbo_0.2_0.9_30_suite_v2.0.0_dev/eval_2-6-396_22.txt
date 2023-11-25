@@ -1,0 +1,17 @@
+The error message is caused by the line `user.HasIndex(x => x.Gender);` in your `OnModelCreating` method. This line is trying to create an index on the `Gender` property of the `User` entity, but `Gender` is a navigation property and cannot be used as a property in this context.
+
+To fix this error, you can remove the line `user.HasIndex(x => x.Gender);` from your `OnModelCreating` method. This line is not necessary for your code to work correctly, as the foreign key relationship between `User` and `Gender` will already create an index on the `GenderId` property.
+
+Your updated `OnModelCreating` method should look like this:
+```c#
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+    }
+}
+```

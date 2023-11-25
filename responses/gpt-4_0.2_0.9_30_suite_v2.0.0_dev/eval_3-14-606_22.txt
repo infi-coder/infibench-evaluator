@@ -1,0 +1,15 @@
+It seems like there's a misunderstanding. There is no "Developer Mode" to enable on iOS like there is on Android. 
+
+However, the alert you're seeing is likely related to the provisioning profile used to sign the app. If the app was signed with a developer provisioning profile, it can only be installed on devices that are registered with the Apple Developer account that was used to create the provisioning profile.
+
+Here are the steps you need to follow:
+
+1. Register your device's UDID with the Apple Developer account used to create the provisioning profile. You can find your device's UDID by connecting it to a computer, opening iTunes, selecting the device, and clicking on the serial number to reveal the UDID.
+
+2. Once your device is registered, you'll need to create a new provisioning profile that includes your device, download it, and use it to sign the app.
+
+3. You can then install the app on your device. If the app was built and signed correctly, you should be able to open it without seeing the alert.
+
+If you're not the developer of the app, you'll need to contact the developer and ask them to add your device to their Apple Developer account and re-sign the app. 
+
+If you're trying to install an app from a source other than the App Store and you're not a developer, you might be able to use a service like TestFlight, which allows developers to distribute beta versions of their apps. However, the developer will still need to invite you to test the app.

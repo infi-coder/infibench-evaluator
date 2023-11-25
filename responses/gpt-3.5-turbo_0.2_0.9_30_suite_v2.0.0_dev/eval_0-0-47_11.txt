@@ -1,0 +1,15 @@
+Yes, you can define an interface for the object type and use it as the type for the array parameter. Here's an example:
+
+```typescript
+interface Product {
+  name: string;
+  price: number;
+  description: string;
+}
+
+const bagTotal = (products: Product[]) => {
+  // function does stuff
+}
+```
+
+This defines an interface called `Product` with the properties `name`, `price`, and `description`. Then, the `bagTotal` function takes an array of objects that conform to the `Product` interface.

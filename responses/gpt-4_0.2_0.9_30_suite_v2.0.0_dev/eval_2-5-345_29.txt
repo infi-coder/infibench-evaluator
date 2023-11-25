@@ -1,0 +1,23 @@
+The error you're encountering is due to a compatibility issue between the version of Maven bundled with IntelliJ IDEA and the version of Maven used in your project. 
+
+The Maven version that comes with IntelliJ IDEA may not be compatible with the newer version of Maven (3.8.5) used in your Spring Boot 2.7 project. This incompatibility is causing the `java.lang.NoSuchMethodError` for the `org.apache.maven.model.validation.DefaultModelValidator` method.
+
+To resolve this issue, you can try the following steps:
+
+1. Update IntelliJ IDEA to the latest version. JetBrains regularly releases updates to IntelliJ IDEA that include fixes for compatibility issues with newer versions of Maven.
+
+2. Configure IntelliJ IDEA to use the same version of Maven as your project. Here's how you can do this:
+
+   - Go to `File > Settings` (or `IntelliJ IDEA > Preferences` for macOS).
+   - Navigate to `Build, Execution, Deployment > Build Tools > Maven`.
+   - In the `Maven home directory` field, enter the path to the directory where Maven 3.8.5 is installed on your system.
+
+3. If the above steps don't work, you might need to downgrade the version of Maven used in your project to a version that's compatible with IntelliJ IDEA. You can do this by modifying the `maven-wrapper.properties` file in your project:
+
+   ```
+   distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.1/apache-maven-3.8.1-bin.zip
+   ```
+
+   Replace `3.8.5` with `3.8.1` or another version that's compatible with your version of IntelliJ IDEA.
+
+Remember to restart IntelliJ IDEA after making these changes to ensure they take effect.

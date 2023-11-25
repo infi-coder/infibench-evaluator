@@ -1,0 +1,16 @@
+It seems like there's a misunderstanding here. iOS doesn't have a "Developer Mode" that you can enable or disable like Android. 
+
+The alert you're seeing is likely related to the provisioning profile used to sign the app. If the app was signed with a Development Provisioning Profile, it can only be installed on devices that are registered with your Apple Developer account.
+
+Here are the steps to register your device with your Apple Developer account:
+
+1. Connect your device to your Mac.
+2. Open Xcode.
+3. Go to `Window` -> `Devices and Simulators`.
+4. Under the `Devices` tab, select your device.
+5. Click on the `+` button under the `Installed Apps` section.
+6. Select the .ipa file of your app and click `Open`.
+
+If you're not the developer of the app, you'll need to ask the developer to sign the app with an Ad Hoc Provisioning Profile, which allows the app to be installed on a limited number of devices without them being registered with the developer's Apple Developer account. 
+
+Alternatively, if the app is for public testing, the developer can use TestFlight to distribute the app, which doesn't require the devices to be registered with the developer's Apple Developer account.

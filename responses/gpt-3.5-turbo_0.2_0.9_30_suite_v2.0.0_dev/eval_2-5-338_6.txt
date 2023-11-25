@@ -1,0 +1,26 @@
+The error message indicates that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `CommonsMultipartFile` class contains a `DiskFileItem` object that has an `inputStream` field of type `ByteArrayInputStream`, which cannot be serialized by Jackson.
+
+To solve this issue, you can configure the `RestTemplate` to use a different message converter that can handle multipart requests. One option is to use the `org.springframework.http.converter.FormHttpMessageConverter` class, which can handle multipart/form-data requests.
+
+Here's an example of how to configure the `RestTemplate` to use the `FormHttpMessageConverter`:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
+```
+
+With this configuration, you can use the `postForObject` method to send the multipart request:
+
+```java
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+body.add("circularAttachment", new FileSystemResource(file)); // file is a File object
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+String url = "http://localhost:8081/circular-save";
+Boolean result = restTemplate.postForObject(url, body, Boolean.class);
+```
+
+Note that in this example, the `circularAttachment` field is set to a `FileSystemResource` object, which represents the file to be uploaded. You can replace this with a `ByteArrayResource` if you have the file contents in memory.
+
+Also, make sure that the microservice is configured to handle multipart requests. You can do this by adding the `@RequestPart` annotation to the controller method parameter that corresponds to the `circularAttachment` field.

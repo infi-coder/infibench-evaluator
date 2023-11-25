@@ -1,0 +1,9 @@
+The issue is that the `$(echo {} | sed 's/\?.*//g')` part is evaluated before the `find` command is executed, so it doesn't have the expected effect.
+
+You can use a small bash script in the `-exec` part of the `find` command to solve this issue:
+
+```bash
+find . -type f -name '*\?*' -exec bash -c 'mv "$0" "${0%%\?*}"' {} \;
+```
+
+This command will find all files in the current directory and its subdirectories that contain a question mark in their name, and rename them by removing the question mark and everything after it. The `${0%%\?*}` part is a parameter expansion in bash that removes the longest match of `\?*` from the end of the string.

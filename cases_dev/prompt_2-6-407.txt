@@ -1,0 +1,71 @@
+I am trying to implement a small crud in sample application.
+
+I'm using blazor in an application, but found some problem with server call.
+
+I created a simple API controller with the name of Employee and method with HTTP verbs.
+```c#
+ [ApiController]
+    [Route("[controller]")]
+    public class EmployeeController : ControllerBase
+    {
+        EmployeeRepository objemployee = new EmployeeRepository();
+        [HttpGet]
+        [Route("api/Employee/Index")]
+        public IEnumerable<Employee> Index()
+        {
+            return objemployee.GetAllEmployees();
+        }
+   }
+```
+The
+```c#
+empList = await Http.GetJsonAsync<Employee[]>("/api/Employee/Index");
+```
+line reports a problem and I have no idea with it since I'm a newbie with blazor. What should I do in my code?
+
+Application built with asp. Net core 3.0", "blazor preview 9".
+
+Output: I tried to follow guides and looked up example implementations but could not solve the issue.
+
+I am getting the following exception:
+```
+  WASM: Unhandled exception rendering component:
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:
+    System.Text.Json.JsonException:
+    '<' is an invalid start of a value. Path: $ | LineNumber: 0 | BytePositionInLine: 0. --->
+    System.Text.Json.JsonReaderException: '<' is an invalid start of a value. LineNumber: 0 | BytePositionInLine: 0.
+d.printErr @ blazor.webassembly.js:1
+    blazor.webassembly.js:1 WASM:   at.    System.Text.Json.ThrowHelper.ThrowJsonReaderException (System.Text.Json.Utf8JsonReader& json, System.Text.Json.ExceptionResource resource, System.Byte nextByte, System.ReadOnlySpan`1[T] bytes) <0x2398fc8 + 0x00020> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at System.Text.Json.Utf8JsonReader.ConsumeValue (System.Byte marker) <0x1fa7718 + 0x0028e> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at System.Text.Json.Utf8JsonReader.ReadFirstToken (System.Byte first) <0x1fa6d60 + 0x001ec> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at System.Text.Json.Utf8JsonReader.ReadSingleSegment () <0x1fa6618 + 0x00234> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at System.Text.Json.Utf8JsonReader.Read () <0x1fa61d0 + 0x00012> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at System.Text.Json.JsonSerializer.ReadCore (System.Text.Json.JsonSerializerOptions options, System.Text.Json.Utf8JsonReader& reader, System.Text.Json.ReadStack& readStack) <0x1fa5b40 + 0x00062> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:    --- End of inner exception stack trace ---
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at System.Text.Json.ThrowHelper.ReThrowWithPath (System.Text.Json.ReadStack& readStack, System.Text.Json.JsonReaderException ex) <0x23e6bc8 + 0x00116> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at System.Text.Json.JsonSerializer.ReadCore (System.Text.Json.JsonSerializerOptions options, System.Text.Json.Utf8JsonReader& reader, System.Text.Json.ReadStack& readStack) <0x1fa5b40 + 0x002a8> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at System.Text.Json.JsonSerializer.ReadCore (System.Type returnType, System.Text.Json.JsonSerializerOptions options, System.Text.Json.Utf8JsonReader& reader) <0x1fa4e70 + 0x0003e> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at System.Text.Json.JsonSerializer.ParseCore (System.String json, System.Type returnType, System.Text.Json.JsonSerializerOptions options) <0x1fa1698 + 0x00086> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at System.Text.Json.JsonSerializer.Deserialize[TValue] (System.String json, System.Text.Json.JsonSerializerOptions options) <0x2398808 + 0x00022> in <81e9245ca982431695a55cc67ffb3b86>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at Microsoft.AspNetCore.Components.HttpClientJsonExtensions.GetJsonAsync[T] (System.Net.Http.HttpClient httpClient, System.String requestUri) <0x2270e18 + 0x000fa> in <900d091618e14952821fd2fc9b26598c>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at EMS.Client.Pages.FetchEmployee.OnInitializedAsync () [0x0002a] in C:\ES\Client\Pages\FetchEmployee.razor:51
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync () <0x1f4ed10 + 0x00176> in <cc81133ac6304aada69282c517e2b811>:0
+d.printErr @ blazor.webassembly.js:1
+blazor.webassembly.js:1 WASM:   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask (System.Threading.Tasks.Task taskToHandle) <0x224b4e8 + 0x000f4> in <cc81133ac6304aada69282c517e2b811>:0
+```
+How to  rewrite the code?

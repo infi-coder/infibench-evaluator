@@ -1,0 +1,15 @@
+This warning is related to Elasticsearch built-in security features not being enabled. Elasticsearch is a search engine used by Searchkick to perform search queries. 
+
+To fix this warning, you need to enable Elasticsearch security features. Here are the steps to enable Elasticsearch security features:
+
+1. Open the Elasticsearch configuration file `elasticsearch.yml` in your Rails app's `config` directory.
+
+2. Add the following lines to the end of the file:
+```
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+```
+
+3. Save the file and restart Elasticsearch.
+
+After restarting Elasticsearch, the warning should disappear. If you still see the warning, you may need to check your Elasticsearch version and ensure that it is compatible with the version of Searchkick you are using.

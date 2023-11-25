@@ -1,0 +1,31 @@
+The error message you're seeing is due to a version mismatch between the Hibernate Validator and the Bean Validation API. The `@NotEmpty` and `@NotBlank` annotations are part of the Bean Validation 2.0 API, which is implemented by Hibernate Validator 6.0 and later. However, your application is using Hibernate Validator 5.3.5, which implements the Bean Validation 1.1 API and does not support these annotations.
+
+The version of Hibernate Validator is determined by the version of Spring Boot you're using. Spring Boot 2.0.4 includes Hibernate Validator 6.0.7, which should support `@NotEmpty` and `@NotBlank`. However, your application is using Hibernate Validator 5.3.5, which suggests that something in your environment is overriding the version provided by Spring Boot.
+
+One possibility is that JBoss is providing its own version of Hibernate Validator, which is being used instead of the version included with Spring Boot. To check if this is the case, you can try running your application outside of JBoss to see if the problem persists.
+
+If the problem is indeed caused by JBoss, you have a few options:
+
+1. Upgrade to a version of JBoss that includes Hibernate Validator 6.0 or later. This would allow you to use `@NotEmpty` and `@NotBlank` without any changes to your application.
+
+2. Exclude Hibernate Validator from the libraries provided by JBoss. This would allow your application to use the version of Hibernate Validator included with Spring Boot. However, this may cause compatibility issues with other applications running on the same JBoss instance.
+
+3. Use the `@NotNull` and `@Size(min=1)` annotations instead of `@NotEmpty` and `@NotBlank`. This would enforce the same constraints, but is compatible with Hibernate Validator 5.3.5 and the Bean Validation 1.1 API.
+
+Here's an example of how you could apply the third option:
+
+```java
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+public class MyBean {
+
+    @NotNull
+    @Size(min=1)
+    private String username;
+
+    // ...
+}
+```
+
+This will ensure that `username` is not null and not empty.

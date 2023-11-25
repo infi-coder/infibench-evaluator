@@ -1,0 +1,12 @@
+You can change the color of the accordion arrow by targeting the `::after` pseudo-element of the `.accordion-button` class. This pseudo-element is responsible for the arrow. Here is the CSS code:
+
+```css
+.accordion-button::after {
+    /* You may want to include vendor prefixes for older browsers */
+    color: green;
+}
+```
+
+Add this CSS code to your stylesheet or in a `<style>` tag in your HTML. This will change the color of the accordion arrow to green.
+
+Please note that this will change the color of all accordion arrows. If you want to change the color of a specific accordion arrow, you should add a unique class or id to that button and replace `.accordion-button` with your unique class or id in the CSS code above.

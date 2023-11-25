@@ -1,0 +1,16 @@
+Here is the function `addTensor` that you requested. It uses the `torch.cat` function to concatenate the two tensors along the third dimension (dimension index 2). Before concatenating, `d` is reshaped to have a third dimension of size 1 using `unsqueeze`.
+
+```python
+import torch
+
+def addTensor(inps, d):
+    # Reshape d to have a third dimension of size 1
+    d = d.unsqueeze(2)
+    
+    # Concatenate inps and d along the third dimension
+    result = torch.cat((inps, d), 2)
+    
+    return result
+```
+
+This function will return a new tensor with size [64, 161, 2] as you requested. The first slice [:, :, 0] of the third dimension will be the original `inps` tensor, and the second slice [:, :, 1] will be the `d` tensor.

@@ -1,0 +1,35 @@
+The issue here is that `@Binding` does not own the state, it just references it. In your case, `ContentView` does not have a source of truth for `isSelected` state. You should pass the `@State` variable from a parent view to `ContentView` via `@Binding`.
+
+Here is an example of how you can do it:
+
+```swift
+import SwiftUI
+
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+
+struct ContentView: View {
+    @Binding var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ParentView()
+    }
+}
+```
+
+In this example, `ParentView` owns the state and passes it to `ContentView` via `@Binding`. When `isSelected` changes in `ContentView`, it will also change in `ParentView` and vice versa.

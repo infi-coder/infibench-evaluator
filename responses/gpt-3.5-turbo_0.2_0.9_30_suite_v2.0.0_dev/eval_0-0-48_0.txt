@@ -1,0 +1,9 @@
+Sure! The code you provided is almost correct, but you just need to change the order of the keys in the `FruitsAndColors` type definition. Here's the corrected code:
+
+```typescript
+type FruitsAndColors = {
+  [key in fruit | color]: key extends fruit ? number : boolean;
+}
+```
+
+This code uses a mapped type to iterate over each key in the union of `fruit` and `color`. For each key, it checks whether it extends `fruit`. If it does, the corresponding property in `FruitsAndColors` is assigned the type `number`. Otherwise, it is assigned the type `boolean`.

@@ -1,0 +1,28 @@
+The error you're encountering might be due to a few reasons. Here are some suggestions you can try:
+
+1. **Check your SeleniumBasic version**: Make sure you're using the latest version of SeleniumBasic. You can download it from [here](https://github.com/florentbr/SeleniumBasic/releases).
+
+2. **Check your browser driver**: Ensure that the browser driver (e.g., ChromeDriver for Google Chrome) is up to date and compatible with the browser version you're using. You can download the latest drivers from the Selenium [website](https://www.selenium.dev/downloads/).
+
+3. **Check your references**: In VBA, go to Tools > References and make sure that Selenium Type Library is checked. If it's not, scroll through the list to find it and check it.
+
+4. **Try using late binding**: Instead of using early binding (i.e., `Dim driver As New WebDriver`), try using late binding. Here's how you can modify your code:
+
+    ```vba
+    Dim driver As Object
+    Dim keyObj As Object
+    Dim IE As Object
+
+    Set driver = CreateObject("Selenium.ChromeDriver")
+    Set keyObj = CreateObject("Selenium.keys")
+
+    driver.Start "chrome"
+    driver.Window.Maximize
+    driver.Get "https://www.google.com/"
+    ```
+
+5. **Check your Internet Explorer settings**: Since you're using IE in your code, you need to ensure that your IE settings are correctly configured. Go to Internet Options > Security tab, and make sure that Enable Protected Mode is checked for all zones (Internet, Local intranet, Trusted sites, Restricted sites).
+
+6. **Try running Excel as an administrator**: Sometimes, running Excel with administrator privileges can solve the issue.
+
+If none of the above solutions work, please provide the exact error message you're getting for further assistance.

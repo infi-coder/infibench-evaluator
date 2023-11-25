@@ -1,0 +1,25 @@
+The error message you're seeing suggests that there's a problem with the way the command is being interpreted due to the presence of embedded quotes. 
+
+In your command, you're using both escaped quotes (`\"`) and unescaped quotes (`"`). This can cause issues with how the command is parsed. 
+
+Here's a simplified version of your command with the quotes corrected:
+
+```bash
+cd C:\projects\open; "JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5" cmd /c ""C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd" -DskipTests=true -Dmaven.ext.class.path=C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install"
+```
+
+In this version of the command, all of the quotes around file paths have been removed. This should prevent the `Malformed argument has embedded quote` error from occurring.
+
+If you still encounter issues, it might be worth checking that all of the file paths in your command are correct and that the files they point to exist. For example, check that `C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd` and `C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar` both exist.
+
+Also, make sure that the `JAVA_HOME` environment variable is set correctly. You can check this by running `echo %JAVA_HOME%` in a new command prompt window. If it's not set correctly, you can set it using the `setx` command:
+
+```bash
+setx JAVA_HOME "C:\\Program Files\\Java\\jdk-11.0.5"
+```
+
+This will set the `JAVA_HOME` environment variable for future command prompt sessions. To set it for the current session, you can use the `set` command:
+
+```bash
+set JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5
+```

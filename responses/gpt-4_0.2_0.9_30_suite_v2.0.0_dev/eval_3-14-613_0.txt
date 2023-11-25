@@ -1,0 +1,13 @@
+This issue might be related to the target membership of your SwiftUI file. Here are some steps you can follow to troubleshoot:
+
+1. Open your SwiftUI file in Xcode.
+2. Select the file in the Project Navigator.
+3. In the File Inspector, under "Target Membership", make sure your app's target is checked.
+
+If your file is already part of the target, you can try the following:
+
+1. Clean your project (Product -> Clean Build Folder).
+2. Restart Xcode.
+3. Try running the preview again.
+
+If none of these steps work, you might want to consider creating a new SwiftUI file and copying your code into it. Sometimes Xcode can get confused with file states, and creating a new file can help reset this.

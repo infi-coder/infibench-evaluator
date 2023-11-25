@@ -1,0 +1,33 @@
+The error you're encountering is typically due to the response from the server not being a valid JSON string. This can happen if the server is returning an error, or if the response is not properly formatted as JSON.
+
+Here are a few things you can do to debug and potentially solve this issue:
+
+1. **Print the response body**: Before trying to decode the response, print it to the console. This will allow you to see exactly what you're trying to decode, and may help you identify any issues with the response.
+
+```dart
+print('Response body: ${response.body}');
+```
+
+2. **Check the server-side script**: Make sure that your PHP script is correctly outputting a JSON string. You can do this by running the script independently of your Flutter app and checking the output.
+
+3. **Check the response status code**: Before decoding the response, check the status code to make sure the request was successful. If the request was not successful, the response body may not contain a valid JSON string.
+
+```dart
+if (response.statusCode == 200) {
+  List data = json.decode(response.body);
+} else {
+  print('Request failed with status: ${response.statusCode}.');
+}
+```
+
+4. **Catch the FormatException**: You can catch the FormatException and print it to get more information about what's going wrong.
+
+```dart
+try {
+  List data = json.decode(response.body);
+} catch (e) {
+  print('Error: $e');
+}
+```
+
+Remember that the response body must be a valid JSON string in order to be decoded with `json.decode()`. If the response body is not valid JSON, you'll need to fix the server-side script that's generating the response.

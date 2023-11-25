@@ -1,0 +1,19 @@
+# Corresponding to post https://stackoverflow.com/questions/52759220
+id: 2-9-471
+prompt_path: prompt_2-9-471.txt
+type: code debugging
+
+lang: ruby
+
+grading:
+  max_score: 2.0
+  min_score: 0.0
+  blank_filling:
+    template: "TypeScript is ignoring `[blank]` because it assumes that it is generated from `index.tsx`, which is more likely to be up to date. Name your `[blank]` file something else, e.g., `declaration.d.ts`."
+    blank_str: "[blank]"
+    targets: 
+        - content: index.d.ts
+          weight: 1.0
+        - content: index.d.ts
+          weight: 1.0
+ 

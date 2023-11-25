@@ -1,0 +1,20 @@
+Sure, here is a function that removes timezone information from all datetime columns in a DataFrame:
+
+```python
+def removeTimezone(df):
+    for col in df.columns:
+        if df[col].dtype.name == 'datetime64[ns, UTC]':
+            df[col] = df[col].dt.tz_convert(None)
+    return df
+```
+
+This function iterates over all columns in the DataFrame. If the data type of a column is 'datetime64[ns, UTC]', it converts the timezone-aware datetime objects in that column to timezone-naive ones.
+
+You can use this function before saving your DataFrame to Excel:
+
+```python
+df = removeTimezone(df)
+df.to_excel(writer, header = True, index = True)
+```
+
+This should resolve the ValueError you're encountering.

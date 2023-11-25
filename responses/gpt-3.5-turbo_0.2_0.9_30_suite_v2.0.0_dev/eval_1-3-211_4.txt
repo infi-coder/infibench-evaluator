@@ -1,0 +1,39 @@
+Yes, we can achieve this using pandas' `groupby`, `apply`, and `cumsum` functions. Here's the `aggregation` function that should do what you want:
+
+```python
+def aggregation(df):
+    # Convert 'value' column to numeric type
+    df['value'] = pd.to_numeric(df['value'], errors='coerce')
+    
+    # Group by 'exchange' and 'type', then apply cumsum to 'value' column
+    df['balance'] = df.groupby(['exchange', 'type'])['value'].apply(lambda x: x.mask(x.eq('trade')).cumsum().ffill())
+    
+    # Drop rows where 'type' is not 'deposit'
+    df = df[df['type'] == 'deposit']
+    
+    return df
+```
+
+Here's how you can use this function:
+
+```python
+import pandas as pd
+
+df=pd.DataFrame()
+df['exchange'] = [1, 1, 1, 2, 3]
+df['type'] = ['deposit', 'deposit', 'trade', 'deposit', 'deposit']
+df['value'] = [10, 10, '30', '40', '100]
+
+df = aggregation(df)
+print(df)
+```
+
+This should output:
+
+```
+   exchange     type  value  balance
+0         1  deposit     10     10.0
+1         1  deposit     10     20.0
+3         2  deposit     40     40.0
+4         3  deposit    100    100.0
+```

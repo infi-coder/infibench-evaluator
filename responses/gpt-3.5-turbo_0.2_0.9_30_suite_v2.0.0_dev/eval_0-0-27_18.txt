@@ -1,0 +1,26 @@
+It seems like the issue might be related to the network configuration of your app. 
+
+The `uri` you are using in your `ApolloClient` configuration is a public endpoint provided by Apollo. It might be possible that the endpoint is down or not responding properly. 
+
+To test if the issue is related to the endpoint, you can try using a different endpoint or a local GraphQL server. You can also try running the endpoint URL in your browser to see if it returns any data.
+
+If the endpoint is not the issue, you can try adding the `networkPolicy` option to your `ApolloClient` configuration to specify the network policy for your queries. For example, you can set it to `NetworkPolicy.cache-and-network` to fetch data from the cache first and then fetch from the network if the data is not available in the cache.
+
+Here is an example of how you can set the `networkPolicy` option:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'https://48p1r2roz4.sse.codesandbox.io',
+    cache: new InMemoryCache(),
+    defaultOptions: {
+        watchQuery: {
+            fetchPolicy: 'cache-and-network',
+        },
+        query: {
+            fetchPolicy: 'cache-and-network',
+        },
+    },
+});
+```
+
+I hope this helps!

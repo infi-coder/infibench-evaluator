@@ -1,0 +1,5 @@
+Is there a way to calculate the total number of days in a year given a datetime format of YYYY-MM-DD in Pandas? I have explored dt.dayofyear but this function seem to provide the number of days from the start of the year until my datetime variable.
+As an example, if my date is 2020-03-30, I should know that this is the year of 2020 and there are 366 days (leap year). If it is 2019-03-30, then it should return 365 days (non-leap year).
+Tried to search through the pandas dt documentation but can't seem to find any. 
+Please write a function `DaysInYear` in Python, which takes year as integer arguments and returns day numbers of the year in integer. 
+Function signature is: `DaysInYear(year)`

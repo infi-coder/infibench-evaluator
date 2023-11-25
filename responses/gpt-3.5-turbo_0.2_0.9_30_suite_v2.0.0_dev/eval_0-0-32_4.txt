@@ -1,0 +1,66 @@
+To identify if a div is visible on the viewport, you can use the Intersection Observer API. Here's how you can use it:
+
+1. Install the `intersection-observer` package from npm:
+
+   ```
+   npm install intersection-observer
+   ```
+
+2. Import the package in your component:
+
+   ```javascript
+   import 'intersection-observer';
+   ```
+
+3. Create a ref for the parent div:
+
+   ```javascript
+   const parentRef = useRef(null);
+   ```
+
+4. Create a state to store the list of visible divs:
+
+   ```javascript
+   const [visibleDivs, setVisibleDivs] = useState([]);
+   ```
+
+5. Create an observer and observe the parent div:
+
+   ```javascript
+   useEffect(() => {
+     const observer = new IntersectionObserver(entries => {
+       const visibleIds = entries
+         .filter(entry => entry.isIntersecting)
+         .map(entry => entry.target.id);
+       setVisibleDivs(visibleIds);
+     });
+     observer.observe(parentRef.current);
+     return () => observer.disconnect();
+   }, []);
+   ```
+
+6. Map through the data and add a ref to each div:
+
+   ```javascript
+   <div id="parent" ref={parentRef}>
+     {data.map(item => (
+       <div key={item.id} id={item.id} ref={ref => (item.ref = ref)}>
+         {item.title}
+       </div>
+     ))}
+   </div>
+   ```
+
+7. Use the `visibleDivs` state to render the visible divs:
+
+   ```javascript
+   {data
+     .filter(item => visibleDivs.includes(item.id))
+     .map(item => (
+       <div key={item.id} id={item.id}>
+         {item.title}
+       </div>
+     ))}
+   ```
+
+This will render only the divs that are visible on the viewport on scroll.

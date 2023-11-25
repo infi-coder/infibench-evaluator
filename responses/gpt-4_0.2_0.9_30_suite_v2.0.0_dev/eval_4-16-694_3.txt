@@ -1,0 +1,17 @@
+You can use `awk` to extract the language code. Here is an example:
+
+```bash
+curl -Ls stick-it.app | awk -F 'lang="' '{print $2}' | awk -F '"' '{print $1}' | head -1
+```
+
+This command will fetch the page content, split the lines by `lang="`, then print the second part. The second `awk` command will split the result by `"` and print the first part, which is the language code.
+
+This command will work regardless of the position of the `lang` attribute within the tag.
+
+If you want to use `grep` with Perl-compatible regular expressions (PCRE), you can use the `-P` option with `grep` and `-o` to only output the matched part:
+
+```bash
+curl -Ls stick-it.app | grep -Po 'lang="\K[^"]+'
+```
+
+This command will fetch the page content, then use `grep` to find the `lang="` string and print the following characters until it encounters a `"`. The `\K` in the regular expression will reset the start of the reported match, so it won't include `lang="` in the output.

@@ -1,0 +1,10 @@
+You can use the following code to copy text to the Windows clipboard in VBA:
+
+```
+Dim MyData As DataObject
+Set MyData = New DataObject
+MyData.SetText "textValue"
+MyData.PutInClipboard
+```
+
+Replace "textValue" with the actual text you want to copy. This should work regardless of whether the text is in a node or not.

@@ -1,0 +1,19 @@
+In R, when you bind two data frames with the same column names using `cbind()`, it actually makes the column names unique by adding a suffix. So, in your case, the column names of `d3` would be `a` and `a.1`.
+
+You can select the second column by its name as follows:
+
+```r
+second_col <- d3$a.1
+```
+
+However, if you still want to select the second column by the original name, you can use the `dplyr` package's `select()` function with the `matches()` function. Here is how you can do it:
+
+```r
+# install.packages("dplyr")  # Uncomment this line if you haven't installed dplyr package
+library(dplyr)
+
+# Select the second 'a' column
+second_col <- d3 %>% select(matches("^a$"))[[2]]
+```
+
+In the `matches()` function, `^a$` is a regular expression that matches the exact column name 'a'. The `[[2]]` at the end is used to select the second column that matches the condition.

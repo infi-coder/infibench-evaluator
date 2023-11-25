@@ -1,0 +1,55 @@
+The error you're encountering is due to the fact that you're trying to access platform-specific functionality before `runApp()` is called. The `runApp()` function initializes the binding to the Flutter engine, which is necessary for accessing platform channels.
+
+To fix this, you should move your code inside the `main()` function into the `initState()` method of your root widget. Here's an example:
+
+```dart
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  Directory appDocsDir;
+
+  @override
+  void initState() {
+    super.initState();
+    getApplicationDocumentsDirectory().then((dir) {
+      Hive.init(dir.path);
+      setState(() {
+        appDocsDir = dir;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Use appDocsDir here
+    return Container();
+  }
+}
+```
+
+In this code, `getApplicationDocumentsDirectory()` is called inside the `initState()` method of the `_MyHomePageState` class. This ensures that the Flutter engine is initialized before you try to access the platform channels.

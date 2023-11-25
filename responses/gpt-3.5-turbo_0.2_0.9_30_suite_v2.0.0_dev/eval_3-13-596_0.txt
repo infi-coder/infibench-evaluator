@@ -1,0 +1,9 @@
+Yes, you can remove the `*-plain.jar` file by adding the following line to your `build.gradle` file:
+
+```
+bootJar {
+    plain = false
+}
+```
+
+This will disable the generation of the plain jar file.

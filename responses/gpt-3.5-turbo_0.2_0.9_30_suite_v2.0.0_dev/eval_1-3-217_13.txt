@@ -1,0 +1,26 @@
+Here's a Python function `addTensor` that takes two PyTorch tensors `inps` and `d` as inputs and returns a new PyTorch tensor with the desired shape:
+
+```python
+import torch
+
+def addTensor(inps, d):
+    # Reshape d to [64, 161, 1]
+    d = d.unsqueeze(-1)
+    # Concatenate inps and d along the last dimension
+    out = torch.cat([inps, d], dim=-1)
+    return out
+```
+
+Here's how the function works:
+
+1. We first reshape `d` to have a size of [64, 161, 1] using the `unsqueeze` method. This adds a new dimension to the tensor at the end, which has a size of 1.
+2. We then concatenate `inps` and `d` along the last dimension using the `torch.cat` method. This creates a new tensor with a size of [64, 161, 2], where the last dimension contains the original `inps` tensor and the reshaped `d` tensor.
+
+You can call this function like this:
+
+```python
+inps = torch.randn(64, 161, 1)
+d = torch.randn(64, 161)
+out = addTensor(inps, d)
+print(out.size())  # Output: torch.Size([64, 161, 2])
+```

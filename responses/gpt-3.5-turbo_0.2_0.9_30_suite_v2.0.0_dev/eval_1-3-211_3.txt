@@ -1,0 +1,48 @@
+Yes, we can achieve this using pandas' `groupby` and `cumsum` functions. Here's the `aggregation` function that you can use:
+
+```python
+def aggregation(df):
+    # Convert 'value' column to numeric type
+    df['value'] = pd.to_numeric(df['value'], errors='coerce')
+    
+    # Filter rows where 'type' is 'deposit'
+    df = df[df['type'] == 'deposit']
+    
+    # Group by 'exchange' and calculate cumulative sum of 'value'
+    df['balance'] = df.groupby('exchange')['value'].cumsum()
+    
+    # Forward fill the 'balance' column
+    df['balance'] = df.groupby('exchange')['balance'].ffill()
+    
+    # Drop the 'type' and 'value' columns
+    df = df.drop(['type', 'value'], axis=1)
+    
+    # Merge the original DataFrame with the new DataFrame
+    df = pd.merge(df, df.drop_duplicates(subset=['exchange']), on='exchange')
+    
+    # Sort the DataFrame by 'exchange'
+    df = df.sort_values(by='exchange')
+    
+    return df
+```
+
+You can call this function with your DataFrame as an argument:
+
+```python
+df = pd.DataFrame()
+df['exchange'] = [1, 1, 1, 2, 3]
+df['type'] = ['deposit', 'deposit', 'trade', 'deposit', 'deposit']
+df['value'] = [10, 10, '30', '40', '100']
+
+aggregation(df)
+```
+
+This will return the following output:
+
+```
+   exchange  balance
+0         1       10
+1         1       20
+2         2       40
+3         3      100
+```

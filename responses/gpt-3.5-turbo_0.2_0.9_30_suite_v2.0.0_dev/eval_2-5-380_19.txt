@@ -1,0 +1,15 @@
+There are a few things you can check to troubleshoot this issue:
+
+1. Make sure that the Spring Boot application is running and accessible at `localhost:8080`. If the application is not running, you won't be able to access the Swagger UI.
+
+2. Check if the `springdoc-openapi-ui` dependency is correctly added to your project. You can verify this by checking the `External Libraries` section of your project in your IDE.
+
+3. Check if the `@EnableSwagger2WebMvc` annotation is present in your Spring Boot application. This annotation is required to enable Swagger UI in your application.
+
+4. Check if the `@ComponentScan` annotation is present in your Spring Boot application. This annotation is required to scan the packages containing the Swagger UI components.
+
+5. Check if the `@OpenAPIDefinition` annotation is present in your Spring Boot application. This annotation is required to define the OpenAPI specification for your application.
+
+6. Check if the `@SwaggerDefinition` annotation is present in your Spring Boot application. This annotation is required to define the Swagger definition for your application.
+
+If all of the above steps are correct, then you should be able to access the Swagger UI at `localhost:8080/swagger-ui.html`.

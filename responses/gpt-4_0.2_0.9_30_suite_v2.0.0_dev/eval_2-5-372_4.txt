@@ -1,0 +1,26 @@
+The problem you're facing is due to the version of Hibernate Validator. The `@NotEmpty` and `@NotBlank` annotations are part of Hibernate Validator 6.x, but your logs show that you're using Hibernate Validator 5.3.5.Final-redhat-2. 
+
+The version of Hibernate Validator is managed by Spring Boot, and it seems that the version of Spring Boot you're using (2.0.4.RELEASE) is compatible with Hibernate Validator 5.x. 
+
+To solve this issue, you have two options:
+
+1. **Upgrade your Spring Boot version to a version that supports Hibernate Validator 6.x.** Spring Boot 2.3.0 and later versions are compatible with Hibernate Validator 6.x. You can do this by changing the version in your `pom.xml`:
+
+    ```xml
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    ```
+
+2. **Use the validation annotations that are supported by Hibernate Validator 5.x.** Instead of `@NotEmpty` and `@NotBlank`, you can use `@NotNull` and `@Size(min=1)` to achieve similar validation:
+
+    ```java
+    @NotNull
+    @Size(min=1)
+    private String username;
+    ```
+
+Remember to run `mvn clean install` to ensure that your changes are picked up.

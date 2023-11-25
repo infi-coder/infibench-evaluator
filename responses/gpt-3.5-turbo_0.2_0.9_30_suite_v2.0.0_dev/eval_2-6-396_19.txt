@@ -1,0 +1,5 @@
+The error message is caused by the `user.HasIndex(x => x.Gender);` line in your `OnModelCreating` method. You cannot create an index on a navigation property (`Gender`), only on scalar properties.
+
+To fix this error, remove the `user.HasIndex(x => x.Gender);` line from your `OnModelCreating` method. This line is not necessary since you already have a foreign key defined between `User` and `Gender`. 
+
+After removing the line, run the `dotnet ef add migration User` command again and it should work without any errors.

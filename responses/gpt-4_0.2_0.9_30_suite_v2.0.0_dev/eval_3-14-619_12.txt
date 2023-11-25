@@ -1,0 +1,18 @@
+The code you've provided is correct, but the issue might be that you're not using `ContentView` correctly. The `@Binding` property wrapper is used to create a two-way binding to a mutable state. If you're using `ContentView` directly, you need to ensure that the `isSelected` state is being managed somewhere else.
+
+Here's an example of how you might use `ContentView`:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        VStack {
+            Text("Parent View")
+            ContentView(isSelected: $isSelected)
+        }
+    }
+}
+```
+
+In this example, `ParentView` is managing the `isSelected` state. When `isSelected` changes, `ContentView` will be updated because of the two-way binding.

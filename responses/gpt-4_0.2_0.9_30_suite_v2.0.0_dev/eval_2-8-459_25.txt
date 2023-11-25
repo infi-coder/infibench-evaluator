@@ -1,0 +1,21 @@
+The error message you're seeing indicates that Go is unable to find the specified version of the module. This could be due to a number of reasons, including network issues, incorrect configuration, or access restrictions.
+
+Here are a few steps you can take to troubleshoot this issue:
+
+1. **Check your network connection**: Ensure that you have a stable internet connection and that you're able to access the GitHub repository from your browser.
+
+2. **Verify your GitHub credentials**: Make sure that your GitHub credentials are correctly set up on computer B. You can do this by trying to clone the repository manually using `git clone`.
+
+3. **Check your Go version**: The Go modules feature is available in Go 1.11 and later. Make sure you're using a compatible version of Go by running `go version`.
+
+4. **Check your GOPROXY settings**: Go 1.13 and later use the `GOPROXY` environment variable to determine where to download modules from. By default, this is set to `https://proxy.golang.org,direct`, which means Go will first try to download modules from the Go module mirror, and if that fails, it will try to download them directly from their source. If you're working with private repositories, you might need to set `GOPROXY` to `direct` or to a private module proxy.
+
+5. **Check your GONOSUMDB settings**: If you're working with private modules, you might need to set the `GONOSUMDB` environment variable to a comma-separated list of module patterns that should be excluded from checksum database lookups. For example, if your private modules are hosted on `github.ibm.com`, you could set `GONOSUMDB` to `github.ibm.com/*`.
+
+6. **Check your git configuration**: If you're using SSH to authenticate with GitHub, make sure that your SSH keys are correctly set up on computer B. You can do this by running `ssh -T git@github.com`.
+
+7. **Clear your module cache**: Sometimes, the module cache can get into a bad state. You can clear it by running `go clean -modcache`.
+
+8. **Verbose logging**: You can get more information about what `go build` is doing under the hood by running it with the `-x` flag, like so: `go build -x`.
+
+Remember to replace `github.ibm.com` with your actual domain name in the above steps.

@@ -1,0 +1,16 @@
+Flutter : PlatformException(no_available_camera, No cameras available for taking pictures., null, null).
+It happened after I merged my projects. It says there is no camera available but back then it was running fine.
+Please have a look at this error message and help in this.
+Specifically, please don't add other text and repeat the following paragraph with [blank] filled:
+
+If your compileSdkVersion and [blank] is [blank] (or above), then add the [blank] info to your [blank] file, directly under the manifest tag:
+```
+<manifest package=\"com.example\">
+    <queries>
+        <intent>
+            <action android:name=\"[blank]\" />
+        </intent>
+    </queries>
+    ...
+</manifest>
+```

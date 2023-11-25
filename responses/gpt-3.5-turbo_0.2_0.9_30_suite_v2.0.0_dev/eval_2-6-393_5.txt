@@ -1,0 +1,5 @@
+The error message is indicating that you cannot use the `Gender` property as a regular property on the `User` entity because it is already configured as a navigation property. 
+
+To fix this issue, you can remove the line `user.HasIndex(x => x.Gender);` from your `OnModelCreating` method. This line is trying to create an index on the `Gender` property, but since it is already configured as a navigation property, it is not necessary.
+
+After removing that line, you can try running the `dotnet ef add migration User` command again and it should work without any errors.

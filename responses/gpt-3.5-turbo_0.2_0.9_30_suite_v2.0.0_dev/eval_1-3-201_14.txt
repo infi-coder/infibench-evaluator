@@ -1,0 +1,30 @@
+One solution to this problem is to use multiprocessing instead of threading. Multiprocessing allows you to run multiple processes simultaneously, which can be useful when dealing with infinite loops.
+
+Here's an example of how you can use multiprocessing to run both functions simultaneously:
+
+```python
+import multiprocessing
+
+if __name__ == "__main__":
+    database = db.dataBase()
+    homepage = hp.homepage(database)
+    dataMiningScript = fd.financeData(database, 1600)
+
+    # Create two processes, one for each function
+    p1 = multiprocessing.Process(target=dataMiningScript)
+    p2 = multiprocessing.Process(target=homepage.run_server, args=(app,))
+
+    # Start both processes
+    p1.start()
+    p2.start()
+
+    # Wait for both processes to finish
+    p1.join()
+    p2.join()
+```
+
+In this example, we create two processes using the `multiprocessing.Process` class. The `target` argument specifies the function to run in each process, and the `args` argument is used to pass arguments to the function.
+
+We start both processes using the `start` method, and then wait for them to finish using the `join` method.
+
+Note that you may need to modify your `financeData` and `homepage.run_server` functions to work with multiprocessing. For example, you may need to use inter-process communication to share data between the processes.

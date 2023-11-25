@@ -1,0 +1,9 @@
+You can modify your `grep` command to look for the `lang` attribute within the `html` tag. Here's an example command that should work for both cases:
+
+```
+curl -Ls yahoo.com | grep -oP '(?<=<html[^>]* lang=")[^"]+' | head -1
+```
+
+This command uses the `-o` option to only output the matched text, and the `-P` option to enable Perl-compatible regular expressions. The regular expression `(?<=<html[^>]* lang=")[^"]+` matches any text that comes after `<html` and `lang="`, up until the next double quote. The `head -1` command is used to only output the first match, in case there are multiple `html` tags on the page.
+
+You can replace `yahoo.com` with any other URL to test this command.

@@ -1,0 +1,15 @@
+This error occurs because IntelliJ IDEA is using an older version of Maven than the one used to generate the project. To fix this error, you can try the following steps:
+
+1. Open the Maven settings in IntelliJ IDEA by going to File > Settings > Build, Execution, Deployment > Build Tools > Maven.
+2. In the "Maven home directory" field, make sure that the path points to the same version of Maven used to generate the project. If not, update the path to the correct version.
+3. Click "OK" to save the changes and close the settings window.
+4. Re-import the Maven project by going to File > New > Project from Existing Sources and selecting the pom.xml file of the project.
+5. Follow the prompts to import the project and make sure to select the correct version of Maven when prompted.
+
+If the above steps do not work, you can try deleting the IntelliJ IDEA system directory and restarting the IDE. To do this, follow these steps:
+
+1. Close IntelliJ IDEA.
+2. Delete the IntelliJ IDEA system directory. The location of this directory depends on your operating system. For example, on Windows, it is usually located at C:\Users\<username>\.IntelliJIdea<version>.
+3. Restart IntelliJ IDEA and re-import the Maven project.
+
+If the error still persists, you can try generating a new project using the same version of Maven used by IntelliJ IDEA. You can do this by specifying the version of Maven when generating the project using start.spring.io.

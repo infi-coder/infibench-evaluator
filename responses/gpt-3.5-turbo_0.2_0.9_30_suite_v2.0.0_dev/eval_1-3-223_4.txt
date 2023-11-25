@@ -1,0 +1,16 @@
+To check if a package is at its latest version programmatically in a script and return a true or false, you can use the `pip` package and the `pkg_resources` module. Here's an implementation of the `checkVersion` function in Python:
+
+```python
+import pkg_resources
+import subprocess
+
+def checkVersion(pkgName):
+    try:
+        latest_version = subprocess.check_output(['pip', 'install', '--upgrade', pkgName])
+        installed_version = pkg_resources.get_distribution(pkgName).version
+        return latest_version.decode('utf-8').strip() == f"Requirement already up-to-date: {pkgName}=={installed_version} in"
+    except:
+        return False
+```
+
+This function first tries to upgrade the package using `pip install --upgrade`. If the package is already up to date, it will return a message indicating that the requirement is already up to date. We can check if the message matches the expected format to determine if the package is up to date or not. If the package is not installed or there is an error, the function returns `False`.

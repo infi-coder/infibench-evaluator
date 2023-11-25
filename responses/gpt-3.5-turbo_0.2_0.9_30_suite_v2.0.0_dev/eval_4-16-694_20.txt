@@ -1,0 +1,9 @@
+You can modify your `grep` command to look for the `lang` attribute within the `html` tag instead of just searching for `lang=`. Here's an example command that should work for both cases:
+
+```
+curl -Ls yahoo.com | grep -oP '<html[^>]+lang="\K[^"]+' | head -1
+```
+
+This command uses the `-o` option to only output the matched string, and the `-P` option to enable Perl-compatible regular expressions. The regular expression `<html[^>]+lang="\K[^"]+` matches the `html` tag with any attributes before the `lang` attribute, and then captures the value of the `lang` attribute. The `\K` sequence resets the match so that only the captured value is output.
+
+Note that this command assumes that the `lang` attribute is always within the `html` tag and uses double quotes. If the attribute is in a different tag or uses single quotes, you may need to modify the regular expression accordingly.

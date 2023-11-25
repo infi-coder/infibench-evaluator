@@ -1,0 +1,51 @@
+To use Swagger UI with Spring Boot, you need to make sure that you have the following:
+
+1. The `springdoc-openapi-ui` dependency in your `pom.xml` file, as you have already added.
+
+2. The `@EnableSwagger2WebMvc` annotation in your Spring Boot application class. This annotation enables Swagger UI and sets up the necessary configuration.
+
+3. The `@OpenAPIDefinition` annotation in your controller class. This annotation defines the OpenAPI specification for your API.
+
+Here's an example of how to set up Swagger UI in a Spring Boot application:
+
+```java
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import springfox.documentation.oas.annotations.EnableOpenApi;
+
+@Configuration
+@EnableWebMvc
+@EnableSwagger2
+@EnableOpenApi
+public class SwaggerConfig {
+}
+```
+
+```java
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.springframework.http.ResponseEntity;
+
+@RestController
+public class MyController {
+
+    @GetMapping("/hello")
+    @ApiOperation(value = "Say hello", notes = "Returns a greeting message")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful operation", response = String.class),
+            @ApiResponse(code = 400, message = "Invalid input"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 404, message = "Not found"),
+            @ApiResponse(code = 500, message = "Internal server error")
+    })
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok("Hello, world!");
+    }
+}
+```
+
+Once you have set up Swagger UI, you can access it by going to `http://localhost:8080/swagger-ui.html`.

@@ -1,0 +1,20 @@
+The error message is indicating that `protoc-gen-go` doesn't know what Go package to use for the generated Go code. You can specify this in the `.proto` file using the `option go_package` directive.
+
+Here's how you can modify your `.proto` file:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "main"; // add this line
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+In the `option go_package` directive, you should specify the package name that you want to use for the generated Go code. In this case, I've used "main" as the package name, but you should replace this with the actual package name you want to use.
+
+After adding the `option go_package` directive, you should be able to generate the Go code without any errors.

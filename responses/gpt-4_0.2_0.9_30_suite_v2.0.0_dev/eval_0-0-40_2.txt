@@ -1,0 +1,30 @@
+The error message you're seeing is due to a conflict between the Node.js and npm versions installed on your Windows system and those installed in your WSL2 Ubuntu environment. 
+
+When you run `node -v` or `npm -v`, the system is trying to execute the Windows version of these commands from within the WSL2 environment, which is causing the error.
+
+To resolve this issue, you need to remove the Windows PATH from the WSL environment. You can do this by adding the following line to your `~/.bashrc` file:
+
+```bash
+export PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
+```
+
+After adding this line, save the file and run `source ~/.bashrc` to apply the changes. 
+
+Now, when you run `node -v` or `npm -v`, the system should correctly use the versions installed in your WSL2 environment.
+
+If you still face the issue, you may need to reinstall Node.js and npm in your WSL2 environment. Here's how you can do it:
+
+1. First, uninstall the existing Node.js and npm:
+
+    ```bash
+    sudo apt-get purge nodejs npm
+    ```
+
+2. Then, install Node.js and npm again:
+
+    ```bash
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    ```
+
+This will install Node.js v14.x, which is the latest LTS version at the time of writing. You can replace `14` with any version you prefer. After the installation, you should be able to use `node -v` and `npm -v` without any issues.

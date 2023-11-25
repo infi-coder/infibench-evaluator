@@ -1,0 +1,39 @@
+In javascript, given a JSON nested object tree like the following, how to find the specific object (subtree) by passing an `id`` value to a function. `id` is a key in all nested objects.
+
+The nested object tree example:
+```javascript
+{
+    "id": "A",
+    "name": "Item A",
+    "child": [
+        {
+            "id": "B",
+            "name": "Item B",
+            "child": [
+                {
+                    "id": "C",
+                    "name": "Item C"
+                    "child": []
+                }
+            ]
+        },
+        {
+            "id": "D",
+            "name": "Item D",
+            "child": []
+        }
+    ]
+}
+```
+
+You are required to write a function `findObject(id, root_node)` that returns the object. In the above example, the execution result of `findObject("C", root_node)` should be:
+
+```javascript
+{
+  "id": "C",
+  "name": "Item C"
+  "child": []
+}
+```
+
+The object is guaranteed to be existing and unique when the function is called. Could you help me to implement this function? Just output the function without any other things.

@@ -1,0 +1,32 @@
+You need to call the `toast` method with the `show` option on the toast element to make it visible. Here's how you can do it:
+
+```javascript
+$('.toast').toast('show');
+```
+
+This line of code will show all toasts on the page. If you want to show a specific toast, you should give it an id and select it by this id:
+
+```html
+<div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <!-- ... -->
+</div>
+```
+
+```javascript
+$('#myToast').toast('show');
+```
+
+Also, make sure that you have included the Bootstrap's JavaScript file in your HTML file. It should be included after jQuery because Bootstrap's JavaScript relies on it. Here is an example of how to include it:
+
+```html
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+```
+
+And don't forget to call your JavaScript code when the document is ready. You can do this with jQuery's `$(document).ready()` function:
+
+```javascript
+$(document).ready(function(){
+  $('.toast').toast('show');
+});
+```

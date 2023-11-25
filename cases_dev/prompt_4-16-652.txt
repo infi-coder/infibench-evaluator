@@ -1,0 +1,12 @@
+How to turn off the pager for AWS CLI return value?
+
+I am attempting to utilize the AWS CLI along with a `for` loop in bash to iteratively purge multiple SQS message queues.  The bash script works almost as intended, the problem I am having is with the return value each time the AWS CLI sends a request.  When the request is successful, it returns an empty value and opens up an interactive pager in the command line.  I then have to manually type `q` to exit the interactive screen and allow the `for` loop to continue to the next iteration.  This becomes very tedious and time consuming when attempting to purge a large number of queues.
+Is there a way to configure AWS CLI to disable this interactive pager from popping up for every return value?  Or a way to pipe the return values into a separate file instead of being displayed?
+I have played around with configuring different return value types (text, yaml, JSON) but haven't had any luck.  Also the `--no-pagination` parameter doesn't change the behavior.
+Here's an example of the bash script I'm trying to run:
+```
+for x in 1 2 3; do 
+  aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo; 
+done
+```
+

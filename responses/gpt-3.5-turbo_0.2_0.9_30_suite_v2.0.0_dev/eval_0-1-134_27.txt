@@ -1,0 +1,7 @@
+It sounds like you might be referring to Emmet, a plugin for text editors that allows you to write HTML and CSS code using shorthand syntax. 
+
+To use Emmet, you can type the shorthand syntax and then press the "Tab" key to expand it into the full HTML or CSS code. For example, if you type `.classname` and then press "Tab", it should expand into `<div class="classname"></div>`.
+
+If this isn't working for you, make sure that you have Emmet installed and enabled in your text editor. The process for doing this can vary depending on which text editor you are using, so you may need to consult the documentation or do a quick internet search to find out how to enable Emmet in your specific editor.
+
+Additionally, make sure that you are typing the shorthand syntax correctly. Emmet has a specific syntax that you need to follow in order for it to work properly. You can find a list of Emmet shorthand syntax on their website.

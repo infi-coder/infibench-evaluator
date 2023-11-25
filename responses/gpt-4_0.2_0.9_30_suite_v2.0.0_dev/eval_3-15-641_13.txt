@@ -1,0 +1,20 @@
+Unfortunately, Excel VBA doesn't provide a direct way to retrieve the local path of a file synced with OneDrive or SharePoint. The "Open File Location" button in the File > Info menu is a feature of the Excel interface and its functionality is not exposed to VBA.
+
+However, you can use a workaround to get the local path of the OneDrive folder. OneDrive stores the local path of the synced folders in the Windows Registry. You can use the following VBA code to retrieve it:
+
+```vba
+Function GetOneDrivePath() As String
+    Dim WshShell As Object
+    Set WshShell = CreateObject("WScript.Shell")
+    On Error Resume Next
+    GetOneDrivePath = WshShell.RegRead("HKEY_CURRENT_USER\Software\Microsoft\OneDrive\Accounts\Business1\UserFolder")
+    On Error GoTo 0
+    Set WshShell = Nothing
+End Function
+```
+
+This function will return the local path of the OneDrive folder. You can then append your specific folder path to it. Note that the exact registry key may vary depending on the version and configuration of OneDrive. 
+
+Please note that this method has its limitations. It assumes that the user has only one OneDrive account synced on their computer. If there are multiple accounts, you will need to adjust the code to read from the correct registry key. Also, this method will not work if the user has not synced the SharePoint/OneDrive folder to their local machine. 
+
+Lastly, manipulating the Windows Registry can potentially cause system instability, so use this method with caution. Always backup your registry before making any changes.

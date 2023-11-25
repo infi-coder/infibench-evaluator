@@ -1,0 +1,39 @@
+There are a few things you can check to troubleshoot this issue:
+
+1. Make sure that the `@EnableSwagger2` annotation is present in your Spring Boot application class. This annotation enables Swagger support in your application.
+
+2. Check that the `@ComponentScan` annotation is present in your Spring Boot application class and that it includes the package where your Swagger configuration is located. For example:
+
+   ```java
+   @SpringBootApplication
+   @EnableSwagger2
+   @ComponentScan(basePackages = {"com.example"})
+   public class MyApplication {
+       // ...
+   }
+   ```
+
+3. Verify that the `springdoc.swagger-ui.path` property is not set to a different value in your application.properties or application.yml file. By default, the path should be `/swagger-ui.html`.
+
+4. Check that the `springdoc.swagger-ui.enabled` property is set to `true` in your application.properties or application.yml file. By default, it should be enabled.
+
+5. Verify that the `springdoc.swagger-ui.version` property is set to the correct version of OpenAPI that you are using. For example, if you are using OpenAPI 3.0, the version should be set to `3.0.0`.
+
+If none of these solutions work, you can try to add the following dependency to your pom.xml file:
+
+```xml
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>swagger-ui</artifactId>
+    <version>3.52.2</version>
+</dependency>
+```
+
+And then, add the following configuration to your application.properties or application.yml file:
+
+```properties
+spring.resources.add-mappings=false
+spring.web.resources.static-locations=classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/webjars/
+```
+
+This should allow you to access the Swagger UI at `localhost:8080/swagger-ui/index.html`.

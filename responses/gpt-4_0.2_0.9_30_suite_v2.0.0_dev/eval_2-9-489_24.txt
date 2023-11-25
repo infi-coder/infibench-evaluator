@@ -1,0 +1,41 @@
+The warning message you're seeing is because Elasticsearch 7.13.1 has built-in security features that are not enabled by default. This means that without authentication, your Elasticsearch cluster could be accessible to anyone.
+
+To fix this, you need to enable Elasticsearch's built-in security features. Here are the steps to do so:
+
+1. Open your Elasticsearch configuration file (`elasticsearch.yml`). The location of this file can vary, but it's often located in `/etc/elasticsearch`, `/usr/local/etc/elasticsearch`, or `/usr/local/Cellar/elasticsearch/7.13.1/config`.
+
+2. Add the following lines to the `elasticsearch.yml` file:
+
+    ```yaml
+    xpack.security.enabled: true
+    xpack.security.transport.ssl.enabled: true
+    ```
+
+3. Save the changes and close the file.
+
+4. Restart Elasticsearch. If you're using Homebrew, you can do this by running `brew services restart elasticsearch`.
+
+5. Now, you need to set up passwords for the built-in users. Run the following command in your terminal:
+
+    ```bash
+    bin/elasticsearch-setup-passwords interactive
+    ```
+
+    This command will prompt you to enter passwords for a number of built-in users, including `elastic`, `apm_system`, `kibana_system`, `logstash_system`, `beats_system`, and `remote_monitoring_user`.
+
+6. Update your application's Elasticsearch client to use these new credentials. In a Rails application using Searchkick, you can do this by updating your `config/initializers/searchkick.rb` file:
+
+    ```ruby
+    Searchkick.client = Elasticsearch::Client.new(
+      hosts: ["localhost:9200"],
+      http_auth: {user: "elastic", password: "your_password"}
+    )
+    ```
+
+    Replace `"your_password"` with the password you set for the `elastic` user.
+
+7. Restart your Rails server.
+
+Please note that enabling security will also enable Transport Layer Security (TLS) for the transport networking layer. If you want to disable this (which is not recommended), you can set `xpack.security.transport.ssl.enabled` to `false`.
+
+Also, remember to replace `"your_password"` with the actual password you set for the `elastic` user.

@@ -1,0 +1,30 @@
+You can use the Windows API to get the local path of the OneDrive folder. Here's an example code:
+
+```
+Private Declare Function SHGetKnownFolderPath Lib "shell32.dll" (ByRef rfid As Any, ByVal dwFlags As Long, ByVal hToken As Long, ByRef pszPath As Any) As Long
+
+Private Const FOLDERID_SkyDrive As String = "{A52BBA46-E9E1-435f-B3D9-28DAA648C0F6}"
+Private Const FOLDERID_SkyDrivePro As String = "{7A3B4ADD-CC5F-4EBA-9B8C-55A9F4DCC6EF}"
+
+Public Function GetOneDrivePath() As String
+    Dim path As String
+    Dim hr As Long
+    Dim rfid As Variant
+    
+    If Application.Version >= 15 Then
+        rfid = FOLDERID_SkyDrivePro
+    Else
+        rfid = FOLDERID_SkyDrive
+    End If
+    
+    hr = SHGetKnownFolderPath(rfid, 0, 0, path)
+    
+    If hr = 0 Then
+        GetOneDrivePath = path
+    Else
+        GetOneDrivePath = ""
+    End If
+End Function
+```
+
+You can call this function to get the local path of the OneDrive folder, and then use it to create folders and files.

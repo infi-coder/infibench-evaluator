@@ -1,0 +1,56 @@
+You can create a factory method that creates and returns a `ServiceBusSender` instance for a given queue name. Then, you can register this factory method as a singleton service in the DI container. Here's an example:
+
+```c#
+// Define a factory method that creates a ServiceBusSender instance for a given queue name
+private static ServiceBusSender CreateServiceBusSender(IServiceProvider serviceProvider, string queueName)
+{
+    var serviceBusConfiguration = serviceProvider.GetRequiredService<IOptions<UserEventConsumerSetting>>().Value;
+    var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+    return serviceBusClient.CreateSender(queueName);
+}
+
+// Register the factory method as a singleton service for each queue name
+_services.AddSingleton(serviceProvider => CreateServiceBusSender(serviceProvider, "queue1"));
+_services.AddSingleton(serviceProvider => CreateServiceBusSender(serviceProvider, "queue2"));
+```
+
+Then, in your `CarReservationMessagingService` class, you can inject the `ServiceBusSender` instances for each queue name separately:
+
+```c#
+public class CarReservationMessagingService
+{
+    private readonly ServiceBusSender _queue1Sender;
+    private readonly ServiceBusSender _queue2Sender;
+
+    public CarReservationMessagingService(ServiceBusSender queue1Sender, ServiceBusSender queue2Sender)
+    {
+        _queue1Sender = queue1Sender ?? throw new ArgumentNullException(nameof(queue1Sender));
+        _queue2Sender = queue2Sender ?? throw new ArgumentNullException(nameof(queue2Sender));
+    }
+
+    public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation)
+    {
+        var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+        {
+            Id = Guid.NewGuid().ToString(),
+            CarId = carReservation.CarId,
+            CustomerId = carReservation.CustomerId,
+            RentFrom = carReservation.RentFrom,
+            RentTo = carReservation.RentTo
+        };
+
+        var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+        ServiceBusMessage message = new ServiceBusMessage(serializedMessage);
+
+        // Use the appropriate ServiceBusSender instance based on the queue name
+        if (carReservation.QueueName == "queue1")
+        {
+            await _queue1Sender.SendMessageAsync(message);
+        }
+        else if (carReservation.QueueName == "queue2")
+        {
+            await _queue2Sender.SendMessageAsync(message);
+       

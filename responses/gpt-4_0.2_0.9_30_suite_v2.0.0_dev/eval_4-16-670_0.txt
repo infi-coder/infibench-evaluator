@@ -1,0 +1,15 @@
+Yes, you can convert your OpenSSH private key to an RSA private key using the `ssh-keygen` tool. Here's how:
+
+1. Convert OpenSSH private key to RSA private key:
+
+```bash
+ssh-keygen -p -m PEM -f ~/.ssh/id_rsa
+```
+
+This command will ask for the old passphrase (if any), and then ask for a new passphrase (you can leave it empty for no passphrase). This will not change the public key, so you don't need to send the public key to the server administrator again.
+
+The `-p` option tells `ssh-keygen` to change the passphrase of a private key file, `-m PEM` tells it to use the older PEM private key format instead of the new OpenSSH format, and `-f ~/.ssh/id_rsa` specifies the private key file.
+
+2. You don't need to convert the public key. The public key format is standard and doesn't have the same OpenSSH vs RSA format issue. The public key file (`id_rsa.pub`) should work as is.
+
+Remember to backup your keys before running these commands, just in case something goes wrong.

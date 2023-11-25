@@ -1,0 +1,20 @@
+It seems that the issue is related to the network configuration of your Apollo Client. The `uri` you are using in your `ApolloClient` configuration is not working properly. 
+
+Instead of using the `uri` provided in the Apollo Client documentation, you can try using a different GraphQL API endpoint to test your code. For example, you can use the following endpoint:
+
+```
+https://48p1r2roz4.sse.codesandbox.io/graphql
+```
+
+This endpoint is also provided in the Apollo Client documentation, and it should work properly with your code.
+
+Here's the updated `ApolloClient` configuration:
+
+```javascript
+const apolloClient = new ApolloClient({
+    uri: 'https://48p1r2roz4.sse.codesandbox.io/graphql',
+    cache: new InMemoryCache(),
+});
+```
+
+With this change, your code should be able to fetch data properly.

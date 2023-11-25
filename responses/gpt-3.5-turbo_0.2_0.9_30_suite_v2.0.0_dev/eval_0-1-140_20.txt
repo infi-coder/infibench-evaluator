@@ -1,0 +1,11 @@
+With Font Awesome 5, the syntax for using icons has changed. You need to use the `font-family` property with the value `"Font Awesome 5 Free"` or `"Font Awesome 5 Pro"` depending on the version you are using. Also, instead of using the `\fXXX` syntax, you need to use the `content` property with the value `"\"` followed by the icon name. Here's the updated code:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+}
+```
+
+In this example, the icon being used is still the same as in your original code, so it should work as expected. However, if you want to use a different icon, you can find the icon name in the Font Awesome documentation and use it in the `content` property.

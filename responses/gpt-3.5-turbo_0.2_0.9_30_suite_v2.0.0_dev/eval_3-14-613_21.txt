@@ -1,0 +1,9 @@
+This error message suggests that the preview target is not properly configured in your Xcode project. Try the following steps:
+
+1. Go to your project settings and select the target that contains your preview code.
+2. Make sure that the "Build Settings" tab is selected.
+3. Scroll down to the "Swift Compiler - Custom Flags" section.
+4. Add the following flag to the "Other Swift Flags" field: `-enable-testing`.
+5. Clean and rebuild your project.
+
+If this doesn't work, try creating a new Xcode project and see if previews work there. If they do, compare the project settings between the two projects to see if there are any differences.

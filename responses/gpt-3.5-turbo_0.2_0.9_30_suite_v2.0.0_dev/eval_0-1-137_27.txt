@@ -1,0 +1,15 @@
+The issue is that you are missing a comma after the color value for the "primary" key in your `$theme-colors` map. Here's the corrected code:
+
+```scss
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": #your-color-here,
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Make sure to replace `#your-color-here` with the actual color value you want to use for the "primary" key.
+
+Also, make sure that you are using a valid CSS color value. For example, you can use hex codes like `#ff0000` for red, or named colors like `red`.

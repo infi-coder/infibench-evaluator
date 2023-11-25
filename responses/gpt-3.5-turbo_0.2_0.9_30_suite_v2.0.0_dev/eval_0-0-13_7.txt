@@ -1,0 +1,35 @@
+Yes, you can use an object to store all the values and update them using a single `changeHandler` function. Here's an example of how you can do it:
+
+```javascript
+const [allValues, setAllValues] = useState({
+   mobile: '',
+   username: '',
+   email: '',
+   password: '',
+   confirmPassword: ''
+});
+
+const changeHandler = e => {
+   const { name, value } = e.target;
+   setAllValues(prevState => ({
+      ...prevState,
+      [name]: value
+   }));
+};
+
+return (
+   <input type="text"
+       className="form-control"
+       id="mobile"
+       name="mobile"
+       placeholder="Enter a valid mobile number"
+       value={allValues.mobile}
+       onChange={changeHandler}
+   />
+   // ...
+)
+```
+
+In the `changeHandler` function, we destructure the `name` and `value` properties from the `event.target` object. Then, we use the spread operator to create a copy of the previous state of `allValues`, and update the property with the `name` key to the new `value`. Finally, we pass the updated `allValues` object to the `setAllValues` function to update the state.
+
+By using this approach, you can reduce the amount of code and make it more maintainable.

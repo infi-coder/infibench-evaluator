@@ -1,0 +1,35 @@
+You can use the `tidyverse` function `split()` to achieve this. The `split()` function divides the data into subsets based on the values of one or more factors. Here is how you can write the function:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>% 
+    split(.$list_names) %>% 
+    map(~ pull(., list_values))
+}
+```
+
+This function works by first splitting the data into subsets based on the `list_names` column. Then, it uses the `map()` function from the `purrr` package (which is part of the `tidyverse`) to apply the `pull()` function to each subset. The `pull()` function extracts the `list_values` column from each subset.
+
+You can test this function with your data like this:
+
+```r
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+                  list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+```
+
+This will return the desired output:
+
+```r
+$Chevy
+[1] "Equinox"
+
+$Dodge
+[1] "Caravan" "Ram"    
+
+$Ford
+[1] "Ranger"   "F150"     "Explorer"
+```

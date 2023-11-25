@@ -1,0 +1,69 @@
+You can use the `react-intersection-observer` npm package to detect when an element is in the viewport. 
+
+First, install the package:
+
+```bash
+npm install react-intersection-observer
+```
+
+Then, you can use the `useInView` hook from the package to track whether an element is in the viewport.
+
+Here is an example of how you can use it:
+
+```javascript
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+
+const MyComponent = ({ data }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Change this to true if you want the event to trigger only once
+  });
+
+  return (
+    <div id="parent">
+      {data.map((item) => (
+        <div ref={ref} id={item.id}>
+          {inView ? 'In viewport' : 'Not in viewport'}
+          {item.title}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default MyComponent;
+```
+
+In this example, `useInView` returns a `ref` and a boolean `inView`. You attach the `ref` to the element you want to observe, and `inView` will be `true` when the element is in the viewport and `false` when it's not.
+
+Please note that this will only work if all the divs are the same size. If they are not, you will need to create a new observer for each div. You can do this by mapping over your data and returning a new component for each item.
+
+```javascript
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+
+const MyDiv = ({ id, title }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Change this to true if you want the event to trigger only once
+  });
+
+  return (
+    <div ref={ref} id={id}>
+      {inView ? 'In viewport' : 'Not in viewport'}
+      {title}
+    </div>
+  );
+};
+
+const MyComponent = ({ data }) => (
+  <div id="parent">
+    {data.map((item) => (
+      <MyDiv key={item.id} {...item} />
+    ))}
+  </div>
+);
+
+export default MyComponent;
+```
+
+In this example, each `MyDiv` component has its own

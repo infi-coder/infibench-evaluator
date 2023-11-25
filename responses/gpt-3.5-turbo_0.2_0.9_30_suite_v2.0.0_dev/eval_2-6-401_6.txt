@@ -1,0 +1,56 @@
+You can create a factory method that creates and returns a `ServiceBusSender` instance for a given queue name. Then, register this factory method as a singleton service in the DI container. Finally, inject the `IServiceProvider` into your `CarReservationMessagingService` and use it to resolve the `ServiceBusSender` instance for the desired queue name.
+
+Here's an example implementation:
+
+1. Create a factory method that creates and returns a `ServiceBusSender` instance for a given queue name:
+```c#
+private ServiceBusSender CreateServiceBusSender(IServiceProvider serviceProvider, string queueName)
+{
+    var serviceBusConfiguration = serviceProvider.GetRequiredService<IOptions<UserEventConsumerSetting>>().Value;
+
+    var serviceBusClient = new ServiceBusClient(serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+    {
+        TransportType = ServiceBusTransportType.AmqpWebSockets
+    });
+
+    return serviceBusClient.CreateSender(queueName);
+}
+```
+
+2. Register the factory method as a singleton service in the DI container:
+```c#
+foreach (var queueName in queueNames)
+{
+    _services.AddSingleton<IServiceProvider, string, ServiceBusSender>(CreateServiceBusSender);
+}
+```
+
+3. Inject the `IServiceProvider` into your `CarReservationMessagingService` and use it to resolve the `ServiceBusSender` instance for the desired queue name:
+```c#
+private readonly IServiceProvider _serviceProvider;
+
+public CarReservationMessagingService(IServiceProvider serviceProvider)
+{
+    _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+}
+
+public async Task PublishNewCarReservationMessageAsync(CarReservation carReservation, string queueName)
+{
+    var carReservationIntegrationMessage = new CarReservationIntegrationMessage
+    {
+        Id = Guid.NewGuid().ToString(),
+        CarId = carReservation.CarId,
+        CustomerId = carReservation.CustomerId,
+        RentFrom = carReservation.RentFrom,
+        RentTo = carReservation.RentTo
+    };
+
+    var serializedMessage = JsonSerializer.Serialize(carReservationIntegrationMessage);
+    ServiceBusMessage message = new ServiceBusMessage(serializedMessage);
+
+    var serviceBusSender = _serviceProvider.GetService<string, ServiceBusSender>(queueName);
+    await serviceBusSender.SendMessageAsync(message);
+}
+``` 
+
+Note that in the `IServiceProvider.GetService<string, ServiceBusSender>(queueName)` call, the first type parameter (`string`) specifies the type of the argument that is used to resolve the service (in this case,

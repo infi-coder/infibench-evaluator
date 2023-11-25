@@ -1,0 +1,7 @@
+The code you've posted is correct. The `@Binding` property wrapper is used to create a two-way binding between a property that stores data, and a view that displays and changes the data. 
+
+However, the issue might be that you're trying to observe the changes in the `ContentView_Previews`. The preview doesn't actually run the code, it just renders the UI. 
+
+To see the changes, you need to run the app in a simulator or on a device. 
+
+If you're still facing issues, ensure that the `isSelected` variable is being updated somewhere in your code. If it's not being updated, the view won't refresh.

@@ -1,0 +1,21 @@
+The error message you're seeing is because the `to-rgb` function is trying to convert a map to an RGB value, which is not valid. 
+
+The `to-rgb` function expects a color value, not a map. The `$theme-colors` variable is a map where each key is a string representing the name of the color (like "primary", "secondary", etc.) and each value is the actual color.
+
+To fix this issue, you should define your custom colors before importing the Bootstrap SCSS files. Also, you should not import the `variables.scss` file directly, because it will cause the default Bootstrap variables to be loaded before your custom variables, which will prevent your custom variables from being used.
+
+Here is the revised code:
+
+```scss
+// Define your custom colors
+$theme-colors: (
+  "primary": #your-color-here
+);
+
+// Import Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+Replace `#your-color-here` with the color you want to use for the "primary" color. You can add more colors to the `$theme-colors` map if you want to customize other colors as well.
+
+After making these changes, you should be able to compile your SCSS file without any errors.

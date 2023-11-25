@@ -1,0 +1,12 @@
+This error message is related to the `console` crate, which is used in your code. It seems that rust-analyzer is having trouble resolving the `format_args` macro from the `std` crate, which is used by the `console` crate.
+
+This error message is likely a false positive, and your code should still work correctly. However, if you want to get rid of the error message, you can try updating your dependencies to the latest versions. You can do this by running `cargo update` in your project directory.
+
+If updating your dependencies doesn't work, you can try disabling the rust-analyzer macro expansion feature. To do this, add the following line to your `Cargo.toml` file:
+
+```toml
+[package.metadata.rust-analyzer]
+procMacro.enable = false
+```
+
+This will disable macro expansion in rust-analyzer, which should get rid of the error message. However, note that this will also disable some other features of rust-analyzer, such as code completion for macros.

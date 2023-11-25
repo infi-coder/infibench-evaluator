@@ -1,0 +1,37 @@
+The issue here is that `@Binding` does not own the state, it just references it. The `ContentView` struct doesn't have a source of truth for `isSelected` state. 
+
+You should use `@State` in the parent view that owns the state and `@Binding` in the child views that just need to read or mutate the state.
+
+Here is the corrected code:
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ChildView(isSelected: $isSelected)
+    }
+}
+
+struct ChildView: View {
+    @Binding var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+```
+
+In this code, `ContentView` owns the state of `isSelected` and `ChildView` has a `@Binding` to that state. When the button in `ChildView` is clicked, it updates `isSelected` and the view is refreshed.

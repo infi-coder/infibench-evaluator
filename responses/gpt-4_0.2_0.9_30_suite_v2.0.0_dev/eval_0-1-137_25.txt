@@ -1,0 +1,18 @@
+The error message you're seeing is likely due to the fact that you're trying to override the `$theme-colors` map after it's already been imported from Bootstrap's `_variables.scss` file. 
+
+In order to override the `$theme-colors` map, you should define it before importing Bootstrap's `_variables.scss` and `_bootstrap.scss` files. Also, you should provide a valid color value for the "primary" key.
+
+Here's how you can modify your SCSS file:
+
+```scss
+$theme-colors: (
+  "primary": #ff0000, // replace with your color
+  // add other colors if needed
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In this example, the primary color is set to `#ff0000` (red). You should replace it with your desired color.
+
+Also, please note that you're using an old version of SASS (version 3). Bootstrap 5 requires Dart Sass 1.33.0 or later, or LibSass 3.6.0 or later. You might want to update your SASS version to avoid any potential issues.

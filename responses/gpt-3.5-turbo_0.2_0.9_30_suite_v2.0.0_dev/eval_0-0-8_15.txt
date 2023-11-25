@@ -1,0 +1,19 @@
+Sure! Here is the implementation of the `findObject` function:
+
+```javascript
+function findObject(id, root_node) {
+  if (root_node.id === id) {
+    return root_node;
+  }
+  for (let i = 0; i < root_node.child.length; i++) {
+    const result = findObject(id, root_node.child[i]);
+    if (result) {
+      return result;
+    }
+  }
+}
+```
+
+This function takes two arguments: `id` and `root_node`. It recursively searches the nested object tree for the object with the given `id` and returns it when found. 
+
+The function first checks if the `id` of the `root_node` matches the given `id`. If it does, the function returns the `root_node`. If not, the function iterates over the `child` array of the `root_node` and recursively calls itself with each child node. If a child node contains the object with the given `id`, the function returns that object.

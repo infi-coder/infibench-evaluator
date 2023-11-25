@@ -1,0 +1,38 @@
+The error message suggests that the response from the server is not in the expected JSON format. This could be due to a few reasons, such as an error in the server-side code or a network issue.
+
+To troubleshoot the issue, you can try the following steps:
+
+1. Check the server-side code to ensure that it is returning a valid JSON response. You can use a tool like Postman to test the API and see the response.
+
+2. Check the network tab in your browser's developer tools to see if there are any errors or issues with the server call.
+
+3. Try using a different endpoint or API to see if the issue is specific to this endpoint.
+
+4. If none of the above steps work, you can try using a different method to make the server call, such as using the HttpClient class instead of the Http.GetJsonAsync method.
+
+Here's an example of how you can use the HttpClient class to make the server call:
+
+```c#
+private readonly HttpClient httpClient;
+
+public FetchEmployee(HttpClient httpClient)
+{
+    this.httpClient = httpClient;
+}
+
+protected override async Task OnInitializedAsync()
+{
+    var response = await httpClient.GetAsync("/api/Employee/Index");
+    if (response.IsSuccessStatusCode)
+    {
+        var empList = await response.Content.ReadFromJsonAsync<Employee[]>();
+        // do something with empList
+    }
+    else
+    {
+        // handle error
+    }
+}
+```
+
+In this example, we inject the HttpClient into the component and use it to make the server call. We then check the response status code and deserialize the JSON response using the ReadFromJsonAsync method.

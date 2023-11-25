@@ -1,0 +1,19 @@
+You can try using the `tz_localize` method to set the timezone to None and remove the timezone information from the datetime column. Here's how you can modify your code:
+
+```python
+df['datetime_column'] = df['datetime_column'].dt.tz_localize(None)
+```
+
+This will remove the timezone information from the datetime column. You can then pass this modified DataFrame to the `to_excel` method to save it to an Excel file.
+
+Here's the complete `removeTimezone` function:
+
+```python
+import pandas as pd
+
+def removeTimezone(df):
+    df['datetime_column'] = df['datetime_column'].dt.tz_localize(None)
+    return df
+```
+
+You can call this function with your DataFrame as the argument and it will return the modified DataFrame with the timezone information removed from the datetime column.

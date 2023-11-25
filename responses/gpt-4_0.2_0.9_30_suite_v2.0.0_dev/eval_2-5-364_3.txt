@@ -1,0 +1,42 @@
+It seems like you want to use a specific version of Java with Maven wrapper in your project. You can specify the Java version in your `pom.xml` file. Here is how you can do it:
+
+```xml
+<project>
+  [...]
+  <build>
+    [...]
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+    [...]
+  </build>
+  [...]
+</project>
+```
+
+In this example, Maven will use Java 1.8 for the project.
+
+If you want to use a specific JDK version with Maven wrapper, you can specify it in the `.mvn/jvm.config` file in your project directory. Here is how you can do it:
+
+```bash
+# .mvn/jvm.config
+-J-Xmx1024m -J-XX:MaxPermSize=512m -J-Djava.version=1.8
+```
+
+In this example, Maven wrapper will use Java 1.8 for the project.
+
+If you want to use a specific JDK installed on your machine, you can specify the `JAVA_HOME` environment variable to point to the JDK directory. Here is how you can do it:
+
+```bash
+export JAVA_HOME=/path/to/your/jdk
+```
+
+In this example, both Maven and Maven wrapper will use the specified JDK for the project.

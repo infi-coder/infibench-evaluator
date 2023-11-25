@@ -1,0 +1,5 @@
+You should use `@Configuration` when you want to define beans explicitly in your application context. This is typically done when you need to create beans with specific initialization behavior, or when you need to instantiate beans from third-party libraries that you can't annotate with `@Service`, `@Controller`, or `@Component`.
+
+On the other hand, `@Service`, `@Controller`, and `@Component` are used to auto-detect and auto-configure beans using classpath scanning. They are typically used for defining beans that are part of your application's own codebase. 
+
+In summary, use `@Configuration` for explicit, programmatic bean definitions, and use `@Service`, `@Controller`, or `@Component` for automatic bean detection and configuration.

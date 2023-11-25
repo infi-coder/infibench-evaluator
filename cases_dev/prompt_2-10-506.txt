@@ -1,0 +1,7 @@
+How to get the minimum value within a vector in Rust?
+Given a vector of `i32`:
+```rust
+let mut v = vec![5, 6, 8, 4, 2, 7];
+```
+My goal here is to get the minimum value of that vector without having to sort it.
+What is the best way to get the minimum value within a `Vec<i32>` in Rust?

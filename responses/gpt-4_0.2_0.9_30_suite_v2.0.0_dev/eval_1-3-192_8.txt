@@ -1,0 +1,18 @@
+Here is a Python function that uses the `re` module to replace all underscores and dashes with spaces, then uses the `title` string method to capitalize the first letter of each word, and finally removes all spaces:
+
+```python
+import re
+
+def to_camel_case(text):
+    if not text:
+        return ''
+    else:
+        words = re.split('-|_', text)
+        return words[0] + ''.join(word.title() for word in words[1:])
+```
+
+This function first checks if the input string is empty. If it is, it returns an empty string. If it's not, it splits the string into a list of words at each underscore or dash. It then returns a string that consists of the first word in the list followed by each subsequent word with the first letter capitalized. 
+
+The `title` method capitalizes the first letter of a string and makes all other letters lowercase. In this case, it's used to ensure that each word after the first starts with a capital letter, which is a requirement of camel case. 
+
+The `join` method is used to concatenate all the words in the list into a single string, with no spaces in between. This is another requirement of camel case.

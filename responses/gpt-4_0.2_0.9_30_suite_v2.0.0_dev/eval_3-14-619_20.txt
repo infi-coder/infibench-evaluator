@@ -1,0 +1,37 @@
+The issue here is that `@Binding` does not own the state, it just references it. In your `ContentView`, you're toggling `isSelected` but there's no state in `ContentView` that SwiftUI could observe to redraw the view.
+
+You should use `@State` in the view that owns the state and `@Binding` in the view that needs to mutate the state but does not own it.
+
+Here's a corrected version of your code:
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ToggleView(isSelected: $isSelected)
+    }
+}
+
+struct ToggleView: View {
+    @Binding var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+```
+
+In this code, `ContentView` owns the state and `ToggleView` mutates it.

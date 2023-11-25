@@ -1,0 +1,30 @@
+The reason why the log statement with `itemSelected` value is empty is because the `onItemSelectedListener` is called asynchronously after the function has returned. Therefore, the function returns the initial value of `itemSelected` which is an empty string.
+
+To fix this issue, you can use a callback function to return the selected item after it has been selected. Here's an updated version of your code:
+
+```
+fun Spinner.setupListWithAdapter(list: MutableList<String>, onItemSelected: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+            onItemSelected(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+}
+```
+
+Instead of returning a value, this function takes a callback function `onItemSelected` as a parameter. This callback function is called with the selected item when it is selected. You can use this function like this:
+
+```
+spinner.setupListWithAdapter(list) { selectedItem ->
+    // Do something with the selected item
+}
+```
+
+In this example, the `setupListWithAdapter` function is called with a list of items and a lambda function that takes the selected item as a parameter. When an item is selected, the lambda function is called with the selected item. You can then use this selected item to do something in your code.

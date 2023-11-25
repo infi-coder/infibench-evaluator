@@ -1,0 +1,41 @@
+TailwindCSS is a utility-first CSS framework and does not provide a way to select direct children of an element. However, you can achieve this by using the `@layer` directive and defining your own custom CSS rules.
+
+Here's an example of how you can achieve this:
+
+1. Define a new layer in your `tailwind.config.js` file:
+
+```
+module.exports = {
+  // ...
+  corePlugins: {
+    // ...
+    preflight: false,
+  },
+  theme: {
+    // ...
+  },
+  variants: {
+    // ...
+  },
+  plugins: [
+    function ({ addVariant, e }) {
+      addVariant('direct-child', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`direct-child${separator}${className}`)} > *`;
+        });
+      });
+    },
+  ],
+};
+```
+
+2. Use the `direct-child` variant in your CSS:
+
+```
+<div class="section direct-child:text-red-500">
+  <div>Direct child 1</div>
+  <div>Direct child 2</div>
+</div>
+```
+
+In this example, the `direct-child` variant is used to select all direct children of the `section` element and apply the `text-red-500` text color to them.

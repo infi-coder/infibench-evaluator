@@ -1,0 +1,31 @@
+The error message you're seeing is because Jackson, the JSON processing library used by Spring, is trying to serialize a `MultipartFile` object, which includes a `ByteArrayInputStream` that it doesn't know how to serialize.
+
+To solve this issue, you should convert the `MultipartFile` to a `FileSystemResource` before adding it to the `MultiValueMap`. Here is how you can do it:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+
+// Convert MultipartFile to File
+File convFile = new File(souqBean.getCircularAttachment().getOriginalFilename());
+FileOutputStream fos = new FileOutputStream(convFile);
+fos.write(souqBean.getCircularAttachment().getBytes());
+fos.close();
+
+// Convert File to FileSystemResource
+FileSystemResource fileSystemResource = new FileSystemResource(convFile);
+body.add("circularAttachment", fileSystemResource);
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<?> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+This way, the `MultipartFile` is converted to a `File` and then to a `FileSystemResource`, which can be properly serialized and sent as part of the HTTP request.
+
+Please note that this code writes the file to the file system, which might not be desirable in all situations. If you don't want to keep the file, you should delete it after the request is made.

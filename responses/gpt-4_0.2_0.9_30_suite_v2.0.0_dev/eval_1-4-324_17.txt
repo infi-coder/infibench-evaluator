@@ -1,0 +1,43 @@
+Here is a function `mySplit` that uses the `strsplit` function to split the strings in the column `col1` of the data frame `df` by comma and colon. The function then uses the `sapply` function to apply the `strsplit` function to each element of the column `col1`. The function then reshapes the resulting list into a matrix and converts it into a data frame.
+
+```r
+mySplit <- function(df) {
+  # Split the strings in the column 'col1' by comma and colon
+  split_list <- strsplit(as.character(df$col1), ",|:")
+  
+  # Reshape the list into a matrix
+  split_matrix <- matrix(unlist(split_list), ncol = 6, byrow = TRUE)
+  
+  # Convert the matrix into a data frame
+  split_df <- as.data.frame(split_matrix)
+  
+  # Remove the unnecessary columns
+  split_df <- split_df[, -seq(1, 5, 2)]
+  
+  # Rename the columns
+  names(split_df) <- c("name", "Age", "City")
+  
+  return(split_df)
+}
+```
+
+You can use this function as follows:
+
+```r
+# Create a data frame
+df <- data.frame(col1 = c("name:Michael,Age:31,City:NYC", "name:Tom,Age:25,City:NA"))
+
+# Apply the function
+result <- mySplit(df)
+
+# Print the result
+print(result)
+```
+
+This will give you the desired output:
+
+```r
+     name Age City
+1 Michael  31  NYC
+2     Tom  25   NA
+```

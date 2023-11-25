@@ -1,0 +1,13 @@
+Sure, here is a bash script that will install Python 3.6.5 using Homebrew:
+
+```bash
+#!/bin/bash
+
+# Install Python 3.6.5
+brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/f2a764ef944b1080be64bd88dca9a1d80130c558/Formula/python.rb
+
+# Link Python 3.6.5
+brew switch python 3.6.5
+```
+
+Please note that this script will download and install Python 3.6.5, and then switch the active Python version to 3.6.5. If you want to switch back to another version of Python, you can use the `brew switch` command again.

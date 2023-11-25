@@ -1,0 +1,15 @@
+It seems like the go module system is unable to download the dependency from the private repo. Here are a few things you can try to debug the issue:
+
+1. Check if you have the correct permissions to access the private repo. You can try cloning the repo manually and see if you can access it.
+
+2. Check if the dependency is listed in the go.mod file with the correct version. If not, you can try adding it manually and then running `go mod tidy` to update the go.sum file.
+
+3. Check if the dependency is available in the module cache. You can try running `go clean -modcache` to clear the module cache and then run `go build` again.
+
+4. Check if the dependency is available in the vendor directory. If you have a vendor directory, you can try running `go mod vendor` to populate it with the dependencies.
+
+5. Check if the dependency is available in the $GOPATH/pkg/mod directory. If not, you can try running `go get` to download the dependency.
+
+6. Check if the dependency is available in the $GOPATH/src directory. If not, you can try cloning the dependency manually into the $GOPATH/src directory.
+
+Hopefully, one of these steps will help you debug the issue and get your program to build successfully.

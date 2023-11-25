@@ -1,0 +1,51 @@
+# Corresponding to post https://stackoverflow.com/questions/50083390
+id: 3-12-536
+prompt_path: prompt_3-12-536.txt
+type: knowledge question-answering
+
+lang: dart
+
+grading:
+  max_score: 5.0
+  min_score: 0.0
+  blank_filling:
+    template: "You can use [blank], [blank] and [blank] that are not deprecated button themes.
+You can change the [blank] property which placed in the [blank] property."
+    
+    blank_str: "[blank]"
+    targets: 
+        - content:
+            or:
+              - content:
+                content: "ElevatedButton"
+                to_lower: true
+              - content:
+                content: "OutlinedButton"
+                to_lower: true
+              - content:
+                content: "TextButton"
+                to_lower: true
+        - content:
+            or:
+              - content:
+                content: "ElevatedButton"
+                to_lower: true
+              - content:
+                content: "OutlinedButton"
+                to_lower: true
+              - content:
+                content: "TextButton"
+                to_lower: true
+        - content:
+            or:
+              - content:
+                content: "ElevatedButton"
+                to_lower: true
+              - content:
+                content: "OutlinedButton"
+                to_lower: true
+              - content:
+                content: "TextButton"
+                to_lower: true
+        - "shape"
+        - "style"

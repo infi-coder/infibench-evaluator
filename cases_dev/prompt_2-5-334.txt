@@ -1,0 +1,1 @@
+When should you use @Configuration instead of @Service/@Controller/@Component for defining beans in the Spring Framework?

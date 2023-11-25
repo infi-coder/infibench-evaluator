@@ -1,0 +1,33 @@
+You can change the color of the accordion arrow by targeting the `::after` pseudo-element of the `.accordion-button` class. This pseudo-element is responsible for the arrow. Here is the CSS code:
+
+```css
+.accordion-button::after {
+    /* You may want to include vendor prefixes for older browsers */
+    color: green;
+}
+```
+
+However, Bootstrap 5 uses a background-image for the accordion arrows, not a color. So, you might not be able to change the color directly. Instead, you can override the default arrow with your own. Here is an example:
+
+```css
+.accordion-button::after {
+    /* Reset the default arrow */
+    background-image: none;
+    /* Add your own arrow */
+    content: '▼';
+    /* Set the color */
+    color: green;
+    /* Adjust the position if needed */
+    position: relative;
+    top: 0;
+    /* Add a transition if you want the arrow to rotate when the accordion is open */
+    transition: transform 0.6s ease;
+}
+
+/* Rotate the arrow when the accordion is open */
+.accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+}
+```
+
+This will replace the default arrow with a text arrow, which you can color as you like. Adjust the position and rotation to fit your design.

@@ -1,0 +1,9 @@
+The issue with your command is that the shell performs the command substitution `$(echo {} | sed 's/\?.*//g')` before `find` is executed, so it doesn't have the desired effect.
+
+You can use a bash loop to process the files found by `find`:
+
+```bash
+find . -type f -name '*\?*' | while read -r file; do mv "$file" "${file%%\?*}"; done
+```
+
+This command uses `find` to locate the files, then reads each file into the variable `file`. The `mv` command renames the file, using parameter expansion to remove everything from the `?` onwards. The `%%\?*` pattern means "delete the longest match of `?` and anything after it".

@@ -1,0 +1,7 @@
+You can disable the animation in ViewPager2 by setting the `setPageTransformer` method to null. Here's an example:
+
+```
+viewPager2.setPageTransformer(null);
+```
+
+This will disable the animation when switching between pages.

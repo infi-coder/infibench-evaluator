@@ -1,0 +1,34 @@
+You can use the `pkg_resources` module to get the installed version of a package, and the `yolk3k` package to get the latest version of a package from PyPI. Here is a function that does this:
+
+```python
+import pkg_resources
+from yolk.pypi import CheeseShop
+
+def checkVersion(pkgName):
+    try:
+        # Get installed version
+        installed_version = pkg_resources.get_distribution(pkgName).version
+    except pkg_resources.DistributionNotFound:
+        return False
+
+    # Get latest version
+    pypi = CheeseShop()
+    versions = pypi.package_releases(pkgName)
+    if not versions:  # No versions found on PyPI
+        return False
+
+    latest_version = versions[0]
+
+    # Compare versions
+    return installed_version == latest_version
+```
+
+This function will return `True` if the installed version of the package is the latest version, and `False` otherwise. If the package is not installed or not found on PyPI, it will also return `False`.
+
+Please note that you need to install `yolk3k` package to use `CheeseShop`. You can install it using pip:
+
+```bash
+pip install yolk3k
+```
+
+Also, please note that this function assumes that the versions are always listed in descending order on PyPI, which is the current behavior but could potentially change in the future.

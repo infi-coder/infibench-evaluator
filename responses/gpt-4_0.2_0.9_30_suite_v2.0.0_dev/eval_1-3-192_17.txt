@@ -1,0 +1,15 @@
+Here is a Python solution using the `re` module:
+
+```python
+import re
+
+def to_camel_case(text):
+    words = re.split('-|_', text)
+    return words[0] + ''.join(word.capitalize() for word in words[1:])
+```
+
+This function works by first splitting the input string `text` into a list of words using either a dash `-` or an underscore `_` as the delimiter. The `split` method from the `re` module is used for this purpose.
+
+The function then returns a new string that is constructed by concatenating the first word in the list (which is left as is) with the rest of the words in the list (which are capitalized). The `join` method is used to concatenate the words together, and the `capitalize` method is used to capitalize each word.
+
+This solution handles both Upper Camel Case (also known as Pascal Case) and lower camel case correctly, as required by the problem statement. The first word in the output is capitalized only if the original word was capitalized, and all other words in the output are always capitalized.

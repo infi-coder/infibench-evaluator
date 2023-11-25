@@ -1,0 +1,12 @@
+This error is caused by a bug in rust-analyzer, which is a language server for Rust. It is a known issue and has been reported on GitHub. You can try updating your rust-analyzer extension to the latest version to see if the issue has been fixed. 
+
+In the meantime, you can ignore the error as it does not affect the functionality of your code. If you want to get rid of the error, you can try replacing the `return` statement with an assignment to a variable and then returning the variable:
+
+```rust
+let padded_str = pad_str(row, width as usize, Alignment::Center, None)
+    .to_string()
+    .replace(' ', &symbol.to_string());
+return padded_str;
+```
+
+This should eliminate the error, but again, it is not necessary for the functionality of your code.

@@ -1,0 +1,38 @@
+To copy the text from `v-text-field` to clipboard, you can use the Clipboard API. Here's the updated code with the `copyText` method:
+
+```html
+<template>
+  <div id="app">
+    <v-app id="inspire">
+      <v-container>
+        <v-text-field v-model="text1"></v-text-field>
+        <v-btn @click="copyText">copy</v-btn>
+      </v-container>
+    </v-app>
+  </div>
+</template>
+
+<script>
+  new Vue({
+    el: "#app",
+    vuetify: new Vuetify(),
+    data() {
+      return {
+        text1: "lorem ipsum 123",
+      };
+    },
+    methods: {
+      copyText() {
+        const textField = document.createElement("textarea");
+        textField.innerText = this.text1;
+        document.body.appendChild(textField);
+        textField.select();
+        document.execCommand("copy");
+        textField.remove();
+      },
+    },
+  });
+</script>
+```
+
+In the `copyText` method, we create a new `textarea` element, set its `innerText` to the value of `text1`, append it to the `document.body`, select its contents, copy the selected text to clipboard using `document.execCommand("copy")`, and finally remove the `textarea` element from the document.

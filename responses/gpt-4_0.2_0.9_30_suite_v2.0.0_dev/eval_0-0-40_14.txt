@@ -1,0 +1,39 @@
+The problem you're encountering is due to the fact that your system is trying to use the Windows version of `npm` instead of the one installed in your WSL2 Ubuntu environment. This is because the Windows path is included in your WSL2 path.
+
+To solve this issue, you need to remove the Windows path from your WSL2 path. You can do this by editing your `.bashrc` or `.bash_profile` file.
+
+Here are the steps:
+
+1. Open your `.bashrc` file in a text editor. You can use `nano` for this:
+
+   ```bash
+   nano ~/.bashrc
+   ```
+
+2. Add the following line at the end of the file:
+
+   ```bash
+   export PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g')
+   ```
+
+   This command removes the Windows path from your WSL2 path.
+
+3. Save the file and exit the editor. If you're using `nano`, you can do this by pressing `Ctrl + X`, then `Y`, then `Enter`.
+
+4. Reload your `.bashrc` file to apply the changes:
+
+   ```bash
+   source ~/.bashrc
+   ```
+
+5. Now, when you run `npm -v`, it should use the `npm` installed in your WSL2 environment.
+
+If you still encounter issues, you might need to reinstall `nodejs` and `npm` in your WSL2 environment:
+
+```bash
+sudo apt-get remove -y nodejs npm
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+This will remove the existing `nodejs` and `npm`, then install the latest LTS version of `nodejs`, which includes `npm`.

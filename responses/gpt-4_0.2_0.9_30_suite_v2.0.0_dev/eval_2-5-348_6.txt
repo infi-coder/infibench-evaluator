@@ -1,0 +1,15 @@
+The error message you're seeing is due to a known issue with Java 8u20 and later versions on Windows. The issue is that Java now rejects command lines that contain embedded quotes.
+
+The solution is to upgrade your NetBeans to a version that includes a fix for this issue. NetBeans 11.3 and later versions include a fix for this issue.
+
+Here are the steps to upgrade NetBeans:
+
+1. Download the latest version of NetBeans from the official website. You can download it from here: [NetBeans Official Website](https://netbeans.apache.org/download/index.html)
+
+2. Uninstall the old version of NetBeans. You can do this by going to `Control Panel > Programs > Programs and Features`, select `NetBeans`, and click on `Uninstall`.
+
+3. Install the new version of NetBeans that you just downloaded. Just follow the installation wizard.
+
+4. After the installation is complete, try to build your project again.
+
+If you still encounter the same issue after upgrading NetBeans, please let me know.

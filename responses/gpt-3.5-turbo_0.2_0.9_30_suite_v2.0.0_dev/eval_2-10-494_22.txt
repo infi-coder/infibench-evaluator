@@ -1,0 +1,11 @@
+This error message is caused by a known issue with rust-analyzer, where it sometimes fails to resolve macros correctly. In this case, it is likely that rust-analyzer is having trouble resolving the `format_args!` macro, which is used internally by the `pad_str` function.
+
+Fortunately, this error should not affect the functionality of your code, and it should still compile and run correctly. If you want to get rid of the error message in rust-analyzer, you can try updating your dependencies to the latest versions, as this issue has been fixed in some recent releases of the `console` crate.
+
+If updating your dependencies does not fix the issue, you can try disabling the rust-analyzer macro expansion feature by adding the following line to your `rustfmt.toml` file:
+
+```
+unstable_features = ["no_macro_expansion"]
+```
+
+This will disable macro expansion in rust-analyzer, which should prevent the error message from appearing. However, this may also cause other issues with macro-related features in rust-analyzer, so use this option with caution.

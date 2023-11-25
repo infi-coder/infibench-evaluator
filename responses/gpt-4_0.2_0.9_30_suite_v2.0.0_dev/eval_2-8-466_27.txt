@@ -1,0 +1,38 @@
+You can use the `gin.WrapH` function to wrap the promhttp handler. Here's how you can modify your code:
+
+```go
+package main
+
+import (
+    "log"
+
+    "github.com/gin-gonic/gin"
+    "github.com/prometheus/client_golang/prometheus"
+    "github.com/prometheus/client_golang/prometheus/promhttp"
+)
+
+var cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{
+        Name: "cpu_temperature_celsius",
+        Help: "Current temperature of the CPU.",
+    })
+
+func init() {
+    // Metrics have to be registered to be exposed:
+    prometheus.MustRegister(cpuTemp)
+}
+
+func main() {
+    cpuTemp.Set(65.3)
+
+    // Create a new gin router
+    r := gin.Default()
+
+    // The Handler function provides a default handler to expose metrics
+    // via an HTTP server. "/metrics" is the usual endpoint for that.
+    r.GET("/metrics", gin.WrapH(promhttp.Handler()))
+
+    // Start the server
+    log.Fatal(r.Run(":8080"))
+}
+```
+In this code, `gin.WrapH(promhttp.Handler())` wraps the promhttp handler so it can be used with the gin framework. The `r.GET("/metrics", ...)` line sets up the `/metrics` endpoint to serve the metrics.

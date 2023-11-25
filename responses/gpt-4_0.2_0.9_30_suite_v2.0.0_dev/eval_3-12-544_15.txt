@@ -1,0 +1,37 @@
+The error you're encountering is due to the fact that you're trying to access platform-specific functionality before `runApp()` is called, and before the Flutter engine is fully initialized. 
+
+To fix this, you should move your platform-specific code inside the `main()` function into the `initState()` method of your widget. 
+
+Here's how you can do it:
+
+```dart
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    initHive();
+  }
+
+  Future<void> initHive() async {
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    Hive.init(appDocsDir.path);
+    // other Hive initialization code
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // your build method code
+  }
+}
+```
+
+In this code, the `initHive()` function is called in the `initState()` method of the `MyApp` widget. This ensures that the Flutter engine is fully initialized before you try to access platform-specific functionality.

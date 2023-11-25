@@ -1,0 +1,21 @@
+The error message indicates that the Pillow library is trying to compile its source code on your machine but it can't find the necessary dependencies (in this case, zlib).
+
+However, the Pillow library should provide pre-compiled binaries for Windows, so normally it should not need to compile anything. The problem might be that you are trying to install an old version of Pillow (6.0.0) which does not provide a pre-compiled binary for your Python version (3.8).
+
+Here are a few things you can try:
+
+1. Upgrade pip: Sometimes these issues can be resolved by using the latest version of pip. You can upgrade pip by running the following command:
+
+```bash
+python -m pip install --upgrade pip
+```
+
+2. Install the latest version of Pillow: Try to install the latest version of Pillow, which should have pre-compiled binaries for your Python version. You can do this by running the following command:
+
+```bash
+pip install --upgrade pillow
+```
+
+3. Install a compatible version of Python: If the above steps do not work, you might need to install a version of Python that is compatible with the version of Pillow you are trying to install. According to the error message, Pillow 6.0.0 does not support Python 3.8. You could try installing Python 3.7 and see if that resolves the issue.
+
+4. Install the necessary dependencies: If you really need to compile Pillow from source, you will need to install the necessary dependencies. The error message indicates that zlib is missing. You can download zlib from [here](https://zlib.net/). After downloading and extracting the files, you will need to compile and install zlib. This might be a bit complicated if you are not familiar with compiling C code.

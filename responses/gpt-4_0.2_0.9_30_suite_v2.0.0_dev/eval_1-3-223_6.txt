@@ -1,0 +1,29 @@
+You can use the `pkg_resources` module to get the installed version of a package, and the `yolk3k` module to get the latest version available on PyPI. Here is a function that does this:
+
+```python
+import pkg_resources
+from yolk.pip import Pip
+from yolk.metadata import Metadata
+
+def checkVersion(pkgName):
+    # Get installed version
+    installed_version = pkg_resources.get_distribution(pkgName).version
+
+    # Get latest version
+    pip = Pip.from_path()
+    metadata = Metadata.from_package(pkgName)
+    latest_version = metadata.version
+
+    # Compare and return
+    return installed_version == latest_version
+```
+
+This function will return `True` if the installed version of the package is the latest, and `False` otherwise.
+
+Please note that `yolk3k` is not a built-in Python module and you need to install it using pip:
+
+```bash
+pip install yolk3k
+```
+
+Also, this function assumes that the package is already installed. If the package is not installed, `pkg_resources.get_distribution(pkgName).version` will raise a `DistributionNotFound` exception. You may want to add error handling for this case.

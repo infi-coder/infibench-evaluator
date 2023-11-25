@@ -1,0 +1,13 @@
+The Rule of Five is not necessarily outdated, but it's true that modern C++ practices and features like smart pointers can reduce the need for it.
+
+The Rule of Five is a guideline that helps ensure that you implement all necessary special member functions when you need to manage resources manually. This is often the case when dealing with raw pointers, where you need to ensure proper copying, moving, and destruction.
+
+However, with the advent of smart pointers (like `std::unique_ptr`, `std::shared_ptr`), the need for manual resource management has been greatly reduced. Smart pointers automatically handle resource cleanup when they go out of scope, which eliminates the need for a custom destructor. They also prevent copying by default (`std::unique_ptr`) or handle it for you (`std::shared_ptr`), which eliminates the need for custom copy constructors and assignment operators.
+
+That said, there are still cases where you might need to implement these special member functions:
+
+- When you're interfacing with C-style code or libraries that require raw pointers.
+- When you're managing resources other than memory, like file handles or network connections.
+- When you need performance optimizations that the standard library types can't provide.
+
+In these cases, the Rule of Five is still relevant and useful. But in general, modern C++ code prefers to use smart pointers and other RAII (Resource Acquisition Is Initialization) types to manage resources, which makes the Rule of Five less necessary.

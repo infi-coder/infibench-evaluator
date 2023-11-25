@@ -1,0 +1,17 @@
+Sure, here's the updated code for `connect-mongo` v4:
+
+```javascript
+const session = require('express-session');
+const MongoStore = require('connect-mongo').default(session);
+
+...
+
+app.use(session({
+    secret: 'story book',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+}));
+```
+
+Note that in `connect-mongo` v4, you need to use `MongoStore.create()` instead of `new MongoStore()`. Also, you need to pass the `session` object to `connect-mongo` using the `.default()` method. Finally, you can pass the `mongoUrl` directly to `MongoStore.create()` instead of using `mongooseConnection`.

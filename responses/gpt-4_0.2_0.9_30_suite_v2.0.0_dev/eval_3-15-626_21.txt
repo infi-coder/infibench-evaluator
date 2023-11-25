@@ -1,0 +1,44 @@
+Your code seems to be on the right track, but there are a few issues that need to be addressed:
+
+1. You are trying to use `query` and `currentSheet` as variables, but you haven't declared them. In VBA, you need to declare variables with the `Dim` keyword.
+
+2. You are trying to use `query` as an object with a `Name` property, but you've assigned it a string value.
+
+3. You are not using `currentSheet` anywhere in your code.
+
+Here's a revised version of your code:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    Dim query As String
+    Dim currentSheet As Worksheet
+
+    ' Set the query string and the current sheet
+    query = Sheets("Sheet6").Range("A1").Value
+    Set currentSheet = ActiveSheet
+
+    ' Add a new ListObject with a QueryTable that uses the Power Query
+    With currentSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=Sheets("target").Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+
+End Sub
+```
+
+This code should work if the string in `Sheets("Sheet6").Range("A1")` is the name of a Power Query in your workbook. If it's the actual M code of the query, you'll need a different approach, as you can't run M code directly from VBA.

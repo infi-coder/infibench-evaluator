@@ -1,0 +1,19 @@
+The error occurs because some values in the "year" column are not valid integers. Specifically, the value '2021.0' contains a decimal point which cannot be converted to an integer using the `int()` function.
+
+To fix this, we can first convert the column to a float using the `astype()` method, and then convert it to an integer using the `astype()` method again. This will remove the decimal point and convert the values to integers.
+
+Here's the updated code:
+
+```python
+data_h_df['year'] = data_h_df['year'].astype(float).astype(int)
+```
+
+And here's the complete `transformation()` function:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].astype(float).astype(int)
+    return data_h_df
+```
+
+This function takes a pandas DataFrame `data_h_df` as input, converts the "year" column to integers, and returns the updated DataFrame.

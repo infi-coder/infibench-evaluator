@@ -1,0 +1,45 @@
+You can use the `MultiProvider` widget to provide multiple instances of `ChangeNotifier` to your widget tree. Here's an example of how you can use it:
+
+```dart
+return MultiProvider(
+  providers: [
+    ChangeNotifierProvider<Item1Notifier>(create: (_) => Item1Notifier()),
+    ChangeNotifierProvider<Item2Notifier>(create: (_) => Item2Notifier()),
+    ChangeNotifierProvider<Item3Notifier>(create: (_) => Item3Notifier()),
+    ChangeNotifierProvider<Item4Notifier>(create: (_) => Item4Notifier()),
+  ],
+  child: MaterialApp(
+    home: Scaffold(
+      body: Consumer4<Item1Notifier, Item2Notifier, Item3Notifier, Item4Notifier>(
+        builder: (_, item1, item2, item3, item4, __) {
+          // Use the notifiers here
+          return CurvedNavigationBar(
+            items: [
+              // ...
+            ],
+            onTap: (index) {
+              // Update the corresponding notifier
+              switch (index) {
+                case 0:
+                  item1.update();
+                  break;
+                case 1:
+                  item2.update();
+                  break;
+                case 2:
+                  item3.update();
+                  break;
+                case 3:
+                  item4.update();
+                  break;
+              }
+            },
+          );
+        },
+      ),
+    ),
+  ),
+);
+```
+
+In this example, we're using `MultiProvider` to provide instances of `Item1Notifier`, `Item2Notifier`, `Item3Notifier`, and `Item4Notifier` to the widget tree. Then, we're using `Consumer4` to listen to changes in all four notifiers and rebuild the widget when any of them change. Finally, we're using `CurvedNavigationBar` as the child of the `Consumer4` widget and updating the corresponding notifier when an item is tapped.

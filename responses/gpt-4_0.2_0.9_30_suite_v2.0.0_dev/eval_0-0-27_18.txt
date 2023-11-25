@@ -1,0 +1,15 @@
+Your code seems correct and should work as expected. However, there are a few things you can check if your `useQuery` hook is stuck in the loading state:
+
+1. **Network Issues:** Make sure your device/emulator is connected to the internet and can access the GraphQL server. You can check this by opening the URL 'https://48p1r2roz4.sse.codesandbox.io' in a web browser on your device/emulator.
+
+2. **Server Issues:** The server at 'https://48p1r2roz4.sse.codesandbox.io' might be down or not responding. You can check the server status by running a query directly on the server using a tool like GraphQL Playground or Apollo Studio.
+
+3. **CORS Issues:** If you're running this on a physical device, you might be running into CORS issues. React Native doesn't have the same origin policy as a web browser, but the server might be configured to only allow certain origins. You can check this by looking at the network requests in the debug console or using a tool like Charles Proxy.
+
+4. **Apollo Client Configuration:** Make sure the Apollo Client is correctly configured. The `uri` and `cache` properties are required, but there might be other properties needed depending on your server configuration.
+
+5. **Query Issues:** The query might be incorrect or the server might not support it. You can check this by running the query directly on the server using a tool like GraphQL Playground or Apollo Studio.
+
+6. **React Native Version:** There might be compatibility issues with the version of React Native you're using. You're using version 0.68.1, which is not a valid React Native version. The latest version at the time of writing is 0.67.2. Please check your React Native version.
+
+If none of these suggestions work, you might want to consider opening an issue on the Apollo Client GitHub repository.

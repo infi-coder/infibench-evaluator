@@ -1,0 +1,32 @@
+It seems that the Dockerfile is not able to find the `app` module. You can try the following steps to revise your Dockerfile:
+
+1. Make sure that the `app` folder is in the same directory as the Dockerfile.
+
+2. Update the `COPY` command in the Dockerfile to copy the `app` folder to the working directory:
+
+   ```
+   COPY ./app /app
+   ```
+
+3. Update the `CMD` command to use the correct path to the `main` module:
+
+   ```
+   CMD ["uvicorn", "app.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+   ```
+
+Here is the updated Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt /
+RUN pip install --requirement /requirements.txt
+
+COPY ./app /app
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+Make sure to rebuild the Docker image and run the container again using `docker-compose up -d`.

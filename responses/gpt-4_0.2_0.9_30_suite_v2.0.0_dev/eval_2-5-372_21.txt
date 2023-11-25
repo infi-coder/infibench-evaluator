@@ -1,0 +1,18 @@
+It seems like you are facing a version conflict issue. The `@NotEmpty` and `@NotBlank` annotations are part of the Bean Validation 2.0 specification, which is implemented by Hibernate Validator 6.0.0.Final and later. However, your logs show that Hibernate Validator 5.3.5.Final-redhat-2 is being used, which only supports Bean Validation 1.1 and does not include these annotations.
+
+The version of Hibernate Validator being used is likely coming from your application server (JBoss), which may have its own bundled version of Hibernate Validator that is being used instead of the one provided by your application.
+
+To resolve this, you can try one of the following options:
+
+1. **Upgrade your application server to a version that includes Hibernate Validator 6.0.0.Final or later.** This will ensure that the server's bundled version of Hibernate Validator supports Bean Validation 2.0.
+
+2. **Isolate your application's classloading.** This will prevent your application from using the server's bundled version of Hibernate Validator. The exact steps to do this depend on your specific server. For JBoss, you can refer to the [JBoss classloading documentation](https://docs.jboss.org/author/display/WFLY10/Class+Loading+in+WildFly).
+
+3. **Use a different validation annotation that is supported by Bean Validation 1.1.** If upgrading the server or isolating classloading is not feasible, you can use the `@Pattern` annotation with a regular expression to enforce that the field is not empty or blank. For example:
+
+    ```java
+    @Pattern(regexp="\\S", message="The field must not be empty or blank")
+    private String username;
+    ```
+
+    This regular expression (`\\S`) matches any non-whitespace character, so it will reject empty or blank strings.

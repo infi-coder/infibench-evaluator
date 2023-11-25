@@ -1,0 +1,20 @@
+The issue is with the format of your `$theme-colors` map. You need to specify the colors in the RGB format instead of the hexadecimal format.
+
+Here's the revised code:
+
+```scss
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": rgb(13, 110, 253),
+);
+
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value") !default;
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In this code, we are using the `rgb()` function to specify the color values in the `$theme-colors` map. We are also using the `to-rgb()` function to convert the color values to RGB format before assigning them to the `$theme-colors-rgb` variable.
+
+Note that you need to import the `functions` file before the `variables` file to use the `to-rgb()` function.

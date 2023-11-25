@@ -1,0 +1,23 @@
+The error message suggests that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `CommonsMultipartFile` class contains a `DiskFileItem` object which has an `inputStream` field of type `java.io.ByteArrayInputStream`. 
+
+To solve this issue, you can configure the `RestTemplate` to use a `ByteArrayResourceHttpMessageConverter` which can handle `ByteArrayResource` objects, and then convert the `ByteArrayInputStream` to a `ByteArrayResource`. Here's an example of how to do this:
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.getMessageConverters().add(new ByteArrayResourceHttpMessageConverter());
+
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body= new LinkedMultiValueMap<>();
+body.add("circularAttachment", new ByteArrayResource(souqBean.getCircularAttachment().getBytes())); // convert MultipartFile to ByteArrayResource
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+In this example, we added a `ByteArrayResourceHttpMessageConverter` to the `RestTemplate`'s list of message converters. Then, we converted the `MultipartFile` to a `ByteArrayResource` using the `getBytes()` method. Finally, we passed the `ByteArrayResource` object in the `MultiValueMap` instead of the `MultipartFile`.

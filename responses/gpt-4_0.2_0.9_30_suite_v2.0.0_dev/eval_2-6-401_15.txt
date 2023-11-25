@@ -1,0 +1,80 @@
+You can use the factory pattern to create multiple instances of `ServiceBusClient` and `ServiceBusSender` with different queue names. Here is an example:
+
+First, create a factory for `ServiceBusClient`:
+
+```c#
+public interface IServiceBusClientFactory
+{
+    ServiceBusClient Create(string queueName);
+}
+
+public class ServiceBusClientFactory : IServiceBusClientFactory
+{
+    private readonly UserEventConsumerSetting _serviceBusConfiguration;
+
+    public ServiceBusClientFactory(IOptions<UserEventConsumerSetting> serviceBusConfiguration)
+    {
+        _serviceBusConfiguration = serviceBusConfiguration.Value;
+    }
+
+    public ServiceBusClient Create(string queueName)
+    {
+        var serviceBusClient = new ServiceBusClient(_serviceBusConfiguration.ServiceBusConnectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+
+        return serviceBusClient;
+    }
+}
+```
+
+Then, create a factory for `ServiceBusSender`:
+
+```c#
+public interface IServiceBusSenderFactory
+{
+    ServiceBusSender Create(string queueName);
+}
+
+public class ServiceBusSenderFactory : IServiceBusSenderFactory
+{
+    private readonly IServiceBusClientFactory _clientFactory;
+
+    public ServiceBusSenderFactory(IServiceBusClientFactory clientFactory)
+    {
+        _clientFactory = clientFactory;
+    }
+
+    public ServiceBusSender Create(string queueName)
+    {
+        var client = _clientFactory.Create(queueName);
+        return client.CreateSender(queueName);
+    }
+}
+```
+
+Register these factories in your DI container:
+
+```c#
+services.AddSingleton<IServiceBusClientFactory, ServiceBusClientFactory>();
+services.AddSingleton<IServiceBusSenderFactory, ServiceBusSenderFactory>();
+```
+
+Finally, use the `ServiceBusSenderFactory` to create `ServiceBusSender` instances:
+
+```c#
+public class CarReservationMessagingService
+{
+    private readonly ServiceBusSender _serviceBusSender;
+
+    public CarReservationMessagingService(IServiceBusSenderFactory serviceBusSenderFactory)
+    {
+        _serviceBusSender = serviceBusSenderFactory.Create("yourQueueName");
+    }
+
+    // ...
+}
+```
+
+With this approach, you can create `ServiceBusSender` instances for different queues by providing different queue names to the `Create` method of `IServiceBusSenderFactory`.

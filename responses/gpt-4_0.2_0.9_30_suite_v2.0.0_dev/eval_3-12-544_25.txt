@@ -1,0 +1,22 @@
+The error you're encountering is due to the fact that you're trying to access platform-specific code before the Flutter engine is fully initialized. 
+
+In Flutter, you can't use asynchronous code directly inside the `main` function. You need to ensure that Flutter's engine is fully initialized before calling `getApplicationDocumentsDirectory()`. 
+
+To fix this issue, you can create a new asynchronous function and call it from the `main` function. Here's how you can do it:
+
+```dart
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
+  initializeHive();
+}
+
+Future<void> initializeHive() async {
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+}
+```
+
+In this code, `WidgetsFlutterBinding.ensureInitialized()` ensures that the Flutter engine is fully up and running before you start executing your own code. 
+
+Then, `initializeHive()` is called to initialize Hive with the application documents directory. This function is asynchronous, so it won't block the UI thread while it's waiting for `getApplicationDocumentsDirectory()` to complete.

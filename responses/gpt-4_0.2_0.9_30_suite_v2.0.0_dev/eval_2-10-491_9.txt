@@ -1,0 +1,62 @@
+Yes, there are more idiomatic ways to express the same logic in Rust. Here are a few alternatives:
+
+1. Using `if let` with a guard:
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        if let Some(foo_val) = foo {
+            if foo_val < 5 {
+                foo.replace(5);
+            }
+        } else {
+            foo.replace(5);
+        }
+    }
+    ```
+
+2. Using `map_or`:
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        foo = foo.map_or(Some(5), |foo_val| if foo_val < 5 { Some(5) } else { Some(foo_val) });
+    }
+    ```
+
+3. Using `match` with a tuple:
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        match (foo, foo.filter(|&foo_val| foo_val >= 5)) {
+            (None, _) | (_, None) => { foo.replace(5); }
+            _ => {}
+        }
+    }
+    ```
+
+4. Using `if let` with `Option::filter`:
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        if let None = foo.filter(|&foo_val| foo_val >= 5) {
+            foo.replace(5);
+        }
+    }
+    ```
+
+5. Using `Option::unwrap_or_else`:
+
+    ```rust
+    fn main() {
+        let mut foo: Option<u8> = None;
+        foo = Some(*foo.get_or_insert(5));
+        if *foo.unwrap_or_else(|| &5) < 5 {
+            foo.replace(5);
+        }
+    }
+    ```
+
+All of these alternatives are more idiomatic and concise than the original code. They all use different methods provided by the `Option` enum to handle the `None` case and the case where the inner value is less than 5.

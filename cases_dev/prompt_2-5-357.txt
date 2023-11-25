@@ -1,0 +1,32 @@
+I have seen many people using @Autowired annotation in constructor to inject dependencies like as shown below
+```java
+@Service
+public class Employee {
+
+ private EmployeeService employeeService;
+
+ @Autowired
+ public Employee(EmployeeService employeeService) {
+   this.employeeService = employeeService;
+ }
+ :
+ :
+}
+```
+As per my knowledge nowadays Spring is so advanced and the Spring constructor/setter DI works even without @Autowired like as shown below
+```java
+@Service
+public class Employee {
+
+ private EmployeeService employeeService;
+
+ public Employee(EmployeeService employeeService) {
+   this.employeeService = employeeService;
+ }
+ :
+ :
+}
+```
+Like to know is there any reason why people annotate constructor with @Autowired annotation to inject dependencies.
+
+Can someone please help me on this?

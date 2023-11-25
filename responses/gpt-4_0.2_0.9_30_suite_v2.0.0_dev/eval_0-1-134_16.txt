@@ -1,0 +1,15 @@
+It sounds like you're referring to a feature provided by a tool called Emmet. Emmet is a plugin for many popular text editors that greatly improves HTML & CSS workflow.
+
+For example, in HTML, if you type `.classname` and press `Tab`, it will automatically expand to `<div class="classname"></div>`. This is a very handy feature for quickly generating HTML structure.
+
+If it's not working for you, it could be due to a few reasons:
+
+1. **Your text editor doesn't support Emmet**: Not all text editors support Emmet. Check if your text editor supports it or not. If it doesn't, you might want to switch to one that does, like Visual Studio Code, Sublime Text, or Atom.
+
+2. **Emmet is not installed or enabled**: If your text editor supports Emmet, make sure it's installed and enabled. In some text editors, Emmet comes pre-installed but in others, you might need to install it manually.
+
+3. **You're not in an HTML file**: Emmet usually only works in HTML files. Make sure you're in an HTML file (the file extension should be `.html`).
+
+4. **You're not using the correct syntax**: Make sure you're using the correct Emmet syntax. For example, `.classname` will create a `div` with the class `classname`. If you want to create an element other than a `div`, you need to specify it, like `p.classname` for a `p` element with the class `classname`.
+
+If you've checked all these and it's still not working, you might want to look for specific instructions for your text editor on how to use Emmet.

@@ -1,0 +1,30 @@
+In SwiftUI, there is no built-in way to get the current scroll position of a `ScrollView`. The `ScrollViewReader` and `ScrollViewProxy` only provide the `scrollTo` method, which is used to programmatically set the scroll position, not get it.
+
+However, you can use `GeometryReader` to get the scroll offset. Here's a basic example:
+
+```swift
+ScrollView {
+    GeometryReader { geometry in
+        Color.clear.preference(key: ViewOffsetKey.self, value: geometry.frame(in: .named("scrollView")).minY)
+    }.frame(height: 0)
+
+    // Your ScrollView content here...
+}
+.onPreferenceChange(ViewOffsetKey.self) { offset in
+    print("Current scroll offset: \(offset)")
+}
+.coordinateSpace(name: "scrollView")
+```
+
+In this example, `ViewOffsetKey` is a custom `PreferenceKey`. You would need to define it like this:
+
+```swift
+struct ViewOffsetKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value += nextValue()
+    }
+}
+```
+
+This will print the current scroll offset every time it changes. Note that this is a workaround and may not be perfect. It's a limitation of SwiftUI that it doesn't provide a built-in way to get the current scroll position.

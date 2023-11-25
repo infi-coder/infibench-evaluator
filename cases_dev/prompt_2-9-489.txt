@@ -1,0 +1,6 @@
+I have a Rails app that uses Searchkick and after updating my gems and yarn, I'm getting this Elasticsearch warning":
+```
+warning: 299 Elasticsearch-7.13.1-9a7758028e4ea59bcab41c12004603c5a7dd84a9 "Elasticsearch built-in security features are not enabled. Without authentication, your cluster could be accessible to anyone. See https://www.elastic.co/guide/en/elasticsearch/reference/7.13/security-minimal-setup.html to enable security."
+```
+I'm currently on an M1 Mac.
+How do I fix this?

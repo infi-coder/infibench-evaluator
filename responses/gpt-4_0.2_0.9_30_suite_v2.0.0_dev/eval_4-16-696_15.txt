@@ -1,0 +1,7 @@
+The problem is that the command substitution `$(echo {} | sed 's/\?.*//g')` is evaluated before `find` starts executing, so it doesn't have the expected effect. You can solve this by wrapping your `mv` command in a shell. Here is the corrected command:
+
+```bash
+find . -type f -name '*\?*' -print0 | while IFS= read -r -d '' file; do mv "$file" "${file%%\?*}"; done
+```
+
+This command will find all files with a question mark in their name, and for each file, it will remove the question mark and everything after it. The `-print0` and `-d ''` options are used to correctly handle filenames with spaces or special characters.

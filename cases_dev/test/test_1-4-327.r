@@ -1,0 +1,1 @@
+assert(all.equal(second_col, d2[,1], check.attributes = FALSE))

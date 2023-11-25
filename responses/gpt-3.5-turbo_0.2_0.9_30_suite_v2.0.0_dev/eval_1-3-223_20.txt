@@ -1,0 +1,45 @@
+To check if a package is at its latest version programmatically in a script and return a true or false, you can use the `pip` module in Python. Here's a function `checkVersion` that takes the package name `pkgName` as the argument and returns a boolean value:
+
+```python
+import pip
+
+def checkVersion(pkgName):
+    # Get the latest version of the package
+    latest_version = None
+    try:
+        package = pip.get_installed_distributions()
+        for pkg in package:
+            if pkg.key == pkgName.lower():
+                latest_version = pkg.version
+                break
+    except AttributeError:
+        # pip 10.0.x
+        from pip._internal import get_installed_distributions
+        package = get_installed_distributions()
+        for pkg in package:
+            if pkg.key == pkgName.lower():
+                latest_version = pkg.version
+                break
+
+    # Check if the package is up-to-date
+    if latest_version is None:
+        return False
+    else:
+        from packaging.version import parse
+        from packaging.version import Version
+        from packaging.version import InvalidVersion
+        try:
+            current_version = parse(latest_version)
+            latest_version = parse(latest_version)
+            return current_version == latest_version
+        except InvalidVersion:
+            return False
+```
+
+You can call this function with the name of the package you want to check, like this:
+
+```python
+print(checkVersion('gekko'))
+```
+
+This will return `True` if the package is up-to-date, and `False` otherwise.

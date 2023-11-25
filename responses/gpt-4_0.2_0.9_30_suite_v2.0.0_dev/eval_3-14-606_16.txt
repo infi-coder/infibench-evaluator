@@ -1,0 +1,12 @@
+It seems like there's a bit of confusion here. iOS does not have a "Developer Mode" that can be enabled like Android. However, if you're trying to run a provisioned testing build, you'll need to trust the developer that signed the app on your device. Here's how to do that:
+
+1. Go to **Settings** on your iOS device.
+2. Scroll down and select **General**.
+3. Scroll down and select **Device Management** or **Profiles & Device Management**.
+4. Under the "Developer App" section, select the developer name.
+5. Tap on **Trust "[Developer Name]"**.
+6. You'll see a prompt to confirm your decision, tap **Trust**.
+
+After these steps, you should be able to run your provisioned testing build.
+
+If you're a developer and you're trying to run your apps on an iOS device, you'll need to have the appropriate certificates and provisioning profiles set up in Xcode. You can find more information about this in the [Apple Developer Documentation](https://developer.apple.com/documentation/xcode/running-your-app-in-the-simulator-or-on-a-device).

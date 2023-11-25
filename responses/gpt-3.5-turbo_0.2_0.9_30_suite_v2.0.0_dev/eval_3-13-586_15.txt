@@ -1,0 +1,16 @@
+The error message is indicating that you need to specify either `FLAG_IMMUTABLE` or `FLAG_MUTABLE` when creating a `PendingIntent`. You can fix the error by updating the `PendingIntent` creation code in your `MediaService` class to include one of these flags.
+
+Here's an example of how you can update the `PendingIntent` creation code:
+
+```
+val mediaButtonIntent = Intent(Intent.ACTION_MEDIA_BUTTON)
+mediaButtonIntent.component = mbrComponent
+val pendingIntent = PendingIntent.getBroadcast(
+    applicationContext,
+    0,
+    mediaButtonIntent,
+    PendingIntent.FLAG_IMMUTABLE // or PendingIntent.FLAG_MUTABLE
+)
+```
+
+In this example, we're using `FLAG_IMMUTABLE`, but you can also use `FLAG_MUTABLE` if your app requires it.

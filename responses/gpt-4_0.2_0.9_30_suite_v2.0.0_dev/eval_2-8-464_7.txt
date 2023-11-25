@@ -1,0 +1,25 @@
+The error you're encountering is due to the fact that AWS Lambda expects a Linux executable, but you're building your Go program on a Windows machine, which produces a Windows executable.
+
+To solve this issue, you need to cross-compile your Go program to a Linux executable. Here's how you can do it:
+
+1. Open a terminal.
+2. Navigate to your project directory.
+3. Set the `GOOS` and `GOARCH` environment variables to `linux` and `amd64` respectively, and then build your Go program. Here's the command:
+
+```bash
+SET GOOS=linux
+SET GOARCH=amd64
+go build -o main main.go
+```
+
+This will create a Linux executable named `main` in your project directory.
+
+4. Zip the `main` executable:
+
+```bash
+zip function.zip main
+```
+
+5. Upload `function.zip` to AWS Lambda.
+
+Now, your Lambda function should work as expected.

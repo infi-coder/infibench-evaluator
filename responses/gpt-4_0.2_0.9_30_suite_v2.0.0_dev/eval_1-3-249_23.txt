@@ -1,0 +1,25 @@
+Here is a Python function that generates a random string of 16 characters that includes the substring "NAA3U" and exactly 3 digits:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Generate a random string of 11 characters (letters and digits)
+    # We subtract 5 because we will add "NAA3U" later
+    random_string = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(11))
+
+    # Ensure that the string contains exactly 3 digits
+    while sum(c.isdigit() for c in random_string) != 2:
+        random_string = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(11))
+
+    # Insert "NAA3U" at a random position in the string
+    insert_position = random.randint(0, 11)
+    final_string = random_string[:insert_position] + "NAA3U" + random_string[insert_position:]
+
+    return final_string
+```
+
+This function first generates a random string of 11 characters (letters and digits). It then checks if the string contains exactly 2 digits (because we will add "NAA3U" later which contains 1 digit). If not, it generates a new string until it contains exactly 2 digits. Finally, it inserts "NAA3U" at a random position in the string.
+
+Please note that the `random.choice` function is used to select a random character from the string of ASCII letters and digits. The `string.ascii_letters` and `string.digits` are predefined strings in Python's `string` module that contain all ASCII letters (both lowercase and uppercase) and digits, respectively.

@@ -1,0 +1,39 @@
+You can use the `strsplit` function in R to split a string into a vector of substrings. Here's how you can define your function:
+
+```r
+mySplit <- function(df) {
+  # Split the string by comma
+  split_comma <- strsplit(as.character(df$col1), split = ",")
+  
+  # Split each element of the list by colon
+  split_colon <- lapply(split_comma, function(x) strsplit(x, split = ":"))
+  
+  # Extract the values and convert to a data frame
+  df <- do.call(rbind, lapply(split_colon, function(x) sapply(x, `[`, 2)))
+  
+  # Set the column names
+  colnames(df) <- c("name", "Age", "City")
+  
+  return(df)
+}
+```
+
+This function first splits the string by comma, then splits each element of the list by colon. The values are then extracted and converted to a data frame. Finally, the column names are set.
+
+You can use this function on your data frame like this:
+
+```r
+df <- data.frame(col1 = c("name:Michael,Age:31,City:NYC", "name:Tom,Age:25,City:NA"))
+df <- mySplit(df)
+print(df)
+```
+
+This will give you the desired output:
+
+```r
+     name Age City
+1 Michael  31  NYC
+2     Tom  25   NA
+```
+
+Please note that this function assumes that the order of the elements in the string is always the same (i.e., "name", "Age", "City"). If the order can vary, you would need a more complex function to handle this.

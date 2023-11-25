@@ -1,0 +1,14 @@
+how copy text from vba to windows clipbaord
+
+I have an ms access vba code from which i wish to copy some text value to the Windows clipboard so that I can paste it elsewhere (Word/Excel/Notepad/etc).
+I have been searching for this in SO but everything seems over-complicated.
+Should it not be something simple like clipboard.SetText textValue?
+
+I tried following the hint by BrianMStafford but don't succeed. Perhaps the reason is that my object is a node in a tree.
+When I do MsgBox Me.NodeKey.Value
+it all works fine - I see the node path in the message box.
+But when I do
+Me.NodeKey.SetFocus
+DoCmd.RunCommand acCmdCopy
+I don't get the node path in the clipboard.
+So how can I copy the node path value into the Windows clipboard?

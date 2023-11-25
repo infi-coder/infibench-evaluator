@@ -1,0 +1,9 @@
+You can use the `source` command to reload the `.bash_profile` file and apply the changes without closing the terminal window. 
+
+Simply run the following command in your terminal:
+
+```
+source ~/.bash_profile
+```
+
+This will reload the `.bash_profile` file and apply any changes you made to it.

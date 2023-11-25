@@ -1,0 +1,25 @@
+It seems like the issue might be related to the network request. Here are a few things you can try:
+
+1. Make sure you have an active internet connection. The query is fetching data from a remote server, so you need to be connected to the internet to receive the data.
+
+2. Check if the GraphQL server is up and running. You can try opening the GraphQL endpoint in your browser to see if it returns any data. In this case, the endpoint is `https://48p1r2roz4.sse.codesandbox.io/`.
+
+3. Try using a different GraphQL endpoint. You can find a list of public GraphQL APIs to test with at https://github.com/APIs-guru/graphql-apis.
+
+4. Check if there are any errors in the console. You can try adding a catch block to the useQuery hook to see if there are any errors being thrown.
+
+```javascript
+const { loading, error, data } = useQuery(EXCHANGE_RATES).catch((error) => {
+  console.log(error);
+});
+```
+
+5. Try using the `fetchPolicy` option to force a network request. By default, Apollo Client uses a cache-first strategy, which means it will try to fetch data from the cache before making a network request. If the data is not in the cache, it will return the loading state until the network request is complete. You can try setting the `fetchPolicy` option to `network-only` to force a network request every time.
+
+```javascript
+const { loading, error, data } = useQuery(EXCHANGE_RATES, {
+  fetchPolicy: 'network-only',
+});
+```
+
+I hope one of these solutions helps you resolve the issue.

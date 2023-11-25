@@ -1,0 +1,11 @@
+id: 2-5-364
+prompt_path: prompt_2-5-364.txt
+type: non-code debugging
+lang: java
+grading:
+  keywords:
+    - content:
+        or:
+          - 'JavaToolInstaller'
+          - 'compiler.source'
+          - 'compiler.target'

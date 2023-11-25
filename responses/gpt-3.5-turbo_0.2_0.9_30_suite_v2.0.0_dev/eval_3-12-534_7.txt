@@ -1,0 +1,28 @@
+You can use the `MultiProvider` widget to provide multiple instances of different ChangeNotifier classes to your widget tree. Here's an example of how you can use it:
+
+```dart
+return MultiProvider(
+  providers: [
+    ChangeNotifierProvider<FirstNotifier>(create: (_) => FirstNotifier()),
+    ChangeNotifierProvider<SecondNotifier>(create: (_) => SecondNotifier()),
+    ChangeNotifierProvider<ThirdNotifier>(create: (_) => ThirdNotifier()),
+    ChangeNotifierProvider<FourthNotifier>(create: (_) => FourthNotifier()),
+  ],
+  child: MaterialApp(
+    home: Scaffold(
+      body: Consumer4<FirstNotifier, SecondNotifier, ThirdNotifier, FourthNotifier>(
+        builder: (_, first, second, third, fourth, child) {
+          return CurvedNavigationBar(
+            items: [
+              // use the values from the notifiers here
+            ],
+            // other properties
+          );
+        },
+      ),
+    ),
+  ),
+);
+```
+
+In the `providers` list, you can provide instances of all the ChangeNotifier classes that you want to use in your widget tree. Then, in the `Consumer4` widget, you can listen to all four notifiers and use their values in the `builder` function. You can also use `Consumer3`, `Consumer2`, or `Consumer` if you have fewer notifiers.

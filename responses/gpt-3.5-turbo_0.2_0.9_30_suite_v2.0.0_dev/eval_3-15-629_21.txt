@@ -1,0 +1,10 @@
+You can use the following code to copy text to the Windows clipboard in VBA:
+
+```
+Dim objClipboard As MSForms.DataObject
+Set objClipboard = New MSForms.DataObject
+objClipboard.SetText "textValue"
+objClipboard.PutInClipboard
+```
+
+Make sure to add a reference to "Microsoft Forms 2.0 Object Library" in your VBA project.

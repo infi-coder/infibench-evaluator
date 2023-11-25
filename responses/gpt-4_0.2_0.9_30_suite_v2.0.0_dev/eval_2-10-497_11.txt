@@ -1,0 +1,37 @@
+In Rust, you can't have a null `Box<T>`. If you want to have a nullable pointer, you should use `Option<Box<T>>`. This way, you can use `None` to represent a null pointer. Here is how you can modify your code:
+
+```rust
+struct Node {
+    value: i32,
+    next: Option<Box<Node>>,
+}
+
+struct Stack {
+    top: Option<Box<Node>>,
+}
+```
+
+Now, you can check if `top` is a null pointer by checking if it's `None`:
+
+```rust
+if self.top.is_none() {
+    // top is a null pointer
+} else {
+    // top is not a null pointer
+}
+```
+
+Or you can use pattern matching:
+
+```rust
+match self.top {
+    Some(_) => {
+        // top is not a null pointer
+    },
+    None => {
+        // top is a null pointer
+    }
+}
+```
+
+This is more idiomatic in Rust and prevents null pointer dereferencing, which is a common source of bugs in other languages.

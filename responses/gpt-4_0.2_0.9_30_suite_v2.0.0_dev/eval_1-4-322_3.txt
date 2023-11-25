@@ -1,0 +1,37 @@
+You can achieve this by using the `split` function in R. The `split` function divides the data into subsets based on the factors provided. Here is the function `myConvert`:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  # Split the 'list_values' column by 'list_names' column
+  my_list <- split(my_data$list_values, my_data$list_names)
+  
+  # Return the list
+  return(my_list)
+}
+```
+
+You can use this function as follows:
+
+```r
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+                  list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+```
+
+This will return the desired output:
+
+```r
+$Chevy
+[1] "Equinox"
+
+$Dodge
+[1] "Caravan" "Ram"    
+
+$Ford
+[1] "Ranger"   "F150"     "Explorer"
+```
+
+The `split` function is a base R function, so it doesn't require the `tidyverse` package. However, the `tidyverse` package is used here for creating the tibble `my_data`.

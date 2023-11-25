@@ -1,0 +1,40 @@
+The `[Keyless]` attribute is not part of the `System.ComponentModel.DataAnnotations` namespace. It's part of the `Microsoft.EntityFrameworkCore` namespace. 
+
+You need to install the `Microsoft.EntityFrameworkCore.Relational` package to have access to it. 
+
+You can install it via NuGet Package Manager:
+
+```shell
+Install-Package Microsoft.EntityFrameworkCore.Relational
+```
+
+Or via .NET CLI:
+
+```shell
+dotnet add package Microsoft.EntityFrameworkCore.Relational
+```
+
+After installing the package, you can use the `[Keyless]` attribute by adding the following using directive to your file:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+```
+
+Then you can define your model as keyless:
+
+```csharp
+[Keyless]
+public class MyKeylessClass
+{
+    public string SomeProperty { get; set; }
+    // Other properties...
+}
+```
+
+And in your `DbContext`:
+
+```csharp
+public DbSet<MyKeylessClass> KeylessModel { get; set; }
+```
+
+Now you can use `_context.KeylessModel.FromSqlRaw(...)` without having to add a primary key to your model.

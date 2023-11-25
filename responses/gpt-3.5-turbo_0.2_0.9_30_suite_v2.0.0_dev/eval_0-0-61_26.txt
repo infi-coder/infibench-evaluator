@@ -1,0 +1,53 @@
+To change the background color of the root element dynamically with React, you can use the `ThemeProvider` component provided by Material-UI. 
+
+Here's an example:
+
+```jsx
+import React from 'react';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+const lightTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+    background: {
+      default: '#fff',
+    },
+  },
+});
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    background: {
+      default: '#333',
+    },
+  },
+});
+
+function App() {
+  const [theme, setTheme] = React.useState(lightTheme);
+
+  const toggleTheme = () => {
+    setTheme(theme === lightTheme ? darkTheme : lightTheme);
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div>
+        <h1>Hello World</h1>
+        <button onClick={toggleTheme}>Toggle Theme</button>
+      </div>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
+
+In this example, we define two themes: `lightTheme` and `darkTheme`. We use the `ThemeProvider` component to wrap our app and pass the current theme as a prop. We also import the `CssBaseline` component from Material-UI, which applies some basic styles to the page, including setting the background color of the root element to white.
+
+When the user clicks the "Toggle Theme" button, we update the state to switch between the two themes. This causes the `ThemeProvider` to re-render with the new theme, which updates the background color of the root element and all other Material-UI components.
+
+Note that we also import the `CssBaseline` component from Material-UI, which applies some basic styles to the page, including setting the background color of the root element to white. This is why we don't need to manually set the background color of the root element with CSS.

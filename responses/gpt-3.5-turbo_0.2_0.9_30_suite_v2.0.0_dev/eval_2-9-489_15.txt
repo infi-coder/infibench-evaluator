@@ -1,0 +1,15 @@
+This warning is related to Elasticsearch's built-in security features not being enabled. Without authentication, your Elasticsearch cluster could be accessible to anyone. 
+
+To fix this, you need to enable Elasticsearch security. Here are the steps to enable security:
+
+1. Open the Elasticsearch configuration file `elasticsearch.yml` located in the `config` directory of your Elasticsearch installation.
+
+2. Uncomment the following lines:
+```
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+```
+
+3. Save the file and restart Elasticsearch.
+
+After enabling security, you will need to configure authentication and authorization. You can refer to the Elasticsearch documentation for more information on how to configure security: https://www.elastic.co/guide/en/elasticsearch/reference/7.13/security-minimal-setup.html

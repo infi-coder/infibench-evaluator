@@ -1,0 +1,24 @@
+The `ModuleNotFoundError: No module named 'app'` error is likely due to the Python interpreter not being able to find the `app` module. This could be because the `app` directory is not in a location where Python looks for modules.
+
+In your Dockerfile, you are copying the `app` directory into the `/app` directory in the Docker image. However, you are running the `uvicorn` command from the `/` directory, which is likely why Python can't find the `app` module.
+
+To fix this, you should change the working directory to `/app` before running the `uvicorn` command. Here's how you can revise your Dockerfile:
+
+```Dockerfile
+FROM python:3.8
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --requirement requirements.txt
+
+COPY ./app .
+
+EXPOSE 8000
+CMD ["uvicorn", "main:app", "--host=0.0.0.0" , "--reload" , "--port", "8000"]
+```
+
+In this revised Dockerfile, the `WORKDIR` command changes the working directory to `/app`. This means that all subsequent commands (including `COPY` and `CMD`) will be run from the `/app` directory. 
+
+The `COPY` command copies the `app` directory from your local machine into the current directory in the Docker image (which is `/app` because of the `WORKDIR` command).
+
+The `CMD` command runs the `uvicorn` command from the `/app` directory, so Python should be able to find the `app` module.

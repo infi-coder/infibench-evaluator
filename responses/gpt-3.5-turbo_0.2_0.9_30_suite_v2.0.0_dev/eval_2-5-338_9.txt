@@ -1,0 +1,25 @@
+The error message suggests that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `MultipartFile` object contains an `InputStream` which cannot be serialized directly.
+
+To solve this, you can use a `ByteArrayResource` to wrap the `InputStream` and pass it as the value for the `circularAttachment` parameter in the `MultiValueMap`. Here's an example:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+body.add("circularAttachment", new ByteArrayResource(souqBean.getCircularAttachment().getBytes()) {
+    @Override
+    public String getFilename() {
+        return souqBean.getCircularAttachment().getOriginalFilename();
+    }
+});
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+In this example, we create a new `ByteArrayResource` object and pass the bytes of the `MultipartFile` object to it. We also override the `getFilename()` method to return the original filename of the `MultipartFile`. Then, we add this `ByteArrayResource` object to the `MultiValueMap` as the value for the `circularAttachment` parameter.

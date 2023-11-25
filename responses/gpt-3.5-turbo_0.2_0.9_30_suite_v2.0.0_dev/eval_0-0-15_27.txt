@@ -1,0 +1,17 @@
+To mock the `API` class, you need to return a constructor function that returns an object with the mocked methods. Here's the revised code:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {
+      someMethod: jest.fn()
+    };
+  });
+});
+
+const api = new API();
+```
+
+This code creates a mock constructor function that returns an object with the `someMethod` method. When `new API()` is called, it will use this mock constructor function instead of the real one.

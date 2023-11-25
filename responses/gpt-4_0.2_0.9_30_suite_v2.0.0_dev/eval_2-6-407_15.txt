@@ -1,0 +1,31 @@
+The error you're seeing is due to the fact that the server is returning HTML instead of JSON. The '<' character at the start of the response is a clear indication of this. This usually happens when the request URL is incorrect and the server returns a 404 error page.
+
+In your case, the problem is with the route attribute on your controller method. You have defined the route as `api/Employee/Index` on your `Index` method, but you also have a `[Route("[controller]")]` attribute on your controller. This means that the actual route to your method is `/Employee/api/Employee/Index`.
+
+To fix this, you should change the route attribute on your `Index` method to just `[Route("Index")]`. This way, the route to your method will be `/Employee/Index`, which is what your Blazor app is calling.
+
+Here's how your controller should look:
+
+```csharp
+[ApiController]
+[Route("[controller]")]
+public class EmployeeController : ControllerBase
+{
+    EmployeeRepository objemployee = new EmployeeRepository();
+
+    [HttpGet]
+    [Route("Index")]
+    public IEnumerable<Employee> Index()
+    {
+        return objemployee.GetAllEmployees();
+    }
+}
+```
+
+And your Blazor call remains the same:
+
+```csharp
+empList = await Http.GetJsonAsync<Employee[]>("/api/Employee/Index");
+```
+
+This should solve your problem. If you're still having issues, make sure that your `EmployeeRepository` is correctly returning a list of `Employee` objects.

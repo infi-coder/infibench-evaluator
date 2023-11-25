@@ -1,0 +1,19 @@
+Here's the revised code for the `pig_latin` function:
+
+```python
+def pig_latin(text):
+  words = text.split()
+  pig_words = []
+  for word in words:
+    endString = word[1:].lower() + word[0].lower() + 'ay'
+    pig_words.append(endString)
+  return ' '.join(pig_words)
+```
+
+This code should work as expected. The changes made are:
+
+- Instead of returning a single word at a time, we append each pig Latin word to a list `pig_words`.
+- We use `word[1:].lower()` to get all the characters in the word except the first one, and convert them to lowercase.
+- We use `word[0].lower()` to get the first character of the word, and convert it to lowercase.
+- We append the string `'ay'` to the end of the modified word.
+- We join all the pig Latin words in the list `pig_words` using a space separator, and return the resulting string.

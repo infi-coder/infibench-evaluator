@@ -1,0 +1,19 @@
+Here is a Python function that uses the `itertools.cycle` function to repeat the list of strings indefinitely. This function will fill the new column with the strings in the list in the same order, repeating the list until all rows in the DataFrame are filled.
+
+```python
+import pandas as pd
+import itertools
+
+def fillColumn(df, columnName, columnData):
+    df[columnName] = [x for x in itertools.islice(itertools.cycle(columnData), len(df))]
+    return df
+```
+
+You can use this function as follows:
+
+```python
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+```
+
+This will fill the 'names' column in the DataFrame `df` with the strings in `my_list`, repeating the list until all rows in the DataFrame are filled.

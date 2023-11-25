@@ -1,0 +1,23 @@
+How can I conform to ShapeStyle protocol in SwiftUI?
+
+I am looking to conform to ShapeStyle, the goal is just conforming to ShapeStyle(Nothing more and nothing less).
+Here is my code and the issue:
+```
+swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedView())
+    }
+}
+
+struct RedView: View {
+    var body: some View {
+        Color.red
+    }
+}
+```
+
+So I know I could use `Color.red` directly instead of a view, but as I said, the goal of this question is conformation to ShapeStyle. For those going to share apple developer link about ShapeStyle, I have to say I was there before.
+Error:
+> Instance method 'fill(_:style:)' requires that 'RedView' conform to 'ShapeStyle'

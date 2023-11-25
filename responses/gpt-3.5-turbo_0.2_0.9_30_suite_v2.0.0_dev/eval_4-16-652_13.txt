@@ -1,0 +1,15 @@
+You can use the `--output` parameter to specify the output format as `text` and then pipe the output to `/dev/null` to discard it. This will prevent the interactive pager from opening up and allow the `for` loop to continue to the next iteration. Here's the modified script:
+
+```
+for x in 1 2 3; do 
+  aws sqs purge-queue --queue-url https://sqs.<aws-region>.amazonaws.com/<id>/<env>-$x-<queueName>.fifo --output text > /dev/null; 
+done
+```
+
+Alternatively, you can set the `AWS_PAGER` environment variable to an empty string to disable the interactive pager globally for all AWS CLI commands. Here's how you can set the environment variable:
+
+```
+export AWS_PAGER=""
+```
+
+You can add this line to your bash script or set it globally in your shell configuration file (e.g. `~/.bashrc` or `~/.zshrc`).

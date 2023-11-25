@@ -1,0 +1,27 @@
+It seems like the Dockerfile is not able to find the `app` module. You can try changing the `COPY` command in the Dockerfile to:
+
+```
+COPY ./fastapi/app /app
+```
+
+This will copy the `app` directory from the `fastapi` directory to the `/app` directory in the Docker container.
+
+Also, make sure that the `requirements.txt` file is in the `fastapi` directory and not in the `app` directory. If it is in the `app` directory, you will need to change the `COPY` command to:
+
+```
+COPY ./fastapi /app
+```
+
+After making these changes, rebuild the Docker image using the command:
+
+```
+docker-compose build
+```
+
+And then start the container using:
+
+```
+docker-compose up -d
+```
+
+This should resolve the `ModuleNotFoundError` issue.

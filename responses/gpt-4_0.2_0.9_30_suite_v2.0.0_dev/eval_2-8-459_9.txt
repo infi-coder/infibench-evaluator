@@ -1,0 +1,17 @@
+The error message suggests that Go is unable to find the specific revision of the module `github.ibm.com/kms/key-protect-client` in your private repository. Here are a few things you can try to debug this issue:
+
+1. **Check your Go version**: Ensure that you are using the same version of Go on both computers. You can check this by running `go version` in your terminal. If the versions are different, you might want to consider updating Go on the machine where the build is failing.
+
+2. **Check your Go environment variables**: Run `go env` on both machines and compare the output. Pay special attention to `GOPATH`, `GOBIN`, `GOMOD`, `GOPROXY`, and `GOSUMDB`. If there are differences, you might need to adjust your environment variables.
+
+3. **Check your Git configuration**: Since the module that's causing problems is in a private repository, make sure that Git is configured correctly on both machines. You can check your Git configuration by running `git config --list`.
+
+4. **Check your network settings**: If you're behind a proxy or firewall, it might be preventing Go from accessing the private repository. You can check your network settings or try to build the program on a different network.
+
+5. **Check the module's version**: Make sure that the version `v0.1.5` of the module `github.ibm.com/kms/key-protect-client` actually exists in your private repository. If it doesn't, you'll need to push that version to the repository or adjust your `go.mod` file to require a different version.
+
+6. **Try to download the module manually**: You can try to download the module manually by running `go get github.ibm.com/kms/key-protect-client@v0.1.5`. If this command fails, it might give you more information about what's going wrong.
+
+7. **Clear your module cache**: If all else fails, you can try to clear your module cache by running `go clean -modcache`. This will remove all downloaded modules and force Go to download them again the next time you build your program.
+
+Remember to replace `github.ibm.com/kms/key-protect-client@v0.1.5` with the actual path and version of your module.

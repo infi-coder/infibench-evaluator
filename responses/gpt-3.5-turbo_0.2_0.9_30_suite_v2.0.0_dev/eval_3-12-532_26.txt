@@ -1,0 +1,35 @@
+The `FormatException` error occurs when the JSON string is not properly formatted. In your case, it seems that the response from the PHP file is not a valid JSON string.
+
+To solve this issue, you can try the following steps:
+
+1. Check the response from the PHP file by printing it to the console. You can use `print(response.body)` to print the response.
+
+2. Validate the JSON string using an online JSON validator. This will help you identify any syntax errors in the JSON string.
+
+3. If the JSON string is valid, try using the `jsonDecode` function instead of `json.decode`. The `jsonDecode` function is a top-level function in the `dart:convert` library and can be used to decode JSON strings.
+
+Here is an updated version of your code using `jsonDecode`:
+
+```dart
+import 'dart:convert';
+
+Future<String> iniciarSesion() async{
+  var usuario = textUsuario.text;
+  var password = textPassword.text;
+  var nombreUsuario;
+  var url ="http://192.168.1.37/usuario.php";
+
+  //Metodo post
+  var response = await http.post(
+      url,
+      headers:{ "Accept": "application/json" } ,
+      body: { "usuario": '$usuario',"password": '$password'},
+      encoding: Encoding.getByName("utf-8")
+  );
+  
+  var jsonResponse = jsonDecode(response.body);
+  List data = jsonResponse['data'];
+}
+```
+
+Note that you should replace `data` with the actual key in the JSON response that contains the data you want to extract.

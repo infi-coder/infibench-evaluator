@@ -1,0 +1,20 @@
+The error message indicates that there is an issue with the way the command is formatted. It seems like the command is not being parsed correctly due to the presence of embedded quotes.
+
+Here's a possible solution:
+
+1. Open the `mvn.cmd` file located at `C:\Program Files\NetBeans-11.1\netbeans\java\maven\bin\`.
+
+2. Look for the line that starts with `set MAVEN_CMD_LINE_ARGS=%*`.
+
+3. Replace that line with the following two lines:
+
+```cmd
+set MAVEN_CMD_LINE_ARGS=%*
+set MAVEN_CMD_LINE_ARGS=%MAVEN_CMD_LINE_ARGS:"=\"%
+```
+
+4. Save the file and try to build your project again.
+
+This change will replace all double quotes in the command line arguments with `=\"`, which should prevent the error about the malformed argument with an embedded quote.
+
+If the issue persists, please check your environment variables and make sure that `JAVA_HOME` is correctly set to the location of your JDK installation.

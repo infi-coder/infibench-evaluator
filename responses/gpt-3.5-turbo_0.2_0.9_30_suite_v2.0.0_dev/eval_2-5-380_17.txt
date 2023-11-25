@@ -1,0 +1,13 @@
+There are a few things you can check to troubleshoot this issue:
+
+1. Make sure that the `@EnableSwagger2WebMvc` annotation is present in your Spring Boot application configuration class. This annotation enables Swagger support in your application.
+
+2. Check that the `@ComponentScan` annotation is scanning the package where your controllers are located. This is necessary for Swagger to find your API endpoints.
+
+3. Verify that the `springdoc.swagger-ui.path` property is set correctly in your application.properties file. This property specifies the URL path where the Swagger UI will be available. By default, it should be set to `/swagger-ui.html`.
+
+4. Check that the `@RestController` annotation is present on your controller class. This is necessary for Swagger to recognize your API endpoints.
+
+5. Verify that the `@ApiOperation` annotation is present on your API methods. This annotation provides additional information about your API endpoints, such as the HTTP method, response type, and input parameters.
+
+If none of these steps resolve the issue, you may need to provide additional information about your application configuration and code to diagnose the problem.

@@ -1,0 +1,38 @@
+It seems like the issue might be related to the way you are running the container. When you run the container with the `docker-compose run` command, it creates a new container each time you run it. This means that any changes you make to the container (such as starting the Vite server) will be lost when the container is stopped.
+
+To fix this, you can use the `docker-compose up` command instead. This will start the container and keep it running in the background. You can then use the `docker-compose exec` command to run commands inside the container.
+
+Here's how you can modify your `docker-compose.yml` file to use the `docker-compose up` command:
+
+```yaml
+version: '3.7'
+
+services:
+  app:
+    image: myapp
+    build: .
+    container_name: myapp
+    ports:
+      - "8080:8080"
+    command: npm run vite
+```
+
+With this configuration, you can start the container with the following command:
+
+```bash
+docker-compose up -d
+```
+
+This will start the container in detached mode (in the background). You can then use the following command to run commands inside the container:
+
+```bash
+docker-compose exec app <command>
+```
+
+For example, to run the `curl` command inside the container, you can use the following command:
+
+```bash
+docker-compose exec app curl localhost:8080
+```
+
+This should return the response from the Vite server.

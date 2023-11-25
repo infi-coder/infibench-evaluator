@@ -1,0 +1,40 @@
+You can use the `react-intersection-observer` npm package to achieve this. This package uses the Intersection Observer API to tell you when an element enters or leaves the viewport.
+
+First, install the package:
+
+```bash
+npm install react-intersection-observer
+```
+
+Then, you can use it in your component:
+
+```javascript
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+
+const MyComponent = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Change this to true if you want the event to be triggered only once
+  });
+
+  return (
+    <div id="parent">
+      {data.map(item => {
+        return (
+          <div ref={ref} id={item.id}>
+            {inView ? 'In viewport' : 'Not in viewport'}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default MyComponent;
+```
+
+In this example, `useInView` is a hook that returns a `ref` and a boolean `inView`. You attach the `ref` to the div you want to observe, and `inView` will be `true` when the div is in the viewport and `false` when it's not.
+
+Please note that the Intersection Observer API is not supported in all browsers, so you might need a polyfill for full compatibility. You can check the compatibility table on the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#browser_compatibility).
+
+Also, keep in mind that this solution will only tell you if a single div is in the viewport. If you want to check multiple divs, you'll need to create a ref for each one. This could be done by changing your data model to include an `inView` property for each item, and then using a different `useInView` hook for each item in your map function.

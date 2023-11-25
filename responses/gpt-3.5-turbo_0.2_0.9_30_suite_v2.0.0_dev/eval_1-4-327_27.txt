@@ -1,0 +1,15 @@
+To select the second column of a data frame with a duplicated column name, you can use the `[[` operator with the column index. In this case, since the duplicated column name is "a", we can use `d3[[2]]` to select the second "a" column.
+
+Here's the code to select the second column by name and assign it to a variable named `second_col`:
+
+```r
+second_col <- d3[[2]]
+``` 
+
+Alternatively, you can also use the `subset()` function to select the second "a" column by name:
+
+```r
+second_col <- subset(d3, select = a.1)
+``` 
+
+This will select the column with the name "a.1", which is the automatically generated name for the duplicated column.

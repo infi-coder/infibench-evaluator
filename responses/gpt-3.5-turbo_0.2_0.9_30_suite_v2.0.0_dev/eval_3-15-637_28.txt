@@ -1,0 +1,13 @@
+The error you are encountering may be due to compatibility issues between the Selenium VBA library and Excel 2019. Here are a few steps you can try to resolve the issue:
+
+1. Make sure that you have the latest version of the Selenium VBA library installed. You can download it from the SeleniumBasic website.
+
+2. Try running the code in compatibility mode. To do this, right-click on the Excel shortcut and select "Properties". In the "Compatibility" tab, check the box that says "Run this program in compatibility mode for" and select "Windows 8" or "Windows 7" from the drop-down menu.
+
+3. Try running the code as an administrator. Right-click on the Excel shortcut and select "Run as administrator".
+
+4. Try using a different browser driver. Instead of using the Internet Explorer driver, try using the Chrome or Firefox driver.
+
+5. Check if there are any missing references in your VBA project. Go to the VBA editor, click on "Tools" and select "References". Make sure that all the necessary references are checked.
+
+Hopefully, one of these steps will help you resolve the issue.

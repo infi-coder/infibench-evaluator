@@ -1,0 +1,5 @@
+Developer mode is not a feature that can be enabled on iOS 16.0. It is possible that the alert you received is related to a specific app that requires developer mode to be enabled in order to run. 
+
+If you are a developer and want to test your own app on iOS 16.0, you will need to enroll in the Apple Developer Program and follow the instructions to create a provisioning profile and certificate for your app. 
+
+If you are a user trying to run a provisioned testing build of an app, you may need to contact the developer of the app to get more information on how to enable developer mode or to get a version of the app that does not require developer mode.

@@ -1,0 +1,13 @@
+You can try using the `tz_localize` method to set the timezone to None. Here's an example:
+
+```python
+import pandas as pd
+
+def removeTimezone(df):
+    df['time'] = df['time'].dt.tz_localize(None)
+    return df
+```
+
+This function takes a DataFrame `df` as input, removes the timezone from the "time" column using the `tz_localize` method, and returns the modified DataFrame.
+
+You can call this function before saving the DataFrame to Excel to ensure that the datetime columns are timezone unaware.

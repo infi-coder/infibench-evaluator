@@ -1,0 +1,20 @@
+Here is a Python function that uses the pandas library to achieve this. It uses the `itertools.cycle` function to repeat the list of strings indefinitely, and then uses the `islice` function to take only the first `n` elements, where `n` is the number of rows in the DataFrame.
+
+```python
+import pandas as pd
+from itertools import cycle, islice
+
+def fillColumn(df, columnName, columnData):
+    df[columnName] = list(islice(cycle(columnData), len(df)))
+    return df
+```
+
+You can use this function like this:
+
+```python
+df = pd.DataFrame()
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+```
+
+This will create a new column in the DataFrame `df` called 'names', and fill it with the values 'abc', 'def', 'hig', 'abc', 'def', 'hig', etc., repeating as many times as necessary to fill all the rows in the DataFrame.

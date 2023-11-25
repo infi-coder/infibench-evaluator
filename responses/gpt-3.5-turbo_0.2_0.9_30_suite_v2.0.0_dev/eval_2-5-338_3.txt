@@ -1,0 +1,22 @@
+The error message indicates that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `CommonsMultipartFile` class contains a `DiskFileItem` object which has an `inputStream` field of type `java.io.ByteArrayInputStream`. 
+
+To solve this issue, you can add the following dependency to your project:
+
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.datatype</groupId>
+    <artifactId>jackson-datatype-jdk8</artifactId>
+    <version>${jackson.version}</version>
+</dependency>
+```
+
+This will provide a serializer for the `java.io.ByteArrayInputStream` class.
+
+Alternatively, you can disable the serialization of empty beans by adding the following configuration to your `ObjectMapper`:
+
+```java
+ObjectMapper mapper = new ObjectMapper();
+mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+```
+
+This will prevent the error from occurring, but it may not be the best solution as it may cause other issues if you have empty beans in your application.

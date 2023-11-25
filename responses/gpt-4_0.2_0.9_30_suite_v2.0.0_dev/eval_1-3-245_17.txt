@@ -1,0 +1,44 @@
+The error message `ModuleNotFoundError: No module named 'app'` means that Python cannot find the module named 'app'. This is likely because the working directory in your Dockerfile is not correctly set or the app directory is not correctly copied.
+
+Here is a revised version of your Dockerfile:
+
+```Dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.8
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Add the current directory contents into the container at /app
+ADD . /app
+
+# Install any needed packages specified in requirements.txt
+COPY requirements.txt /app
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
+
+# Run the command to start uvicorn
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0", "--port", "8000"]
+```
+
+This Dockerfile sets the working directory to `/app`, then adds the current directory contents into the container at `/app`. It then copies the `requirements.txt` file into the `/app` directory in the container and installs the required packages. Finally, it exposes port 8000 and starts the uvicorn server.
+
+Please note that the `--reload` option is not recommended in production. It is intended for development use. 
+
+Also, make sure your `docker-compose.yml` file is correctly set. Here is an example:
+
+```yaml
+version: '3'
+services:
+  web:
+    build: .
+    command: ["uvicorn", "app.main:app", "--host=0.0.0.0", "--port", "8000"]
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+```
+
+This `docker-compose.yml` file builds the Dockerfile in the current directory, starts the uvicorn server, maps the current directory to the `/app` directory in the container, and exposes port 8000.

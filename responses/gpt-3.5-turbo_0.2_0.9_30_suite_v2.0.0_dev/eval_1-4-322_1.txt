@@ -1,0 +1,32 @@
+Here's a solution using `tidyverse` functions:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  my_data %>%
+    group_by(list_names) %>%
+    summarise(list_values = list(list_values)) %>%
+    {setNames(.$list_values, .$list_names)}
+}
+```
+
+Explanation:
+
+- `group_by(list_names)` groups the data by the unique values in the `list_names` column.
+- `summarise(list_values = list(list_values))` creates a new column `list_values` that contains a list of all the values in the `list_values` column for each group.
+- `{setNames(.$list_values, .$list_names)}` sets the names of the list elements to the unique values in the `list_names` column.
+
+This returns the desired output:
+
+```r
+> myConvert(my_data)
+$Chevy
+[1] "Equinox"
+
+$Dodge
+[1] "Caravan" "Ram"    
+
+$Ford
+[1] "Ranger"   "F150"     "Explorer"
+```

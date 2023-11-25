@@ -1,0 +1,3 @@
+How to solve "pdftk: Bad CPU type in executable" on Mac?
+
+I want to use pdftk but I always get this error `zsh: bad CPU type in executable: pdftk` I reinstalled pdftk and I changed the terminal from bsh to zsh as I found in my search for how to solve this error but without any success. I'm using the latest MacOS version "Catalina v10.15.4"

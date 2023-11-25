@@ -1,0 +1,31 @@
+This problem is related to the way Java handles quotes in the command line arguments. The error message indicates that there is a malformed argument with an embedded quote. 
+
+The issue is that the command line arguments are being passed as a single string, and Java is having trouble parsing it. 
+
+One way to solve this problem is to split the command into a string array, with each argument as a separate element in the array. This way, Java can correctly parse the arguments, even if they contain spaces.
+
+Here is how you can do it:
+
+```java
+String[] cmd = {
+    "cmd", 
+    "/c", 
+    "JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5", 
+    "C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd", 
+    "-DskipTests=true", 
+    "-Dmaven.ext.class.path=C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar", 
+    "-Dfile.encoding=UTF-8", 
+    "clean", 
+    "install"
+};
+
+ProcessBuilder pb = new ProcessBuilder(cmd);
+pb.directory(new File("C:\\projects\\open"));
+Process p = pb.start();
+```
+
+This way, each argument is passed as a separate string, and Java can correctly parse the command line arguments. 
+
+If you are not running this from Java and it's a command you are trying to run directly in the command line, you might need to escape the quotes with a backslash (`\"`) or use single quotes (`'`) instead. 
+
+If none of these solutions work, it might be a bug in NetBeans 11.1. In this case, you might want to consider updating to a newer version of NetBeans or reporting the bug to the NetBeans team.

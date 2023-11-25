@@ -1,0 +1,14 @@
+Font Awesome 5 has some changes in the way it is used compared to Font Awesome 4. The `font-family` is no longer just "FontAwesome", it's now separated into different styles like "Font Awesome 5 Free", "Font Awesome 5 Brands", etc. Also, the `content` property value may have changed for some icons.
+
+Here is how you can modify your CSS to work with Font Awesome 5:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f105"; /* This is the unicode for the 'angle-right' icon in Font Awesome 5 */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900; /* This is needed for the solid style */
+}
+```
+
+Please note that the unicode for the icon you want to use (`\f107` in Font Awesome 4) might have changed in Font Awesome 5. You should check the Font Awesome 5 cheatsheet to find the correct unicode for your icon. In the example above, I used the unicode for the 'angle-right' icon (`\f105`).

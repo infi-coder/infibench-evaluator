@@ -1,0 +1,16 @@
+The issue might be that `ContentView` is not being updated when `isSelected` changes. You can try wrapping the `Text` view in a `VStack` and adding a `Spacer` to force the view to update:
+
+```
+var body: some View {
+    VStack {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+        Spacer()
+    }
+}
+``` 
+
+Alternatively, you can try using `@State` instead of `@Binding` for `isSelected` in `ContentView`.

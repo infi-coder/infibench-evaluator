@@ -1,0 +1,31 @@
+I am using Jquery in Crpress.io test, and I would like to assert the text within div `WildnessText-kRKTej` equals to `Wildness`. Here is the HTML code:
+
+```html
+<div class="kpLvEV" style="">
+<div class="bGADLM"><div class="OgGUG">
+<div class="jsnnAD">
+<svg class="dFvKsA"></svg>
+</div>
+</div>
+<div class="ibxudA">
+<div class="WildnessText-kRKTej" title="Wildness">Wildness</div>
+</div>
+</div>
+</div>
+```
+
+Could you help me to complete this Javascript template? Specifically, pelase don't add other text and repeat the following paragraph with [blank] filled:
+
+There are two ways. Way 1:
+
+```javascript
+cy.get(".ibxudA").find([blank]).should([blank], "Wildness")
+```
+
+Way 2:
+
+```javascript
+cy.get(".ibxudA").find('.WildnessText-kRKTej').invoke('text').[blank]((text) => {
+    [blank](text.trim()).equal('Wildness')
+});
+```

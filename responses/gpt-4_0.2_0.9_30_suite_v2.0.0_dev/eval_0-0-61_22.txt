@@ -1,0 +1,47 @@
+You can use the `CssBaseline` component from Material-UI to set the background color of the root element dynamically. 
+
+Here's how you can do it:
+
+```jsx
+import { createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+});
+
+const lightTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+  },
+});
+
+function App() {
+  const [darkMode, setDarkMode] = React.useState(false);
+
+  const theme = darkMode ? darkTheme : lightTheme;
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* your other components */}
+      <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
+
+In this example, `CssBaseline` is a Material-UI component that provides an elegant, consistent, and simple baseline to build upon. It applies a normalized baseline to the document. This includes setting background color and font family.
+
+The `ThemeProvider` component makes the theme available down the React tree thanks to React context. It should preferably be used at your application root.
+
+The `createMuiTheme` function generates a theme based on the arguments you pass to it. In this case, we're passing an object with a `palette` property that specifies whether we want a light or dark type of palette.
+
+The `darkMode` state variable is used to determine which theme should be applied. When the button is clicked, the `toggleDarkMode` function is called, which toggles the value of `darkMode`, causing the component to re-render with the new theme.

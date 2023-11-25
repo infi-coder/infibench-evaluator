@@ -1,0 +1,13 @@
+The error message `fork/exec /var/task/main: no such file or directory` indicates that the Lambda function is unable to find the executable file `main` in the expected location `/var/task/`. This could be due to a few reasons:
+
+1. The executable file was not properly included in the ZIP file that was uploaded to AWS Lambda.
+2. The executable file was not built for the correct platform (Linux) and architecture (x86_64) that AWS Lambda uses.
+3. The handler name specified in the AWS Lambda function configuration does not match the name of the executable file.
+
+To resolve this issue, you can try the following steps:
+
+1. Ensure that you have built the executable file for the correct platform and architecture. You can do this by building the executable file on a Linux machine or by using a tool like `GOOS=linux GOARCH=amd64 go build main.go` to build the executable file for Linux and x86_64 architecture.
+2. Ensure that the executable file is included in the ZIP file that is uploaded to AWS Lambda. You can do this by creating a new ZIP file that includes the executable file and any other necessary files, and then uploading the new ZIP file to AWS Lambda.
+3. Ensure that the handler name specified in the AWS Lambda function configuration matches the name of the executable file. In this case, the handler name should be `main`.
+
+After making these changes, you can test the Lambda function again to see if the issue has been resolved.

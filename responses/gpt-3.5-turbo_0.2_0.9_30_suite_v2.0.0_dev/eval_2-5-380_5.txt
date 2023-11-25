@@ -1,0 +1,34 @@
+To use the Swagger UI with Spring Boot, you need to configure the SpringDoc OpenAPI plugin in your application.
+
+Here's an example of how to configure it in your Spring Boot application:
+
+```java
+@Configuration
+public class OpenApiConfig {
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Your API Title")
+                        .version("1.0.0")
+                        .description("Your API description"));
+    }
+}
+```
+
+Make sure to replace "Your API Title" and "Your API description" with your own values.
+
+Also, make sure that your Spring Boot application has the following annotation:
+
+```java
+@SpringBootApplication
+public class YourApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(YourApplication.class, args);
+    }
+}
+```
+
+With these configurations in place, you should be able to access the Swagger UI at http://localhost:8080/swagger-ui.html.

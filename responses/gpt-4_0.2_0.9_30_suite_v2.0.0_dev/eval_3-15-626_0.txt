@@ -1,0 +1,40 @@
+The code you provided has some issues. Here's a corrected version:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    Dim query As String
+    Dim currentSheet As Worksheet
+
+    ' Get the query from a cell in Sheet6
+    query = Sheets("Sheet6").Range("A1").Value
+
+    ' Get the current active sheet
+    Set currentSheet = ActiveSheet
+
+    ' Create a new ListObject with a QueryTable that uses the Power Query connection string
+    With currentSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = True
+        .Refresh BackgroundQuery:=False
+    End With
+
+End Sub
+```
+
+This script assumes that the query string stored in cell A1 of Sheet6 is a valid Power Query query. It creates a new ListObject in the active sheet, starting at cell A1, and populates it with the results of the query.
+
+Please note that automating Power Query with VBA is not officially supported by Microsoft, and this method may not work in all cases.

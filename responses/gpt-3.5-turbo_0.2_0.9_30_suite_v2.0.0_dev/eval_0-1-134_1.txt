@@ -1,0 +1,5 @@
+It sounds like you might be referring to Emmet, a plugin for text editors that allows for faster HTML and CSS coding. With Emmet, you can use shorthand syntax to quickly generate code. For example, typing `.classname` and then pressing the `tab` key will generate `<div class="classname"></div>`.
+
+If you're having trouble getting Emmet to work, make sure it's installed and enabled in your text editor. The specific steps to do this will depend on your editor, but a quick Google search should help you find instructions.
+
+Also, keep in mind that Emmet has some specific syntax rules. For example, to create a class, you need to use a period (`.`) before the class name. If you're still having trouble, double-check that you're using the correct syntax.

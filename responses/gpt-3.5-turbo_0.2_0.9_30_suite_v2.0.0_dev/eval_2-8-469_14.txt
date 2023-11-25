@@ -1,0 +1,24 @@
+You need to add a `go_package` option to your proto file. The `go_package` option specifies the Go package name for the generated code. Here's an example of how to add the `go_package` option to your proto file:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "example.com/myproject/mypackage";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+In this example, the `go_package` option specifies the Go package name as `example.com/myproject/mypackage`. You can replace this with your own package name.
+
+After adding the `go_package` option, you can run the `protoc` command again:
+
+```bash
+protoc --go_out=. simple.proto
+```
+
+This should generate the Go code without any errors.

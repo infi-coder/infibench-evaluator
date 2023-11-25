@@ -1,0 +1,18 @@
+Your code seems fine, but the issue might be that you're trying to test the `@Binding` behavior in the preview. The preview doesn't always behave the same way as the actual app, especially when it comes to state and binding.
+
+Try to test your code in a real app environment. Here's an example of how you can use your `ContentView`:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        VStack {
+            ContentView(isSelected: $isSelected)
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+```
+
+In this `ParentView`, you have a `@State` variable `isSelected` that you pass as a `@Binding` to the `ContentView`. The `Text` view in the `ParentView` will also update when the button in the `ContentView` is clicked.

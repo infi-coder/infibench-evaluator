@@ -1,0 +1,38 @@
+I have a list "rest" which is the following:
+
+```python
+rest=[5, 7, 11, 4]
+```
+
+I have another list which is b:
+
+```python
+b=[21, 22, 33, 31, 23, 15, 19, 13, 6]
+```
+
+And I have a "last" list:
+
+```python
+last=[33, 19, 40, 21, 31, 22, 6, 15, 13, 23]
+```
+
+I have to replace the first 4 elements in b with the elements in rest. How can I replace the elements in last according to the matches with b to get the rest elements?
+
+for example:
+
+```python
+    5   7   11   4   #elements from rest
+b= [21, 22, 33, 31, 23, 15, 19, 13, 6]
+```
+
+to get last list as the following:
+
+```python
+last=[11, 19, 40, 5, 4, 7, 6, 15, 13, 23]  #elements that matched with b were replaced by rest
+```
+
+How can I do this?
+
+Please write a function `ReplaceElementsByIndex` in Python, which takes three lists:rest, b, last as arguments and returns the replaced list,
+
+Function signature is: `ReplaceElementsByIndex(rest, b, last)`

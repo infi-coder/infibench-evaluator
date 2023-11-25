@@ -1,0 +1,33 @@
+# Corresponding to post https://stackoverflow.com/questions/72954372
+id: 3-12-548
+# for case self identificaton
+
+prompt_path: prompt_3-12-548.txt
+type: knowledge question-answering
+
+lang: dart
+
+grading:
+  max_score: 2.0
+  min_score: 0.0
+  blank_filling:
+    template: "Use [blank] instead of [blank]."
+    blank_str: "[blank]"
+
+    targets: 
+        - content:
+            or:
+              - content:
+                content: "pushAndRemoveUntil"
+                to_lower: true
+              - content:
+                content: "pushAndRemoveUntil()"
+                to_lower: true
+        - content:
+            or:
+              - content:
+                content: "pop"
+                to_lower: true
+              - content:
+                content: "pop()"
+                to_lower: true

@@ -1,0 +1,31 @@
+Here is a Python function that generates a random 16-character string that includes the substring "NAA3U" and exactly three digits:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Generate a random string of 11 characters without digits
+    letters = string.ascii_letters
+    random_string = ''.join(random.choice(letters) for i in range(11))
+
+    # Insert "NAA3U" at a random position in the string
+    insert_position = random.randint(0, 11)
+    random_string = random_string[:insert_position] + "NAA3U" + random_string[insert_position:]
+
+    # Ensure that the string has exactly three digits
+    digit_count = sum(c.isdigit() for c in random_string)
+    while digit_count < 3:
+        insert_position = random.randint(0, len(random_string))
+        random_string = random_string[:insert_position] + str(random.randint(0, 9)) + random_string[insert_position:]
+        digit_count += 1
+    while digit_count > 3:
+        digit_positions = [i for i, c in enumerate(random_string) if c.isdigit()]
+        remove_position = random.choice(digit_positions)
+        random_string = random_string[:remove_position] + random.choice(letters) + random_string[remove_position + 1:]
+        digit_count -= 1
+
+    return random_string
+```
+
+This function first generates a random string of 11 characters without digits. Then it inserts "NAA3U" at a random position in the string. After that, it ensures that the string has exactly three digits by adding or replacing digits as necessary.

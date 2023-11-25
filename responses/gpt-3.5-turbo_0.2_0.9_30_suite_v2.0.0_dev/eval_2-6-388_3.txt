@@ -1,0 +1,9 @@
+The `[Keyless]` attribute was introduced in Entity Framework Core 5.0, so it's possible that you're using an earlier version of Entity Framework Core where this attribute is not available. 
+
+To use `[Keyless]`, make sure you have installed the latest version of Entity Framework Core (currently 5.0 or later) and that you have added the following using statement to your code file:
+
+```c#
+using Microsoft.EntityFrameworkCore;
+```
+
+If you have already installed the latest version of Entity Framework Core and added the using statement, try cleaning and rebuilding your project to make sure that all the necessary dependencies are properly installed.

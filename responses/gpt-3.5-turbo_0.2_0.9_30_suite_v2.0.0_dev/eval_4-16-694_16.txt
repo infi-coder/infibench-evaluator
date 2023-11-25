@@ -1,0 +1,9 @@
+You can use `grep` with a regular expression to match the language code pattern. Here's an updated command that should work for both cases:
+
+```
+curl -Ls yahoo.com | grep -oP 'lang="\K[^"]+' | head -1
+```
+
+This command uses the `-o` option to output only the matched text, and the `-P` option to enable Perl-compatible regular expressions. The regular expression `lang="\K[^"]+` matches the `lang="` string and then uses `\K` to reset the match, so that only the language code is captured. The `[^"]+` pattern matches one or more characters that are not double quotes, which should include the language code.
+
+Note that this command assumes that the language code is always enclosed in double quotes after the `lang=` attribute. If the HTML syntax changes, this command may need to be updated accordingly.

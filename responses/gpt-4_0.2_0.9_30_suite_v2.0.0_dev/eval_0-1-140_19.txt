@@ -1,0 +1,16 @@
+Font Awesome 5 has a few changes in the way you use it compared to Font Awesome 4. The `font-family` is now split into three different families: `Font Awesome 5 Free`, `Font Awesome 5 Brands`, and `Font Awesome 5 Pro`. The content codes have also changed.
+
+For your code, you can try the following:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f105";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+```
+
+The `font-weight` is added because Font Awesome 5 uses different weights to differentiate between solid (`font-weight: 900`), regular (`font-weight: 400`), and light (`font-weight: 300`) icons. The content code (`\f105`) is for the right arrow in Font Awesome 5.
+
+Please note that you need to ensure that you have correctly included the Font Awesome 5 CSS in your project.

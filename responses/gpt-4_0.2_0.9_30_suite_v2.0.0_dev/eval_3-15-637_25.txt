@@ -1,0 +1,13 @@
+The error you're experiencing might be due to a compatibility issue between Selenium Basic and Excel 2019. Here are a few things you can try to resolve the issue:
+
+1. **Check the Selenium Basic Version**: Make sure you are using the latest version of Selenium Basic. You can download it from the [official GitHub repository](https://github.com/florentbr/SeleniumBasic/releases). 
+
+2. **Check the Browser Driver**: Ensure that the browser driver (e.g., ChromeDriver for Google Chrome) is up-to-date and compatible with the browser version you're using.
+
+3. **Check the References**: In VBA, go to `Tools > References` and make sure that Selenium Type Library is checked.
+
+4. **Register the Selenium Library**: If the Selenium library is not registered, you can manually register it using the command prompt. Navigate to the directory where the Selenium library is located and use the `regsvr32` command to register the DLL file.
+
+5. **Try a Different Browser**: If you're still having issues, try using a different browser. In your code, you're using Internet Explorer (`driver.Start "ie"`). You could try using Chrome or Firefox instead (`driver.Start "chrome"` or `driver.Start "firefox"`).
+
+If none of the above solutions work, you might want to consider using a different automation tool that is compatible with Excel 2019, such as UiPath or AutoIt.

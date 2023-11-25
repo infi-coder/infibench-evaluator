@@ -1,0 +1,24 @@
+Your code seems correct and should work as expected. However, there are a few things you can check if the loading state is stuck at `true` and the data is not fetched:
+
+1. **Network Connection**: Make sure your device or emulator has a proper internet connection. Sometimes, network issues can cause the loading state to hang.
+
+2. **Server Status**: Check if the server at 'https://48p1r2roz4.sse.codesandbox.io' is up and running. You can do this by visiting the URL in a web browser.
+
+3. **GraphQL Query**: Ensure that the GraphQL query is correct and the server supports it. You can test the query using a GraphQL client like GraphiQL or Apollo Studio.
+
+4. **Apollo Client Version**: There might be compatibility issues with the version of Apollo Client you're using. Try downgrading or upgrading the version.
+
+5. **React Native Version**: Check if the version of React Native you're using is compatible with the Apollo Client version. You might need to upgrade or downgrade it.
+
+6. **Error Handling**: Add more detailed error handling to see if there's an error message being returned from the server. You can log the `error` object to see more details.
+
+```javascript
+if (error) {
+    console.error(error);
+    return <Text>Error :(</Text>;
+}
+```
+
+7. **React Native Debugger**: Use React Native Debugger to inspect the network requests and responses. This can help you identify if the request is being sent and what response is being received.
+
+If none of these steps help, it might be a more complex issue that requires a deeper investigation.

@@ -1,0 +1,31 @@
+The error message indicates that Jackson is trying to serialize a `ByteArrayInputStream` object, which it doesn't know how to serialize. The `ByteArrayInputStream` is part of the `MultipartFile` object.
+
+When you are sending a `MultipartFile` over HTTP, you should convert it to a `FileSystemResource` or `ByteArrayResource` before adding it to the `MultiValueMap`. Here is how you can do it:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body= new LinkedMultiValueMap<>();
+
+// Convert MultipartFile to ByteArrayResource
+ByteArrayResource resource = new ByteArrayResource(souqBean.getCircularAttachment().getBytes()) {
+    @Override
+    public String getFilename() {
+        return souqBean.getCircularAttachment().getOriginalFilename();
+    }
+};
+
+body.add("circularAttachment", resource);
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+HttpEntity<?> entity = new HttpEntity<>(body, headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status = response.getBody();
+```
+
+In this code, the `MultipartFile` is converted to a `ByteArrayResource` before it is added to the `MultiValueMap`. The `ByteArrayResource` is a type of `Resource` that Jackson knows how to serialize. The `getFilename()` method is overridden to provide the original filename of the `MultipartFile`, which is needed for the server to correctly handle the file.
+
+Please note that you need to handle `IOException` when calling `getBytes()` method on `MultipartFile`.

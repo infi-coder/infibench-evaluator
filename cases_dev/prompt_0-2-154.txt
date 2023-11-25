@@ -1,0 +1,36 @@
+I need to convert a HTML String with nested Tags like this one:
+
+```javascript
+const strHTML = "<p>Hello World</p><p>I am a text with <strong>bold</strong> word</p><p><strong>I am bold text with nested <em>italic</em> Word.</strong></p>"
+```
+
+into the following Array of objects with this structure:
+
+```javascript
+const result = [{
+  text: "Hello World",
+  format: []
+}, {
+  text: "I am a text with",
+  format: []
+}, {
+  text: "bold",
+  format: ["strong"]
+}, {
+  text: " word",
+  format: []
+}, {
+  text: "I am a text with nested",
+  format: ["strong"]
+}, {
+  text: "italic",
+  format: ["strong", "em"]
+}, {
+  text: "Word.",
+  format: ["strong"]
+}];
+```
+
+I managed the conversion with the DOMParser() as long as there are no nested Tags. I am not able to get it running with nested Tags, like in the last paragraph, so my whole paragraph is bold, but the word "italic" should be both bold and italic. I cannot get it running as a recursion.
+
+Could you help me to write a function starting with `function* iterLeafNodes(strhtml, format=[])`, such that `let result = [...iterLeafNodes(strHTML)];` yields the result? You don't need to provide any context, running example, or explanation, but just to output the implementation of the function.

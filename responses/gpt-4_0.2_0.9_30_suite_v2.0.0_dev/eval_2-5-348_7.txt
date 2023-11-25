@@ -1,0 +1,20 @@
+The error message you're seeing is due to a bug in JDK 8u20 and later versions. The bug is related to how the JDK handles command line arguments with embedded quotes. 
+
+You can try the following solutions:
+
+1. **Upgrade your JDK version**: This issue has been fixed in JDK versions 8u40 and later. If you're using an older version, consider upgrading to a newer one.
+
+2. **Change the command line arguments**: If upgrading the JDK is not an option, you can try to change the command line arguments to avoid using embedded quotes. For example, you can try to use relative paths instead of absolute paths, or you can try to set the `JAVA_HOME` and `MAVEN_HOME` environment variables in your system settings, so you don't need to specify them in the command line.
+
+Here is an example of how you can change the command:
+
+```bash
+cd C:\projects\open
+set JAVA_HOME=C:\Program Files\Java\jdk-11.0.5
+set MAVEN_HOME=C:\Program Files\NetBeans-11.1\netbeans\java\maven
+%MAVEN_HOME%\bin\mvn.cmd -DskipTests=true -Dmaven.ext.class.path=%MAVEN_HOME%\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install
+```
+
+This command sets the `JAVA_HOME` and `MAVEN_HOME` environment variables, and then uses these variables in the Maven command. This way, you don't need to use quotes in the Maven command.
+
+Remember to replace the paths with the correct paths in your system.

@@ -1,0 +1,37 @@
+Here is the code with the `copyText` method filled in:
+
+```html
+<template>
+    <div id="app">
+      <v-app id="inspire">
+        <v-container>
+          <v-text-field v-model="text1"></v-text-field>
+          <v-btn @click="copyText">copy</v-btn>
+        </v-container>
+      </v-app>
+    </div>
+</template>
+
+<script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data() { 
+        return {
+          text1: 'lorem ipsum 123'
+        }
+      },
+      methods: {
+        copyText () {
+          navigator.clipboard.writeText(this.text1).then(() => {
+            console.log('Copying to clipboard was successful!');
+          }, err => {
+            console.error('Could not copy text: ', err);
+          });
+        }
+      }
+    })
+</script>
+```
+
+In the `copyText` method, we are using the Clipboard API's `writeText` method to copy the text to the clipboard. This method returns a promise that resolves once the text is successfully written to the clipboard. If there is an error, we log it to the console.

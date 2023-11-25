@@ -1,0 +1,35 @@
+The error message you're seeing is due to changes in Android 12 (API level 31) regarding the use of `PendingIntent`. Starting from this version, you must explicitly specify whether the `PendingIntent` is mutable or immutable by using the flags `FLAG_MUTABLE` or `FLAG_IMMUTABLE`.
+
+The `MediaSessionCompat` class in the AndroidX Media library version 1.4.0 is supposed to handle this requirement, but it seems like it's not working as expected in your case.
+
+As a workaround, you can try to create a `PendingIntent` for the media button yourself and pass it to the `MediaSessionCompat` constructor:
+
+```kotlin
+override fun onCreate() {
+  super.onCreate()
+
+  val mediaButtonReceiver = ComponentName(this, MediaButtonReceiver::class.java)
+  val mediaButtonIntent = Intent(Intent.ACTION_MEDIA_BUTTON)
+  mediaButtonIntent.component = mediaButtonReceiver
+
+  val pendingIntentFlags = if (Build.VERSION.SDK_INT >= 31) {
+    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+  } else {
+    PendingIntent.FLAG_UPDATE_CURRENT
+  }
+
+  val mbrIntent = PendingIntent.getBroadcast(this, 0, mediaButtonIntent, pendingIntentFlags)
+
+  mediaSession = MediaSessionCompat(this, TAG, mediaButtonReceiver, mbrIntent).apply {
+    setCallback(mediaSessionCallback)
+    isActive = true
+  }
+  ...
+}
+```
+
+In this code, we're creating a `PendingIntent` for the media button with the appropriate flags depending on the Android version. We then pass this `PendingIntent` to the `MediaSessionCompat` constructor.
+
+Please replace `MediaButtonReceiver::class.java` with your actual media button receiver class.
+
+This is a workaround and the issue might be fixed in a future version of the AndroidX Media library.

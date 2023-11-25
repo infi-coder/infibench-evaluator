@@ -1,0 +1,23 @@
+The error message suggests that there is no serializer found for the `java.io.ByteArrayInputStream` class. This is because the `CommonsMultipartFile` class contains a `DiskFileItem` object, which in turn contains an `InputStream` object. The `InputStream` object cannot be serialized directly, so you need to configure your `RestTemplate` to use a `ByteArrayHttpMessageConverter` to handle the serialization of the `MultipartFile`.
+
+Here's an updated version of your code that should work:
+
+```java
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+MultiValueMap<String, Object> body= new LinkedMultiValueMap<>();
+body.add("circularAttachment", souqBean.getCircularAttachment()); //MultipartFile
+body.add("circularEntryId", souqBean.getCircularEntryId());
+body.add("circularTitle", souqBean.getCircularTitle());
+
+// Add ByteArrayHttpMessageConverter to handle serialization of MultipartFile
+RestTemplate restTemplate = new RestTemplate(Arrays.asList(new ByteArrayHttpMessageConverter()));
+
+HttpEntity<?> entity = new HttpEntity<MultiValueMap<String, Object>>(body,headers);
+
+ResponseEntity<Boolean> response = restTemplate.postForEntity("http://localhost:8081/circular-save", entity, Boolean.class);
+status=response.getBody();
+```
+
+By adding the `ByteArrayHttpMessageConverter` to the `RestTemplate`, it will handle the serialization of the `MultipartFile` by converting it to a byte array before sending it over the network.

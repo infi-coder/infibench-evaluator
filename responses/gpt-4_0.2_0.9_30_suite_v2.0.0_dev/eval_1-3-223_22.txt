@@ -1,0 +1,28 @@
+Here is a Python function that uses the `pkg_resources` module to get the current version of a package, and the `requests` module to get the latest version from PyPI. It returns `True` if the package is up-to-date, and `False` otherwise.
+
+```python
+import pkg_resources
+import requests
+
+def checkVersion(pkgName):
+    try:
+        # Get the current version of the package
+        current_version = pkg_resources.get_distribution(pkgName).version
+    except pkg_resources.DistributionNotFound:
+        print(f"{pkgName} is not installed.")
+        return False
+
+    # Get the latest version from PyPI
+    response = requests.get(f"https://pypi.org/pypi/{pkgName}/json")
+    if response.status_code != 200:
+        print(f"Error getting the latest version of {pkgName}.")
+        return False
+    latest_version = response.json()["info"]["version"]
+
+    # Compare the versions
+    return current_version == latest_version
+```
+
+Please note that this function assumes that the package is installed and that it is available on PyPI. If the package is not installed or not available on PyPI, the function will print an error message and return `False`.
+
+Also, this function uses the `requests` module, which is not part of the standard Python library. If you don't have it installed, you can install it with `pip install requests`.

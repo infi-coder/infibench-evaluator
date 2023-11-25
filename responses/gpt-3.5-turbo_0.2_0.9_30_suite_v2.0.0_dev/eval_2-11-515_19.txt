@@ -1,0 +1,12 @@
+```c++
+vector<pair<int, int>> origin_to_goal(vector<int> origin) {
+    vector<pair<int, int>> goal;
+    auto it = origin.begin();
+    while (it != origin.end()) {
+        goal.emplace_back(*it, *(it + 1));
+        it += 2;
+    }
+    return goal;
+}
+```
+This implementation uses the `emplace_back` function to add pairs to the `goal` vector. The `auto` keyword is used to define the iterator `it` that points to the beginning of the `origin` vector. The `while` loop iterates over the `origin` vector, adding pairs of elements to the `goal` vector using `emplace_back`. The iterator `it` is incremented by 2 in each iteration to skip to the next pair of elements in the `origin` vector. Finally, the `goal` vector is returned.

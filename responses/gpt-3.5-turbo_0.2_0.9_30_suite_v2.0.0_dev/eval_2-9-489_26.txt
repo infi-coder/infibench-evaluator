@@ -1,0 +1,22 @@
+The warning message is indicating that Elasticsearch built-in security features are not enabled, which means that your Elasticsearch cluster could be accessible to anyone. To fix this, you need to enable security in Elasticsearch.
+
+Here are the steps to enable security in Elasticsearch:
+
+1. Open the Elasticsearch configuration file `elasticsearch.yml` in a text editor. You can find this file in the Elasticsearch installation directory.
+
+2. Add the following lines to the end of the file:
+
+```
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+```
+
+3. Save the file and restart Elasticsearch.
+
+After restarting Elasticsearch, the warning message should disappear. However, you may need to update your Searchkick configuration to use HTTPS instead of HTTP for Elasticsearch communication. You can do this by adding the following line to your Searchkick initializer:
+
+```
+config.elasticsearch_scheme = "https"
+```
+
+Note that enabling security in Elasticsearch may require additional configuration, such as setting up SSL certificates and configuring user authentication. You can refer to the Elasticsearch documentation for more information on configuring security.

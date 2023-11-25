@@ -1,0 +1,29 @@
+Here is a Python function that generates a 16 character code according to your requirements:
+
+```python
+import random
+import string
+
+def generateRandomString():
+    # Define the characters that the code can contain
+    chars = string.ascii_letters
+
+    # Generate a random string of 11 characters
+    random_str = ''.join(random.choice(chars) for _ in range(11))
+
+    # Insert the sub-string "NAA3U" at a random position in the string
+    insert_pos = random.randint(0, 11)
+    random_str = random_str[:insert_pos] + 'NAA3U' + random_str[insert_pos:]
+
+    # Check if the string contains 3 digits, if not, replace some letters with digits
+    digit_count = sum(c.isdigit() for c in random_str)
+    while digit_count < 3:
+        replace_pos = random.randint(0, 15)
+        if not random_str[replace_pos].isdigit():
+            random_str = random_str[:replace_pos] + str(random.randint(0, 9)) + random_str[replace_pos + 1:]
+            digit_count += 1
+
+    return random_str
+```
+
+This function first generates a random string of 11 characters from the ASCII letters. Then it inserts the sub-string "NAA3U" at a random position in the string. After that, it checks if the string contains 3 digits. If not, it replaces some letters with random digits until there are 3 digits in the string.

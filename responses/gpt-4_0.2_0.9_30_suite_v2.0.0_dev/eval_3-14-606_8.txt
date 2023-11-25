@@ -1,0 +1,19 @@
+The alert you're seeing is likely related to the app being a developer or test build. iOS doesn't have a "Developer Mode" like Android. However, you can enable developer options by connecting your device to a Mac and using Xcode.
+
+Here are the steps to enable developer options:
+
+1. Install the latest version of Xcode on your Mac. You can download it from the Mac App Store.
+
+2. Connect your iOS device to your Mac using a USB cable.
+
+3. Open Xcode and go to `Window -> Devices and Simulators`.
+
+4. Select your device from the list in the left sidebar.
+
+5. If necessary, click on `Use for Development`. You may need to enter your Apple ID and password.
+
+6. Once your device is set up for development, you should be able to run the provisioned testing build.
+
+If you're still having trouble, the issue might be with the provisioning profile used to build the app. You might need to rebuild the app with a correct provisioning profile, or you might need to add your device's UDID to the list of devices in the provisioning profile. 
+
+Remember, you should only install apps from trusted sources, even when using developer or test builds.

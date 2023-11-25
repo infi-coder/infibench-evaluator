@@ -1,0 +1,9 @@
+Sure, you can define an inline type for the `products` parameter. However, you should use an array of the object type, not an object of arrays. Here is the correct way to define it:
+
+```typescript
+bagTotal = (products: {name: string, price: number, description: string}[]) => {
+ // function does stuff
+}
+```
+
+In this case, `products` is an array of objects, where each object has a `name` property of type `string`, a `price` property of type `number`, and a `description` property of type `string`.

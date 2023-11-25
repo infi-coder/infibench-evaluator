@@ -1,0 +1,63 @@
+To import images in a React component with TypeScript and Parcel, you need to do the following:
+
+1. Create a `.d.ts` file with the same name as the image file you want to import. For example, if your image is named `image.jpg`, create a file named `image.d.ts`. Inside this file, add the following code:
+
+```typescript
+declare module '*.jpg' {
+  const value: any;
+  export default value;
+}
+```
+
+This tells TypeScript that any file with a `.jpg` extension can be imported as a module.
+
+2. Move the `.d.ts` file to the same directory as the image file. In your case, move `image.d.ts` to the `assets` directory.
+
+3. In your component file, import the image like this:
+
+```typescript
+import * as React from 'react';
+import image from '../assets/image.jpg';
+
+const Box = props => {
+  // do things...
+}
+
+export default Box;
+```
+
+Note that you don't need to specify the file extension when importing the image.
+
+4. Add the following configuration to your `tsconfig.json` file:
+
+```json
+{
+  "compilerOptions": {
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "src/**/*.jpg"]
+}
+```
+
+This tells TypeScript to include `.d.ts` and `.jpg` files in the compilation process.
+
+5. Run `npm install --save-dev parcel-plugin-static-files-copy` to install the Parcel plugin that copies static files to the output directory.
+
+6. Add the following configuration to your `package.json` file:
+
+```json
+{
+  "parcel-plugin-static-files-copy": {
+    "staticPath": [
+      {
+        "from": "src/assets",
+        "to": "assets"
+      }
+    ]
+  }
+}
+```
+
+This tells Parcel to copy the `assets` directory to the output directory.
+
+7. Run `npm start` to start the development server. Parcel should now be able to find and import the image file.

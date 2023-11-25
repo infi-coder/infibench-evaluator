@@ -1,0 +1,16 @@
+Sure, you can achieve this by using the `torch.cat` function. But before that, you need to add an extra dimension to your tensor `d` to match the dimensions of `inps`. Here is the function:
+
+```python
+import torch
+
+def addTensor(inps, d):
+    # Add an extra dimension to d
+    d = d.unsqueeze(2)
+    
+    # Concatenate along the third dimension
+    result = torch.cat((inps, d), 2)
+    
+    return result
+```
+
+This function first adds an extra dimension to `d` using the `unsqueeze` function, which makes its size [64, 161, 1]. Then it concatenates `inps` and `d` along the third dimension (dimension index is 2 as it starts from 0), resulting in a tensor of size [64, 161, 2].

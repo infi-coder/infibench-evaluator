@@ -1,0 +1,13 @@
+You can disable the animation in ViewPager2 by calling `setPageTransformer()` method on the ViewPager2 object and passing in a `PageTransformer` that sets the animation duration to 0. Here's an example:
+
+```kotlin
+viewPager2.setPageTransformer { page, position ->
+    page.alpha = 1f // Set the alpha to 1 to disable fading animation
+    page.translationX = 0f // Set the translation to 0 to disable sliding animation
+    page.scaleX = 1f // Set the scale to 1 to disable scaling animation
+    page.scaleY = 1f // Set the scale to 1 to disable scaling animation
+    page.animate().setDuration(0).start() // Set the animation duration to 0
+}
+```
+
+This will disable the animation when the user clicks on a tab in the TabLayout.

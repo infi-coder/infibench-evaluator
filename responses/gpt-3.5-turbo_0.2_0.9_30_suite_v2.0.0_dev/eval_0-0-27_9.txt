@@ -1,0 +1,5 @@
+It seems like you are trying to fetch data from a GraphQL API endpoint that is not available. The `uri` you are using in your `ApolloClient` configuration is `https://48p1r2roz4.sse.codesandbox.io`, which is a demo endpoint provided by Apollo Client documentation. 
+
+You need to replace this `uri` with the actual endpoint of your GraphQL API. You can check with your backend team to get the correct endpoint URL.
+
+Once you have the correct endpoint URL, replace the `uri` in your `ApolloClient` configuration with it, and your code should work as expected.

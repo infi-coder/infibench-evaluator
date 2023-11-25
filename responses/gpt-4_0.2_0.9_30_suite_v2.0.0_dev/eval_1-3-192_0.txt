@@ -1,0 +1,22 @@
+Here is a Python solution using the `re` module:
+
+```python
+import re
+
+def to_camel_case(text):
+    words = re.split('-|_', text)
+    return words[0] + ''.join(word.capitalize() for word in words[1:])
+```
+
+This function works by first splitting the input string `text` into a list of words using the `re.split` function, which splits the string at each occurrence of a dash (`-`) or underscore (`_`). The result is a list of words.
+
+Then, it returns a new string that is the concatenation of the first word in the list (which is left as is) and the rest of the words in the list, each of which is capitalized using the `capitalize` method.
+
+Here's how it works on the test cases:
+
+```python
+print(to_camel_case(''))  # returns ''
+print(to_camel_case("the_stealth_warrior"))  # returns "theStealthWarrior"
+print(to_camel_case("The-Stealth-Warrior"))  # returns "TheStealthWarrior"
+print(to_camel_case("A-B-C"))  # returns "ABC"
+```

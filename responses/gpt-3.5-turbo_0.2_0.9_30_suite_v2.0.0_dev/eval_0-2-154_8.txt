@@ -1,0 +1,41 @@
+Sure, here's the implementation of the `iterLeafNodes` function using recursion:
+
+```javascript
+function* iterLeafNodes(strhtml, format = []) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strhtml, "text/html");
+  const nodes = doc.body.childNodes;
+  for (const node of nodes) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      yield { text: node.textContent, format };
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const newFormat = [...format, node.tagName.toLowerCase()];
+      yield* iterLeafNodes(node.innerHTML, newFormat);
+    }
+  }
+}
+```
+
+You can use it like this:
+
+```javascript
+const strHTML =
+  "<p>Hello World</p><p>I am a text with <strong>bold</strong> word</p><p><strong>I am bold text with nested <em>italic</em> Word.</strong></p>";
+
+const result = [...iterLeafNodes(strHTML)];
+console.log(result);
+```
+
+This will output the expected result:
+
+```javascript
+[
+  { text: "Hello World", format: [] },
+  { text: "I am a text with", format: [] },
+  { text: "bold", format: ["strong"] },
+  { text: " word", format: [] },
+  { text: "I am bold text with nested", format: ["strong"] },
+  { text: "italic", format: ["strong", "em"] },
+  { text: "Word.", format: ["strong"] }
+]
+```

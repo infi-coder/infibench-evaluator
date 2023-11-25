@@ -1,0 +1,38 @@
+You can use the `react-intersection-observer` package to achieve this. It provides a React component that notifies you when it enters or leaves the viewport. 
+
+First, install the package using npm:
+
+```bash
+npm install react-intersection-observer
+```
+
+Then, you can use the `InView` component from the package in your code:
+
+```javascript
+import React from 'react';
+import { InView } from 'react-intersection-observer';
+
+const ParentComponent = ({ data }) => {
+  return (
+    <div id="parent">
+      {data.map(item => (
+        <InView key={item.id}>
+          {({ inView, ref, entry }) => (
+            <div id={item.id} ref={ref}>
+              {inView ? item.title : ''}
+            </div>
+          )}
+        </InView>
+      ))}
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+In this example, `InView` is a component that uses the Intersection Observer API to track when it enters or leaves the viewport. It provides a function as a child that gives you the `inView` state (a boolean indicating whether the component is in the viewport or not), a `ref` that you should apply to the element you want to observe, and the `entry` object from the Intersection Observer API.
+
+The `inView` state can be used to conditionally render content based on whether the component is in the viewport or not. In this case, we're rendering the item's title only when the component is in the viewport.
+
+Remember to add a unique `key` prop to each child in a list. It’s a unique and constant id for each child that helps React identify which items have changed, are added, or are removed. In this case, we're using `item.id` as the key.

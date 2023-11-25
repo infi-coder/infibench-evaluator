@@ -1,0 +1,35 @@
+The error message you're seeing typically means that the response you're getting from the server is not valid JSON. 
+
+Here are a few steps you can take to debug and solve this issue:
+
+1. **Check the server response**: Print the server response to the console before attempting to decode it. This will allow you to see exactly what you're trying to decode.
+
+    ```dart
+    print('Response body: ${response.body}');
+    ```
+
+    If the response is not valid JSON, you'll need to fix this on the server side.
+
+2. **Check the server's content type**: Ensure that the server is actually returning JSON. The server should include a `Content-Type: application/json` header in the response. If it's not, you may need to configure your server to return this header.
+
+3. **Handle non-200 HTTP status codes**: If the server returns an HTTP status code other than 200, it may not include a response body, or the response body may not be JSON. You should check the status code before trying to decode the response.
+
+    ```dart
+    if (response.statusCode == 200) {
+      List data = json.decode(response.body);
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+    ```
+
+4. **Catch and handle exceptions**: You can catch the `FormatException` and handle it appropriately. This might involve showing an error message to the user, or retrying the request.
+
+    ```dart
+    try {
+      List data = json.decode(response.body);
+    } on FormatException catch (e) {
+      print('Failed to decode JSON: $e');
+    }
+    ```
+
+Remember, the issue is likely with the server response, not with your Dart code. These steps should help you identify and fix the problem.

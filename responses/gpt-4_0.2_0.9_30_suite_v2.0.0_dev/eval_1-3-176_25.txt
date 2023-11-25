@@ -1,0 +1,13 @@
+The error message indicates that the Pillow library could not be installed because the zlib library, which is a required dependency, could not be found.
+
+However, the issue you're facing is likely due to the fact that you're trying to install an older version of Pillow (6.0.0) which does not support Python 3.8. As the error message suggests, Pillow does not yet support Python 3.8 and does not yet provide prebuilt Windows binaries.
+
+To solve this issue, you can try to install a newer version of Pillow that supports Python 3.8. You can do this by running the following command:
+
+```bash
+pip install Pillow --upgrade
+```
+
+This command will upgrade Pillow to the latest version that supports your Python version.
+
+If you still face issues, you might want to consider downgrading your Python version to a version that is compatible with the Pillow version you're trying to install.

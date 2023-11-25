@@ -1,0 +1,21 @@
+This error occurs when the `getApplicationDocumentsDirectory()` method returns null. This can happen if the path_provider package is not properly initialized.
+
+To fix this, make sure that you have added the path_provider package to your `pubspec.yaml` file and run `flutter pub get` to install it.
+
+If you have already added the package, try running `flutter clean` and then `flutter pub get` to clear any cached dependencies.
+
+If the issue persists, try wrapping the `getApplicationDocumentsDirectory()` method in a `try-catch` block to handle any exceptions that may occur:
+
+```dart
+void main() async {
+  try {
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    Hive.init(appDocsDir.path);
+    runApp(MyApp());
+  } catch (e) {
+    print('Error getting application documents directory: $e');
+  }
+}
+```
+
+This will print any errors that occur while getting the application documents directory to the console, which can help you diagnose the issue.

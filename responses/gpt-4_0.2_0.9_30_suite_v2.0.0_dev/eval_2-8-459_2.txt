@@ -1,0 +1,20 @@
+This issue could be due to a few reasons. Here are some steps you can take to debug this:
+
+1. **Check your Go version**: Ensure that you are using the same version of Go on both computers. You can check this by running `go version` in your terminal. If the versions are different, you might want to consider upgrading or downgrading to match the versions.
+
+2. **Check your GOPROXY settings**: Go modules use the `GOPROXY` environment variable to determine where to fetch modules from. If this is set incorrectly, it could cause issues. You can check this by running `echo $GOPROXY` in your terminal. If it's not set, you might want to consider setting it to `https://proxy.golang.org,direct`.
+
+3. **Check your Git configuration**: Since the repository is private, Go needs to authenticate with GitHub to access it. Go uses the `git` command under the hood to do this, so you need to ensure that your Git configuration is set up correctly. You can check this by running `git config --get user.name` and `git config --get user.email` to ensure that your Git username and email are set correctly. You should also ensure that you have a valid GitHub token set in your Git configuration.
+
+4. **Check your network connection**: If you're on a different network on computer B, there might be network restrictions preventing Go from accessing the GitHub repository. You can check this by trying to clone the repository manually using `git clone`.
+
+5. **Verbose logging**: You can enable verbose logging for Go modules by setting the `GODEBUG` environment variable to `mod=debug`. This will print out detailed information about what Go is doing when it tries to fetch the modules, which might help you identify the issue.
+
+Here's how you can set the `GODEBUG` environment variable:
+
+```bash
+export GODEBUG=mod=debug
+go build
+```
+
+After running these commands, you should see detailed logs about what Go is doing when it tries to fetch the modules. This might help you identify the issue.

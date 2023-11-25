@@ -1,0 +1,15 @@
+This issue might be due to several reasons, but here are some steps you can follow to troubleshoot and potentially solve the problem:
+
+1. **Check the Python Interpreter**: Make sure that the Python interpreter you're using in VS Code is the one from your conda environment. You can select the interpreter by clicking on the Python version in the bottom-left corner of the VS Code window.
+
+2. **Check the Jupyter Server**: Try to start the Jupyter server manually from the command line. Activate your conda environment and run `jupyter notebook`. If this works, the issue might be with VS Code. If it doesn't, there might be an issue with your Jupyter installation.
+
+3. **Reinstall Jupyter**: If Jupyter is not working, try reinstalling it. Activate your conda environment and run `conda install jupyter`.
+
+4. **Check the VS Code Settings**: In VS Code, go to File > Preferences > Settings (or press `Ctrl+,`). In the User Settings tab, make sure that the `python.dataScience.jupyterServerURI` is set to `"local"`.
+
+5. **Reinstall the Python Extension**: Try uninstalling and reinstalling the Python extension in VS Code.
+
+6. **Check the Error Log**: If none of the above steps work, check the error log in VS Code. You can access it by going to View > Output, and then selecting "Python" in the dropdown menu. This might give you more information about what's going wrong.
+
+Remember to restart VS Code after making these changes to ensure they take effect. If the problem persists, it might be a bug with VS Code or the Python extension, in which case you should report it on their respective GitHub pages.

@@ -1,0 +1,11 @@
+In React, I am trying to identify on scroll if the div is visible on viewport. With the following code:
+
+```javascript
+<div id="parent">
+     data.map(item => {
+            <div id={item.id}>data.title</div>
+        })
+<div>
+```
+
+Could you tell me how to get the list of divs inside of `#parent` which are visible on viewport on scroll? If there are some modules from `npm` that I can use, then please tell me what is it and what is the usage.

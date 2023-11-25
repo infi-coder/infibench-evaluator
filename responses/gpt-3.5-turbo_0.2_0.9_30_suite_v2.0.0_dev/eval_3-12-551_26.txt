@@ -1,0 +1,41 @@
+Either wrap your custom appbar into a `PreferredSize` widget or implement `PreferredSizeWidget`. 
+
+In your case, you can implement `PreferredSizeWidget` by adding the `preferredSize` property to your `AppBarDesign` class like this:
+
+```dart
+class AppBarDesign extends StatelessWidget implements PreferredSizeWidget {
+  AppBarDesign({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(title),
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+}
+```
+
+Then, you can use it in your `MyHomePage` like this:
+
+```dart
+class MyHomePage extends StatelessWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBarDesign(title: title),
+      body: Center(
+        child: Text('Hello, World!'),
+      ),
+    );
+  }
+}
+```

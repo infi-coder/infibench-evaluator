@@ -1,0 +1,15 @@
+Sure, here is your revised code:
+
+```javascript
+const MongoStore = require('connect-mongo');
+
+...
+
+app.use(session({
+    secret: 'story book',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+}))
+```
+The `connect-mongo` package has changed its API in version 4. Now, instead of passing the mongoose connection to the `MongoStore` constructor, you should use the `create` method and pass an options object with the `mongoUrl` property.

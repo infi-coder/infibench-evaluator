@@ -1,0 +1,12 @@
+The issue with your script is that the variable `$searchT` is enclosed in single quotes within the `if` statement. Single quotes prevent variable expansion, so `$searchT` is not being replaced with the user input. To fix this, you can use double quotes instead of single quotes:
+
+```
+if [[ $(cat test.txt | grep -wi "$searchT") ]]; then     
+    echo "$(cat test.txt | grep "$searchT" && wc -l) number of matches found"
+    echo $(cat test.txt | grep "$searchT")
+else 
+    echo "no match found"    
+fi
+```
+
+This should allow the script to correctly compare the output of `grep` with an empty string if there are no matches, and execute the `if` block if there are matches.

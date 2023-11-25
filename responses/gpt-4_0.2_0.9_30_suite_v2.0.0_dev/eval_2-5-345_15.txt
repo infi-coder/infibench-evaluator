@@ -1,0 +1,15 @@
+This error is related to the compatibility issue between IntelliJ IDEA and the Maven version that comes with Spring Boot 2.7.0. The Maven version 3.8.5 is not yet fully supported by IntelliJ IDEA.
+
+Here are a few solutions to resolve this issue:
+
+1. **Downgrade the Maven version**: You can manually change the Maven version in your project to a lower version (e.g., 3.8.4 or lower) that is compatible with your IntelliJ IDEA. You can do this by modifying the `maven-wrapper.properties` file in your project. The file is usually located in the `.mvn` directory of your project. Change the `distributionUrl` property to the desired Maven version. For example:
+
+    ```
+    distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.4/apache-maven-3.8.4-bin.zip
+    ```
+
+2. **Update IntelliJ IDEA**: JetBrains is aware of this issue and they have provided a fix in the newer versions of IntelliJ IDEA. You can update your IntelliJ IDEA to the latest version to resolve this issue.
+
+3. **Use an external Maven**: Instead of using the bundled Maven, you can configure IntelliJ IDEA to use an external Maven that is installed on your system. To do this, go to `File -> Settings -> Build, Execution, Deployment -> Build Tools -> Maven`. Under `Maven home directory`, select the directory where Maven is installed on your system.
+
+Remember to re-import your project after applying these changes.

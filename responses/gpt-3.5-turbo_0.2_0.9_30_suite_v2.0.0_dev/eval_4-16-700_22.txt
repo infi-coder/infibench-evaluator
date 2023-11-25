@@ -1,0 +1,7 @@
+You can use awk to achieve the same result more efficiently. Here's an example command:
+
+```
+awk -F= '/name/{name=$2} /value/{if(name){print name "=" $2; name=""}}' input.txt > output.txt
+```
+
+This command sets the field separator to "=" and then uses two patterns to match lines starting with "name" or "value". When a line starting with "name" is found, it sets the "name" variable to the value after the "=" sign. When a line starting with "value" is found, it checks if "name" is set (meaning the previous line was a "name" line) and if so, it prints the "name" and "value" variables separated by an "=" sign. This avoids printing lines where the next line also starts with "name".

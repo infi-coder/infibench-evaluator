@@ -1,0 +1,23 @@
+Sure, here is a generator function that can parse the HTML string and yield the desired result:
+
+```javascript
+function* iterLeafNodes(strHTML, format = []) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strHTML, "text/html");
+  const walk = document.createTreeWalker(doc.body, NodeFilter.SHOW_ALL);
+
+  let node;
+  while ((node = walk.nextNode())) {
+    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+      yield {
+        text: node.textContent,
+        format: format
+      };
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      yield* iterLeafNodes(node.innerHTML, [...format, node.tagName.toLowerCase()]);
+    }
+  }
+}
+```
+
+This function uses a TreeWalker to traverse the DOM tree. When it encounters a text node, it yields an object with the text and the current format. When it encounters an element node, it recursively calls itself with the inner HTML of the element and the current format plus the tag name of the element.

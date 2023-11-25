@@ -1,0 +1,48 @@
+Your code is almost correct, but there are a few issues. 
+
+First, you're trying to use `query` and `currentSheet` as variables, but you haven't declared them. 
+
+Second, you're trying to use `query` as both a string (when you assign it the value of a cell) and a `WorkbookQuery` object (when you use `query.Name`). 
+
+Third, you're not actually creating a Power Query using VBA. You're trying to create a QueryTable from an existing Power Query. 
+
+Here's a corrected version of your code:
+
+```vba
+Sub LoadToWorksheetOnly()
+
+    Dim query As String
+    Dim currentSheet As Worksheet
+
+    ' Get the query from a cell
+    query = Sheets("Sheet6").Range("A1").Value
+
+    ' Get the current sheet
+    Set currentSheet = ActiveSheet
+
+    ' Create a QueryTable with the Power Query
+    With currentSheet.ListObjects.Add(SourceType:=0, Source:= _
+        "OLEDB;Provider=Microsoft.Mashup.OleDb.1;Data Source=$Workbook$;Location=" & query _
+        , Destination:=Range("$A$1")).QueryTable
+        .CommandType = xlCmdDefault
+        .CommandText = Array("SELECT * FROM [" & query & "]")
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = False
+        .Refresh BackgroundQuery:=False
+    End With
+
+End Sub
+```
+
+This code will create a QueryTable on the active sheet, using the Power Query from the cell A1 on Sheet6. The QueryTable will be placed starting at cell A1 on the active sheet. 
+
+Please note that automating Power Query with VBA is not officially supported by Microsoft and may not work as expected.

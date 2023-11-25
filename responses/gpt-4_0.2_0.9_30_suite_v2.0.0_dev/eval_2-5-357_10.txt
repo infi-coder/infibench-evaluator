@@ -1,0 +1,9 @@
+Yes, you're correct. As of Spring 4.3, if a class, which is annotated with `@Component` or `@Service` or `@Repository`, contains a single constructor, the `@Autowired` annotation on that constructor is no longer necessary and the constructor is automatically autowired. 
+
+People might still use `@Autowired` on constructors for a few reasons:
+
+1. **Explicitness**: It makes it clear that the class is a Spring-managed bean and the constructor is being used for autowiring.
+2. **Backward compatibility**: If the code is intended to be used with older versions of Spring that don't support implicit constructor injection.
+3. **Multiple constructors**: If the class has more than one constructor, Spring won't know which one to use for autowiring unless you specify `@Autowired` on the intended constructor.
+
+However, if you're using Spring 4.3 or later and your class has only one constructor, you can safely omit the `@Autowired` annotation.

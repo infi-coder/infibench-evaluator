@@ -1,0 +1,33 @@
+You can disable the swipe animation in ViewPager2 by using a custom `ViewPager2.PageTransformer`. Here is an example:
+
+```kotlin
+viewPager2.setPageTransformer(new ViewPager2.PageTransformer() {
+    @Override
+    public void transformPage(@NonNull View page, float position) {
+        if (position <= -1 || position >= 1) {
+            // Page is not visible -- stop any running animations
+            page.clearAnimation();
+        } else if (position == 0) {
+            // Page is selected -- reset any views if necessary
+            page.clearAnimation();
+        }
+    }
+});
+```
+
+This will immediately stop any animations when the page is not visible or selected.
+
+However, if you want to completely disable the animation when switching tabs, you can use `ViewPager2.setCurrentItem(int item, boolean smoothScroll)` method with `smoothScroll` set to `false`:
+
+```kotlin
+tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        viewPager2.setCurrentItem(tab.getPosition(), false);
+    }
+
+    // Other methods...
+});
+```
+
+This will immediately switch to the new page without any animations.

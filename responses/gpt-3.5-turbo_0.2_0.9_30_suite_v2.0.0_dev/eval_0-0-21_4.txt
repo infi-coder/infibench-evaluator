@@ -1,0 +1,21 @@
+To copy the text from `v-text-field` to clipboard, you can use the Clipboard API. Here is the code you can use in the `copyText` method:
+
+```javascript
+copyText () {
+  const textField = document.querySelector('#text-field')
+  textField.select()
+  document.execCommand('copy')
+}
+```
+
+Note that you need to add an `id` attribute to the `v-text-field` component, like this:
+
+```html
+<v-text-field id="text-field" v-model="text1"></v-text-field>
+```
+
+This allows you to select the element using `document.querySelector()`. 
+
+The `select()` method selects the text inside the `v-text-field`. 
+
+The `document.execCommand('copy')` method copies the selected text to the clipboard.

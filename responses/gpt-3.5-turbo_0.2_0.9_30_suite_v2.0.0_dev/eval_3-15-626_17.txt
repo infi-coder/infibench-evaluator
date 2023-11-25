@@ -1,0 +1,11 @@
+You can use the `WorkbookConnection` object in VBA to automate Power Query. Here's an example code snippet:
+
+```
+Sub RefreshPowerQuery()
+    Dim conn As WorkbookConnection
+    Set conn = ThisWorkbook.Connections("Query - MyQueryName") ' Replace with your query name
+    conn.Refresh
+End Sub
+```
+
+You can modify this code to load the query results to a specific worksheet using the `ListObject` object.

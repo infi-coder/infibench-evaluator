@@ -1,0 +1,26 @@
+One way to express this more idiomatically is to use the `Option::filter()` method to check the condition and return `None` if it fails, and then use the `Option::or()` method to replace the `None` with a default value. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.filter(|&x| x < 5).or(Some(5));
+}
+```
+
+Another way to express this is to use the `Option::map_or_else()` method to check the condition and return a default value if it fails. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map_or_else(|| Some(5), |x| if x < 5 { Some(x) } else { None });
+}
+```
+
+Finally, you can use the `Option::unwrap_or_else()` method to replace the `None` with a default value, and then use a `if` statement to check the condition. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = Some(foo.unwrap_or_else(|| 5)).filter(|&x| x < 5);
+}
+```

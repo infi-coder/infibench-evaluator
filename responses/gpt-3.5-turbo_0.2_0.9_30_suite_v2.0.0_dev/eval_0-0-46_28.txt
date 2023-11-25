@@ -1,0 +1,21 @@
+The error message you are seeing is related to ESLint, which is a popular linting tool for JavaScript and TypeScript. It is used to analyze your code for potential errors and style issues.
+
+Based on the information you provided, it seems like ESLint is unable to find your `tsconfig.json` file. This file is used by TypeScript to configure the compiler options, and it is also used by ESLint to understand your project's TypeScript configuration.
+
+To fix this issue, you can try the following steps:
+
+1. Make sure that your `tsconfig.json` file is located in the root directory of your project. If it is not, you will need to update the `parserOptions.project` property in your `.eslintrc.js` file to point to the correct location.
+
+2. Check that the path to your `tsconfig.json` file is correct in your `.eslintrc.js` file. In your current configuration, the `parserOptions.project` property is set to `"tsconfig.json"`, which assumes that the file is located in the same directory as your `.eslintrc.js` file. If your `tsconfig.json` file is located in a different directory, you will need to update this property accordingly.
+
+3. Install the necessary ESLint plugins and dependencies. Based on your `.eslintrc.js` file, you are using the `@typescript-eslint/parser` parser and the `@typescript-eslint/eslint-plugin` plugin. Make sure that these are installed in your project by running the following command:
+
+   ```
+   npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin
+   ```
+
+   This will install the necessary dependencies in your project's `devDependencies` section of your `package.json` file.
+
+4. Reload VSCode. Sometimes, VSCode can have issues with caching the configuration files, so it's a good idea to reload the editor after making changes to your configuration files.
+
+Once you have completed these steps, you should no longer see the error message in your `.ts` files. If you continue to have issues, you may need to provide more information about your project's directory structure and configuration files.

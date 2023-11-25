@@ -1,0 +1,27 @@
+You can use the `numpy.max()` function with the `axis` parameter set to 1 and the `keepdims` parameter set to True to get the maximum value of each row. Then, you can use indexing to get the third column of each row. Here's the code:
+
+```python
+import numpy as np
+
+def getMax(matrix):
+    max_values = np.max(matrix[:,:,2], axis=1, keepdims=True)
+    return max_values
+```
+
+This function takes a 3D numpy array as input and returns a 2D numpy array with the maximum value of the third column of each row. You can call this function like so:
+
+```python
+matrix = np.array([[[4, 1, 5, 2, 5, 5, 7, 8, 9, 7],
+                   [7, 4, 2, 4, 7, 8, 4, 1, 3, 5],
+                   [6, 1, 2, 1, 1, 1, 2, 3, 7, 6],
+                   [5, 5, 5, 0, 5, 4, 3, 8, 7, 1],
+                   [2, 8, 6, 7, 4, 7, 5, 5, 5, 1]],
+                  
+                  [[9, 9, 5, 8, 0, 7, 3, 9, 8, 1],
+                   [9, 1, 9, 5, 7, 4, 5, 4, 7, 0],
+                   [1, 0, 4, 8, 7, 3, 4, 3, 8, 8],
+                   [8, 1, 3, 1, 7, 0, 9, 9, 3, 8],
+                   [4, 0, 2, 3, 8, 2, 0, 1, 2, 4]],
+                  
+                  [[1, 6, 2, 4, 4, 0, 2, 3, 0, 3],
+                   [9, 6, 8, 6, 6,

@@ -1,0 +1,7 @@
+The Rule of 5 is not outdated and is still relevant in modern C++. While it is true that in many cases, the default implementations of constructors and destructors provided by the compiler are sufficient, there are still situations where user-defined versions are necessary.
+
+For example, if a class manages a resource such as memory or a file handle, it may need a user-defined destructor to properly release that resource. Similarly, if a class has non-trivial data members that require special handling during copy or move operations, then user-defined copy and move constructors and assignment operators may be necessary.
+
+While it is true that smart pointers can often be used to manage resources and avoid the need for user-defined constructors and destructors, there are still cases where direct resource management is necessary or desirable. Additionally, smart pointers themselves require some understanding of the Rule of 5, as they implement their own versions of these operations.
+
+In summary, while the default implementations of constructors and destructors provided by the compiler are often sufficient, there are still situations where user-defined versions are necessary, and the Rule of 5 remains an important concept in modern C++.

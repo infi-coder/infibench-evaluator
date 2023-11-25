@@ -1,0 +1,30 @@
+The issue you're experiencing might be due to the fact that the Swagger UI URL has changed in the newer versions of the Springdoc OpenAPI UI library.
+
+In the newer versions of Springdoc OpenAPI UI, the Swagger UI is not available at `/swagger-ui.html` anymore. Instead, it is available at `/swagger-ui/index.html` or simply `/swagger-ui/`.
+
+So, try accessing the Swagger UI at one of the following URLs:
+
+- `http://localhost:8080/swagger-ui/index.html`
+- `http://localhost:8080/swagger-ui/`
+
+If you still can't access the Swagger UI, make sure that the Springdoc OpenAPI UI library is correctly configured in your Spring Boot application. You might need to add some additional configuration to your application properties file (`application.properties` or `application.yml`).
+
+Here is an example of how you can configure the Springdoc OpenAPI UI library in your `application.properties` file:
+
+```properties
+springdoc.swagger-ui.enabled=true
+springdoc.swagger-ui.path=/swagger-ui.html
+```
+
+This will enable the Swagger UI and set its path to `/swagger-ui.html`.
+
+If you're using an `application.yml` file, the configuration would look like this:
+
+```yaml
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+```
+
+Remember to restart your Spring Boot application after making these changes.

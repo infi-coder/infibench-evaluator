@@ -1,0 +1,46 @@
+Your Dockerfile seems correct. The problem might be in your Python application structure or the way you're referencing your FastAPI application in the Dockerfile.
+
+Here's a revised version of your Dockerfile:
+
+```Dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.8
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Add the current directory contents into the container at /app
+ADD . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
+
+# Run the command to start uVicorn server
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+This Dockerfile assumes that your `requirements.txt` is in the same directory as your Dockerfile and that your FastAPI application is located at `app/main.py` relative to the Dockerfile.
+
+If you're still getting the `ModuleNotFoundError: No module named 'app'`, it's likely that your Python application is not structured correctly. Make sure that your `main.py` file is inside the `app` directory and that you're correctly importing any necessary modules in your Python files.
+
+If your `main.py` file is located in the root directory, you should change the CMD line in the Dockerfile to:
+
+```Dockerfile
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+Also, ensure that your `docker-compose.yml` file is correctly set up. Here's a basic example:
+
+```yaml
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+```
+
+This will build the Dockerfile in the current directory and map port 8000 inside the container to port 8000 on your host machine.

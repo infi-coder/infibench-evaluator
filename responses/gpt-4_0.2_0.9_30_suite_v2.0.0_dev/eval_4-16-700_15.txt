@@ -1,0 +1,14 @@
+You can optimize your bash script by using awk. Awk is a powerful tool for text processing and it's faster than using a bash loop. Here is an example of how you can do it:
+
+```bash
+awk -F'=' '
+  /name/ {name=$2; next} 
+  /value/ && name {print name"="$2; name=""}
+' input.txt > output.txt
+```
+
+This script works as follows:
+
+- `-F'='` sets the field separator to `=`.
+- `/name/ {name=$2; next}` if the line contains `name`, it stores the value in the variable `name` and skips to the next line.
+- `/value/ && name {print name"="$2; name=""}` if the line contains `value` and `name` is not empty, it prints `name=value` and resets `name` to empty.

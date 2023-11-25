@@ -1,0 +1,51 @@
+You can use nested `Consumer` widgets to listen to multiple `ChangeNotifier` providers in a single widget. Here's an example:
+
+```dart
+Consumer<FirstChangeNotifier>(
+  builder: (context, firstNotifier, _) => Consumer<SecondChangeNotifier>(
+    builder: (context, secondNotifier, _) => Consumer<ThirdChangeNotifier>(
+      builder: (context, thirdNotifier, _) => Consumer<FourthChangeNotifier>(
+        builder: (context, fourthNotifier, _) => CurvedNavigationBar(
+          // Use your notifiers here
+          // For example:
+          index: firstNotifier.currentIndex,
+          items: <Widget>[
+            Icon(Icons.add, size: 30),
+            Icon(Icons.list, size: 30),
+            Icon(Icons.compare_arrows, size: 30),
+            Icon(Icons.call_split, size: 30),
+          ],
+          onTap: (index) {
+            // Handle your tab tap here
+            // For example:
+            firstNotifier.changeIndex(index);
+            secondNotifier.doSomething();
+            thirdNotifier.doSomethingElse();
+            fourthNotifier.doAnotherThing();
+          },
+        ),
+      ),
+    ),
+  ),
+);
+```
+
+In this example, `FirstChangeNotifier`, `SecondChangeNotifier`, `ThirdChangeNotifier`, and `FourthChangeNotifier` are your classes that extend `ChangeNotifier`. 
+
+The `Consumer` widget listens to a `ChangeNotifier` and rebuilds whenever the `ChangeNotifier` changes. By nesting `Consumer` widgets, you can listen to multiple `ChangeNotifier` providers in a single widget.
+
+Remember to provide your `ChangeNotifier` providers higher up in the widget tree, for example using `MultiProvider`:
+
+```dart
+MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (context) => FirstChangeNotifier()),
+    ChangeNotifierProvider(create: (context) => SecondChangeNotifier()),
+    ChangeNotifierProvider(create: (context) => ThirdChangeNotifier()),
+    ChangeNotifierProvider(create: (context) => FourthChangeNotifier()),
+  ],
+  child: MyApp(),
+);
+```
+
+In this example, `MyApp` is your root widget.

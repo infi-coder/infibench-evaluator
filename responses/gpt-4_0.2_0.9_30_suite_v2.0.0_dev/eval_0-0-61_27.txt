@@ -1,0 +1,48 @@
+You can use the `CssBaseline` component from Material-UI to apply a baseline CSS for your app and to normalize styles across different browsers. 
+
+The `CssBaseline` component applies a global `background-color` style to the `body` element, which can be customized via the theme. 
+
+Here's an example of how you can use it:
+
+```jsx
+import React from 'react';
+import { ThemeProvider, createMuiTheme, CssBaseline } from '@material-ui/core';
+
+const lightTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+    background: {
+      default: '#fff', // your light background color here
+    },
+  },
+});
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    background: {
+      default: '#000', // your dark background color here
+    },
+  },
+});
+
+export default function App() {
+  const [darkMode, setDarkMode] = React.useState(false);
+
+  const theme = darkMode ? darkTheme : lightTheme;
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* Your other components */}
+      <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
+    </ThemeProvider>
+  );
+}
+```
+
+In this example, the `ThemeProvider` component provides the theme to all child components, and the `CssBaseline` component applies the global styles. The background color of the `body` element is set to the `background.default` value of the current theme. The `darkMode` state variable is used to switch between the light and dark themes.

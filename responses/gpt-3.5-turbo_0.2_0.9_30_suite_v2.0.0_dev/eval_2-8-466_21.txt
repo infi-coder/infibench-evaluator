@@ -1,0 +1,45 @@
+You can use the `gin.WrapH` function to wrap the `promhttp.Handler()` and use it as a middleware in your Gin application. Here's an example:
+
+```go
+package main
+
+import (
+    "log"
+
+    "github.com/gin-gonic/gin"
+    "github.com/prometheus/client_golang/prometheus"
+    "github.com/prometheus/client_golang/prometheus/promhttp"
+)
+
+var cpuTemp = prometheus.NewGauge(prometheus.GaugeOpts{
+    Name: "cpu_temperature_celsius",
+    Help: "Current temperature of the CPU.",
+})
+
+func init() {
+    // Metrics have to be registered to be exposed:
+    prometheus.MustRegister(cpuTemp)
+}
+
+func main() {
+    cpuTemp.Set(65.3)
+
+    r := gin.Default()
+
+    // Use promhttp.Handler() as a middleware
+    r.Use(func(c *gin.Context) {
+        if c.Request.URL.Path == "/metrics" {
+            promhttp.Handler().ServeHTTP(c.Writer, c.Request)
+            c.Abort()
+        }
+    })
+
+    r.GET("/hello", func(c *gin.Context) {
+        c.String(200, "Hello, world!")
+    })
+
+    log.Fatal(r.Run(":8080"))
+}
+```
+
+In this example, we use the `gin.Default()` function to create a new Gin router, and then we add a middleware function that checks if the requested URL is `/metrics`. If it is, we use `promhttp.Handler()` to handle the request and abort the Gin middleware chain. Finally, we define a simple route handler for the `/hello` endpoint.

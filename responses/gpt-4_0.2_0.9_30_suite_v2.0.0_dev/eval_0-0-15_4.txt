@@ -1,0 +1,13 @@
+Sure, the issue is that you're returning an object instead of a constructor function. Here's the revised version:
+
+```javascript
+import API from 'utils/API';
+
+jest.mock('utils/API', () => {
+  return jest.fn().mockImplementation(() => {
+    return {someMethod: () => {}};
+  });
+});
+```
+
+In this revised version, `jest.fn().mockImplementation()` is used to return a mock constructor function. When you call `new API()`, it will return the object `{someMethod: () => {}}`.

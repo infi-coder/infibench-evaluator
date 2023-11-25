@@ -1,0 +1,15 @@
+It seems like you are trying to fetch data from a GraphQL server using Apollo Client in React Native, but the loading state hangs at `true` and fails to fetch data.
+
+One possible reason for this issue could be the network connection. Please make sure that your device or emulator is connected to the internet and can access the GraphQL server's URL.
+
+Another possible reason could be the GraphQL server's URL itself. In your code, you are using the URL `https://48p1r2roz4.sse.codesandbox.io` provided by the Apollo Client official documentation. However, this URL may not be working or may have changed. Please check if the URL is still valid and replace it with the correct URL if necessary.
+
+If the above solutions do not work, you can try adding the `fetchPolicy` option to your `useQuery` hook. This option specifies how Apollo Client should fetch data from the server. By default, Apollo Client uses a cache-first strategy, which means it tries to fetch data from the cache first before making a network request. If the data is not in the cache, it makes a network request. However, if the cache is stale, it may return outdated data. To force Apollo Client to always make a network request, you can set the `fetchPolicy` option to `network-only`. Here's an example:
+
+```javascript
+const { loading, error, data } = useQuery(EXCHANGE_RATES, {
+  fetchPolicy: 'network-only',
+});
+```
+
+I hope this helps! Let me know if you have any further questions.

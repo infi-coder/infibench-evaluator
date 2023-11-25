@@ -1,0 +1,15 @@
+You can try the following command to restart your current terminal session without closing the window:
+
+```
+source ~/.bash_profile
+```
+
+This will reload your updated `.bash_profile` file and apply any changes you made to it. 
+
+Alternatively, you can also use the following command to reload your current shell:
+
+```
+exec $SHELL
+```
+
+This will replace your current shell process with a new one, effectively restarting your terminal session.

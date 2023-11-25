@@ -1,0 +1,10 @@
+Sure! The code you provided is almost correct. The only issue is that you cannot use the same `key` variable in both mappings. You need to use a different variable name for each mapping. Here's the corrected code:
+
+```typescript
+type FruitsAndColors = {
+  [fruitKey in fruit]: number;
+  [colorKey in color]: boolean;
+}
+```
+
+This will create a type `FruitsAndColors` with a numeric property for each fruit and a boolean property for each color.

@@ -1,0 +1,33 @@
+You can change the color of the accordion arrow by using CSS pseudo-elements. The accordion arrow is created using the `::before` pseudo-element. You can change its color by targeting this pseudo-element and changing its border color.
+
+Here is the CSS code you need to add:
+
+```css
+.accordion-button::after {
+    /* Bootstrap 4 uses `::after`. Bootstrap 5 uses `::before`. */
+    border-color: green !important;
+}
+```
+
+Please note that the `!important` rule is used to override the default Bootstrap styles. It's generally recommended to avoid using `!important` if possible, but in this case, it's the easiest way to override the Bootstrap styles.
+
+Also, remember to include this CSS after the Bootstrap CSS in your HTML file, so it can override the default Bootstrap styles.
+
+```html
+<link rel="stylesheet" href="path/to/bootstrap.css">
+<style>
+    .accordion-button::after {
+        border-color: green !important;
+    }
+</style>
+```
+
+If you are using Bootstrap 5, you should use `::before` instead of `::after`:
+
+```css
+.accordion-button::before {
+    border-color: green !important;
+}
+```
+
+This should change the color of the accordion arrow to green.

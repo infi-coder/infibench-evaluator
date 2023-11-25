@@ -1,0 +1,9 @@
+Sure! The code you provided is almost correct, but you need to use the `keyof` keyword to create a union of all the keys in `fruit` and `color`. Here's the corrected code:
+
+```typescript
+type FruitsAndColors = {
+  [key in keyof (typeof fruit | typeof color)]: key extends fruit ? number : boolean
+}
+```
+
+This creates a mapped type where each key in the union of `fruit` and `color` is mapped to either a `number` or a `boolean`, depending on whether it extends `fruit` or not.

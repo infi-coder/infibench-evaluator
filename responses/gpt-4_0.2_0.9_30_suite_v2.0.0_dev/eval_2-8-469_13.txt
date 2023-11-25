@@ -1,0 +1,23 @@
+The error message is indicating that the `go_package` option is missing in your proto file. This option is used to specify the full Go package import path. 
+
+You can fix this by adding the `go_package` option to your proto file. Here is an example:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "github.com/yourusername/yourrepository/yourpackage";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+In this example, replace `"github.com/yourusername/yourrepository/yourpackage"` with your actual Go package import path.
+
+After adding the `go_package` option, you should be able to generate the Go code using the same `protoc` command:
+
+```bash
+protoc --go_out=. simple.proto
+```

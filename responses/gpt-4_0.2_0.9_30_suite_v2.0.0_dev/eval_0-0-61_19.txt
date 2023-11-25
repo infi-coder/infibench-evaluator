@@ -1,0 +1,43 @@
+You should use the `CssBaseline` component from Material-UI. This component is a simple normalization of CSS, providing low-level utility classes and setting up a default baseline.
+
+You can set the background color of the root element in your theme and then apply the theme using the `ThemeProvider` component. The `CssBaseline` component will then apply this background color to the root element.
+
+Here is an example of how you can do this:
+
+```jsx
+import React from 'react';
+import { createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
+
+const lightTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+    background: {
+      default: '#fff', // your light background color
+    },
+  },
+});
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    background: {
+      default: '#000', // your dark background color
+    },
+  },
+});
+
+export default function App() {
+  const [darkMode, setDarkMode] = React.useState(false);
+
+  const theme = darkMode ? darkTheme : lightTheme;
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* Your other components */}
+    </ThemeProvider>
+  );
+}
+```
+
+In this example, `CssBaseline` will apply the `background.default` color from your theme to the root element. You can switch between the light and dark themes by changing the `darkMode` state.

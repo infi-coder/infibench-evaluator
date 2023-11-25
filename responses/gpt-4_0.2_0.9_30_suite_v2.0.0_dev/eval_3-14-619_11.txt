@@ -1,0 +1,17 @@
+Your code seems correct, but the problem might be that you're trying to observe the changes in a `@Binding` variable from the `ContentView_Previews`. The `@Binding` property wrapper is used to create a two-way binding to a mutable state. When you change the value of a `@Binding` variable, SwiftUI re-computes the body of the view where the `@Binding` exists.
+
+However, the `ContentView_Previews` is not a SwiftUI view that gets re-rendered when state changes. It's just for previewing your views in Xcode's canvas. So, changes to `@Binding` variables won't cause `ContentView_Previews` to re-render.
+
+To see the changes, you need to use the `ContentView` in a parent view that maintains the state. Here is an example:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+```
+
+Now, when you use `ParentView` in your app, you should see the `ContentView` update when the button is clicked.

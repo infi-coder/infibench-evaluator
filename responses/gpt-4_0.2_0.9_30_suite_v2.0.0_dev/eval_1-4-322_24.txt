@@ -1,0 +1,37 @@
+You can achieve this by using the `split` function in R, which divides the data into subsets based on the levels of a factor. Here is the function `myConvert`:
+
+```r
+library(tidyverse)
+
+myConvert <- function(my_data) {
+  # First, we convert the tibble to a data frame
+  my_data <- as.data.frame(my_data)
+  
+  # Then, we use the split function to create a list where each element is a vector of list_values for each list_name
+  my_list <- split(my_data$list_values, my_data$list_names)
+  
+  return(my_list)
+}
+```
+
+You can use this function on your data like this:
+
+```r
+my_data <- tibble(list_names = c("Ford", "Chevy", "Ford", "Dodge", "Dodge", "Ford"),
+list_values = c("Ranger", "Equinox", "F150", "Caravan", "Ram", "Explorer"))
+
+myConvert(my_data)
+```
+
+This will return the desired output:
+
+```r
+$Chevy
+[1] "Equinox"
+
+$Dodge
+[1] "Caravan" "Ram"    
+
+$Ford
+[1] "Ranger"   "F150"     "Explorer"
+```

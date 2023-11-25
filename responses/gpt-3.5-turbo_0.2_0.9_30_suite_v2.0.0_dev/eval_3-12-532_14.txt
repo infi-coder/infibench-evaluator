@@ -1,0 +1,21 @@
+The `FormatException: Unexpected character (at character 1)` error occurs when the response body is not in a valid JSON format. To solve this error, you can try the following steps:
+
+1. Check the response body: You can print the response body to check if it is in a valid JSON format. If it is not in a valid JSON format, you need to modify the PHP file to return a valid JSON format.
+
+2. Check the headers: Make sure that the `Content-Type` header is set to `application/json` in the PHP file. If it is not set, you can add the following line of code to the PHP file:
+
+   ```
+   header('Content-Type: application/json');
+   ```
+
+3. Check the encoding: Make sure that the encoding of the response body is `utf-8`. If it is not `utf-8`, you can change the encoding in the Dart code by modifying the following line of code:
+
+   ```
+   encoding: Encoding.getByName("utf-8")
+   ```
+
+   You can replace `utf-8` with the appropriate encoding.
+
+4. Check the response status code: Make sure that the response status code is `200`. If it is not `200`, you need to modify the PHP file to return a `200` status code.
+
+If none of the above steps work, you can try using a JSON validator to check the validity of the response body.

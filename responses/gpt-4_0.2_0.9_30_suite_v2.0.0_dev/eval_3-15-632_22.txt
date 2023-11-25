@@ -1,0 +1,19 @@
+If you want to split the line into 5 separate columns, you can use the `Split` function in VBA. This function splits a string into a one-dimensional array, based on a delimiter. Here's how you can modify your code:
+
+```vba
+idx = InStr(textline, "Cabinet No.")
+If idx > 0 Then
+    Line Input #1, textline
+    Line Input #1, textline
+    Dim splitText As Variant
+    splitText = Split(textline, " ") 'Assuming space is the delimiter
+    ActiveSheet.Cells(nextrow, "G").Value = splitText(0)
+    ActiveSheet.Cells(nextrow, "H").Value = splitText(1)
+    ActiveSheet.Cells(nextrow, "I").Value = splitText(2)
+    ActiveSheet.Cells(nextrow, "J").Value = splitText(3)
+    ActiveSheet.Cells(nextrow, "K").Value = splitText(4)
+    nextrow = nextrow + 1 'now move to next row
+End If
+```
+
+This code will split `textline` into an array `splitText` and then assign the elements of this array to the cells in columns G, H, I, J, and K. Please adjust the delimiter and the indices according to your needs.

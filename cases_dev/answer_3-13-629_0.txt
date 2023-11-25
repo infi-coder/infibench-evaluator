@@ -1,0 +1,18 @@
+Public Sub WriteToClipboard(ByVal text As String)
+    CreateObject("htmlfile").ParentWindow.ClipboardData.SetData "text", text
+End Sub
+Example usage:
+
+WriteToClipboard "test"
+Edit #1
+
+The above seems to work in Excel just fine. I only managed to make it work in Access for a specific computer. Once tested on another computer I got an error 70 (access denied).
+
+The below only works in Excel if Windows Explorer is closed. However, it seems to work fine in Access regardless if Explorer is open/closed:
+
+Public Sub WriteToClipboard(ByVal text As String)
+    With CreateObject("new:{1C3B4210-F441-11CE-B9EA-00AA006B1A69}") 'MsForms.DataObject
+        .SetText text
+        .PutInClipboard
+    End With
+End Sub

@@ -1,0 +1,27 @@
+The error message suggests that the response from the server is not in the expected JSON format. It seems that the response starts with a '<' character, which is not valid JSON.
+
+One possible reason for this error is that the server is returning an HTML error page instead of the expected JSON response. To confirm this, you can try accessing the API endpoint directly in your browser and see if it returns a valid JSON response.
+
+If the API endpoint is returning a valid JSON response, then the issue might be with the client-side code. Here are a few things you can try:
+
+1. Make sure that the URL you are using to access the API endpoint is correct. In your case, it should be "/api/Employee/Index".
+
+2. Try using the HttpClient class instead of the Http class. Here's an example:
+
+```c#
+using System.Net.Http.Json;
+
+...
+
+private HttpClient httpClient;
+
+...
+
+protected override async Task OnInitializedAsync()
+{
+    httpClient = new HttpClient();
+    empList = await httpClient.GetFromJsonAsync<Employee[]>("/api/Employee/Index");
+}
+```
+
+3. If you are still having issues, you can try using a tool like Fiddler or Wireshark to inspect the network traffic and see what is being sent and received. This can help you identify any issues with the request or response.

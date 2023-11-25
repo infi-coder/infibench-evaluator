@@ -1,0 +1,29 @@
+The error message you're seeing is due to the fact that the `@NotEmpty` and `@NotBlank` annotations are not supported in Hibernate Validator 5.3.5.Final-redhat-2, which is the version being used in your runtime environment. These annotations were introduced in Hibernate Validator 6.0.0.Final.
+
+Even though Maven is resolving Hibernate Validator 6.0.11.Final, it seems like your runtime environment (JBoss) is using a different version of Hibernate Validator (5.3.5.Final-redhat-2). This is a common issue when deploying applications to servers that provide their own versions of certain libraries.
+
+To resolve this issue, you can try the following:
+
+1. **Upgrade your JBoss version**: Newer versions of JBoss might come with a newer version of Hibernate Validator that supports `@NotEmpty` and `@NotBlank`.
+
+2. **Exclude Hibernate Validator from JBoss**: If upgrading JBoss is not an option, you can try to exclude the Hibernate Validator module from JBoss and include it in your application. This way, your application will use the version of Hibernate Validator that you've included in your `pom.xml` file. You can do this by creating a `jboss-deployment-structure.xml` file in your `WEB-INF` directory with the following content:
+
+```xml
+<jboss-deployment-structure>
+    <deployment>
+        <exclusions>
+            <module name="org.hibernate.validator" />
+        </exclusions>
+    </deployment>
+</jboss-deployment-structure>
+```
+
+3. **Use validation annotations supported by Hibernate Validator 5.3.5.Final-redhat-2**: If the above solutions don't work for you, you can use the `@NotNull` and `@Size(min=1)` annotations to achieve similar validation as `@NotEmpty` and `@NotBlank`. Here's an example:
+
+```java
+@NotNull
+@Size(min=1)
+private String username;
+```
+
+This will ensure that `username` is not null and is not an empty string.

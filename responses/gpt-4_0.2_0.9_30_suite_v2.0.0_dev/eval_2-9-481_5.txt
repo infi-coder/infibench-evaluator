@@ -1,0 +1,12 @@
+Step1. Create the `manifest.js` file
+```
+$ mkdir -p app/assets/config 
+$ touch app/assets/config/manifest.js
+```
+Step2. Then copy and paste the following into the file you just created:
+```
+//= link_tree ../images
+//= link_directory ../javascripts .js
+//= link_directory ../stylesheets .css
+```
+Those commenty things //= are called `directives`.

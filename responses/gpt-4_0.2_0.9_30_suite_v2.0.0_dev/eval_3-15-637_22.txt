@@ -1,0 +1,23 @@
+The error you're encountering might be due to a couple of reasons. Here are some suggestions to troubleshoot the issue:
+
+1. **Check SeleniumBasic and Browser Driver Version**: Ensure that you have the latest version of SeleniumBasic installed. Also, check if the browser driver (like ChromeDriver for Chrome) is compatible with the version of the browser you're using.
+
+2. **Check References**: In VBA editor, go to `Tools -> References` and make sure that Selenium Type Library is checked. If it's not, scroll down the list to find it and check it.
+
+3. **Check Excel Trust Center Settings**: Go to `File -> Options -> Trust Center -> Trust Center Settings -> Macro Settings`. Ensure that 'Trust access to the VBA project object model' is checked.
+
+4. **Check Internet Explorer Version**: SeleniumBasic uses Internet Explorer Driver Server. If you're using IE 11, you might face issues as Microsoft has deprecated it. Try using Chrome or Firefox instead.
+
+5. **Check Code**: Your code is trying to create an instance of Selenium.keys but it's not used anywhere. If you're not using it, you can remove it. Also, you've declared `IE As Object` but it's not used. 
+
+Here's a simplified version of your code:
+
+```vba
+Dim driver As New WebDriver
+
+driver.Start "chrome"
+driver.Window.Maximize
+driver.Get "https://www.google.com/"
+```
+
+If none of these suggestions work, please provide the exact error message you're getting. It will help in diagnosing the problem more accurately.

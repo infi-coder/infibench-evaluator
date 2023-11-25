@@ -1,0 +1,17 @@
+You can specify the path to the Java executable that you want to use by setting the `JAVA_HOME` environment variable. 
+
+If you want to use the same Java version that is used by the Maven task, you can find the path to the Java executable by running the following command in your terminal:
+
+```
+mvn -version
+```
+
+This will output information about the Maven installation, including the path to the Java executable. You can then set the `JAVA_HOME` environment variable to this path.
+
+For example, if the output of the `mvn -version` command shows that the Java executable is located at `/usr/lib/jvm/java-8-openjdk-amd64/bin/java`, you can set the `JAVA_HOME` environment variable by running the following command:
+
+```
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+```
+
+You can add this command to your shell profile (e.g. `.bashrc` or `.zshrc`) to make it persistent across terminal sessions.

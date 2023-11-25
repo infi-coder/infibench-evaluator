@@ -1,0 +1,40 @@
+If you're using GitHub Actions, you can specify the Java version using the `setup-java` action. This action allows you to specify the Java version and distribution you want to use in your workflow. Here's an example of how you can use it:
+
+```yaml
+name: Java CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v2
+      with:
+        java-version: '8'
+        distribution: 'adopt'
+    - name: Build with Maven
+      run: ./mvnw clean install
+```
+
+In this example, the `setup-java` action is used to set up JDK 1.8. The `java-version` input is set to '8', and the `distribution` input is set to 'adopt', which is the AdoptOpenJDK distribution. After the JDK is set up, the Maven wrapper is used to build the project.
+
+If you're using Azure Pipelines, you can specify the Java version using the `JavaToolInstaller` task. Here's an example:
+
+```yaml
+steps:
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '8'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'LocalDirectory'
+    jdkFile: 'path/to/your/jdk/file'
+    jdkDestinationDirectory: '$(Agent.ToolsDirectory)/jdk'
+- script: ./mvnw clean install
+```
+
+In this example, the `JavaToolInstaller` task is used to set up JDK 1.8. The `versionSpec` input is set to '8', and the `jdkSourceOption` input is set to 'LocalDirectory', which means the JDK will be installed from a local directory. The `jdkFile` input is the path to your JDK file, and the `jdkDestinationDirectory` input is the directory where the JDK will be installed. After the JDK is set up, the Maven wrapper is used to build the project.

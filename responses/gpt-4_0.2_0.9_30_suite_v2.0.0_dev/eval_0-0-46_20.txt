@@ -1,0 +1,22 @@
+The error message you're seeing is from ESLint, which is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code. It's complaining that it can't read your `tsconfig.json` file.
+
+The problem is likely that the path to `tsconfig.json` in your `.eslintrc.js` file is incorrect. The `project` property under `parserOptions` should be a path to your `tsconfig.json` file. If your `tsconfig.json` file is in the same directory as your `.eslintrc.js` file, you can leave it as `"tsconfig.json"`. However, if it's in a different directory, you'll need to provide the relative path from your `.eslintrc.js` file to your `tsconfig.json` file.
+
+For example, if your `tsconfig.json` file is in a directory named `config` that's in the same directory as your `.eslintrc.js` file, you would change the `project` property to `"./config/tsconfig.json"`.
+
+Here's how you can change it:
+
+```javascript
+module.exports = {
+  // ...
+  parserOptions: {
+    project: "./path/to/tsconfig.json", // replace with your actual path
+    sourceType: "module",
+  },
+  // ...
+};
+```
+
+Replace `"./path/to/tsconfig.json"` with the actual path to your `tsconfig.json` file. If the `tsconfig.json` file is in the same directory as the `.eslintrc.js` file, you can just leave it as `"tsconfig.json"`.
+
+After making this change, you should restart your editor or the ESLint server for the changes to take effect. If you're using Visual Studio Code, you can do this by running the "ESLint: Restart ESLint Server" command from the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac).

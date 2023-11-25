@@ -1,0 +1,9 @@
+id: 2-5-357
+prompt_path: prompt_2-5-357.txt
+type: knowledge question-answering
+lang: java
+grading:
+  similarity:
+    - metric: rougeLsum
+      references:
+        - path: answer_358_0.txt

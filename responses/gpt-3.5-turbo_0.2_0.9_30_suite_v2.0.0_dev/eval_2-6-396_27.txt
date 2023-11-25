@@ -1,0 +1,35 @@
+The error message is telling you that you cannot use the `Gender` property as an index because it is already configured as a navigation property. To solve this problem, you can create a separate property for the gender name and use that property as the index. Here's an example:
+
+```c#
+public class User
+{
+    [Key, Required]
+    public int Id { get; set; }
+    public int GenderId { get; set; }
+    public virtual Gender Gender { get; set; }
+    public string GenderName { get; set; } // new property for gender name
+}
+
+public class Gender
+{
+    [Key, Required]
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public virtual ICollection<User> Users { get; set; }
+}
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>(user =>
+    {
+        user
+        .HasOne(x => x.Gender)
+        .WithMany(x => x.Users)
+        .HasForeignKey(x => x.GenderId);
+    }
+
+    user.HasIndex(x => x.GenderName); // use GenderName as the index
+}
+```
+
+Now you can run `dotnet ef add migration User` without any errors.

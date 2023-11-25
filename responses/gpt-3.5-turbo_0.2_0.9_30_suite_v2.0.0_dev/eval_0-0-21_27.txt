@@ -1,0 +1,39 @@
+To copy the text from `v-text-field` to clipboard, you can use the `navigator.clipboard.writeText()` method. Here's the updated code:
+
+```html
+<template>
+  <div id="app">
+    <v-app id="inspire">
+      <v-container>
+        <v-text-field v-model="text1"></v-text-field>
+        <v-btn @click="copyText">copy</v-btn>
+      </v-container>
+    </v-app>
+  </div>
+</template>
+
+<script>
+  new Vue({
+    el: '#app',
+    vuetify: new Vuetify(),
+    data() {
+      return {
+        text1: 'lorem ipsum 123'
+      }
+    },
+    methods: {
+      copyText() {
+        navigator.clipboard.writeText(this.text1)
+          .then(() => {
+            console.log('Text copied to clipboard')
+          })
+          .catch(err => {
+            console.error('Error in copying text: ', err)
+          })
+      }
+    }
+  })
+</script>
+```
+
+In the `copyText` method, we are using the `navigator.clipboard.writeText()` method to write the text from `text1` to the clipboard. We are also handling the success and error cases using `.then()` and `.catch()` methods respectively.

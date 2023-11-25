@@ -1,0 +1,19 @@
+The error you're seeing is due to the fact that macOS Catalina only supports 64-bit applications, and pdftk is a 32-bit application. Therefore, you can't run pdftk directly on macOS Catalina.
+
+However, you can use a workaround to solve this issue. You can use a tool called PDFtk Server, which is a command-line tool that allows you to manipulate PDFs. Here's how you can install it:
+
+1. First, you need to install Homebrew if you haven't already. Open Terminal and paste the following command:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+2. Once Homebrew is installed, you can install PDFtk Server by running the following command:
+
+```bash
+brew install pdftk-java
+```
+
+Now, you should be able to use the `pdftk` command in your Terminal.
+
+Please note that `pdftk-java` is a reimplementation of `pdftk` in Java. It works the same as `pdftk`, but you need to have Java installed on your machine. If you don't have Java installed, you can install it via Homebrew by running `brew cask install java`.

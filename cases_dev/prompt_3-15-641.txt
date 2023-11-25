@@ -1,0 +1,13 @@
+Return Excel VBA Macro OneDrive Local Path - Possible Lead
+
+I have a spreadsheet that many people need to access (on sharepoint), for a few reasons, we need to do this locally (synced).
+however, there are constantly problems and errors arising due to knowledge levels of each user, the spreadsheet needs to have structure and consistency,  so in order to achieve that, i have created a userform with a suite of parameters to help people enter accurate data and avoid errors.
+it is a tender register, used to enter client, client contact and tender information, which generates a quote number, folder and file name etc.
+prior to OneDrive/Sharepoint path change (previously the file path would be local, now it is a sharepoint URL)
+i had a macro that would run when a user clicked a button, that would create an appropriately named folder in the relevant local sharepoint directory, create a standard set of folders within that folder (Client Documents, Contract, Product Files, Drawings etc.) then open a Tender Form and save it in the created folder. the filename (the quote number) was used to lookup a query from the Tender register to return all the client/contact/quote information.
+since sharepoint has changed it's path protocol from local to URL, i can't get this to work, resulting in a manual process, therefore, resulting in errors and inconsitencies.
+i have searched high and low for ways to create folders and files on sharepoint using VBA, and also for ways to interact with the local path other than disabling "Use Office applications to sync Office files that I Open" (this function is required due to file collaboration.)
+I had one hope when i found a way to convert a URL to a Local path, however, this isn't the best solution as each user syncs folders at different levels (maybe there is a way someone could help me with determining the path, a macro to search in the OneDrive directory for folder "2021 Tenders" and return the path... think this might be slow though)
+however, i noticed if i goto File > Info, there is a button for "Open File Location" which takes me directly to the local path folder of the file, which tells me this information is somewhere in excel, there must be a way to retrieve it, i haven't seen reference to this in any of my searches, upon pointing it out, does anyone have any ideas on how or if this could work?
+i tried to record a macro, but it didn't register it at all.
+any help would be appreciated and thank you in advance.

@@ -1,0 +1,67 @@
+The issue you're facing might be due to the change in the default URL for Swagger UI. Since version 1.3.9 of Springdoc, the Swagger UI has been moved from `/swagger-ui.html` to `/swagger-ui/index.html`.
+
+So, try accessing Swagger UI at `http://localhost:8080/swagger-ui/index.html` or simply `http://localhost:8080/swagger-ui/`.
+
+If it still doesn't work, make sure you have the following configuration:
+
+1. **Spring Boot Main Class**
+
+   Enable Swagger UI by using `@OpenAPIDefinition` and `@EnableOpenApi` annotations.
+
+   ```java
+   import org.springdoc.core.annotations.RouterOperations;
+   import org.springframework.boot.SpringApplication;
+   import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+   import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+   import io.swagger.v3.oas.annotations.info.Info;
+
+   @SpringBootApplication
+   @OpenAPIDefinition(info = @Info(title = "My API", version = "v1"))
+   public class Application {
+
+       public static void main(String[] args) {
+           SpringApplication.run(Application.class, args);
+       }
+   }
+   ```
+
+2. **Maven Dependencies**
+
+   Make sure you have the following dependencies in your `pom.xml`:
+
+   ```xml
+   <dependency>
+       <groupId>org.springdoc</groupId>
+       <artifactId>springdoc-openapi-ui</artifactId>
+       <version>1.6.11</version>
+   </dependency>
+   <dependency>
+       <groupId>org.springdoc</groupId>
+       <artifactId>springdoc-openapi-webmvc-core</artifactId>
+       <version>1.6.11</version>
+   </dependency>
+   ```
+
+3. **Spring Boot Configuration**
+
+   If you're using Spring Security, make sure to permit the Swagger UI URL.
+
+   ```java
+   http
+       .authorizeRequests()
+       .antMatchers("/swagger-ui/**").permitAll()
+       .anyRequest().authenticated();
+   ```
+
+4. **Application Properties**
+
+   If you want to change the default Swagger UI path, you can do so in your `application.properties` file:
+
+   ```properties
+   springdoc.swagger-ui.path=/swagger-ui.html
+   ```
+
+   After setting this property, you can access Swagger UI at `http://localhost:8080/swagger-ui.html`.
+
+Remember to restart your Spring Boot application after making

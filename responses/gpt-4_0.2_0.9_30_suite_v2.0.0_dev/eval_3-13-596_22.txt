@@ -1,0 +1,21 @@
+Yes, you can disallow Gradle from generating the `*.plain.jar` file by disabling the `bootJar` task in your `build.gradle` file. 
+
+Here's how you can do it:
+
+```groovy
+bootJar {
+    enabled = false
+}
+```
+
+This will prevent the generation of the `*.plain.jar` file. However, please note that this will also disable the generation of the executable jar file (`myprogram-0.0.1.jar`). 
+
+If you want to keep the executable jar and only remove the `*.plain.jar`, you can do it by disabling the `jar` task instead:
+
+```groovy
+jar {
+    enabled = false
+}
+```
+
+This will only generate the executable jar (`myprogram-0.0.1.jar`) and not the `*.plain.jar`.

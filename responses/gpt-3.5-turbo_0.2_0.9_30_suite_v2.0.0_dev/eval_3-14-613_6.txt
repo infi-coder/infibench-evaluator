@@ -1,0 +1,8 @@
+It seems like the preview code is not associated with any target in the current scheme. You can try the following steps to fix the issue:
+
+1. Make sure that the preview code is included in the target you are building.
+2. Clean the build folder by going to Product > Clean Build Folder.
+3. Quit Xcode and try reopening the project.
+4. If the issue persists, try creating a new project and copying the code over to see if the previews work in the new project.
+
+Hopefully, one of these steps will resolve the issue.

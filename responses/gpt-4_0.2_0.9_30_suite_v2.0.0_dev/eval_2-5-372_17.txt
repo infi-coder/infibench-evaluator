@@ -1,0 +1,30 @@
+It seems like you're facing a version conflict issue. The `@NotEmpty` and `@NotBlank` annotations are part of the Bean Validation 2.0 specification, which is implemented by Hibernate Validator 6.0.0.Final and later versions. However, your logs indicate that Hibernate Validator 5.3.5.Final is being used, which only supports Bean Validation 1.1.
+
+The version of Hibernate Validator is likely being managed by Spring Boot, and it seems that Spring Boot 2.0.4.RELEASE is using Hibernate Validator 5.3.5.Final. 
+
+To resolve this issue, you can try upgrading your Spring Boot version to 2.0.5.RELEASE or later, which should include Hibernate Validator 6.0.7.Final or later. 
+
+You can do this by changing the version in your `pom.xml`:
+
+```xml
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.5.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+</parent>
+```
+
+After making this change, run `mvn clean install` to update your dependencies. 
+
+If you can't upgrade Spring Boot, another option is to manually override the Hibernate Validator version in your `pom.xml`:
+
+```xml
+<properties>
+    <hibernate-validator.version>6.0.11.Final</hibernate-validator.version>
+</properties>
+```
+
+This should force Maven to use Hibernate Validator 6.0.11.Final. However, this could potentially cause other issues if Spring Boot 2.0.4.RELEASE is not fully compatible with this version of Hibernate Validator. 
+
+Remember to run `mvn clean install` after making this change as well.

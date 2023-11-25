@@ -1,0 +1,30 @@
+You need to add a `go_package` option to your proto file. The `go_package` option specifies the Go package name for the generated code. 
+
+For example, if you want the generated code to be in the `main` package, you can add the following line to your proto file:
+
+```go
+option go_package = "main";
+```
+
+Your updated proto file should look like this:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "main";
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+After making this change, you can run the same `protoc` command to generate the Go code:
+
+```bash
+protoc --go_out=. simple.proto
+``` 
+
+This should generate a `simple.pb.go` file in the current directory.

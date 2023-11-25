@@ -1,0 +1,25 @@
+It sounds like you're trying to use a specific version of Java with your Maven Wrapper, but you're having trouble finding where the Maven task is getting its Java version from.
+
+The Maven task in Azure DevOps, for example, uses the Java Tool Installer task to specify the version of Java to use. If you're not using Azure DevOps, the process might be slightly different, but the general idea should be the same.
+
+Here's how you can specify the Java version for your Maven Wrapper:
+
+1. **Locate the Java version.** The Java version used by the Maven task is likely specified in your pipeline configuration. Look for a task named something like "JavaToolInstaller" or "UseJava". The version should be specified there.
+
+2. **Specify the Java version in your Maven Wrapper.** Once you've found the Java version, you can specify it in your Maven Wrapper by setting the `JAVA_HOME` environment variable. This can usually be done in your pipeline configuration. Here's an example in YAML:
+
+```yaml
+steps:
+- script: |
+    export JAVA_HOME=$(JAVA_HOME_11_X64)
+    ./mvnw clean install
+  displayName: 'Run Maven'
+```
+
+In this example, `JAVA_HOME_11_X64` is a predefined variable in Azure DevOps that points to the installation location of the specified Java version. Replace `11` with the version number you found in the first step.
+
+Remember to replace `./mvnw clean install` with the actual command you want to run.
+
+3. **Run your pipeline.** After you've made these changes, try running your pipeline again. The Maven Wrapper should now use the specified Java version.
+
+If you're still having trouble, please provide more information about your setup, such as the build system you're using and the exact error message you're getting.

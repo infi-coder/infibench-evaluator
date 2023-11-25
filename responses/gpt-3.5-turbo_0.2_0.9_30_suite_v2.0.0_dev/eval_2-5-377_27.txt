@@ -1,0 +1,30 @@
+The issue with your code is that you are using `LocalDate` instead of `LocalDateTime`. `LocalDate` only represents a date, not a date and time. Therefore, when you try to format it using `DateFormat`, it throws an exception.
+
+To fix this, you can use `LocalDateTime.now()` instead of `LocalDate.now()`. This will give you the current date and time. Then, you can use the `DateTimeFormatter` class to format it in the desired format.
+
+Here is the updated code:
+
+```java
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(generateRandomDateAndTimeInString());
+    }
+
+    public static String generateRandomDateAndTimeInString() {
+        LocalDateTime dateTime = LocalDateTime.now().minusDays(new Random().nextInt(365 * 70));
+        System.out.println("date and time :: " + dateTime.toString());
+        return formatDate(dateTime);
+    }
+
+    public static String formatDate(LocalDateTime dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        return dateTime.format(formatter);
+    }
+}
+```
+
+This should give you a random date and time in the desired format.

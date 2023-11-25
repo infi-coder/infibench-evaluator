@@ -1,0 +1,39 @@
+You should use the `CssBaseline` component from Material-UI. This component is a simple normalization of CSS, providing low-level utility classes and setting up a default Material-UI theme on your app.
+
+Here's how you can use it:
+
+```jsx
+import React from 'react';
+import { ThemeProvider, createMuiTheme, CssBaseline } from '@material-ui/core';
+
+const lightTheme = createMuiTheme({
+  palette: {
+    type: 'light',
+    // your palette here
+  },
+});
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    // your palette here
+  },
+});
+
+export default function App() {
+  const [darkMode, setDarkMode] = React.useState(false);
+
+  const theme = darkMode ? darkTheme : lightTheme;
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* your other components */}
+    </ThemeProvider>
+  );
+}
+```
+
+In this example, `CssBaseline` will apply the background color for the body element according to the theme. You can switch between the light and dark themes by changing the `darkMode` state.
+
+Remember to place `CssBaseline` as high as possible in your component tree, ideally as a child of your `ThemeProvider`. This ensures that the normalization styles are applied once and low-level utility classes can be overridden by more specific ones.

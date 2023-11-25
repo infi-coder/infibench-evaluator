@@ -1,0 +1,15 @@
+I am told by PHPStorm that I need to composer require ext-zip, however, that command is failing.
+The command I am issuing is
+```
+composer require ext-zip
+```
+results in
+```
+Your requirements could not be resolved to an installable set of packages.
+```
+and
+```
+Installation failed, reverting ./composer.json to its original content.
+```
+
+How to solve this?

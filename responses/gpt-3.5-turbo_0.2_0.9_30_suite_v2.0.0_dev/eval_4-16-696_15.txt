@@ -1,0 +1,5 @@
+Your `sed` command is not correctly removing the question mark and everything after it. Try using the following command instead:
+```
+find . -type f -name '*\?*' -exec sh -c 'mv "$1" "${1%\?*}"' sh {} \;
+```
+This will remove the question mark and everything after it using parameter expansion. The `sh` command is used to execute the `mv` command for each file found by `find`.

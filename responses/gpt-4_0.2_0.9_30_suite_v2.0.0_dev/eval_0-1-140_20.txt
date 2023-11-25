@@ -1,0 +1,20 @@
+Font Awesome 5 has a few changes compared to Font Awesome 4. The main change is that the icons are now separated into different styles: Solid, Regular, Light, Duotone, and Brands. 
+
+Each style has a different font-family: `Font Awesome 5 Free` for Solid and Regular, `Font Awesome 5 Brands` for Brands, and `Font Awesome 5 Pro` for Light and Duotone (Pro version only).
+
+The `content` value for the icons has also changed in Font Awesome 5. You can find the correct value for each icon in the Font Awesome 5 cheatsheet.
+
+Here is how you can update your CSS for Font Awesome 5:
+
+```css
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  float: right;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free"; /* Update the font-family */
+  font-weight: 900; /* Add font-weight for Solid style */
+}
+```
+
+In this example, I used the Solid style (`font-weight: 900`). If you want to use the Regular style, you should use `font-weight: 400`.
+
+Also, make sure you have included the correct Font Awesome 5 CSS file in your project.

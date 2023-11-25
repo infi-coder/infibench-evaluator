@@ -1,0 +1,48 @@
+The issue you're facing is due to a change in Android 12 (API level 31) that requires you to specify whether a `PendingIntent` is mutable or immutable.
+
+The error message suggests that you should use `FLAG_IMMUTABLE` unless you need the `PendingIntent` to be mutable, for example, if it needs to be used with inline replies or bubbles.
+
+The problem is that the `MediaSessionCompat` class in the AndroidX Media library is trying to create a `PendingIntent` without specifying either `FLAG_IMMUTABLE` or `FLAG_MUTABLE`. This is a known issue and has been reported to Google's issue tracker.
+
+As a workaround, you can try to create a `MediaButtonReceiver` and set it before creating the `MediaSessionCompat`:
+
+```kotlin
+override fun onCreate() {
+    super.onCreate()
+
+    val mediaButtonIntent = Intent(Intent.ACTION_MEDIA_BUTTON)
+    mediaButtonIntent.setClass(this, MediaButtonReceiver::class.java)
+    val pendingIntent = PendingIntent.getBroadcast(this, 0, mediaButtonIntent, PendingIntent.FLAG_IMMUTABLE)
+    MediaSessionCompat.setMediaButtonReceiver(pendingIntent)
+
+    mediaSession = MediaSessionCompat(this, TAG).apply {
+        setCallback(mediaSessionCallback)
+        isActive = true
+    }
+    ...
+}
+```
+
+This code creates a `PendingIntent` with `FLAG_IMMUTABLE` and sets it as the media button receiver before creating the `MediaSessionCompat`. This should prevent the `MediaSessionCompat` from trying to create its own `PendingIntent` without the required flags.
+
+Please note that you need to create a `MediaButtonReceiver` class if you haven't done so already. This class should extend `BroadcastReceiver` and handle the `ACTION_MEDIA_BUTTON` intent.
+
+```kotlin
+class MediaButtonReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+        // Handle media button intent here
+    }
+}
+```
+
+Remember to declare the `MediaButtonReceiver` in your AndroidManifest.xml:
+
+```xml
+<receiver android:name=".MediaButtonReceiver">
+    <intent-filter>
+        <action android:name="android.intent.action.MEDIA_BUTTON" />
+    </intent-filter>
+</receiver>
+```
+
+This workaround should fix the issue until Google releases a fix in the AndroidX Media library.

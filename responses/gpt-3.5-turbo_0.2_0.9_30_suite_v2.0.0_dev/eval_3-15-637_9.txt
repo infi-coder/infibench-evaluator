@@ -1,0 +1,13 @@
+The error you are encountering may be due to a compatibility issue between Excel 2019 and the Selenium add-in. Here are a few things you can try to resolve the issue:
+
+1. Make sure that the Selenium add-in is enabled in Excel 2019. You can check this by going to the Excel Options menu, selecting Add-Ins, and then checking the list of active add-ins.
+
+2. Try re-registering the Selenium add-in. To do this, open a command prompt as an administrator and run the following command: regsvr32 "C:\path\to\seleniumaddin.dll". Make sure to replace "C:\path\to\" with the actual path to the Selenium add-in on your machine.
+
+3. Try using a different version of the Selenium add-in. You can download older versions of the add-in from the Selenium website.
+
+4. Try using a different browser driver. For example, if you are currently using the Internet Explorer driver, try using the Chrome or Firefox driver instead.
+
+5. Try running the code on a different machine with Excel 2019 installed to see if the issue is specific to your machine.
+
+Hopefully one of these solutions will help you resolve the issue.

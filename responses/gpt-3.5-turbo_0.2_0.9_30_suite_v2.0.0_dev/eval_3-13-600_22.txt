@@ -1,0 +1,7 @@
+You can disable the animation in ViewPager2 by setting the `offscreenPageLimit` to 0. This will prevent ViewPager2 from preloading any pages and will show the new fragment immediately without any animation. Here's an example:
+
+```kotlin
+viewPager2.offscreenPageLimit = 0
+```
+
+Note that this will also prevent any preloading of adjacent pages, so if you need to preload pages for performance reasons, you may need to find another solution.

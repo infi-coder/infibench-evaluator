@@ -1,0 +1,18 @@
+The error message is indicating that the `go_package` option is missing in your `.proto` file. The `go_package` option is used to specify the full Go package import path. This option is required by the `protoc-gen-go` plugin to generate Go code.
+
+You can fix the error by adding the `go_package` option to your `.proto` file. Here's how you can do it:
+
+```go
+syntax="proto3";
+
+package main;
+
+option go_package = "main"; // add this line
+
+message Person {
+      string name = 1;
+      int32 age = 2;
+}
+```
+
+In this example, `main` is the Go package name. Replace it with your actual Go package import path. After adding the `go_package` option, you should be able to generate Go code using `protoc` without any errors.

@@ -1,0 +1,16 @@
+Use `WillPopScope` instead of `Navigator.pop(context)` or `Navigator.of(context).pop()`. 
+
+`WillPopScope` is a widget in Flutter that detects when the user has pressed the back button on their device, or when the user has swiped to go back on iOS, and calls a function that you provide. This function should return a Future that resolves to a boolean, which indicates whether the app should be popped.
+
+Here's a sample code snippet:
+
+```dart
+return WillPopScope(
+    onWillPop: () async => false,
+    child: Scaffold(
+        // your widget tree
+    ),
+);
+```
+
+In this case, the `onWillPop` function always returns `false`, which means the back button will be completely disabled on this screen.

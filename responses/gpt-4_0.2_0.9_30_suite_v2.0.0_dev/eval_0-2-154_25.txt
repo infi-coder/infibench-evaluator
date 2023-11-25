@@ -1,0 +1,38 @@
+Sure, here is a generator function that recursively iterates over the leaf nodes of the parsed HTML and yields the desired objects:
+
+```javascript
+function* iterLeafNodes(strHTML, format=[]) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(strHTML, 'text/html');
+  const body = doc.body;
+
+  function* iterNodes(node, format=[]) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.textContent.trim() !== '') {
+        yield { text: node.textContent, format };
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const newFormat = [...format];
+      if (node.tagName.toLowerCase() !== 'p') {
+        newFormat.push(node.tagName.toLowerCase());
+      }
+      for (const child of node.childNodes) {
+        yield* iterNodes(child, newFormat);
+      }
+    }
+  }
+
+  for (const child of body.childNodes) {
+    yield* iterNodes(child);
+  }
+}
+```
+
+With this function, you can convert your HTML string into the desired array of objects like this:
+
+```javascript
+const strHTML = "<p>Hello World</p><p>I am a text with <strong>bold</strong> word</p><p><strong>I am bold text with nested <em>italic</em> Word.</strong></p>";
+let result = [...iterLeafNodes(strHTML)];
+```
+
+This function uses a recursive approach to traverse the DOM tree. It checks the type of each node and if it's a text node, it yields an object with the text content and the current format. If it's an element node, it adds the tag name to the format (if it's not a paragraph tag) and recursively iterates over its child nodes.

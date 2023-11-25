@@ -1,0 +1,34 @@
+The reason why you are seeing the logs in that order is because the `onItemSelected` callback function is called asynchronously when the user selects an item from the spinner. This means that the `return` statement is executed before the `onItemSelected` function is called, and therefore the value of `itemSelected` is still an empty string.
+
+To fix this, you can use a callback function to return the selected item instead of returning it directly from the `setupListWithAdapter` function. Here's an example of how you can modify your code to use a callback function:
+
+```
+fun Spinner.setupListWithAdapter(list: MutableList<String>, callback: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+            callback(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+    Log.e("categoryLog","2")
+}
+```
+
+In this modified code, the `setupListWithAdapter` function takes a callback function as a parameter. This callback function takes a `String` parameter, which is the selected item from the spinner. Inside the `onItemSelected` function, you call the callback function with the selected item as the argument.
+
+To use this modified function in your fragment, you can pass a lambda function as the callback parameter. Here's an example:
+
+```
+spinner.setupListWithAdapter(listOf("Item 1", "Item 2", "Item 3")) { selectedItem ->
+    // Do something with the selected item
+    Log.e("categoryLog", "Selected item: $selectedItem")
+}
+```
+
+In this example, the lambda function logs the selected item to the console. You can replace this with your own code to handle the selected item.

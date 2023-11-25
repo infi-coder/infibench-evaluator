@@ -1,0 +1,52 @@
+The Springdoc OpenAPI UI path has changed in recent versions. The new URL to access the Swagger UI is:
+
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
+or
+
+```
+http://localhost:8080/swagger-ui/
+```
+
+You can also customize the path by adding the following property to your `application.properties` or `application.yml` file:
+
+```properties
+springdoc.swagger-ui.path=/swagger-ui.html
+```
+
+This will set the Swagger UI path back to `/swagger-ui.html`.
+
+Also, make sure that you have the following dependency in your `pom.xml` file:
+
+```xml
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-ui</artifactId>
+    <version>1.6.11</version>
+</dependency>
+```
+
+And don't forget to enable the Swagger UI in your `application.properties` or `application.yml` file:
+
+```properties
+springdoc.swagger-ui.enabled=true
+```
+
+If you're using Spring Security, you might also need to permit all access to the Swagger UI path in your security configuration. For example:
+
+```java
+@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers("/swagger-ui/**").permitAll()
+            .anyRequest().authenticated();
+    }
+}
+```
+
+This configuration allows unauthenticated access to the Swagger UI while requiring authentication for all other paths.

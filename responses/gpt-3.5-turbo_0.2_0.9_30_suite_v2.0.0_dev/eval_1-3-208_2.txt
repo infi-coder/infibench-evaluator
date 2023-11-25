@@ -1,0 +1,18 @@
+The issue with your code is that you are checking if the entire input string is present in the `correct` string, which is not what you want. Instead, you should check if all characters in the input string are present in the `correct` string. Here's a modified version of your code that should work:
+
+```python
+import string
+
+def checkString(text):
+    correct = set(string.ascii_letters + string.digits)
+    return all(char in correct for char in text)
+
+# Example usage:
+text = input("Enter: ")
+if checkString(text):
+    print("Success")
+else:
+    print("Failure")
+```
+
+In this code, we convert the `correct` string to a set for faster membership testing. Then, we use a generator expression with the `all` function to check if all characters in the input string are present in the `correct` set. The `checkString` function returns `True` if the input string satisfies the requirement, and `False` otherwise.

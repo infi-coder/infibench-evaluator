@@ -1,0 +1,5 @@
+The Rule of 5 is not outdated and is still relevant today. While it is true that implicit constructors and destructors work fine for aggregate data structures, there are many cases where a class needs to manage resources, such as dynamic memory allocation, file handles, network connections, etc. In these cases, a user-defined destructor, copy constructor, copy assignment constructor, move constructor, or move assignment constructor may be necessary to properly manage the resources.
+
+While it is true that smart pointers can be used to manage resources, they are not always the best solution. Smart pointers have their own set of limitations and can introduce additional overhead. Additionally, not all resource managing classes can be converted into an aggregate data structure using a smart pointer.
+
+In summary, the Rule of 5 is still relevant and necessary for classes that manage resources. While smart pointers can be used as an alternative, they are not always the best solution and may not be applicable in all cases.

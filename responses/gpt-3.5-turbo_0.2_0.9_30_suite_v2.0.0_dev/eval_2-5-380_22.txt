@@ -1,0 +1,13 @@
+There are a few things you can check to troubleshoot this issue:
+
+1. Make sure that the `@EnableSwagger2WebMvc` annotation is present in your Spring Boot application configuration class. This annotation enables Swagger support for Spring MVC.
+
+2. Check that the `@ComponentScan` annotation is scanning the package where your Swagger configuration class is located. This is necessary for Spring to find and load the Swagger configuration.
+
+3. Verify that the `springdoc.swagger-ui.path` property is set correctly in your application.properties or application.yml file. By default, the Swagger UI is available at `/swagger-ui.html`, but you can customize this path by setting the `springdoc.swagger-ui.path` property.
+
+4. Check that the `springdoc.swagger-ui.enabled` property is set to `true` in your application.properties or application.yml file. This property enables or disables the Swagger UI.
+
+5. If you are using Spring Security, make sure that you have configured it to allow access to the Swagger UI endpoint. You can do this by adding a security configuration that permits access to the Swagger UI URL.
+
+If none of these steps solve the issue, you can try to debug the application to see if there are any errors or exceptions being thrown during startup.

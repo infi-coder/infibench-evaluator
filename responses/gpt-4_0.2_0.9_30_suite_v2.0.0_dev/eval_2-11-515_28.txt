@@ -1,0 +1,18 @@
+```c++
+#include <vector>
+#include <utility>
+#include <algorithm>
+#include <iterator>
+
+std::vector<std::pair<int, int>> origin_to_goal(std::vector<int> origin) {
+    std::vector<std::pair<int, int>> goal(origin.size() / 2);
+    std::transform(origin.begin(), origin.end(), goal.begin(), 
+        [&origin](const int& n) {
+            static int i = 0;
+            return std::make_pair(origin[i++], origin[i++]);
+        }
+    );
+    return goal;
+}
+```
+This function uses the `std::transform` function from the STL to transform the input vector into a vector of pairs. The transformation function uses a static local variable `i` to access two elements from the input vector at a time and create a pair from them. The `std::make_pair` function is used to create the pairs.

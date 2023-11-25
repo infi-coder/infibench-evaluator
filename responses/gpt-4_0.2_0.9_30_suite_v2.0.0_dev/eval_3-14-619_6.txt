@@ -1,0 +1,29 @@
+The `@Binding` property wrapper is used to create a two-way connection between properties that store data. In your case, you're trying to modify `isSelected` from within `ContentView`, but `ContentView` doesn't own `isSelected`, it's just a reference to it. 
+
+The issue here is that `ContentView_Previews` is not re-rendered when `selected` changes. Previews are static and don't observe `@State` changes.
+
+If you want to see the changes in real time, you should test your code in a live view or on a device. Here is an example of how you can do it:
+
+```swift
+struct ParentView: View {
+    @State private var selected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $selected)
+    }
+}
+
+struct ContentView: View {
+    @Binding var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+    }
+}
+```
+
+In this example, `ParentView` owns `selected` and `ContentView` modifies it. When `selected` changes, `ParentView` will re-render `ContentView` with the new value.

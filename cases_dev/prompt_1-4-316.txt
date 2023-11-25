@@ -1,0 +1,73 @@
+How to sort a list alphabetically?
+
+It is necessary to create a list of random letters of the alphabet. And then sort it alphabetically. To create such a list, I use the following code:
+
+```r
+# Creating a random vector of letters
+random_text_data = sample(letters, 10)
+random_text_data
+
+# Convert to list
+list_text_data = as.list(random_text_data)
+list_text_data
+```
+
+In the console I get the following:
+
+```r
+> random_text_data
+[1] "h" "m" "q" "b" "z" "i" "y" "f" "d" "e"
+> # Convert to list
+> list_text_data = as.list(random_text_data)
+> list_text_data
+[[1]]
+[1] "h"
+
+[[2]]
+[1] "m"
+
+[[3]]
+[1] "q"
+
+[[4]]
+[1] "b"
+
+[[5]]
+[1] "z"
+
+[[6]]
+[1] "i"
+
+[[7]]
+[1] "y"
+
+[[8]]
+[1] "f"
+
+[[9]]
+[1] "d"
+
+[[10]]
+[1] "e"
+```
+
+Now I need to sort it alphabetically. I have tried the following:
+
+```r
+# Sort list alphabetically
+sort_data = sort(list_text_data)
+```
+
+But get error:
+
+```
+> sort_data = sort(list_text_data)
+Error in sort.int(x, na.last = na.last, decreasing = decreasing, ...) :
+'x' must be elementary
+```
+
+How should you sort?
+
+Please write a function `mySort` in R, which takes a list `l` as the argument and returns what I need.
+
+Function signature is: `mySort <- function(l)`

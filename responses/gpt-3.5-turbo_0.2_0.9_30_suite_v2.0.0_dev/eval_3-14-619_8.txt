@@ -1,0 +1,20 @@
+The issue might be that you are not passing the `isSelected` binding to the `Button` view. Try modifying your code to the following:
+
+```
+struct ContentView: View {
+    @Binding var isSelected: Bool
+
+    var body: some View {
+        Button(action: {
+            self.isSelected.toggle()
+        }) {
+            Text(isSelected ? "Selected" : "Not Selected")
+        }
+        .foregroundColor(.white)
+        .padding()
+        .background(isSelected ? Color.green : Color.red)
+    }
+}
+```
+
+This will pass the `isSelected` binding to the `Button` view and update the view accordingly.

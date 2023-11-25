@@ -1,0 +1,21 @@
+To conform to `ShapeStyle` protocol, you need to implement a function that provides a `Shader` when given a `Rect` and a `ColorScheme`. Here's how you can do it:
+
+```swift
+struct MyContentView: View {
+    var body: some View {
+        Circle()
+            .fill(RedShapeStyle())
+    }
+}
+
+struct RedShapeStyle: ShapeStyle {
+    func _apply(to shape: inout _ShapeStyle_ShapeType, context: inout _ShapeStyle_Context) {
+    }
+    
+    func makeShader(size: CGSize, colorScheme: ColorScheme, context: CGContext?) -> Shader {
+        return Shader(color: .red)
+    }
+}
+```
+
+In this code, `RedShapeStyle` is conforming to `ShapeStyle` by implementing the required methods. The `makeShader` method returns a `Shader` that is simply red, which is what you want.

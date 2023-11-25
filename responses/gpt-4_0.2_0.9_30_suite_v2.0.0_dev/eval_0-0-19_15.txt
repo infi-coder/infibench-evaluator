@@ -1,0 +1,13 @@
+The problem here is that the package you're trying to install, `aws-sdk-js`, does not exist in the npm registry. The correct package name for the AWS SDK for JavaScript is `aws-sdk`. 
+
+You can install it by running:
+
+```bash
+npm install --save aws-sdk
+```
+
+The `--save` flag is used to add the package to your `package.json` file's dependencies. If you're using npm 5.0.0 or later, the `--save` flag is not necessary as it's done by default. 
+
+So, the error message `404 Not Found: aws-sdk-js@latest` is simply saying that there's no package named `aws-sdk-js` in the npm registry. 
+
+Always ensure that you have the correct package name when installing from npm. You can search for packages on the [npm website](https://www.npmjs.com/) if you're unsure about the name.

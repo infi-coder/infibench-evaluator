@@ -1,0 +1,23 @@
+The error message you're seeing is because the `map-loop` function is not a built-in Sass function. It seems like it's a custom function defined somewhere else in your project or in a library you're using.
+
+However, you can modify the Bootstrap theme colors using Sass by overriding the `$theme-colors` map before importing Bootstrap. Here's how you can do it:
+
+```scss
+// Import Bootstrap's functions and variables
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+// Override the theme colors
+$theme-colors: (
+  "primary": #123456, // Replace with your color
+  "secondary": #654321, // Replace with your color
+  // Add other colors if needed
+);
+
+// Import the rest of Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+```
+
+In this code, replace `#123456` and `#654321` with the colors you want to use for `primary` and `secondary`, respectively. You can add more colors to the `$theme-colors` map if you want to override more theme colors.
+
+This will override the default Bootstrap theme colors with your own colors. When you compile your Sass code, Bootstrap will use your colors instead of the default ones.

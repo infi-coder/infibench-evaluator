@@ -1,0 +1,15 @@
+Here are some steps you can try to solve the issue:
+
+1. Make sure that you have the latest version of the Python extension installed in VS Code.
+
+2. Check if the Jupyter kernel is running by opening a terminal and running the command `jupyter kernelspec list`. If the kernel is not running, start it by running the command `jupyter notebook`.
+
+3. If the kernel is running, try restarting it by running the command `jupyter kernelspec restart`.
+
+4. Check if the correct Python environment is selected in VS Code. You can do this by clicking on the Python version in the bottom left corner of the VS Code window and selecting the correct environment.
+
+5. If none of the above steps work, try uninstalling and reinstalling the Python extension in VS Code.
+
+6. If the issue still persists, try creating a new virtual environment and installing Jupyter in it. Then, select this environment in VS Code and try running Jupyter again.
+
+Hopefully, one of these steps will solve the issue and you will be able to run Jupyter notebook in VS Code.

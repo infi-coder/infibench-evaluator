@@ -1,0 +1,17 @@
+Yes, you can use the `first` and `last` pseudo-class variants in Tailwind to achieve this. Here's the revised code:
+
+```html
+<ul>
+  <li
+    v-for="(item, index) in items"
+    :key="`item-${index}`"
+    class="border-solid border-b border-black {{ index === items.length - 1 ? '' : 'pb-4' }}"
+  >
+    Item
+  </li>
+</ul>
+```
+
+In the `class` attribute of the `li` element, we added the `pb-4` class using the ternary operator to conditionally apply it to all `li` elements except the last one. The `pb-4` class adds a padding-bottom of 1rem (16px) to the `li` element, which creates the illusion of a border-bottom.
+
+Note that we also removed the `border-b` class from the `li` element's `class` attribute since we're using the `pb-4` class to create the border-bottom effect.

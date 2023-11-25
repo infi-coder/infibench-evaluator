@@ -1,0 +1,79 @@
+To use multiple Consumers for a single widget in Flutter Provider, you can wrap your widget with multiple Consumer widgets, each listening to a different ChangeNotifier.
+
+Here's an example of how you can listen to 4 different ChangeNotifiers in a single widget:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:myapp/notifiers/first_notifier.dart';
+import 'package:myapp/notifiers/second_notifier.dart';
+import 'package:myapp/notifiers/third_notifier.dart';
+import 'package:myapp/notifiers/fourth_notifier.dart';
+
+import 'package:myapp/widgets/curved_navigation_bar.dart';
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          // Wrap each Consumer widget with a SizedBox to add spacing between them
+          SizedBox(height: 20),
+          Consumer<FirstNotifier>(
+            builder: (context, firstNotifier, child) {
+              return CurvedNavigationBarItem(
+                icon: Icon(Icons.home),
+                title: Text('Home'),
+                onTap: () {
+                  // Do something when the Home item is tapped
+                },
+              );
+            },
+          ),
+          SizedBox(height: 20),
+          Consumer<SecondNotifier>(
+            builder: (context, secondNotifier, child) {
+              return CurvedNavigationBarItem(
+                icon: Icon(Icons.search),
+                title: Text('Search'),
+                onTap: () {
+                  // Do something when the Search item is tapped
+                },
+              );
+            },
+          ),
+          SizedBox(height: 20),
+          Consumer<ThirdNotifier>(
+            builder: (context, thirdNotifier, child) {
+              return CurvedNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                title: Text('Favorites'),
+                onTap: () {
+                  // Do something when the Favorites item is tapped
+                },
+              );
+            },
+          ),
+          SizedBox(height: 20),
+          Consumer<FourthNotifier>(
+            builder: (context, fourthNotifier, child) {
+              return CurvedNavigationBarItem(
+                icon: Icon(Icons.person),
+                title: Text('Profile'),
+                onTap: () {
+                  // Do something when the Profile item is tapped
+                },
+              );
+            },
+          ),
+          SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+}
+```
+
+In this example, we have 4 different ChangeNotifiers: `FirstNotifier`, `SecondNotifier`,

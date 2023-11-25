@@ -1,0 +1,32 @@
+One way to express this more idiomatically is to use the `Option::filter()` method, which returns `None` if the inner value does not meet the condition, and otherwise returns the original `Option`. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.filter(|&x| x < 5).or(Some(5));
+}
+```
+
+This code first filters the `Option` using a closure that checks if the inner value is less than 5. If the closure returns `None`, then the `Option` becomes `None`. Otherwise, the original `Option` is returned, and we call `or(Some(5))` to replace the `None` case with `Some(5)`.
+
+Another way to express this is to use the `Option::map_or_else()` method, which takes two closures: one to handle the `Some` case, and one to handle the `None` case. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = foo.map_or_else(|| Some(5), |x| if x < 5 { Some(x) } else { None });
+}
+```
+
+This code uses the `map_or_else()` method to handle both the `Some` and `None` cases. If `foo` is `None`, then we return `Some(5)` using a closure. Otherwise, we check if the inner value is less than 5 using another closure. If it is, we return the original `Option`. Otherwise, we return `None`.
+
+Finally, we can also use the `Option::unwrap_or_else()` method to handle the `None` case and then use a conditional to check if the inner value meets the condition. Here's an example:
+
+```rust
+fn main() {
+    let mut foo: Option<u8> = None;
+    foo = Some(foo.unwrap_or_else(|| 5)).filter(|&x| x < 5);
+}
+```
+
+This code uses the `unwrap_or_else()` method to handle the `None` case and replace it with `5`. Then, we use `filter()` to check if the inner value is less than 5. If it is, we return the original `Option`. Otherwise, we return `None`.

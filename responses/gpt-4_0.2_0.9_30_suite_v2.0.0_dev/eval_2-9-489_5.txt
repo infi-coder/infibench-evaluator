@@ -1,0 +1,41 @@
+The warning message you're seeing is because Elasticsearch 7.13.1 has built-in security features that are not enabled by default. Without these security features, your Elasticsearch cluster could be accessible to anyone.
+
+To fix this, you need to enable Elasticsearch's built-in security features. Here's how you can do it:
+
+1. Open your `elasticsearch.yml` configuration file. This file is typically located in the `/etc/elasticsearch` or `/usr/local/etc/elasticsearch` directory.
+
+2. Add the following lines to the `elasticsearch.yml` file:
+
+    ```yaml
+    xpack.security.enabled: true
+    xpack.security.transport.ssl.enabled: true
+    ```
+
+3. Save the `elasticsearch.yml` file and restart Elasticsearch.
+
+Please note that enabling security will require you to set up passwords for the built-in users. You can do this by running the following command in your terminal:
+
+```bash
+bin/elasticsearch-setup-passwords interactive
+```
+
+This command will prompt you to enter passwords for the built-in users (`elastic`, `apm_system`, `kibana_system`, `logstash_system`, `beats_system`, and `remote_monitoring_user`).
+
+After setting up the passwords, you'll need to update your application's Elasticsearch configuration to include the `elastic` user's password.
+
+If you're running Elasticsearch using Docker, you can enable security by adding the following environment variables to your Docker command or Docker Compose file:
+
+```yaml
+- xpack.security.enabled=true
+- xpack.security.transport.ssl.enabled=true
+```
+
+And to set up the passwords, you can use the following command:
+
+```bash
+docker exec -it <container_id> bin/elasticsearch-setup-passwords interactive
+```
+
+Remember to replace `<container_id>` with the ID of your Elasticsearch container.
+
+Please note that enabling security might require additional configuration depending on your setup. For more information, you can refer to the [Elasticsearch security settings documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-settings.html).

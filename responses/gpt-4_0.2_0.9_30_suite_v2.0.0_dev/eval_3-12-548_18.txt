@@ -1,0 +1,14 @@
+Use `WillPopScope` instead of `Navigator.pop(context)` or `Navigator.of(context).pop()`. 
+
+`WillPopScope` is a widget that detects when the user has pressed the back button on their device and calls a specified function. In your case, you can use it to prevent the user from going back to the previous screen after they've logged out. Here's an example:
+
+```dart
+return WillPopScope(
+  onWillPop: () async => false, // prevent the user from going back
+  child: Scaffold(
+    // your login page code here
+  ),
+);
+```
+
+In the `onWillPop` function, returning `false` means "do not allow pop", effectively disabling the back button.

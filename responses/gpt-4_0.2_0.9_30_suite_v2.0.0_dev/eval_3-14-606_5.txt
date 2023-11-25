@@ -1,0 +1,23 @@
+It seems there's a misunderstanding here. iOS does not have a "Developer Mode" that you can enable or disable like Android. The alert you're seeing is likely related to an enterprise app or a beta app that's been distributed outside of the App Store.
+
+If you're trying to install an app that's been distributed with a provisioning profile (for example, an app that's been sent to you for testing), you'll need to trust the developer on your device. Here's how you can do that:
+
+1. After installing the app, go to `Settings`.
+2. Scroll down and tap `General`.
+3. Scroll down and tap `Device Management` or `Profiles & Device Management`. The name of this option depends on your version of iOS.
+4. Under the `Enterprise App` heading, you see a profile for the developer.
+5. Tap the name of the developer profile under the Enterprise App heading to establish trust for this developer.
+6. Then you see a prompt to confirm your choice.
+
+After you trust this profile, you can manually install other apps from the same developer and open them immediately. This developer remains trusted until you use the `Delete App` button to remove all apps from the developer.
+
+If you're a developer and you're trying to run your own app on your device, you'll need to use Xcode on a Mac. Here's a general process:
+
+1. Connect your iOS device to your Mac.
+2. Open Xcode and go to `Window -> Devices and Simulators`.
+3. Select your device in the left sidebar.
+4. Check the `Show as run destination` box.
+
+Now you should be able to run your app on your device from Xcode. If you're still having trouble, make sure you've selected your device as the target in the Xcode toolbar.
+
+If you're not a developer and you're trying to install an app from outside the App Store, be aware that this can be risky. Only install apps from trusted sources.

@@ -1,0 +1,9 @@
+This error is caused by a bug in rust-analyzer, a popular Rust language server. It occurs when rust-analyzer is unable to resolve a macro that is used in your code. In this case, the macro that rust-analyzer is unable to resolve is `format_args!`, which is used internally by the `pad_str` function from the `console` crate.
+
+This error is a false positive and does not indicate any issues with your code. You can safely ignore it. However, if you want to get rid of the error, you can try the following:
+
+1. Update rust-analyzer to the latest version.
+2. Try using a different IDE or text editor that supports Rust, such as Visual Studio Code with the Rust extension.
+3. Disable the `rust-analyzer` extension in your IDE or text editor.
+
+In any case, the error should not affect the functionality of your code or your ability to compile and run it.

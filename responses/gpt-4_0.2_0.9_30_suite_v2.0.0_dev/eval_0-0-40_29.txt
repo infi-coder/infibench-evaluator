@@ -1,0 +1,38 @@
+The error message you're seeing is due to a conflict between the Windows and WSL versions of Node.js and npm. When you run `npm -v`, the system is trying to use the Windows version of npm, but it's running in the WSL environment, which causes the error.
+
+To solve this issue, you need to make sure that the WSL version of Node.js and npm are being used instead of the Windows version. You can do this by modifying your `PATH` environment variable in WSL to prioritize the WSL versions.
+
+Here's how you can do it:
+
+1. Open your `.bashrc` file in a text editor. You can use nano for this:
+
+```bash
+nano ~/.bashrc
+```
+
+2. Add the following line to the end of the file:
+
+```bash
+export PATH="/usr/bin:$PATH"
+```
+
+This line will prioritize the `/usr/bin` directory (where the WSL versions of Node.js and npm are located) over other directories in your `PATH`.
+
+3. Save the file and exit the text editor. If you're using nano, you can do this by pressing `Ctrl + X`, then `Y`, then `Enter`.
+
+4. Apply the changes by running the following command:
+
+```bash
+source ~/.bashrc
+```
+
+5. Now, when you run `node -v` and `npm -v`, you should see the versions of Node.js and npm that are installed in WSL.
+
+If you still encounter the issue, you might need to reinstall npm in WSL. You can do this with the following commands:
+
+```bash
+sudo apt-get remove npm
+sudo apt-get install npm
+```
+
+After running these commands, try checking the versions of Node.js and npm again.

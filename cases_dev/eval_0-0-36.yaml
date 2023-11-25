@@ -1,0 +1,59 @@
+# Corresponding to post https://stackoverflow.com/questions/53739908
+id: 0-0-36
+# for case self identificaton
+
+prompt_path: prompt_0-0-36.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  
+  # max_score: float
+  # the maximum score within the test case for clipping purpose, if not specified, no maximum clipping
+  
+  # min_score: float
+  # the minimum score within the test case for clipping purpose, if not specified, no minimum clipping
+  
+  keywords:
+    - content:
+        or:
+          - content: router.replace(router.asPath)
+          - content: router.refresh()
+          - content: router.reload(*)
+
+  # blank_filling:
+  #   template: >
+  #     ```javascript
+  #     import { useRouter } from "next/navigation";
+
+  #     export default function Component(){
+  #         const router = useRouter();[blank]
+  #     }
+  #     ```
+    
+  #   # blank_str: "[blank]"
+  #   # [optional] how blanks are represented in the template
+
+  #   escape: " '\"\n`;"
+  #   # [optional] list of characters to be pre-filtered for model responses for blanks, default: " '"·"
+
+  #   targets: 
+  #       # list gold answers for blanks sequentially
+  #       - content:
+  #         - router.replace(router.asPath)
+  #         - router.refresh()
+  #         - router.reload(*)
+  #         substr_match: true

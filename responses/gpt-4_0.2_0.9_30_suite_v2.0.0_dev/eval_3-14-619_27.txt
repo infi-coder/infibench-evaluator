@@ -1,0 +1,17 @@
+The code you've posted is correct, but the issue might be that you're not using `ContentView` correctly in your parent view. 
+
+The `@Binding` property wrapper is used to create a two-way binding to a mutable state. When you use `ContentView`, you need to pass a `@State` variable to it. 
+
+Here's an example of how you might use `ContentView` in a parent view:
+
+```swift
+struct ParentView: View {
+    @State private var isSelected: Bool = false
+
+    var body: some View {
+        ContentView(isSelected: $isSelected)
+    }
+}
+```
+
+In this example, `ParentView` has a `@State` variable `isSelected` that it passes to `ContentView`. When `isSelected` is toggled in `ContentView`, the change will propagate back to `ParentView` and cause it to re-render, which in turn causes `ContentView` to re-render with the new value of `isSelected`.

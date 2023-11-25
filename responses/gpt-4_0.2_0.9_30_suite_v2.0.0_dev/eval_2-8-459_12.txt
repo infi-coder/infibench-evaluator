@@ -1,0 +1,27 @@
+The error message indicates that Go is unable to find the specific revision of the module `github.ibm.com/kms/key-protect-client` in your private repository. This could be due to a few reasons:
+
+1. **Access rights**: Even though you have access to the private repository, Go might not. Make sure that your Go environment is properly configured to access private repositories. If you are using `go get`, you might need to configure Git to use SSH instead of HTTPS.
+
+2. **The specific revision does not exist**: The error message indicates that Go is unable to find the specific revision `v0.1.5`. Make sure that this revision actually exists in your private repository.
+
+3. **Network issues**: There might be network issues preventing Go from accessing the private repository. Try accessing the repository manually from the same network to rule out this possibility.
+
+To debug this issue, you can try the following steps:
+
+1. **Check the specific revision**: Make sure that the specific revision `v0.1.5` actually exists in your private repository.
+
+2. **Check your Go environment**: Make sure that your Go environment is properly configured to access private repositories. You can do this by running `go env` and checking the output.
+
+3. **Try to manually clone the repository**: Try to manually clone the repository using Git. This can help you determine if the issue is with Go or with your access to the repository.
+
+4. **Check your network**: If you are able to clone the repository manually, but Go is still unable to access it, there might be network issues. Try accessing the repository from a different network to rule out this possibility.
+
+5. **Use verbose mode**: You can use the `-v` flag with `go get` to get more detailed output. This might help you identify the issue.
+
+Here is an example of how to use the `-v` flag:
+
+```bash
+go get -v github.ibm.com/kms/key-protect-client
+```
+
+This will give you more detailed output about what `go get` is doing, which might help you identify the issue.

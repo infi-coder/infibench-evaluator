@@ -1,0 +1,27 @@
+# Corresponding to post https://stackoverflow.com/questions/63707774
+id: 1-3-219
+# for case self identificaton
+
+prompt_path: prompt_1-3-219.txt
+# relative path to the prompt text
+
+# type: code debugging
+# type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+type: non-code debugging
+lang: python
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  keywords:
+    - traitlets
+    # - content: ...
+    #   weight: 1.0
+    #   # [optional] customized keyword weight 

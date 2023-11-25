@@ -1,0 +1,27 @@
+You can use the `Application.ActiveWorkbook.Path` property in VBA to get the local path of the current workbook. This should work even if the workbook is synced with OneDrive or SharePoint.
+
+Here is a sample code:
+
+```vba
+Sub GetPath()
+    Dim path As String
+    path = Application.ActiveWorkbook.Path
+    MsgBox path
+End Sub
+```
+
+This will display a message box with the local path of the current workbook.
+
+If you want to create a folder in the same directory as the workbook, you can use the `MkDir` function:
+
+```vba
+Sub CreateFolder()
+    Dim path As String
+    path = Application.ActiveWorkbook.Path & "\NewFolder"
+    MkDir path
+End Sub
+```
+
+This will create a new folder named "NewFolder" in the same directory as the current workbook.
+
+Please note that these methods will only work if the workbook is synced locally. If the workbook is only available online, you will need to use the SharePoint or OneDrive API to interact with the files and folders.

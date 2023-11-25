@@ -1,0 +1,17 @@
+The error occurs because some of the values in the "year" column are in float format with a decimal point. To convert them to int, we need to first remove the decimal point. Here's a modified code that should work:
+
+```python
+data_h_df['year'] = data_h_df['year'].astype(str).str.split('.').str[0].astype(int)
+```
+
+This code converts the "year" column to string, splits the string at the decimal point, takes the first part (before the decimal point), and then converts it to int.
+
+Here's the `transformation` function:
+
+```python
+def transformation(data_h_df):
+    data_h_df['year'] = data_h_df['year'].astype(str).str.split('.').str[0].astype(int)
+    return data_h_df
+```
+
+You can call this function with your dataframe as argument to get the transformed dataframe.

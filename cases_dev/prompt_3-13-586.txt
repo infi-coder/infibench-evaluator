@@ -1,0 +1,67 @@
+MediaSessionCompat:Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent
+
+I'm trying to update my application to Android SDK 31 but I'm having an issue with MediaSessionCompat.
+I have a MediaService that extends the MediaBrowserServiceCompat() and in method onCreate of that service I initialise the MediaSessionCompat.
+```
+override fun onCreate() {
+  super.onCreate()
+  mediaSession = MediaSessionCompat(this, TAG).apply {
+    setCallback(mediaSessionCallback)
+    isActive = true
+  }
+...
+```
+
+But I'm having the following error
+```
+java.lang.RuntimeException: Unable to create service com.radio.core.service.MediaService: java.lang.IllegalArgumentException: com.xxx.xxx: Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+    Strongly consider using FLAG_IMMUTABLE, only use FLAG_MUTABLE if some functionality depends on the PendingIntent being mutable, e.g. if it needs to be used with inline replies or bubbles.
+        at android.app.ActivityThread.handleCreateService(ActivityThread.java:4498)
+        at android.app.ActivityThread.access$1500(ActivityThread.java:250)
+        at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2064)
+        at android.os.Handler.dispatchMessage(Handler.java:106)
+        at android.os.Looper.loopOnce(Looper.java:201)
+        at android.os.Looper.loop(Looper.java:288)
+        at android.app.ActivityThread.main(ActivityThread.java:7829)
+        at java.lang.reflect.Method.invoke(Native Method)
+        at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:548)
+        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:982)
+     Caused by: java.lang.IllegalArgumentException: com.xxx.xxx: Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+    Strongly consider using FLAG_IMMUTABLE, only use FLAG_MUTABLE if some functionality depends on the PendingIntent being mutable, e.g. if it needs to be used with inline replies or bubbles.
+        at android.app.PendingIntent.checkFlags(PendingIntent.java:375)
+        at android.app.PendingIntent.getBroadcastAsUser(PendingIntent.java:645)
+        at android.app.PendingIntent.getBroadcast(PendingIntent.java:632)
+        at android.support.v4.media.session.MediaSessionCompat.<init>(MediaSessionCompat.java:567)
+        at android.support.v4.media.session.MediaSessionCompat.<init>(MediaSessionCompat.java:537)
+        at android.support.v4.media.session.MediaSessionCompat.<init>(MediaSessionCompat.java:501)
+        at android.support.v4.media.session.MediaSessionCompat.<init>(MediaSessionCompat.java:475)
+        at com.radio.core.service.MediaService.onCreate(MediaService.kt:63)
+        at android.app.ActivityThread.handleCreateService(ActivityThread.java:4485)
+            ... 9 more
+```
+
+I'm using the most recent version of media library ("androidx.media:media:1.4.0") that is able to handle the this requirement from the Andriod "S"". As it's possible to see in the MediaSessionCompact.java class.
+```
+// TODO(b/182513352): Use PendingIntent.FLAG_MUTABLE instead from S.
+/**
+ * @hide
+ */
+@RestrictTo(LIBRARY)
+public static final int PENDING_INTENT_FLAG_MUTABLE = 
+  Build.VERSION.CODENAME.equals("S") ? 0x02000000 : 0;
+
+...
+
+if (mbrComponent != null && mbrIntent == null) {
+  // construct a PendingIntent for the media button
+  Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+  // the associated intent will be handled by the component being registered
+  mediaButtonIntent.setComponent(mbrComponent);
+  mbrIntent = PendingIntent.getBroadcast(context,
+    0/* requestCode, ignored */, mediaButtonIntent,
+    PENDING_INTENT_FLAG_MUTABLE);
+}
+```
+
+
+Do you guys have any idea how can I fix the error?

@@ -1,0 +1,30 @@
+Sure, you can use the `last:` variant provided by Tailwind CSS to target the last child of a container. However, this feature is not enabled by default. You need to enable it in your `tailwind.config.js` file.
+
+Here is how you can enable it:
+
+```javascript
+module.exports = {
+  variants: {
+    extend: {
+      borderColor: ['last'],
+    },
+  },
+  plugins: [],
+}
+```
+
+After enabling the `last:` variant, you can use it in your HTML like this:
+
+```html
+<ul>
+  <li
+    v-for="(item, index) in items"
+    :key="`item-${index}`"
+    class="border-solid border-b border-black last:border-b-0"
+  >
+    Item
+  </li>
+</ul>
+```
+
+In this code, `last:border-b-0` will remove the bottom border from the last `<li>` element.

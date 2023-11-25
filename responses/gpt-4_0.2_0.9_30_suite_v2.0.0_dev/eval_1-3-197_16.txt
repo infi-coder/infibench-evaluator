@@ -1,0 +1,20 @@
+Here is a Python function that uses the `itertools.cycle` function to repeat the list of strings indefinitely. It then uses the `islice` function to take only as many elements as there are rows in the DataFrame.
+
+```python
+import pandas as pd
+import itertools
+
+def fillColumn(df, columnName, columnData):
+    df[columnName] = list(itertools.islice(itertools.cycle(columnData), len(df)))
+    return df
+```
+
+You can use this function as follows:
+
+```python
+df = pd.DataFrame()
+my_list = ['abc','def','hig']
+df = fillColumn(df, 'names', my_list)
+```
+
+This will fill the 'names' column of the DataFrame `df` with the strings in `my_list`, repeating them as necessary until all rows in the DataFrame are filled.

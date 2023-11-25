@@ -1,0 +1,17 @@
+The error message "bad CPU type in executable" usually means that the binary file is not compatible with the CPU architecture of your Mac. 
+
+pdftk is a 32-bit application and it is not compatible with macOS Catalina, which only supports 64-bit applications. 
+
+There are a few workarounds you can try:
+
+1. Use an alternative PDF tool that is compatible with macOS Catalina, such as PDFsam or Adobe Acrobat.
+
+2. Install a virtual machine or a container with an older version of macOS that supports 32-bit applications, and run pdftk inside it.
+
+3. Use Homebrew to install pdftk-server, which is a server version of pdftk that can be accessed through a web interface. Here are the steps to install pdftk-server using Homebrew:
+
+- Install Homebrew if you haven't already: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
+- Install pdftk-server: `brew install pdftk-java`
+- Start the pdftk-server: `pdftk-server`
+
+After starting the pdftk-server, you can access it through a web interface at `http://localhost:8080/pdftk/`. You can use this interface to upload and manipulate PDF files using pdftk commands.

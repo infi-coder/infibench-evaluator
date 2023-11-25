@@ -1,0 +1,13 @@
+There could be several reasons why you're unable to start Jupyter notebook on VS Code. Here are some steps you can take to troubleshoot the issue:
+
+1. **Check your Python and IPython versions**: Make sure you have the correct versions of Python and IPython installed in your virtual environment. You can check this by activating your environment and running `python --version` and `ipython --version`.
+
+2. **Reinstall IPython and ipykernel**: Sometimes, reinstalling these packages can solve the issue. You can do this by activating your environment and running `pip uninstall ipython ipykernel` followed by `pip install ipython ipykernel`.
+
+3. **Check your Jupyter settings in VS Code**: In VS Code, go to the settings (File > Preferences > Settings) and search for "Jupyter". Make sure the settings are correct, especially the Python path and the Jupyter server URI.
+
+4. **Try running Jupyter from the command line**: Try to start a Jupyter notebook from the command line to see if the problem is with VS Code or with Jupyter itself. You can do this by activating your environment and running `jupyter notebook`.
+
+5. **Check the VS Code console for errors**: If none of the above steps work, check the VS Code console for any error messages. You can open the console by going to Help > Toggle Developer Tools.
+
+If none of these steps solve your issue, it might be a bug in VS Code or in one of the extensions you're using. In that case, you should report the issue to the VS Code or the Python extension GitHub page.

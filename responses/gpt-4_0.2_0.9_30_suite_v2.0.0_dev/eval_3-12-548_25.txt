@@ -1,0 +1,14 @@
+Use `WillPopScope` instead of `Navigator.pop(context)` or `Navigator.of(context).pop()`. 
+
+The `WillPopScope` widget intercepts the back button press event and you can decide what to do when the back button is pressed. In your case, you can simply return `false` to prevent navigation to the previous screen. Here is an example:
+
+```dart
+return new WillPopScope(
+    onWillPop: () async => false,
+    child: Scaffold(
+      // your widget here
+    )
+);
+```
+
+In this example, when the back button is pressed, the `onWillPop` function is called. This function returns a `Future<bool>`. If the `Future` completes with `false`, end of pop event is assumed and the back navigation is cancelled.

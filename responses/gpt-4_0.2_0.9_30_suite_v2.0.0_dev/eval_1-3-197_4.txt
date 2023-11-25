@@ -1,0 +1,37 @@
+Here is the Python function `fillColumn` that you asked for:
+
+```python
+import pandas as pd
+import numpy as np
+
+def fillColumn(df, columnName, columnData):
+    df[columnName] = np.resize(columnData, len(df))
+    return df
+```
+
+This function uses the `numpy.resize` function to repeat the list until it matches the length of the DataFrame. Then it assigns this list to the new column in the DataFrame.
+
+Here is an example of how to use this function:
+
+```python
+df = pd.DataFrame()
+my_list = ['abc','def','hig']
+
+df = fillColumn(df, 'names', my_list)
+
+print(df)
+```
+
+This will print:
+
+```
+  names
+0   abc
+1   def
+2   hig
+3   abc
+4   def
+...
+```
+
+This will continue for all 142 rows in your DataFrame.

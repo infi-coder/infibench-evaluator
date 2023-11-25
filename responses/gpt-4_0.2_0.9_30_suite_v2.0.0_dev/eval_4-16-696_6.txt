@@ -1,0 +1,7 @@
+The problem is that the `$(echo {} | sed 's/\?.*//g')` part of your command is evaluated before `find` is run, so it doesn't have the desired effect. You can solve this by using a bash loop instead:
+
+```bash
+find . -type f -name '*\?*' | while read -r file; do mv "$file" "${file%%\?*}"; done
+```
+
+This command will find all files with a question mark in their name, then for each file, it will remove the question mark and everything after it. The `${file%%\?*}` part is a parameter expansion in bash that removes the longest match of `\?*` from the end of the `$file` variable.

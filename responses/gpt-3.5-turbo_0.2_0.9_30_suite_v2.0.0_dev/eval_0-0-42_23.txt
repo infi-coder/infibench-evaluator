@@ -1,0 +1,33 @@
+Sure! Here's the revised code:
+
+```javascript
+const { MongoClient } = require('mongodb');
+const MongoStore = require('connect-mongo').default;
+
+...
+
+const client = new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+client.connect((err) => {
+  if (err) {
+    console.error('Failed to connect to MongoDB:', err);
+    return;
+  }
+
+  const sessionStore = new MongoStore({
+    client: client,
+    dbName: 'your-db-name',
+    collectionName: 'your-collection-name',
+    stringify: false
+  });
+
+  app.use(session({
+    secret: 'story book',
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore
+  }));
+});
+```
+
+Note that you need to create a `MongoClient` instance and pass it to `connect-mongo` as the `client` option. You also need to specify the database name and collection name in the `dbName` and `collectionName` options respectively. Finally, you need to set `stringify` to `false` to avoid errors related to serialization.

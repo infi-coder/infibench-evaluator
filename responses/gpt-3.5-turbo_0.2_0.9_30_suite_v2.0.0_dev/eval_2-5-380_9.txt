@@ -1,0 +1,27 @@
+There are a few things you can check to troubleshoot this issue:
+
+1. Make sure that the `@EnableSwagger2WebMvc` annotation is present in your Spring Boot application class. This annotation enables Swagger support in your application.
+
+2. Check that the `@ComponentScan` annotation is scanning the package where your controllers are located. This is necessary for Swagger to detect your API endpoints.
+
+3. Verify that the `springdoc.swagger-ui.path` property is set to `/swagger-ui.html` in your `application.properties` file. This is the default path for the Swagger UI.
+
+4. Check that the `springdoc.swagger-ui.enabled` property is set to `true` in your `application.properties` file. This enables the Swagger UI in your application.
+
+5. Make sure that the `@RestController` annotation is present on your controller class. This is necessary for Swagger to detect your API endpoints.
+
+If none of these steps solve the issue, you can try adding the following configuration to your `WebMvcConfigurer` implementation:
+
+```java
+@Configuration
+public class SwaggerConfig implements WebMvcConfigurer {
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/swagger-ui/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/")
+                .resourceChain(false);
+    }
+}
+```
+
+This configuration maps the `/swagger-ui` path to the Swagger UI resources.

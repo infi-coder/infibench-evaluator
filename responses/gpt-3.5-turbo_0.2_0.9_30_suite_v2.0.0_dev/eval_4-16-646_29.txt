@@ -1,0 +1,27 @@
+The error message "bad CPU type in executable" usually means that the binary is not compatible with your CPU architecture. In this case, it's likely that the version of pdftk you installed is not compatible with your Mac's CPU architecture.
+
+One solution is to install a compatible version of pdftk. You can try installing it using Homebrew, a popular package manager for macOS:
+
+1. Install Homebrew by running the following command in your terminal:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+2. Once Homebrew is installed, run the following command to install pdftk:
+
+```
+brew install pdftk-java
+```
+
+This will install pdftk and its dependencies, including the Java runtime environment.
+
+3. After installation, you should be able to use pdftk without any issues.
+
+If you still encounter the same error, you may need to check if your Mac's CPU architecture is compatible with the version of pdftk you installed. You can do this by running the following command in your terminal:
+
+```
+uname -m
+```
+
+This will display your Mac's CPU architecture. Make sure that the version of pdftk you installed is compatible with your CPU architecture.

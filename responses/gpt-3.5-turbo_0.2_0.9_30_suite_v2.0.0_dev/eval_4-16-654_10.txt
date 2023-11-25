@@ -1,0 +1,8 @@
+You can add your existing SSH key to Git Bash by following these steps:
+
+1. Open Git Bash and navigate to your home directory by typing `cd ~`.
+2. Create a new directory called `.ssh` by typing `mkdir .ssh`.
+3. Move your SSH key to the `.ssh` directory by typing `mv D:/keys/id_rsa ~/.ssh/`.
+4. Change the permissions of the key file by typing `chmod 600 ~/.ssh/id_rsa`.
+
+That's it! Your SSH key should now be added to Git Bash and you should be able to use it to clone repositories from remote.

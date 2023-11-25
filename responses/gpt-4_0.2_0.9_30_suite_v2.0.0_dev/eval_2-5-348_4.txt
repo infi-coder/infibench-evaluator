@@ -1,0 +1,17 @@
+The error message indicates that the command line arguments are not being parsed correctly due to the presence of embedded quotes. This is a known issue with certain versions of Java and the way they handle command line arguments.
+
+Here are a few things you can try to resolve this issue:
+
+1. **Upgrade your JDK**: The issue with handling command line arguments with embedded quotes was fixed in JDK 8u40. If you are using an older version of the JDK, consider upgrading to the latest version.
+
+2. **Escape the quotes**: You can try escaping the quotes in your command line arguments. Replace each `"` with `\"`.
+
+3. **Use a batch file**: Instead of running the command directly, you can put the command in a batch file and run the batch file instead. This can sometimes bypass the issue with handling command line arguments.
+
+Here is an example of how you can modify your command:
+
+```bash
+cd C:\projects\open; "JAVA_HOME=C:\\Program Files\\Java\\jdk-11.0.5" cmd /c "\"\"C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven\\bin\\mvn.cmd\" -DskipTests=true -Dmaven.ext.class.path=\"C:\\Program Files\\NetBeans-11.1\\netbeans\\java\\maven-nblib\\netbeans-eventspy.jar\" -Dfile.encoding=UTF-8 clean install\""
+```
+
+If none of these solutions work, you may want to consider downgrading to a version of NetBeans where you did not encounter this issue.

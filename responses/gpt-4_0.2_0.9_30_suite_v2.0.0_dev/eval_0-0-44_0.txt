@@ -1,0 +1,41 @@
+You can create an index in Mongoose schema using Nest.js by using the `@Prop()` decorator with the `index` option set to `true`. However, you need to make sure that the indexes are actually being created in MongoDB.
+
+Here is how you can do it:
+
+```javascript
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema()
+export class MySchema extends Document {
+  @Prop({ required: true, index: true })
+  type: string;
+}
+
+export const MySchemaSchema = SchemaFactory.createForClass(MySchema);
+```
+
+After defining the schema, you need to use it in a module and import the `MongooseModule` with the `autoCreate` option set to `true`. This will ensure that the indexes are created when the application starts.
+
+```javascript
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { MySchema, MySchemaSchema } from './my-schema.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: MySchema.name, schema: MySchemaSchema }]),
+    MongooseModule.forRoot('mongodb://localhost/test', { autoCreate: true }),
+  ],
+})
+export class MyModule {}
+```
+
+The `autoCreate` option will automatically create the indexes for you when the application starts. If you don't use this option, you will need to manually create the indexes using the `createIndexes()` method.
+
+```javascript
+const MySchemaModel = mongoose.model('MySchema', MySchemaSchema);
+MySchemaModel.createIndexes();
+```
+
+Please note that creating indexes can take some time if you have a lot of data in your collection. It's generally a good idea to create indexes during a maintenance window or when your application is not under heavy load.

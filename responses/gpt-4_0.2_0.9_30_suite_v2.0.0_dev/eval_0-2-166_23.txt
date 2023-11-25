@@ -1,0 +1,20 @@
+Tailwind CSS is a utility-first CSS framework for rapidly building custom designs. It doesn't provide a direct way to target child elements like you would do in CSS with the `>` operator. 
+
+Tailwind CSS works by adding utility classes to HTML elements. If you want to style direct children of a `div` with a class of `section`, you would need to add the necessary Tailwind classes to those child `div` elements directly.
+
+Here's an example:
+
+```html
+<div class="section">
+  <div class="bg-blue-500 text-white"> <!-- Tailwind classes added directly -->
+    <!-- Content -->
+  </div>
+  <div class="p-4"> <!-- More Tailwind classes -->
+    <!-- More content -->
+  </div>
+</div>
+```
+
+In this example, `bg-blue-500` and `text-white` are Tailwind classes added to the direct child `div` of the parent `div` with class `section`. Similarly, `p-4` is added to another child `div`.
+
+Remember to configure your Tailwind CSS to include the classes you need, and ensure your project is set up to purge unused classes in your production build.

@@ -1,0 +1,7 @@
+You can use awk to achieve this task more efficiently. Here's an example command:
+
+```
+awk -F= '/name/{name=$2} /value/{if(name){print name "=" $2; name=""}}' input.txt > output.txt
+```
+
+This command sets the field separator to "=" and then checks if the current line starts with "name". If it does, it saves the name value to a variable. If the current line starts with "value" and the name variable is not empty, it prints the name and value separated by "=" to the output file. This avoids the need to read the entire file into memory and should be much faster than the original solution.

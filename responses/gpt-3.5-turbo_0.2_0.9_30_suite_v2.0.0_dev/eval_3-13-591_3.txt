@@ -1,0 +1,35 @@
+The reason why you are seeing the logs in that order is because the `onItemSelected` function is called asynchronously when the user selects an item from the spinner. This means that the function `Spinner.setupListWithAdapter` will continue to execute after setting the listener, and will return the initial value of `itemSelected`, which is an empty string.
+
+To fix this, you can use a callback function to return the selected item once it has been selected by the user. Here's an example of how you can modify your code to use a callback function:
+
+```
+fun Spinner.setupListWithAdapter(list: MutableList<String>, callback: (String) -> Unit) {
+    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    this.adapter = adapter
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+            val itemSelected = list[p2]
+            Log.e("categoryLog","1 : " + itemSelected)
+            callback(itemSelected)
+        }
+        override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
+    }
+}
+```
+
+In this modified version of the function, we have removed the return type and added a new parameter called `callback`. This parameter is a function that takes a single `String` parameter and returns nothing (`Unit`).
+
+Inside the `onItemSelected` function, we retrieve the selected item and call the `callback` function with the selected item as the argument. This will allow the caller of the function to receive the selected item once it has been selected by the user.
+
+To use this modified function, you can pass a lambda function as the `callback` parameter, like this:
+
+```
+spinner.setupListWithAdapter(listOf("Item 1", "Item 2", "Item 3")) { selectedItem ->
+    // Do something with the selected item
+    Log.e("categoryLog", "Selected item: $selectedItem")
+}
+```
+
+In this example, we are passing a list of items to the `setupListWithAdapter` function, and providing a lambda function that will be called with the selected item once it has been selected by the user. Inside the lambda function, we can do whatever we want with the selected item, such as logging it to the console or updating a variable in our

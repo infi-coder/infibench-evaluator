@@ -1,0 +1,15 @@
+You can modify your `grep` command to look for the `lang` attribute within the `html` tag, like this:
+
+```
+curl -Ls yahoo.com | grep -oP '(?<=<html[^>]* lang=")[^"]*'
+```
+
+This uses a positive lookbehind to find the `lang` attribute within the `html` tag, and then uses `grep`'s `-o` option to only output the matched text (i.e. the language code).
+
+Alternatively, you can use a tool like `xmllint` to parse the HTML and extract the `lang` attribute:
+
+```
+curl -Ls yahoo.com | xmllint --html --xpath '//html/@lang' -
+```
+
+This uses `xmllint` to parse the HTML and extract the `lang` attribute from the `html` tag. The `-` at the end tells `xmllint` to read from standard input (i.e. the output of `curl`).

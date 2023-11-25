@@ -1,0 +1,23 @@
+It seems like you are facing a version conflict issue. The error message indicates that Hibernate Validator 5.3.5.Final-redhat-2 is being used, but `@NotEmpty` and `@NotBlank` annotations are not supported until Hibernate Validator 6.0.0.Final.
+
+Spring Boot 2.0.4.RELEASE should use Hibernate Validator 6.0.11.Final by default, so there might be a conflict with another dependency or a configuration in your project that is causing an older version of Hibernate Validator to be used.
+
+You can try to force the use of the correct Hibernate Validator version by adding the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.0.11.Final</version>
+</dependency>
+```
+
+If the issue persists, you might want to check if there is any specific configuration in your project that could be causing the older version of Hibernate Validator to be used. Also, make sure that there are no other dependencies in your `pom.xml` that might be pulling in an older version of Hibernate Validator.
+
+You can use the Maven Dependency Plugin to analyze the dependencies of your project and find out which dependency is pulling in the older version of Hibernate Validator. Run the following command in your project directory:
+
+```bash
+mvn dependency:tree
+```
+
+This will print a tree of dependencies to the console. Look for `hibernate-validator` in the output and check which version is being used and which dependency is pulling it in.

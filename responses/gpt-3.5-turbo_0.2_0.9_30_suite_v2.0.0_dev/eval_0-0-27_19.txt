@@ -1,0 +1,19 @@
+It seems like you are trying to fetch data from a GraphQL API using Apollo Client, but the loading state hangs at `true` and fails to fetch data. 
+
+One possible reason for this issue could be that the GraphQL API you are trying to fetch data from is not accessible or not responding. 
+
+To verify this, you can try accessing the GraphQL API directly from your browser or a tool like Postman. If you are unable to access the API, then you need to check the API endpoint and make sure it is correct and accessible.
+
+Another possible reason could be that there is an issue with your Apollo Client configuration. You can try logging the `apolloClient` object to see if it is properly configured and connected to the API endpoint.
+
+Also, make sure that you have installed all the required dependencies for Apollo Client and GraphQL. You can check the `package.json` file to see if all the required dependencies are installed.
+
+If none of the above solutions work, you can try using the `fetchPolicy` option in the `useQuery` hook to force a network request. For example, you can set the `fetchPolicy` to `network-only` to always fetch data from the network and bypass the cache.
+
+```javascript
+const { loading, error, data } = useQuery(EXCHANGE_RATES, {
+  fetchPolicy: 'network-only',
+});
+```
+
+I hope this helps you resolve the issue.

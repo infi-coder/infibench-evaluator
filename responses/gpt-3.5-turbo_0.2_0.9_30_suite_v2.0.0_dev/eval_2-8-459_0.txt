@@ -1,0 +1,35 @@
+It seems like the module `github.ibm.com/kms/key-protect-client` is not being downloaded to the module cache on computer B. Here are some steps you can take to debug this issue:
+
+1. Check if the module is available in the module cache on computer B. You can do this by running the following command:
+
+   ```bash
+   go list -m github.ibm.com/kms/key-protect-client@v0.1.5
+   ```
+
+   If the module is not available in the module cache, you should see an error message like `github.ibm.com/kms/key-protect-client@v0.1.5: module not found`.
+
+2. Check if the module is available on the remote repository. You can do this by running the following command:
+
+   ```bash
+   go list -m -versions github.ibm.com/kms/key-protect-client
+   ```
+
+   This will list all the available versions of the module on the remote repository. If you don't see the version `v0.1.5` listed, then it's possible that the version was deleted or renamed.
+
+3. Check if there are any network issues preventing the module from being downloaded. You can do this by running the following command:
+
+   ```bash
+   go env GONOPROXY GONOSUMDB GOPRIVATE
+   ```
+
+   This will show you the values of the environment variables that control module fetching. Make sure that the module's domain is not listed in `GONOPROXY`, `GONOSUMDB`, or `GOPRIVATE`. If it is, remove it from the list.
+
+4. Try to download the module manually using `go get`. You can do this by running the following command:
+
+   ```bash
+   go get github.ibm.com/kms/key-protect-client@v0.1.5
+   ```
+
+   This will download the module to the module cache. If there are any issues with the network or authentication, you should see error messages that can help you diagnose the issue.
+
+Once you have identified the issue, you can take steps to resolve it. For example, if the module is not available on the remote repository, you may need to update your dependencies to use a different version of the module. If there are network issues, you may need to configure your network settings or authentication credentials.

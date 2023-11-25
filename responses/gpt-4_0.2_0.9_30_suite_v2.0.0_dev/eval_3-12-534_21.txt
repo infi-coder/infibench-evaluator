@@ -1,0 +1,29 @@
+You can use multiple `Consumer` widgets or `Consumer2`, `Consumer3`, etc., depending on the number of providers you want to listen to. Here is an example of how you can use multiple `Consumer` widgets:
+
+```dart
+Consumer<Provider1>(
+  builder: (context, provider1, child) => Consumer<Provider2>(
+    builder: (context, provider2, child) => Consumer<Provider3>(
+      builder: (context, provider3, child) => Consumer<Provider4>(
+        builder: (context, provider4, child) => CurvedNavigationBar(
+          // Use provider1, provider2, provider3, provider4 here
+        ),
+      ),
+    ),
+  ),
+)
+```
+
+In the above example, `Provider1`, `Provider2`, `Provider3`, and `Provider4` are the classes that extend `ChangeNotifier`.
+
+If you want to use `Consumer2`, `Consumer3`, etc., you can do it like this:
+
+```dart
+Consumer4<Provider1, Provider2, Provider3, Provider4>(
+  builder: (context, provider1, provider2, provider3, provider4, child) => CurvedNavigationBar(
+    // Use provider1, provider2, provider3, provider4 here
+  ),
+)
+```
+
+In this example, `Consumer4` listens to four different `ChangeNotifier` providers.

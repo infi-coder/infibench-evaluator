@@ -1,0 +1,26 @@
+# Corresponding to post https://stackoverflow.com/questions/65641648
+id: 0-0-0
+# for case self identificaton
+
+prompt_path: prompt_0-0-0.txt
+# relative path to the prompt text
+
+# type: code debugging
+type: code completion
+# type: knowledge question-answering
+# question type, for later statistics
+
+lang: javascript
+# question language or area, for later statistics
+
+# full_score: 1.0
+# [optional] the full score of this case in the final suite report
+
+# null_score: 0.0
+# [optional]the score of providing no response
+
+grading:
+  unit_test: 
+    tests:
+      - path: test_0-0-0_0.js
+      - path: test_0-0-0_1.js

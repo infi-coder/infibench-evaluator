@@ -1,0 +1,16 @@
+The error you're encountering is due to the fact that you're trying to use Flutter's engine bindings before they are initialized. In Flutter, you can't use any plugin that requires Flutter's engine bindings in the `main()` function directly.
+
+To fix this, you should wrap your code inside `WidgetsFlutterBinding.ensureInitialized()` and `runApp()` like this:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  final appDocsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocsDir.path);
+  
+  runApp(MyApp());
+}
+```
+
+`WidgetsFlutterBinding.ensureInitialized()` initializes the binding to the Flutter engine. This is required before using any plugins if the code is executed before `runApp()`.

@@ -1,0 +1,23 @@
+You can use the `strsplit` function in R to split the strings in your column. Here's how you can do it:
+
+```r
+mySplit <- function(df) {
+  # Split the strings by comma
+  split_comma <- strsplit(df$col1, ",")
+  
+  # Split the resulting strings by colon
+  split_colon <- lapply(split_comma, function(x) strsplit(x, ":"))
+  
+  # Extract the values and convert them to a data frame
+  df <- do.call(rbind, lapply(split_colon, function(x) sapply(x, function(y) y[2])))
+  
+  # Set the column names
+  colnames(df) <- c("name", "Age", "City")
+  
+  return(df)
+}
+```
+
+This function first splits the strings in your column by comma, then splits the resulting strings by colon. The values are then extracted and converted to a data frame. The column names are set to "name", "Age", and "City".
+
+Please note that this function assumes that the order of the elements in your strings is always the same (i.e., "name", "Age", "City"). If the order can vary, you would need a more complex solution.

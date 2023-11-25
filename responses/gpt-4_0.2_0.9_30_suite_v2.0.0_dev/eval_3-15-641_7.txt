@@ -1,0 +1,39 @@
+Unfortunately, Excel VBA doesn't have a built-in function to retrieve the local path of a OneDrive or SharePoint file. The "Open File Location" button you mentioned is a feature of Excel's interface and not exposed to VBA.
+
+However, you can try the following workaround:
+
+1. Use the `ActiveWorkbook.Path` property to get the URL of the workbook.
+2. Replace the `https://<your-domain>.sharepoint.com/` part of the URL with an empty string.
+3. Replace all forward slashes (`/`) with backslashes (`\`).
+4. Prepend the resulting string with the local path to the root of your OneDrive folder.
+
+Here's a sample code snippet:
+
+```vba
+Sub GetLocalPath()
+
+    Dim strPath As String
+    Dim strLocalPath As String
+
+    ' Get the path of the active workbook
+    strPath = ActiveWorkbook.Path
+
+    ' Replace the SharePoint URL with an empty string
+    strPath = Replace(strPath, "https://<your-domain>.sharepoint.com/", "")
+
+    ' Replace all forward slashes with backslashes
+    strPath = Replace(strPath, "/", "\")
+
+    ' Prepend the local path to the root of your OneDrive folder
+    strLocalPath = "C:\Users\<username>\OneDrive\" & strPath
+
+    MsgBox strLocalPath
+
+End Sub
+```
+
+Replace `<your-domain>` with your actual SharePoint domain and `<username>` with the actual username. 
+
+Please note that this solution assumes that all users have their OneDrive folder in the same location on their local machine, and that they have all the necessary folders synced. If that's not the case, this solution may not work for all users. 
+
+Also, this solution doesn't account for the possibility that a user might have multiple OneDrive accounts (e.g., a personal account and a business account) on the same machine. In that case, you would need to specify the correct OneDrive folder.

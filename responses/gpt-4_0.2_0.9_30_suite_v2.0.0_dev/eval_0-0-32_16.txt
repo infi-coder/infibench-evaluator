@@ -1,0 +1,67 @@
+You can use the `react-intersection-observer` npm module to detect if an element is in the viewport. This module uses the Intersection Observer API to tell you when an element enters or leaves the viewport.
+
+First, install the module:
+
+```bash
+npm install react-intersection-observer
+```
+
+Then, you can use it in your component:
+
+```javascript
+import React from 'react';
+import {InView} from 'react-intersection-observer';
+
+const YourComponent = () => {
+    const data = [...]; // your data here
+
+    return (
+        <div id="parent">
+            {data.map(item => (
+                <InView as="div" id={item.id} onChange={(inView, entry) => console.log('Inview:', inView, 'Entry:', entry)}>
+                    {item.title}
+                </InView>
+            ))}
+        </div>
+    );
+};
+
+export default YourComponent;
+```
+
+In this example, the `InView` component wraps each of your divs. It has an `onChange` prop that is a function that gets called every time the div enters or leaves the viewport. The function receives two arguments: `inView` (a boolean that tells you if the element is in the viewport) and `entry` (the Intersection Observer entry).
+
+If you want to keep track of which divs are currently in the viewport, you could add some state to your component and update it in the `onChange` function. For example:
+
+```javascript
+import React, {useState} from 'react';
+import {InView} from 'react-intersection-observer';
+
+const YourComponent = () => {
+    const data = [...]; // your data here
+    const [inViewIds, setInViewIds] = useState([]);
+
+    const handleInViewChange = (inView, entry) => {
+        const id = entry.target.id;
+        setInViewIds(prevIds => {
+            if (inView && !prevIds.includes(id)) {
+                return [...prevIds, id];
+            } else if (!inView && prevIds.includes(id)) {
+                return prevIds.filter(prevId => prevId !== id);
+            } else {
+                return prevIds;
+            }
+        });
+    };
+
+    return (
+        <div id="parent">
+            {data.map(item => (
+                <InView as="div" id={item.id} onChange={handleInViewChange}>
+                    {item.title}
+                </InView>
+            ))}
+        </div>
+    );
+};
+

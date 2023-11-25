@@ -1,0 +1,5 @@
+When `"sourceMap": true` is set in `tsconfig.json`, Angular generates source maps for your TypeScript code. These source maps are used by the browser's developer tools to map the compiled JavaScript code back to the original TypeScript code. This is useful for debugging purposes, as it allows you to set breakpoints and step through your TypeScript code in the browser's developer tools.
+
+When you set `"sourceMap": false`, Angular will not generate source maps for your TypeScript code. This means that the browser's developer tools will not be able to map the compiled JavaScript code back to the original TypeScript code. As a result, you will not be able to set breakpoints or step through your TypeScript code in the browser's developer tools.
+
+However, setting `"sourceMap": false` can improve the performance of your application, as generating source maps can be a resource-intensive process. Additionally, if you are deploying your application to a production environment, you may want to disable source maps to reduce the size of your application's JavaScript files.

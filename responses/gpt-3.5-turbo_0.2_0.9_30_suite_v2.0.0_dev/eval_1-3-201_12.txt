@@ -1,0 +1,26 @@
+One solution to this problem is to use multiprocessing instead of threading. Multiprocessing allows you to run multiple processes simultaneously, which is useful when you have multiple infinite loops that need to run concurrently. Here's an example of how you can modify your code to use multiprocessing:
+
+```python
+from multiprocessing import Process
+
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+database=db.dataBase()
+homepage=hp.homepage(database)
+homepage.timeUpdateCallback(app)
+homepage.gaugeRefreshCallback(app)
+dataMiningScript= fd.financeData(database,1600)
+
+app.layout = homepage.layoutMaker()
+
+def run_data_mining():
+    dataMiningScript.run()
+
+if __name__ == "__main__":
+    p1 = Process(target=run_data_mining)
+    p1.start()
+    app.run_server(debug=True)
+```
+
+In this modified code, we define a new function `run_data_mining` that simply calls the `run` method of the `dataMiningScript` object. We then create a new process `p1` that runs this function using the `Process` class from the `multiprocessing` module. Finally, we start this process using the `start` method, and run the Dash app in the main process using `app.run_server`.
+
+This should allow both the data mining script and the Dash app to run concurrently without interfering with each other.

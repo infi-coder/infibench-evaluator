@@ -1,0 +1,12 @@
+Unable to start Jupyter notebook on VS Code
+
+(Using latest miniconda + VS Code on 64-bit Windows10:) After clean reinstalling VS Code, I can no longer launch jupyter notebook from within it. When I tried to create a new jupyter file for the first time, the Python extension installed ipykernel in my virtual environment "da38" (my main working environment).
+Then it stays on Connecting to IPython kernel: Connecting to kernel for an unusually long time, and stops with the error message
+
+```
+Unable to start session for kernel Python 3.8.5 64-bit ('da38':conda).
+```
+
+I also removed and re-created da38 environment just in case. Used jupyter many times before with no issues until this new VS Code install today, and an identical setup is working on my other computer. 
+
+How to solve my problem?

@@ -1,0 +1,13 @@
+You need to add two things to your `~/.zshenv`. First, add the rbenv initialization code itself and second, add the ruby version. 
+
+To add the rbenv initialization code, add the following line to your `~/.zshenv` file:
+```
+eval "$(rbenv init -)"
+```
+
+To add the ruby version, add the following line to your `~/.zshenv` file, replacing `x.x.x` with the version of Ruby you want to use:
+```
+export RBENV_VERSION=x.x.x
+```
+
+You might also run the `rbenv doctor` command to check your installation.

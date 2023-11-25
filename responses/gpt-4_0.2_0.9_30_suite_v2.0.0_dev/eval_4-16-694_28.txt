@@ -1,0 +1,12 @@
+You can use `awk` to extract the language code. Here's how you can modify your command:
+
+```bash
+curl -Ls stick-it.app | grep -o 'lang="[a-zA-Z-]*"' | cut -d '"' -f 2
+```
+
+Explanation:
+
+- `grep -o 'lang="[a-zA-Z-]*"'` : This will match and print only the part of the line that matches the pattern `lang="..."`. The pattern `[a-zA-Z-]*` inside the quotes matches any sequence of letters and hyphens.
+- `cut -d '"' -f 2` : This will split the output on the double quote character and print the second field, which is the language code.
+
+This command should work regardless of where the `lang` attribute is located in the html tag.

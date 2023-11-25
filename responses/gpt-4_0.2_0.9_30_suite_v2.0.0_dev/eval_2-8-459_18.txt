@@ -1,0 +1,27 @@
+The error message suggests that Go is unable to find the specified revision of the `github.ibm.com/kms/key-protect-client` module. This could be due to a number of reasons:
+
+1. **Network issues**: Ensure that computer B has a stable internet connection and can access `github.ibm.com`.
+
+2. **Authentication issues**: If the repository is private, you need to ensure that Go has the necessary credentials to access it. You can do this by setting the `GOPRIVATE` environment variable to tell Go to use the local git credentials for these repositories. For example, you can set it to `github.ibm.com/kms` to use local git credentials for all repositories under `kms`.
+
+    ```bash
+    export GOPRIVATE=github.ibm.com/kms
+    ```
+
+3. **Incorrect version**: The error message suggests that Go is unable to find the `v0.1.5` version of the module. Ensure that this version actually exists in the repository. If it doesn't, you'll need to update your `go.mod` file to reference a version that does exist.
+
+4. **Go Proxy**: If you're using a Go proxy (which is enabled by default in Go 1.13 and later), it might not have access to the private repository. You can bypass the proxy for your private modules by setting the `GOPRIVATE` environment variable as described above.
+
+5. **Go version**: Ensure that you're using the same version of Go on both computers. Different versions of Go might handle modules differently, which could lead to inconsistencies.
+
+To debug this issue, you can use the `-x` flag with the `go build` command to print out detailed information about what `go build` is doing. This might give you more information about why it's unable to find the module.
+
+```bash
+go build -x
+```
+
+You can also use the `go mod why` command to see why Go is trying to load a particular module:
+
+```bash
+go mod why github.ibm.com/kms/key-protect-client
+```

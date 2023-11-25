@@ -1,0 +1,38 @@
+Here is a function that uses the `strsplit` function to split the strings in the column, and then uses `sapply` to apply this function to each row of the data frame. It then uses `do.call` to combine the results into a data frame.
+
+```r
+mySplit <- function(df) {
+  # Split the strings in the column
+  splitStrings <- strsplit(as.character(df$col1), ",")
+  
+  # Apply the function to each row
+  splitData <- sapply(splitStrings, function(x) {
+    # Split each element of the row by ":"
+    splitRow <- strsplit(x, ":")
+    
+    # Combine the results into a data frame
+    data.frame(do.call(rbind, splitRow))
+  })
+  
+  # Transpose the data frame
+  splitData <- t(splitData)
+  
+  # Set the column names
+  colnames(splitData) <- splitData[1, ]
+  
+  # Remove the first row
+  splitData <- splitData[-1, ]
+  
+  # Return the result
+  return(splitData)
+}
+```
+
+You can use this function like this:
+
+```r
+df <- data.frame(col1 = c("name:Michael,Age:31,City:NYC", "name:Tom,Age:25,City:NA"))
+mySplit(df)
+```
+
+This will return a data frame with the desired format.
