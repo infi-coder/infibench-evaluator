@@ -77,9 +77,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmp99z8omb4/test.js:10\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmpby07vfxl/test.js:10\nassert(JSON.stringify(ret[0])\
         \ === JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmp99z8omb4/test.js:10:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpby07vfxl/test.js:10:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -96,9 +96,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmped5spmqk/test.js:10\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmpvwi347sn/test.js:10\nassert(JSON.stringify(ret[0])\
         \ === JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmped5spmqk/test.js:10:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpvwi347sn/test.js:10:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -146,9 +146,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmpqf1s4a8k/test.js:13\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmp11075o5q/test.js:13\nassert(JSON.stringify(ret[0])\
         \ == JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpqf1s4a8k/test.js:13:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmp11075o5q/test.js:13:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -166,9 +166,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmpt5zuza2h/test.js:13\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmp4z8wfhj8/test.js:13\nassert(JSON.stringify(ret[0])\
         \ == JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpt5zuza2h/test.js:13:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmp4z8wfhj8/test.js:13:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -407,9 +407,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmp4fwby87i/test.js:13\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmpziez2v2r/test.js:13\nassert(JSON.stringify(ret[0])\
         \ === JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmp4fwby87i/test.js:13:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpziez2v2r/test.js:13:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -427,9 +427,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmp1qze0v1_/test.js:13\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmptwyxmwz7/test.js:13\nassert(JSON.stringify(ret[0])\
         \ === JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmp1qze0v1_/test.js:13:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmptwyxmwz7/test.js:13:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -450,9 +450,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmphj2eege9/test.js:13\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmp2b_70km0/test.js:13\nassert(JSON.stringify(ret[0])\
         \ == JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmphj2eege9/test.js:13:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmp2b_70km0/test.js:13:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -470,9 +470,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmp2kowa2dd/test.js:13\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmptej7xrpp/test.js:13\nassert(JSON.stringify(ret[0])\
         \ == JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmp2kowa2dd/test.js:13:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmptej7xrpp/test.js:13:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -493,9 +493,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmpk4lr91t_/test.js:13\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmpmchzl692/test.js:13\nassert(JSON.stringify(ret[0])\
         \ == JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpk4lr91t_/test.js:13:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpmchzl692/test.js:13:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -513,9 +513,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmpw5j4jxo6/test.js:13\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmpjiixb1x9/test.js:13\nassert(JSON.stringify(ret[0])\
         \ == JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpw5j4jxo6/test.js:13:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpjiixb1x9/test.js:13:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -724,9 +724,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmp4ro0avth/test.js:13\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmpprwwle0w/test.js:13\nassert(JSON.stringify(ret[0])\
         \ === JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmp4ro0avth/test.js:13:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpprwwle0w/test.js:13:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -744,9 +744,9 @@ cases_dev/eval_0-0-0.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmplz4k7bpg/test.js:13\nassert(JSON.stringify(ret[0])\
+      - "failed: returncode: 1 stderr: /tmp/tmpoqyq8mdd/test.js:13\nassert(JSON.stringify(ret[0])\
         \ === JSON.stringify([\"milk\", \"bread\", \"potato\"]))\n^\n\nReferenceError:\
-        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmplz4k7bpg/test.js:13:1)\n\
+        \ assert is not defined\n    at Object.<anonymous> (/tmp/tmpoqyq8mdd/test.js:13:1)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -7628,7 +7628,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmp85l859vp/test.js:46:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmptao_3ldv/test.js:46:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -7678,7 +7678,7 @@ cases_dev/eval_0-2-154.yaml:
         \ format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpgfn0odzi/test.js:46:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpk_5khp6b/test.js:46:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -7731,7 +7731,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmph18agzs7/test.js:51:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpqkn8qhk7/test.js:51:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -8196,7 +8196,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmpf8cf6fyv/test.js:41:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmpquws6uax/test.js:41:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -8243,7 +8243,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpzhspv2x2/test.js:41:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpvylvpbfa/test.js:41:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -8292,7 +8292,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmphvb11_rc/test.js:46:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpfng9b7ru/test.js:46:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -8501,7 +8501,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmpj5ng2u7h/test.js:48:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmpuz1qogrn/test.js:48:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -8549,7 +8549,7 @@ cases_dev/eval_0-2-154.yaml:
         \ format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpe6d543ym/test.js:48:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpxcftl5l3/test.js:48:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -8600,7 +8600,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmph34imxiw/test.js:53:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp0q8xcltb/test.js:53:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -8676,7 +8676,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmptexmgvjy/test.js:48:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmplrqiq_tr/test.js:48:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -8725,7 +8725,7 @@ cases_dev/eval_0-2-154.yaml:
         \ format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp8a1ky_og/test.js:48:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpn25rbb5y/test.js:48:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -8777,7 +8777,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpl7s1ni53/test.js:53:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpf4zwsvht/test.js:53:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -8985,7 +8985,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmpjfcb7vwj/test.js:49:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmpqzvhlgvp/test.js:49:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -9033,7 +9033,7 @@ cases_dev/eval_0-2-154.yaml:
         \ format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpm9c7nmgg/test.js:49:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmph3g60d5k/test.js:49:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9084,7 +9084,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp9i4s95a8/test.js:54:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp1dmc52lz/test.js:54:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9158,7 +9158,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmpx_ju51n_/test.js:48:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmponkhzowo/test.js:48:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -9206,7 +9206,7 @@ cases_dev/eval_0-2-154.yaml:
         \ format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpzns377p0/test.js:48:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpbsy_dg61/test.js:48:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9257,7 +9257,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp57ra7iy_/test.js:53:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpw638mdem/test.js:53:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9331,7 +9331,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmpsdbqs16h/test.js:48:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmprr3c7h2_/test.js:48:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -9379,7 +9379,7 @@ cases_dev/eval_0-2-154.yaml:
         \ format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp85j82mkj/test.js:48:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp586xbi0r/test.js:48:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9430,7 +9430,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp9p2b91yv/test.js:53:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpex6twhv6/test.js:53:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9504,7 +9504,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmpaisg18pm/test.js:45:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmpu68x3ksh/test.js:45:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -9552,7 +9552,7 @@ cases_dev/eval_0-2-154.yaml:
         \ format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpwljh4_z6/test.js:45:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp5n0x81tc/test.js:45:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9603,7 +9603,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpc5m8s0q9/test.js:50:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpm99rmuij/test.js:50:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9677,7 +9677,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmpuajvm_8q/test.js:48:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmpyikrvalj/test.js:48:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -9725,7 +9725,7 @@ cases_dev/eval_0-2-154.yaml:
         \ format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpkazjie48/test.js:48:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp0z1xp_tx/test.js:48:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9776,7 +9776,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp554bar1g/test.js:53:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmph9kh77fw/test.js:53:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9848,7 +9848,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmpghqspdjy/test.js:46:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmpw2ao1394/test.js:46:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -9895,7 +9895,7 @@ cases_dev/eval_0-2-154.yaml:
         \ format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp4_ae0_it/test.js:46:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpfew_0ofx/test.js:46:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -9945,7 +9945,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp881y_iw0/test.js:51:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpjpgdjsrd/test.js:51:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -10014,7 +10014,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: ' word'\n  },\n  {\n    format: [\n    \
         \  'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n    format:\
         \ [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n  \
-        \    'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous> (/tmp/tmpy1mppb3e/test.js:38:15)\n\
+        \    'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous> (/tmp/tmp27e60ory/test.js:38:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -10062,7 +10062,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpy90h2fz6/test.js:38:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpbkmhli0a/test.js:38:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -10111,7 +10111,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp_a60jo4c/test.js:43:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpdqg361ch/test.js:43:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -10192,7 +10192,7 @@ cases_dev/eval_0-2-154.yaml:
         \ [\n      'p'\n    ],\n    text: 'I am bold text with nested '\n  },\n  {\n\
         \    format: [\n      'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format:\
         \ [\n      'p'\n    ],\n    text: ' Word.'\n  }\n]\n    at Object.<anonymous>\
-        \ (/tmp/tmpmgxcz48j/test.js:51:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
+        \ (/tmp/tmpi9u774bo/test.js:51:15)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n\
         \    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
         \ (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint\
@@ -10242,7 +10242,7 @@ cases_dev/eval_0-2-154.yaml:
         \ format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpfqfgcg6w/test.js:51:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp06f6sk6s/test.js:51:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -10295,7 +10295,7 @@ cases_dev/eval_0-2-154.yaml:
         \    format: [\n      'p',\n      'strong'\n    ],\n    text: 'I am bold text\
         \ with nested '\n  },\n  {\n    format: [\n      'p',\n      'strong',\n \
         \     'em'\n    ],\n    text: 'italic'\n  },\n  {\n    format: [\n      'p',\n\
-        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmp87o0128s/test.js:56:15)\n\
+        \      'strong'\n    ],\n    text...\n    at Object.<anonymous> (/tmp/tmpie_wxica/test.js:56:15)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -10469,10 +10469,10 @@ cases_dev/eval_0-2-154.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmp6jbw7opw/test.js:9\n  const walk =\
+      - "failed: returncode: 1 stderr: /tmp/tmpy61y7w51/test.js:9\n  const walk =\
         \ document.createTreeWalker(doc.body, NodeFilter.SHOW_ALL);\n            \
-        \   ^\n\nReferenceError: document is not defined\n    at iterLeafNodes (/tmp/tmp6jbw7opw/test.js:9:16)\n\
-        \    at iterLeafNodes.next (<anonymous>)\n    at Object.<anonymous> (/tmp/tmp6jbw7opw/test.js:28:29)\n\
+        \   ^\n\nReferenceError: document is not defined\n    at iterLeafNodes (/tmp/tmpy61y7w51/test.js:9:16)\n\
+        \    at iterLeafNodes.next (<anonymous>)\n    at Object.<anonymous> (/tmp/tmpy61y7w51/test.js:28:29)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -10492,10 +10492,10 @@ cases_dev/eval_0-2-154.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmpatggqdn4/test.js:9\n  const walk =\
+      - "failed: returncode: 1 stderr: /tmp/tmpznlnuyig/test.js:9\n  const walk =\
         \ document.createTreeWalker(doc.body, NodeFilter.SHOW_ALL);\n            \
-        \   ^\n\nReferenceError: document is not defined\n    at iterLeafNodes (/tmp/tmpatggqdn4/test.js:9:16)\n\
-        \    at iterLeafNodes.next (<anonymous>)\n    at Object.<anonymous> (/tmp/tmpatggqdn4/test.js:28:29)\n\
+        \   ^\n\nReferenceError: document is not defined\n    at iterLeafNodes (/tmp/tmpznlnuyig/test.js:9:16)\n\
+        \    at iterLeafNodes.next (<anonymous>)\n    at Object.<anonymous> (/tmp/tmpznlnuyig/test.js:28:29)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -10515,10 +10515,10 @@ cases_dev/eval_0-2-154.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmpk0b4f9p9/test.js:9\n  const walk =\
+      - "failed: returncode: 1 stderr: /tmp/tmp4stsunp1/test.js:9\n  const walk =\
         \ document.createTreeWalker(doc.body, NodeFilter.SHOW_ALL);\n            \
-        \   ^\n\nReferenceError: document is not defined\n    at iterLeafNodes (/tmp/tmpk0b4f9p9/test.js:9:16)\n\
-        \    at iterLeafNodes.next (<anonymous>)\n    at Object.<anonymous> (/tmp/tmpk0b4f9p9/test.js:28:29)\n\
+        \   ^\n\nReferenceError: document is not defined\n    at iterLeafNodes (/tmp/tmp4stsunp1/test.js:9:16)\n\
+        \    at iterLeafNodes.next (<anonymous>)\n    at Object.<anonymous> (/tmp/tmp4stsunp1/test.js:28:29)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -10538,10 +10538,10 @@ cases_dev/eval_0-2-154.yaml:
       completion_id: 0
       passed: false
       result:
-      - "failed: returncode: 1 stderr: /tmp/tmpxk07ztkb/test.js:9\n  const walk =\
+      - "failed: returncode: 1 stderr: /tmp/tmpa0aykw7p/test.js:9\n  const walk =\
         \ document.createTreeWalker(doc.body, NodeFilter.SHOW_ALL);\n            \
-        \   ^\n\nReferenceError: document is not defined\n    at iterLeafNodes (/tmp/tmpxk07ztkb/test.js:9:16)\n\
-        \    at iterLeafNodes.next (<anonymous>)\n    at Object.<anonymous> (/tmp/tmpxk07ztkb/test.js:28:29)\n\
+        \   ^\n\nReferenceError: document is not defined\n    at iterLeafNodes (/tmp/tmpa0aykw7p/test.js:9:16)\n\
+        \    at iterLeafNodes.next (<anonymous>)\n    at Object.<anonymous> (/tmp/tmpa0aykw7p/test.js:28:29)\n\
         \    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at\
         \ Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n\
         \    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load\
@@ -11331,7 +11331,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11344,7 +11344,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11357,7 +11357,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11370,7 +11370,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11383,7 +11383,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 5.0
@@ -11399,7 +11399,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11412,7 +11412,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11425,7 +11425,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11438,7 +11438,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11451,7 +11451,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 5.0
@@ -11469,7 +11469,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11484,7 +11484,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11499,7 +11499,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11514,7 +11514,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11529,7 +11529,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 5.0
@@ -11926,7 +11926,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11942,7 +11942,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11958,7 +11958,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11974,7 +11974,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -11990,7 +11990,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 5.0
@@ -12070,7 +12070,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -12112,7 +12112,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -12852,7 +12852,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -12867,7 +12867,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -12882,7 +12882,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -12897,7 +12897,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     - code: "import math\nimport re\nimport sys\nimport copy\nimport datetime\nimport\
         \ itertools\nimport collections\nimport heapq\nimport statistics\nimport functools\n\
@@ -12912,7 +12912,7 @@ cases_dev/eval_1-3-173.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''df'' is not defined'
+      - 'failed: <class ''NameError''> name ''df'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 5.0
@@ -13949,7 +13949,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -13967,7 +13967,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -13986,7 +13986,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14045,7 +14045,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14062,7 +14062,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14121,7 +14121,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14180,7 +14180,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14197,7 +14197,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14214,7 +14214,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14273,7 +14273,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14290,7 +14290,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14307,7 +14307,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14325,7 +14325,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14343,7 +14343,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14361,7 +14361,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14378,7 +14378,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14437,7 +14437,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14455,7 +14455,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14473,7 +14473,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14532,7 +14532,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14591,7 +14591,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14609,7 +14609,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14627,7 +14627,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14644,7 +14644,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14661,7 +14661,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14721,7 +14721,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14739,7 +14739,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14798,7 +14798,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14857,7 +14857,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14916,7 +14916,7 @@ cases_dev/eval_1-3-187.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''ReplaceElementsByIndex'' is not defined'
+      - 'failed: <class ''NameError''> name ''ReplaceElementsByIndex'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14940,7 +14940,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14955,7 +14955,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14969,7 +14969,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14984,7 +14984,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -14999,7 +14999,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15014,7 +15014,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15029,7 +15029,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15044,7 +15044,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15059,7 +15059,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15074,7 +15074,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15090,7 +15090,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15105,7 +15105,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15120,7 +15120,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15137,7 +15137,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15151,7 +15151,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15166,7 +15166,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15180,7 +15180,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15195,7 +15195,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15210,7 +15210,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15225,7 +15225,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15240,7 +15240,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15256,7 +15256,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15271,7 +15271,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15286,7 +15286,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15316,7 +15316,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15332,7 +15332,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15363,7 +15363,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15383,7 +15383,7 @@ cases_dev/eval_1-3-192.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15410,7 +15410,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15428,7 +15428,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15446,7 +15446,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15465,7 +15465,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15484,7 +15484,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15502,7 +15502,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15520,7 +15520,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15539,7 +15539,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15558,7 +15558,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15577,7 +15577,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''NameError''> name ''writeExcel'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15594,7 +15594,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15611,7 +15611,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15629,7 +15629,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15647,7 +15647,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15666,7 +15666,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15685,7 +15685,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15703,7 +15703,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15720,7 +15720,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15739,7 +15739,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15758,7 +15758,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15776,7 +15776,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15793,7 +15793,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15810,7 +15810,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15829,7 +15829,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15848,7 +15848,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15865,7 +15865,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15883,7 +15883,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15902,7 +15902,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15921,7 +15921,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15938,7 +15938,7 @@ cases_dev/eval_1-3-194.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15963,8 +15963,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15980,8 +15980,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -15997,8 +15997,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16014,8 +16014,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16029,7 +16029,7 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: unexpected indent (<string>, line 23)'
+      - 'failed: <class ''IndentationError''> unexpected indent (<string>, line 23)'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16045,8 +16045,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16061,8 +16061,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16078,8 +16078,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16095,8 +16095,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16112,8 +16112,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16129,8 +16129,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16146,8 +16146,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16163,8 +16163,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16180,8 +16180,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16197,8 +16197,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16213,8 +16213,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16230,8 +16230,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16247,8 +16247,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16264,8 +16264,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16280,8 +16280,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16296,8 +16296,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16313,8 +16313,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16330,8 +16330,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16347,8 +16347,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16364,8 +16364,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16381,8 +16381,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16398,8 +16398,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16415,8 +16415,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16432,8 +16432,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16448,8 +16448,8 @@ cases_dev/eval_1-3-197.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(),
-        a.item(), a.any() or a.all().'
+      - 'failed: <class ''ValueError''> The truth value of a DataFrame is ambiguous.
+        Use a.empty, a.bool(), a.item(), a.any() or a.all().'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16666,7 +16666,7 @@ cases_dev/eval_1-3-204.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: your_data_file.txt not found.'
+      - 'failed: <class ''FileNotFoundError''> your_data_file.txt not found.'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16775,7 +16775,7 @@ cases_dev/eval_1-3-204.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''renameDataFrame'' is not defined'
+      - 'failed: <class ''NameError''> name ''renameDataFrame'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16868,8 +16868,8 @@ cases_dev/eval_1-3-204.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Can only compare identically-labeled (both index and columns) DataFrame
-        objects'
+      - 'failed: <class ''ValueError''> Can only compare identically-labeled (both
+        index and columns) DataFrame objects'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -16935,7 +16935,7 @@ cases_dev/eval_1-3-204.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: your_file_path_here not found.'
+      - 'failed: <class ''FileNotFoundError''> your_file_path_here not found.'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17044,7 +17044,7 @@ cases_dev/eval_1-3-204.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''datafile'' is not defined'
+      - 'failed: <class ''NameError''> name ''datafile'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17135,8 +17135,8 @@ cases_dev/eval_1-3-204.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Can only compare identically-labeled (both index and columns) DataFrame
-        objects'
+      - 'failed: <class ''ValueError''> Can only compare identically-labeled (both
+        index and columns) DataFrame objects'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17263,7 +17263,7 @@ cases_dev/eval_1-3-204.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: your_data_file_path not found.'
+      - 'failed: <class ''FileNotFoundError''> your_data_file_path not found.'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17317,7 +17317,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17332,7 +17332,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17346,7 +17346,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17361,7 +17361,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17375,7 +17375,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17390,7 +17390,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17405,7 +17405,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17420,7 +17420,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17435,7 +17435,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17450,7 +17450,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17464,7 +17464,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17479,7 +17479,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17494,7 +17494,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17508,7 +17508,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17522,7 +17522,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17537,7 +17537,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17552,7 +17552,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17567,7 +17567,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17582,7 +17582,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17597,7 +17597,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17612,7 +17612,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17626,7 +17626,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17641,7 +17641,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17656,7 +17656,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17671,7 +17671,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17685,7 +17685,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17700,7 +17700,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17715,7 +17715,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17730,7 +17730,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17745,7 +17745,7 @@ cases_dev/eval_1-3-208.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17774,7 +17774,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17794,7 +17795,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17814,7 +17816,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17833,7 +17836,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17852,7 +17856,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17872,7 +17877,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17891,7 +17897,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17910,7 +17917,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17931,7 +17939,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17951,7 +17960,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17970,7 +17980,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -17989,7 +18000,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18007,7 +18019,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18026,7 +18039,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18044,7 +18058,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18063,7 +18078,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18083,7 +18099,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18102,7 +18119,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18122,7 +18140,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18142,7 +18161,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18162,7 +18182,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18181,7 +18202,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18201,7 +18223,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18220,7 +18243,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18239,7 +18263,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18259,7 +18284,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18278,7 +18304,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18297,7 +18324,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18318,7 +18346,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18337,7 +18366,8 @@ cases_dev/eval_1-3-211.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: Buffer dtype mismatch, expected ''Python object'' but got ''long'''
+      - 'failed: <class ''ValueError''> Buffer dtype mismatch, expected ''Python object''
+        but got ''long'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18361,7 +18391,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18376,7 +18406,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18393,7 +18423,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18408,7 +18438,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18423,7 +18453,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18438,7 +18468,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18454,7 +18484,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18469,7 +18499,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18484,7 +18514,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18499,7 +18529,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18514,7 +18544,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18529,7 +18559,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18545,7 +18575,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18560,7 +18590,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18575,7 +18605,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18589,7 +18619,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: ''time'''
+      - 'failed: <class ''KeyError''> ''time'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18604,7 +18634,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18619,7 +18649,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18634,7 +18664,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18650,7 +18680,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18665,7 +18695,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18680,7 +18710,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18695,7 +18725,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18710,7 +18740,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18725,7 +18755,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18740,7 +18770,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18755,7 +18785,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18771,7 +18801,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18786,7 +18816,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -18801,7 +18831,7 @@ cases_dev/eval_1-3-213.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -19524,7 +19554,7 @@ cases_dev/eval_1-3-223.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -19565,7 +19595,7 @@ cases_dev/eval_1-3-223.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: No module named ''yolk.pip'''
+      - 'failed: <class ''ModuleNotFoundError''> No module named ''yolk.pip'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -19585,7 +19615,7 @@ cases_dev/eval_1-3-223.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: No module named ''xmlrpclib'''
+      - 'failed: <class ''ModuleNotFoundError''> No module named ''xmlrpclib'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -19661,7 +19691,7 @@ cases_dev/eval_1-3-223.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: No module named ''xmlrpclib'''
+      - 'failed: <class ''ModuleNotFoundError''> No module named ''xmlrpclib'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -19852,7 +19882,7 @@ cases_dev/eval_1-3-223.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: No module named ''xmlrpclib'''
+      - 'failed: <class ''ModuleNotFoundError''> No module named ''xmlrpclib'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -19932,7 +19962,7 @@ cases_dev/eval_1-3-223.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: name ''xmlrpc'' is not defined'
+      - 'failed: <class ''NameError''> name ''xmlrpc'' is not defined'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -19951,7 +19981,7 @@ cases_dev/eval_1-3-223.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: No module named ''xmlrpclib'''
+      - 'failed: <class ''ModuleNotFoundError''> No module named ''xmlrpclib'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -19995,7 +20025,7 @@ cases_dev/eval_1-3-223.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: No module named ''xmlrpclib'''
+      - 'failed: <class ''ModuleNotFoundError''> No module named ''xmlrpclib'''
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23098,7 +23128,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23122,7 +23152,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23145,7 +23175,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23172,7 +23202,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23194,7 +23224,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23218,7 +23248,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23239,7 +23269,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23261,7 +23291,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23284,7 +23314,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23327,7 +23357,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23348,7 +23378,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23370,7 +23400,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23392,7 +23422,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23414,7 +23444,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23457,7 +23487,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23482,7 +23512,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23506,7 +23536,8 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: maximum recursion depth exceeded while calling a Python object'
+      - 'failed: <class ''RecursionError''> maximum recursion depth exceeded while
+        calling a Python object'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23528,7 +23559,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23553,7 +23584,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: list.remove(x): x not in list'
+      - 'failed: <class ''ValueError''> list.remove(x): x not in list'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23576,7 +23607,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23598,7 +23629,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23651,7 +23682,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: list index out of range'
+      - 'failed: <class ''IndexError''> list index out of range'
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23673,7 +23704,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23693,7 +23724,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23717,7 +23748,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23738,7 +23769,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23761,7 +23792,7 @@ cases_dev/eval_1-3-249.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -23956,7 +23987,7 @@ cases_dev/eval_1-3-257.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -24105,7 +24136,7 @@ cases_dev/eval_1-3-257.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -24126,7 +24157,7 @@ cases_dev/eval_1-3-257.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -24254,7 +24285,7 @@ cases_dev/eval_1-3-257.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -24274,7 +24305,7 @@ cases_dev/eval_1-3-257.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0
@@ -24331,7 +24362,7 @@ cases_dev/eval_1-3-257.yaml:
       completion_id: 0
       passed: false
       result:
-      - 'failed: '
+      - 'failed: <class ''AssertionError''> '
       task_id: 0
     unit_test_score: 0.0
     unit_test_totscore: 1.0

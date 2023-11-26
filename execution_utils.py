@@ -151,7 +151,7 @@ def python_exec_func(check_program, timeout, queue):
     except TimeoutException:
         queue.put("timed out")
     except BaseException as e:
-        queue.put(f"failed: {e}")
+        queue.put(f"failed: {type(e)} {e}")
 
 def python_unsafe_executor(references, predictions, timeout):
 

@@ -29,6 +29,7 @@ grading:
     tests:
         - path: test/test_1-3-194.py
           only_longest: true
+          cleanup_path: test/cleanup_1-3-194.py
         # - content: str
         #   # source code in string
         #   path: str

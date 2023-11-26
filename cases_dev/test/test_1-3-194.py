@@ -7,6 +7,8 @@ def f():
     df.to_excel(writer, sheet_name='welcome', index=False)
     writer.save()
 
+writeExcel()
+
 import os
 assert os.path.exists("data.xlsx")
 assert pd.read_excel("data.xlsx").values.tolist() == [["first", "second"], ["third", "fourth"]]
