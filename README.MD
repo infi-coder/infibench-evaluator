@@ -1,6 +1,8 @@
-<h1 align="center">Evaluation Framework for InfiCoder-Eval</h1>
+<h1 align="center">Old Evaluation Framework for InfiBench</h1>
 
 <h4 align="center">The InfiCoder Team</h4>
+
+<h2 align="center">This evaluator repo is out of maintenance and superseded by <a href="https://github.com/infi-coder/infibench-evaluation-harness">infiBench-evaluation-harness</a>.</h2>
 
 <h4 align="center">Project Page: https://infi-coder.github.io/inficoder-eval/</h4>
 
@@ -13,7 +15,7 @@
 </h4>
 
 ## Features
-This is the evaluation framework for the InfiCoder-Eval benchmark along with dev set questions.
+This is the evaluation framework for the InfiBench (formerly known as InfiCoder-Eval) benchmark along with dev set questions.
 
 Featuring the execution runtime for 8 languages (Python, Javascript, Java, C, C++, Go, R, C#), given model responses, the framework can directly evaluate and output the scores along with subscores in a nice table.
 
