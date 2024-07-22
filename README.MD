@@ -4,7 +4,7 @@
 
 <h2 align="center">This evaluator repo is out of maintenance and superseded by <a href="https://github.com/infi-coder/infibench-evaluation-harness">infiBench-evaluation-harness</a>.</h2>
 
-<h4 align="center">Project Page: https://infi-coder.github.io/inficoder-eval/</h4>
+<h4 align="center">Project Page: https://infi-coder.github.io/infibench/</h4>
 
 <h4 align="center">
     <p>
@@ -159,9 +159,9 @@ The execution environment is partly adapted from Humanevalpack: https://github.c
 ```
 @misc{li2023inficodereval,
   author = {InfiCoderTeam},
-  title = {InfiCoder-Eval: Systematically Evaluating Question-Answering for Code Large Language Models},
+  title = {InfiBench: Systematically Evaluating Question-Answering for Code Large Language Models},
   year = {2023},
   publisher = {Github Pages},
-  howpublished = "\url{https://infi-coder.github.io/inficoder-eval/}"
+  howpublished = "\url{https://infi-coder.github.io/infibench/}"
 }
 ```
